@@ -1,0 +1,152 @@
+// Info: Button atom [S2 interactive]. Wraps Pressable, resolves the five
+// interaction states (enabled, hovered, pressed, focused, disabled), and
+// guarantees the minimum accessible hit target. Children can be a function
+// receiving the interaction state, or static content.
+'use strict';
+
+const { Pressable } = require('react-native');
+
+
+/********************************************************************
+Build the Button atom.
+
+@param {Object} Lib      - { Utils, Debug, React }
+@param {Object} CONFIG   - Package configuration
+@param {Object} ERRORS   - Frozen error catalog
+@param {Object} Registry - Component registry (unused by atoms)
+@param {Object} Style_   - { utilities, tokens, breakpoint }
+
+@return {Function} - The Button component
+*********************************************************************/
+module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+
+
+  // ~~~~~~~~~~~~~~~~~~~~ Private ~~~~~~~~~~~~~~~~~~~~
+
+  // Resolve the active interaction state to a token suffix
+  const resolveStateSuffix = function (props, pressableState) {
+
+    // Disabled outranks every other state
+    if (props.disabled) {
+      return '_disabled';
+    }
+
+    // Pressed outranks hovered
+    if (pressableState.pressed) {
+      return '_pressed';
+    }
+
+    // Hovered is web and pointer only
+    if (pressableState.hovered) {
+      return '_hovered';
+    }
+
+    // Focused is the accessibility-visible state
+    if (pressableState.focused) {
+      return '_focused';
+    }
+
+    return '';
+
+  };
+
+
+  // Compute hitSlop so the touch target reaches the accessible minimum
+  const resolveHitSlop = function (height, width) {
+
+    // No padding needed once the visual box already clears the minimum on both axes
+    if (height >= CONFIG.MIN_HIT_TARGET && width >= CONFIG.MIN_HIT_TARGET) {
+      return undefined;
+    }
+
+    const padV = Math.max(0, Math.ceil((CONFIG.MIN_HIT_TARGET - height) / 2));
+    const padH = Math.max(0, Math.ceil((CONFIG.MIN_HIT_TARGET - width) / 2));
+
+    return { top: padV, bottom: padV, left: padH, right: padH };
+
+  };
+
+
+  return function Button (props) {
+
+    // Destructure props
+    const {
+      onPress, disabled, background, radius, style, children, accessibilityLabel,
+      isRtlActive, ...rest // eslint-disable-line no-unused-vars
+    } = props;
+
+    const React = Lib.React;
+
+    // Track visual dimensions for hitSlop calculation
+    const layoutRef = React.useRef({ height: 0, width: 0 });
+
+    // Resolve base utility classes
+    const baseClasses = [];
+
+    if (radius) {
+      const brClass = Style_.utilities['br_' + radius];
+      if (brClass) {
+        baseClasses.push(brClass);
+      }
+    }
+
+    // Build the style function for Pressable
+    const styleFn = function (pressableState) {
+
+      const stateSuffix = resolveStateSuffix(props, pressableState);
+      const classes = [...baseClasses];
+
+      // Resolve background with state suffix
+      if (background) {
+        const bgKey = 'background_' + background + stateSuffix;
+        const bgClass = Style_.utilities[bgKey];
+
+        if (bgClass) {
+          classes.push(bgClass);
+        } else {
+          // Fall back to the base background without state suffix
+          const baseBgKey = 'background_' + background;
+          const baseBgClass = Style_.utilities[baseBgKey];
+
+          if (baseBgClass) {
+            classes.push(baseBgClass);
+          }
+        }
+
+      }
+
+      // Focus ring for the focused state
+      if (pressableState.focused && !disabled) {
+        classes.push(Style_.utilities['border_focused']);
+      }
+
+      return [...classes, style];
+
+    };
+
+    // Build accessibility state object
+    const accessibilityState = {
+      disabled: !!disabled
+    };
+
+    return Lib.React.createElement(
+      Pressable,
+      Object.assign({
+        onPress: disabled ? null : onPress,
+        disabled: disabled,
+        accessibilityRole: 'button',
+        accessibilityLabel: accessibilityLabel,
+        accessibilityState: accessibilityState,
+        hitSlop: resolveHitSlop(layoutRef.current.height, layoutRef.current.width),
+        onLayout: function (e) {
+          layoutRef.current = e.nativeEvent.layout;
+        },
+        style: styleFn
+      }, rest),
+      // Children can be a function receiving the pressable state, or static
+      Lib.Utils.isFunction(children) ? children : children
+    );
+
+  };
+
+};

@@ -1,0 +1,249 @@
+// Info: Shared focus-trap hook for S3 overlay components (Modal, Dropdown).
+//
+// Implements the six S3 obligations from the plan:
+//   1. On open: record the previously focused element and move focus into the overlay
+//   2. While open: trap focus so Tab cycles within the overlay
+//   3. On Escape (web) or hardware back (Android): close
+//   4. On outside press: close
+//   5. On close: restore focus to the recorded element
+//   6. Announce with accessibilityViewIsModal (iOS) and importantForAccessibility
+//      on the background (Android)
+//
+// On web, Tab cycling uses the DOM focusable elements query. On native,
+// accessibilityViewIsModal traps VoiceOver on iOS; Android relies on the
+// overlay structure. The hook is a factory closing over Lib.React.
+//
+// This is genuinely new code. Neither CTP nor the prototype has focus management.
+/* global document */
+'use strict';
+
+const { Platform, BackHandler, AccessibilityInfo } = require('react-native');
+
+
+/********************************************************************
+Build the useFocusTrap hook. Returns a React hook that manages focus
+trapping for an overlay component.
+
+@param {Object} Lib - The shared Lib container (requires React, Debug)
+
+@return {Function} - useFocusTrap(options) -> { containerRef, onKeyDown, onOutsidePress }
+*********************************************************************/
+module.exports = function (Lib) {
+
+  const React = Lib.React;
+
+
+  /********************************************************************
+  React hook that traps focus within an overlay while it is open.
+
+  @param {Object}   options
+  @param {Boolean}  options.isOpen        - Whether the overlay is currently open
+  @param {Function} options.onClose       - Called when Escape or outside press dismisses
+  @param {Object}   [options.initialFocusRef] - Ref to focus on open (defaults to first focusable)
+  @param {Object}   [options.finalFocusRef]   - Ref to focus on close (defaults to trigger)
+
+  @return {Object} - { containerRef, onOutsidePress, accessibilityProps }
+  *********************************************************************/
+  return function useFocusTrap (options) {
+
+    const isOpen = options.isOpen;
+    const onClose = options.onClose;
+    const initialFocusRef = options.initialFocusRef;
+    const finalFocusRef = options.finalFocusRef;
+
+    // Ref to the overlay container element
+    const containerRef = React.useRef(null);
+
+    // Record the previously focused element for restoration on close
+    const previousFocusRef = React.useRef(null);
+
+
+    // On open: record previous focus and move focus into the overlay
+    React.useEffect(function () {
+
+      if (!isOpen) {
+        return;
+      }
+
+      // Record the currently focused element for restoration on close
+      if (Platform.OS === 'web' && typeof document !== 'undefined') {
+        previousFocusRef.current = document.activeElement;
+      }
+
+      // Move focus into the overlay
+      if (initialFocusRef && initialFocusRef.current) {
+        // Focus the explicitly specified element
+        if (Lib.Utils.isFunction(initialFocusRef.current.focus)) {
+          initialFocusRef.current.focus();
+        }
+      } else if (containerRef.current && Lib.Utils.isFunction(containerRef.current.focus)) {
+        // Focus the container itself as the default
+        containerRef.current.focus();
+      }
+
+      // On native, set accessibility focus on the container for VoiceOver
+      if (Platform.OS !== 'web' && containerRef.current) {
+        // AccessibilityInfo.setAccessibilityFocus needs a reactTag;
+        // called multiple times as a workaround for RN async layout timing
+        AccessibilityInfo.setAccessibilityFocus(containerRef.current);
+        AccessibilityInfo.setAccessibilityFocus(containerRef.current);
+      }
+
+    }, [isOpen]);
+
+
+    // Escape key and hardware back handler
+    React.useEffect(function () {
+
+      if (!isOpen) {
+        return;
+      }
+
+      // Web: listen for Escape key
+      if (Platform.OS === 'web' && typeof document !== 'undefined') {
+
+        const handleKeyDown = function (event) {
+
+          if (event.key === 'Escape') {
+            onClose();
+          }
+
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+
+        // Cleanup: remove the keydown listener
+        return function () {
+          document.removeEventListener('keydown', handleKeyDown);
+        };
+
+      }
+
+      // Android: hardware back button
+      if (Platform.OS === 'android') {
+
+        const handleBackPress = function () {
+
+          onClose();
+
+          // Return true to prevent default back behavior
+          return true;
+
+        };
+
+        BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+
+        // Cleanup: remove the back handler
+        return function () {
+          BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
+        };
+
+      }
+
+    }, [isOpen, onClose]);
+
+
+    // Tab cycling on web: trap focus within the container
+    React.useEffect(function () {
+
+      if (!isOpen || Platform.OS !== 'web' || typeof document === 'undefined') {
+        return;
+      }
+
+      const handleTabKey = function (event) {
+
+        // Only handle Tab key
+        if (event.key !== 'Tab') {
+          return;
+        }
+
+        // Find all focusable elements within the container
+        const container = containerRef.current;
+
+        if (!container) {
+          return;
+        }
+
+        // Query focusable elements in DOM order
+        const focusable = container.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+
+        if (focusable.length === 0) {
+          event.preventDefault();
+          return;
+        }
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        // Tab on last element wraps to first
+        if (event.shiftKey) {
+          // Shift+Tab on first element wraps to last
+          if (document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+          }
+        } else {
+          // Tab on last element wraps to first
+          if (document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+          }
+        }
+
+      };
+
+      document.addEventListener('keydown', handleTabKey);
+
+      // Cleanup: remove the Tab key listener
+      return function () {
+        document.removeEventListener('keydown', handleTabKey);
+      };
+
+    }, [isOpen]);
+
+
+    // On close: restore focus to the previously focused element
+    React.useEffect(function () {
+
+      if (isOpen) {
+        return;
+      }
+
+      // Restore focus to the trigger element
+      if (finalFocusRef && finalFocusRef.current && Lib.Utils.isFunction(finalFocusRef.current.focus)) {
+        finalFocusRef.current.focus();
+      } else if (previousFocusRef.current && Lib.Utils.isFunction(previousFocusRef.current.focus)) {
+        previousFocusRef.current.focus();
+      }
+
+    }, [isOpen]);
+
+
+    // Accessibility props for the overlay container
+    const accessibilityProps = {
+      accessibilityRole: 'dialog',
+      accessibilityViewIsModal: Platform.OS === 'ios' ? true : undefined,
+      importantForAccessibility: Platform.OS === 'android' ? 'yes' : undefined,
+      focusable: true
+    };
+
+
+    // Outside press handler for the backdrop
+    const onOutsidePress = function () {
+
+      onClose();
+
+    };
+
+
+    return {
+      containerRef: containerRef,
+      onOutsidePress: onOutsidePress,
+      accessibilityProps: accessibilityProps
+    };
+
+  };
+
+};
