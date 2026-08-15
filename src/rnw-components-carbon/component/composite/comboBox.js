@@ -1,0 +1,227 @@
+// Info: ComboBox composite [S3 overlay]. A select with text input filtering.
+// Uses M1 (a11y), M4 (OverlayHost), M5 (useAnchoredPosition), M8
+// (useControllableState). Role combobox.
+//   value       -> string (controlled)
+//   defaultValue-> string (uncontrolled)
+//   onChange    -> callback receiving the selected value
+//   options     -> array of { value, label }
+//   placeholder -> string (default 'Search')
+//   disabled    -> boolean
+//   invalid     -> boolean
+'use strict';
+
+const { View: RNView, Pressable, Platform } = require('react-native');
+
+
+/********************************************************************
+Build the ComboBox composite.
+
+@param {Object} Lib      - { Utils, Debug, React }
+@param {Object} CONFIG   - Package configuration
+@param {Object} ERRORS   - Frozen error catalog
+@param {Object} Registry - Component registry (for atom composition)
+@param {Object} Style_   - { utilities, tokens, breakpoint }
+
+@return {Function} - The ComboBox component
+*********************************************************************/
+module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+
+  const a11y = require('../a11y')(Lib);
+  const useControllableState = require('../useControllableState')(Lib);
+  const useAnchoredPosition = require('../useAnchoredPosition')(Lib);
+  const overlayHost = require('../OverlayHost')(Lib);
+  const useOverlay = overlayHost.useOverlay;
+
+  return function ComboBox (props) {
+
+    const {
+      value, defaultValue, onChange, options, placeholder, disabled, invalid,
+      style, isRtlActive, accessibilityLabel, // eslint-disable-line no-unused-vars
+      ...rest
+    } = props;
+
+    const React = Lib.React;
+    const anchorRef = React.useRef(null);
+
+    // Controlled/uncontrolled state for the input text
+    const state = useControllableState({
+      value: value,
+      defaultValue: defaultValue || '',
+      onChange: onChange
+    });
+    const inputValue = state[0];
+    const setInputValue = state[1];
+
+    const [isOpen, setIsOpen] = React.useState(false);
+    const isDisabled = !!disabled;
+    const isInvalid = !!invalid;
+    const colorMap = Style_.tokens.Color;
+    const optionList = options || [];
+
+    // Filter options based on the current input text
+    const filteredOptions = optionList.filter(function (opt) {
+      if (!inputValue) {
+        return true;
+      }
+      const lowerInput = String(inputValue).toLowerCase();
+      return String(opt.label).toLowerCase().indexOf(lowerInput) >= 0;
+    });
+
+    // Anchored position for the dropdown panel
+    const anchored = useAnchoredPosition({
+      placement: 'bottom-start',
+      anchorRef: anchorRef
+    });
+
+    // Measure position when the dropdown opens
+    React.useEffect(function () {
+      if (isOpen) {
+        anchored.measure();
+      }
+    }, [isOpen]);
+
+    const handleFocus = function () {
+      setIsOpen(true);
+    };
+
+    const handleClose = function () {
+      setIsOpen(false);
+    };
+
+    const handleSelect = function (opt) {
+      setInputValue(opt.value);
+      setIsOpen(false);
+    };
+
+    // Build aria state props for the combobox
+    const ariaStateProps = a11y.state({
+      disabled: isDisabled,
+      expanded: !!isOpen,
+      invalid: isInvalid
+    });
+
+    // Render the text input trigger
+    const renderTrigger = function () {
+      return React.createElement(
+        RNView,
+        { ref: anchorRef, style: { position: 'relative' } },
+        React.createElement(
+          Registry.TextInput,
+          Object.assign({
+            value: inputValue,
+            onChangeText: setInputValue,
+            onFocus: handleFocus,
+            isDisabled: isDisabled,
+            isInvalid: isInvalid,
+            accessibilityRole: 'combobox',
+            accessibilityLabel: accessibilityLabel || placeholder || 'Search',
+            placeholder: placeholder || 'Search',
+            style: [
+              isInvalid
+                ? { borderColor: colorMap.STATUS_DANGER || '#da1e28' }
+                : null,
+              style
+            ]
+          }, ariaStateProps, rest)
+        )
+      );
+    };
+
+    // Render the filtered options panel
+    const renderPanel = function (zIndex) {
+      const pos = anchored.position || { top: 0, left: 0 };
+
+      return React.createElement(
+        RNView,
+        {
+          style: [
+            Style_.utilities['background_surface'],
+            Style_.utilities['br_md'],
+            Style_.utilities['border_default'],
+            Style_.utilities['p_v_xs'],
+            { position: 'absolute', top: pos.top, left: pos.left, minWidth: 200, zIndex: zIndex || 1000 }
+          ]
+        },
+        filteredOptions.length === 0
+          ? React.createElement(Registry.Text, {
+            size: 'sm',
+            color: 'text_muted',
+            style: [Style_.utilities['p_h_md'], Style_.utilities['p_v_xs']]
+          }, 'No results found')
+          : filteredOptions.map(function (opt) {
+            return React.createElement(
+              Pressable,
+              {
+                key: opt.value,
+                onPress: function () {
+                  handleSelect(opt);
+                },
+                accessibilityRole: 'option',
+                accessibilityLabel: opt.label,
+                style: [
+                  Style_.utilities['p_h_md'],
+                  Style_.utilities['p_v_xs']
+                ]
+              },
+              React.createElement(Registry.Text, {
+                size: 'md',
+                color: 'text_primary'
+              }, opt.label)
+            );
+          })
+      );
+    };
+
+    // Render backdrop
+    const renderBackdrop = function () {
+      return React.createElement(Pressable, {
+        onPress: handleClose,
+        style: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }
+      });
+    };
+
+    if (!isOpen) {
+      return renderTrigger();
+    }
+
+    // On native, render inline with backdrop
+    if (Platform.OS !== 'web') {
+      return React.createElement(
+        RNView,
+        { style: { position: 'relative' } },
+        renderTrigger(),
+        renderBackdrop(),
+        renderPanel(1000)
+      );
+    }
+
+    // On web, use OverlayHost
+    const overlay = useOverlay({
+      isOpen: true,
+      trap: false,
+      onClose: handleClose,
+      render: function () {
+        return React.createElement(
+          React.Fragment,
+          null,
+          renderBackdrop(),
+          renderPanel()
+        );
+      }
+    });
+
+    if (overlay.layerIndex < 0) {
+      return React.createElement(
+        RNView,
+        { style: { position: 'relative' } },
+        renderTrigger(),
+        renderBackdrop(),
+        renderPanel(1000)
+      );
+    }
+
+    return renderTrigger();
+
+  };
+
+};

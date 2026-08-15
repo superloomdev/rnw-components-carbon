@@ -234,6 +234,91 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.AILabel = make(require('./component/composite/aiLabel'));
       Component.LongPressMenu = make(require('./component/composite/longPressMenu'));
 
+      // ~~~~~~~~~~ Molecules (Wave 6 navigation) ~~~~~~~~~~
+      Component.Tab = make(require('./component/molecule/tab'));
+      Component.TabList = make(require('./component/molecule/tabList'));
+      Component.TabPanel = make(require('./component/molecule/tabPanel'));
+      Component.AccordionItem = make(require('./component/molecule/accordionItem'));
+      Component.BreadcrumbItem = make(require('./component/molecule/breadcrumbItem'));
+      Component.Switch = make(require('./component/molecule/switch'));
+      Component.PageSelector = make(require('./component/molecule/pageSelector'));
+      Component.TreeNode = make(require('./component/molecule/treeNode'));
+      Component.Step = make(require('./component/molecule/step'));
+      Component.HeaderNav = make(require('./component/molecule/headerNav'));
+      Component.HeaderMenuButton = make(require('./component/molecule/headerMenuButton'));
+      Component.HeaderPanel = make(require('./component/molecule/headerPanel'));
+      Component.ProgressIndicator = make(require('./component/molecule/progressIndicator'));
+
+      // ~~~~~~~~~~ Composites (Wave 6 navigation) ~~~~~~~~~~
+      Component.Tabs = make(require('./component/composite/tabs'));
+      Component.Accordion = make(require('./component/composite/accordion'));
+      Component.Breadcrumb = make(require('./component/composite/breadcrumb'));
+      Component.ContentSwitcher = make(require('./component/composite/contentSwitcher'));
+      Component.Pagination = make(require('./component/composite/pagination'));
+      Component.TreeView = make(require('./component/composite/treeView'));
+      Component.Steps = make(require('./component/composite/steps'));
+      Component.Header = make(require('./component/composite/header'));
+
+      // ~~~~~~~~~~ Molecules (Wave 8 feedback) ~~~~~~~~~~
+      Component.Notification = make(require('./component/molecule/notification'));
+      Component.Toast = make(require('./component/molecule/toast'));
+      Component.ActionBar = make(require('./component/molecule/actionBar'));
+      Component.BatchAction = make(require('./component/molecule/batchAction'));
+      Component.Alert = make(require('./component/molecule/alert'));
+      Component.Callout = make(require('./component/molecule/callout'));
+
+      // ~~~~~~~~~~ Molecules (Wave 9 data and layout) ~~~~~~~~~~
+      Component.DataTable = make(require('./component/molecule/dataTable'));
+      Component.TableRow = make(require('./component/molecule/tableRow'));
+      Component.TableCell = make(require('./component/molecule/tableCell'));
+      Component.TableHeader = make(require('./component/molecule/tableHeader'));
+      Component.TableBody = make(require('./component/molecule/tableBody'));
+      Component.TableHead = make(require('./component/molecule/tableHead'));
+      Component.Grid = make(require('./component/molecule/grid'));
+      Component.Row = make(require('./component/molecule/row'));
+      Component.Column = make(require('./component/molecule/column'));
+      Component.FlexGrid = make(require('./component/molecule/flexGrid'));
+      Component.Container = make(require('./component/molecule/container'));
+      Component.LayerMolecule = make(require('./component/molecule/layerMolecule'));
+      Component.Form = make(require('./component/molecule/form'));
+      Component.Fieldset = make(require('./component/molecule/fieldset'));
+      Component.Legend = make(require('./component/molecule/legend'));
+      Component.OrderedList = make(require('./component/molecule/orderedList'));
+      Component.UnorderedList = make(require('./component/molecule/unorderedList'));
+      Component.ListItemNav = make(require('./component/molecule/listItemNav'));
+      Component.StructuredList = make(require('./component/molecule/structuredList'));
+      Component.StructuredListRow = make(require('./component/molecule/structuredListRow'));
+      Component.StructuredListCell = make(require('./component/molecule/structuredListCell'));
+      Component.Toolbar = make(require('./component/molecule/toolbar'));
+      Component.Divider = make(require('./component/molecule/divider'));
+      Component.ScrollGradient = make(require('./component/molecule/scrollGradient'));
+
+      // ~~~~~~~~~~ Composites (Wave 9 data and layout) ~~~~~~~~~~
+      Component.DataTableRow = make(require('./component/composite/dataTableRow'));
+      Component.PaginationBar = make(require('./component/composite/paginationBar'));
+      Component.ToggletipLabel = make(require('./component/composite/toggletipLabel'));
+      Component.GridItem = make(require('./component/composite/gridItem'));
+
+      // ~~~~~~~~~~ Composites (Wave 6 form components) ~~~~~~~~~~
+      // Form composites use M1 (a11y), M3 (useRovingTabIndex), M4 (OverlayHost),
+      // M5 (useAnchoredPosition), M7 (createCompoundContext), M8 (useControllableState).
+      Component.Select = make(require('./component/composite/select'));
+      Component.ComboBox = make(require('./component/composite/comboBox'));
+      Component.MultiSelect = make(require('./component/composite/multiSelect'));
+      Component.RadioButtonGroup = make(require('./component/composite/radioButtonGroup'));
+      Component.CheckboxGroup = make(require('./component/composite/checkboxGroup'));
+      Component.SliderInput = make(require('./component/composite/sliderInput'));
+      Component.DatePicker = make(require('./component/composite/datePicker'));
+      Component.TimePicker = make(require('./component/composite/timePicker'));
+      Component.DateRangePicker = make(require('./component/composite/dateRangePicker'));
+      Component.NumberInputComposite = make(require('./component/composite/numberInputComposite'));
+      Component.FileUploader = make(require('./component/composite/fileUploader'));
+      Component.FluidForm = make(require('./component/composite/fluidForm'));
+      Component.FormGroup = make(require('./component/composite/formGroup'));
+      Component.ToggleGroup = make(require('./component/composite/toggleGroup'));
+      Component.TimeInput = make(require('./component/composite/timeInput'));
+      Component.DateInput = make(require('./component/composite/dateInput'));
+
       // ~~~~~~~~~~ Structured exceptions (variant registry) ~~~~~~~~~~
       Component.variant = {
         ButtonPrimaryOutlined: make(require('./component/variant/buttonPrimaryOutlined'))

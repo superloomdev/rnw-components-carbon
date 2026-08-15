@@ -1,0 +1,50 @@
+// Info: Toolbar molecule [S1]. A horizontal toolbar container for tool
+// buttons. Uses role="toolbar" for screen reader semantics. Renders
+// children in a flex row with consistent spacing.
+//   children    -> tool button elements
+//   style       -> custom style overrides
+'use strict';
+
+const { View: RNView } = require('react-native');
+
+
+/********************************************************************
+Build the Toolbar molecule.
+
+@param {Object} Lib      - { Utils, Debug, React }
+@param {Object} CONFIG   - Package configuration
+@param {Object} ERRORS   - Frozen error catalog
+@param {Object} Registry - Component registry (for atom composition)
+@param {Object} Style_   - { utilities, tokens, breakpoint }
+
+@return {Function} - The Toolbar component
+*********************************************************************/
+module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+
+  return function Toolbar (props) {
+
+    const {
+      children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      ...rest
+    } = props;
+
+    const React = Lib.React;
+
+    return React.createElement(
+      RNView,
+      Object.assign({
+        accessibilityRole: 'toolbar',
+        style: [
+          Style_.utilities['flex_row'],
+          Style_.utilities['align_center'],
+          Style_.utilities['p_h_sm'],
+          Style_.utilities['p_v_sm'],
+          style
+        ]
+      }, rest),
+      children
+    );
+
+  };
+
+};

@@ -358,4 +358,4 @@ Controlled/uncontrolled state hook. Controlled when `value` is not undefined, un
 
 ## Component Count
 
-The library ships 65 flat component keys (23 atoms + 33 molecules + 9 composites) plus 1 variant, 1 freeform, and 8 providers, totaling 75 named components. Wave 5 adds 19 overlay components (10 molecules + 9 composites).
+The library ships 136 flat component keys (23 atoms + 89 molecules + 24 composites) plus 1 variant, 1 freeform, and 8 providers, totaling 146 named components. Waves 6-9 add 71 new components covering navigation, form composites, feedback, and data/layout.

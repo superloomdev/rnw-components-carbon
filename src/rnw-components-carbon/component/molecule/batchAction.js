@@ -1,0 +1,73 @@
+// Info: BatchAction molecule [S2 interactive]. A single action button used
+// within an ActionBar for batch operations. Uses M1 (a11y) for aria-* state
+// and M2 (usePressKeys) for keyboard activation.
+//   label       -> button text
+//   onPress     -> press handler
+//   disabled    -> boolean
+//   style       -> custom style overrides
+'use strict';
+
+const { Pressable } = require('react-native');
+
+
+/********************************************************************
+Build the BatchAction molecule.
+
+@param {Object} Lib      - { Utils, Debug, React }
+@param {Object} CONFIG   - Package configuration
+@param {Object} ERRORS   - Frozen error catalog
+@param {Object} Registry - Component registry (for atom composition)
+@param {Object} Style_   - { utilities, tokens, breakpoint }
+
+@return {Function} - The BatchAction component
+*********************************************************************/
+module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+
+  const a11y = require('../a11y')(Lib);
+  const usePressKeys = require('../usePressKeys')(Lib);
+
+  return function BatchAction (props) {
+
+    const {
+      label, onPress, disabled, style, isRtlActive, // eslint-disable-line no-unused-vars
+      ...rest
+    } = props;
+
+    const React = Lib.React;
+
+    // Build aria state props through the a11y translator
+    const ariaProps = a11y.state({
+      disabled: !!disabled
+    });
+
+    // Build keyboard activation props
+    const pressKeysProps = usePressKeys({
+      role: 'button',
+      onActivate: onPress,
+      disabled: !!disabled
+    });
+
+    return React.createElement(
+      Pressable,
+      Object.assign({
+        onPress: disabled ? null : onPress,
+        disabled: !!disabled,
+        accessibilityRole: 'button',
+        accessibilityLabel: label,
+        style: [
+          Style_.utilities['p_h_sm'],
+          Style_.utilities['p_v_xs'],
+          Style_.utilities['br_md'],
+          style
+        ]
+      }, ariaProps, pressKeysProps, rest),
+      React.createElement(Registry.Text, {
+        size: 'sm',
+        color: 'text_primary',
+        weight: 'medium'
+      }, label)
+    );
+
+  };
+
+};

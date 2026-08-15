@@ -1,0 +1,333 @@
+// Info: TimePicker composite [S3 overlay]. A time picker with a trigger
+// button and a time selection view. Uses M1 (a11y), M4 (OverlayHost),
+// M5 (useAnchoredPosition), M8 (useControllableState). Role combobox.
+//   value       -> string HH:MM (controlled)
+//   defaultValue-> string HH:MM (uncontrolled)
+//   onChange    -> callback receiving the selected time string
+//   disabled    -> boolean
+//   invalid     -> boolean
+'use strict';
+
+const { View: RNView, Pressable, Platform } = require('react-native');
+
+
+/********************************************************************
+Build the TimePicker composite.
+
+@param {Object} Lib      - { Utils, Debug, React }
+@param {Object} CONFIG   - Package configuration
+@param {Object} ERRORS   - Frozen error catalog
+@param {Object} Registry - Component registry (for atom composition)
+@param {Object} Style_   - { utilities, tokens, breakpoint }
+
+@return {Function} - The TimePicker component
+*********************************************************************/
+module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+
+  const a11y = require('../a11y')(Lib);
+  const useControllableState = require('../useControllableState')(Lib);
+  const usePressKeys = require('../usePressKeys')(Lib);
+  const useAnchoredPosition = require('../useAnchoredPosition')(Lib);
+  const overlayHost = require('../OverlayHost')(Lib);
+  const useOverlay = overlayHost.useOverlay;
+
+  return function TimePicker (props) {
+
+    const {
+      value, defaultValue, onChange, disabled, invalid,
+      style, isRtlActive, accessibilityLabel, // eslint-disable-line no-unused-vars
+      ...rest
+    } = props;
+
+    const React = Lib.React;
+    const anchorRef = React.useRef(null);
+
+    // Controlled/uncontrolled state for the selected time
+    const state = useControllableState({
+      value: value,
+      defaultValue: defaultValue || '',
+      onChange: onChange
+    });
+    const resolvedValue = state[0];
+    const setValue = state[1];
+
+    const [isOpen, setIsOpen] = React.useState(false);
+    const isDisabled = !!disabled;
+    const isInvalid = !!invalid;
+    const colorMap = Style_.tokens.Color;
+
+    // Parse hours and minutes from the current value
+    let currentHour = 9;
+    let currentMinute = 0;
+    if (resolvedValue) {
+      const parts = String(resolvedValue).split(':');
+      const parsedHour = parseInt(parts[0], 10);
+      const parsedMinute = parseInt(parts[1], 10);
+      if (Lib.Utils.isNumber(parsedHour)) {
+        currentHour = parsedHour;
+      }
+      if (Lib.Utils.isNumber(parsedMinute)) {
+        currentMinute = parsedMinute;
+      }
+    }
+
+    const [selectedHour, setSelectedHour] = React.useState(currentHour);
+    const [selectedMinute, setSelectedMinute] = React.useState(currentMinute);
+
+    // Sync internal selection when the panel opens
+    React.useEffect(function () {
+      if (isOpen) {
+        setSelectedHour(currentHour);
+        setSelectedMinute(currentMinute);
+      }
+    }, [isOpen]);
+
+    // Anchored position for the dropdown panel
+    const anchored = useAnchoredPosition({
+      placement: 'bottom-start',
+      anchorRef: anchorRef
+    });
+
+    React.useEffect(function () {
+      if (isOpen) {
+        anchored.measure();
+      }
+    }, [isOpen]);
+
+    const handleToggle = function () {
+      if (isDisabled) {
+        return;
+      }
+      setIsOpen(!isOpen);
+    };
+
+    const handleClose = function () {
+      setIsOpen(false);
+    };
+
+    const handleConfirm = function () {
+      const hourStr = String(selectedHour).padStart(2, '0');
+      const minStr = String(selectedMinute).padStart(2, '0');
+      setValue(hourStr + ':' + minStr);
+      setIsOpen(false);
+    };
+
+    // Build aria state props for the trigger
+    const ariaStateProps = a11y.state({
+      disabled: isDisabled,
+      expanded: !!isOpen,
+      invalid: isInvalid
+    });
+
+    const pressKeysProps = usePressKeys({
+      role: 'button',
+      onActivate: handleToggle,
+      disabled: isDisabled
+    });
+
+    // Render the trigger button
+    const renderTrigger = function () {
+      return React.createElement(
+        Pressable,
+        Object.assign({
+          ref: anchorRef,
+          onPress: handleToggle,
+          disabled: isDisabled,
+          accessibilityRole: 'combobox',
+          accessibilityLabel: accessibilityLabel || 'Time picker',
+          style: [
+            Style_.utilities['flex_row'],
+            Style_.utilities['align_center'],
+            Style_.utilities['justify_between'],
+            Style_.utilities['br_md'],
+            Style_.utilities['border_default'],
+            Style_.utilities['p_h_md'],
+            Style_.utilities['p_v_sm'],
+            Style_.utilities['background_surface'],
+            isInvalid
+              ? { borderColor: colorMap.STATUS_DANGER || '#da1e28' }
+              : null,
+            isDisabled
+              ? { backgroundColor: colorMap.BACKGROUND_SECONDARY || '#f4f4f4' }
+              : null,
+            style
+          ]
+        }, ariaStateProps, pressKeysProps, rest),
+        React.createElement(Registry.Text, {
+          size: 'md',
+          color: resolvedValue ? 'text_primary' : 'text_muted'
+        }, resolvedValue || 'HH:MM'),
+        React.createElement(Registry.Icon, {
+          name: 'time',
+          size: 'sm',
+          color: 'TEXT_MUTED'
+        })
+      );
+    };
+
+    // Render the time selection panel
+    const renderPanel = function (zIndex) {
+      const pos = anchored.position || { top: 0, left: 0 };
+
+      // Build hour options (0-23)
+      const hourOptions = [];
+      for (let h = 0; h < 24; h++) {
+        hourOptions.push(React.createElement(
+          Pressable,
+          {
+            key: 'hour_' + h,
+            onPress: function () {
+              setSelectedHour(h);
+            },
+            accessibilityRole: 'option',
+            accessibilityLabel: h + ' hours',
+            style: [
+              { paddingVertical: 4, paddingHorizontal: 8, borderRadius: 4 },
+              h === selectedHour
+                ? { backgroundColor: colorMap.APP_PRIMARY || '#0f62fe' }
+                : null
+            ]
+          },
+          React.createElement(Registry.Text, {
+            size: 'sm',
+            color: h === selectedHour ? 'text_on_primary' : 'text_primary'
+          }, String(h).padStart(2, '0'))
+        ));
+      }
+
+      // Build minute options (0, 15, 30, 45)
+      const minuteOptions = [0, 15, 30, 45].map(function (m) {
+        return React.createElement(
+          Pressable,
+          {
+            key: 'min_' + m,
+            onPress: function () {
+              setSelectedMinute(m);
+            },
+            accessibilityRole: 'option',
+            accessibilityLabel: m + ' minutes',
+            style: [
+              { paddingVertical: 4, paddingHorizontal: 8, borderRadius: 4 },
+              m === selectedMinute
+                ? { backgroundColor: colorMap.APP_PRIMARY || '#0f62fe' }
+                : null
+            ]
+          },
+          React.createElement(Registry.Text, {
+            size: 'sm',
+            color: m === selectedMinute ? 'text_on_primary' : 'text_primary'
+          }, String(m).padStart(2, '0'))
+        );
+      });
+
+      return React.createElement(
+        RNView,
+        {
+          style: [
+            Style_.utilities['background_surface'],
+            Style_.utilities['br_md'],
+            Style_.utilities['border_default'],
+            Style_.utilities['p_a_sm'],
+            { position: 'absolute', top: pos.top, left: pos.left, width: 200, zIndex: zIndex || 1000 }
+          ]
+        },
+        React.createElement(
+          RNView,
+          { style: [Style_.utilities['flex_row'], Style_.utilities['align_center'], Style_.utilities['justify_center'], Style_.utilities['m_b_xs']] },
+          React.createElement(Registry.Text, {
+            size: 'lg',
+            color: 'text_primary',
+            weight: 'semibold'
+          }, String(selectedHour).padStart(2, '0') + ':' + String(selectedMinute).padStart(2, '0'))
+        ),
+        React.createElement(
+          RNView,
+          { style: [Style_.utilities['flex_row'], { height: 120 }] },
+          // Hour column
+          React.createElement(
+            RNView,
+            { style: [Style_.utilities['flex_1'], { borderRightWidth: 1, borderRightColor: colorMap.BORDER || '#e0e0e0' }] },
+            hourOptions
+          ),
+          // Minute column
+          React.createElement(
+            RNView,
+            { style: [Style_.utilities['flex_1']] },
+            minuteOptions
+          )
+        ),
+        // Confirm button
+        React.createElement(
+          Pressable,
+          {
+            onPress: handleConfirm,
+            accessibilityRole: 'button',
+            accessibilityLabel: 'Confirm time',
+            style: [
+              Style_.utilities['br_md'],
+              Style_.utilities['p_v_xs'],
+              { backgroundColor: colorMap.APP_PRIMARY || '#0f62fe', alignItems: 'center', marginTop: 8 }
+            ]
+          },
+          React.createElement(Registry.Text, {
+            size: 'sm',
+            color: 'text_on_primary',
+            weight: 'medium'
+          }, 'OK')
+        )
+      );
+    };
+
+    // Render backdrop
+    const renderBackdrop = function () {
+      return React.createElement(Pressable, {
+        onPress: handleClose,
+        style: { position: 'absolute', top: 0, left: 0, right: 0, bottom: 0 }
+      });
+    };
+
+    if (!isOpen) {
+      return React.createElement(RNView, { style: { position: 'relative' } }, renderTrigger());
+    }
+
+    // On native, render inline with backdrop
+    if (Platform.OS !== 'web') {
+      return React.createElement(
+        RNView,
+        { style: { position: 'relative' } },
+        renderTrigger(),
+        renderBackdrop(),
+        renderPanel(1000)
+      );
+    }
+
+    // On web, use OverlayHost
+    const overlay = useOverlay({
+      isOpen: true,
+      trap: false,
+      onClose: handleClose,
+      render: function () {
+        return React.createElement(
+          React.Fragment,
+          null,
+          renderBackdrop(),
+          renderPanel()
+        );
+      }
+    });
+
+    if (overlay.layerIndex < 0) {
+      return React.createElement(
+        RNView,
+        { style: { position: 'relative' } },
+        renderTrigger(),
+        renderBackdrop(),
+        renderPanel(1000)
+      );
+    }
+
+    return React.createElement(RNView, { style: { position: 'relative' } }, renderTrigger());
+
+  };
+
+};
