@@ -173,6 +173,144 @@ Frozen object of valid token sets:
 | `height` | Number | `4` | Bar height in pixels |
 | `style` | Object\|Array | - | Additional style |
 
+### Checkbox
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `checked` | Boolean\|String | `false` | `true`, `false`, or `'mixed'` for indeterminate |
+| `onChange` | Function | - | Called with the next boolean value |
+| `disabled` | Boolean | `false` | Disabled state |
+| `label` | String | - | Label text rendered alongside the checkbox |
+| `accessibilityLabel` | String | - | A11y label (falls back to `label`) |
+| `style` | Object\|Array | - | Additional style |
+
+### RadioButton
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `checked` | Boolean | `false` | Whether the radio is selected |
+| `onChange` | Function | - | Called with `true` on press |
+| `disabled` | Boolean | `false` | Disabled state |
+| `label` | String | - | Label text rendered alongside the radio |
+| `accessibilityLabel` | String | - | A11y label (falls back to `label`) |
+| `style` | Object\|Array | - | Additional style |
+
+### TextArea
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | String | - | Controlled value |
+| `defaultValue` | String | `''` | Uncontrolled initial value |
+| `onChange` | Function | - | Called with the text value |
+| `disabled` | Boolean | `false` | Disabled state |
+| `invalid` | Boolean | `false` | Invalid state (a11y) |
+| `placeholder` | String | - | Placeholder text |
+| `rows` | Number | `4` | Visual height in lines |
+| `accessibilityLabel` | String | - | A11y label |
+| `style` | Object\|Array | - | Additional style |
+
+### Slider
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | Number | - | Controlled value |
+| `defaultValue` | Number | `min` or `0` | Uncontrolled initial value |
+| `onChange` | Function | - | Called with the next number |
+| `min` | Number | `0` | Minimum value |
+| `max` | Number | `100` | Maximum value |
+| `step` | Number | `1` | Step increment |
+| `disabled` | Boolean | `false` | Disabled state |
+| `accessibilityLabel` | String | - | A11y label |
+| `style` | Object\|Array | - | Additional style |
+
+### Link
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `href` | String | - | URL (web only, maps to native anchor) |
+| `onPress` | Function | - | Press handler |
+| `disabled` | Boolean | `false` | Disabled state |
+| `children` | Node | - | Link text content |
+| `accessibilityLabel` | String | - | A11y label |
+| `style` | Object\|Array | - | Additional style |
+
+### Search
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | String | - | Controlled value |
+| `defaultValue` | String | `''` | Uncontrolled initial value |
+| `onChange` | Function | - | Called with the text value |
+| `onClear` | Function | - | Called when clear button is pressed |
+| `placeholder` | String | `'Search'` | Placeholder text |
+| `disabled` | Boolean | `false` | Disabled state |
+| `accessibilityLabel` | String | - | A11y label |
+| `style` | Object\|Array | - | Additional style |
+
+### PasswordInput
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | String | - | Controlled value |
+| `defaultValue` | String | `''` | Uncontrolled initial value |
+| `onChange` | Function | - | Called with the text value |
+| `placeholder` | String | - | Placeholder text |
+| `disabled` | Boolean | `false` | Disabled state |
+| `invalid` | Boolean | `false` | Invalid state (a11y) |
+| `accessibilityLabel` | String | - | A11y label |
+| `style` | Object\|Array | - | Additional style |
+
+### NumberInput
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | Number | - | Controlled value |
+| `defaultValue` | Number | `0` | Uncontrolled initial value |
+| `onChange` | Function | - | Called with the next number |
+| `min` | Number | - | Minimum value |
+| `max` | Number | - | Maximum value |
+| `step` | Number | `1` | Step increment |
+| `disabled` | Boolean | `false` | Disabled state |
+| `invalid` | Boolean | `false` | Invalid state (a11y) |
+| `accessibilityLabel` | String | - | A11y label |
+| `style` | Object\|Array | - | Additional style |
+
+### ExpandableSearch
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | String | - | Controlled value |
+| `defaultValue` | String | `''` | Uncontrolled initial value |
+| `onChange` | Function | - | Called with the text value |
+| `onClear` | Function | - | Called when clear button is pressed |
+| `placeholder` | String | `'Search'` | Placeholder text |
+| `disabled` | Boolean | `false` | Disabled state |
+| `defaultExpanded` | Boolean | `false` | Whether the search starts expanded |
+| `accessibilityLabel` | String | - | A11y label |
+| `style` | Object\|Array | - | Additional style |
+
+### FormLabel
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | String\|Node | - | Label text |
+| `htmlFor` | String | - | ID of associated control (web only) |
+| `required` | Boolean | `false` | Shows required indicator |
+| `disabled` | Boolean | `false` | Dims the label |
+| `style` | Object\|Array | - | Additional style |
+
+### FormItem
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | String | - | Label text (rendered as FormLabel) |
+| `children` | Node | - | The form control element |
+| `helperText` | String | - | Helper text shown below the control |
+| `errorText` | String | - | Error text shown in danger color |
+| `required` | Boolean | `false` | Passed to the label |
+| `disabled` | Boolean | `false` | Passed to the label |
+| `style` | Object\|Array | - | Additional style |
+
 ## Mechanisms
 
 Eight shared mechanisms live in `component/` and are used across all components.
@@ -220,4 +358,4 @@ Controlled/uncontrolled state hook. Controlled when `value` is not undefined, un
 
 ## Component Count
 
-The library ships 16 flat component keys (10 atoms + 6 molecules) plus 1 variant and 1 freeform, totaling 18 named components. Wave 1 adds 0 new components but adds 8 mechanisms and renames 2 existing components (Switch to Toggle, ProgressIndicator to ProgressBar).
+The library ships 27 flat component keys (15 atoms + 12 molecules) plus 1 variant, 1 freeform, and 2 providers, totaling 31 named components. Wave 2 adds 11 new form components (5 atoms + 6 molecules).

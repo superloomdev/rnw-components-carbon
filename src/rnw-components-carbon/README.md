@@ -45,7 +45,7 @@ const MyScreen = function () {
 
 ## Component Tiers
 
-### Atoms (10)
+### Atoms (15)
 
 | Atom | Shape | Description |
 |---|---|---|
@@ -59,8 +59,13 @@ const MyScreen = function () {
 | `Button` | S2 | Pressable with state-driven background and hit-target guarantee |
 | `TextInput` | S2 | Themed input with focus border swap and `aria-*` state |
 | `Toggle` | S2 | On/off toggle with token-driven track and thumb colors |
+| `Checkbox` | S2 | Checkbox with `aria-checked`, supports `'mixed'` for indeterminate |
+| `RadioButton` | S2 | Radio button with `aria-checked`, always sets `true` on press |
+| `TextArea` | S2 | Multiline text input with controlled/uncontrolled value |
+| `Slider` | S2 | Range slider with `aria-valuemin/max/now`, role `slider` on web |
+| `Link` | S2 | Pressable styled as hyperlink with `role="link"` |
 
-### Molecules (6)
+### Molecules (12)
 
 | Molecule | Shape | Description |
 |---|---|---|
@@ -70,6 +75,12 @@ const MyScreen = function () {
 | `ListItem` | S2 | Selectable row with icon, title, subtitle, trailing |
 | `Dropdown` | S3 | Dropdown menu with focus trap, Escape/back, outside-press |
 | `Modal` | S3 | Dialog overlay with focus trap, Escape/back, outside-press |
+| `Search` | S2 | Search input with icon and clear button, `role="searchbox"` |
+| `PasswordInput` | S2 | Text input with show/hide password toggle |
+| `NumberInput` | S2 | Numeric input with increment/decrement buttons, `role="spinbutton"` |
+| `ExpandableSearch` | S2 | Collapsible search that expands to full input on press |
+| `FormLabel` | S1 | Label text for form fields with optional required indicator |
+| `FormItem` | S1 | Wrapper grouping label, control, and helper/error text |
 
 ### Variants
 
@@ -82,6 +93,13 @@ const MyScreen = function () {
 | Component | Description |
 |---|---|
 | `freeform.RawBox` | Escape hatch with no token access; takes raw styles only |
+
+### Providers
+
+| Provider | Description |
+|---|---|
+| `provider.OverlayHost` | Overlay stacking provider; mount once at app root |
+| `provider.LiveRegionProvider` | Screen reader announcement regions; mount once at app root |
 
 ## API
 
