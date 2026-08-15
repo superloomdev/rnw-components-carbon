@@ -20,6 +20,9 @@ Build the Button atom.
 *********************************************************************/
 module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
+  // Build the a11y translator once per factory
+  const a11y = require('../a11y')(Lib);
+
 
   // ~~~~~~~~~~~~~~~~~~~~ Private ~~~~~~~~~~~~~~~~~~~~
 
@@ -124,10 +127,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
     };
 
-    // Build accessibility state object
-    const accessibilityState = {
+    // Build aria state props through the a11y translator
+    const ariaProps = a11y.state({
       disabled: !!disabled
-    };
+    });
 
     return Lib.React.createElement(
       Pressable,
@@ -136,13 +139,12 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         disabled: disabled,
         accessibilityRole: 'button',
         accessibilityLabel: accessibilityLabel,
-        accessibilityState: accessibilityState,
         hitSlop: resolveHitSlop(layoutRef.current.height, layoutRef.current.width),
         onLayout: function (e) {
           layoutRef.current = e.nativeEvent.layout;
         },
         style: styleFn
-      }, rest),
+      }, ariaProps, rest),
       // Children can be a function receiving the pressable state, or static
       Lib.Utils.isFunction(children) ? children : children
     );

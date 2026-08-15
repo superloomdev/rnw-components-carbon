@@ -30,6 +30,9 @@ Build the Card molecule.
 *********************************************************************/
 module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
+  // Build the a11y translator once per factory
+  const a11y = require('../a11y')(Lib);
+
   return function Card (props) {
 
     // Destructure props
@@ -58,9 +61,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     }
 
     // Pressable card: S2 interactive, wraps in Pressable
-    const accessibilityState = {
+    const ariaProps = a11y.state({
       disabled: !!disabled
-    };
+    });
 
     return Lib.React.createElement(
       Pressable,
@@ -68,7 +71,6 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         onPress: disabled ? null : onPress,
         disabled: disabled,
         accessibilityRole: 'button',
-        accessibilityState: accessibilityState,
         style: function () {
           return [
             Style_.utilities['background_surface'],
@@ -77,7 +79,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
             ...cardStyle
           ];
         }
-      }, rest),
+      }, ariaProps, rest),
       children
     );
 

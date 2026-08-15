@@ -25,6 +25,9 @@ Build the ListItem molecule.
 *********************************************************************/
 module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
+  // Build the a11y translator once per factory
+  const a11y = require('../a11y')(Lib);
+
   return function ListItem (props) {
 
     // Destructure props
@@ -91,10 +94,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     }
 
     // Pressable list item
-    const accessibilityState = {
+    const ariaProps = a11y.state({
       disabled: !!disabled,
       selected: !!selected
-    };
+    });
 
     return Lib.React.createElement(
       Pressable,
@@ -103,7 +106,6 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         disabled: disabled,
         accessibilityRole: 'button',
         accessibilityLabel: title,
-        accessibilityState: accessibilityState,
         onPressIn: function () {
           setPressed(true);
         },
@@ -113,7 +115,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         style: function () {
           return containerStyle;
         }
-      }, rest),
+      }, ariaProps, rest),
       rowContent
     );
 

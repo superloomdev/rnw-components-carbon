@@ -9,7 +9,7 @@
 //   3. On Escape (web) or hardware back (Android): close
 //   4. On outside press: close
 //   5. On close: restore focus to the trigger
-//   6. Announce with accessibilityViewIsModal (iOS)
+//   6. Set aria-modal on the overlay container
 //
 // This is genuinely new code. Neither CTP nor the prototype has focus management.
 'use strict';
@@ -32,6 +32,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
   // Build the focus trap hook once
   const useFocusTrap = require('../useFocusTrap')(Lib);
+
+  // Build the a11y translator once per factory
+  const a11y = require('../a11y')(Lib);
 
   return function Dropdown (props) {
 
@@ -75,19 +78,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
     };
 
-    // Build accessibility state for the trigger
-    const triggerAccessibilityState = {
+    // Build aria state props for the trigger through the a11y translator
+    const triggerAriaProps = a11y.state({
       expanded: !!isOpen
-    };
+    });
 
     // Render the trigger button
     const trigger = Lib.React.createElement(
       Pressable,
-      {
+      Object.assign({
         onPress: handleTriggerPress,
         accessibilityRole: 'button',
         accessibilityLabel: accessibilityLabel || triggerLabel,
-        accessibilityState: triggerAccessibilityState,
         style: [
           Style_.utilities['p_h_md'],
           Style_.utilities['p_v_sm'],
@@ -97,7 +99,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           Style_.utilities['flex_row'],
           Style_.utilities['align_center']
         ]
-      },
+      }, triggerAriaProps),
       Lib.React.createElement(Registry.Text, {
         size: 'md',
         color: 'text_primary'

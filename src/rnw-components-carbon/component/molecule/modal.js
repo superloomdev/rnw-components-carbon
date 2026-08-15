@@ -8,8 +8,7 @@
 //   3. On Escape (web) or hardware back (Android): close
 //   4. On outside press: close
 //   5. On close: restore focus to the recorded element
-//   6. Announce with accessibilityViewIsModal (iOS) and importantForAccessibility
-//      on the background (Android)
+//   6. Set aria-modal on the overlay container for screen reader trapping
 //
 // This is genuinely new code. Neither CTP nor the prototype has focus management.
 'use strict';
@@ -42,9 +41,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     } = props;
 
     // Use the focus trap hook for all six S3 obligations
+    // trap=true for Modal: Tab cycles within the dialog
     const focusTrap = useFocusTrap({
       isOpen: isOpen,
       onClose: onClose,
+      trap: true,
       initialFocusRef: initialFocusRef,
       finalFocusRef: finalFocusRef
     });
@@ -97,8 +98,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           visible: isOpen,
           transparent: true,
           animationType: 'fade',
-          onRequestClose: onClose,
-          accessibilityViewIsModal: true
+          onRequestClose: onClose
         },
         backdrop,
         content

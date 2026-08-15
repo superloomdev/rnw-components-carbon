@@ -1,6 +1,6 @@
 # rnw-components-carbon
 
-Carbon-informed component library for the RNW pipeline. Atoms and molecules over the themer, with theme-driven responsiveness and a real accessibility contract.
+Carbon-informed component library for the RNW pipeline. Atoms, molecules, composites, and providers over the themer, with theme-driven responsiveness and a real accessibility contract.
 
 ## Overview
 
@@ -55,10 +55,10 @@ const MyScreen = function () {
 | `Image` | S1 | Image with token-mapped radius and background |
 | `Badge` | S1 | Count or status indicator pill |
 | `Separator` | S1 | Horizontal or vertical divider line |
-| `ProgressIndicator` | S1 | Determinate or indeterminate progress bar |
+| `ProgressBar` | S1 | Determinate or indeterminate progress bar with `aria-valuenow` |
 | `Button` | S2 | Pressable with state-driven background and hit-target guarantee |
-| `TextInput` | S2 | Themed input with focus border swap and a11y state |
-| `Switch` | S2 | Toggle with token-driven track and thumb colors |
+| `TextInput` | S2 | Themed input with focus border swap and `aria-*` state |
+| `Toggle` | S2 | On/off toggle with token-driven track and thumb colors |
 
 ### Molecules (6)
 

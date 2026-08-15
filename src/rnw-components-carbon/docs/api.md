@@ -125,11 +125,11 @@ Frozen object of valid token sets:
 | `style` | Object\|Array | - | Additional style |
 | `...rest` | - | - | Passed through to RN TextInput |
 
-### Switch
+### Toggle
 
 | Prop | Type | Default | Description |
 |---|---|---|---|
-| `value` | Boolean | `false` | Whether the switch is on |
+| `value` | Boolean | `false` | Whether the toggle is on |
 | `onValueChange` | Function | - | Change callback |
 | `disabled` | Boolean | `false` | Disabled state |
 | `accessibilityLabel` | String | - | A11y label |
@@ -162,3 +162,62 @@ Frozen object of valid token sets:
 | `items` | Array | - | Array of `{ value, label }` objects |
 | `onSelect` | Function | - | Called with the selected item |
 | `accessibilityLabel` | String | - | A11y label for the trigger |
+
+### ProgressBar
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | Number\|null | - | 0 to 1 for determinate, null for indeterminate |
+| `color` | String | `'app_primary'` | Fill color token |
+| `trackColor` | String | `'surface'` | Track color token |
+| `height` | Number | `4` | Bar height in pixels |
+| `style` | Object\|Array | - | Additional style |
+
+## Mechanisms
+
+Eight shared mechanisms live in `component/` and are used across all components.
+
+### a11y (M1)
+
+The single translator from semantic state to `aria-*` props. The only module allowed to emit accessibility state/value/relation/position props.
+
+```javascript
+const a11y = require('./component/a11y')(Lib);
+a11y.state({ checked: true, disabled: false });  // -> { 'aria-checked': true }
+a11y.value({ min: 0, max: 1, now: 0.5 });        // -> { 'aria-valuemin': 0, ... }
+a11y.relation({ controls: 'panel-1' });           // -> { 'aria-controls': 'panel-1' }
+a11y.position({ posinset: 3, setsize: 10 });      // -> { 'aria-posinset': 3, ... }
+a11y.id('carbon-tab');                            // -> 'carbon-tab-1'
+```
+
+### usePressKeys (M2)
+
+Normalizes Enter and Space activation per role. Fixes the RNW bug where Space does not activate non-button roles.
+
+### useRovingTabIndex (M3)
+
+Roving tab index for composite widgets. Exactly one item carries `focusable={true}`; arrow keys move the active index.
+
+### OverlayHost (M4)
+
+Overlay stacking provider. Maintains an ordered stack so a Popover opened from inside a Modal paints above it.
+
+### useAnchoredPosition (M5)
+
+Position calculation for anchored overlays. Measures the anchor and viewport, computes placement, flips on overflow.
+
+### LiveRegionProvider (M6)
+
+Screen reader announcements through permanently-mounted `aria-live` regions. Fixes the `announceForAccessibility` no-op on web.
+
+### createCompoundContext (M7)
+
+Context factory for compound components. Creates a Provider and useContext hook that throws when used outside its Provider.
+
+### useControllableState (M8)
+
+Controlled/uncontrolled state hook. Controlled when `value` is not undefined, uncontrolled otherwise. Warns once on mode switch.
+
+## Component Count
+
+The library ships 16 flat component keys (10 atoms + 6 molecules) plus 1 variant and 1 freeform, totaling 18 named components. Wave 1 adds 0 new components but adds 8 mechanisms and renames 2 existing components (Switch to Toggle, ProgressIndicator to ProgressBar).

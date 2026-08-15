@@ -1,6 +1,8 @@
-// Info: ProgressIndicator atom [S1 presentational]. A determinate or
+// Info: ProgressBar atom [S1 presentational]. A determinate or
 // indeterminate progress bar. Determinate shows a filled portion based on
 // `value` (0 to 1); indeterminate shows an animated bar when `value` is null.
+// Uses aria-valuenow / aria-valuemin / aria-valuemax for screen reader
+// state announcement.
 //   value       -> 0 to 1 for determinate, null for indeterminate
 //   color       -> background color token for the fill (default app_primary)
 //   trackColor  -> background color token for the track (default surface)
@@ -11,7 +13,7 @@ const { View: RNView, Animated } = require('react-native');
 
 
 /********************************************************************
-Build the ProgressIndicator atom.
+Build the ProgressBar atom.
 
 @param {Object} Lib      - { Utils, Debug, React }
 @param {Object} CONFIG   - Package configuration
@@ -19,11 +21,14 @@ Build the ProgressIndicator atom.
 @param {Object} Registry - Component registry (unused by atoms)
 @param {Object} Style_   - { utilities, tokens, breakpoint }
 
-@return {Function} - The ProgressIndicator component
+@return {Function} - The ProgressBar component
 *********************************************************************/
 module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
-  return function ProgressIndicator (props) {
+  // Build the a11y translator once per factory
+  const a11y = require('../a11y')(Lib);
+
+  return function ProgressBar (props) {
 
     // Destructure props
     const { value, color, trackColor, height, style, isRtlActive, ...rest } = props; // eslint-disable-line no-unused-vars
@@ -35,6 +40,13 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
     // Resolve height
     const barHeight = Lib.Utils.isNumber(height) ? height : 4;
+
+    // Build aria value props through the a11y translator
+    const ariaProps = a11y.value({
+      min: 0,
+      max: 1,
+      now: Lib.Utils.isNumber(value) ? Math.max(0, Math.min(1, value)) : undefined
+    });
 
     // Indeterminate mode: animated bar
     const React = Lib.React;
@@ -73,11 +85,12 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       return Lib.React.createElement(
         RNView,
         Object.assign({
+          accessibilityRole: 'progressbar',
           style: [
             { backgroundColor: trackFillColor, height: barHeight, borderRadius: barHeight / 2, overflow: 'hidden' },
             style
           ]
-        }, rest),
+        }, ariaProps, rest),
         Lib.React.createElement(RNView, {
           style: {
             width: fillPercent + '%',
@@ -99,11 +112,12 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     return Lib.React.createElement(
       RNView,
       Object.assign({
+        accessibilityRole: 'progressbar',
         style: [
           { backgroundColor: trackFillColor, height: barHeight, borderRadius: barHeight / 2, overflow: 'hidden' },
           style
         ]
-      }, rest),
+      }, ariaProps, rest),
       Lib.React.createElement(Animated.View, {
         style: {
           width: '40%',
