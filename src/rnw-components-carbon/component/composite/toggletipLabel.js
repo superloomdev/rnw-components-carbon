@@ -57,10 +57,14 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           style: Style_.utilities['m_e_xs']
         }, label)
         : null,
-      // Toggletip with content
+      // Toggletip with content; pass an info icon as the trigger child
       React.createElement(Registry.Toggletip, {
         content: toggletipContent
-      }),
+      }, React.createElement(Registry.Icon, {
+        name: 'information',
+        size: 'sm',
+        color: 'TEXT_SECONDARY'
+      })),
       // Additional children
       children || null
     );
