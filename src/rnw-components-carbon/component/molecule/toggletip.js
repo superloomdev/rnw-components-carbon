@@ -1,0 +1,109 @@
+// Info: Toggletip molecule [S3 overlay]. A tooltip triggered by press (not
+// hover). Uses M1 (a11y), M4 (OverlayHost), M5 (useAnchoredPosition).
+//   content     -> string or node (toggletip content)
+//   children    -> trigger element
+//   placement   -> string (default 'top')
+//   style       -> custom style overrides
+'use strict';
+
+const { View: RNView } = require('react-native');
+
+
+/********************************************************************
+Build the Toggletip molecule.
+
+@param {Object} Lib      - { Utils, Debug, React }
+@param {Object} CONFIG   - Package configuration
+@param {Object} ERRORS   - Frozen error catalog
+@param {Object} Registry - Component registry (for atom composition)
+@param {Object} Style_   - { utilities, tokens, breakpoint }
+
+@return {Function} - The Toggletip component
+*********************************************************************/
+module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+
+  const a11y = require('../a11y')(Lib);
+  const useAnchoredPosition = require('../useAnchoredPosition')(Lib);
+
+  return function Toggletip (props) {
+
+    const {
+      content, children, placement, style, isRtlActive // eslint-disable-line no-unused-vars
+    } = props;
+
+    const React = Lib.React;
+    const [isOpen, setIsOpen] = React.useState(false);
+    const anchorRef = React.useRef(null);
+
+    // Anchored position
+    const anchoredPos = useAnchoredPosition({
+      placement: placement || 'top',
+      offset: 8,
+      flip: true,
+      anchorRef: anchorRef
+    });
+
+    React.useEffect(function () {
+      if (isOpen) {
+        anchoredPos.measure();
+      }
+    }, [isOpen]);
+
+    // Generate stable id
+    const tipId = React.useRef(a11y.id('toggletip')).current;
+
+    // Build aria relation props
+    const ariaProps = a11y.relation({
+      describedby: tipId
+    });
+
+    // Toggle on press
+    const handlePress = function () {
+      setIsOpen(!isOpen);
+    };
+
+    // Render toggletip content
+    const renderTip = function () {
+      const pos = anchoredPos.position || { top: 0, left: 0 };
+      return React.createElement(
+        RNView,
+        {
+          id: tipId,
+          style: [
+            Style_.utilities['background_surface'],
+            Style_.utilities['br_md'],
+            Style_.utilities['p_a_sm'],
+            Style_.utilities['shadow_sm'],
+            {
+              position: 'absolute',
+              top: pos.top,
+              left: pos.left,
+              maxWidth: 300,
+              zIndex: 1000
+            },
+            style
+          ]
+        },
+        React.createElement(Registry.Text, {
+          size: 'sm',
+          color: 'text_primary'
+        }, content)
+      );
+    };
+
+    // Clone trigger with press handler and aria props
+    const trigger = React.cloneElement(children, Object.assign({
+      ref: anchorRef,
+      onPress: handlePress
+    }, ariaProps));
+
+    return React.createElement(
+      RNView,
+      { style: { position: 'relative' } },
+      trigger,
+      isOpen ? renderTip() : null
+    );
+
+  };
+
+};

@@ -100,6 +100,30 @@ const MyScreen = function () {
 | `Tile` | S1 | Tile card with title, subtitle, and optional icon |
 | `ClickableTile` | S2 | Tile that acts as a button with `role="button"` |
 | `SelectableTile` | S2 | Tile that acts as a checkbox with `role="checkbox"` |
+| `MenuItem` | S2 | Menu item with `role="menuitem"`, optional icon and shortcut |
+| `MenuItemSelectable` | S2 | Menu item with `role="menuitemcheckbox"`, toggle state |
+| `MenuItemDivider` | S1 | Separator within a menu, `role="separator"` |
+| `ModalHeader` | S1 | Header section for ComposedModal with title and close button |
+| `ModalBody` | S1 | Body section for ComposedModal |
+| `ModalFooter` | S1 | Footer section for ComposedModal, typically action buttons |
+| `Popover` | S3 | Floating content panel anchored to a trigger |
+| `Tooltip` | S3 | Floating tooltip on hover/focus (web) or long-press (native) |
+| `DefinitionTooltip` | S3 | Inline term with definition tooltip on hover/focus |
+| `Toggletip` | S3 | Tooltip triggered by press (not hover) |
+
+### Composites (9)
+
+| Composite | Shape | Description |
+|---|---|---|
+| `Menu` | S3 | Menu container with `role="menu"`, focus trap, overlay stacking |
+| `OverflowMenu` | S3 | Button that opens a Menu with overflow icon |
+| `MenuButton` | S3 | Button that opens a Menu |
+| `ComboButton` | S3 | Split button: primary action plus dropdown for secondary actions |
+| `ComposedModal` | S3 | Modal dialog with ModalHeader/Body/Footer coordination |
+| `MenuItemRadioGroup` | S4 | Group of menu items where exactly one is selected |
+| `SidePanel` | S3 | Side panel that slides in from left or right |
+| `AILabel` | S3 | AI-generated content label with toggletip details |
+| `LongPressMenu` | S3 | Menu triggered by long-press (native) or right-click (web) |
 
 ### Variants
 

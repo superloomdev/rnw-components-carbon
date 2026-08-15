@@ -830,13 +830,13 @@ test('useControllableState uses defaultValue when uncontrolled', function () {
 
 // ~~~~~~~~~~~~~~~~~~~~ Registry count assertion ~~~~~~~~~~~~~~~~~~~~
 
-test('registry has 46 flat keys plus variant, freeform, and 8 providers', function () {
+test('registry has 65 flat keys plus variant, freeform, and 8 providers', function () {
 
   const flatKeys = Object.keys(Component).filter(function (k) {
     return k !== 'variant' && k !== 'freeform' && k !== 'provider';
   });
 
-  assert.strictEqual(flatKeys.length, 46, 'should have 46 flat component keys');
+  assert.strictEqual(flatKeys.length, 65, 'should have 65 flat component keys');
   assert.ok(Component.variant, 'variant namespace should exist');
   assert.ok(Component.freeform, 'freeform namespace should exist');
   assert.ok(Component.provider, 'provider namespace should exist');
@@ -1302,5 +1302,128 @@ test('SelectableTile renders with role checkbox', function () {
 
   assert.ok(tree, 'SelectableTile should render');
   assert.strictEqual(tree.props.accessibilityRole, 'checkbox');
+
+});
+
+
+// ~~~~~~~~~~~~~~~~~~~~ Wave 5 overlay component tests ~~~~~~~~~~~~~~~~~~~~
+
+test('MenuItem renders with role menuitem', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.MenuItem, {
+      label: 'Save',
+      onPress: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'MenuItem should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'menuitem');
+
+});
+
+test('MenuItemSelectable renders with role menuitemcheckbox', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.MenuItemSelectable, {
+      label: 'Toggle',
+      checked: true,
+      onChange: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'MenuItemSelectable should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'menuitemcheckbox');
+
+});
+
+test('MenuItemDivider renders with role separator', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.MenuItemDivider)
+  ).toJSON();
+
+  assert.ok(tree, 'MenuItemDivider should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'separator');
+
+});
+
+test('ModalHeader renders with title', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.ModalHeader, { title: 'My Modal' })
+  ).toJSON();
+
+  assert.ok(tree, 'ModalHeader should render');
+
+});
+
+test('ModalBody renders children', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.ModalBody, null, 'Content')
+  ).toJSON();
+
+  assert.ok(tree, 'ModalBody should render');
+
+});
+
+test('ModalFooter renders children', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.ModalFooter, null, 'Footer')
+  ).toJSON();
+
+  assert.ok(tree, 'ModalFooter should render');
+
+});
+
+test('Tooltip renders children with aria-describedby', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Tooltip, { content: 'Help text' },
+      React.createElement(Component.Text, null, 'Hover me')
+    )
+  ).toJSON();
+
+  assert.ok(tree, 'Tooltip should render');
+
+});
+
+test('DefinitionTooltip renders term with underline', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.DefinitionTooltip, {
+      term: 'API',
+      definition: 'Application Programming Interface'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'DefinitionTooltip should render');
+
+});
+
+test('Toggletip renders trigger and content', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Toggletip, { content: 'Info' },
+      React.createElement(Component.Text, null, 'Click me')
+    )
+  ).toJSON();
+
+  assert.ok(tree, 'Toggletip should render');
+
+});
+
+test('AILabel renders with AI badge', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.AILabel, {
+      label: 'AI',
+      details: 'AI-generated content'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'AILabel should render');
 
 });
