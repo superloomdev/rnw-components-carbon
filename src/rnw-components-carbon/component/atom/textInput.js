@@ -1,7 +1,7 @@
 // Info: TextInput atom [S2 interactive]. A themed single-line input.
 // Border/radius/padding/font all come from tokens; focus swaps the border
 // to the primary color (focus ring). Placeholder color uses a derived muted
-// token. Passes accessibilityRole and accessibilityState for screen readers.
+// token. Passes accessibilityRole and aria-* for screen readers.
 'use strict';
 
 const { TextInput: RNTextInput } = require('react-native');
@@ -19,6 +19,9 @@ Build the TextInput atom.
 @return {Function} - The TextInput component
 *********************************************************************/
 module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+
+  // Build the a11y translator once per factory
+  const a11y = require('../a11y')(Lib);
 
   return function TextInput (props) {
 
@@ -43,11 +46,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       focused ? Style_.utilities['border_primary'] : Style_.utilities['border_default']
     ];
 
-    // Build accessibility state object
-    const accessibilityState = {
+    // Build aria state props through the a11y translator
+    const ariaProps = a11y.state({
       disabled: !!isDisabled,
       invalid: !!isInvalid
-    };
+    });
 
     return Lib.React.createElement(
       RNTextInput,
@@ -57,7 +60,6 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         editable: !isDisabled,
         accessibilityRole: 'textbox',
         accessibilityLabel: accessibilityLabel,
-        accessibilityState: accessibilityState,
         onFocus: function (e) {
 
           setFocused(true);
@@ -76,7 +78,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           }
 
         }
-      }, rest)
+      }, ariaProps, rest)
     );
 
   };

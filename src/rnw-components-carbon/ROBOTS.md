@@ -68,10 +68,11 @@ tokens                             -> { fontSize, fontColor, fontWeight, space, 
 
 | Tier | Components |
 |---|---|
-| Atoms (10) | `View`, `Text`, `Icon`, `Image`, `Badge`, `Separator`, `ProgressIndicator`, `Button`, `TextInput`, `Switch` |
+| Atoms (10) | `View`, `Text`, `Icon`, `Image`, `Badge`, `Separator`, `ProgressBar`, `Button`, `TextInput`, `Toggle` |
 | Molecules (6) | `ButtonPrimary`, `ButtonLink`, `Card`, `ListItem`, `Dropdown`, `Modal` |
 | Variants | `variant.ButtonPrimaryOutlined` |
 | Freeform | `freeform.RawBox` |
+| Providers | `provider.OverlayHost`, `provider.LiveRegionProvider` (Wave 1 mechanisms; full provider set in Wave 4) |
 
 ## Component Shapes
 
@@ -79,7 +80,7 @@ tokens                             -> { fontSize, fontColor, fontWeight, space, 
 |---|---|---|
 | S1 Presentational | No interaction state | None |
 | S2 Interactive | Pressable with state | None |
-| S3 Overlay | Modal/Dropdown with focus trap | `useFocusTrap` hook: trap, restore, Escape/back, outside-press |
+| S3 Overlay | Modal/Dropdown with focus trap | `useFocusTrap` hook: trap (boolean), restore, Escape/back, outside-press. `aria-modal` on the overlay container |
 
 ## Failure Model
 
@@ -88,6 +89,21 @@ tokens                             -> { fontSize, fontColor, fontWeight, space, 
 **Render-time prop errors warn and fall back deterministically.** Unknown token props trigger `Lib.Debug.warn` and fall back to the default token. No render-time throw.
 
 Message format: `rnw-components-carbon: <field> <expected-shape>`
+
+## Mechanisms
+
+Eight shared mechanisms in `component/`, used across all components:
+
+| Mechanism | File | Purpose |
+|---|---|---|
+| M1 a11y | `a11y.js` | Translates semantic state to `aria-*` props. Only module allowed to emit accessibility state props |
+| M2 usePressKeys | `usePressKeys.js` | Enter/Space activation per role. Fixes RNW Space no-op for non-button roles |
+| M3 useRovingTabIndex | `useRovingTabIndex.js` | Roving tab index for composite widgets (Tabs, Menu, etc.) |
+| M4 OverlayHost | `OverlayHost.js` | Overlay stacking provider with z-index management |
+| M5 useAnchoredPosition | `useAnchoredPosition.js` | Position calculation for anchored overlays (Popover, Menu, etc.) |
+| M6 LiveRegionProvider | `LiveRegionProvider.js` | Screen reader announcements via `aria-live` regions |
+| M7 createCompoundContext | `createCompoundContext.js` | Context factory for compound components. Throws outside Provider |
+| M8 useControllableState | `useControllableState.js` | Controlled/uncontrolled state hook for form components |
 
 ## Naming Rule
 

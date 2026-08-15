@@ -4,6 +4,7 @@
 // Provides mock implementations of the RN components and APIs the library uses.
 // Interactive components (Pressable, TextInput, Switch, Modal) are proper React
 // function components so they handle children-as-function and style-as-function.
+// Forwards aria-* props to the output element so tests can assert on them.
 
 
 const React = require('react');
@@ -99,19 +100,43 @@ function Pressable (props) {
     disabled: props.disabled,
     accessibilityRole: props.accessibilityRole,
     accessibilityLabel: props.accessibilityLabel,
-    accessibilityState: props.accessibilityState,
+    'aria-checked': props['aria-checked'],
+    'aria-disabled': props['aria-disabled'],
+    'aria-expanded': props['aria-expanded'],
+    'aria-selected': props['aria-selected'],
+    'aria-invalid': props['aria-invalid'],
+    'aria-required': props['aria-required'],
+    'aria-readonly': props['aria-readonly'],
+    'aria-busy': props['aria-busy'],
+    'aria-pressed': props['aria-pressed'],
+    'aria-current': props['aria-current'],
+    'aria-hidden': props['aria-hidden'],
+    'aria-modal': props['aria-modal'],
+    'aria-valuenow': props['aria-valuenow'],
+    'aria-valuemin': props['aria-valuemin'],
+    'aria-valuemax': props['aria-valuemax'],
+    'aria-valuetext': props['aria-valuetext'],
+    'aria-controls': props['aria-controls'],
+    'aria-describedby': props['aria-describedby'],
+    'aria-labelledby': props['aria-labelledby'],
+    'aria-owns': props['aria-owns'],
+    'aria-activedescendant': props['aria-activedescendant'],
+    'aria-posinset': props['aria-posinset'],
+    'aria-setsize': props['aria-setsize'],
+    'aria-level': props['aria-level'],
+    'aria-live': props['aria-live'],
     hitSlop: props.hitSlop,
     onHoverIn: props.onHoverIn,
     onHoverOut: props.onHoverOut,
     onPressIn: props.onPressIn,
     onPressOut: props.onPressOut,
     onLayout: props.onLayout,
+    onKeyDown: props.onKeyDown,
     style: resolvedStyle,
     visible: props.visible,
     transparent: props.transparent,
     animationType: props.animationType,
     onRequestClose: props.onRequestClose,
-    accessibilityViewIsModal: props.accessibilityViewIsModal,
     focusable: props.focusable
   }, resolvedChildren);
 
@@ -126,7 +151,8 @@ function TextInput (props) {
     editable: props.editable,
     accessibilityRole: props.accessibilityRole,
     accessibilityLabel: props.accessibilityLabel,
-    accessibilityState: props.accessibilityState,
+    'aria-disabled': props['aria-disabled'],
+    'aria-invalid': props['aria-invalid'],
     onFocus: props.onFocus,
     onBlur: props.onBlur
   });
@@ -144,7 +170,8 @@ function Switch (props) {
     thumbColor: props.thumbColor,
     accessibilityRole: props.accessibilityRole,
     accessibilityLabel: props.accessibilityLabel,
-    accessibilityState: props.accessibilityState,
+    'aria-checked': props['aria-checked'],
+    'aria-disabled': props['aria-disabled'],
     style: props.style
   });
 
@@ -161,8 +188,7 @@ function Modal (props) {
     visible: props.visible,
     transparent: props.transparent,
     animationType: props.animationType,
-    onRequestClose: props.onRequestClose,
-    accessibilityViewIsModal: props.accessibilityViewIsModal
+    onRequestClose: props.onRequestClose
   }, props.children);
 
 }
@@ -179,7 +205,8 @@ const BackHandler = {
 // --- AccessibilityInfo ---
 
 const AccessibilityInfo = {
-  setAccessibilityFocus: function () {}
+  setAccessibilityFocus: function () {},
+  announceForAccessibility: function () {}
 };
 
 

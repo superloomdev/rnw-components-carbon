@@ -61,10 +61,16 @@ module.exports = function loader (shared_libs, config) {
   Validators.validateInjections(shared_libs);
 
   // Mutable per-instance state: the built registry and styles, rebuilt on re-theme
+  // Contexts are created once per loader call, NOT inside build, so a rebuild
+  // does not orphan mounted Consumers (Plan 0100 M7)
   const state = {
     registry: null,
     styles: null,
-    breakpoint: 'base'
+    breakpoint: 'base',
+    contexts: {
+      // Compound contexts created once per loader instance
+      // Populated lazily by compound components on first build
+    }
   };
 
   return createInterface(Lib, CONFIG, ERRORS, Validators, state);
@@ -159,10 +165,10 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.Image = make(require('./component/atom/image'));
       Component.Badge = make(require('./component/atom/badge'));
       Component.Separator = make(require('./component/atom/separator'));
-      Component.ProgressIndicator = make(require('./component/atom/progressIndicator'));
+      Component.ProgressBar = make(require('./component/atom/progressBar'));
       Component.Button = make(require('./component/atom/button'));
       Component.TextInput = make(require('./component/atom/textInput'));
-      Component.Switch = make(require('./component/atom/switch'));
+      Component.Toggle = make(require('./component/atom/toggle'));
 
       // ~~~~~~~~~~ Molecules (canonical) ~~~~~~~~~~
       Component.ButtonPrimary = make(require('./component/molecule/buttonPrimary'));

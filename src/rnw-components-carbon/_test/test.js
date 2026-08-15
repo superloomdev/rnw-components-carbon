@@ -32,7 +32,7 @@ test('build returns a Component registry and Style object', function () {
 test('build registers all 10 atoms', function () {
 
   const atoms = ['View', 'Text', 'Icon', 'Image', 'Badge', 'Separator',
-    'ProgressIndicator', 'Button', 'TextInput', 'Switch'];
+    'ProgressBar', 'Button', 'TextInput', 'Toggle'];
 
   for (let i = 0; i < atoms.length; i++) {
     assert.ok(typeof Component[atoms[i]] === 'function', 'atom ' + atoms[i] + ' should be a function');
@@ -316,23 +316,27 @@ test('Separator renders a vertical line when orientation is vertical', function 
 });
 
 
-// ~~~~~~~~~~~~~~~~~~~~ ProgressIndicator atom ~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~ ProgressBar atom ~~~~~~~~~~~~~~~~~~~~
 
-test('ProgressIndicator renders determinate fill based on value', function () {
+test('ProgressBar renders determinate fill based on value', function () {
 
   const tree = TestRenderer.create(
-    React.createElement(Component.ProgressIndicator, { value: 0.5 })
+    React.createElement(Component.ProgressBar, { value: 0.5 })
   ).toJSON();
 
-  assert.ok(tree, 'ProgressIndicator should render');
-  assert.ok(tree.children, 'ProgressIndicator should have a fill child');
+  assert.ok(tree, 'ProgressBar should render');
+  assert.ok(tree.children, 'ProgressBar should have a fill child');
+  assert.strictEqual(tree.props.accessibilityRole, 'progressbar');
+  assert.strictEqual(tree.props['aria-valuenow'], 0.5);
+  assert.strictEqual(tree.props['aria-valuemin'], 0);
+  assert.strictEqual(tree.props['aria-valuemax'], 1);
 
 });
 
-test('ProgressIndicator clamps value above 1 to 1', function () {
+test('ProgressBar clamps value above 1 to 1', function () {
 
   const tree = TestRenderer.create(
-    React.createElement(Component.ProgressIndicator, { value: 1.5 })
+    React.createElement(Component.ProgressBar, { value: 1.5 })
   ).toJSON();
 
   // The fill width should be 100%
@@ -341,10 +345,10 @@ test('ProgressIndicator clamps value above 1 to 1', function () {
 
 });
 
-test('ProgressIndicator clamps value below 0 to 0', function () {
+test('ProgressBar clamps value below 0 to 0', function () {
 
   const tree = TestRenderer.create(
-    React.createElement(Component.ProgressIndicator, { value: -0.5 })
+    React.createElement(Component.ProgressBar, { value: -0.5 })
   ).toJSON();
 
   const fill = tree.children[0];
@@ -366,13 +370,13 @@ test('Button renders with accessibilityRole button', function () {
 
 });
 
-test('Button sets accessibilityState disabled when disabled prop is true', function () {
+test('Button sets aria-disabled when disabled prop is true', function () {
 
   const tree = TestRenderer.create(
     React.createElement(Component.Button, { disabled: true, onPress: function () {} }, 'Click')
   ).toJSON();
 
-  assert.strictEqual(tree.props.accessibilityState.disabled, true);
+  assert.strictEqual(tree.props['aria-disabled'], true);
   assert.strictEqual(tree.props.disabled, true);
 
 });
@@ -391,28 +395,28 @@ test('TextInput renders with accessibilityRole textbox', function () {
 
 });
 
-test('TextInput sets accessibilityState invalid when isInvalid is true', function () {
+test('TextInput sets aria-invalid when isInvalid is true', function () {
 
   const tree = TestRenderer.create(
     React.createElement(Component.TextInput, { isInvalid: true })
   ).toJSON();
 
-  assert.strictEqual(tree.props.accessibilityState.invalid, true);
+  assert.strictEqual(tree.props['aria-invalid'], true);
 
 });
 
 
-// ~~~~~~~~~~~~~~~~~~~~ Switch atom ~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~ Toggle atom ~~~~~~~~~~~~~~~~~~~~
 
-test('Switch renders with accessibilityRole switch', function () {
+test('Toggle renders with accessibilityRole switch', function () {
 
   const tree = TestRenderer.create(
-    React.createElement(Component.Switch, { value: true, onValueChange: function () {} })
+    React.createElement(Component.Toggle, { value: true, onValueChange: function () {} })
   ).toJSON();
 
-  assert.ok(tree, 'Switch should render');
+  assert.ok(tree, 'Toggle should render');
   assert.strictEqual(tree.props.accessibilityRole, 'switch');
-  assert.strictEqual(tree.props.accessibilityState.checked, true);
+  assert.strictEqual(tree.props['aria-checked'], true);
 
 });
 
@@ -628,5 +632,195 @@ test('commonStyles generates background utilities for all color tokens', functio
     const key = 'background_' + tokens[i];
     assert.ok(Style.utilities[key], 'utility ' + key + ' should exist');
   }
+
+});
+
+
+// ~~~~~~~~~~~~~~~~~~~~ M1: a11y translator ~~~~~~~~~~~~~~~~~~~~
+
+test('a11y.state translates checked to aria-checked', function () {
+
+  const a11y = require('rnw-components-carbon/component/a11y')({ React: React, Utils: Utils });
+  const props = a11y.state({ checked: true });
+
+  assert.strictEqual(props['aria-checked'], true);
+
+});
+
+test('a11y.state omits null and undefined values', function () {
+
+  const a11y = require('rnw-components-carbon/component/a11y')({ React: React, Utils: Utils });
+  const props = a11y.state({ checked: true, disabled: null, expanded: undefined });
+
+  assert.strictEqual(props['aria-checked'], true);
+  assert.strictEqual(props['aria-disabled'], undefined);
+  assert.strictEqual(props['aria-expanded'], undefined);
+
+});
+
+test('a11y.state handles mixed checked for indeterminate', function () {
+
+  const a11y = require('rnw-components-carbon/component/a11y')({ React: React, Utils: Utils });
+  const props = a11y.state({ checked: 'mixed' });
+
+  assert.strictEqual(props['aria-checked'], 'mixed');
+
+});
+
+test('a11y.value translates numeric value props', function () {
+
+  const a11y = require('rnw-components-carbon/component/a11y')({ React: React, Utils: Utils });
+  const props = a11y.value({ min: 0, max: 100, now: 50, text: '50 percent' });
+
+  assert.strictEqual(props['aria-valuemin'], 0);
+  assert.strictEqual(props['aria-valuemax'], 100);
+  assert.strictEqual(props['aria-valuenow'], 50);
+  assert.strictEqual(props['aria-valuetext'], '50 percent');
+
+});
+
+test('a11y.relation translates relationship props', function () {
+
+  const a11y = require('rnw-components-carbon/component/a11y')({ React: React, Utils: Utils });
+  const props = a11y.relation({ controls: 'panel-1', describedby: 'desc-1' });
+
+  assert.strictEqual(props['aria-controls'], 'panel-1');
+  assert.strictEqual(props['aria-describedby'], 'desc-1');
+
+});
+
+test('a11y.position translates position props', function () {
+
+  const a11y = require('rnw-components-carbon/component/a11y')({ React: React, Utils: Utils });
+  const props = a11y.position({ posinset: 3, setsize: 10, level: 2 });
+
+  assert.strictEqual(props['aria-posinset'], 3);
+  assert.strictEqual(props['aria-setsize'], 10);
+  assert.strictEqual(props['aria-level'], 2);
+
+});
+
+test('a11y.id generates unique monotonic ids', function () {
+
+  const a11y = require('rnw-components-carbon/component/a11y')({ React: React, Utils: Utils });
+  const id1 = a11y.id('carbon-tab');
+  const id2 = a11y.id('carbon-tab');
+
+  assert.ok(id1.indexOf('carbon-tab') === 0, 'id should start with prefix');
+  assert.notStrictEqual(id1, id2, 'ids should be unique');
+
+});
+
+
+// ~~~~~~~~~~~~~~~~~~~~ M2: usePressKeys ~~~~~~~~~~~~~~~~~~~~
+
+test('usePressKeys returns onKeyDown on web', function () {
+
+  const usePressKeys = require('rnw-components-carbon/component/usePressKeys')({ React: React, Utils: Utils });
+
+  let capturedProps = null;
+
+  function TestComp () {
+    capturedProps = usePressKeys({ role: 'checkbox', onActivate: function () {}, disabled: false });
+    return null;
+  }
+
+  TestRenderer.create(React.createElement(TestComp));
+
+  assert.ok(typeof capturedProps.onKeyDown === 'function', 'should return onKeyDown on web');
+
+});
+
+
+// ~~~~~~~~~~~~~~~~~~~~ M7: createCompoundContext ~~~~~~~~~~~~~~~~~~~~
+
+test('createCompoundContext throws when useContext is called outside Provider', function () {
+
+  const createCompoundContext = require('rnw-components-carbon/component/createCompoundContext');
+  const ctx = createCompoundContext({ React: React, Utils: Utils }, 'TestCompound');
+
+  // Wrap in a component so the hook runs in a render context
+  function Consumer () {
+    ctx.useContext();
+    return null;
+  }
+
+  assert.throws(function () {
+    TestRenderer.create(React.createElement(Consumer));
+  }, TypeError);
+
+});
+
+test('createCompoundContext provides value inside Provider', function () {
+
+  const createCompoundContext = require('rnw-components-carbon/component/createCompoundContext');
+  const ctx = createCompoundContext({ React: React, Utils: Utils }, 'TestCompound2');
+
+  let captured = null;
+
+  function Consumer () {
+    captured = ctx.useContext();
+    return null;
+  }
+
+  TestRenderer.create(
+    React.createElement(ctx.Provider, { value: { activeIndex: 0 } },
+      React.createElement(Consumer)
+    )
+  );
+
+  assert.strictEqual(captured.activeIndex, 0);
+
+});
+
+
+// ~~~~~~~~~~~~~~~~~~~~ M8: useControllableState ~~~~~~~~~~~~~~~~~~~~
+
+test('useControllableState uses value when controlled', function () {
+
+  const useControllableState = require('rnw-components-carbon/component/useControllableState')({ React: React, Utils: Utils, Debug: Debug });
+
+  let capturedValue = null;
+
+  function TestComp () {
+    const state = useControllableState({ value: 42, defaultValue: 0 });
+    capturedValue = state[0];
+    return null;
+  }
+
+  TestRenderer.create(React.createElement(TestComp));
+
+  assert.strictEqual(capturedValue, 42);
+
+});
+
+test('useControllableState uses defaultValue when uncontrolled', function () {
+
+  const useControllableState = require('rnw-components-carbon/component/useControllableState')({ React: React, Utils: Utils, Debug: Debug });
+
+  let capturedValue = null;
+
+  function TestComp () {
+    const state = useControllableState({ defaultValue: 10 });
+    capturedValue = state[0];
+    return null;
+  }
+
+  TestRenderer.create(React.createElement(TestComp));
+
+  assert.strictEqual(capturedValue, 10);
+
+});
+
+
+// ~~~~~~~~~~~~~~~~~~~~ Registry count assertion ~~~~~~~~~~~~~~~~~~~~
+
+test('registry has 16 flat keys plus variant and freeform', function () {
+
+  const flatKeys = Object.keys(Component).filter(function (k) {
+    return k !== 'variant' && k !== 'freeform';
+  });
+
+  assert.strictEqual(flatKeys.length, 16, 'should have 16 flat component keys');
 
 });

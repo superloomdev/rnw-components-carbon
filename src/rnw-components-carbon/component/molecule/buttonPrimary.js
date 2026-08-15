@@ -22,6 +22,9 @@ Build the ButtonPrimary molecule.
 *********************************************************************/
 module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
+  // Build the a11y translator once per factory
+  const a11y = require('../a11y')(Lib);
+
   return function ButtonPrimary (props) {
 
     // Destructure props
@@ -59,10 +62,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       fullWidth ? Style_.utilities['flex_stretch'] : null
     ];
 
-    // Build accessibility state
-    const accessibilityState = {
+    // Build aria state props through the a11y translator
+    const ariaProps = a11y.state({
       disabled: !!disabled
-    };
+    });
 
     return Lib.React.createElement(
       Pressable,
@@ -71,7 +74,6 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         disabled: disabled,
         accessibilityRole: 'button',
         accessibilityLabel: title,
-        accessibilityState: accessibilityState,
         onHoverIn: function () {
           setHovered(true);
         },
@@ -81,7 +83,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         style: function (state) {
           return [...containerBase, resolveBackground(state.pressed), style];
         }
-      }, rest),
+      }, ariaProps, rest),
       // Children: optional leading icon + label, both in the on-primary color
       function (state) { // eslint-disable-line no-unused-vars
         return Lib.React.createElement(

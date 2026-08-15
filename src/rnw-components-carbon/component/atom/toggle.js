@@ -1,16 +1,16 @@
-// Info: Switch atom [S2 interactive]. Wraps react-native Switch with token
+// Info: Toggle atom [S2 interactive]. Wraps react-native Switch with token
 // consumption for the track and thumb colors. Passes accessibilityRole="switch"
-// and accessibilityState for screen reader state announcement.
-//   value         -> boolean, whether the switch is on
+// and uses aria-checked for screen reader state announcement.
+//   value         -> boolean, whether the toggle is on
 //   onValueChange -> callback when the value changes
-//   disabled      -> boolean, whether the switch is non-interactive
+//   disabled      -> boolean, whether the toggle is non-interactive
 'use strict';
 
 const { Switch: RNSwitch } = require('react-native');
 
 
 /********************************************************************
-Build the Switch atom.
+Build the Toggle atom.
 
 @param {Object} Lib      - { Utils, Debug, React }
 @param {Object} CONFIG   - Package configuration
@@ -18,11 +18,14 @@ Build the Switch atom.
 @param {Object} Registry - Component registry (unused by atoms)
 @param {Object} Style_   - { utilities, tokens, breakpoint }
 
-@return {Function} - The Switch component
+@return {Function} - The Toggle component
 *********************************************************************/
 module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
-  return function Switch (props) {
+  // Build the a11y translator once per factory
+  const a11y = require('../a11y')(Lib);
+
+  return function Toggle (props) {
 
     // Destructure props
     const {
@@ -44,11 +47,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const disabledTrackColor = colorMap.BACKGROUND_SECONDARY || '#e0e0e0';
     const disabledThumbColor = colorMap.TEXT_MUTED || '#999';
 
-    // Build accessibility state object
-    const accessibilityState = {
+    // Build aria state props through the a11y translator
+    const ariaProps = a11y.state({
       disabled: !!disabled,
       checked: !!value
-    };
+    });
 
     return Lib.React.createElement(
       RNSwitch,
@@ -60,9 +63,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         thumbColor: disabled ? disabledThumbColor : thumbColor,
         accessibilityRole: 'switch',
         accessibilityLabel: accessibilityLabel,
-        accessibilityState: accessibilityState,
         style: style
-      }, rest)
+      }, ariaProps, rest)
     );
 
   };

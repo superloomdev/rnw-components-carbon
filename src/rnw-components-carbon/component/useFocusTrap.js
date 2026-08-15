@@ -1,17 +1,19 @@
-// Info: Shared focus-trap hook for S3 overlay components (Modal, Dropdown).
+// Info: Shared focus-trap hook for S3 overlay components (Modal, Dropdown,
+// Popover, ComposedModal, SidePanel).
 //
 // Implements the six S3 obligations from the plan:
 //   1. On open: record the previously focused element and move focus into the overlay
-//   2. While open: trap focus so Tab cycles within the overlay
+//   2. While open: trap focus so Tab cycles within the overlay (when trap=true)
 //   3. On Escape (web) or hardware back (Android): close
 //   4. On outside press: close
 //   5. On close: restore focus to the recorded element
-//   6. Announce with accessibilityViewIsModal (iOS) and importantForAccessibility
-//      on the background (Android)
+//   6. Set aria-modal on the overlay container (web) for screen reader trapping
+//
+// The `trap` boolean controls whether Tab cycling is active. Modal uses
+// trap=true; Popover uses trap=false (focus moves in but does not cycle).
 //
 // On web, Tab cycling uses the DOM focusable elements query. On native,
-// accessibilityViewIsModal traps VoiceOver on iOS; Android relies on the
-// overlay structure. The hook is a factory closing over Lib.React.
+// the overlay structure handles VoiceOver focus trapping.
 //
 // This is genuinely new code. Neither CTP nor the prototype has focus management.
 /* global document */
@@ -50,6 +52,7 @@ module.exports = function (Lib) {
     const onClose = options.onClose;
     const initialFocusRef = options.initialFocusRef;
     const finalFocusRef = options.finalFocusRef;
+    const trap = options.trap !== false; // default true; Popover passes false
 
     // Ref to the overlay container element
     const containerRef = React.useRef(null);
@@ -143,10 +146,10 @@ module.exports = function (Lib) {
     }, [isOpen, onClose]);
 
 
-    // Tab cycling on web: trap focus within the container
+    // Tab cycling on web: trap focus within the container (only when trap=true)
     React.useEffect(function () {
 
-      if (!isOpen || Platform.OS !== 'web' || typeof document === 'undefined') {
+      if (!isOpen || !trap || Platform.OS !== 'web' || typeof document === 'undefined') {
         return;
       }
 
@@ -201,7 +204,7 @@ module.exports = function (Lib) {
         document.removeEventListener('keydown', handleTabKey);
       };
 
-    }, [isOpen]);
+    }, [isOpen, trap]);
 
 
     // On close: restore focus to the previously focused element
@@ -222,10 +225,11 @@ module.exports = function (Lib) {
 
 
     // Accessibility props for the overlay container
+    // aria-modal replaces the deprecated iOS modal and Android important
+    // accessibility props, which are no-ops on web
     const accessibilityProps = {
       accessibilityRole: 'dialog',
-      accessibilityViewIsModal: Platform.OS === 'ios' ? true : undefined,
-      importantForAccessibility: Platform.OS === 'android' ? 'yes' : undefined,
+      'aria-modal': true,
       focusable: true
     };
 

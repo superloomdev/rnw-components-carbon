@@ -19,6 +19,9 @@ Build the ButtonLink molecule.
 *********************************************************************/
 module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
+  // Build the a11y translator once per factory
+  const a11y = require('../a11y')(Lib);
+
   return function ButtonLink (props) {
 
     // Destructure props
@@ -49,10 +52,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
     };
 
-    // Build accessibility state
-    const accessibilityState = {
+    // Build aria state props through the a11y translator
+    const ariaProps = a11y.state({
       disabled: !!disabled
-    };
+    });
 
     return Lib.React.createElement(
       Pressable,
@@ -61,7 +64,6 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         disabled: disabled,
         accessibilityRole: 'link',
         accessibilityLabel: title,
-        accessibilityState: accessibilityState,
         onHoverIn: function () {
           setHovered(true);
         },
@@ -71,7 +73,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         style: function (state) {
           return [...containerBase, resolveBackground(state.pressed), style];
         }
-      }, rest),
+      }, ariaProps, rest),
       Lib.React.createElement(Registry.Text, {
         color: disabled ? 'text_muted' : 'app_primary',
         weight: 'medium',
