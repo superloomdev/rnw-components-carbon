@@ -830,7 +830,7 @@ test('useControllableState uses defaultValue when uncontrolled', function () {
 
 // ~~~~~~~~~~~~~~~~~~~~ Registry count assertion ~~~~~~~~~~~~~~~~~~~~
 
-test('registry has 46 flat keys plus variant, freeform, and provider', function () {
+test('registry has 46 flat keys plus variant, freeform, and 8 providers', function () {
 
   const flatKeys = Object.keys(Component).filter(function (k) {
     return k !== 'variant' && k !== 'freeform' && k !== 'provider';
@@ -840,7 +840,7 @@ test('registry has 46 flat keys plus variant, freeform, and provider', function 
   assert.ok(Component.variant, 'variant namespace should exist');
   assert.ok(Component.freeform, 'freeform namespace should exist');
   assert.ok(Component.provider, 'provider namespace should exist');
-  assert.strictEqual(Object.keys(Component.provider).length, 2, 'should have 2 providers');
+  assert.strictEqual(Object.keys(Component.provider).length, 8, 'should have 8 providers');
 
 });
 

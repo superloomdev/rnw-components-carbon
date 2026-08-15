@@ -227,9 +227,21 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       // count toward the flat top-level key count.
       const overlayHostModule = require('./component/OverlayHost')(Lib);
       const liveRegionModule = require('./component/LiveRegionProvider')(Lib);
+      const layerModule = require('./component/provider/layer')(Lib, CONFIG, ERRORS, Component, Style);
+      const themeModule = require('./component/provider/theme')(Lib, CONFIG, ERRORS, Component, Style);
+      const featureFlagsModule = require('./component/provider/featureFlags')(Lib, CONFIG, ERRORS, Component, Style);
+      const idPrefixModule = require('./component/provider/idPrefix')(Lib, CONFIG, ERRORS, Component, Style);
+      const fluidFormModule = require('./component/provider/fluidForm')(Lib, CONFIG, ERRORS, Component, Style);
+      const errorBoundaryModule = require('./component/provider/errorBoundary')(Lib, CONFIG, ERRORS, Component, Style);
       Component.provider = {
         OverlayHost: overlayHostModule.OverlayHost,
-        LiveRegionProvider: liveRegionModule.LiveRegionProvider
+        LiveRegionProvider: liveRegionModule.LiveRegionProvider,
+        Layer: layerModule.Layer,
+        Theme: themeModule.Theme,
+        FeatureFlags: featureFlagsModule.FeatureFlags,
+        IdPrefix: idPrefixModule.IdPrefix,
+        FluidForm: fluidFormModule.FluidForm,
+        ErrorBoundary: errorBoundaryModule.ErrorBoundary
       };
 
       // Store in state for rebuild reference

@@ -113,12 +113,18 @@ const MyScreen = function () {
 |---|---|
 | `freeform.RawBox` | Escape hatch with no token access; takes raw styles only |
 
-### Providers
+### Providers (8)
 
 | Provider | Description |
 |---|---|
 | `provider.OverlayHost` | Overlay stacking provider; mount once at app root |
 | `provider.LiveRegionProvider` | Screen reader announcement regions; mount once at app root |
+| `provider.Layer` | Elevation level context (0-2) for nested surface tokens |
+| `provider.Theme` | Runtime theme override for subtrees |
+| `provider.FeatureFlags` | Feature flag context for conditional rendering |
+| `provider.IdPrefix` | ID prefix context for unique element id generation |
+| `provider.FluidForm` | Marks a form as fluid (label inside field) |
+| `provider.ErrorBoundary` | Catches render errors; class component (no hook equivalent) |
 
 ## API
 
