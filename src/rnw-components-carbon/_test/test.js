@@ -830,13 +830,13 @@ test('useControllableState uses defaultValue when uncontrolled', function () {
 
 // ~~~~~~~~~~~~~~~~~~~~ Registry count assertion ~~~~~~~~~~~~~~~~~~~~
 
-test('registry has 65 flat keys plus variant, freeform, and 8 providers', function () {
+test('registry has 136 flat keys plus variant, freeform, and 8 providers', function () {
 
   const flatKeys = Object.keys(Component).filter(function (k) {
     return k !== 'variant' && k !== 'freeform' && k !== 'provider';
   });
 
-  assert.strictEqual(flatKeys.length, 65, 'should have 65 flat component keys');
+  assert.strictEqual(flatKeys.length, 136, 'should have 136 flat component keys');
   assert.ok(Component.variant, 'variant namespace should exist');
   assert.ok(Component.freeform, 'freeform namespace should exist');
   assert.ok(Component.provider, 'provider namespace should exist');
@@ -1425,5 +1425,342 @@ test('AILabel renders with AI badge', function () {
   ).toJSON();
 
   assert.ok(tree, 'AILabel should render');
+
+});
+
+
+// ~~~~~~~~~~~~~~~~~~~~ Wave 6 navigation component tests ~~~~~~~~~~~~~~~~~~~~
+
+test('Tab renders with role tab', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Tab, {
+      label: 'Overview',
+      selected: true,
+      onPress: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'Tab should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'tab');
+
+});
+
+test('TabList renders with role tablist', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TabList, null, 'tabs')
+  ).toJSON();
+
+  assert.ok(tree, 'TabList should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'tablist');
+
+});
+
+test('TabPanel renders with role tabpanel', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TabPanel, { selected: true }, 'content')
+  ).toJSON();
+
+  assert.ok(tree, 'TabPanel should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'tabpanel');
+
+});
+
+test('TabPanel returns null when not selected', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TabPanel, { selected: false }, 'content')
+  ).toJSON();
+
+  assert.strictEqual(tree, null, 'TabPanel should be null when not selected');
+
+});
+
+test('AccordionItem renders with button and region', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.AccordionItem, {
+      title: 'Section 1',
+      expanded: true,
+      onToggle: function () {}
+    }, 'Content')
+  );
+
+  assert.ok(tree, 'AccordionItem should render');
+
+  const buttons = tree.root.findAllByProps({ accessibilityRole: 'button' });
+  assert.ok(buttons.length >= 1, 'should have a header button');
+
+  const regions = tree.root.findAllByProps({ accessibilityRole: 'region' });
+  assert.ok(regions.length >= 1, 'should have a content region');
+
+});
+
+test('BreadcrumbItem renders with role link', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.BreadcrumbItem, {
+      onPress: function () {}
+    }, 'Home')
+  ).toJSON();
+
+  assert.ok(tree, 'BreadcrumbItem should render');
+
+});
+
+test('BreadcrumbItem renders current page as static text', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.BreadcrumbItem, {
+      isCurrentPage: true
+    }, 'Current')
+  ).toJSON();
+
+  assert.ok(tree, 'BreadcrumbItem current page should render');
+
+});
+
+test('Switch renders with role button', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Switch, {
+      label: 'All',
+      selected: true,
+      onPress: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'Switch should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'button');
+
+});
+
+test('PageSelector renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.PageSelector, {
+      currentPage: 1,
+      totalPages: 3,
+      onChange: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'PageSelector should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('TreeNode renders with role treeitem', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TreeNode, {
+      label: 'Node 1',
+      level: 1
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'TreeNode should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'treeitem');
+
+});
+
+test('Step renders with role listitem', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Step, {
+      label: 'Step 1',
+      status: 'current',
+      stepNumber: 1
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'Step should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'listitem');
+
+});
+
+test('HeaderNav renders with role navigation', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.HeaderNav, null, 'nav')
+  ).toJSON();
+
+  assert.ok(tree, 'HeaderNav should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'navigation');
+
+});
+
+test('HeaderMenuButton renders with role button', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.HeaderMenuButton, {
+      onPress: function () {},
+      label: 'Menu'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'HeaderMenuButton should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'button');
+
+});
+
+test('HeaderPanel renders with role region', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.HeaderPanel, { expanded: true }, 'panel content')
+  ).toJSON();
+
+  assert.ok(tree, 'HeaderPanel should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'region');
+
+});
+
+test('HeaderPanel returns null when not expanded', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.HeaderPanel, { expanded: false }, 'content')
+  ).toJSON();
+
+  assert.strictEqual(tree, null, 'HeaderPanel should be null when collapsed');
+
+});
+
+test('ProgressIndicator renders with role progressbar', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.ProgressIndicator, {
+      current: 2,
+      total: 5
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'ProgressIndicator should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'progressbar');
+  assert.strictEqual(tree.props['aria-valuemin'], 0);
+  assert.strictEqual(tree.props['aria-valuemax'], 5);
+  assert.strictEqual(tree.props['aria-valuenow'], 2);
+
+});
+
+test('Tabs renders with role tablist', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Tabs, {
+      selectedIndex: 0,
+      onChange: function () {}
+    },
+      React.createElement(Component.Tab, { label: 'Tab 1' }),
+      React.createElement(Component.Tab, { label: 'Tab 2' })
+    )
+  ).toJSON();
+
+  assert.ok(tree, 'Tabs should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'tablist');
+
+});
+
+test('Accordion renders children', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Accordion, {
+      expandedKeys: [0],
+      onChange: function () {}
+    },
+      React.createElement(Component.AccordionItem, { title: 'Item 1' }, 'Content 1')
+    )
+  ).toJSON();
+
+  assert.ok(tree, 'Accordion should render');
+
+});
+
+test('Breadcrumb renders with role navigation', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Breadcrumb, null,
+      React.createElement(Component.BreadcrumbItem, { onPress: function () {} }, 'Home')
+    )
+  ).toJSON();
+
+  assert.ok(tree, 'Breadcrumb should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'navigation');
+
+});
+
+test('ContentSwitcher renders with role tablist', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.ContentSwitcher, {
+      selectedIndex: 0,
+      onChange: function () {}
+    },
+      React.createElement(Component.Switch, { label: 'All' }),
+      React.createElement(Component.Switch, { label: 'Active' })
+    )
+  ).toJSON();
+
+  assert.ok(tree, 'ContentSwitcher should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'tablist');
+
+});
+
+test('Pagination renders with role navigation', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Pagination, {
+      page: 1,
+      totalPage: 3,
+      onChange: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'Pagination should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'navigation');
+
+});
+
+test('TreeView renders with role tree', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TreeView, {
+      data: [
+        { key: '1', label: 'Root', children: [
+          { key: '2', label: 'Child' }
+        ] }
+      ],
+      expandedKeys: ['1'],
+      onSelect: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'TreeView should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'tree');
+
+});
+
+test('Steps renders with role list', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Steps, { current: 1 },
+      React.createElement(Component.Step, { label: 'Step 1', stepNumber: 1 }),
+      React.createElement(Component.Step, { label: 'Step 2', stepNumber: 2 })
+    )
+  ).toJSON();
+
+  assert.ok(tree, 'Steps should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'list');
+
+});
+
+test('Header renders with role header', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Header, null, 'header content')
+  ).toJSON();
+
+  assert.ok(tree, 'Header should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'header');
 
 });
