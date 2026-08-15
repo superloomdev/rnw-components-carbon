@@ -311,6 +311,655 @@ Frozen object of valid token sets:
 | `disabled` | Boolean | `false` | Passed to the label |
 | `style` | Object\|Array | - | Additional style |
 
+## Wave 6-9 Component Props
+
+### Tab
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | String | - | Tab label text |
+| `selected` | Boolean | `false` | Whether this tab is selected |
+| `onPress` | Function | - | Press handler |
+| `disabled` | Boolean | `false` | Disabled state |
+| `style` | Object\|Array | - | Additional style |
+
+### TabList
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Tab elements |
+| `style` | Object\|Array | - | Additional style |
+
+### TabPanel
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Panel content |
+| `selected` | Boolean | - | Whether this panel is visible |
+| `style` | Object\|Array | - | Additional style |
+
+### AccordionItem
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | String | - | Header label |
+| `children` | Node | - | Expandable content |
+| `expanded` | Boolean | `false` | Whether the item is expanded |
+| `onToggle` | Function | - | Called with next expanded state |
+| `style` | Object\|Array | - | Additional style |
+
+### BreadcrumbItem
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `href` | String | - | Optional URL |
+| `onPress` | Function | - | Press handler |
+| `children` | Node | - | Label content |
+| `isCurrentPage` | Boolean | `false` | Whether this is the current page |
+| `style` | Object\|Array | - | Additional style |
+
+### Switch
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | String | - | Switch label text |
+| `selected` | Boolean | `false` | Whether this switch is selected |
+| `onPress` | Function | - | Press handler |
+| `disabled` | Boolean | `false` | Disabled state |
+| `style` | Object\|Array | - | Additional style |
+
+### PageSelector
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `currentPage` | Number | `1` | Active page (1-based) |
+| `totalPages` | Number | `1` | Total number of pages |
+| `onChange` | Function | - | Called with selected page number |
+| `style` | Object\|Array | - | Additional style |
+
+### TreeNode
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | String | - | Node label |
+| `children` | Node | - | Child TreeNode elements |
+| `expanded` | Boolean | `false` | Whether the node is expanded |
+| `onToggle` | Function | - | Called with next expanded state |
+| `selected` | Boolean | `false` | Whether this node is selected |
+| `level` | Number | `1` | Depth in the tree (1-based) |
+| `style` | Object\|Array | - | Additional style |
+
+### Step
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | String | - | Step label |
+| `status` | String | `'incomplete'` | `'complete'`, `'current'`, or `'incomplete'` |
+| `stepNumber` | Number | - | 1-based step position |
+| `style` | Object\|Array | - | Additional style |
+
+### HeaderNav
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Navigation content (links, menu items) |
+| `style` | Object\|Array | - | Additional style |
+
+### HeaderMenuButton
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `onPress` | Function | - | Press handler |
+| `label` | String | - | Button label |
+| `isActive` | Boolean | `false` | Whether the menu is currently open |
+| `style` | Object\|Array | - | Additional style |
+
+### HeaderPanel
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Panel content |
+| `expanded` | Boolean | - | Whether the panel is visible |
+| `style` | Object\|Array | - | Additional style |
+
+### ProgressIndicator
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `current` | Number | `0` | Current step (1-based) |
+| `total` | Number | `0` | Total number of steps |
+| `label` | String | - | Optional accessible label |
+| `style` | Object\|Array | - | Additional style |
+
+### Tabs
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `selectedIndex` | Number | `0` | 0-based active tab index |
+| `onChange` | Function | - | Called with new index |
+| `children` | Node | - | Tab elements |
+| `style` | Object\|Array | - | Additional style |
+
+### Accordion
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `allowMultiple` | Boolean | `false` | Allow multiple items expanded at once |
+| `expandedKeys` | Array | `[]` | Keys of expanded items |
+| `onChange` | Function | - | Called with key of toggled item |
+| `children` | Node | - | AccordionItem elements |
+| `style` | Object\|Array | - | Additional style |
+
+### Breadcrumb
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | BreadcrumbItem elements |
+| `style` | Object\|Array | - | Additional style |
+
+### ContentSwitcher
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `selectedIndex` | Number | `0` | 0-based active switch index |
+| `onChange` | Function | - | Called with new index |
+| `children` | Node | - | Switch elements |
+| `style` | Object\|Array | - | Additional style |
+
+### Pagination
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `page` | Number | `1` | Current page (1-based) |
+| `totalPage` | Number | `1` | Total number of pages |
+| `onChange` | Function | - | Called with new page number |
+| `pageSize` | Number | - | Items per page |
+| `style` | Object\|Array | - | Additional style |
+
+### TreeView
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `data` | Array | `[]` | Array of `{ key, label, children, expanded, selected }` |
+| `onSelect` | Function | - | Called with selected node key |
+| `expandedKeys` | Array | `[]` | Keys of expanded nodes |
+| `style` | Object\|Array | - | Additional style |
+
+### Steps
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `current` | Number | `0` | 1-based current step number |
+| `children` | Node | - | Step elements |
+| `style` | Object\|Array | - | Additional style |
+
+### Header
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | HeaderNav, HeaderMenuButton, HeaderPanel elements |
+| `style` | Object\|Array | - | Additional style |
+
+### Select
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | String | - | Controlled value |
+| `defaultValue` | String | - | Uncontrolled initial value |
+| `onChange` | Function | - | Called with the selected value |
+| `options` | Array | `[]` | Array of `{ value, label }` objects |
+| `placeholder` | String | `'Select an option'` | Placeholder text |
+| `disabled` | Boolean | `false` | Disabled state |
+| `invalid` | Boolean | `false` | Invalid state |
+| `style` | Object\|Array | - | Additional style |
+
+### ComboBox
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | String | - | Controlled value |
+| `defaultValue` | String | `''` | Uncontrolled initial value |
+| `onChange` | Function | - | Called with the selected value |
+| `options` | Array | `[]` | Array of `{ value, label }` objects |
+| `placeholder` | String | `'Search'` | Placeholder text |
+| `disabled` | Boolean | `false` | Disabled state |
+| `invalid` | Boolean | `false` | Invalid state |
+| `style` | Object\|Array | - | Additional style |
+
+### MultiSelect
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `values` | Array | - | Controlled selected values |
+| `defaultValues` | Array | `[]` | Uncontrolled initial values |
+| `onChange` | Function | - | Called with the selected values array |
+| `options` | Array | `[]` | Array of `{ value, label }` objects |
+| `placeholder` | String | `'Select options'` | Placeholder text |
+| `disabled` | Boolean | `false` | Disabled state |
+| `invalid` | Boolean | `false` | Invalid state |
+| `style` | Object\|Array | - | Additional style |
+
+### RadioButtonGroup
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | String | - | Controlled value |
+| `defaultValue` | String | - | Uncontrolled initial value |
+| `onChange` | Function | - | Called with the selected value |
+| `options` | Array | `[]` | Array of `{ value, label, disabled }` objects |
+| `disabled` | Boolean | `false` | Disables the entire group |
+| `name` | String | - | Group name for form submission |
+| `orientation` | String | `'vertical'` | `'horizontal'` or `'vertical'` |
+| `style` | Object\|Array | - | Additional style |
+
+### CheckboxGroup
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `values` | Array | - | Controlled selected values |
+| `defaultValues` | Array | `[]` | Uncontrolled initial values |
+| `onChange` | Function | - | Called with the selected values array |
+| `options` | Array | `[]` | Array of `{ value, label, disabled }` objects |
+| `disabled` | Boolean | `false` | Disables the entire group |
+| `name` | String | - | Group name for form submission |
+| `style` | Object\|Array | - | Additional style |
+
+### SliderInput
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | String | - | Label text above the slider |
+| `value` | Number | - | Controlled value |
+| `defaultValue` | Number | `min` or `0` | Uncontrolled initial value |
+| `onChange` | Function | - | Called with the next number |
+| `min` | Number | `0` | Minimum value |
+| `max` | Number | `100` | Maximum value |
+| `step` | Number | `1` | Step increment |
+| `disabled` | Boolean | `false` | Disabled state |
+| `invalid` | Boolean | `false` | Invalid state |
+| `style` | Object\|Array | - | Additional style |
+
+### DatePicker
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | String | - | Controlled value (`YYYY-MM-DD`) |
+| `defaultValue` | String | `''` | Uncontrolled initial value |
+| `onChange` | Function | - | Called with the selected date string |
+| `disabled` | Boolean | `false` | Disabled state |
+| `invalid` | Boolean | `false` | Invalid state |
+| `style` | Object\|Array | - | Additional style |
+
+### TimePicker
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | String | - | Controlled value (`HH:MM`) |
+| `defaultValue` | String | `''` | Uncontrolled initial value |
+| `onChange` | Function | - | Called with the selected time string |
+| `disabled` | Boolean | `false` | Disabled state |
+| `invalid` | Boolean | `false` | Invalid state |
+| `style` | Object\|Array | - | Additional style |
+
+### DateRangePicker
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `startDate` | String | - | Start date (`YYYY-MM-DD`) |
+| `endDate` | String | - | End date (`YYYY-MM-DD`) |
+| `onChange` | Function | - | Called with `{ startDate, endDate }` |
+| `disabled` | Boolean | `false` | Disabled state |
+| `style` | Object\|Array | - | Additional style |
+
+### NumberInputComposite
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | String | - | Label text above the input |
+| `value` | Number | - | Controlled value |
+| `defaultValue` | Number | `0` | Uncontrolled initial value |
+| `onChange` | Function | - | Called with the next number |
+| `min` | Number | - | Minimum value |
+| `max` | Number | - | Maximum value |
+| `step` | Number | `1` | Step increment |
+| `unit` | String | - | Optional unit suffix (e.g. `'px'`, `'%'`) |
+| `disabled` | Boolean | `false` | Disabled state |
+| `invalid` | Boolean | `false` | Invalid state |
+| `style` | Object\|Array | - | Additional style |
+
+### FileUploader
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | String | `'Upload file'` | Button text |
+| `accept` | String | - | File type filter (e.g. `'image/*'`) |
+| `multiple` | Boolean | `false` | Allow multiple file selection |
+| `onChange` | Function | - | Called with the selected file(s) |
+| `disabled` | Boolean | `false` | Disabled state |
+| `style` | Object\|Array | - | Additional style |
+
+### FluidForm
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Form content within the fluid context |
+| `fluid` | Boolean | `true` | Pass `false` to opt out of fluid labels |
+| `style` | Object\|Array | - | Additional style |
+
+### FormGroup
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Form field elements |
+| `label` | String | - | Optional group label |
+| `invalid` | Boolean | `false` | Shows message in danger color |
+| `message` | String | - | Helper or error text shown below the group |
+| `disabled` | Boolean | `false` | Dims the label |
+| `style` | Object\|Array | - | Additional style |
+
+### ToggleGroup
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | String | - | Controlled pressed toggle value |
+| `defaultValue` | String | - | Uncontrolled initial value |
+| `onChange` | Function | - | Called with the selected value |
+| `options` | Array | `[]` | Array of `{ value, label, disabled }` objects |
+| `disabled` | Boolean | `false` | Disables the entire group |
+| `orientation` | String | `'horizontal'` | `'horizontal'` or `'vertical'` |
+| `style` | Object\|Array | - | Additional style |
+
+### TimeInput
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | String | - | Controlled value (`HH:MM`) |
+| `defaultValue` | String | `''` | Uncontrolled initial value |
+| `onChange` | Function | - | Called with the time string |
+| `disabled` | Boolean | `false` | Disabled state |
+| `invalid` | Boolean | `false` | Invalid state |
+| `style` | Object\|Array | - | Additional style |
+
+### DateInput
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | String | - | Controlled value (`YYYY-MM-DD`) |
+| `defaultValue` | String | `''` | Uncontrolled initial value |
+| `onChange` | Function | - | Called with the date string |
+| `disabled` | Boolean | `false` | Disabled state |
+| `invalid` | Boolean | `false` | Invalid state |
+| `style` | Object\|Array | - | Additional style |
+
+### Notification
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | String | - | Primary text |
+| `subtitle` | String | - | Secondary text |
+| `status` | String | `'info'` | `'success'`, `'error'`, `'warning'`, or `'info'` |
+| `onClose` | Function | - | Close handler (when absent, no close button) |
+| `children` | Node | - | Additional content |
+| `style` | Object\|Array | - | Additional style |
+
+### Toast
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | String | - | Primary text |
+| `subtitle` | String | - | Secondary text |
+| `status` | String | `'info'` | `'success'`, `'error'`, `'warning'`, or `'info'` |
+| `onClose` | Function | - | Close handler (called on close or auto-dismiss) |
+| `duration` | Number | `3000` | Milliseconds before auto-dismiss |
+| `style` | Object\|Array | - | Additional style |
+
+### ActionBar
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Action button elements |
+| `style` | Object\|Array | - | Additional style |
+
+### BatchAction
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | String | - | Button text |
+| `onPress` | Function | - | Press handler |
+| `disabled` | Boolean | `false` | Disabled state |
+| `style` | Object\|Array | - | Additional style |
+
+### Alert
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | String | - | Primary text |
+| `kind` | String | `'info'` | `'info'`, `'success'`, `'warning'`, or `'error'` |
+| `children` | Node | - | Additional content |
+| `style` | Object\|Array | - | Additional style |
+
+### Callout
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | String | - | Primary text |
+| `kind` | String | `'info'` | `'info'`, `'success'`, `'warning'`, or `'error'` |
+| `children` | Node | - | Additional content |
+| `style` | Object\|Array | - | Additional style |
+
+### DataTable
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `headers` | Array | `[]` | Array of header strings |
+| `rows` | Array | `[]` | Array of arrays (each inner array is a row of cell values) |
+| `style` | Object\|Array | - | Additional style |
+
+### TableRow
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Cell elements |
+| `style` | Object\|Array | - | Additional style |
+
+### TableCell
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Cell content |
+| `style` | Object\|Array | - | Additional style |
+
+### TableHeader
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Header content |
+| `style` | Object\|Array | - | Additional style |
+
+### TableBody
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Row elements |
+| `style` | Object\|Array | - | Additional style |
+
+### TableHead
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Header row elements |
+| `style` | Object\|Array | - | Additional style |
+
+### Grid
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Grid item elements |
+| `columns` | Number | `2` | Number of columns |
+| `gap` | Number | `0` | Gap in pixels between items |
+| `style` | Object\|Array | - | Additional style |
+
+### Row
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Content elements |
+| `style` | Object\|Array | - | Additional style |
+
+### Column
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Content elements |
+| `style` | Object\|Array | - | Additional style |
+
+### FlexGrid
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Grid item elements |
+| `gap` | Number | `0` | Gap in pixels between items |
+| `style` | Object\|Array | - | Additional style |
+
+### Container
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Content elements |
+| `maxWidth` | Number | `1200` | Maximum width in pixels |
+| `style` | Object\|Array | - | Additional style |
+
+### LayerMolecule
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Content elements |
+| `level` | Number | `0` | Surface elevation level (`0`, `1`, or `2`) |
+| `style` | Object\|Array | - | Additional style |
+
+### Form
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Form field elements |
+| `onSubmit` | Function | - | Submit handler function |
+| `style` | Object\|Array | - | Additional style |
+
+### Fieldset
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Form field elements |
+| `legend` | String | - | Legend text |
+| `style` | Object\|Array | - | Additional style |
+
+### Legend
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Legend content |
+| `style` | Object\|Array | - | Additional style |
+
+### OrderedList
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | List item elements |
+| `style` | Object\|Array | - | Additional style |
+
+### UnorderedList
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | List item elements |
+| `style` | Object\|Array | - | Additional style |
+
+### ListItemNav
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | String | - | Primary text for the nav item |
+| `onPress` | Function | - | Press handler |
+| `children` | Node | - | Additional content |
+| `style` | Object\|Array | - | Additional style |
+
+### StructuredList
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Structured list row elements |
+| `style` | Object\|Array | - | Additional style |
+
+### StructuredListRow
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Cell elements |
+| `style` | Object\|Array | - | Additional style |
+
+### StructuredListCell
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Cell content |
+| `style` | Object\|Array | - | Additional style |
+
+### Toolbar
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Tool button elements |
+| `style` | Object\|Array | - | Additional style |
+
+### Divider
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `orientation` | String | `'horizontal'` | `'horizontal'` or `'vertical'` |
+| `style` | Object\|Array | - | Additional style |
+
+### ScrollGradient
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Scrollable content |
+| `style` | Object\|Array | - | Additional style |
+
+### DataTableRow
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `cells` | Array | `[]` | Array of cell values (strings or elements) |
+| `onPress` | Function | - | Press handler (when absent, row is static) |
+| `selected` | Boolean | `false` | Whether the row is selected |
+| `style` | Object\|Array | - | Additional style |
+
+### PaginationBar
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `page` | Number | `1` | Current page (1-based) |
+| `totalPage` | Number | `1` | Total number of pages |
+| `onChange` | Function | - | Called with new page number |
+| `style` | Object\|Array | - | Additional style |
+
+### ToggletipLabel
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | String | - | Label text |
+| `toggletipContent` | Node | - | Content to show in the toggletip |
+| `children` | Node | - | Additional content |
+| `style` | Object\|Array | - | Additional style |
+
+### GridItem
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Grid item content |
+| `span` | Number | `1` | Number of columns to span |
+| `style` | Object\|Array | - | Additional style |
+
 ## Mechanisms
 
 Eight shared mechanisms live in `component/` and are used across all components.
