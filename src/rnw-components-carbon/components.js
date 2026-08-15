@@ -169,6 +169,11 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.Button = make(require('./component/atom/button'));
       Component.TextInput = make(require('./component/atom/textInput'));
       Component.Toggle = make(require('./component/atom/toggle'));
+      Component.Checkbox = make(require('./component/atom/checkbox'));
+      Component.RadioButton = make(require('./component/atom/radioButton'));
+      Component.TextArea = make(require('./component/atom/textArea'));
+      Component.Slider = make(require('./component/atom/slider'));
+      Component.Link = make(require('./component/atom/link'));
 
       // ~~~~~~~~~~ Molecules (canonical) ~~~~~~~~~~
       Component.ButtonPrimary = make(require('./component/molecule/buttonPrimary'));
@@ -177,6 +182,12 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.ListItem = make(require('./component/molecule/listItem'));
       Component.Dropdown = make(require('./component/molecule/dropdown'));
       Component.Modal = make(require('./component/molecule/modal'));
+      Component.Search = make(require('./component/molecule/search'));
+      Component.PasswordInput = make(require('./component/molecule/passwordInput'));
+      Component.NumberInput = make(require('./component/molecule/numberInput'));
+      Component.ExpandableSearch = make(require('./component/molecule/expandableSearch'));
+      Component.FormLabel = make(require('./component/molecule/formLabel'));
+      Component.FormItem = make(require('./component/molecule/formItem'));
 
       // ~~~~~~~~~~ Structured exceptions (variant registry) ~~~~~~~~~~
       Component.variant = {
@@ -189,6 +200,17 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       // styles only and do not retheme.
       Component.freeform = {
         RawBox: require('./component/freeform/rawBox')(Lib)
+      };
+
+      // ~~~~~~~~~~ Providers (context-only, no tokens, no visual output) ~~~~~~~~~~
+      // Providers register at Component.provider.[name], matching the
+      // Component.variant and Component.freeform namespacing. They do not
+      // count toward the flat top-level key count.
+      const overlayHostModule = require('./component/OverlayHost')(Lib);
+      const liveRegionModule = require('./component/LiveRegionProvider')(Lib);
+      Component.provider = {
+        OverlayHost: overlayHostModule.OverlayHost,
+        LiveRegionProvider: liveRegionModule.LiveRegionProvider
       };
 
       // Store in state for rebuild reference

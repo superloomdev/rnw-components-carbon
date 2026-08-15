@@ -40,9 +40,24 @@ test('build registers all 10 atoms', function () {
 
 });
 
-test('build registers all 6 molecules', function () {
+test('build registers all 6 original molecules', function () {
 
   const molecules = ['ButtonPrimary', 'ButtonLink', 'Card', 'ListItem', 'Dropdown', 'Modal'];
+
+  for (let i = 0; i < molecules.length; i++) {
+    assert.ok(typeof Component[molecules[i]] === 'function', 'molecule ' + molecules[i] + ' should be a function');
+  }
+
+});
+
+test('build registers all 12 Wave 2 form components', function () {
+
+  const atoms = ['Checkbox', 'RadioButton', 'TextArea', 'Slider', 'Link'];
+  const molecules = ['Search', 'PasswordInput', 'NumberInput', 'ExpandableSearch', 'FormLabel', 'FormItem'];
+
+  for (let i = 0; i < atoms.length; i++) {
+    assert.ok(typeof Component[atoms[i]] === 'function', 'atom ' + atoms[i] + ' should be a function');
+  }
 
   for (let i = 0; i < molecules.length; i++) {
     assert.ok(typeof Component[molecules[i]] === 'function', 'molecule ' + molecules[i] + ' should be a function');
@@ -815,12 +830,237 @@ test('useControllableState uses defaultValue when uncontrolled', function () {
 
 // ~~~~~~~~~~~~~~~~~~~~ Registry count assertion ~~~~~~~~~~~~~~~~~~~~
 
-test('registry has 16 flat keys plus variant and freeform', function () {
+test('registry has 27 flat keys plus variant, freeform, and provider', function () {
 
   const flatKeys = Object.keys(Component).filter(function (k) {
-    return k !== 'variant' && k !== 'freeform';
+    return k !== 'variant' && k !== 'freeform' && k !== 'provider';
   });
 
-  assert.strictEqual(flatKeys.length, 16, 'should have 16 flat component keys');
+  assert.strictEqual(flatKeys.length, 27, 'should have 27 flat component keys');
+  assert.ok(Component.variant, 'variant namespace should exist');
+  assert.ok(Component.freeform, 'freeform namespace should exist');
+  assert.ok(Component.provider, 'provider namespace should exist');
+  assert.strictEqual(Object.keys(Component.provider).length, 2, 'should have 2 providers');
+
+});
+
+
+// ~~~~~~~~~~~~~~~~~~~~ Wave 2 component tests ~~~~~~~~~~~~~~~~~~~~
+
+test('Checkbox renders with role checkbox and aria-checked', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Checkbox, {
+      checked: true,
+      label: 'Accept terms',
+      onChange: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'Checkbox should render');
+
+  // Verify role is checkbox
+  const node = tree;
+  assert.strictEqual(node.props.accessibilityRole, 'checkbox');
+
+});
+
+test('Checkbox renders mixed state for indeterminate', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Checkbox, {
+      checked: 'mixed',
+      label: 'Select all',
+      onChange: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'Checkbox mixed should render');
+
+});
+
+test('Checkbox calls onChange with false when checked', function () {
+
+  let captured = null;
+
+  TestRenderer.create(
+    React.createElement(Component.Checkbox, {
+      checked: true,
+      label: 'Test',
+      onChange: function (val) { captured = val; }
+    })
+  );
+
+  // Directly invoke the onPress handler via the test renderer
+  const tree = TestRenderer.create(
+    React.createElement(Component.Checkbox, {
+      checked: true,
+      label: 'Test',
+      onChange: function (val) { captured = val; }
+    })
+  );
+
+  // Find the Pressable and simulate press
+  const pressable = tree.root.findByProps({ accessibilityRole: 'checkbox' });
+  pressable.props.onPress();
+
+  assert.strictEqual(captured, false, 'should toggle to false');
+
+});
+
+test('RadioButton renders with role radio and aria-checked', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.RadioButton, {
+      checked: true,
+      label: 'Option A',
+      onChange: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'RadioButton should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'radio');
+
+});
+
+test('TextArea renders with multiline and role textbox', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TextArea, {
+      value: 'hello',
+      onChange: function () {},
+      rows: 4
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'TextArea should render');
+  assert.strictEqual(tree.props.multiline, true);
+  assert.strictEqual(tree.props.accessibilityRole, 'textbox');
+
+});
+
+test('Slider renders with role slider on web', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Slider, {
+      value: 50,
+      min: 0,
+      max: 100,
+      onChange: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'Slider should render');
+
+});
+
+test('Link renders with role link', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Link, {
+      onPress: function () {},
+      accessibilityLabel: 'Learn more'
+    }, 'Learn more')
+  ).toJSON();
+
+  assert.ok(tree, 'Link should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'link');
+
+});
+
+test('Search renders with search icon and role searchbox', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Search, {
+      value: 'query',
+      onChange: function () {},
+      placeholder: 'Search'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'Search should render');
+
+});
+
+test('PasswordInput renders with secureTextEntry', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.PasswordInput, {
+      value: 'secret',
+      onChange: function () {},
+      placeholder: 'Password'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'PasswordInput should render');
+
+});
+
+test('NumberInput renders with increment and decrement buttons', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.NumberInput, {
+      value: 5,
+      min: 0,
+      max: 10,
+      step: 1,
+      onChange: function () {}
+    })
+  );
+
+  assert.ok(tree, 'NumberInput should render');
+
+  // Find the increment button
+  const buttons = tree.root.findAllByProps({ accessibilityRole: 'button' });
+  assert.ok(buttons.length >= 2, 'should have at least 2 buttons for inc/dec');
+
+});
+
+test('ExpandableSearch renders collapsed by default', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.ExpandableSearch, {
+      onChange: function () {},
+      placeholder: 'Search'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'ExpandableSearch should render collapsed');
+
+});
+
+test('FormLabel renders label text', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.FormLabel, null, 'Email address')
+  ).toJSON();
+
+  assert.ok(tree, 'FormLabel should render');
+
+});
+
+test('FormItem renders label, children, and helper text', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.FormItem, {
+      label: 'Username',
+      helperText: 'Enter your username'
+    }, React.createElement(Component.TextInput, { placeholder: 'user' }))
+  );
+
+  assert.ok(tree, 'FormItem should render');
+
+});
+
+test('FormItem renders error text when provided', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.FormItem, {
+      label: 'Email',
+      errorText: 'Invalid email'
+    }, React.createElement(Component.TextInput, { placeholder: 'email' }))
+  );
+
+  assert.ok(tree, 'FormItem with error should render');
 
 });

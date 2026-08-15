@@ -1,6 +1,7 @@
 // Info: Toggle atom [S2 interactive]. Wraps react-native Switch with token
 // consumption for the track and thumb colors. Passes accessibilityRole="switch"
-// and uses aria-checked for screen reader state announcement.
+// and uses aria-checked for screen reader state announcement. Uses M2
+// (usePressKeys) for Space activation on web where the switch role needs it.
 //   value         -> boolean, whether the toggle is on
 //   onValueChange -> callback when the value changes
 //   disabled      -> boolean, whether the toggle is non-interactive
@@ -25,6 +26,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
   // Build the a11y translator once per factory
   const a11y = require('../a11y')(Lib);
 
+  // Build the keyboard activation hook once per factory
+  const usePressKeys = require('../usePressKeys')(Lib);
+
   return function Toggle (props) {
 
     // Destructure props
@@ -32,6 +36,25 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       value, onValueChange, disabled, style, isRtlActive, accessibilityLabel, // eslint-disable-line no-unused-vars
       ...rest
     } = props;
+
+    const React = Lib.React;
+
+    // Handle keyboard activation for the switch role
+    const handleActivate = function () {
+      if (disabled) {
+        return;
+      }
+      if (Lib.Utils.isFunction(onValueChange)) {
+        onValueChange(!value);
+      }
+    };
+
+    // Build keyboard activation props (Space activates switch role)
+    const pressKeysProps = usePressKeys({
+      role: 'switch',
+      onActivate: handleActivate,
+      disabled: !!disabled
+    });
 
     // Resolve colors from tokens
     const colorMap = Style_.tokens.Color;
@@ -53,7 +76,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       checked: !!value
     });
 
-    return Lib.React.createElement(
+    return React.createElement(
       RNSwitch,
       Object.assign({
         value: !!value,
@@ -64,9 +87,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         accessibilityRole: 'switch',
         accessibilityLabel: accessibilityLabel,
         style: style
-      }, ariaProps, rest)
+      }, ariaProps, pressKeysProps, rest)
     );
 
   };
 
 };
+

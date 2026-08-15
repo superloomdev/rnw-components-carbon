@@ -1,6 +1,6 @@
 // Info: Modal molecule [S3 overlay] (CANONICAL). A dialog overlay with focus
 // trap, Escape/back dismissal, outside-press dismissal, and focus restoration.
-// Uses the shared useFocusTrap hook so focus behavior exists once.
+// Uses OverlayHost (M4) for stacking and useFocusTrap for focus management.
 //
 // S3 obligations (all six, from the plan):
 //   1. On open: record the previously focused element and move focus into the overlay
@@ -10,7 +10,9 @@
 //   5. On close: restore focus to the recorded element
 //   6. Set aria-modal on the overlay container for screen reader trapping
 //
-// This is genuinely new code. Neither CTP nor the prototype has focus management.
+// OverlayHost integration: registers with the host so a Popover opened from
+// inside a Modal paints above it. The host assigns zIndex from the stack
+// position. On native, uses RN Modal for hardware back support.
 'use strict';
 
 const { View: RNView, Pressable, Modal: RNModal, Platform } = require('react-native');
@@ -32,6 +34,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
   // Build the focus trap hook once
   const useFocusTrap = require('../useFocusTrap')(Lib);
 
+  // Build the overlay host hook once
+  const overlayHost = require('../OverlayHost')(Lib);
+  const useOverlay = overlayHost.useOverlay;
+
   return function Modal (props) {
 
     // Destructure props
@@ -39,6 +45,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       isOpen, onClose, children, style, isRtlActive, // eslint-disable-line no-unused-vars
       initialFocusRef, finalFocusRef, ...rest
     } = props;
+
+    const React = Lib.React;
 
     // Use the focus trap hook for all six S3 obligations
     // trap=true for Modal: Tab cycles within the dialog
@@ -54,45 +62,49 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const onOutsidePress = focusTrap.onOutsidePress;
     const accessibilityProps = focusTrap.accessibilityProps;
 
-    // Nothing to render when closed
-    if (!isOpen) {
-      return null;
-    }
-
     // Backdrop: pressable overlay that closes on outside press
-    const backdrop = Lib.React.createElement(Pressable, {
-      onPress: onOutsidePress,
-      style: {
-        position: 'absolute',
-        top: 0, left: 0, right: 0, bottom: 0,
-        backgroundColor: 'rgba(0,0,0,0.5)'
-      }
-    });
+    const renderBackdrop = function () {
+      return React.createElement(Pressable, {
+        onPress: onOutsidePress,
+        style: {
+          position: 'absolute',
+          top: 0, left: 0, right: 0, bottom: 0,
+          backgroundColor: 'rgba(0,0,0,0.5)'
+        }
+      });
+    };
 
     // Content container with focus trap accessibility props
-    const content = Lib.React.createElement(
-      RNView,
-      Object.assign({
-        ref: containerRef,
-        style: [
-          Style_.utilities['background_surface'],
-          Style_.utilities['br_lg'],
-          Style_.utilities['p_a_lg'],
-          Style_.utilities['border_default'],
-          {
-            margin: 24,
-            maxWidth: 600,
-            alignSelf: 'center'
-          },
-          style
-        ]
-      }, accessibilityProps, rest),
-      children
-    );
+    const renderContent = function () {
+      return React.createElement(
+        RNView,
+        Object.assign({
+          ref: containerRef,
+          style: [
+            Style_.utilities['background_surface'],
+            Style_.utilities['br_lg'],
+            Style_.utilities['p_a_lg'],
+            Style_.utilities['border_default'],
+            {
+              margin: 24,
+              maxWidth: 600,
+              alignSelf: 'center'
+            },
+            style
+          ]
+        }, accessibilityProps, rest),
+        children
+      );
+    };
 
     // On native, use RN Modal for native modal behavior + hardware back
     if (Platform.OS !== 'web') {
-      return Lib.React.createElement(
+
+      if (!isOpen) {
+        return null;
+      }
+
+      return React.createElement(
         RNModal,
         {
           visible: isOpen,
@@ -100,27 +112,53 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           animationType: 'fade',
           onRequestClose: onClose
         },
-        backdrop,
-        content
+        renderBackdrop(),
+        renderContent()
       );
 
     }
 
-    // On web, render with fixed positioning
-    return Lib.React.createElement(
-      RNView,
-      {
-        style: {
-          position: 'fixed',
-          top: 0, left: 0, right: 0, bottom: 0,
-          zIndex: 1000,
-          alignItems: 'center',
-          justifyContent: 'center'
-        }
-      },
-      backdrop,
-      content
-    );
+    // On web, register with OverlayHost for stacking
+    const overlay = useOverlay({
+      isOpen: !!isOpen,
+      trap: true,
+      onClose: onClose,
+      render: function () {
+        return React.createElement(
+          React.Fragment,
+          null,
+          renderBackdrop(),
+          renderContent()
+        );
+      }
+    });
+
+    // When no OverlayHost is mounted, fall back to fixed positioning
+    if (overlay.layerIndex < 0) {
+
+      if (!isOpen) {
+        return null;
+      }
+
+      return React.createElement(
+        RNView,
+        {
+          style: {
+            position: 'fixed',
+            top: 0, left: 0, right: 0, bottom: 0,
+            zIndex: 1000,
+            alignItems: 'center',
+            justifyContent: 'center'
+          }
+        },
+        renderBackdrop(),
+        renderContent()
+      );
+
+    }
+
+    // OverlayHost renders the content; return null here
+    return null;
 
   };
 

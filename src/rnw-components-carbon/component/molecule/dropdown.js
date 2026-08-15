@@ -1,7 +1,8 @@
 // Info: Dropdown molecule [S3 overlay] (CANONICAL). A dropdown menu with
 // focus trap, Escape/back dismissal, outside-press dismissal, and focus
-// restoration. Uses the shared useFocusTrap hook. Composes Button, Text,
-// and Icon atoms.
+// restoration. Uses OverlayHost (M4) for stacking, useAnchoredPosition (M5)
+// for panel placement, and useFocusTrap for focus management. Composes
+// Button, Text, and Icon atoms.
 //
 // S3 obligations (all six, same as Modal):
 //   1. On open: record focus and move into the dropdown
@@ -11,7 +12,8 @@
 //   5. On close: restore focus to the trigger
 //   6. Set aria-modal on the overlay container
 //
-// This is genuinely new code. Neither CTP nor the prototype has focus management.
+// useAnchoredPosition measures the trigger and positions the panel below it,
+// flipping above when there is not enough space.
 'use strict';
 
 const { View: RNView, Pressable, Platform } = require('react-native');
@@ -36,6 +38,13 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
   // Build the a11y translator once per factory
   const a11y = require('../a11y')(Lib);
 
+  // Build the overlay host hook once
+  const overlayHost = require('../OverlayHost')(Lib);
+  const useOverlay = overlayHost.useOverlay;
+
+  // Build the anchored position hook once
+  const useAnchoredPosition = require('../useAnchoredPosition')(Lib);
+
   return function Dropdown (props) {
 
     // Destructure props
@@ -46,6 +55,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
     const React = Lib.React;
     const [isOpen, setIsOpen] = React.useState(false);
+
+    // Ref to the trigger element for position measurement
+    const triggerRef = React.useRef(null);
 
     // Close handler
     const handleClose = function () {
@@ -61,6 +73,23 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const containerRef = focusTrap.containerRef;
     const onOutsidePress = focusTrap.onOutsidePress;
     const accessibilityProps = focusTrap.accessibilityProps;
+
+    // Use anchored position for the dropdown panel
+    const anchoredPos = useAnchoredPosition({
+      placement: 'bottom-start',
+      offset: 4,
+      flip: true,
+      anchorRef: triggerRef
+    });
+
+    // Measure position when the dropdown opens
+    React.useEffect(function () {
+
+      if (isOpen) {
+        anchoredPos.measure();
+      }
+
+    }, [isOpen]); // anchoredPos.measure is stable via useCallback
 
     // Toggle the dropdown open/closed
     const handleTriggerPress = function () {
@@ -84,9 +113,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     });
 
     // Render the trigger button
-    const trigger = Lib.React.createElement(
+    const trigger = React.createElement(
       Pressable,
       Object.assign({
+        ref: triggerRef,
         onPress: handleTriggerPress,
         accessibilityRole: 'button',
         accessibilityLabel: accessibilityLabel || triggerLabel,
@@ -100,11 +130,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           Style_.utilities['align_center']
         ]
       }, triggerAriaProps),
-      Lib.React.createElement(Registry.Text, {
+      React.createElement(Registry.Text, {
         size: 'md',
         color: 'text_primary'
       }, triggerLabel),
-      Lib.React.createElement(Registry.Icon, {
+      React.createElement(Registry.Icon, {
         name: isOpen ? 'chevron-up' : 'chevron-down',
         size: 'sm',
         color: 'TEXT_SECONDARY',
@@ -112,14 +142,14 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       })
     );
 
-    // Render the dropdown panel when open
+    // Nothing more to render when closed
     if (!isOpen) {
       return trigger;
     }
 
     // Build the dropdown items
     const itemElements = (items || []).map(function (item) {
-      return Lib.React.createElement(
+      return React.createElement(
         Pressable,
         {
           key: item.value,
@@ -133,52 +163,98 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
             Style_.utilities['p_v_sm']
           ]
         },
-        Lib.React.createElement(Registry.Text, {
+        React.createElement(Registry.Text, {
           size: 'md',
           color: 'text_primary'
         }, item.label)
       );
     });
 
-    // Dropdown panel with focus trap
-    const panel = Lib.React.createElement(
-      RNView,
-      Object.assign({
-        ref: containerRef,
-        style: [
-          Style_.utilities['background_surface'],
-          Style_.utilities['br_md'],
-          Style_.utilities['border_default'],
-          Style_.utilities['p_v_xs'],
-          {
-            position: Platform.OS === 'web' ? 'absolute' : 'absolute',
-            top: '100%',
-            left: 0,
-            minWidth: 200,
-            zIndex: 1000
-          },
-          style
-        ]
-      }, accessibilityProps, rest),
-      itemElements
-    );
+    // Compute panel position: use anchored position if available, fall back
+    const panelStyle = anchoredPos.position
+      ? {
+        position: 'absolute',
+        top: anchoredPos.position.top,
+        left: anchoredPos.position.left,
+        minWidth: 200
+      }
+      : {
+        position: 'absolute',
+        top: '100%',
+        left: 0,
+        minWidth: 200
+      };
 
-    // Render trigger + backdrop + panel
-    return Lib.React.createElement(
-      RNView,
-      { style: { position: 'relative' } },
-      trigger,
-      // Backdrop for outside-press dismissal
-      Lib.React.createElement(Pressable, {
+    // Dropdown panel with focus trap
+    const renderPanel = function (zIndex) {
+      return React.createElement(
+        RNView,
+        Object.assign({
+          ref: containerRef,
+          style: [
+            Style_.utilities['background_surface'],
+            Style_.utilities['br_md'],
+            Style_.utilities['border_default'],
+            Style_.utilities['p_v_xs'],
+            panelStyle,
+            zIndex ? { zIndex: zIndex } : {},
+            style
+          ]
+        }, accessibilityProps, rest),
+        itemElements
+      );
+    };
+
+    // Backdrop for outside-press dismissal
+    const renderBackdrop = function () {
+      return React.createElement(Pressable, {
         onPress: onOutsidePress,
         style: {
           position: 'absolute',
-          top: 0, left: 0, right: 0, bottom: 0,
-          zIndex: 999
+          top: 0, left: 0, right: 0, bottom: 0
         }
-      }),
-      panel
-    );
+      });
+    };
+
+    // On native, render inline with relative positioning
+    if (Platform.OS !== 'web') {
+      return React.createElement(
+        RNView,
+        { style: { position: 'relative' } },
+        trigger,
+        renderBackdrop(),
+        renderPanel(1000)
+      );
+    }
+
+    // On web, try OverlayHost for stacking
+    const overlay = useOverlay({
+      isOpen: true,
+      trap: false,
+      onClose: handleClose,
+      render: function () {
+        return React.createElement(
+          React.Fragment,
+          null,
+          renderBackdrop(),
+          renderPanel()
+        );
+      }
+    });
+
+    // When no OverlayHost is mounted, fall back to relative positioning
+    if (overlay.layerIndex < 0) {
+      return React.createElement(
+        RNView,
+        { style: { position: 'relative' } },
+        trigger,
+        renderBackdrop(),
+        renderPanel(1000)
+      );
+    }
+
+    // OverlayHost renders the panel; return just the trigger
+    return trigger;
 
   };
 

@@ -147,12 +147,23 @@ function TextInput (props) {
 
   return React.createElement('TextInput', {
     style: props.style,
+    value: props.value,
+    onChangeText: props.onChangeText,
+    placeholder: props.placeholder,
     placeholderTextColor: props.placeholderTextColor,
     editable: props.editable,
+    multiline: props.multiline,
+    numberOfLines: props.numberOfLines,
+    secureTextEntry: props.secureTextEntry,
+    keyboardType: props.keyboardType,
     accessibilityRole: props.accessibilityRole,
     accessibilityLabel: props.accessibilityLabel,
     'aria-disabled': props['aria-disabled'],
     'aria-invalid': props['aria-invalid'],
+    'aria-valuemin': props['aria-valuemin'],
+    'aria-valuemax': props['aria-valuemax'],
+    'aria-valuenow': props['aria-valuenow'],
+    'aria-valuetext': props['aria-valuetext'],
     onFocus: props.onFocus,
     onBlur: props.onBlur
   });
@@ -193,6 +204,31 @@ function Modal (props) {
 
 }
 
+// Slider: a range slider stub
+function Slider (props) {
+
+  return React.createElement('Slider', {
+    value: props.value,
+    onValueChange: props.onValueChange,
+    minimumValue: props.minimumValue,
+    maximumValue: props.maximumValue,
+    step: props.step,
+    minimumTrackTintColor: props.minimumTrackTintColor,
+    maximumTrackTintColor: props.maximumTrackTintColor,
+    thumbTintColor: props.thumbTintColor,
+    disabled: props.disabled,
+    accessibilityRole: props.accessibilityRole,
+    accessibilityLabel: props.accessibilityLabel,
+    'aria-disabled': props['aria-disabled'],
+    'aria-valuemin': props['aria-valuemin'],
+    'aria-valuemax': props['aria-valuemax'],
+    'aria-valuenow': props['aria-valuenow'],
+    'aria-valuetext': props['aria-valuetext'],
+    style: props.style
+  });
+
+}
+
 
 // --- BackHandler ---
 
@@ -221,6 +257,7 @@ module.exports = {
   TextInput: TextInput,
   Pressable: Pressable,
   Switch: Switch,
+  Slider: Slider,
   Modal: Modal,
   BackHandler: BackHandler,
   AccessibilityInfo: AccessibilityInfo

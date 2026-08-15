@@ -68,11 +68,11 @@ tokens                             -> { fontSize, fontColor, fontWeight, space, 
 
 | Tier | Components |
 |---|---|
-| Atoms (10) | `View`, `Text`, `Icon`, `Image`, `Badge`, `Separator`, `ProgressBar`, `Button`, `TextInput`, `Toggle` |
-| Molecules (6) | `ButtonPrimary`, `ButtonLink`, `Card`, `ListItem`, `Dropdown`, `Modal` |
+| Atoms (15) | `View`, `Text`, `Icon`, `Image`, `Badge`, `Separator`, `ProgressBar`, `Button`, `TextInput`, `Toggle`, `Checkbox`, `RadioButton`, `TextArea`, `Slider`, `Link` |
+| Molecules (12) | `ButtonPrimary`, `ButtonLink`, `Card`, `ListItem`, `Dropdown`, `Modal`, `Search`, `PasswordInput`, `NumberInput`, `ExpandableSearch`, `FormLabel`, `FormItem` |
 | Variants | `variant.ButtonPrimaryOutlined` |
 | Freeform | `freeform.RawBox` |
-| Providers | `provider.OverlayHost`, `provider.LiveRegionProvider` (Wave 1 mechanisms; full provider set in Wave 4) |
+| Providers | `provider.OverlayHost`, `provider.LiveRegionProvider` (full provider set in Wave 4) |
 
 ## Component Shapes
 
