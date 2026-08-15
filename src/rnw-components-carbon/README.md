@@ -124,6 +124,91 @@ const MyScreen = function () {
 | `SidePanel` | S3 | Side panel that slides in from left or right |
 | `AILabel` | S3 | AI-generated content label with toggletip details |
 | `LongPressMenu` | S3 | Menu triggered by long-press (native) or right-click (web) |
+| `Tab` | S2 | Tab trigger with `role="tab"`, optional Tabs context for roving index |
+| `TabList` | S1 | Container for Tab elements, `role="tablist"` |
+| `TabPanel` | S1 | Tab content panel, `role="tabpanel"` |
+| `AccordionItem` | S2 | Collapsible section with button header and content region |
+| `BreadcrumbItem` | S2 | Breadcrumb link with `aria-current` for current page |
+| `Switch` | S2 | Content switcher button with `role="button"` |
+| `PageSelector` | S2 | Page number selector with `role="group"` |
+| `TreeNode` | S2 | Tree node with `role="treeitem"`, expand/collapse, level |
+| `Step` | S1 | Step indicator with `role="listitem"`, status and number |
+| `HeaderNav` | S1 | Header navigation container, `role="navigation"` |
+| `HeaderMenuButton` | S2 | Header menu toggle button |
+| `HeaderPanel` | S1 | Header expandable panel, `role="region"` |
+| `ProgressIndicator` | S1 | Navigation step progress, `role="progressbar"` |
+| `Notification` | S1/S2 | Notification banner with status, `role="alert"`, close button |
+| `Toast` | S1/S2 | Auto-dismissing toast, `role="alert"`, timer-based |
+| `ActionBar` | S1 | Toolbar for batch actions, `role="toolbar"` |
+| `BatchAction` | S2 | Action button for batch operations |
+| `Alert` | S1 | Alert banner with kind (info/success/warning/error) |
+| `Callout` | S1 | Less urgent alert variant, `role="note"` |
+| `DataTable` | S1 | Simple table with headers and rows, `role="table"` |
+| `TableRow` | S1 | Table row, `role="row"` |
+| `TableCell` | S1 | Table cell, `role="cell"` |
+| `TableHeader` | S1 | Table header cell, `role="columnheader"` |
+| `TableBody` | S1 | Table body, `role="rowgroup"` |
+| `TableHead` | S1 | Table head, `role="rowgroup"` |
+| `Grid` | S1 | CSS grid-like layout with columns and gap |
+| `Row` | S1 | Horizontal layout row |
+| `Column` | S1 | Vertical layout column |
+| `FlexGrid` | S1 | Flex-based grid with gap |
+| `Container` | S1 | Max-width wrapper |
+| `LayerMolecule` | S1 | Surface token by level (0-2) |
+| `Form` | S1 | Form container, `role="form"` |
+| `Fieldset` | S1 | Group with legend, `role="group"` |
+| `Legend` | S1 | Legend caption, `role="legend"` |
+| `OrderedList` | S1 | Ordered list, `role="list"` |
+| `UnorderedList` | S1 | Unordered list, `role="list"` |
+| `ListItemNav` | S2 | Navigation list item, `role="listitem"` |
+| `StructuredList` | S1 | Structured list, `role="table"` |
+| `StructuredListRow` | S1 | Structured list row |
+| `StructuredListCell` | S1 | Structured list cell |
+| `Toolbar` | S1 | Toolbar container, `role="toolbar"` |
+| `Divider` | S1 | Layout separator, `role="separator"` |
+| `ScrollGradient` | S1 | Scrollable container with fade gradients |
+
+### Composites (37)
+
+| Composite | Shape | Description |
+|---|---|---|
+| `Menu` | S3 | Menu container with `role="menu"`, focus trap, overlay stacking |
+| `OverflowMenu` | S3 | Button that opens a Menu with overflow icon |
+| `MenuButton` | S3 | Button that opens a Menu |
+| `ComboButton` | S3 | Split button: primary action plus dropdown for secondary actions |
+| `ComposedModal` | S3 | Modal dialog with ModalHeader/Body/Footer coordination |
+| `MenuItemRadioGroup` | S4 | Group of menu items where exactly one is selected |
+| `SidePanel` | S3 | Side panel that slides in from left or right |
+| `AILabel` | S3 | AI-generated content label with toggletip details |
+| `LongPressMenu` | S3 | Menu triggered by long-press (native) or right-click (web) |
+| `Tabs` | S4 | Tab navigation with roving tab index, `role="tablist"` |
+| `Accordion` | S4 | Accordion with context-coordinated items |
+| `Breadcrumb` | S1 | Breadcrumb navigation container |
+| `ContentSwitcher` | S4 | Content switcher with roving tab index |
+| `Pagination` | S2 | Pagination with prev/next and page numbers |
+| `TreeView` | S4 | Tree navigation with recursive nodes, `role="tree"` |
+| `Steps` | S4 | Step navigation with context-coordinated steps |
+| `Header` | S1/S2 | Navigation header container |
+| `DataTableRow` | S2 | Interactive table row with onPress and selected state |
+| `PaginationBar` | S2 | Full pagination bar with prev/next and page numbers |
+| `ToggletipLabel` | S1/S3 | Label with inline Toggletip |
+| `GridItem` | S1 | Grid item with span support, `role="gridcell"` |
+| `Select` | S3 | Dropdown select with combobox role |
+| `ComboBox` | S3 | Select with text input filtering |
+| `MultiSelect` | S3 | Multi-select with checkboxes, `aria-multiselectable` |
+| `RadioButtonGroup` | S4 | Radio button group with roving tab index |
+| `CheckboxGroup` | S4 | Checkbox group with context coordination |
+| `SliderInput` | S2 | Slider with label and value display |
+| `DatePicker` | S3 | Date picker with calendar view |
+| `TimePicker` | S3 | Time picker with hour/minute selection |
+| `DateRangePicker` | S2 | Date range with start/end inputs |
+| `NumberInputComposite` | S2 | Number input with label and unit |
+| `FileUploader` | S2 | File upload trigger button |
+| `FluidForm` | S1 | Form with fluid label context |
+| `FormGroup` | S1 | Form field group with label and message |
+| `ToggleGroup` | S4 | Toggle button group with roving tab index |
+| `TimeInput` | S2 | Time text input with HH:MM format |
+| `DateInput` | S2 | Date text input with YYYY-MM-DD format |
 
 ### Variants
 
