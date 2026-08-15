@@ -229,6 +229,17 @@ function Slider (props) {
 
 }
 
+// ActivityIndicator: a loading spinner stub
+function ActivityIndicator (props) {
+
+  return React.createElement('ActivityIndicator', {
+    size: props.size,
+    color: props.color,
+    style: props.style
+  });
+
+}
+
 
 // --- BackHandler ---
 
@@ -258,6 +269,7 @@ module.exports = {
   Pressable: Pressable,
   Switch: Switch,
   Slider: Slider,
+  ActivityIndicator: ActivityIndicator,
   Modal: Modal,
   BackHandler: BackHandler,
   AccessibilityInfo: AccessibilityInfo

@@ -174,6 +174,14 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.TextArea = make(require('./component/atom/textArea'));
       Component.Slider = make(require('./component/atom/slider'));
       Component.Link = make(require('./component/atom/link'));
+      Component.Skeleton = make(require('./component/atom/skeleton'));
+      Component.Loading = make(require('./component/atom/loading'));
+      Component.Tag = make(require('./component/atom/tag'));
+      Component.AspectRatio = make(require('./component/atom/aspectRatio'));
+      Component.Heading = make(require('./component/atom/heading'));
+      Component.BadgeIndicator = make(require('./component/atom/badgeIndicator'));
+      Component.ShapeIndicator = make(require('./component/atom/shapeIndicator'));
+      Component.IconIndicator = make(require('./component/atom/iconIndicator'));
 
       // ~~~~~~~~~~ Molecules (canonical) ~~~~~~~~~~
       Component.ButtonPrimary = make(require('./component/molecule/buttonPrimary'));
@@ -188,6 +196,17 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.ExpandableSearch = make(require('./component/molecule/expandableSearch'));
       Component.FormLabel = make(require('./component/molecule/formLabel'));
       Component.FormItem = make(require('./component/molecule/formItem'));
+      Component.Stack = make(require('./component/molecule/stack'));
+      Component.ButtonSet = make(require('./component/molecule/buttonSet'));
+      Component.IconButton = make(require('./component/molecule/iconButton'));
+      Component.CopyButton = make(require('./component/molecule/copyButton'));
+      Component.UserAvatar = make(require('./component/molecule/userAvatar'));
+      Component.TruncatedText = make(require('./component/molecule/truncatedText'));
+      Component.CodeSnippet = make(require('./component/molecule/codeSnippet'));
+      Component.InlineLoading = make(require('./component/molecule/inlineLoading'));
+      Component.Tile = make(require('./component/molecule/tile'));
+      Component.ClickableTile = make(require('./component/molecule/clickableTile'));
+      Component.SelectableTile = make(require('./component/molecule/selectableTile'));
 
       // ~~~~~~~~~~ Structured exceptions (variant registry) ~~~~~~~~~~
       Component.variant = {

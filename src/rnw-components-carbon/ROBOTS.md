@@ -68,8 +68,8 @@ tokens                             -> { fontSize, fontColor, fontWeight, space, 
 
 | Tier | Components |
 |---|---|
-| Atoms (15) | `View`, `Text`, `Icon`, `Image`, `Badge`, `Separator`, `ProgressBar`, `Button`, `TextInput`, `Toggle`, `Checkbox`, `RadioButton`, `TextArea`, `Slider`, `Link` |
-| Molecules (12) | `ButtonPrimary`, `ButtonLink`, `Card`, `ListItem`, `Dropdown`, `Modal`, `Search`, `PasswordInput`, `NumberInput`, `ExpandableSearch`, `FormLabel`, `FormItem` |
+| Atoms (23) | `View`, `Text`, `Icon`, `Image`, `Badge`, `Separator`, `ProgressBar`, `Button`, `TextInput`, `Toggle`, `Checkbox`, `RadioButton`, `TextArea`, `Slider`, `Link`, `Skeleton`, `Loading`, `Tag`, `AspectRatio`, `Heading`, `BadgeIndicator`, `ShapeIndicator`, `IconIndicator` |
+| Molecules (23) | `ButtonPrimary`, `ButtonLink`, `Card`, `ListItem`, `Dropdown`, `Modal`, `Search`, `PasswordInput`, `NumberInput`, `ExpandableSearch`, `FormLabel`, `FormItem`, `Stack`, `ButtonSet`, `IconButton`, `CopyButton`, `UserAvatar`, `TruncatedText`, `CodeSnippet`, `InlineLoading`, `Tile`, `ClickableTile`, `SelectableTile` |
 | Variants | `variant.ButtonPrimaryOutlined` |
 | Freeform | `freeform.RawBox` |
 | Providers | `provider.OverlayHost`, `provider.LiveRegionProvider` (full provider set in Wave 4) |

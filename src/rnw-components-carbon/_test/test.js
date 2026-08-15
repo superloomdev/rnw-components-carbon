@@ -830,13 +830,13 @@ test('useControllableState uses defaultValue when uncontrolled', function () {
 
 // ~~~~~~~~~~~~~~~~~~~~ Registry count assertion ~~~~~~~~~~~~~~~~~~~~
 
-test('registry has 27 flat keys plus variant, freeform, and provider', function () {
+test('registry has 46 flat keys plus variant, freeform, and provider', function () {
 
   const flatKeys = Object.keys(Component).filter(function (k) {
     return k !== 'variant' && k !== 'freeform' && k !== 'provider';
   });
 
-  assert.strictEqual(flatKeys.length, 27, 'should have 27 flat component keys');
+  assert.strictEqual(flatKeys.length, 46, 'should have 46 flat component keys');
   assert.ok(Component.variant, 'variant namespace should exist');
   assert.ok(Component.freeform, 'freeform namespace should exist');
   assert.ok(Component.provider, 'provider namespace should exist');
@@ -1062,5 +1062,245 @@ test('FormItem renders error text when provided', function () {
   );
 
   assert.ok(tree, 'FormItem with error should render');
+
+});
+
+
+// ~~~~~~~~~~~~~~~~~~~~ Wave 3 component tests ~~~~~~~~~~~~~~~~~~~~
+
+test('Skeleton renders with aria-hidden', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Skeleton, { variant: 'text', lines: 3 })
+  ).toJSON();
+
+  assert.ok(tree, 'Skeleton should render');
+
+});
+
+test('Loading renders with role progressbar', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Loading, { label: 'Loading data' })
+  );
+
+  assert.ok(tree, 'Loading should render');
+
+});
+
+test('Tag renders with label text', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Tag, { label: 'Active' })
+  ).toJSON();
+
+  assert.ok(tree, 'Tag should render');
+
+});
+
+test('Tag renders dismissible with close button', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Tag, { label: 'Removable', onDismiss: function () {} })
+  );
+
+  assert.ok(tree, 'Dismissible Tag should render');
+
+  const buttons = tree.root.findAllByProps({ accessibilityRole: 'button' });
+  assert.ok(buttons.length >= 1, 'should have a close button');
+
+});
+
+test('AspectRatio renders with correct ratio', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.AspectRatio, { ratio: 16 / 9 }, 'Content')
+  ).toJSON();
+
+  assert.ok(tree, 'AspectRatio should render');
+
+});
+
+test('Heading renders with role header and aria-level', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Heading, { level: 2 }, 'Section Title')
+  ).toJSON();
+
+  assert.ok(tree, 'Heading should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'header');
+
+});
+
+test('BadgeIndicator renders count', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.BadgeIndicator, { count: 5 })
+  ).toJSON();
+
+  assert.ok(tree, 'BadgeIndicator should render');
+
+});
+
+test('BadgeIndicator shows 99+ when count exceeds max', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.BadgeIndicator, { count: 150, max: 99 })
+  ).toJSON();
+
+  assert.ok(tree, 'BadgeIndicator with overflow should render');
+
+});
+
+test('ShapeIndicator renders circle', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.ShapeIndicator, { shape: 'circle', color: 'status_success' })
+  ).toJSON();
+
+  assert.ok(tree, 'ShapeIndicator should render');
+
+});
+
+test('IconIndicator renders with icon', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.IconIndicator, { iconName: 'checkmark', label: 'Success' })
+  ).toJSON();
+
+  assert.ok(tree, 'IconIndicator should render');
+
+});
+
+test('Stack renders children vertically', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Stack, { direction: 'vertical', gap: 'sm' },
+      React.createElement(Component.Text, null, 'A'),
+      React.createElement(Component.Text, null, 'B')
+    )
+  ).toJSON();
+
+  assert.ok(tree, 'Stack should render');
+
+});
+
+test('ButtonSet renders children', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.ButtonSet, null,
+      React.createElement(Component.Button, { onPress: function () {} }, 'OK')
+    )
+  ).toJSON();
+
+  assert.ok(tree, 'ButtonSet should render');
+
+});
+
+test('IconButton renders with role button', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.IconButton, {
+      name: 'search',
+      onPress: function () {},
+      label: 'Search'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'IconButton should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'button');
+
+});
+
+test('CopyButton renders with role button', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.CopyButton, {
+      text: 'copy me',
+      onCopy: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'CopyButton should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'button');
+
+});
+
+test('UserAvatar renders with initials fallback', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.UserAvatar, { initials: 'JD', label: 'John Doe' })
+  ).toJSON();
+
+  assert.ok(tree, 'UserAvatar should render');
+
+});
+
+test('TruncatedText renders with expand toggle', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TruncatedText, { maxLines: 2 }, 'Long text...')
+  ).toJSON();
+
+  assert.ok(tree, 'TruncatedText should render');
+
+});
+
+test('CodeSnippet renders code text', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.CodeSnippet, { code: 'const x = 1;', showCopy: false })
+  ).toJSON();
+
+  assert.ok(tree, 'CodeSnippet should render');
+
+});
+
+test('InlineLoading renders with role progressbar', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.InlineLoading, { status: 'active', label: 'Loading...' })
+  );
+
+  assert.ok(tree, 'InlineLoading should render');
+
+});
+
+test('Tile renders with title and subtitle', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Tile, { title: 'My Tile', subtitle: 'Description' })
+  ).toJSON();
+
+  assert.ok(tree, 'Tile should render');
+
+});
+
+test('ClickableTile renders with role button', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.ClickableTile, {
+      title: 'Click me',
+      onPress: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'ClickableTile should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'button');
+
+});
+
+test('SelectableTile renders with role checkbox', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SelectableTile, {
+      title: 'Select me',
+      selected: false,
+      onSelect: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'SelectableTile should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'checkbox');
 
 });

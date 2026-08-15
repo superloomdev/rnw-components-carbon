@@ -358,4 +358,4 @@ Controlled/uncontrolled state hook. Controlled when `value` is not undefined, un
 
 ## Component Count
 
-The library ships 27 flat component keys (15 atoms + 12 molecules) plus 1 variant, 1 freeform, and 2 providers, totaling 31 named components. Wave 2 adds 11 new form components (5 atoms + 6 molecules).
+The library ships 46 flat component keys (23 atoms + 23 molecules) plus 1 variant, 1 freeform, and 2 providers, totaling 50 named components. Wave 3 adds 19 new display components (8 atoms + 11 molecules).
