@@ -208,6 +208,32 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.ClickableTile = make(require('./component/molecule/clickableTile'));
       Component.SelectableTile = make(require('./component/molecule/selectableTile'));
 
+      // ~~~~~~~~~~ Molecules (Wave 5 overlays) ~~~~~~~~~~
+      Component.MenuItem = make(require('./component/molecule/menuItem'));
+      Component.MenuItemSelectable = make(require('./component/molecule/menuItemSelectable'));
+      Component.MenuItemDivider = make(require('./component/molecule/menuItemDivider'));
+      Component.ModalHeader = make(require('./component/molecule/modalHeader'));
+      Component.ModalBody = make(require('./component/molecule/modalBody'));
+      Component.ModalFooter = make(require('./component/molecule/modalFooter'));
+      Component.Popover = make(require('./component/molecule/popover'));
+      Component.Tooltip = make(require('./component/molecule/tooltip'));
+      Component.DefinitionTooltip = make(require('./component/molecule/definitionTooltip'));
+      Component.Toggletip = make(require('./component/molecule/toggletip'));
+
+      // ~~~~~~~~~~ Composites (Wave 5 overlays) ~~~~~~~~~~
+      // Composites are multi-part components that use M7 (createCompoundContext)
+      // for parent-child coordination. They register as flat keys, same as
+      // atoms and molecules.
+      Component.Menu = make(require('./component/composite/menu'));
+      Component.OverflowMenu = make(require('./component/composite/overflowMenu'));
+      Component.MenuButton = make(require('./component/composite/menuButton'));
+      Component.ComboButton = make(require('./component/composite/comboButton'));
+      Component.ComposedModal = make(require('./component/composite/composedModal'));
+      Component.MenuItemRadioGroup = make(require('./component/composite/menuItemRadioGroup'));
+      Component.SidePanel = make(require('./component/composite/sidePanel'));
+      Component.AILabel = make(require('./component/composite/aiLabel'));
+      Component.LongPressMenu = make(require('./component/composite/longPressMenu'));
+
       // ~~~~~~~~~~ Structured exceptions (variant registry) ~~~~~~~~~~
       Component.variant = {
         ButtonPrimaryOutlined: make(require('./component/variant/buttonPrimaryOutlined'))

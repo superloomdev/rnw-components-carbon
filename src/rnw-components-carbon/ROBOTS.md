@@ -69,7 +69,8 @@ tokens                             -> { fontSize, fontColor, fontWeight, space, 
 | Tier | Components |
 |---|---|
 | Atoms (23) | `View`, `Text`, `Icon`, `Image`, `Badge`, `Separator`, `ProgressBar`, `Button`, `TextInput`, `Toggle`, `Checkbox`, `RadioButton`, `TextArea`, `Slider`, `Link`, `Skeleton`, `Loading`, `Tag`, `AspectRatio`, `Heading`, `BadgeIndicator`, `ShapeIndicator`, `IconIndicator` |
-| Molecules (23) | `ButtonPrimary`, `ButtonLink`, `Card`, `ListItem`, `Dropdown`, `Modal`, `Search`, `PasswordInput`, `NumberInput`, `ExpandableSearch`, `FormLabel`, `FormItem`, `Stack`, `ButtonSet`, `IconButton`, `CopyButton`, `UserAvatar`, `TruncatedText`, `CodeSnippet`, `InlineLoading`, `Tile`, `ClickableTile`, `SelectableTile` |
+| Molecules (33) | `ButtonPrimary`, `ButtonLink`, `Card`, `ListItem`, `Dropdown`, `Modal`, `Search`, `PasswordInput`, `NumberInput`, `ExpandableSearch`, `FormLabel`, `FormItem`, `Stack`, `ButtonSet`, `IconButton`, `CopyButton`, `UserAvatar`, `TruncatedText`, `CodeSnippet`, `InlineLoading`, `Tile`, `ClickableTile`, `SelectableTile`, `MenuItem`, `MenuItemSelectable`, `MenuItemDivider`, `ModalHeader`, `ModalBody`, `ModalFooter`, `Popover`, `Tooltip`, `DefinitionTooltip`, `Toggletip` |
+| Composites (9) | `Menu`, `OverflowMenu`, `MenuButton`, `ComboButton`, `ComposedModal`, `MenuItemRadioGroup`, `SidePanel`, `AILabel`, `LongPressMenu` |
 | Variants | `variant.ButtonPrimaryOutlined` |
 | Freeform | `freeform.RawBox` |
 | Providers (8) | `provider.OverlayHost`, `provider.LiveRegionProvider`, `provider.Layer`, `provider.Theme`, `provider.FeatureFlags`, `provider.IdPrefix`, `provider.FluidForm`, `provider.ErrorBoundary` |
