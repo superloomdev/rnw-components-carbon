@@ -45,7 +45,7 @@ const MyScreen = function () {
 
 ## Component Tiers
 
-### Atoms (15)
+### Atoms (23)
 
 | Atom | Shape | Description |
 |---|---|---|
@@ -64,8 +64,16 @@ const MyScreen = function () {
 | `TextArea` | S2 | Multiline text input with controlled/uncontrolled value |
 | `Slider` | S2 | Range slider with `aria-valuemin/max/now`, role `slider` on web |
 | `Link` | S2 | Pressable styled as hyperlink with `role="link"` |
+| `Skeleton` | S1 | Loading placeholder with `aria-hidden`, supports text/icon/placeholder |
+| `Loading` | S1 | Indeterminate spinner with `role="progressbar"` and `aria-busy` |
+| `Tag` | S1/S2 | Compact label, dismissible or selectable |
+| `AspectRatio` | S1 | Wrapper maintaining width-to-height ratio |
+| `Heading` | S1 | Text with `role="header"` and `aria-level` 1-6 |
+| `BadgeIndicator` | S1 | Numeric count badge with overflow display |
+| `ShapeIndicator` | S1 | Colored shape (circle/square/triangle) for status display |
+| `IconIndicator` | S1 | Colored circle with icon for status display |
 
-### Molecules (12)
+### Molecules (23)
 
 | Molecule | Shape | Description |
 |---|---|---|
@@ -81,6 +89,17 @@ const MyScreen = function () {
 | `ExpandableSearch` | S2 | Collapsible search that expands to full input on press |
 | `FormLabel` | S1 | Label text for form fields with optional required indicator |
 | `FormItem` | S1 | Wrapper grouping label, control, and helper/error text |
+| `Stack` | S1 | Vertical or horizontal stack with consistent gap spacing |
+| `ButtonSet` | S1 | Horizontal group of buttons with consistent spacing |
+| `IconButton` | S2 | Button with only an icon, `role="button"` |
+| `CopyButton` | S2 | Button that copies text to clipboard with success feedback |
+| `UserAvatar` | S1 | User avatar with image or initials fallback |
+| `TruncatedText` | S2 | Text that truncates and expands on press |
+| `CodeSnippet` | S1/S2 | Code display block with optional copy button |
+| `InlineLoading` | S1 | Inline loading indicator with status text |
+| `Tile` | S1 | Tile card with title, subtitle, and optional icon |
+| `ClickableTile` | S2 | Tile that acts as a button with `role="button"` |
+| `SelectableTile` | S2 | Tile that acts as a checkbox with `role="checkbox"` |
 
 ### Variants
 

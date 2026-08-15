@@ -1,0 +1,81 @@
+// Info: ShapeIndicator atom [S1 presentational]. A colored shape indicator
+// (circle, square, triangle) for status display. Uses M1 (a11y) for aria-*.
+// Uses shared_libs.Svg as an optional injection; degrades to colored View.
+//   shape       -> 'circle' | 'square' | 'triangle' (default 'circle')
+//   color       -> string (color token or hex, default 'app_primary')
+//   size        -> number (pixels, default 16)
+//   label       -> string (accessibility label)
+//   style       -> custom style overrides
+'use strict';
+
+const { View: RNView } = require('react-native');
+
+
+/********************************************************************
+Build the ShapeIndicator atom.
+
+@param {Object} Lib      - { Utils, Debug, React }
+@param {Object} CONFIG   - Package configuration
+@param {Object} ERRORS   - Frozen error catalog
+@param {Object} Registry - Component registry (unused by atoms)
+@param {Object} Style_   - { utilities, tokens, breakpoint }
+
+@return {Function} - The ShapeIndicator component
+*********************************************************************/
+module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+
+  return function ShapeIndicator (props) {
+
+    const {
+      shape, color, size, label, style, isRtlActive, // eslint-disable-line no-unused-vars
+      ...rest
+    } = props;
+
+    const React = Lib.React;
+    const colorMap = Style_.tokens.Color;
+    const s = Lib.Utils.isNumber(size) ? size : 16;
+    const sh = shape || 'circle';
+
+    // Resolve color from token or raw hex
+    const resolvedColor = (colorMap[color] || color || colorMap.APP_PRIMARY || '#0f62fe');
+
+    // Base style for all shapes
+    const baseStyle = {
+      width: s,
+      height: s,
+      backgroundColor: resolvedColor
+    };
+
+    // Shape-specific styles
+    let shapeStyle;
+
+    if (sh === 'circle') {
+      shapeStyle = { borderRadius: s / 2 };
+    } else if (sh === 'square') {
+      shapeStyle = { borderRadius: 2 };
+    } else {
+      // Triangle: use border trick (no SVG needed for a simple triangle)
+      shapeStyle = {
+        backgroundColor: 'transparent',
+        width: 0,
+        height: 0,
+        borderLeftWidth: s / 2,
+        borderRightWidth: s / 2,
+        borderBottomWidth: s,
+        borderLeftColor: 'transparent',
+        borderRightColor: 'transparent',
+        borderBottomColor: resolvedColor
+      };
+    }
+
+    return React.createElement(
+      RNView,
+      Object.assign({
+        accessibilityLabel: label || (sh + ' indicator'),
+        style: [baseStyle, shapeStyle, style]
+      }, rest)
+    );
+
+  };
+
+};
