@@ -72,7 +72,7 @@ tokens                             -> { fontSize, fontColor, fontWeight, space, 
 | Molecules (23) | `ButtonPrimary`, `ButtonLink`, `Card`, `ListItem`, `Dropdown`, `Modal`, `Search`, `PasswordInput`, `NumberInput`, `ExpandableSearch`, `FormLabel`, `FormItem`, `Stack`, `ButtonSet`, `IconButton`, `CopyButton`, `UserAvatar`, `TruncatedText`, `CodeSnippet`, `InlineLoading`, `Tile`, `ClickableTile`, `SelectableTile` |
 | Variants | `variant.ButtonPrimaryOutlined` |
 | Freeform | `freeform.RawBox` |
-| Providers | `provider.OverlayHost`, `provider.LiveRegionProvider` (full provider set in Wave 4) |
+| Providers (8) | `provider.OverlayHost`, `provider.LiveRegionProvider`, `provider.Layer`, `provider.Theme`, `provider.FeatureFlags`, `provider.IdPrefix`, `provider.FluidForm`, `provider.ErrorBoundary` |
 
 ## Component Shapes
 
