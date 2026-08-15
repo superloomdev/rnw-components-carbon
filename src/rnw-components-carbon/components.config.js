@@ -1,0 +1,23 @@
+// Info: Default configuration for rnw-components-carbon.
+//
+// All keys can be overridden by passing a config object to the loader.
+'use strict';
+
+module.exports = {
+
+  // Default font size token when a component receives no size prop
+  DEFAULT_FONT_SIZE: 'md',
+
+  // Default font color token when a component receives no color prop
+  DEFAULT_FONT_COLOR: 'text_primary',
+
+  // Default font weight token when a component receives no weight prop
+  DEFAULT_FONT_WEIGHT: 'regular',
+
+  // Minimum accessible hit target in points (iOS HIG 44, Android Material 48)
+  MIN_HIT_TARGET: 44,
+
+  // Breakpoint keys in ascending order, matching the theme contract
+  BREAKPOINT_ORDER: ['base', 'sm', 'md', 'lg', 'xl']
+
+};
