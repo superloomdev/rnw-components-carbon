@@ -226,11 +226,64 @@ jobs:
           fi
           echo "PASS: docs are up to date"
 
+  contract:
+    name: L4 Contract Tests
+    runs-on: ubuntu-latest
+    needs: [lint]
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: 'https://npm.pkg.github.com'
+      - name: Install test dependencies
+        working-directory: src/rnw-components-carbon/_test
+        run: npm install
+      - name: L4-R1 - No non-existent RN exports
+        working-directory: src/rnw-components-carbon/_test
+        run: node --test --test-name-pattern="L4-R1" contract.test.js
+      - name: L4-R4 - No cloneElement in composites
+        working-directory: src/rnw-components-carbon/_test
+        run: node --test --test-name-pattern="L4-R4" contract.test.js
+      - name: L4-R5 - No Math/parseFloat/parseInt in components
+        working-directory: src/rnw-components-carbon/_test
+        run: node --test --test-name-pattern="L4-R5" contract.test.js
+      - name: L4-R6 - No direct mechanism requires
+        working-directory: src/rnw-components-carbon/_test
+        run: node --test --test-name-pattern="L4-R6" contract.test.js
+      - name: L4-R7 - No Style_ identifiers
+        working-directory: src/rnw-components-carbon/_test
+        run: node --test --test-name-pattern="L4-R7" contract.test.js
+      - name: L4-PROOF - Rules detect violations
+        working-directory: src/rnw-components-carbon/_test
+        run: node --test --test-name-pattern="L4-PROOF" contract.test.js
+
+  audit:
+    name: L1 Audit Tests
+    runs-on: ubuntu-latest
+    needs: [lint]
+    env:
+      NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          registry-url: 'https://npm.pkg.github.com'
+      - name: Install test dependencies
+        working-directory: src/rnw-components-carbon/_test
+        run: npm install
+      - name: Run L1 audit tests
+        working-directory: src/rnw-components-carbon/_test
+        run: node --test audit.test.js
+
   publish:
     name: Publish
     runs-on: ubuntu-latest
-    needs: [test, enforcement]
-    if: github.ref == 'refs/heads/main' && !cancelled() && needs.test.result == 'success' && needs.enforcement.result == 'success'
+    needs: [test, enforcement, contract, audit]
+    if: github.ref == 'refs/heads/main' && !cancelled() && needs.test.result == 'success' && needs.enforcement.result == 'success' && needs.contract.result == 'success' && needs.audit.result == 'success'
     env:
       NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
