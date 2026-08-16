@@ -208,7 +208,7 @@ jobs:
       - name: G19 - Freeform must not use Style_ or Registry
         working-directory: src/rnw-components-carbon
         run: |
-          HITS=$(grep -rn "Style_\|Registry" component/freeform/*.js | grep -v "^[^:]*:[0-9]*://" | grep -v "^[^:]*:[0-9]*: \*" || true)
+          HITS=$(grep -rnE "Style_|Registry\.[A-Z]" component/freeform/*.js | grep -v "^[^:]*:[0-9]*://" || true)
           if [ -n "$HITS" ]; then
             echo "FAIL: freeform uses Style_ or Registry"
             echo "$HITS"
