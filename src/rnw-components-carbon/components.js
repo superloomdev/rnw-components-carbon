@@ -38,7 +38,8 @@ module.exports = function loader (shared_libs, config) {
     Debug: shared_libs.Debug,
     React: shared_libs.React,
     Device: shared_libs.Device,
-    Icons: shared_libs.Icons
+    Icons: shared_libs.Icons,
+    Font: shared_libs.Font || null
   };
 
   // Merge overrides over defaults
