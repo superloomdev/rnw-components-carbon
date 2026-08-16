@@ -1,15 +1,21 @@
 'use strict';
 
-// Intercept require('react-native') to use our stub instead of the real
-// package (which uses Flow syntax and cannot run in pure Node).
+// Bootstrap jsdom globals before any react-native-web require.
+// RNW needs a DOM environment to define its components and stylesheets.
+require('./harness/dom');
+
+// Intercept require('react-native') to use real react-native-web.
+// RNW provides the same API surface minus a few removed exports
+// (Slider was removed from RN core in 0.62 and RNW never shipped it).
+// Resolve the path once from _test/ where react-native-web is installed.
 const Module = require('module');
 const originalResolveFilename = Module._resolveFilename;
-const rnStubPath = require('path').resolve(__dirname, 'stubs/react-native.js');
+const rnwPath = require.resolve('react-native-web');
 
 Module._resolveFilename = function (request, parent, isMain, options) {
 
   if (request === 'react-native') {
-    return rnStubPath;
+    return rnwPath;
   }
 
   return originalResolveFilename.apply(this, arguments);
