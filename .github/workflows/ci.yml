@@ -30,10 +30,8 @@ jobs:
           node-version: '24'
           registry-url: 'https://npm.pkg.github.com'
       - name: Install dependencies
-        working-directory: src/rnw-components-carbon
         run: npm install
       - name: Run ESLint
-        working-directory: src/rnw-components-carbon
         run: npm run lint
 
   test:
@@ -49,10 +47,10 @@ jobs:
           node-version: '24'
           registry-url: 'https://npm.pkg.github.com'
       - name: Install test dependencies
-        working-directory: src/rnw-components-carbon/_test
+        working-directory: _test
         run: npm install
       - name: Run tests
-        working-directory: src/rnw-components-carbon/_test
+        working-directory: _test
         run: npm test
 
   enforcement:
@@ -62,7 +60,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: G1 - No accessibilityState
-        working-directory: src/rnw-components-carbon
         run: |
           if grep -rn "accessibilityState" component/ components.js; then
             echo "FAIL: accessibilityState found"
@@ -70,7 +67,6 @@ jobs:
           fi
           echo "PASS"
       - name: G2 - No accessibilityValue
-        working-directory: src/rnw-components-carbon
         run: |
           if grep -rn "accessibilityValue" component/ components.js; then
             echo "FAIL: accessibilityValue found"
@@ -78,7 +74,6 @@ jobs:
           fi
           echo "PASS"
       - name: G3 - No accessibilityHint
-        working-directory: src/rnw-components-carbon
         run: |
           if grep -rn "accessibilityHint" component/ components.js; then
             echo "FAIL: accessibilityHint found"
@@ -86,7 +81,6 @@ jobs:
           fi
           echo "PASS"
       - name: G4 - No accessibilityViewIsModal
-        working-directory: src/rnw-components-carbon
         run: |
           if grep -rn "accessibilityViewIsModal" component/ components.js; then
             echo "FAIL: accessibilityViewIsModal found"
@@ -94,7 +88,6 @@ jobs:
           fi
           echo "PASS"
       - name: G5 - No importantForAccessibility
-        working-directory: src/rnw-components-carbon
         run: |
           if grep -rn "importantForAccessibility" component/ components.js; then
             echo "FAIL: importantForAccessibility found"
@@ -102,7 +95,6 @@ jobs:
           fi
           echo "PASS"
       - name: G6 - announceForAccessibility in LiveRegionProvider only
-        working-directory: src/rnw-components-carbon
         run: |
           HITS=$(grep -rn "announceForAccessibility" component/ | grep -v LiveRegionProvider || true)
           if [ -n "$HITS" ]; then
@@ -112,7 +104,6 @@ jobs:
           fi
           echo "PASS"
       - name: G7 - No LayoutAnimation
-        working-directory: src/rnw-components-carbon
         run: |
           if grep -rn "LayoutAnimation" component/; then
             echo "FAIL: LayoutAnimation found"
@@ -120,7 +111,6 @@ jobs:
           fi
           echo "PASS"
       - name: G8 - No require('react') in component/ or components.js
-        working-directory: src/rnw-components-carbon
         run: |
           if grep -rn "require('react')" component/ components.js; then
             echo "FAIL: require('react') found"
@@ -128,7 +118,6 @@ jobs:
           fi
           echo "PASS"
       - name: G9 - No Lib.Client in component/
-        working-directory: src/rnw-components-carbon
         run: |
           if grep -rn "Lib.Client" component/; then
             echo "FAIL: Lib.Client found"
@@ -136,7 +125,6 @@ jobs:
           fi
           echo "PASS"
       - name: G10 - No useWindowDimensions
-        working-directory: src/rnw-components-carbon
         run: |
           if grep -rn "useWindowDimensions" component/ components.js; then
             echo "FAIL: useWindowDimensions found"
@@ -144,7 +132,6 @@ jobs:
           fi
           echo "PASS"
       - name: G11 - No __DEV__
-        working-directory: src/rnw-components-carbon
         run: |
           if grep -rn "__DEV__" component/ components.js; then
             echo "FAIL: __DEV__ found"
@@ -152,7 +139,6 @@ jobs:
           fi
           echo "PASS"
       - name: G12 - No createPortal
-        working-directory: src/rnw-components-carbon
         run: |
           if grep -rn "createPortal" component/; then
             echo "FAIL: createPortal found"
@@ -160,7 +146,6 @@ jobs:
           fi
           echo "PASS"
       - name: G13 - No downshift/flatpickr/floating-ui dependencies
-        working-directory: src/rnw-components-carbon
         run: |
           if grep -rn "downshift\|flatpickr\|floating-ui" package.json; then
             echo "FAIL: forbidden dependency found"
@@ -168,7 +153,6 @@ jobs:
           fi
           echo "PASS"
       - name: G14 - No @carbon/react runtime dependency
-        working-directory: src/rnw-components-carbon
         run: |
           if grep -rn "@carbon/react" package.json; then
             echo "FAIL: @carbon/react found in package.json"
@@ -176,7 +160,6 @@ jobs:
           fi
           echo "PASS"
       - name: G15 - No responsive prop objects
-        working-directory: src/rnw-components-carbon
         run: |
           if grep -rnE "props\.[a-zA-Z]+\s*\[\s*(breakpoint|bp)\s*\]" component/; then
             echo "FAIL: responsive prop object found"
@@ -184,11 +167,9 @@ jobs:
           fi
           echo "PASS"
       - name: G16 - No organism/ directory
-        working-directory: src/rnw-components-carbon
         run: |
           test ! -d component/organism && echo "PASS" || { echo "FAIL: organism/ directory exists"; exit 1; }
       - name: G17 - Canonical must not import from variant/ or freeform/
-        working-directory: src/rnw-components-carbon
         run: |
           if grep -rn "require(.*/\(variant\|freeform\)/" component/atom component/molecule component/composite; then
             echo "FAIL: canonical imports from variant/ or freeform/"
@@ -196,7 +177,6 @@ jobs:
           fi
           echo "PASS"
       - name: G18 - Atoms compose only Text and Icon
-        working-directory: src/rnw-components-carbon
         run: |
           HITS=$(grep -rn "Registry\." component/atom | grep -v "Registry\.Text" | grep -v "Registry\.Icon" || true)
           if [ -n "$HITS" ]; then
@@ -206,7 +186,6 @@ jobs:
           fi
           echo "PASS"
       - name: G19 - Freeform must not use Style_ or Registry
-        working-directory: src/rnw-components-carbon
         run: |
           HITS=$(grep -rnE "Style_|Registry\.[A-Z]" component/freeform/*.js | grep -v "^[^:]*:[0-9]*://" || true)
           if [ -n "$HITS" ]; then
@@ -216,11 +195,10 @@ jobs:
           fi
           echo "PASS"
       - name: G20 - Docs must be regenerated (no diff)
-        working-directory: src/rnw-components-carbon
         run: |
-          node scripts/generate-docs.js
+          node .github/ci-scripts/generate-docs.js
           if ! git diff --exit-code README.md ROBOTS.md docs/api.md docs/platform-support.md docs/carbon-parity.md; then
-            echo "FAIL: docs are out of date. Run 'node scripts/generate-docs.js' and commit."
+            echo "FAIL: docs are out of date. Run 'node .github/ci-scripts/generate-docs.js' and commit."
             git diff --stat
             exit 1
           fi
@@ -239,37 +217,37 @@ jobs:
           node-version: '24'
           registry-url: 'https://npm.pkg.github.com'
       - name: Install test dependencies
-        working-directory: src/rnw-components-carbon/_test
+        working-directory: _test
         run: npm install
       - name: L4-R1 - No non-existent RN exports
-        working-directory: src/rnw-components-carbon/_test
+        working-directory: _test
         run: node --test --test-name-pattern="L4-R1" contract.test.js
       - name: L4-R4 - No cloneElement in composites
-        working-directory: src/rnw-components-carbon/_test
+        working-directory: _test
         run: node --test --test-name-pattern="L4-R4" contract.test.js
       - name: L4-R5 - No Math/parseFloat/parseInt in components
-        working-directory: src/rnw-components-carbon/_test
+        working-directory: _test
         run: node --test --test-name-pattern="L4-R5" contract.test.js
       - name: L4-R6 - No direct mechanism requires
-        working-directory: src/rnw-components-carbon/_test
+        working-directory: _test
         run: node --test --test-name-pattern="L4-R6" contract.test.js
       - name: L4-R7 - No Style_ identifiers
-        working-directory: src/rnw-components-carbon/_test
+        working-directory: _test
         run: node --test --test-name-pattern="L4-R7" contract.test.js
       - name: L4-R8 - No fontWeight with per-weight-face family
-        working-directory: src/rnw-components-carbon/_test
+        working-directory: _test
         run: node --test --test-name-pattern="L4-R8" contract.test.js
       - name: L4-R9 - text_disabled only in disabled branches
-        working-directory: src/rnw-components-carbon/_test
+        working-directory: _test
         run: node --test --test-name-pattern="L4-R9" contract.test.js
       - name: L4-R10 - BORDER tokens not used as font color
-        working-directory: src/rnw-components-carbon/_test
+        working-directory: _test
         run: node --test --test-name-pattern="L4-R10" contract.test.js
       - name: L4-R11 - Contrast enforcement
-        working-directory: src/rnw-components-carbon/_test
+        working-directory: _test
         run: node --test --test-name-pattern="L4-R11" contract.test.js
       - name: L4-PROOF - Rules detect violations
-        working-directory: src/rnw-components-carbon/_test
+        working-directory: _test
         run: node --test --test-name-pattern="L4-PROOF" contract.test.js
 
   audit:
@@ -285,10 +263,10 @@ jobs:
           node-version: '24'
           registry-url: 'https://npm.pkg.github.com'
       - name: Install test dependencies
-        working-directory: src/rnw-components-carbon/_test
+        working-directory: _test
         run: npm install
       - name: Run L1 audit tests
-        working-directory: src/rnw-components-carbon/_test
+        working-directory: _test
         run: node --test audit.test.js
 
   playwright:
@@ -304,16 +282,16 @@ jobs:
           node-version: '24'
           registry-url: 'https://npm.pkg.github.com'
       - name: Install test dependencies
-        working-directory: src/rnw-components-carbon/_test
+        working-directory: _test
         run: npm install
       - name: Install Playwright browsers
-        working-directory: src/rnw-components-carbon/_test
+        working-directory: _test
         run: npx playwright install --with-deps chromium
       - name: Build visual bundle
-        working-directory: src/rnw-components-carbon/_test
+        working-directory: _test
         run: npx esbuild visual/entry.js --bundle --format=esm --outfile=visual/bundle.js --platform=browser --alias:react-native=react-native-web --define:process.env.NODE_ENV=\"development\"
       - name: Run L3 Playwright tests
-        working-directory: src/rnw-components-carbon/_test
+        working-directory: _test
         run: npx playwright test
 
   publish:
@@ -331,7 +309,6 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
       - name: Check if version needs publishing
         id: check
-        working-directory: src/rnw-components-carbon
         run: |
           PKG_NAME=$(jq -r '.name' package.json)
           PKG_VERSION=$(jq -r '.version' package.json)
@@ -344,5 +321,4 @@ jobs:
           fi
       - name: Publish to GitHub Packages
         if: steps.check.outputs.needs_publish == 'true'
-        working-directory: src/rnw-components-carbon
         run: npm publish

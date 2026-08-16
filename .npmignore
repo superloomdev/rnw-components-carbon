@@ -5,14 +5,21 @@
 # Engineering decision journal (internal contributor notes, not for package consumers)
 THOUGHTS.md
 
-# Test infrastructure
+# Test infrastructure (repo root, not part of the package)
 _test/
 
 # Linter config (dev only)
 eslint.config.js
 
-# CI / GitHub
+# CI / GitHub (includes ci-scripts/)
 .github/
+
+# Git
+.git/
+.gitignore
+
+# License lives at repo root but npm includes it automatically
+LICENSE
 
 # Dependencies
 node_modules/
