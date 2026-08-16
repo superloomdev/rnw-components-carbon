@@ -73,6 +73,12 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       checked: !!value
     });
 
+    // Resolve the current thumb color for both active and inactive states.
+    // RNW's Switch uses activeThumbColor when value is true and thumbColor
+    // when value is false; omitting activeThumbColor lets the RNW default
+    // (#009688 teal) show through.
+    var resolvedThumbColor = disabled ? disabledThumbColor : thumbColor;
+
     return React.createElement(
       RNSwitch,
       Object.assign({
@@ -80,7 +86,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         onValueChange: disabled ? null : onValueChange,
         disabled: !!disabled,
         trackColor: { true: disabled ? disabledTrackColor : trackOnColor, false: disabled ? disabledTrackColor : trackOffColor },
-        thumbColor: disabled ? disabledThumbColor : thumbColor,
+        thumbColor: resolvedThumbColor,
+        activeThumbColor: resolvedThumbColor,
         accessibilityRole: 'switch',
         accessibilityLabel: accessibilityLabel,
         style: style

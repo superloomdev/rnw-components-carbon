@@ -108,6 +108,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       );
     };
 
+    // Guard: children must be a valid React element for cloneElement
+    if (!children || !React.isValidElement(children)) {
+      return null;
+    }
+
     // Clone trigger with aria + event props
     const trigger = React.cloneElement(children, Object.assign({
       ref: anchorRef
