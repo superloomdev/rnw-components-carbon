@@ -4,6 +4,13 @@
   "version": "1.0.0",
   "license": "MIT",
   "main": "components.js",
+  "exports": {
+    ".": "./components.js",
+    "./data/*": "./data/*",
+    "./data/hint-props": "./_test/harness/props.js",
+    "./component/*": "./component/*",
+    "./parts/*": "./parts/*"
+  },
   "engines": {
     "node": ">=24"
   },
