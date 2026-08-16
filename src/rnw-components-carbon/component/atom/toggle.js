@@ -77,7 +77,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     // RNW's Switch uses activeThumbColor when value is true and thumbColor
     // when value is false; omitting activeThumbColor lets the RNW default
     // (#009688 teal) show through.
-    var resolvedThumbColor = disabled ? disabledThumbColor : thumbColor;
+    const resolvedThumbColor = disabled ? disabledThumbColor : thumbColor;
 
     return React.createElement(
       RNSwitch,

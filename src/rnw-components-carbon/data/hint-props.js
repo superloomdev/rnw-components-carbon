@@ -6,7 +6,7 @@
 // Callbacks are no-ops; the harness does not assert behavior, only render.
 'use strict';
 
-var noop = function () {};
+const noop = function () {};
 
 module.exports = {
   Button: { children: 'Button', onPress: noop },
