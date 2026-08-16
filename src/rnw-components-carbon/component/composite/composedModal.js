@@ -1,6 +1,6 @@
 // Info: ComposedModal composite [S3/S4 overlay]. A modal dialog with
 // ModalHeader, ModalBody, ModalFooter coordination. Uses M1 (a11y),
-// M4 (OverlayHost), M7 (createCompoundContext). Uses useFocusTrap with
+// M4 (Overlay), M7 (createCompoundContext). Uses useFocusTrap with
 // trap: true. Composes ModalHeader, ModalBody, ModalFooter molecules.
 //   isOpen      -> boolean
 //   onClose     -> function
@@ -25,8 +25,8 @@ Build the ComposedModal composite.
 module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
   const useFocusTrap = require('../useFocusTrap')(Lib);
-  const overlayHost = require('../OverlayHost')(Lib);
-  const useOverlay = overlayHost.useOverlay;
+  const overlay = require('../Overlay')(Lib);
+  const useOverlay = overlay.useOverlay;
 
   return function ComposedModal (props) {
 
@@ -89,7 +89,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       );
     }
 
-    // On web, use OverlayHost
+    // On web, use Overlay
     const overlay = useOverlay({
       isOpen: !!isOpen,
       trap: true,

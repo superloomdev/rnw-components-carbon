@@ -9,9 +9,10 @@
 //   step        -> number (default 1)
 //   onChange    -> callback receiving the next number
 //   disabled    -> boolean
+//   hideTextInput -> boolean (default true; when false, shows a paired NumberInput)
 'use strict';
 
-const { Slider: RNSlider, Platform } = require('react-native');
+const { Slider: RNSlider, View: RNView, Platform } = require('react-native');
 
 
 /********************************************************************
@@ -39,8 +40,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
   return function Slider (props) {
 
     const {
-      value, defaultValue, min, max, step, onChange, disabled, style,
-      isRtlActive, accessibilityLabel, // eslint-disable-line no-unused-vars
+      value, defaultValue, min, max, step, onChange, disabled, hideTextInput,
+      style, isRtlActive, accessibilityLabel, // eslint-disable-line no-unused-vars
       ...rest
     } = props;
 
@@ -75,7 +76,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       text: Math.round(resolvedValue) + ''
     });
 
-    return React.createElement(
+    // When hideTextInput is false, render a paired number input next to the slider.
+    // Absorbs the old SliderInput composite.
+    const showTextInput = hideTextInput === false;
+
+    const sliderElement = React.createElement(
       RNSlider,
       Object.assign({
         value: resolvedValue,
@@ -95,6 +100,32 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         accessibilityLabel: accessibilityLabel,
         style: style
       }, ariaStateProps, ariaValueProps, rest)
+    );
+
+    if (!showTextInput) {
+      return sliderElement;
+    }
+
+    // Render slider + paired text input in a row
+    return React.createElement(
+      RNView,
+      { style: [Style_.utilities['flex_row'], Style_.utilities['items_center']] },
+      sliderElement,
+      React.createElement(
+        Registry.TextInput,
+        {
+          value: Math.round(resolvedValue) + '',
+          onChangeText: function (text) {
+            const num = parseFloat(text);
+            if (Lib.Utils.isNumber(num) && !isNaN(num)) {
+              setValue(Math.max(minVal, Math.min(maxVal, num)));
+            }
+          },
+          keyboardType: 'numeric',
+          accessibilityLabel: accessibilityLabel ? accessibilityLabel + ' value' : undefined,
+          style: { width: 60 }
+        }
+      )
     );
 
   };

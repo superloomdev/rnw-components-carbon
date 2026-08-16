@@ -1,9 +1,9 @@
-// Info: ListItemNav molecule [S2 interactive]. A navigation list item with
-// label, optional children, and press handling. Uses M1 (a11y) for aria-*
-// state and M2 (usePressKeys) for keyboard activation. role="listitem".
-//   label       -> primary text for the nav item
+// Info: TableBatchAction molecule [S2 interactive]. A single action button used
+// within TableBatchActions for batch operations. Uses M1 (a11y) for aria-* state
+// and M2 (usePressKeys) for keyboard activation.
+//   label       -> button text
 //   onPress     -> press handler
-//   children    -> additional content (optional)
+//   disabled    -> boolean
 //   style       -> custom style overrides
 'use strict';
 
@@ -11,7 +11,7 @@ const { Pressable } = require('react-native');
 
 
 /********************************************************************
-Build the ListItemNav molecule.
+Build the TableBatchAction molecule.
 
 @param {Object} Lib      - { Utils, Debug, React }
 @param {Object} CONFIG   - Package configuration
@@ -19,53 +19,53 @@ Build the ListItemNav molecule.
 @param {Object} Registry - Component registry (for atom composition)
 @param {Object} Style_   - { utilities, tokens, breakpoint }
 
-@return {Function} - The ListItemNav component
+@return {Function} - The TableBatchAction component
 *********************************************************************/
 module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
   const a11y = require('../a11y')(Lib);
   const usePressKeys = require('../usePressKeys')(Lib);
 
-  return function ListItemNav (props) {
+  return function TableBatchAction (props) {
 
     const {
-      label, onPress, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      label, onPress, disabled, style, isRtlActive, // eslint-disable-line no-unused-vars
       ...rest
     } = props;
 
     const React = Lib.React;
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({});
+    const ariaProps = a11y.state({
+      disabled: !!disabled
+    });
 
     // Build keyboard activation props
     const pressKeysProps = usePressKeys({
       role: 'button',
       onActivate: onPress,
-      disabled: false
+      disabled: !!disabled
     });
 
     return React.createElement(
       Pressable,
       Object.assign({
-        onPress: onPress,
-        accessibilityRole: 'listitem',
+        onPress: disabled ? null : onPress,
+        disabled: !!disabled,
+        accessibilityRole: 'button',
         accessibilityLabel: label,
         style: [
-          Style_.utilities['p_h_md'],
-          Style_.utilities['p_v_sm'],
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
+          Style_.utilities['p_h_sm'],
+          Style_.utilities['p_v_xs'],
+          Style_.utilities['br_md'],
           style
         ]
       }, ariaProps, pressKeysProps, rest),
       React.createElement(Registry.Text, {
-        size: 'md',
+        size: 'sm',
         color: 'text_primary',
-        weight: 'medium',
-        style: Style_.utilities['flex_1']
-      }, label),
-      children || null
+        weight: 'medium'
+      }, label)
     );
 
   };

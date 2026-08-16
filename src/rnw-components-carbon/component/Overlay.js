@@ -1,4 +1,4 @@
-// Info: M4 - OverlayHost provider and useOverlay hook.
+// Info: M4 - Overlay provider and useOverlay hook.
 //
 // Replaces Carbon's Portal. A provider plus a hook, owning a stack of
 // overlay layers. Maintains an ordered stack so a Popover opened from
@@ -20,11 +20,11 @@ const { View: RNView, Platform } = require('react-native');
 
 
 /********************************************************************
-Build the OverlayHost provider and useOverlay hook.
+Build the Overlay provider and useOverlay hook.
 
 @param {Object} Lib - The shared Lib container (requires React)
 
-@return {Object} - { OverlayHost, useOverlay, createContext }
+@return {Object} - { Overlay, useOverlay, createContext }
 *********************************************************************/
 module.exports = function (Lib) {
 
@@ -43,7 +43,7 @@ module.exports = function (Lib) {
 
 
   // The provider component, mounted once at app root
-  const OverlayHost = function (props) {
+  const Overlay = function (props) {
 
     const children = props.children;
 
@@ -219,7 +219,7 @@ module.exports = function (Lib) {
 
 
   return {
-    OverlayHost: OverlayHost,
+    Overlay: Overlay,
     useOverlay: useOverlay,
     OverlayContext: OverlayContext
   };

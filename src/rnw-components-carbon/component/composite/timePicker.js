@@ -1,5 +1,5 @@
 // Info: TimePicker composite [S3 overlay]. A time picker with a trigger
-// button and a time selection view. Uses M1 (a11y), M4 (OverlayHost),
+// button and a time selection view. Uses M1 (a11y), M4 (Overlay),
 // M5 (useAnchoredPosition), M8 (useControllableState). Role combobox.
 //   value       -> string HH:MM (controlled)
 //   defaultValue-> string HH:MM (uncontrolled)
@@ -28,8 +28,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
   const useControllableState = require('../useControllableState')(Lib);
   const usePressKeys = require('../usePressKeys')(Lib);
   const useAnchoredPosition = require('../useAnchoredPosition')(Lib);
-  const overlayHost = require('../OverlayHost')(Lib);
-  const useOverlay = overlayHost.useOverlay;
+  const overlay = require('../Overlay')(Lib);
+  const useOverlay = overlay.useOverlay;
 
   return function TimePicker (props) {
 
@@ -301,7 +301,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       );
     }
 
-    // On web, use OverlayHost
+    // On web, use Overlay
     const overlay = useOverlay({
       isOpen: true,
       trap: false,

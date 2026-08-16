@@ -1,4 +1,4 @@
-// Info: StructuredListRow molecule [S1]. A row within a StructuredList.
+// Info: StructuredListRow molecule [S1]. A row within a StructuredListWrapper.
 // Uses role="row" for screen reader semantics. Renders children in a
 // horizontal layout with border styling.
 //   children    -> cell elements

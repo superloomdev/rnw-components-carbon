@@ -1,9 +1,9 @@
-// Info: Steps composite [S4 compound]. A step navigation container with
-// role="list" that coordinates Step children. Uses M1 (a11y), M7
-// (createCompoundContext). Wraps each Step child in a context Provider so
+// Info: ProgressIndicator composite [S4 compound]. A step navigation container with
+// role="list" that coordinates ProgressStep children. Uses M1 (a11y), M7
+// (createCompoundContext). Wraps each ProgressStep child in a context Provider so
 // it can read its index and current status without cloneElement.
 //   current     -> number (1-based current step number)
-//   children    -> Step elements
+//   children    -> ProgressStep elements
 //   style       -> custom style overrides
 'use strict';
 
@@ -11,7 +11,7 @@ const { View: RNView } = require('react-native');
 
 
 /********************************************************************
-Build the Steps composite.
+Build the ProgressIndicator composite.
 
 @param {Object} Lib      - { Utils, Debug, React }
 @param {Object} CONFIG   - Package configuration
@@ -19,16 +19,16 @@ Build the Steps composite.
 @param {Object} Registry - Component registry (for atom composition)
 @param {Object} Style_   - { utilities, tokens, breakpoint }
 
-@return {Function} - The Steps component
+@return {Function} - The ProgressIndicator component
 *********************************************************************/
 module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
   const getSharedContext = require('../context/sharedContext');
 
   // Get the shared compound context (cached per Lib instance)
-  const ctx = getSharedContext(Lib, 'Steps');
+  const ctx = getSharedContext(Lib, 'ProgressIndicator');
 
-  return function Steps (props) {
+  return function ProgressIndicator (props) {
 
     const {
       current, children, style, isRtlActive, // eslint-disable-line no-unused-vars

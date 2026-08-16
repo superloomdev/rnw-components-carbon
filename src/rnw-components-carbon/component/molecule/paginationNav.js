@@ -1,4 +1,4 @@
-// Info: PageSelector molecule [S2 interactive]. A page navigation control
+// Info: PaginationNav molecule [S2 interactive]. A page navigation control
 // with role="group" that renders page number buttons for pagination. Uses
 // M1 (a11y) for aria-current on the active page, and M2 (usePressKeys) for
 // keyboard activation on each page button.
@@ -12,7 +12,7 @@ const { View: RNView, Pressable } = require('react-native');
 
 
 /********************************************************************
-Build the PageSelector molecule.
+Build the PaginationNav molecule.
 
 @param {Object} Lib      - { Utils, Debug, React }
 @param {Object} CONFIG   - Package configuration
@@ -20,14 +20,14 @@ Build the PageSelector molecule.
 @param {Object} Registry - Component registry (for atom composition)
 @param {Object} Style_   - { utilities, tokens, breakpoint }
 
-@return {Function} - The PageSelector component
+@return {Function} - The PaginationNav component
 *********************************************************************/
 module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
   const a11y = require('../a11y')(Lib);
   const usePressKeys = require('../usePressKeys')(Lib);
 
-  return function PageSelector (props) {
+  return function PaginationNav (props) {
 
     const {
       currentPage, totalPages, onChange, style, isRtlActive, // eslint-disable-line no-unused-vars

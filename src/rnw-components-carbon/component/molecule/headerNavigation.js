@@ -1,7 +1,7 @@
-// Info: ActionBar molecule [S1]. A horizontal toolbar container for action
-// buttons, typically used above data tables for batch operations. Uses
-// role="toolbar" for screen reader semantics.
-//   children    -> action button elements
+// Info: HeaderNavigation molecule [S1 presentational]. A navigation container for
+// the Header composite with role="navigation". Groups navigation links
+// or menu items within a header bar.
+//   children    -> navigation content (links, menu items)
 //   style       -> custom style overrides
 'use strict';
 
@@ -9,7 +9,7 @@ const { View: RNView } = require('react-native');
 
 
 /********************************************************************
-Build the ActionBar molecule.
+Build the HeaderNavigation molecule.
 
 @param {Object} Lib      - { Utils, Debug, React }
 @param {Object} CONFIG   - Package configuration
@@ -17,30 +17,24 @@ Build the ActionBar molecule.
 @param {Object} Registry - Component registry (for atom composition)
 @param {Object} Style_   - { utilities, tokens, breakpoint }
 
-@return {Function} - The ActionBar component
+@return {Function} - The HeaderNavigation component
 *********************************************************************/
 module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
-  return function ActionBar (props) {
+  return function HeaderNavigation (props) {
 
-    const {
-      children, style, isRtlActive, // eslint-disable-line no-unused-vars
-      ...rest
-    } = props;
+    const { children, style, isRtlActive, ...rest } = props; // eslint-disable-line no-unused-vars
 
     const React = Lib.React;
 
     return React.createElement(
       RNView,
       Object.assign({
-        accessibilityRole: 'toolbar',
+        accessibilityRole: 'navigation',
         style: [
-          Style_.utilities['background_background_secondary'],
-          Style_.utilities['p_h_md'],
-          Style_.utilities['p_v_sm'],
           Style_.utilities['flex_row'],
           Style_.utilities['align_center'],
-          Style_.utilities['justify_between'],
+          Style_.utilities['flex_1'],
           style
         ]
       }, rest),

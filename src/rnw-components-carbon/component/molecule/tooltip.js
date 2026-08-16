@@ -1,6 +1,6 @@
 // Info: Tooltip molecule [S3 overlay]. A floating tooltip with content
 // accessible via aria-describedby. Triggers on hover and focus on web,
-// long-press on native. Uses M1 (a11y), M4 (OverlayHost), M5 (useAnchoredPosition).
+// long-press on native. Uses M1 (a11y), M4 (Overlay), M5 (useAnchoredPosition).
 //   content     -> string or node (tooltip content)
 //   children    -> trigger element
 //   placement   -> string (default 'top')

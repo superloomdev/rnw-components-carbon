@@ -36,9 +36,13 @@ const SUBSTRATE = ['View', 'Icon', 'Image'];
 const COLLAPSE = ['Skeleton'];
 const UNEXPORTED = [
   'BadgeIndicator', 'ShapeIndicator', 'IconIndicator',
-  'TruncatedText', 'UserAvatar', 'SidePanel'
+  'TruncatedText', 'UserAvatar', 'SidePanel',
+  'FeatureFlags'  // exported as unstable_FeatureFlags in @carbon/react
 ];
-const ALL_EXCEPTIONS = SUBSTRATE.concat(COLLAPSE, UNEXPORTED);
+const INFRASTRUCTURE = [
+  'LiveRegionProvider'  // M6 mechanism, no Carbon counterpart, must be mountable
+];
+const ALL_EXCEPTIONS = SUBSTRATE.concat(COLLAPSE, UNEXPORTED, INFRASTRUCTURE);
 
 
 // ---------------------------------------------------------------------------
@@ -67,37 +71,39 @@ const PLATFORM_NATIVE_PRIMARY = [
 // ---------------------------------------------------------------------------
 
 const CURRENT_FLAT = [
-  'AILabel', 'Accordion', 'AccordionItem', 'ActionBar', 'Alert', 'AspectRatio',
-  'Badge', 'BadgeIndicator', 'BatchAction', 'Breadcrumb', 'BreadcrumbItem',
-  'Button', 'ButtonLink', 'ButtonPrimary', 'ButtonSet', 'Callout', 'Card',
+  'AILabel', 'Accordion', 'AccordionItem', 'ActionSheet', 'AspectRatio',
+  'BadgeIndicator', 'Breadcrumb', 'BreadcrumbItem',
+  'Button', 'ButtonSet', 'Callout',
   'Checkbox', 'CheckboxGroup', 'ClickableTile', 'CodeSnippet', 'Column',
-  'ComboBox', 'ComboButton', 'ComposedModal', 'Container', 'ContentSwitcher',
-  'CopyButton', 'DataTable', 'DataTableRow', 'DateInput', 'DatePicker',
-  'DateRangePicker', 'DefinitionTooltip', 'Divider', 'Dropdown',
-  'ExpandableSearch', 'Fieldset', 'FileUploader', 'FlexGrid', 'FluidForm',
-  'Form', 'FormGroup', 'FormItem', 'FormLabel', 'Grid', 'GridItem', 'Header',
-  'HeaderMenuButton', 'HeaderNav', 'HeaderPanel', 'Heading', 'Icon',
-  'IconButton', 'IconIndicator', 'Image', 'InlineLoading', 'LayerMolecule',
-  'Legend', 'Link', 'ListItem', 'ListItemNav', 'Loading', 'LongPressMenu',
+  'ComboBox', 'ComboButton', 'ComposedModal', 'ContainedListItem',
+  'ContentSwitcher', 'CopyButton', 'DataTable', 'DataTableRow', 'DateInput',
+  'DatePicker', 'DefinitionTooltip', 'Dropdown',
+  'ExpandableSearch', 'FlexGrid',
+  'Form', 'FormGroup', 'FormItem', 'FormLabel', 'Grid', 'Header',
+  'HeaderMenuButton', 'HeaderNavigation', 'HeaderPanel', 'Heading', 'Icon',
+  'IconButton', 'IconIndicator', 'Image', 'InlineLoading',
+  'Link', 'ListItem', 'Loading',
   'Menu', 'MenuButton', 'MenuItem', 'MenuItemDivider', 'MenuItemRadioGroup',
   'MenuItemSelectable', 'Modal', 'ModalBody', 'ModalFooter', 'ModalHeader',
-  'MultiSelect', 'Notification', 'NumberInput', 'NumberInputComposite',
-  'OrderedList', 'OverflowMenu', 'PageSelector', 'Pagination', 'PaginationBar',
-  'PasswordInput', 'Popover', 'ProgressBar', 'ProgressIndicator', 'RadioButton',
-  'RadioButtonGroup', 'Row', 'ScrollGradient', 'Search', 'Select',
-  'SelectableTile', 'Separator', 'ShapeIndicator', 'SidePanel', 'Skeleton',
-  'Slider', 'SliderInput', 'Stack', 'Step', 'Steps', 'StructuredList',
-  'StructuredListCell', 'StructuredListRow', 'Switch', 'Tab', 'TabList',
-  'TabPanel', 'TableBody', 'TableCell', 'TableHead', 'TableHeader', 'TableRow',
-  'Tabs', 'Tag', 'Text', 'TextArea', 'TextInput', 'Tile', 'TimeInput',
-  'TimePicker', 'Toast', 'Toggle', 'ToggleGroup', 'Toggletip', 'ToggletipLabel',
-  'Toolbar', 'Tooltip', 'TreeNode', 'TreeView', 'TruncatedText', 'UnorderedList',
+  'MultiSelect', 'Notification', 'NumberInput',
+  'OrderedList', 'OverflowMenu', 'Pagination', 'PaginationNav',
+  'PasswordInput', 'Popover', 'ProgressBar', 'ProgressIndicator',
+  'ProgressStep', 'RadioButton',
+  'RadioButtonGroup', 'Row', 'Search', 'Select',
+  'SelectableTile', 'ShapeIndicator', 'SidePanel', 'Skeleton',
+  'Slider', 'Stack', 'StaticNotification', 'StructuredListCell',
+  'StructuredListRow', 'StructuredListWrapper', 'Switch', 'Tab', 'TabList',
+  'TabPanel', 'TableBatchAction', 'TableBatchActions', 'TableBody',
+  'TableCell', 'TableContainer', 'TableHead', 'TableHeader', 'TableRow',
+  'TableToolbar', 'Tabs', 'Tag', 'Text', 'TextArea', 'TextInput', 'Tile',
+  'TimePicker', 'ToastNotification', 'Toggle', 'Toggletip', 'ToggletipLabel',
+  'Tooltip', 'TreeNode', 'TreeView', 'TruncatedText', 'UnorderedList',
   'UserAvatar', 'View'
 ];
 
 const CURRENT_PROVIDERS = [
   'ErrorBoundary', 'FeatureFlags', 'FluidForm', 'IdPrefix', 'Layer',
-  'LiveRegionProvider', 'OverlayHost', 'Theme'
+  'LiveRegionProvider', 'Overlay', 'Theme'
 ];
 
 
@@ -120,6 +126,7 @@ function sourceOf (name, unionSet) {
   if (SUBSTRATE.indexOf(name) !== -1) return 'substrate';
   if (COLLAPSE.indexOf(name) !== -1) return 'collapse';
   if (UNEXPORTED.indexOf(name) !== -1) return 'unexported';
+  if (INFRASTRUCTURE.indexOf(name) !== -1) return 'infrastructure';
   if (unionSet.has(name)) return 'carbon';
   return 'non-carbon';
 

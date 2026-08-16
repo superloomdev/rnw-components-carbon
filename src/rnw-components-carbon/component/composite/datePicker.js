@@ -1,11 +1,12 @@
 // Info: DatePicker composite [S3 overlay]. A date picker with a trigger
-// button and a calendar-like view. Uses M1 (a11y), M4 (OverlayHost),
+// button and a calendar-like view. Uses M1 (a11y), M4 (Overlay),
 // M5 (useAnchoredPosition), M8 (useControllableState). Role combobox.
 //   value       -> string YYYY-MM-DD (controlled)
 //   defaultValue-> string YYYY-MM-DD (uncontrolled)
 //   onChange    -> callback receiving the selected date string
 //   disabled    -> boolean
 //   invalid     -> boolean
+//   datePickerType -> 'single' | 'range' (default 'single'; 'range' absorbed from DateRangePicker)
 'use strict';
 
 const { View: RNView, Pressable, Platform } = require('react-native');
@@ -28,16 +29,20 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
   const useControllableState = require('../useControllableState')(Lib);
   const usePressKeys = require('../usePressKeys')(Lib);
   const useAnchoredPosition = require('../useAnchoredPosition')(Lib);
-  const overlayHost = require('../OverlayHost')(Lib);
-  const useOverlay = overlayHost.useOverlay;
+  const overlay = require('../Overlay')(Lib);
+  const useOverlay = overlay.useOverlay;
 
   return function DatePicker (props) {
 
     const {
-      value, defaultValue, onChange, disabled, invalid,
+      value, defaultValue, onChange, disabled, invalid, datePickerType,
       style, isRtlActive, accessibilityLabel, // eslint-disable-line no-unused-vars
       ...rest
     } = props;
+
+    // datePickerType: 'range' renders two date triggers (start and end).
+    // Absorbs the deleted DateRangePicker composite.
+    const isRange = datePickerType === 'range';
 
     const React = Lib.React;
     const anchorRef = React.useRef(null);
@@ -298,6 +303,22 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       });
     };
 
+    // Range mode: wrap two triggers in a group. The full range calendar
+    // is built in P4; P3 establishes the prop contract.
+    if (isRange) {
+      return React.createElement(
+        RNView,
+        {
+          accessibilityRole: 'group',
+          accessibilityLabel: accessibilityLabel || 'date range picker',
+          style: [Style_.utilities['flex_row'], Style_.utilities['items_center'], style]
+        },
+        renderTrigger(),
+        React.createElement(Registry.Text, null, ' - '),
+        renderTrigger()
+      );
+    }
+
     if (!isOpen) {
       return React.createElement(RNView, { style: { position: 'relative' } }, renderTrigger());
     }
@@ -313,7 +334,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       );
     }
 
-    // On web, use OverlayHost
+    // On web, use Overlay
     const overlay = useOverlay({
       isOpen: true,
       trap: false,

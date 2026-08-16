@@ -1,6 +1,6 @@
 // Info: Dropdown molecule [S3 overlay] (CANONICAL). A dropdown menu with
 // focus trap, Escape/back dismissal, outside-press dismissal, and focus
-// restoration. Uses OverlayHost (M4) for stacking, useAnchoredPosition (M5)
+// restoration. Uses Overlay (M4) for stacking, useAnchoredPosition (M5)
 // for panel placement, and useFocusTrap for focus management. Composes
 // Button, Text, and Icon atoms.
 //
@@ -39,8 +39,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
   const a11y = require('../a11y')(Lib);
 
   // Build the overlay host hook once
-  const overlayHost = require('../OverlayHost')(Lib);
-  const useOverlay = overlayHost.useOverlay;
+  const overlay = require('../Overlay')(Lib);
+  const useOverlay = overlay.useOverlay;
 
   // Build the anchored position hook once
   const useAnchoredPosition = require('../useAnchoredPosition')(Lib);
@@ -227,7 +227,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       );
     }
 
-    // On web, try OverlayHost for stacking
+    // On web, try Overlay for stacking
     const overlay = useOverlay({
       isOpen: true,
       trap: false,
@@ -242,7 +242,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       }
     });
 
-    // When no OverlayHost is mounted, fall back to relative positioning
+    // When no Overlay is mounted, fall back to relative positioning
     if (overlay.layerIndex < 0) {
       return React.createElement(
         RNView,
@@ -253,7 +253,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       );
     }
 
-    // OverlayHost renders the panel; return just the trigger
+    // Overlay renders the panel; return just the trigger
     return trigger;
 
   };
