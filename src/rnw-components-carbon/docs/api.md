@@ -1005,6 +1005,1465 @@ Context factory for compound components. Creates a Provider and useContext hook 
 
 Controlled/uncontrolled state hook. Controlled when `value` is not undefined, uncontrolled otherwise. Warns once on mode switch.
 
-## Component Count
+## Component Sections
 
-The library ships 136 flat component keys (23 atoms + 89 molecules + 24 composites) plus 1 variant, 1 freeform, and 8 providers, totaling 146 named components. Waves 6-9 add 71 new components covering navigation, form composites, feedback, and data/layout.
+<!-- BEGIN GENERATED: component-sections -->
+### AILabel
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/aILabel.js` for the Info header and prop list.
+
+### AILabelActions
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/aILabelActions.js` for the Info header and prop list.
+
+### AILabelContent
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/aILabelContent.js` for the Info header and prop list.
+
+### AISkeletonIcon
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/aISkeletonIcon.js` for the Info header and prop list.
+
+### AISkeletonPlaceholder
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/aISkeletonPlaceholder.js` for the Info header and prop list.
+
+### AISkeletonText
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/aISkeletonText.js` for the Info header and prop list.
+
+### AcceptTerms
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/acceptTerms.js` for the Info header and prop list.
+
+### Accordion
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/accordion.js` for the Info header and prop list.
+
+### AccordionItem
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/accordionItem.js` for the Info header and prop list.
+
+### ActionSheet
+
+**Tier:** unknown | **Platform:** Split (web and native differ) | **Source:** carbon
+
+See `component/unknown/actionSheet.js` for the Info header and prop list.
+
+### ActionableNotification
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/actionableNotification.js` for the Info header and prop list.
+
+### AspectRatio
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/aspectRatio.js` for the Info header and prop list.
+
+### BadgeIndicator
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** unexported
+
+See `component/unknown/badgeIndicator.js` for the Info header and prop list.
+
+### BottomNavigationBar
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/bottomNavigationBar.js` for the Info header and prop list.
+
+### BottomSafeAreaColorOverride
+
+**Tier:** unknown | **Platform:** Native primary (degrades on web) | **Source:** carbon
+
+See `component/unknown/bottomSafeAreaColorOverride.js` for the Info header and prop list.
+
+### BottomToolbar
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/bottomToolbar.js` for the Info header and prop list.
+
+### BottomToolbarPrimaryAction
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/bottomToolbarPrimaryAction.js` for the Info header and prop list.
+
+### Breadcrumb
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/breadcrumb.js` for the Info header and prop list.
+
+### BreadcrumbItem
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/breadcrumbItem.js` for the Info header and prop list.
+
+### Button
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/button.js` for the Info header and prop list.
+
+### ButtonSet
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/buttonSet.js` for the Info header and prop list.
+
+### Callout
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/callout.js` for the Info header and prop list.
+
+### Checkbox
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/checkbox.js` for the Info header and prop list.
+
+### CheckboxGroup
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/checkboxGroup.js` for the Info header and prop list.
+
+### ClickableTile
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/clickableTile.js` for the Info header and prop list.
+
+### CodeSnippet
+
+**Tier:** unknown | **Platform:** Split (web and native differ) | **Source:** carbon
+
+See `component/unknown/codeSnippet.js` for the Info header and prop list.
+
+### Column
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/column.js` for the Info header and prop list.
+
+### ColumnHang
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/columnHang.js` for the Info header and prop list.
+
+### ComboBox
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/comboBox.js` for the Info header and prop list.
+
+### ComboButton
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/comboButton.js` for the Info header and prop list.
+
+### ComposedModal
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/composedModal.js` for the Info header and prop list.
+
+### ContainedList
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/containedList.js` for the Info header and prop list.
+
+### ContainedListItem
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/containedListItem.js` for the Info header and prop list.
+
+### Content
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/content.js` for the Info header and prop list.
+
+### ContentSwitcher
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/contentSwitcher.js` for the Info header and prop list.
+
+### ControlledPasswordInput
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/controlledPasswordInput.js` for the Info header and prop list.
+
+### Copy
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/copy.js` for the Info header and prop list.
+
+### CopyButton
+
+**Tier:** unknown | **Platform:** Split (web and native differ) | **Source:** carbon
+
+See `component/unknown/copyButton.js` for the Info header and prop list.
+
+### DataTable
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/dataTable.js` for the Info header and prop list.
+
+### DataTableCell
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/dataTableCell.js` for the Info header and prop list.
+
+### DataTableHeader
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/dataTableHeader.js` for the Info header and prop list.
+
+### DataTableHeaderSelected
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/dataTableHeaderSelected.js` for the Info header and prop list.
+
+### DataTableRow
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/dataTableRow.js` for the Info header and prop list.
+
+### DateInput
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/dateInput.js` for the Info header and prop list.
+
+### DatePicker
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/datePicker.js` for the Info header and prop list.
+
+### DatePickerInput
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/datePickerInput.js` for the Info header and prop list.
+
+### DefinitionTooltip
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/definitionTooltip.js` for the Info header and prop list.
+
+### DismissibleTag
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/dismissibleTag.js` for the Info header and prop list.
+
+### DocumentViewer
+
+**Tier:** unknown | **Platform:** Split (web and native differ) | **Source:** carbon
+
+See `component/unknown/documentViewer.js` for the Info header and prop list.
+
+### Dropdown
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/dropdown.js` for the Info header and prop list.
+
+### ErrorBoundary
+
+**Tier:** provider | **Platform:** Both web and native | **Source:** carbon
+
+See `component/provider/errorBoundary.js` for the Info header and prop list.
+
+### ErrorBoundaryContext
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/errorBoundaryContext.js` for the Info header and prop list.
+
+### ErrorState
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/errorState.js` for the Info header and prop list.
+
+### ExpandableSearch
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/expandableSearch.js` for the Info header and prop list.
+
+### ExpandableTile
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/expandableTile.js` for the Info header and prop list.
+
+### FeatureFlags
+
+**Tier:** provider | **Platform:** Both web and native | **Source:** unexported
+
+See `component/provider/featureFlags.js` for the Info header and prop list.
+
+### FileUploader
+
+**Tier:** unknown | **Platform:** Split (web and native differ) | **Source:** carbon
+
+See `component/unknown/fileUploader.js` for the Info header and prop list.
+
+### FileUploaderButton
+
+**Tier:** unknown | **Platform:** Split (web and native differ) | **Source:** carbon
+
+See `component/unknown/fileUploaderButton.js` for the Info header and prop list.
+
+### FileUploaderDropContainer
+
+**Tier:** unknown | **Platform:** Split (web and native differ) | **Source:** carbon
+
+See `component/unknown/fileUploaderDropContainer.js` for the Info header and prop list.
+
+### FileUploaderItem
+
+**Tier:** unknown | **Platform:** Split (web and native differ) | **Source:** carbon
+
+See `component/unknown/fileUploaderItem.js` for the Info header and prop list.
+
+### Filename
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/filename.js` for the Info header and prop list.
+
+### FilterableMultiSelect
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/filterableMultiSelect.js` for the Info header and prop list.
+
+### FlexGrid
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/flexGrid.js` for the Info header and prop list.
+
+### FluidForm
+
+**Tier:** provider | **Platform:** Both web and native | **Source:** non-carbon
+
+See `component/provider/fluidForm.js` for the Info header and prop list.
+
+### Form
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/form.js` for the Info header and prop list.
+
+### FormContext
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/formContext.js` for the Info header and prop list.
+
+### FormGroup
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/formGroup.js` for the Info header and prop list.
+
+### FormItem
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/formItem.js` for the Info header and prop list.
+
+### FormLabel
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/formLabel.js` for the Info header and prop list.
+
+### GlobalTheme
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/globalTheme.js` for the Info header and prop list.
+
+### GrantPermission
+
+**Tier:** unknown | **Platform:** Native primary (degrades on web) | **Source:** carbon
+
+See `component/unknown/grantPermission.js` for the Info header and prop list.
+
+### Grid
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/grid.js` for the Info header and prop list.
+
+### GridSettings
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/gridSettings.js` for the Info header and prop list.
+
+### HStack
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/hStack.js` for the Info header and prop list.
+
+### Header
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/header.js` for the Info header and prop list.
+
+### HeaderContainer
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/headerContainer.js` for the Info header and prop list.
+
+### HeaderGlobalAction
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/headerGlobalAction.js` for the Info header and prop list.
+
+### HeaderGlobalBar
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/headerGlobalBar.js` for the Info header and prop list.
+
+### HeaderMenu
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/headerMenu.js` for the Info header and prop list.
+
+### HeaderMenuButton
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/headerMenuButton.js` for the Info header and prop list.
+
+### HeaderMenuItem
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/headerMenuItem.js` for the Info header and prop list.
+
+### HeaderName
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/headerName.js` for the Info header and prop list.
+
+### HeaderNavigation
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/headerNavigation.js` for the Info header and prop list.
+
+### HeaderPanel
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/headerPanel.js` for the Info header and prop list.
+
+### HeaderSideNavItems
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/headerSideNavItems.js` for the Info header and prop list.
+
+### Heading
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/heading.js` for the Info header and prop list.
+
+### Icon
+
+**Tier:** atom | **Platform:** Both web and native | **Source:** substrate
+
+See `component/atom/icon.js` for the Info header and prop list.
+
+### IconButton
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/iconButton.js` for the Info header and prop list.
+
+### IconIndicator
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** unexported
+
+See `component/unknown/iconIndicator.js` for the Info header and prop list.
+
+### IconSwitch
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/iconSwitch.js` for the Info header and prop list.
+
+### IconTab
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/iconTab.js` for the Info header and prop list.
+
+### IdPrefix
+
+**Tier:** provider | **Platform:** Both web and native | **Source:** carbon
+
+See `component/provider/idPrefix.js` for the Info header and prop list.
+
+### Image
+
+**Tier:** atom | **Platform:** Both web and native | **Source:** substrate
+
+See `component/atom/image.js` for the Info header and prop list.
+
+### InlineLink
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/inlineLink.js` for the Info header and prop list.
+
+### InlineLoading
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/inlineLoading.js` for the Info header and prop list.
+
+### InlineNotification
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/inlineNotification.js` for the Info header and prop list.
+
+### LandingView
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/landingView.js` for the Info header and prop list.
+
+### Layer
+
+**Tier:** provider | **Platform:** Both web and native | **Source:** carbon
+
+See `component/provider/layer.js` for the Info header and prop list.
+
+### Link
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/link.js` for the Info header and prop list.
+
+### List
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/list.js` for the Info header and prop list.
+
+### ListItem
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/listItem.js` for the Info header and prop list.
+
+### LiveRegionProvider
+
+**Tier:** provider | **Platform:** Both web and native | **Source:** infrastructure
+
+See `component/provider/liveRegionProvider.js` for the Info header and prop list.
+
+### Loading
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/loading.js` for the Info header and prop list.
+
+### Menu
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/menu.js` for the Info header and prop list.
+
+### MenuButton
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/menuButton.js` for the Info header and prop list.
+
+### MenuItem
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/menuItem.js` for the Info header and prop list.
+
+### MenuItemDivider
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/menuItemDivider.js` for the Info header and prop list.
+
+### MenuItemGroup
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/menuItemGroup.js` for the Info header and prop list.
+
+### MenuItemRadioGroup
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/menuItemRadioGroup.js` for the Info header and prop list.
+
+### MenuItemSelectable
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/menuItemSelectable.js` for the Info header and prop list.
+
+### Modal
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/modal.js` for the Info header and prop list.
+
+### ModalBody
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/modalBody.js` for the Info header and prop list.
+
+### ModalFooter
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/modalFooter.js` for the Info header and prop list.
+
+### ModalHeader
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/modalHeader.js` for the Info header and prop list.
+
+### MultiSelect
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/multiSelect.js` for the Info header and prop list.
+
+### NavigationList
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/navigationList.js` for the Info header and prop list.
+
+### NavigationListItem
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/navigationListItem.js` for the Info header and prop list.
+
+### Notification
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/notification.js` for the Info header and prop list.
+
+### NotificationActionButton
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/notificationActionButton.js` for the Info header and prop list.
+
+### NotificationButton
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/notificationButton.js` for the Info header and prop list.
+
+### NumberInput
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/numberInput.js` for the Info header and prop list.
+
+### OperationalTag
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/operationalTag.js` for the Info header and prop list.
+
+### OrderedList
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/orderedList.js` for the Info header and prop list.
+
+### OverflowMenu
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/overflowMenu.js` for the Info header and prop list.
+
+### OverflowMenuItem
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/overflowMenuItem.js` for the Info header and prop list.
+
+### Overlay
+
+**Tier:** provider | **Platform:** Split (web and native differ) | **Source:** carbon
+
+See `component/provider/overlay.js` for the Info header and prop list.
+
+### Pagination
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/pagination.js` for the Info header and prop list.
+
+### PaginationNav
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/paginationNav.js` for the Info header and prop list.
+
+### PasswordInput
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/passwordInput.js` for the Info header and prop list.
+
+### Popover
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/popover.js` for the Info header and prop list.
+
+### PopoverContent
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/popoverContent.js` for the Info header and prop list.
+
+### PrefixContext
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/prefixContext.js` for the Info header and prop list.
+
+### ProgressBar
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/progressBar.js` for the Info header and prop list.
+
+### ProgressIndicator
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/progressIndicator.js` for the Info header and prop list.
+
+### ProgressStep
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/progressStep.js` for the Info header and prop list.
+
+### RadioButton
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/radioButton.js` for the Info header and prop list.
+
+### RadioButtonGroup
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/radioButtonGroup.js` for the Info header and prop list.
+
+### RadioTile
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/radioTile.js` for the Info header and prop list.
+
+### Row
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/row.js` for the Info header and prop list.
+
+### SafeAreaWrapper
+
+**Tier:** unknown | **Platform:** Native primary (degrades on web) | **Source:** carbon
+
+See `component/unknown/safeAreaWrapper.js` for the Info header and prop list.
+
+### Search
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/search.js` for the Info header and prop list.
+
+### Section
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/section.js` for the Info header and prop list.
+
+### Select
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/select.js` for the Info header and prop list.
+
+### SelectItem
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/selectItem.js` for the Info header and prop list.
+
+### SelectItemGroup
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/selectItemGroup.js` for the Info header and prop list.
+
+### SelectableTag
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/selectableTag.js` for the Info header and prop list.
+
+### SelectableTile
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/selectableTile.js` for the Info header and prop list.
+
+### ShapeIndicator
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** unexported
+
+See `component/unknown/shapeIndicator.js` for the Info header and prop list.
+
+### SideNav
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/sideNav.js` for the Info header and prop list.
+
+### SideNavDetails
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/sideNavDetails.js` for the Info header and prop list.
+
+### SideNavDivider
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/sideNavDivider.js` for the Info header and prop list.
+
+### SideNavFooter
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/sideNavFooter.js` for the Info header and prop list.
+
+### SideNavHeader
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/sideNavHeader.js` for the Info header and prop list.
+
+### SideNavIcon
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/sideNavIcon.js` for the Info header and prop list.
+
+### SideNavItem
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/sideNavItem.js` for the Info header and prop list.
+
+### SideNavItems
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/sideNavItems.js` for the Info header and prop list.
+
+### SideNavLink
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/sideNavLink.js` for the Info header and prop list.
+
+### SideNavLinkText
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/sideNavLinkText.js` for the Info header and prop list.
+
+### SideNavMenu
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/sideNavMenu.js` for the Info header and prop list.
+
+### SideNavMenuItem
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/sideNavMenuItem.js` for the Info header and prop list.
+
+### SideNavSwitcher
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/sideNavSwitcher.js` for the Info header and prop list.
+
+### SidePanel
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** unexported
+
+See `component/unknown/sidePanel.js` for the Info header and prop list.
+
+### Skeleton
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** collapse
+
+See `component/unknown/skeleton.js` for the Info header and prop list.
+
+### SkeletonIcon
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/skeletonIcon.js` for the Info header and prop list.
+
+### SkeletonPlaceholder
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/skeletonPlaceholder.js` for the Info header and prop list.
+
+### SkeletonText
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/skeletonText.js` for the Info header and prop list.
+
+### SkipToContent
+
+**Tier:** unknown | **Platform:** Web primary (null on native) | **Source:** carbon
+
+See `component/unknown/skipToContent.js` for the Info header and prop list.
+
+### Slider
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/slider.js` for the Info header and prop list.
+
+### Stack
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/stack.js` for the Info header and prop list.
+
+### StaticNotification
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/staticNotification.js` for the Info header and prop list.
+
+### StructuredListBody
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/structuredListBody.js` for the Info header and prop list.
+
+### StructuredListCell
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/structuredListCell.js` for the Info header and prop list.
+
+### StructuredListHead
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/structuredListHead.js` for the Info header and prop list.
+
+### StructuredListInput
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/structuredListInput.js` for the Info header and prop list.
+
+### StructuredListRow
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/structuredListRow.js` for the Info header and prop list.
+
+### StructuredListWrapper
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/structuredListWrapper.js` for the Info header and prop list.
+
+### Switch
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/switch.js` for the Info header and prop list.
+
+### Switcher
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/switcher.js` for the Info header and prop list.
+
+### SwitcherDivider
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/switcherDivider.js` for the Info header and prop list.
+
+### SwitcherItem
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/switcherItem.js` for the Info header and prop list.
+
+### Tab
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tab.js` for the Info header and prop list.
+
+### TabContent
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tabContent.js` for the Info header and prop list.
+
+### TabList
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tabList.js` for the Info header and prop list.
+
+### TabListVertical
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tabListVertical.js` for the Info header and prop list.
+
+### TabPanel
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tabPanel.js` for the Info header and prop list.
+
+### TabPanels
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tabPanels.js` for the Info header and prop list.
+
+### Table
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/table.js` for the Info header and prop list.
+
+### TableActionList
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tableActionList.js` for the Info header and prop list.
+
+### TableBatchAction
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tableBatchAction.js` for the Info header and prop list.
+
+### TableBatchActions
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tableBatchActions.js` for the Info header and prop list.
+
+### TableBody
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tableBody.js` for the Info header and prop list.
+
+### TableCell
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tableCell.js` for the Info header and prop list.
+
+### TableContainer
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tableContainer.js` for the Info header and prop list.
+
+### TableDecoratorRow
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tableDecoratorRow.js` for the Info header and prop list.
+
+### TableExpandHeader
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tableExpandHeader.js` for the Info header and prop list.
+
+### TableExpandRow
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tableExpandRow.js` for the Info header and prop list.
+
+### TableExpandedRow
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tableExpandedRow.js` for the Info header and prop list.
+
+### TableHead
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tableHead.js` for the Info header and prop list.
+
+### TableHeader
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tableHeader.js` for the Info header and prop list.
+
+### TableRow
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tableRow.js` for the Info header and prop list.
+
+### TableSelectAll
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tableSelectAll.js` for the Info header and prop list.
+
+### TableSelectRow
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tableSelectRow.js` for the Info header and prop list.
+
+### TableSlugRow
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tableSlugRow.js` for the Info header and prop list.
+
+### TableToolbar
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tableToolbar.js` for the Info header and prop list.
+
+### TableToolbarAction
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tableToolbarAction.js` for the Info header and prop list.
+
+### TableToolbarContent
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tableToolbarContent.js` for the Info header and prop list.
+
+### TableToolbarMenu
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tableToolbarMenu.js` for the Info header and prop list.
+
+### TableToolbarSearch
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tableToolbarSearch.js` for the Info header and prop list.
+
+### Tabs
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tabs.js` for the Info header and prop list.
+
+### TabsVertical
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tabsVertical.js` for the Info header and prop list.
+
+### Tag
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tag.js` for the Info header and prop list.
+
+### Text
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/text.js` for the Info header and prop list.
+
+### TextArea
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/textArea.js` for the Info header and prop list.
+
+### TextInput
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/textInput.js` for the Info header and prop list.
+
+### Theme
+
+**Tier:** provider | **Platform:** Both web and native | **Source:** carbon
+
+See `component/provider/theme.js` for the Info header and prop list.
+
+### ThemeContext
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/themeContext.js` for the Info header and prop list.
+
+### Tile
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tile.js` for the Info header and prop list.
+
+### TileAboveTheFoldContent
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tileAboveTheFoldContent.js` for the Info header and prop list.
+
+### TileBelowTheFoldContent
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tileBelowTheFoldContent.js` for the Info header and prop list.
+
+### TileGroup
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tileGroup.js` for the Info header and prop list.
+
+### TimePicker
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/timePicker.js` for the Info header and prop list.
+
+### TimePickerSelect
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/timePickerSelect.js` for the Info header and prop list.
+
+### ToastNotification
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/toastNotification.js` for the Info header and prop list.
+
+### Toggle
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/toggle.js` for the Info header and prop list.
+
+### Toggletip
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/toggletip.js` for the Info header and prop list.
+
+### ToggletipActions
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/toggletipActions.js` for the Info header and prop list.
+
+### ToggletipButton
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/toggletipButton.js` for the Info header and prop list.
+
+### ToggletipContent
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/toggletipContent.js` for the Info header and prop list.
+
+### ToggletipLabel
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/toggletipLabel.js` for the Info header and prop list.
+
+### Tooltip
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/tooltip.js` for the Info header and prop list.
+
+### TopNavigationBar
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/topNavigationBar.js` for the Info header and prop list.
+
+### TopNavigationBarLogin
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/topNavigationBarLogin.js` for the Info header and prop list.
+
+### TreeNode
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/treeNode.js` for the Info header and prop list.
+
+### TreeView
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/treeView.js` for the Info header and prop list.
+
+### TruncatedText
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** unexported
+
+See `component/unknown/truncatedText.js` for the Info header and prop list.
+
+### UiPanel
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/uiPanel.js` for the Info header and prop list.
+
+### UiPanelItem
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/uiPanelItem.js` for the Info header and prop list.
+
+### UnorderedList
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/unorderedList.js` for the Info header and prop list.
+
+### UserAvatar
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** unexported
+
+See `component/unknown/userAvatar.js` for the Info header and prop list.
+
+### VStack
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/vStack.js` for the Info header and prop list.
+
+### View
+
+**Tier:** atom | **Platform:** Both web and native | **Source:** substrate
+
+See `component/atom/view.js` for the Info header and prop list.
+
+### ViewWrapper
+
+**Tier:** unknown | **Platform:** Native primary (degrades on web) | **Source:** carbon
+
+See `component/unknown/viewWrapper.js` for the Info header and prop list.
+
+### WebHeader
+
+**Tier:** unknown | **Platform:** Both web and native | **Source:** carbon
+
+See `component/unknown/webHeader.js` for the Info header and prop list.
+
+<!-- END GENERATED: component-sections -->
