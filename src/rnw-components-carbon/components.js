@@ -337,6 +337,23 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.TableToolbarMenu = make(require('./component/molecule/tableToolbarMenu'));
       Component.TableToolbarSearch = make(require('./component/molecule/tableToolbarSearch'));
 
+      // ~~~~~~~~~~ P4.3 Form composites and selects ~~~~~~~~~~
+      Component.ControlledPasswordInput = make(require('./component/molecule/controlledPasswordInput'));
+      Component.DatePickerInput = make(require('./component/molecule/datePickerInput'));
+      Component.ErrorBoundaryContext = make(require('./component/molecule/errorBoundaryContext'));
+      Component.FilterableMultiSelect = make(require('./component/composite/filterableMultiSelect'));
+      Component.FormContext = make(require('./component/molecule/formContext'));
+      Component.PopoverContent = make(require('./component/molecule/popoverContent'));
+      Component.PrefixContext = make(require('./component/molecule/prefixContext'));
+      Component.SelectItem = make(require('./component/molecule/selectItem'));
+      Component.SelectItemGroup = make(require('./component/molecule/selectItemGroup'));
+      Component.SelectableTag = make(require('./component/molecule/selectableTag'));
+      Component.ThemeContext = make(require('./component/molecule/themeContext'));
+      Component.TimePickerSelect = make(require('./component/molecule/timePickerSelect'));
+      Component.ToggletipActions = make(require('./component/molecule/toggletipActions'));
+      Component.ToggletipButton = make(require('./component/molecule/toggletipButton'));
+      Component.ToggletipContent = make(require('./component/molecule/toggletipContent'));
+
       // ~~~~~~~~~~ Composites (Wave 6 form components) ~~~~~~~~~~
       // Form composites use M1 (a11y), M3 (useRovingTabIndex), M4 (Overlay),
       // M5 (useAnchoredPosition), M7 (createCompoundContext), M8 (useControllableState).
