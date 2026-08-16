@@ -113,7 +113,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         }, prevAriaProps, prevPressKeys),
         React.createElement(Registry.Text, {
           size: 'md',
-          color: prevDisabled ? 'text_muted' : 'text_primary'
+          color: prevDisabled ? 'text_disabled' : 'text_primary'
         }, '\u2039')
       ),
       // Page selector
@@ -146,7 +146,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         }, nextAriaProps, nextPressKeys),
         React.createElement(Registry.Text, {
           size: 'md',
-          color: nextDisabled ? 'text_muted' : 'text_primary'
+          color: nextDisabled ? 'text_disabled' : 'text_primary'
         }, '\u203A')
       )
     );

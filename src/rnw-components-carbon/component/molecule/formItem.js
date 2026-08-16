@@ -38,7 +38,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     const labelElement = label
       ? React.createElement(Registry.Text, {
         size: 'sm',
-        color: disabled ? 'text_muted' : 'text_primary',
+        color: disabled ? 'text_disabled' : 'text_primary',
         weight: 'medium',
         style: Style.utilities['m_b_xs']
       }, label, required

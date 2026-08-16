@@ -86,7 +86,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         React.createElement(Registry.Icon, {
           name: 'search',
           size: 'md',
-          color: isDisabled ? 'text_muted' : 'text_primary'
+          color: isDisabled ? 'text_disabled' : 'text_primary'
         })
       );
     }

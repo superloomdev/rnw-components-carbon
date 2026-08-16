@@ -70,7 +70,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         : null,
       React.createElement(Registry.Text, {
         size: 'md',
-        color: disabled ? 'text_muted' : 'text_primary',
+        color: disabled ? 'text_disabled' : 'text_primary',
         style: { flex: 1 }
       }, label),
       shortcut

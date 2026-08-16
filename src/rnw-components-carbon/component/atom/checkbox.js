@@ -82,7 +82,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       boxStyle = {
         backgroundColor: 'transparent',
         borderColor: disabled
-          ? (colorMap.TEXT_MUTED || '#999')
+          ? (colorMap.TEXT_DISABLED || '#a8a8a8')
           : (colorMap.BORDER || '#a8a8a8')
       };
     }
@@ -118,7 +118,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       React.createElement(RNView, { style: [boxBase, boxStyle, Style.utilities['m_e_xs']] }, checkmark),
       label ? React.createElement(Registry.Text, {
         size: 'md',
-        color: disabled ? 'text_muted' : 'text_primary'
+        color: disabled ? 'text_disabled' : 'text_primary'
       }, label) : null
     );
 
