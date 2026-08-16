@@ -43,190 +43,284 @@ const MyScreen = function () {
 };
 ```
 
-## Component Tiers
+## Component Roster
 
-### Atoms (23)
+<!-- BEGIN GENERATED: count-summary -->
+- **Total components:** 243
+- **Both web and native:** 229 (94%)
+- **Split (platform-specific):** 9
+- **Web primary:** 1
+- **Native primary:** 4
+- **Excluded (cannot exist in RN):** 1
+- **Providers:** 8
+- **Flat components:** 235
+<!-- END GENERATED: count-summary -->
 
-| Atom | Shape | Description |
-|---|---|---|
-| `View` | S1 | Base layout box with token-mapped background, radius, border |
-| `Text` | S1 | Typography with size, color, weight, align tokens |
-| `Icon` | S1 | Wraps an injected glyph component (`Lib.Icons.Glyph`) |
-| `Image` | S1 | Image with token-mapped radius and background |
-| `Badge` | S1 | Count or status indicator pill |
-| `Separator` | S1 | Horizontal or vertical divider line |
-| `ProgressBar` | S1 | Determinate or indeterminate progress bar with `aria-valuenow` |
-| `Button` | S2 | Pressable with state-driven background and hit-target guarantee |
-| `TextInput` | S2 | Themed input with focus border swap and `aria-*` state |
-| `Toggle` | S2 | On/off toggle with token-driven track and thumb colors |
-| `Checkbox` | S2 | Checkbox with `aria-checked`, supports `'mixed'` for indeterminate |
-| `RadioButton` | S2 | Radio button with `aria-checked`, always sets `true` on press |
-| `TextArea` | S2 | Multiline text input with controlled/uncontrolled value |
-| `Slider` | S2 | Range slider with `aria-valuemin/max/now`, role `slider` on web |
-| `Link` | S2 | Pressable styled as hyperlink with `role="link"` |
-| `Skeleton` | S1 | Loading placeholder with `aria-hidden`, supports text/icon/placeholder |
-| `Loading` | S1 | Indeterminate spinner with `role="progressbar"` and `aria-busy` |
-| `Tag` | S1/S2 | Compact label, dismissible or selectable |
-| `AspectRatio` | S1 | Wrapper maintaining width-to-height ratio |
-| `Heading` | S1 | Text with `role="header"` and `aria-level` 1-6 |
-| `BadgeIndicator` | S1 | Numeric count badge with overflow display |
-| `ShapeIndicator` | S1 | Colored shape (circle/square/triangle) for status display |
-| `IconIndicator` | S1 | Colored circle with icon for status display |
-
-### Molecules (23)
-
-| Molecule | Shape | Description |
-|---|---|---|
-| `ButtonPrimary` | S2 | Primary button composing Icon + Text in a Pressable |
-| `ButtonLink` | S2 | Text-only button styled as a link |
-| `Card` | S1/S2 | Themed surface with shadow; pressable when `onPress` is provided |
-| `ListItem` | S2 | Selectable row with icon, title, subtitle, trailing |
-| `Dropdown` | S3 | Dropdown menu with focus trap, Escape/back, outside-press |
-| `Modal` | S3 | Dialog overlay with focus trap, Escape/back, outside-press |
-| `Search` | S2 | Search input with icon and clear button, `role="searchbox"` |
-| `PasswordInput` | S2 | Text input with show/hide password toggle |
-| `NumberInput` | S2 | Numeric input with increment/decrement buttons, `role="spinbutton"` |
-| `ExpandableSearch` | S2 | Collapsible search that expands to full input on press |
-| `FormLabel` | S1 | Label text for form fields with optional required indicator |
-| `FormItem` | S1 | Wrapper grouping label, control, and helper/error text |
-| `Stack` | S1 | Vertical or horizontal stack with consistent gap spacing |
-| `ButtonSet` | S1 | Horizontal group of buttons with consistent spacing |
-| `IconButton` | S2 | Button with only an icon, `role="button"` |
-| `CopyButton` | S2 | Button that copies text to clipboard with success feedback |
-| `UserAvatar` | S1 | User avatar with image or initials fallback |
-| `TruncatedText` | S2 | Text that truncates and expands on press |
-| `CodeSnippet` | S1/S2 | Code display block with optional copy button |
-| `InlineLoading` | S1 | Inline loading indicator with status text |
-| `Tile` | S1 | Tile card with title, subtitle, and optional icon |
-| `ClickableTile` | S2 | Tile that acts as a button with `role="button"` |
-| `SelectableTile` | S2 | Tile that acts as a checkbox with `role="checkbox"` |
-| `MenuItem` | S2 | Menu item with `role="menuitem"`, optional icon and shortcut |
-| `MenuItemSelectable` | S2 | Menu item with `role="menuitemcheckbox"`, toggle state |
-| `MenuItemDivider` | S1 | Separator within a menu, `role="separator"` |
-| `ModalHeader` | S1 | Header section for ComposedModal with title and close button |
-| `ModalBody` | S1 | Body section for ComposedModal |
-| `ModalFooter` | S1 | Footer section for ComposedModal, typically action buttons |
-| `Popover` | S3 | Floating content panel anchored to a trigger |
-| `Tooltip` | S3 | Floating tooltip on hover/focus (web) or long-press (native) |
-| `DefinitionTooltip` | S3 | Inline term with definition tooltip on hover/focus |
-| `Toggletip` | S3 | Tooltip triggered by press (not hover) |
-
-### Composites (9)
-
-| Composite | Shape | Description |
-|---|---|---|
-| `Menu` | S3 | Menu container with `role="menu"`, focus trap, overlay stacking |
-| `OverflowMenu` | S3 | Button that opens a Menu with overflow icon |
-| `MenuButton` | S3 | Button that opens a Menu |
-| `ComboButton` | S3 | Split button: primary action plus dropdown for secondary actions |
-| `ComposedModal` | S3 | Modal dialog with ModalHeader/Body/Footer coordination |
-| `MenuItemRadioGroup` | S4 | Group of menu items where exactly one is selected |
-| `SidePanel` | S3 | Side panel that slides in from left or right |
-| `AILabel` | S3 | AI-generated content label with toggletip details |
-| `LongPressMenu` | S3 | Menu triggered by long-press (native) or right-click (web) |
-| `Tab` | S2 | Tab trigger with `role="tab"`, optional Tabs context for roving index |
-| `TabList` | S1 | Container for Tab elements, `role="tablist"` |
-| `TabPanel` | S1 | Tab content panel, `role="tabpanel"` |
-| `AccordionItem` | S2 | Collapsible section with button header and content region |
-| `BreadcrumbItem` | S2 | Breadcrumb link with `aria-current` for current page |
-| `Switch` | S2 | Content switcher button with `role="button"` |
-| `PageSelector` | S2 | Page number selector with `role="group"` |
-| `TreeNode` | S2 | Tree node with `role="treeitem"`, expand/collapse, level |
-| `Step` | S1 | Step indicator with `role="listitem"`, status and number |
-| `HeaderNav` | S1 | Header navigation container, `role="navigation"` |
-| `HeaderMenuButton` | S2 | Header menu toggle button |
-| `HeaderPanel` | S1 | Header expandable panel, `role="region"` |
-| `ProgressIndicator` | S1 | Navigation step progress, `role="progressbar"` |
-| `Notification` | S1/S2 | Notification banner with status, `role="alert"`, close button |
-| `Toast` | S1/S2 | Auto-dismissing toast, `role="alert"`, timer-based |
-| `ActionBar` | S1 | Toolbar for batch actions, `role="toolbar"` |
-| `BatchAction` | S2 | Action button for batch operations |
-| `Alert` | S1 | Alert banner with kind (info/success/warning/error) |
-| `Callout` | S1 | Less urgent alert variant, `role="note"` |
-| `DataTable` | S1 | Simple table with headers and rows, `role="table"` |
-| `TableRow` | S1 | Table row, `role="row"` |
-| `TableCell` | S1 | Table cell, `role="cell"` |
-| `TableHeader` | S1 | Table header cell, `role="columnheader"` |
-| `TableBody` | S1 | Table body, `role="rowgroup"` |
-| `TableHead` | S1 | Table head, `role="rowgroup"` |
-| `Grid` | S1 | CSS grid-like layout with columns and gap |
-| `Row` | S1 | Horizontal layout row |
-| `Column` | S1 | Vertical layout column |
-| `FlexGrid` | S1 | Flex-based grid with gap |
-| `Container` | S1 | Max-width wrapper |
-| `LayerMolecule` | S1 | Surface token by level (0-2) |
-| `Form` | S1 | Form container, `role="form"` |
-| `Fieldset` | S1 | Group with legend, `role="group"` |
-| `Legend` | S1 | Legend caption, `role="legend"` |
-| `OrderedList` | S1 | Ordered list, `role="list"` |
-| `UnorderedList` | S1 | Unordered list, `role="list"` |
-| `ListItemNav` | S2 | Navigation list item, `role="listitem"` |
-| `StructuredList` | S1 | Structured list, `role="table"` |
-| `StructuredListRow` | S1 | Structured list row |
-| `StructuredListCell` | S1 | Structured list cell |
-| `Toolbar` | S1 | Toolbar container, `role="toolbar"` |
-| `Divider` | S1 | Layout separator, `role="separator"` |
-| `ScrollGradient` | S1 | Scrollable container with fade gradients |
-
-### Composites (37)
-
-| Composite | Shape | Description |
-|---|---|---|
-| `Menu` | S3 | Menu container with `role="menu"`, focus trap, overlay stacking |
-| `OverflowMenu` | S3 | Button that opens a Menu with overflow icon |
-| `MenuButton` | S3 | Button that opens a Menu |
-| `ComboButton` | S3 | Split button: primary action plus dropdown for secondary actions |
-| `ComposedModal` | S3 | Modal dialog with ModalHeader/Body/Footer coordination |
-| `MenuItemRadioGroup` | S4 | Group of menu items where exactly one is selected |
-| `SidePanel` | S3 | Side panel that slides in from left or right |
-| `AILabel` | S3 | AI-generated content label with toggletip details |
-| `LongPressMenu` | S3 | Menu triggered by long-press (native) or right-click (web) |
-| `Tabs` | S4 | Tab navigation with roving tab index, `role="tablist"` |
-| `Accordion` | S4 | Accordion with context-coordinated items |
-| `Breadcrumb` | S1 | Breadcrumb navigation container |
-| `ContentSwitcher` | S4 | Content switcher with roving tab index |
-| `Pagination` | S2 | Pagination with prev/next and page numbers |
-| `TreeView` | S4 | Tree navigation with recursive nodes, `role="tree"` |
-| `Steps` | S4 | Step navigation with context-coordinated steps |
-| `Header` | S1/S2 | Navigation header container |
-| `DataTableRow` | S2 | Interactive table row with onPress and selected state |
-| `PaginationBar` | S2 | Full pagination bar with prev/next and page numbers |
-| `ToggletipLabel` | S1/S3 | Label with inline Toggletip |
-| `GridItem` | S1 | Grid item with span support, `role="gridcell"` |
-| `Select` | S3 | Dropdown select with combobox role |
-| `ComboBox` | S3 | Select with text input filtering |
-| `MultiSelect` | S3 | Multi-select with checkboxes, `aria-multiselectable` |
-| `RadioButtonGroup` | S4 | Radio button group with roving tab index |
-| `CheckboxGroup` | S4 | Checkbox group with context coordination |
-| `SliderInput` | S2 | Slider with label and value display |
-| `DatePicker` | S3 | Date picker with calendar view |
-| `TimePicker` | S3 | Time picker with hour/minute selection |
-| `DateRangePicker` | S2 | Date range with start/end inputs |
-| `NumberInputComposite` | S2 | Number input with label and unit |
-| `FileUploader` | S2 | File upload trigger button |
-| `FluidForm` | S1 | Form with fluid label context |
-| `FormGroup` | S1 | Form field group with label and message |
-| `ToggleGroup` | S4 | Toggle button group with roving tab index |
-| `TimeInput` | S2 | Time text input with HH:MM format |
-| `DateInput` | S2 | Date text input with YYYY-MM-DD format |
+<!-- BEGIN GENERATED: component-table -->
+| Component | Tier | Platform | Source |
+|---|---|---|---|
+| `AILabel` | unknown | Both web and native | carbon |
+| `AILabelActions` | unknown | Both web and native | carbon |
+| `AILabelContent` | unknown | Both web and native | carbon |
+| `AISkeletonIcon` | unknown | Both web and native | carbon |
+| `AISkeletonPlaceholder` | unknown | Both web and native | carbon |
+| `AISkeletonText` | unknown | Both web and native | carbon |
+| `AcceptTerms` | unknown | Both web and native | carbon |
+| `Accordion` | unknown | Both web and native | carbon |
+| `AccordionItem` | unknown | Both web and native | carbon |
+| `ActionSheet` | unknown | Split (web and native differ) | carbon |
+| `ActionableNotification` | unknown | Both web and native | carbon |
+| `AspectRatio` | unknown | Both web and native | carbon |
+| `BadgeIndicator` | unknown | Both web and native | unexported |
+| `BottomNavigationBar` | unknown | Both web and native | carbon |
+| `BottomSafeAreaColorOverride` | unknown | Native primary (degrades on web) | carbon |
+| `BottomToolbar` | unknown | Both web and native | carbon |
+| `BottomToolbarPrimaryAction` | unknown | Both web and native | carbon |
+| `Breadcrumb` | unknown | Both web and native | carbon |
+| `BreadcrumbItem` | unknown | Both web and native | carbon |
+| `Button` | unknown | Both web and native | carbon |
+| `ButtonSet` | unknown | Both web and native | carbon |
+| `Callout` | unknown | Both web and native | carbon |
+| `Checkbox` | unknown | Both web and native | carbon |
+| `CheckboxGroup` | unknown | Both web and native | carbon |
+| `ClickableTile` | unknown | Both web and native | carbon |
+| `CodeSnippet` | unknown | Split (web and native differ) | carbon |
+| `Column` | unknown | Both web and native | carbon |
+| `ColumnHang` | unknown | Both web and native | carbon |
+| `ComboBox` | unknown | Both web and native | carbon |
+| `ComboButton` | unknown | Both web and native | carbon |
+| `ComposedModal` | unknown | Both web and native | carbon |
+| `ContainedList` | unknown | Both web and native | carbon |
+| `ContainedListItem` | unknown | Both web and native | carbon |
+| `Content` | unknown | Both web and native | carbon |
+| `ContentSwitcher` | unknown | Both web and native | carbon |
+| `ControlledPasswordInput` | unknown | Both web and native | carbon |
+| `Copy` | unknown | Both web and native | carbon |
+| `CopyButton` | unknown | Split (web and native differ) | carbon |
+| `DataTable` | unknown | Both web and native | carbon |
+| `DataTableCell` | unknown | Both web and native | carbon |
+| `DataTableHeader` | unknown | Both web and native | carbon |
+| `DataTableHeaderSelected` | unknown | Both web and native | carbon |
+| `DataTableRow` | unknown | Both web and native | carbon |
+| `DateInput` | unknown | Both web and native | carbon |
+| `DatePicker` | unknown | Both web and native | carbon |
+| `DatePickerInput` | unknown | Both web and native | carbon |
+| `DefinitionTooltip` | unknown | Both web and native | carbon |
+| `DismissibleTag` | unknown | Both web and native | carbon |
+| `DocumentViewer` | unknown | Split (web and native differ) | carbon |
+| `Dropdown` | unknown | Both web and native | carbon |
+| `ErrorBoundary` | provider | Both web and native | carbon |
+| `ErrorBoundaryContext` | unknown | Both web and native | carbon |
+| `ErrorState` | unknown | Both web and native | carbon |
+| `ExpandableSearch` | unknown | Both web and native | carbon |
+| `ExpandableTile` | unknown | Both web and native | carbon |
+| `FeatureFlags` | provider | Both web and native | unexported |
+| `FileUploader` | unknown | Split (web and native differ) | carbon |
+| `FileUploaderButton` | unknown | Split (web and native differ) | carbon |
+| `FileUploaderDropContainer` | unknown | Split (web and native differ) | carbon |
+| `FileUploaderItem` | unknown | Split (web and native differ) | carbon |
+| `Filename` | unknown | Both web and native | carbon |
+| `FilterableMultiSelect` | unknown | Both web and native | carbon |
+| `FlexGrid` | unknown | Both web and native | carbon |
+| `FluidForm` | provider | Both web and native | non-carbon |
+| `Form` | unknown | Both web and native | carbon |
+| `FormContext` | unknown | Both web and native | carbon |
+| `FormGroup` | unknown | Both web and native | carbon |
+| `FormItem` | unknown | Both web and native | carbon |
+| `FormLabel` | unknown | Both web and native | carbon |
+| `GlobalTheme` | unknown | Both web and native | carbon |
+| `GrantPermission` | unknown | Native primary (degrades on web) | carbon |
+| `Grid` | unknown | Both web and native | carbon |
+| `GridSettings` | unknown | Both web and native | carbon |
+| `HStack` | unknown | Both web and native | carbon |
+| `Header` | unknown | Both web and native | carbon |
+| `HeaderContainer` | unknown | Both web and native | carbon |
+| `HeaderGlobalAction` | unknown | Both web and native | carbon |
+| `HeaderGlobalBar` | unknown | Both web and native | carbon |
+| `HeaderMenu` | unknown | Both web and native | carbon |
+| `HeaderMenuButton` | unknown | Both web and native | carbon |
+| `HeaderMenuItem` | unknown | Both web and native | carbon |
+| `HeaderName` | unknown | Both web and native | carbon |
+| `HeaderNavigation` | unknown | Both web and native | carbon |
+| `HeaderPanel` | unknown | Both web and native | carbon |
+| `HeaderSideNavItems` | unknown | Both web and native | carbon |
+| `Heading` | unknown | Both web and native | carbon |
+| `Icon` | atom | Both web and native | substrate |
+| `IconButton` | unknown | Both web and native | carbon |
+| `IconIndicator` | unknown | Both web and native | unexported |
+| `IconSwitch` | unknown | Both web and native | carbon |
+| `IconTab` | unknown | Both web and native | carbon |
+| `IdPrefix` | provider | Both web and native | carbon |
+| `Image` | atom | Both web and native | substrate |
+| `InlineLink` | unknown | Both web and native | carbon |
+| `InlineLoading` | unknown | Both web and native | carbon |
+| `InlineNotification` | unknown | Both web and native | carbon |
+| `LandingView` | unknown | Both web and native | carbon |
+| `Layer` | provider | Both web and native | carbon |
+| `Link` | unknown | Both web and native | carbon |
+| `List` | unknown | Both web and native | carbon |
+| `ListItem` | unknown | Both web and native | carbon |
+| `LiveRegionProvider` | provider | Both web and native | infrastructure |
+| `Loading` | unknown | Both web and native | carbon |
+| `Menu` | unknown | Both web and native | carbon |
+| `MenuButton` | unknown | Both web and native | carbon |
+| `MenuItem` | unknown | Both web and native | carbon |
+| `MenuItemDivider` | unknown | Both web and native | carbon |
+| `MenuItemGroup` | unknown | Both web and native | carbon |
+| `MenuItemRadioGroup` | unknown | Both web and native | carbon |
+| `MenuItemSelectable` | unknown | Both web and native | carbon |
+| `Modal` | unknown | Both web and native | carbon |
+| `ModalBody` | unknown | Both web and native | carbon |
+| `ModalFooter` | unknown | Both web and native | carbon |
+| `ModalHeader` | unknown | Both web and native | carbon |
+| `MultiSelect` | unknown | Both web and native | carbon |
+| `NavigationList` | unknown | Both web and native | carbon |
+| `NavigationListItem` | unknown | Both web and native | carbon |
+| `Notification` | unknown | Both web and native | carbon |
+| `NotificationActionButton` | unknown | Both web and native | carbon |
+| `NotificationButton` | unknown | Both web and native | carbon |
+| `NumberInput` | unknown | Both web and native | carbon |
+| `OperationalTag` | unknown | Both web and native | carbon |
+| `OrderedList` | unknown | Both web and native | carbon |
+| `OverflowMenu` | unknown | Both web and native | carbon |
+| `OverflowMenuItem` | unknown | Both web and native | carbon |
+| `Overlay` | provider | Split (web and native differ) | carbon |
+| `Pagination` | unknown | Both web and native | carbon |
+| `PaginationNav` | unknown | Both web and native | carbon |
+| `PasswordInput` | unknown | Both web and native | carbon |
+| `Popover` | unknown | Both web and native | carbon |
+| `PopoverContent` | unknown | Both web and native | carbon |
+| `PrefixContext` | unknown | Both web and native | carbon |
+| `ProgressBar` | unknown | Both web and native | carbon |
+| `ProgressIndicator` | unknown | Both web and native | carbon |
+| `ProgressStep` | unknown | Both web and native | carbon |
+| `RadioButton` | unknown | Both web and native | carbon |
+| `RadioButtonGroup` | unknown | Both web and native | carbon |
+| `RadioTile` | unknown | Both web and native | carbon |
+| `Row` | unknown | Both web and native | carbon |
+| `SafeAreaWrapper` | unknown | Native primary (degrades on web) | carbon |
+| `Search` | unknown | Both web and native | carbon |
+| `Section` | unknown | Both web and native | carbon |
+| `Select` | unknown | Both web and native | carbon |
+| `SelectItem` | unknown | Both web and native | carbon |
+| `SelectItemGroup` | unknown | Both web and native | carbon |
+| `SelectableTag` | unknown | Both web and native | carbon |
+| `SelectableTile` | unknown | Both web and native | carbon |
+| `ShapeIndicator` | unknown | Both web and native | unexported |
+| `SideNav` | unknown | Both web and native | carbon |
+| `SideNavDetails` | unknown | Both web and native | carbon |
+| `SideNavDivider` | unknown | Both web and native | carbon |
+| `SideNavFooter` | unknown | Both web and native | carbon |
+| `SideNavHeader` | unknown | Both web and native | carbon |
+| `SideNavIcon` | unknown | Both web and native | carbon |
+| `SideNavItem` | unknown | Both web and native | carbon |
+| `SideNavItems` | unknown | Both web and native | carbon |
+| `SideNavLink` | unknown | Both web and native | carbon |
+| `SideNavLinkText` | unknown | Both web and native | carbon |
+| `SideNavMenu` | unknown | Both web and native | carbon |
+| `SideNavMenuItem` | unknown | Both web and native | carbon |
+| `SideNavSwitcher` | unknown | Both web and native | carbon |
+| `SidePanel` | unknown | Both web and native | unexported |
+| `Skeleton` | unknown | Both web and native | collapse |
+| `SkeletonIcon` | unknown | Both web and native | carbon |
+| `SkeletonPlaceholder` | unknown | Both web and native | carbon |
+| `SkeletonText` | unknown | Both web and native | carbon |
+| `SkipToContent` | unknown | Web primary (null on native) | carbon |
+| `Slider` | unknown | Both web and native | carbon |
+| `Stack` | unknown | Both web and native | carbon |
+| `StaticNotification` | unknown | Both web and native | carbon |
+| `StructuredListBody` | unknown | Both web and native | carbon |
+| `StructuredListCell` | unknown | Both web and native | carbon |
+| `StructuredListHead` | unknown | Both web and native | carbon |
+| `StructuredListInput` | unknown | Both web and native | carbon |
+| `StructuredListRow` | unknown | Both web and native | carbon |
+| `StructuredListWrapper` | unknown | Both web and native | carbon |
+| `Switch` | unknown | Both web and native | carbon |
+| `Switcher` | unknown | Both web and native | carbon |
+| `SwitcherDivider` | unknown | Both web and native | carbon |
+| `SwitcherItem` | unknown | Both web and native | carbon |
+| `Tab` | unknown | Both web and native | carbon |
+| `TabContent` | unknown | Both web and native | carbon |
+| `TabList` | unknown | Both web and native | carbon |
+| `TabListVertical` | unknown | Both web and native | carbon |
+| `TabPanel` | unknown | Both web and native | carbon |
+| `TabPanels` | unknown | Both web and native | carbon |
+| `Table` | unknown | Both web and native | carbon |
+| `TableActionList` | unknown | Both web and native | carbon |
+| `TableBatchAction` | unknown | Both web and native | carbon |
+| `TableBatchActions` | unknown | Both web and native | carbon |
+| `TableBody` | unknown | Both web and native | carbon |
+| `TableCell` | unknown | Both web and native | carbon |
+| `TableContainer` | unknown | Both web and native | carbon |
+| `TableDecoratorRow` | unknown | Both web and native | carbon |
+| `TableExpandHeader` | unknown | Both web and native | carbon |
+| `TableExpandRow` | unknown | Both web and native | carbon |
+| `TableExpandedRow` | unknown | Both web and native | carbon |
+| `TableHead` | unknown | Both web and native | carbon |
+| `TableHeader` | unknown | Both web and native | carbon |
+| `TableRow` | unknown | Both web and native | carbon |
+| `TableSelectAll` | unknown | Both web and native | carbon |
+| `TableSelectRow` | unknown | Both web and native | carbon |
+| `TableSlugRow` | unknown | Both web and native | carbon |
+| `TableToolbar` | unknown | Both web and native | carbon |
+| `TableToolbarAction` | unknown | Both web and native | carbon |
+| `TableToolbarContent` | unknown | Both web and native | carbon |
+| `TableToolbarMenu` | unknown | Both web and native | carbon |
+| `TableToolbarSearch` | unknown | Both web and native | carbon |
+| `Tabs` | unknown | Both web and native | carbon |
+| `TabsVertical` | unknown | Both web and native | carbon |
+| `Tag` | unknown | Both web and native | carbon |
+| `Text` | unknown | Both web and native | carbon |
+| `TextArea` | unknown | Both web and native | carbon |
+| `TextInput` | unknown | Both web and native | carbon |
+| `Theme` | provider | Both web and native | carbon |
+| `ThemeContext` | unknown | Both web and native | carbon |
+| `Tile` | unknown | Both web and native | carbon |
+| `TileAboveTheFoldContent` | unknown | Both web and native | carbon |
+| `TileBelowTheFoldContent` | unknown | Both web and native | carbon |
+| `TileGroup` | unknown | Both web and native | carbon |
+| `TimePicker` | unknown | Both web and native | carbon |
+| `TimePickerSelect` | unknown | Both web and native | carbon |
+| `ToastNotification` | unknown | Both web and native | carbon |
+| `Toggle` | unknown | Both web and native | carbon |
+| `Toggletip` | unknown | Both web and native | carbon |
+| `ToggletipActions` | unknown | Both web and native | carbon |
+| `ToggletipButton` | unknown | Both web and native | carbon |
+| `ToggletipContent` | unknown | Both web and native | carbon |
+| `ToggletipLabel` | unknown | Both web and native | carbon |
+| `Tooltip` | unknown | Both web and native | carbon |
+| `TopNavigationBar` | unknown | Both web and native | carbon |
+| `TopNavigationBarLogin` | unknown | Both web and native | carbon |
+| `TreeNode` | unknown | Both web and native | carbon |
+| `TreeView` | unknown | Both web and native | carbon |
+| `TruncatedText` | unknown | Both web and native | unexported |
+| `UiPanel` | unknown | Both web and native | carbon |
+| `UiPanelItem` | unknown | Both web and native | carbon |
+| `UnorderedList` | unknown | Both web and native | carbon |
+| `UserAvatar` | unknown | Both web and native | unexported |
+| `VStack` | unknown | Both web and native | carbon |
+| `View` | atom | Both web and native | substrate |
+| `ViewWrapper` | unknown | Native primary (degrades on web) | carbon |
+| `WebHeader` | unknown | Both web and native | carbon |
+<!-- END GENERATED: component-table -->
 
 ### Variants
 
 | Variant | Description |
 |---|---|
-| `variant.ButtonPrimaryOutlined` | Outlined/ghost variant of ButtonPrimary |
+| `variant.ButtonPrimaryOutlined` | Primary button with outlined style |
 
 ### Freeform
 
-| Component | Description |
+| Freeform | Description |
 |---|---|
-| `freeform.RawBox` | Escape hatch with no token access; takes raw styles only |
+| `freeform.RawBox` | Raw box with no token mapping |
 
 ### Providers (8)
 
 | Provider | Description |
 |---|---|
-| `provider.OverlayHost` | Overlay stacking provider; mount once at app root |
+| `provider.Overlay` | Overlay layer stack for portals and modals |
 | `provider.LiveRegionProvider` | Screen reader announcement regions; mount once at app root |
 | `provider.Layer` | Elevation level context (0-2) for nested surface tokens |
 | `provider.Theme` | Runtime theme override for subtrees |
@@ -234,6 +328,14 @@ const MyScreen = function () {
 | `provider.IdPrefix` | ID prefix context for unique element id generation |
 | `provider.FluidForm` | Marks a form as fluid (label inside field) |
 | `provider.ErrorBoundary` | Catches render errors; class component (no hook equivalent) |
+
+## Platform Support
+
+See [docs/platform-support.md](docs/platform-support.md) for the full platform support document, including all 15 exceptions and the safe area explanation.
+
+## Carbon Parity
+
+See [docs/carbon-parity.md](docs/carbon-parity.md) for what we ship and what Carbon has that we deliberately do not.
 
 ## API
 
