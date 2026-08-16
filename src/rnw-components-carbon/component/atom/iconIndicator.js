@@ -29,7 +29,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function IconIndicator (props) {
 
     const {
-      iconName, color, iconColor, size, label, style, isRtlActive, // eslint-disable-line no-unused-vars
+      iconName, color, iconColor, size, label, style,
       ...rest
     } = props;
 

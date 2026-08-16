@@ -27,7 +27,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function SideNavMenu (props) {
 
     const {
-      label, expanded, onToggle, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      label, expanded, onToggle, children, style,
       ...rest
     } = props;
 

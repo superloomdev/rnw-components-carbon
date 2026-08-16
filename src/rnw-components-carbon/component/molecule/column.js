@@ -25,7 +25,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Column (props) {
 
     const {
-      children, span, style, isRtlActive, // eslint-disable-line no-unused-vars
+      children, span, style,
       ...rest
     } = props;
 

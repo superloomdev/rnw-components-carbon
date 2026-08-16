@@ -21,17 +21,17 @@ Build the InlineLink atom.
 
 @return {Function} - The InlineLink component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars,
   return function InlineLink (props) {
 
     const {
-      onPress, title, disabled, style, isRtlActive, // eslint-disable-line no-unused-vars
+      onPress, title, disabled, style,
       accessibilityLabel, ...rest
     } = props;
 
     const React = Lib.React;
 
-    // Build aria state props through the a11y translator
+    // Build aria state props through the a11y translator,
     const ariaProps = Parts.A11y.state({
       disabled: !!disabled
     });

@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function FlexGrid (props) {
 
     const {
-      children, gap, style, isRtlActive, // eslint-disable-line no-unused-vars
+      children, gap, style,
       ...rest
     } = props;
 

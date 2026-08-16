@@ -21,22 +21,22 @@ Build the Link atom.
 
 @return {Function} - The Link component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars,
   return function Link (props) {
 
     const {
-      href, onPress, disabled, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      href, onPress, disabled, children, style,
       accessibilityLabel, ...rest
     } = props;
 
     const React = Lib.React;
 
-    // Build aria state props through the a11y translator
+    // Build aria state props through the a11y translator,
     const ariaProps = Parts.A11y.state({
       disabled: !!disabled
     });
 
-    // On web, set href for native anchor behavior
+    // On web, set href for native anchor behavior,
     const webProps = {};
 
     if (href && Lib.React.Platform && Lib.React.Platform.OS === 'web') {

@@ -46,7 +46,6 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     const {
       title, subtitle, actionText, onAction, onDismiss, kind, style,
-      isRtlActive, // eslint-disable-line no-unused-vars
       ...rest
     } = props;
 

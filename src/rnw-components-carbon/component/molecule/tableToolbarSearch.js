@@ -27,7 +27,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function TableToolbarSearch (props) {
 
     const {
-      value, onChange, placeholder, style, isRtlActive, // eslint-disable-line no-unused-vars
+      value, onChange, placeholder, style,
       ...rest
     } = props;
 

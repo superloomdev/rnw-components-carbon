@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function NotificationActionButton (props) {
 
     const {
-      text, onPress, kind, style, isRtlActive, // eslint-disable-line no-unused-vars
+      text, onPress, kind, style,
       ...rest
     } = props;
 

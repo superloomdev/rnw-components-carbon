@@ -27,7 +27,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Tile (props) {
 
     const {
-      title, subtitle, icon, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      title, subtitle, icon, children, style,
       ...rest
     } = props;
 

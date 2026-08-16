@@ -25,7 +25,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function DismissibleTag (props) {
 
     const {
-      text, onDismiss, style, isRtlActive, // eslint-disable-line no-unused-vars
+      text, onDismiss, style,
       ...rest
     } = props;
 

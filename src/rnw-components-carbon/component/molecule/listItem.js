@@ -32,7 +32,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     // Destructure props
     const {
       title, subtitle, icon, trailing, onPress, selected, disabled,
-      style, isRtlActive, ...rest // eslint-disable-line no-unused-vars
+      style, ...rest
     } = props;
 
     const React = Lib.React;

@@ -216,17 +216,6 @@ test('View renders with radius and border tokens', function () {
 
 });
 
-test('View does not forward isRtlActive to the native element', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.View, { isRtlActive: true }, 'test')
-  ).toJSON();
-
-  assert.strictEqual(tree.props.isRtlActive, undefined, 'isRtlActive should not be forwarded');
-
-});
-
-
 // ~~~~~~~~~~~~~~~~~~~~ Text atom ~~~~~~~~~~~~~~~~~~~~
 
 test('Text renders with default size, color, and weight', function () {

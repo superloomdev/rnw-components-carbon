@@ -27,7 +27,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function MenuItemSelectable (props) {
 
     const {
-      label, checked, onChange, disabled, style, isRtlActive, // eslint-disable-line no-unused-vars
+      label, checked, onChange, disabled, style,
       ...rest
     } = props;
 

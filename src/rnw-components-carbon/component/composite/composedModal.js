@@ -29,13 +29,13 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function ComposedModal (props) {
 
     const {
-      isOpen, onClose, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      isOpen, onClose, children, style,
       initialFocusRef, ...rest
     } = props;
 
     const React = Lib.React;
 
-    // Focus trap with trap: true for modal
+    // Focus trap with trap: true for modal,
     const focusTrap = Parts.FocusTrap({
       isOpen: isOpen,
       onClose: onClose,
@@ -43,7 +43,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       initialFocusRef: initialFocusRef
     });
 
-    // Render the modal content
+    // Render the modal content,
     const renderContent = function () {
       return React.createElement(
         RNView,
@@ -62,7 +62,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       );
     };
 
-    // Backdrop
+    // Backdrop,
     const renderBackdrop = function () {
       return React.createElement(Pressable, {
         onPress: focusTrap.onOutsidePress,
@@ -74,7 +74,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       });
     };
 
-    // On native, use RN Modal
+    // On native, use RN Modal,
     if (Platform.OS !== 'web') {
       if (!isOpen) {
         return null;
@@ -87,7 +87,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       );
     }
 
-    // On web, use Overlay
+    // On web, use Overlay,
     const overlay = useOverlay({
       isOpen: !!isOpen,
       trap: true,

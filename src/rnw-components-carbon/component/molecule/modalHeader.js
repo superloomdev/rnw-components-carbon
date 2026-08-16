@@ -28,7 +28,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function ModalHeader (props) {
 
     const {
-      title, subtitle, closeOnPress, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      title, subtitle, closeOnPress, children, style,
       ...rest
     } = props;
 

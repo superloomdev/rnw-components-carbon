@@ -43,7 +43,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Callout (props) {
 
     const {
-      title, kind, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      title, kind, children, style,
       ...rest
     } = props;
 

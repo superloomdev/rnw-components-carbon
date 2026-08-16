@@ -25,7 +25,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function FileUploaderDropContainer (props) {
 
     const {
-      onDrop, label, style, isRtlActive, // eslint-disable-line no-unused-vars
+      onDrop, label, style,
       ...rest
     } = props;
 

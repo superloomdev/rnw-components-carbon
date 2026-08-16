@@ -25,7 +25,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function HStack (props) {
 
     const {
-      spacing, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      spacing, children, style,
       ...rest
     } = props;
 

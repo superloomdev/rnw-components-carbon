@@ -30,7 +30,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function ProgressBar (props) {
 
     // Destructure props
-    const { value, color, trackColor, height, style, isRtlActive, ...rest } = props; // eslint-disable-line no-unused-vars
+    const { value, color, trackColor, height, style, ...rest } = props;
 
     // Resolve colors from tokens
     const colorMap = Style.tokens.Color;

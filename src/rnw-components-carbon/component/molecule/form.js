@@ -25,7 +25,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Form (props) {
 
     const {
-      children, onSubmit, style, isRtlActive, // eslint-disable-line no-unused-vars
+      children, onSubmit, style,
       ...rest
     } = props;
 

@@ -49,7 +49,7 @@ A future lint rule can flag imports from `freeform/` so every use is a conscious
 
 ## RTL Without Per-Component Work
 
-Spacing utilities use logical sides (`start`/`end`) instead of physical sides (`left`/`right`). React Native mirrors these automatically under RTL. Components do not need to check `isRtlActive` for spacing; the HOC injects it only for platform-specific exceptions (like iOS `writingDirection`).
+Spacing utilities use logical sides (`start`/`end`) instead of physical sides (`left`/`right`). React Native mirrors these automatically under RTL. Components do not need to check direction for spacing; `Parts.Direction.isRtl()` is available for platform-specific exceptions (like iOS `writingDirection` in the Text atom).
 
 ## Composition Over Configuration
 

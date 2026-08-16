@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function IconTab (props) {
 
     const {
-      icon, active, onPress, style, isRtlActive, // eslint-disable-line no-unused-vars
+      icon, active, onPress, style,
       ...rest
     } = props;
 

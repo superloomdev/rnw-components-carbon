@@ -30,7 +30,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Menu (props) {
 
     const {
-      isOpen, onClose, children, placement, style, isRtlActive, // eslint-disable-line no-unused-vars
+      isOpen, onClose, children, placement, style, // eslint-disable-line no-unused-vars
       ...rest
     } = props;
 

@@ -25,7 +25,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Filename (props) {
 
     const {
-      name, status, style, isRtlActive, // eslint-disable-line no-unused-vars
+      name, status, style,
       ...rest
     } = props;
 

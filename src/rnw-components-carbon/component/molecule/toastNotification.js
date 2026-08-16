@@ -43,7 +43,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function ToastNotification (props) {
 
     const {
-      title, subtitle, status, onClose, duration, style, isRtlActive, // eslint-disable-line no-unused-vars
+      title, subtitle, status, onClose, duration, style,
       ...rest
     } = props;
 

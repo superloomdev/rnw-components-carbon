@@ -27,7 +27,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function CodeSnippet (props) {
 
     const {
-      code, language, showCopy, onCopy, style, isRtlActive, // eslint-disable-line no-unused-vars
+      code, language, showCopy, onCopy, style, // eslint-disable-line no-unused-vars
       ...rest
     } = props;
 

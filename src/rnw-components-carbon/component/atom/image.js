@@ -23,7 +23,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Image (props) {
 
     // Destructure token props from pass-through props
-    const { radius, background, style, isRtlActive, ...rest } = props; // eslint-disable-line no-unused-vars
+    const { radius, background, style, ...rest } = props;
 
     // Resolve token props to utility classes
     const classes = [];

@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function FileUploaderButton (props) {
 
     const {
-      label, onPress, disabled, style, isRtlActive, // eslint-disable-line no-unused-vars
+      label, onPress, disabled, style,
       ...rest
     } = props;
 

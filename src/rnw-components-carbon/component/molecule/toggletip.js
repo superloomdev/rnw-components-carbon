@@ -25,7 +25,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Toggletip (props) {
 
     const {
-      content, children, placement, style, isRtlActive // eslint-disable-line no-unused-vars
+      content, children, placement, style
     } = props;
 
     const React = Lib.React;

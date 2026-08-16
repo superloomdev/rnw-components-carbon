@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function ContainedListItem (props) {
 
     const {
-      label, onPress, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      label, onPress, children, style,
       ...rest
     } = props;
 

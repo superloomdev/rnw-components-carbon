@@ -27,7 +27,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function ButtonPrimaryOutlined (props) {
 
     // Destructure props
-    const { title, icon, onPress, disabled, fullWidth, style, isRtlActive, ...rest } = props; // eslint-disable-line no-unused-vars
+    const { title, icon, onPress, disabled, fullWidth, style, ...rest } = props;
 
     const React = Lib.React;
     const [hovered, setHovered] = React.useState(false);

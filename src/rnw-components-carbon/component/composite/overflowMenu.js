@@ -28,7 +28,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function OverflowMenu (props) {
 
     const {
-      items, triggerLabel, placement, style, isRtlActive, // eslint-disable-line no-unused-vars
+      items, triggerLabel, placement, style, // eslint-disable-line no-unused-vars
       ...rest
     } = props;
 

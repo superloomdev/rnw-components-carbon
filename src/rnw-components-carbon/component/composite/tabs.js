@@ -33,7 +33,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
   return function Tabs (props) {
 
     const {
-      selectedIndex, onChange, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      selectedIndex, onChange, children, style,
       ...rest
     } = props;
 

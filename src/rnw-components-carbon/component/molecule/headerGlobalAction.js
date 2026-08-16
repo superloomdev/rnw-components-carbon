@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function HeaderGlobalAction (props) {
 
     const {
-      icon, onPress, label, style, isRtlActive, // eslint-disable-line no-unused-vars
+      icon, onPress, label, style,
       ...rest
     } = props;
 

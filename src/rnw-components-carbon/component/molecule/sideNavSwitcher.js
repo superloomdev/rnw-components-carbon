@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function SideNavSwitcher (props) {
 
     const {
-      label, options, onChange, style, isRtlActive, // eslint-disable-line no-unused-vars
+      label, options, onChange, style,
       ...rest
     } = props;
 

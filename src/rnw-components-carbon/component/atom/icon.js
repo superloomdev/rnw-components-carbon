@@ -25,7 +25,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Icon (props) {
 
     // Destructure token props from pass-through props
-    const { name, size, color, style, isRtlActive, ...rest } = props; // eslint-disable-line no-unused-vars
+    const { name, size, color, style, ...rest } = props;
 
     // Guard: Icons must be injected by the host
     if (!Lib.Icons || !Lib.Icons.Glyph) {

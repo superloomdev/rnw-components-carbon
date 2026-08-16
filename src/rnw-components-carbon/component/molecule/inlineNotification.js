@@ -42,7 +42,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function InlineNotification (props) {
 
     const {
-      title, subtitle, kind, style, isRtlActive, // eslint-disable-line no-unused-vars
+      title, subtitle, kind, style,
       ...rest
     } = props;
 

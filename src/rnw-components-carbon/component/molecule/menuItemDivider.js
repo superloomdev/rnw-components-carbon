@@ -22,7 +22,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function MenuItemDivider (props) {
 
-    const { style, isRtlActive, ...rest } = props; // eslint-disable-line no-unused-vars
+    const { style, ...rest } = props;
 
     const React = Lib.React;
     const colorMap = Style.tokens.Color;

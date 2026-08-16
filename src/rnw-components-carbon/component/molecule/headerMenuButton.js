@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function HeaderMenuButton (props) {
 
     const {
-      onPress, label, isActive, style, isRtlActive, // eslint-disable-line no-unused-vars
+      onPress, label, isActive, style,
       ...rest
     } = props;
 

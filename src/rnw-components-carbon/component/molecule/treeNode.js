@@ -36,7 +36,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function TreeNode (props) {
 
     const {
-      label, children, expanded, onToggle, selected, level, style, isRtlActive, // eslint-disable-line no-unused-vars
+      label, children, expanded, onToggle, selected, level, style,
       ...rest
     } = props;
 

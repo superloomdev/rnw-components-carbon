@@ -28,7 +28,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function MenuButton (props) {
 
     const {
-      label, items, icon, style, isRtlActive, // eslint-disable-line no-unused-vars
+      label, items, icon, style, // eslint-disable-line no-unused-vars
       ...rest
     } = props;
 

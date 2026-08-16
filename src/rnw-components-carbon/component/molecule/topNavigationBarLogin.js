@@ -27,7 +27,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     // Destructure props
     const {
-      title, loginAction, style, isRtlActive, // eslint-disable-line no-unused-vars
+      title, loginAction, style,
       ...rest
     } = props;
 

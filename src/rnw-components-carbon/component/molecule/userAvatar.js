@@ -27,7 +27,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function UserAvatar (props) {
 
     const {
-      src, initials, size, label, style, isRtlActive, // eslint-disable-line no-unused-vars
+      src, initials, size, label, style,
       ...rest
     } = props;
 

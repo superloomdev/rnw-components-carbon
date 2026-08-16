@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function DataTable (props) {
 
     const {
-      headers, rows, style, isRtlActive, // eslint-disable-line no-unused-vars
+      headers, rows, style,
       ...rest
     } = props;
 

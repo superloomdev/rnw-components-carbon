@@ -24,7 +24,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function TabPanels (props) {
 
     const {
-      children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      children, style,
       ...rest
     } = props;
 

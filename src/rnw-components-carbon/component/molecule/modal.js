@@ -33,21 +33,21 @@ Build the Modal molecule.
 module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   // Build the focus trap hook once
-  // Build the overlay host hook once
+  // Build the overlay host hook once,
   const useOverlay = Parts.Overlay.useOverlay;
 
   return function Modal (props) {
 
-    // Destructure props
+    // Destructure props,
     const {
-      isOpen, onClose, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      isOpen, onClose, children, style,
       initialFocusRef, finalFocusRef, ...rest
     } = props;
 
     const React = Lib.React;
 
     // Use the focus trap hook for all six S3 obligations
-    // trap=true for Modal: Tab cycles within the dialog
+    // trap=true for Modal: Tab cycles within the dialog,
     const focusTrap = Parts.FocusTrap({
       isOpen: isOpen,
       onClose: onClose,
@@ -60,7 +60,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     const onOutsidePress = focusTrap.onOutsidePress;
     const accessibilityProps = focusTrap.accessibilityProps;
 
-    // Backdrop: pressable overlay that closes on outside press
+    // Backdrop: pressable overlay that closes on outside press,
     const renderBackdrop = function () {
       return React.createElement(Pressable, {
         onPress: onOutsidePress,
@@ -72,7 +72,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       });
     };
 
-    // Content container with focus trap accessibility props
+    // Content container with focus trap accessibility props,
     const renderContent = function () {
       return React.createElement(
         RNView,
@@ -95,7 +95,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       );
     };
 
-    // On native, use RN Modal for native modal behavior + hardware back
+    // On native, use RN Modal for native modal behavior + hardware back,
     if (Platform.OS !== 'web') {
 
       if (!isOpen) {
@@ -116,7 +116,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     }
 
-    // On web, register with Overlay for stacking
+    // On web, register with Overlay for stacking,
     const overlay = useOverlay({
       isOpen: !!isOpen,
       trap: true,
@@ -131,7 +131,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }
     });
 
-    // When no Overlay is mounted, fall back to fixed positioning
+    // When no Overlay is mounted, fall back to fixed positioning,
     if (overlay.layerIndex < 0) {
 
       if (!isOpen) {
@@ -155,7 +155,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     }
 
-    // Overlay renders the content; return null here
+    // Overlay renders the content; return null here,
     return null;
 
   };

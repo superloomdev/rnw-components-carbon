@@ -27,7 +27,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function RadioTile (props) {
 
     const {
-      name, value, checked, onSelect, style, isRtlActive, // eslint-disable-line no-unused-vars
+      name, value, checked, onSelect, style,
       ...rest
     } = props;
 

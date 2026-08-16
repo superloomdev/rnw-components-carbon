@@ -29,7 +29,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Popover (props) {
 
     const {
-      isOpen, onClose, placement, content, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      isOpen, onClose, placement, content, children, style,
       ...rest
     } = props;
 
