@@ -35,6 +35,7 @@ Build the ActionableNotification molecule.
 @param {Object} Lib      - { Utils, Debug, React }
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
+@param {Object} Parts    - Mechanisms: { A11y, PressKeys, ControllableState, Units, Overlay, AnchoredPosition }
 @param {Object} Registry - Component registry (for atom composition)
 @param {Object} Style   - { utilities, tokens, breakpoint }
 

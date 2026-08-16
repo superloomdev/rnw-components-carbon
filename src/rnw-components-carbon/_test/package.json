@@ -6,7 +6,8 @@
   "scripts": {
     "test": "node --test test.js audit.test.js contract.test.js",
     "test:harness": "node --test audit.test.js contract.test.js",
-    "test:legacy": "node --test test.js"
+    "test:legacy": "node --test test.js",
+    "test:l3": "npx esbuild visual/entry.js --bundle --format=esm --outfile=visual/bundle.js --platform=browser --alias:react-native=react-native-web --define:process.env.NODE_ENV=\\\"development\\\" && npx playwright test interact.test.js"
   },
   "dependencies": {
     "rnw-components-carbon": "file:../",
@@ -19,6 +20,10 @@
     "react-test-renderer": "^18.3.1",
     "react-native-web": "^0.19.13",
     "jsdom": "^25.0.1",
-    "axe-core": "^4.10.3"
+    "axe-core": "^4.10.3",
+    "@axe-core/playwright": "^4.10.0",
+    "@playwright/test": "^1.48.0",
+    "vite": "^6.4.0",
+    "@vitejs/plugin-react": "^4.3.0"
   }
 }
