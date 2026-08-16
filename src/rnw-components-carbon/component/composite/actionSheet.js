@@ -27,7 +27,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function ActionSheet (props) {
 
     const {
-      items, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      items, children, style, // eslint-disable-line no-unused-vars
       ...rest
     } = props;
 

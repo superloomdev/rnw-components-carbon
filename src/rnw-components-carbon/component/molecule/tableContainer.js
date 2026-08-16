@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function TableContainer (props) {
 
     const {
-      children, maxWidth, style, isRtlActive, // eslint-disable-line no-unused-vars
+      children, maxWidth, style,
       ...rest
     } = props;
 

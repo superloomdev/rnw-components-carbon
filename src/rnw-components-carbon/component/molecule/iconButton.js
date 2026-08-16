@@ -29,7 +29,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function IconButton (props) {
 
     const {
-      name, onPress, disabled, size, color, label, style, isRtlActive, // eslint-disable-line no-unused-vars
+      name, onPress, disabled, size, color, label, style,
       ...rest
     } = props;
 

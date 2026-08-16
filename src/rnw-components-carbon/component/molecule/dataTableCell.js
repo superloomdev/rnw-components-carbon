@@ -29,7 +29,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function DataTableCell (props) {
 
     const {
-      content, type, width, onPress, style, isRtlActive, // eslint-disable-line no-unused-vars
+      content, type, width, onPress, style,
       ...rest
     } = props;
 

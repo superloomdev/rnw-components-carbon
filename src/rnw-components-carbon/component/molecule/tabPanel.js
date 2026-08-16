@@ -24,7 +24,7 @@ Build the TabPanel molecule.
 module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function TabPanel (props) {
 
-    const { children, selected, style, isRtlActive, ...rest } = props; // eslint-disable-line no-unused-vars
+    const { children, selected, style, ...rest } = props;
 
     const React = Lib.React;
 

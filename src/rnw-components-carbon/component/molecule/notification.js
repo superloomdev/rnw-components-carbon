@@ -43,7 +43,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Notification (props) {
 
     const {
-      title, subtitle, status, onClose, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      title, subtitle, status, onClose, children, style,
       ...rest
     } = props;
 

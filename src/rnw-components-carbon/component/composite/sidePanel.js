@@ -31,7 +31,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function SidePanel (props) {
 
     const {
-      isOpen, onClose, title, children, side, width, style, isRtlActive, // eslint-disable-line no-unused-vars
+      isOpen, onClose, title, children, side, width, style,
       ...rest
     } = props;
 

@@ -28,7 +28,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function ComboButton (props) {
 
     const {
-      primaryLabel, onPrimaryPress, items, style, isRtlActive, // eslint-disable-line no-unused-vars
+      primaryLabel, onPrimaryPress, items, style,
       ...rest
     } = props;
 

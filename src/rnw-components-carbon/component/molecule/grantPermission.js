@@ -30,7 +30,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function GrantPermission (props) {
 
     const {
-      title, subtitle, icon, onGrant, onDeny, style, isRtlActive, // eslint-disable-line no-unused-vars
+      title, subtitle, icon, onGrant, onDeny, style,
       ...rest
     } = props;
 

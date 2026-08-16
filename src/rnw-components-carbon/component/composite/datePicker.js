@@ -31,7 +31,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     const {
       value, defaultValue, onChange, disabled, invalid, datePickerType,
-      style, isRtlActive, accessibilityLabel, // eslint-disable-line no-unused-vars
+      style, accessibilityLabel,
       ...rest
     } = props;
 

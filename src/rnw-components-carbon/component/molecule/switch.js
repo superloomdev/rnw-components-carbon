@@ -34,7 +34,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Switch (props) {
 
     const {
-      label, selected, onPress, disabled, style, isRtlActive, // eslint-disable-line no-unused-vars
+      label, selected, onPress, disabled, style,
       ...rest
     } = props;
 

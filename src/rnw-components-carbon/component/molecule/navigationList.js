@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function NavigationList (props) {
 
     const {
-      title, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      title, children, style,
       ...rest
     } = props;
 

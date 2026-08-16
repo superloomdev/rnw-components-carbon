@@ -25,7 +25,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function AILabel (props) {
 
     const {
-      label, details, style, isRtlActive, // eslint-disable-line no-unused-vars
+      label, details, style,
       ...rest
     } = props;
 

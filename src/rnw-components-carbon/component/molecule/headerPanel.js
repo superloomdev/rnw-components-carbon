@@ -24,7 +24,7 @@ Build the HeaderPanel molecule.
 module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function HeaderPanel (props) {
 
-    const { children, expanded, style, isRtlActive, ...rest } = props; // eslint-disable-line no-unused-vars
+    const { children, expanded, style, ...rest } = props;
 
     const React = Lib.React;
 

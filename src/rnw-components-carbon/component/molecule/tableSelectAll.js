@@ -28,7 +28,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function TableSelectAll (props) {
 
     const {
-      checked, onSelectAll, ariaLabel, style, isRtlActive, // eslint-disable-line no-unused-vars
+      checked, onSelectAll, ariaLabel, style,
       ...rest
     } = props;
 

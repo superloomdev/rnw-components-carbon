@@ -28,7 +28,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function ShapeIndicator (props) {
 
     const {
-      shape, color, size, label, style, isRtlActive, // eslint-disable-line no-unused-vars
+      shape, color, size, label, style,
       ...rest
     } = props;
 

@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function ClickableTile (props) {
 
     const {
-      title, subtitle, onPress, disabled, style, isRtlActive, // eslint-disable-line no-unused-vars
+      title, subtitle, onPress, disabled, style,
       ...rest
     } = props;
 

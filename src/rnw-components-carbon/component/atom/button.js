@@ -84,7 +84,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     // Destructure props
     const {
       onPress, disabled, background, kind, radius, style, children, accessibilityLabel,
-      isRtlActive, ...rest // eslint-disable-line no-unused-vars
+      ...rest
     } = props;
 
     // kind overrides background when provided

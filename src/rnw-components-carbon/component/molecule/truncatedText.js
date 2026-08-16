@@ -24,7 +24,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
   return function TruncatedText (props) {
 
     const {
-      children, maxLines, style, isRtlActive, // eslint-disable-line no-unused-vars
+      children, maxLines, style,
       ...rest
     } = props;
 

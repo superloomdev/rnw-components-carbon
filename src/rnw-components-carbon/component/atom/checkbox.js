@@ -26,13 +26,13 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Checkbox (props) {
 
     const {
-      checked, onChange, disabled, label, style, isRtlActive, // eslint-disable-line no-unused-vars
+      checked, onChange, disabled, label, style,
       accessibilityLabel, ...rest
     } = props;
 
     const React = Lib.React;
 
-    // Handle toggle: 'mixed' and false both go to true, true goes to false
+    // Handle toggle: 'mixed' and false both go to true, true goes to false,
     const handlePress = function () {
       if (disabled) {
         return;
@@ -42,7 +42,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }
     };
 
-    // Build aria state props through the a11y translator
+    // Build aria state props through the a11y translator,
     const ariaProps = Parts.A11y.state({
       disabled: !!disabled,
       checked: checked
@@ -55,7 +55,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       disabled: !!disabled
     });
 
-    // Resolve the checkbox box style based on checked state
+    // Resolve the checkbox box style based on checked state,
     const colorMap = Style.tokens.Color;
     const boxBase = {
       width: 20,
@@ -87,7 +87,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       };
     }
 
-    // Checkmark for checked state
+    // Checkmark for checked state,
     let checkmark = null;
 
     if (checked === true) {

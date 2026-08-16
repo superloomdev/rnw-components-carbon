@@ -28,7 +28,6 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     const {
       value, text, onSelect, disabled, style,
-      isRtlActive, // eslint-disable-line no-unused-vars
       ...rest
     } = props;
 

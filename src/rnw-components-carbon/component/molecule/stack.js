@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Stack (props) {
 
     const {
-      direction, gap, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      direction, gap, children, style,
       ...rest
     } = props;
 

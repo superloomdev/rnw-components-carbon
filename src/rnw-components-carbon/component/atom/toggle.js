@@ -30,7 +30,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     // Destructure props
     const {
-      value, onValueChange, disabled, style, isRtlActive, accessibilityLabel, // eslint-disable-line no-unused-vars
+      value, onValueChange, disabled, style, accessibilityLabel,
       ...rest
     } = props;
 

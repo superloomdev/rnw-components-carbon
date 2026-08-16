@@ -35,30 +35,30 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   // Build the focus trap hook once
   // Build the a11y translator once per factory
-  // Build the overlay host hook once
+  // Build the overlay host hook once,
   const useOverlay = Parts.Overlay.useOverlay;
 
-  // Build the anchored position hook once
+  // Build the anchored position hook once,
   return function Dropdown (props) {
 
-    // Destructure props
+    // Destructure props,
     const {
-      triggerLabel, items, onSelect, style, isRtlActive, // eslint-disable-line no-unused-vars
+      triggerLabel, items, onSelect, style,
       accessibilityLabel, ...rest
     } = props;
 
     const React = Lib.React;
     const [isOpen, setIsOpen] = React.useState(false);
 
-    // Ref to the trigger element for position measurement
+    // Ref to the trigger element for position measurement,
     const triggerRef = React.useRef(null);
 
-    // Close handler
+    // Close handler,
     const handleClose = function () {
       setIsOpen(false);
     };
 
-    // Use the focus trap hook for all six S3 obligations
+    // Use the focus trap hook for all six S3 obligations,
     const focusTrap = Parts.FocusTrap({
       isOpen: isOpen,
       onClose: handleClose
@@ -68,7 +68,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     const onOutsidePress = focusTrap.onOutsidePress;
     const accessibilityProps = focusTrap.accessibilityProps;
 
-    // Use anchored position for the dropdown panel
+    // Use anchored position for the dropdown panel,
     const anchoredPos = Parts.AnchoredPosition({
       placement: 'bottom-start',
       offset: 4,
@@ -76,7 +76,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       anchorRef: triggerRef
     });
 
-    // Measure position when the dropdown opens
+    // Measure position when the dropdown opens,
     React.useEffect(function () {
 
       if (isOpen) {
@@ -85,12 +85,12 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     }, [isOpen]); // anchoredPos.measure is stable via useCallback
 
-    // Toggle the dropdown open/closed
+    // Toggle the dropdown open/closed,
     const handleTriggerPress = function () {
       setIsOpen(!isOpen);
     };
 
-    // Handle item selection
+    // Handle item selection,
     const handleItemSelect = function (item) {
 
       setIsOpen(false);
@@ -101,12 +101,12 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     };
 
-    // Build aria state props for the trigger through the a11y translator
+    // Build aria state props for the trigger through the a11y translator,
     const triggerAriaProps = Parts.A11y.state({
       expanded: !!isOpen
     });
 
-    // Render the trigger button
+    // Render the trigger button,
     const trigger = React.createElement(
       Pressable,
       Object.assign({
@@ -136,12 +136,12 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       })
     );
 
-    // Nothing more to render when closed
+    // Nothing more to render when closed,
     if (!isOpen) {
       return trigger;
     }
 
-    // Build the dropdown items
+    // Build the dropdown items,
     const itemElements = (items || []).map(function (item) {
       return React.createElement(
         Pressable,
@@ -164,7 +164,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       );
     });
 
-    // Compute panel position: use anchored position if available, fall back
+    // Compute panel position: use anchored position if available, fall back,
     const panelStyle = anchoredPos.position
       ? {
         position: 'absolute',
@@ -179,7 +179,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         minWidth: 200
       };
 
-    // Dropdown panel with focus trap
+    // Dropdown panel with focus trap,
     const renderPanel = function (zIndex) {
       return React.createElement(
         RNView,
@@ -199,7 +199,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       );
     };
 
-    // Backdrop for outside-press dismissal
+    // Backdrop for outside-press dismissal,
     const renderBackdrop = function () {
       return React.createElement(Pressable, {
         onPress: onOutsidePress,
@@ -210,7 +210,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       });
     };
 
-    // On native, render inline with relative positioning
+    // On native, render inline with relative positioning,
     if (Platform.OS !== 'web') {
       return React.createElement(
         RNView,
@@ -221,7 +221,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       );
     }
 
-    // On web, try Overlay for stacking
+    // On web, try Overlay for stacking,
     const overlay = useOverlay({
       isOpen: true,
       trap: false,
@@ -236,7 +236,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }
     });
 
-    // When no Overlay is mounted, fall back to relative positioning
+    // When no Overlay is mounted, fall back to relative positioning,
     if (overlay.layerIndex < 0) {
       return React.createElement(
         RNView,
@@ -247,7 +247,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       );
     }
 
-    // Overlay renders the panel; return just the trigger
+    // Overlay renders the panel; return just the trigger,
     return trigger;
 
   };

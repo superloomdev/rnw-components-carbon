@@ -24,7 +24,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function AISkeletonText (props) {
 
     const {
-      lines, style, isRtlActive, // eslint-disable-line no-unused-vars
+      lines, style,
       ...rest
     } = props;
 

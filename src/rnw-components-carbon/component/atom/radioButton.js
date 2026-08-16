@@ -26,13 +26,13 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function RadioButton (props) {
 
     const {
-      checked, onChange, disabled, label, style, isRtlActive, // eslint-disable-line no-unused-vars
+      checked, onChange, disabled, label, style,
       accessibilityLabel, ...rest
     } = props;
 
     const React = Lib.React;
 
-    // Radio buttons always set to true on press
+    // Radio buttons always set to true on press,
     const handlePress = function () {
       if (disabled) {
         return;
@@ -42,7 +42,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }
     };
 
-    // Build aria state props through the a11y translator
+    // Build aria state props through the a11y translator,
     const ariaProps = Parts.A11y.state({
       disabled: !!disabled,
       checked: !!checked
@@ -55,7 +55,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       disabled: !!disabled
     });
 
-    // Resolve the radio circle style
+    // Resolve the radio circle style,
     const colorMap = Style.tokens.Color;
     const circleBase = {
       width: 20,
@@ -78,7 +78,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           : (colorMap.BORDER || '#a8a8a8')
       };
 
-    // Inner dot for checked state
+    // Inner dot for checked state,
     let innerDot = null;
 
     if (checked) {

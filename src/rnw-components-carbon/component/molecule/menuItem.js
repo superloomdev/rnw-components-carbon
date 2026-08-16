@@ -27,7 +27,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function MenuItem (props) {
 
     const {
-      label, onPress, disabled, icon, shortcut, style, isRtlActive, // eslint-disable-line no-unused-vars
+      label, onPress, disabled, icon, shortcut, style,
       ...rest
     } = props;
 

@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     const {
       children, label, invalid, message, disabled,
-      style, isRtlActive, accessibilityLabel, // eslint-disable-line no-unused-vars
+      style, accessibilityLabel,
       ...rest
     } = props;
 

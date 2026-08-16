@@ -24,7 +24,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function SideNavIcon (props) {
 
     const {
-      name, style, isRtlActive, // eslint-disable-line no-unused-vars
+      name, style,
       ...rest
     } = props;
 

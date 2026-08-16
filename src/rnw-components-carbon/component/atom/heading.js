@@ -22,7 +22,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
   return function Heading (props) {
 
     const {
-      level, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      level, children, style,
       ...rest
     } = props;
 

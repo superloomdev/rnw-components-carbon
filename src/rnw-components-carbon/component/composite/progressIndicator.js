@@ -32,7 +32,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function ProgressIndicator (props) {
 
     const {
-      current, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      current, children, style,
       ...rest
     } = props;
 

@@ -28,7 +28,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function StructuredListInput (props) {
 
     const {
-      name, value, checked, onChange, style, isRtlActive, // eslint-disable-line no-unused-vars
+      name, value, checked, onChange, style,
       ...rest
     } = props;
 

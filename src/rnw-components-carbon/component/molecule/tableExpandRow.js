@@ -27,7 +27,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function TableExpandRow (props) {
 
     const {
-      isExpanded, onToggle, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      isExpanded, onToggle, children, style,
       ...rest
     } = props;
 

@@ -27,7 +27,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function BreadcrumbItem (props) {
 
     const {
-      href, onPress, children, isCurrentPage, style, isRtlActive, // eslint-disable-line no-unused-vars
+      href, onPress, children, isCurrentPage, style,
       ...rest
     } = props;
 

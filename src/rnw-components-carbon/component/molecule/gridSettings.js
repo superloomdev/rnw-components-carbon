@@ -25,7 +25,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function GridSettings (props) {
 
     const {
-      columns, gap, style, isRtlActive, // eslint-disable-line no-unused-vars
+      columns, gap, style,
       ...rest
     } = props;
 

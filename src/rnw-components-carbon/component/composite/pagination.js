@@ -28,7 +28,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Pagination (props) {
 
     const {
-      page, totalPage, onChange, pageSize, style, isRtlActive, // eslint-disable-line no-unused-vars
+      page, totalPage, onChange, pageSize, style, // eslint-disable-line no-unused-vars
       ...rest
     } = props;
 

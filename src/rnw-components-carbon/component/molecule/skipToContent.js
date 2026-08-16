@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function SkipToContent (props) {
 
     const {
-      href, targetId, style, isRtlActive, // eslint-disable-line no-unused-vars
+      href, targetId, style,
       ...rest
     } = props;
 

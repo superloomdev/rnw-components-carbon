@@ -27,7 +27,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
   return function MenuItemRadioGroup (props) {
 
     const {
-      items, value, onChange, style, isRtlActive, // eslint-disable-line no-unused-vars
+      items, value, onChange, style,
       ...rest
     } = props;
 

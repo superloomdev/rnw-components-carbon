@@ -32,7 +32,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Text (props) {
 
     // Destructure token props from pass-through props
-    const { size, color, weight, align, style, children, isRtlActive, ...rest } = props;
+    const { size, color, weight, align, style, children, ...rest } = props;
 
     // Resolve token props to utility classes, falling back to defaults
     const classes = [];
@@ -76,7 +76,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     }
 
     // iOS needs an explicit writing direction under RTL
-    if (isRtlActive && Platform.OS === 'ios') {
+    if (Parts.Direction.isRtl() && Platform.OS === 'ios') {
       classes.push(StaticStyle.rtlIOS);
     }
 

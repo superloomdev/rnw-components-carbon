@@ -28,7 +28,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function DataTableHeaderSelected (props) {
 
     const {
-      selectedCount, batchActions, onCancel, style, isRtlActive, // eslint-disable-line no-unused-vars
+      selectedCount, batchActions, onCancel, style,
       ...rest
     } = props;
 

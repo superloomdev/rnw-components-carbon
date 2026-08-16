@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function DataTableRow (props) {
 
     const {
-      cells, onPress, selected, style, isRtlActive, // eslint-disable-line no-unused-vars
+      cells, onPress, selected, style,
       ...rest
     } = props;
 

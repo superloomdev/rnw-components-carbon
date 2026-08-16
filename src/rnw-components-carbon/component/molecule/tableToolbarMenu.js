@@ -27,7 +27,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
   return function TableToolbarMenu (props) {
 
     const {
-      label, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      label, children, style,
       ...rest
     } = props;
 

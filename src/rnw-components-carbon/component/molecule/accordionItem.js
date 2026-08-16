@@ -33,7 +33,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function AccordionItem (props) {
 
     const {
-      title, children, expanded, onToggle, style, isRtlActive, // eslint-disable-line no-unused-vars
+      title, children, expanded, onToggle, style,
       ...rest
     } = props;
 

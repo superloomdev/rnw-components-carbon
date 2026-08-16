@@ -28,7 +28,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function FormLabel (props) {
 
     const {
-      children, htmlFor, required, disabled, style, isRtlActive, // eslint-disable-line no-unused-vars
+      children, htmlFor, required, disabled, style,
       ...rest
     } = props;
 

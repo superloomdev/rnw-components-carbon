@@ -27,7 +27,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function CopyButton (props) {
 
     const {
-      text, label, onCopy, disabled, style, isRtlActive, // eslint-disable-line no-unused-vars
+      text, label, onCopy, disabled, style,
       ...rest
     } = props;
 

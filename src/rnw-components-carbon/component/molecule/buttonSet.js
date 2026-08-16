@@ -25,7 +25,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function ButtonSet (props) {
 
     const {
-      children, stacked, style, isRtlActive, // eslint-disable-line no-unused-vars
+      children, stacked, style,
       ...rest
     } = props;
 

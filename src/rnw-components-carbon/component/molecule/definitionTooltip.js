@@ -24,7 +24,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function DefinitionTooltip (props) {
 
     const {
-      term, definition, style, isRtlActive, // eslint-disable-line no-unused-vars
+      term, definition, style, // eslint-disable-line no-unused-vars
       ...rest
     } = props;
 

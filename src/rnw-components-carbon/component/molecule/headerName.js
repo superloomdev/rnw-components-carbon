@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function HeaderName (props) {
 
     const {
-      text, onPress, prefix, style, isRtlActive, // eslint-disable-line no-unused-vars
+      text, onPress, prefix, style,
       ...rest
     } = props;
 

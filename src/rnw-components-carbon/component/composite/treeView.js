@@ -70,7 +70,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
   return function TreeView (props) {
 
     const {
-      data, onSelect, expandedKeys, style, isRtlActive, // eslint-disable-line no-unused-vars
+      data, onSelect, expandedKeys, style,
       ...rest
     } = props;
 

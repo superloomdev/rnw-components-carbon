@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function SelectableTile (props) {
 
     const {
-      title, selected, onSelect, disabled, style, isRtlActive, // eslint-disable-line no-unused-vars
+      title, selected, onSelect, disabled, style,
       ...rest
     } = props;
 

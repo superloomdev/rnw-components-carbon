@@ -25,7 +25,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function OperationalTag (props) {
 
     const {
-      text, onAction, style, isRtlActive, // eslint-disable-line no-unused-vars
+      text, onAction, style,
       ...rest
     } = props;
 

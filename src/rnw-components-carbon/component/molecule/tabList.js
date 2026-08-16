@@ -23,7 +23,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function TabList (props) {
 
-    const { children, style, isRtlActive, ...rest } = props; // eslint-disable-line no-unused-vars
+    const { children, style, ...rest } = props;
 
     const React = Lib.React;
 

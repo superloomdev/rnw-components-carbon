@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function IconSwitch (props) {
 
     const {
-      icon, checked, onToggle, style, isRtlActive, // eslint-disable-line no-unused-vars
+      icon, checked, onToggle, style,
       ...rest
     } = props;
 

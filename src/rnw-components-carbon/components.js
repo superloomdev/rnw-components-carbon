@@ -136,7 +136,8 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
         Overlay:          require('./parts/overlay')(Lib, partsConfig, ERRORS),
         CompoundContext:  require('./parts/compound-context')(Lib, partsConfig, ERRORS),
         Units:            require('./parts/units')(Lib, partsConfig, ERRORS),
-        Typeface:         require('./parts/typeface')(Lib, partsConfig, ERRORS)
+        Typeface:         require('./parts/typeface')(Lib, partsConfig, ERRORS),
+        Direction:        require('./parts/direction')(Lib, partsConfig, ERRORS)
       };
 
       // Generate utility styles for every breakpoint, memoized by key

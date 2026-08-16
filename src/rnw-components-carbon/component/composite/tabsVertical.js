@@ -34,7 +34,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function TabsVertical (props) {
 
     const {
-      selectedIndex, onChange, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      selectedIndex, onChange, children, style,
       ...rest
     } = props;
 

@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function OverflowMenuItem (props) {
 
     const {
-      text, onPress, disabled, style, isRtlActive, // eslint-disable-line no-unused-vars
+      text, onPress, disabled, style,
       ...rest
     } = props;
 

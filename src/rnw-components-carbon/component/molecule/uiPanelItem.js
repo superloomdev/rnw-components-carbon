@@ -28,7 +28,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     // Destructure props
     const {
-      icon, text, onPress, style, isRtlActive, // eslint-disable-line no-unused-vars
+      icon, text, onPress, style,
       ...rest
     } = props;
 

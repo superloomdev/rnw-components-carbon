@@ -1,7 +1,6 @@
 // Info: View atom [S1 presentational]. The base layout box. Convenience props
 // map to generated utility classes (background / radius / border); anything
-// else falls through `style`. `isRtlActive` is destructured out so it is
-// never forwarded to the DOM on web.
+// else falls through `style`.
 'use strict';
 
 const { View: RNView } = require('react-native');
@@ -24,7 +23,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function View (props) {
 
     // Destructure token props from pass-through props
-    const { background, radius, border, style, children, isRtlActive, ...rest } = props; // eslint-disable-line no-unused-vars
+    const { background, radius, border, style, children, ...rest } = props;
 
     // Resolve token props to utility classes
     const classes = [];

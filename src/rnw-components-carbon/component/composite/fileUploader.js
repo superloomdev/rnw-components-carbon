@@ -28,7 +28,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function FileUploader (props) {
 
     const {
-      label, accept, multiple, onChange, style, isRtlActive, // eslint-disable-line no-unused-vars
+      label, accept, multiple, onChange, style, // eslint-disable-line no-unused-vars
       ...rest
     } = props;
 

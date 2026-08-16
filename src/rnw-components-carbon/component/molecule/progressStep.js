@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function ProgressStep (props) {
 
     const {
-      label, status, stepNumber, style, isRtlActive, // eslint-disable-line no-unused-vars
+      label, status, stepNumber, style,
       ...rest
     } = props;
 

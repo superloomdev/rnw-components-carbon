@@ -25,7 +25,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
   return function ViewWrapper (props) {
 
     const {
-      children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      children, style,
       ...rest
     } = props;
 

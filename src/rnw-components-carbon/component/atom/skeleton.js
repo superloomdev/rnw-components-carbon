@@ -27,7 +27,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Skeleton (props) {
 
     const {
-      variant, lines, width, height, style, isRtlActive, // eslint-disable-line no-unused-vars
+      variant, lines, width, height, style,
       ...rest
     } = props;
 

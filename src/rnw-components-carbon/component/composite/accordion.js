@@ -35,7 +35,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
   return function Accordion (props) {
 
     const {
-      allowMultiple, expandedKeys, onChange, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      allowMultiple, expandedKeys, onChange, children, style,
       ...rest
     } = props;
 

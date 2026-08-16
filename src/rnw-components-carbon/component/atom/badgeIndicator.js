@@ -26,7 +26,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function BadgeIndicator (props) {
 
     const {
-      count, max, color, style, isRtlActive, // eslint-disable-line no-unused-vars
+      count, max, color, style, // eslint-disable-line no-unused-vars
       ...rest
     } = props;
 

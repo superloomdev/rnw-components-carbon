@@ -24,7 +24,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function TableDecoratorRow (props) {
 
     const {
-      style, isRtlActive, // eslint-disable-line no-unused-vars
+      style,
       ...rest
     } = props;
 
