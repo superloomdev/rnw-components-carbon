@@ -3484,3 +3484,571 @@ test('SwitcherItem renders with role link', function () {
   assert.ok(findRole(tree, 'link'), 'SwitcherItem should contain a link');
 
 });
+
+
+// ~~~~~~~~~~~~~~~~~~~~ P4.5 FileUploader, Header, SideNav, StructuredList, Tab, Tile ~~~~~~~~~~~~~~~~~~~~
+
+test('FileUploader renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.FileUploader, {
+      label: 'Upload',
+      onChange: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'FileUploader should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('FileUploaderButton renders with role button', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.FileUploaderButton, {
+      label: 'Add file',
+      onPress: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'FileUploaderButton should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'button'), 'FileUploaderButton should contain a button');
+
+});
+
+test('FileUploaderDropContainer renders with role button', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.FileUploaderDropContainer, {
+      label: 'Drop here',
+      onDrop: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'FileUploaderDropContainer should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'button'), 'FileUploaderDropContainer should contain a button');
+
+});
+
+test('FileUploaderItem renders with role listitem', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.FileUploaderItem, {
+      filename: 'test.pdf',
+      status: 'complete',
+      onRemove: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'FileUploaderItem should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'listitem');
+
+});
+
+test('Filename renders with role text', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Filename, {
+      name: 'document.pdf',
+      status: 'complete'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'Filename should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'text');
+
+});
+
+test('HeaderContainer renders with role banner', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.HeaderContainer, null, 'header content')
+  ).toJSON();
+
+  assert.ok(tree, 'HeaderContainer should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'banner');
+
+});
+
+test('HeaderGlobalAction renders with role button', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.HeaderGlobalAction, {
+      icon: 'settings',
+      onPress: function () {},
+      label: 'Settings'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'HeaderGlobalAction should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'button'), 'HeaderGlobalAction should contain a button');
+
+});
+
+test('HeaderGlobalBar renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.HeaderGlobalBar, null, 'actions')
+  ).toJSON();
+
+  assert.ok(tree, 'HeaderGlobalBar should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('HeaderMenu renders with role menu', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.HeaderMenu, { label: 'Menu' },
+      React.createElement(Component.HeaderMenuItem, { text: 'Item', onPress: function () {} })
+    )
+  ).toJSON();
+
+  assert.ok(tree, 'HeaderMenu should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'menu');
+
+});
+
+test('HeaderMenuItem renders with role menuitem', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.HeaderMenuItem, {
+      text: 'Item',
+      onPress: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'HeaderMenuItem should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'menuitem'), 'HeaderMenuItem should contain a menuitem');
+
+});
+
+test('HeaderName renders with role link', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.HeaderName, {
+      text: 'MyApp',
+      prefix: 'IBM',
+      onPress: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'HeaderName should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'link'), 'HeaderName should contain a link');
+
+});
+
+test('HeaderSideNavItems renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.HeaderSideNavItems, null, 'nav items')
+  ).toJSON();
+
+  assert.ok(tree, 'HeaderSideNavItems should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('SideNav renders with role navigation', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SideNav, { expanded: true }, 'nav content')
+  ).toJSON();
+
+  assert.ok(tree, 'SideNav should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'navigation');
+
+});
+
+test('SideNavDetails renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SideNavDetails, { title: 'Details' }, 'content')
+  ).toJSON();
+
+  assert.ok(tree, 'SideNavDetails should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('SideNavDivider renders with role separator', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SideNavDivider)
+  ).toJSON();
+
+  assert.ok(tree, 'SideNavDivider should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'separator');
+
+});
+
+test('SideNavFooter renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SideNavFooter, null, 'footer')
+  ).toJSON();
+
+  assert.ok(tree, 'SideNavFooter should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('SideNavHeader renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SideNavHeader, { title: 'Header' }, 'content')
+  ).toJSON();
+
+  assert.ok(tree, 'SideNavHeader should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('SideNavIcon renders with role img', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SideNavIcon, { name: 'home' })
+  ).toJSON();
+
+  assert.ok(tree, 'SideNavIcon should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'img');
+
+});
+
+test('SideNavItem renders with role link', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SideNavItem, {
+      text: 'Home',
+      onPress: function () {},
+      active: true
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'SideNavItem should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'link'), 'SideNavItem should contain a link');
+
+});
+
+test('SideNavItems renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SideNavItems, null, 'items')
+  ).toJSON();
+
+  assert.ok(tree, 'SideNavItems should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('SideNavLink renders with role link', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SideNavLink, {
+      text: 'Link',
+      onPress: function () {},
+      icon: 'home'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'SideNavLink should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'link'), 'SideNavLink should contain a link');
+
+});
+
+test('SideNavLinkText renders with role text', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SideNavLinkText, null, 'link text')
+  ).toJSON();
+
+  assert.ok(tree, 'SideNavLinkText should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'text');
+
+});
+
+test('SideNavMenu renders with role button', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SideNavMenu, {
+      label: 'Menu',
+      expanded: false,
+      onToggle: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'SideNavMenu should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'button'), 'SideNavMenu should contain a button');
+
+});
+
+test('SideNavMenuItem renders with role menuitem', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SideNavMenuItem, {
+      text: 'Sub-item',
+      onPress: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'SideNavMenuItem should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'menuitem'), 'SideNavMenuItem should contain a menuitem');
+
+});
+
+test('SideNavSwitcher renders with role button', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SideNavSwitcher, {
+      label: 'Switcher',
+      options: ['A', 'B'],
+      onChange: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'SideNavSwitcher should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'button'), 'SideNavSwitcher should contain a button');
+
+});
+
+test('StructuredListBody renders with role rowgroup', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.StructuredListBody, null, 'body')
+  ).toJSON();
+
+  assert.ok(tree, 'StructuredListBody should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'rowgroup');
+
+});
+
+test('StructuredListHead renders with role rowgroup', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.StructuredListHead, null, 'head')
+  ).toJSON();
+
+  assert.ok(tree, 'StructuredListHead should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'rowgroup');
+
+});
+
+test('StructuredListInput renders with role radio', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.StructuredListInput, {
+      name: 'group',
+      value: 'opt1',
+      checked: false,
+      onChange: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'StructuredListInput should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'radio'), 'StructuredListInput should contain a radio');
+
+});
+
+test('TabContent renders with role tabpanel', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TabContent, null, 'content')
+  ).toJSON();
+
+  assert.ok(tree, 'TabContent should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'tabpanel');
+
+});
+
+test('TabListVertical renders with role tablist', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TabListVertical, null, 'tabs')
+  ).toJSON();
+
+  assert.ok(tree, 'TabListVertical should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'tablist');
+
+});
+
+test('TabPanels renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TabPanels, null, 'panels')
+  ).toJSON();
+
+  assert.ok(tree, 'TabPanels should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('TabsVertical renders with role tablist', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TabsVertical, {
+      selectedIndex: 0,
+      onChange: function () {}
+    },
+    React.createElement(Component.Tab, { label: 'Tab 1' }),
+    React.createElement(Component.Tab, { label: 'Tab 2' })
+    )
+  ).toJSON();
+
+  assert.ok(tree, 'TabsVertical should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'tablist');
+
+});
+
+test('TileAboveTheFoldContent renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TileAboveTheFoldContent, null, 'above')
+  ).toJSON();
+
+  assert.ok(tree, 'TileAboveTheFoldContent should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('TileBelowTheFoldContent renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TileBelowTheFoldContent, null, 'below')
+  ).toJSON();
+
+  assert.ok(tree, 'TileBelowTheFoldContent should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('TileGroup renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TileGroup, null, 'tiles')
+  ).toJSON();
+
+  assert.ok(tree, 'TileGroup should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});

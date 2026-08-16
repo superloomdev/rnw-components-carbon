@@ -409,6 +409,43 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       // TimeInput deleted in P3: TimePicker is the text field.
       Component.DateInput = make(require('./component/composite/dateInput'));
 
+      // ~~~~~~~~~~ P4.5 FileUploader, Header, SideNav, StructuredList, Tab, Tile ~~~~~~~~~~
+      Component.FileUploader = make(require('./component/composite/fileUploader'));
+      Component.FileUploaderButton = make(require('./component/molecule/fileUploaderButton'));
+      Component.FileUploaderDropContainer = make(require('./component/molecule/fileUploaderDropContainer'));
+      Component.FileUploaderItem = make(require('./component/molecule/fileUploaderItem'));
+      Component.Filename = make(require('./component/molecule/filename'));
+      Component.HeaderContainer = make(require('./component/molecule/headerContainer'));
+      Component.HeaderGlobalAction = make(require('./component/molecule/headerGlobalAction'));
+      Component.HeaderGlobalBar = make(require('./component/molecule/headerGlobalBar'));
+      Component.HeaderMenu = make(require('./component/molecule/headerMenu'));
+      Component.HeaderMenuItem = make(require('./component/molecule/headerMenuItem'));
+      Component.HeaderName = make(require('./component/molecule/headerName'));
+      Component.HeaderSideNavItems = make(require('./component/molecule/headerSideNavItems'));
+      Component.SideNav = make(require('./component/molecule/sideNav'));
+      Component.SideNavDetails = make(require('./component/molecule/sideNavDetails'));
+      Component.SideNavDivider = make(require('./component/molecule/sideNavDivider'));
+      Component.SideNavFooter = make(require('./component/molecule/sideNavFooter'));
+      Component.SideNavHeader = make(require('./component/molecule/sideNavHeader'));
+      Component.SideNavIcon = make(require('./component/molecule/sideNavIcon'));
+      Component.SideNavItem = make(require('./component/molecule/sideNavItem'));
+      Component.SideNavItems = make(require('./component/molecule/sideNavItems'));
+      Component.SideNavLink = make(require('./component/molecule/sideNavLink'));
+      Component.SideNavLinkText = make(require('./component/molecule/sideNavLinkText'));
+      Component.SideNavMenu = make(require('./component/molecule/sideNavMenu'));
+      Component.SideNavMenuItem = make(require('./component/molecule/sideNavMenuItem'));
+      Component.SideNavSwitcher = make(require('./component/molecule/sideNavSwitcher'));
+      Component.StructuredListBody = make(require('./component/molecule/structuredListBody'));
+      Component.StructuredListHead = make(require('./component/molecule/structuredListHead'));
+      Component.StructuredListInput = make(require('./component/molecule/structuredListInput'));
+      Component.TabContent = make(require('./component/molecule/tabContent'));
+      Component.TabListVertical = make(require('./component/molecule/tabListVertical'));
+      Component.TabPanels = make(require('./component/molecule/tabPanels'));
+      Component.TabsVertical = make(require('./component/composite/tabsVertical'));
+      Component.TileAboveTheFoldContent = make(require('./component/molecule/tileAboveTheFoldContent'));
+      Component.TileBelowTheFoldContent = make(require('./component/molecule/tileBelowTheFoldContent'));
+      Component.TileGroup = make(require('./component/molecule/tileGroup'));
+
       // ~~~~~~~~~~ Structured exceptions (variant registry) ~~~~~~~~~~
       Component.variant = {
         ButtonPrimaryOutlined: make(require('./component/variant/buttonPrimaryOutlined'))
