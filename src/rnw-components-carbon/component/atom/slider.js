@@ -70,8 +70,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     });
 
     // Clamp and round the display value
-    const clampedValue = Math.max(minVal, Math.min(maxVal, resolvedValue));
-    const displayText = Math.round(clampedValue) + '';
+    const clampedValue = Parts.Units.clamp(resolvedValue, minVal, maxVal);
+    const displayText = Parts.Units.round(clampedValue) + '';
 
     const ariaValueProps = Parts.A11y.value({
       min: minVal,
@@ -95,7 +95,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       if (isDisabled) {
         return;
       }
-      const next = Math.max(minVal, clampedValue - stepVal);
+      const next = Parts.Units.clamp(clampedValue - stepVal, minVal, maxVal);
       setValue(next);
     };
 
@@ -103,7 +103,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       if (isDisabled) {
         return;
       }
-      const next = Math.min(maxVal, clampedValue + stepVal);
+      const next = Parts.Units.clamp(clampedValue + stepVal, minVal, maxVal);
       setValue(next);
     };
 
@@ -206,7 +206,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           onChangeText: function (text) {
             const num = Number(text);
             if (Lib.Utils.isNumber(num)) {
-              setValue(Math.max(minVal, Math.min(maxVal, num)));
+              setValue(Parts.Units.clamp(num, minVal, maxVal));
             }
           },
           keyboardType: 'numeric',

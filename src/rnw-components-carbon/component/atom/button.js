@@ -60,8 +60,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       return undefined;
     }
 
-    const padV = Math.max(0, Math.ceil((CONFIG.MIN_HIT_TARGET - height) / 2));
-    const padH = Math.max(0, Math.ceil((CONFIG.MIN_HIT_TARGET - width) / 2));
+    const padV = Parts.Units.clamp(Parts.Units.ceil((CONFIG.MIN_HIT_TARGET - height) / 2), 0, Infinity);
+    const padH = Parts.Units.clamp(Parts.Units.ceil((CONFIG.MIN_HIT_TARGET - width) / 2), 0, Infinity);
 
     return { top: padV, bottom: padV, left: padH, right: padH };
 

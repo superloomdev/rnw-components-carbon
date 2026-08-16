@@ -42,8 +42,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
 
     // Compute this layer's level: override, or parent + 1, clamped to 0-2
     const myLevel = Lib.Utils.isNumber(overrideLevel)
-      ? Math.max(0, Math.min(2, overrideLevel))
-      : Math.max(0, Math.min(2, parentLayer + 1));
+      ? Parts.Units.clamp(overrideLevel, 0, 2)
+      : Parts.Units.clamp(parentLayer + 1, 0, 2);
 
     return React.createElement(
       LayerContext.Provider,

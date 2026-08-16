@@ -153,6 +153,77 @@ const createInterface = function (Lib, DATA, UNIT_PATTERN) {
     },
 
 
+    /********************************************************************
+        Round a number to the nearest integer.
+
+        @param {Number} value - Value to round
+
+        @return {Number} - Rounded value, or 0 on non-numeric input
+    *********************************************************************/
+    round: function (value) {
+
+      if (!Lib.Utils.isNumber(value)) {
+        return 0;
+      }
+
+      return Math.round(value);
+
+    },
+
+
+    /********************************************************************
+        Round a number up to the nearest integer.
+
+        @param {Number} value - Value to round up
+
+        @return {Number} - Ceiling value, or 0 on non-numeric input
+    *********************************************************************/
+    ceil: function (value) {
+
+      if (!Lib.Utils.isNumber(value)) {
+        return 0;
+      }
+
+      return Math.ceil(value);
+
+    },
+
+
+    /********************************************************************
+        Parse an integer from a string. Centralizes parseInt so
+        components never call it directly.
+
+        @param {String} value - String to parse
+        @param {Number} [radix] - Radix (default 10)
+
+        @return {Number|null} - Parsed integer, or null on failure
+    *********************************************************************/
+    parseInteger: function (value, radix) {
+
+      const parsed = parseInt(value, radix || 10);
+
+      return Lib.Utils.isNumber(parsed) ? parsed : null;
+
+    },
+
+
+    /********************************************************************
+        Parse a float from a string. Centralizes parseFloat so
+        components never call it directly.
+
+        @param {String} value - String to parse
+
+        @return {Number|null} - Parsed float, or null on failure
+    *********************************************************************/
+    parseNumber: function (value) {
+
+      const parsed = parseFloat(value);
+
+      return Lib.Utils.isNumber(parsed) ? parsed : null;
+
+    },
+
+
     // ~~~~~~~~~~~~~~~~~~~~ Native Contract ~~~~~~~~~~~~~~~~~~~~
     // The enforcement side of the same contract. React Native on iOS and
     // Android rejects unit strings for these props while web silently accepts
