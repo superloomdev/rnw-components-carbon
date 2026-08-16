@@ -354,6 +354,41 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.ToggletipButton = make(require('./component/molecule/toggletipButton'));
       Component.ToggletipContent = make(require('./component/molecule/toggletipContent'));
 
+      // ~~~~~~~~~~ P4.4 Notifications and feedback ~~~~~~~~~~
+      Component.AILabelActions = make(require('./component/molecule/aILabelActions'));
+      Component.AILabelContent = make(require('./component/molecule/aILabelContent'));
+      Component.AISkeletonIcon = make(require('./component/molecule/aISkeletonIcon'));
+      Component.AISkeletonPlaceholder = make(require('./component/molecule/aISkeletonPlaceholder'));
+      Component.AISkeletonText = make(require('./component/molecule/aISkeletonText'));
+      Component.ActionableNotification = make(require('./component/molecule/actionableNotification'));
+      Component.ColumnHang = make(require('./component/molecule/columnHang'));
+      Component.ContainedList = make(require('./component/molecule/containedList'));
+      Component.Content = make(require('./component/molecule/content'));
+      Component.Copy = make(require('./component/molecule/copy'));
+      Component.DismissibleTag = make(require('./component/molecule/dismissibleTag'));
+      Component.ExpandableTile = make(require('./component/molecule/expandableTile'));
+      Component.GlobalTheme = make(require('./component/molecule/globalTheme'));
+      Component.GridSettings = make(require('./component/molecule/gridSettings'));
+      Component.HStack = make(require('./component/molecule/hStack'));
+      Component.IconSwitch = make(require('./component/molecule/iconSwitch'));
+      Component.IconTab = make(require('./component/molecule/iconTab'));
+      Component.InlineNotification = make(require('./component/molecule/inlineNotification'));
+      Component.MenuItemGroup = make(require('./component/molecule/menuItemGroup'));
+      Component.NotificationActionButton = make(require('./component/molecule/notificationActionButton'));
+      Component.NotificationButton = make(require('./component/molecule/notificationButton'));
+      Component.OperationalTag = make(require('./component/molecule/operationalTag'));
+      Component.OverflowMenuItem = make(require('./component/molecule/overflowMenuItem'));
+      Component.RadioTile = make(require('./component/molecule/radioTile'));
+      Component.Section = make(require('./component/molecule/section'));
+      Component.SkeletonIcon = make(require('./component/molecule/skeletonIcon'));
+      Component.SkeletonPlaceholder = make(require('./component/molecule/skeletonPlaceholder'));
+      Component.SkeletonText = make(require('./component/molecule/skeletonText'));
+      Component.SkipToContent = make(require('./component/molecule/skipToContent'));
+      Component.VStack = make(require('./component/molecule/vStack'));
+      Component.Switcher = make(require('./component/molecule/switcher'));
+      Component.SwitcherDivider = make(require('./component/molecule/switcherDivider'));
+      Component.SwitcherItem = make(require('./component/molecule/switcherItem'));
+
       // ~~~~~~~~~~ Composites (Wave 6 form components) ~~~~~~~~~~
       // Form composites use M1 (a11y), M3 (useRovingTabIndex), M4 (Overlay),
       // M5 (useAnchoredPosition), M7 (createCompoundContext), M8 (useControllableState).
