@@ -2,6 +2,11 @@
   "name": "@superloomdev/rnw-components-carbon",
   "description": "Carbon-informed component library for the RNW pipeline. Atoms and molecules over the themer, with theme-driven responsiveness and a real accessibility contract",
   "version": "1.0.0",
+  "author": {
+    "name": "sj00"
+  },
+  "contributors": [],
+  "private": false,
   "license": "MIT",
   "main": "components.js",
   "exports": {
@@ -32,6 +37,7 @@
     "@superloomdev/js-helper-eslint-config": "^1.0.0"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com",
+    "access": "public"
   }
 }
