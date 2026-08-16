@@ -7,7 +7,7 @@
   "exports": {
     ".": "./components.js",
     "./data/*": "./data/*",
-    "./data/hint-props": "./_test/harness/props.js",
+    "./data/hint-props": "./data/hint-props.js",
     "./component/*": "./component/*",
     "./parts/*": "./parts/*"
   },
