@@ -4,7 +4,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "test": "node --test test.js"
+    "test": "node --test test.js audit.test.js contract.test.js",
+    "test:harness": "node --test audit.test.js contract.test.js",
+    "test:legacy": "node --test test.js"
   },
   "dependencies": {
     "rnw-components-carbon": "file:../",
@@ -13,6 +15,10 @@
     "helper-themer": "npm:@superloomdev/js-client-helper-themer@^1.0.0",
     "helper-device": "npm:@superloomdev/js-rnw-helper-device@^1.0.0",
     "react": "^18.3.1",
-    "react-test-renderer": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-test-renderer": "^18.3.1",
+    "react-native-web": "^0.19.13",
+    "jsdom": "^25.0.1",
+    "axe-core": "^4.10.3"
   }
 }

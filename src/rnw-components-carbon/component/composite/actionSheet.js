@@ -68,8 +68,13 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       });
     });
 
-    // Clone children with trigger props
-    const trigger = React.cloneElement(children, Object.assign({}, ariaProps, triggerProps));
+    // Wrap children in a container with trigger props instead of cloneElement.
+    // cloneElement breaks when children are wrapped in React.memo or forwardRef.
+    const trigger = React.createElement(
+      RNView,
+      Object.assign({}, ariaProps, triggerProps),
+      children
+    );
 
     return React.createElement(
       RNView,
