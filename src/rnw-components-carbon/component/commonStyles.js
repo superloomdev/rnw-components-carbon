@@ -75,10 +75,12 @@ space tokens.
 
 @param {Object} theme      - { Color, Dimension, Font, Breakpoint }
 @param {String} breakpoint - Breakpoint key (e.g. 'base', 'sm', 'md')
+@param {Object} Parts      - Mechanism parts; uses Parts.Typeface for
+                              font weight resolution
 
 @return {Object} - StyleSheet of utility classes keyed by name
 *********************************************************************/
-module.exports = function generateCommonStyles (theme, breakpoint) { // eslint-disable-line no-unused-vars
+module.exports = function generateCommonStyles (theme, breakpoint, Parts) {
 
   const Color = theme.Color;
   const Dimension = theme.Dimension;
@@ -113,16 +115,15 @@ module.exports = function generateCommonStyles (theme, breakpoint) { // eslint-d
   }
 
 
-  // ~~~~~~~~~~ Font weights (bound to the primary family) ~~~~~~~~~~
+  // ~~~~~~~~~~ Font weights (resolved through Parts.Typeface) ~~~~~~~~~~
   const weightKeys = Object.keys(Font.weight);
 
   for (let i = 0; i < weightKeys.length; i++) {
     const w = weightKeys[i];
 
-    styles['font_weight_' + w] = {
-      fontWeight: Font.weight[w],
-      fontFamily: Font.family.primary
-    };
+    // Typeface.styleFor returns { fontFamily } for per-weight-face families
+    // or { fontFamily, fontWeight } for synthesizing families (System, etc.)
+    styles['font_weight_' + w] = Parts.Typeface.styleFor('primary', Font.weight[w], Font);
 
   }
 

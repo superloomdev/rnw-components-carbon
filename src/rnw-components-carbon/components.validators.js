@@ -6,7 +6,7 @@
 // handled inside component factories via Lib.Debug.warn + fallback.
 'use strict';
 
-module.exports = function (Lib, ERRORS) { // eslint-disable-line no-unused-vars
+module.exports = function (Lib, ERRORS) {
 
   const Validators = {
 
@@ -137,6 +137,48 @@ module.exports = function (Lib, ERRORS) { // eslint-disable-line no-unused-vars
       // Breakpoint group is required
       if (!Lib.Utils.isObject(theme.Breakpoint)) {
         throw new TypeError('rnw-components-carbon: theme.Breakpoint must be an object');
+      }
+
+      // Value-level validation: dimension values must be finite numbers
+      // Catches the web projection (rem/em strings) being fed to RNW components
+      const UNIT_PATTERN = /(?:rem|em|%|vh|vw|px|pt)$/;
+      const dimensionGroups = ['fontSize', 'space', 'radius'];
+
+      for (let g = 0; g < dimensionGroups.length; g++) {
+        const groupName = dimensionGroups[g];
+        const group = theme.Dimension[groupName];
+
+        if (!Lib.Utils.isObject(group)) {
+          continue;
+        }
+
+        const keys = Object.keys(group);
+
+        for (let k = 0; k < keys.length; k++) {
+          const tokenKey = keys[k];
+          const value = group[tokenKey];
+
+          // Reject unit-suffixed strings (web projection leak)
+          if (Lib.Utils.isString(value) && UNIT_PATTERN.test(value)) {
+            throw new TypeError(
+              'rnw-components-carbon: theme.Dimension.' + groupName + '.' + tokenKey +
+              ' is "' + value + '" (unit-suffixed string). ' +
+              'Pass the native projection, not the web projection. ' +
+              ERRORS.THEME_VALUE_UNIT_STRING.type
+            );
+          }
+
+          // Reject NaN and non-finite numbers
+          if (!Lib.Utils.isNumber(value)) {
+            throw new TypeError(
+              'rnw-components-carbon: theme.Dimension.' + groupName + '.' + tokenKey +
+              ' must be a finite number, got ' + typeof value + '. ' +
+              ERRORS.THEME_VALUE_NOT_FINITE.type
+            );
+          }
+
+        }
+
       }
 
     }

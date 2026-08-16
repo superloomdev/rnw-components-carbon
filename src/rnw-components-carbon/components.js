@@ -119,33 +119,6 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       // Resolve the active breakpoint, defaulting to 'base'
       const activeBreakpoint = breakpoint || 'base';
 
-      // Generate utility styles for every breakpoint, memoized by key
-      const generateStyles = require('./component/commonStyles');
-      const allStyles = {};
-      const breakpointKeys = Object.keys(theme.Breakpoint);
-
-      // Generate the utility set for each breakpoint
-      for (let i = 0; i < breakpointKeys.length; i++) {
-        const bpKey = breakpointKeys[i];
-
-        // Skip non-numeric breakpoint entries
-        if (!Lib.Utils.isNumber(theme.Breakpoint[bpKey])) {
-          continue;
-        }
-
-        // Generate and cache the utility set for this breakpoint
-        allStyles[bpKey] = generateStyles(theme, bpKey);
-
-      }
-
-      // Build the Style slot consumed by every component factory
-      const Style = {
-        utilities: allStyles[activeBreakpoint] || allStyles['base'],
-        tokens: theme,
-        breakpoint: activeBreakpoint,
-        allBreakpoints: allStyles
-      };
-
       // Mechanism parts - built once per instance, injected into every component
       // factory. Parts are internal; they are never exported through the public
       // interface. See module-structure.md, Parts Pattern.
@@ -161,7 +134,35 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
         FocusTrap:        require('./parts/focus-trap')(Lib, partsConfig, ERRORS),
         Overlay:          require('./parts/overlay')(Lib, partsConfig, ERRORS),
         CompoundContext:  require('./parts/compound-context')(Lib, partsConfig, ERRORS),
-        Units:            require('./parts/units')(Lib, partsConfig, ERRORS)
+        Units:            require('./parts/units')(Lib, partsConfig, ERRORS),
+        Typeface:         require('./parts/typeface')(Lib, partsConfig, ERRORS)
+      };
+
+      // Generate utility styles for every breakpoint, memoized by key
+      const generateStyles = require('./component/commonStyles');
+      const allStyles = {};
+      const breakpointKeys = Object.keys(theme.Breakpoint);
+
+      // Generate the utility set for each breakpoint
+      for (let i = 0; i < breakpointKeys.length; i++) {
+        const bpKey = breakpointKeys[i];
+
+        // Skip non-numeric breakpoint entries
+        if (!Lib.Utils.isNumber(theme.Breakpoint[bpKey])) {
+          continue;
+        }
+
+        // Generate and cache the utility set for this breakpoint
+        allStyles[bpKey] = generateStyles(theme, bpKey, Parts);
+
+      }
+
+      // Build the Style slot consumed by every component factory
+      const Style = {
+        utilities: allStyles[activeBreakpoint] || allStyles['base'],
+        tokens: theme,
+        breakpoint: activeBreakpoint,
+        allBreakpoints: allStyles
       };
 
       // The shared component registry (molecules close over this object)

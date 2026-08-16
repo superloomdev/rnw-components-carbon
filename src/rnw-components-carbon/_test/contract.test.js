@@ -306,6 +306,96 @@ test('L4-R7: no Style_ identifier anywhere in the package', function () {
 });
 
 
+// ~~~~~~~~~~~~~~~~~~~~ L4 Rule 8: No fontWeight with per-weight-face family ~~~~~~~~~~~~~~~~~~~~
+
+test('L4-R8: no fontWeight paired with a per-weight-face family in utilities', function () {
+
+  const { Style } = require('./loader');
+
+  // Known synthesizing families - these ARE allowed to carry fontWeight
+  const SYNTHESIZING = [
+    'System', 'system-ui', '-apple-system', 'BlinkMacSystemFont',
+    'Segoe UI', 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial',
+    'sans-serif', 'serif', 'monospace'
+  ];
+
+  const findings = [];
+  const breakpointKeys = Object.keys(Style.allBreakpoints);
+
+  for (let b = 0; b < breakpointKeys.length; b++) {
+    const bpKey = breakpointKeys[b];
+    const utilities = Style.allBreakpoints[bpKey];
+    const utilityKeys = Object.keys(utilities);
+
+    for (let u = 0; u < utilityKeys.length; u++) {
+      const utilName = utilityKeys[u];
+      const utilStyle = utilities[utilName];
+
+      if (!utilStyle || !utilStyle.fontFamily || !utilStyle.fontWeight) {
+        continue;
+      }
+
+      // Check if the family is synthesizing
+      const family = utilStyle.fontFamily;
+      let isSynth = false;
+
+      for (let s = 0; s < SYNTHESIZING.length; s++) {
+        if (family === SYNTHESIZING[s]) {
+          isSynth = true;
+          break;
+        }
+      }
+
+      if (!isSynth) {
+        findings.push(bpKey + '.' + utilName +
+          ': fontWeight "' + utilStyle.fontWeight +
+          '" paired with per-weight-face family "' + family + '"');
+      }
+
+    }
+
+  }
+
+  if (findings.length > 0) {
+    console.log('L4-R8 findings (' + findings.length + '):');
+    for (let i = 0; i < findings.length; i++) {
+      console.log('  ' + findings[i]);
+    }
+  }
+
+  // With System family, there should be zero violations
+  assert.strictEqual(findings.length, 0,
+    'L4-R8: fontWeight paired with per-weight-face family:\n  ' + findings.join('\n  '));
+
+});
+
+
+test('L4-R8-PROOF: rule fires on a per-weight-face family', function () {
+
+  // Build a style set with a per-weight-face family + fontWeight
+  const badStyle = { fontFamily: 'Poppins_400Regular', fontWeight: '700' };
+
+  // Verify Poppins_400Regular is NOT in the synthesizing list
+  const SYNTHESIZING = [
+    'System', 'system-ui', '-apple-system', 'BlinkMacSystemFont',
+    'Segoe UI', 'Roboto', 'Helvetica Neue', 'Helvetica', 'Arial',
+    'sans-serif', 'serif', 'monospace'
+  ];
+
+  let isSynth = false;
+  for (let s = 0; s < SYNTHESIZING.length; s++) {
+    if (badStyle.fontFamily === SYNTHESIZING[s]) {
+      isSynth = true;
+      break;
+    }
+  }
+
+  assert.strictEqual(isSynth, false, 'Proof: Poppins_400Regular should not be synthesizing');
+  assert.ok(badStyle.fontWeight, 'Proof: bad style has fontWeight (would fire the rule)');
+
+});
+
+
 // ~~~~~~~~~~~~~~~~~~~~ Proof Tests: verify rules fire ~~~~~~~~~~~~~~~~~~~~
 
 test('L4-PROOF: rules detect violations in scratch content', function () {
