@@ -558,7 +558,7 @@ test('commonStyles generates background utilities for all color tokens', functio
 
 test('a11y.state translates checked to aria-checked', function () {
 
-  const a11y = require('rnw-components-carbon/component/a11y')({ React: React, Utils: Utils });
+  const a11y = require('rnw-components-carbon/component/a11y.js')({ React: React, Utils: Utils });
   const props = a11y.state({ checked: true });
 
   assert.strictEqual(props['aria-checked'], true);
@@ -567,7 +567,7 @@ test('a11y.state translates checked to aria-checked', function () {
 
 test('a11y.state omits null and undefined values', function () {
 
-  const a11y = require('rnw-components-carbon/component/a11y')({ React: React, Utils: Utils });
+  const a11y = require('rnw-components-carbon/component/a11y.js')({ React: React, Utils: Utils });
   const props = a11y.state({ checked: true, disabled: null, expanded: undefined });
 
   assert.strictEqual(props['aria-checked'], true);
@@ -578,7 +578,7 @@ test('a11y.state omits null and undefined values', function () {
 
 test('a11y.state handles mixed checked for indeterminate', function () {
 
-  const a11y = require('rnw-components-carbon/component/a11y')({ React: React, Utils: Utils });
+  const a11y = require('rnw-components-carbon/component/a11y.js')({ React: React, Utils: Utils });
   const props = a11y.state({ checked: 'mixed' });
 
   assert.strictEqual(props['aria-checked'], 'mixed');
@@ -587,7 +587,7 @@ test('a11y.state handles mixed checked for indeterminate', function () {
 
 test('a11y.value translates numeric value props', function () {
 
-  const a11y = require('rnw-components-carbon/component/a11y')({ React: React, Utils: Utils });
+  const a11y = require('rnw-components-carbon/component/a11y.js')({ React: React, Utils: Utils });
   const props = a11y.value({ min: 0, max: 100, now: 50, text: '50 percent' });
 
   assert.strictEqual(props['aria-valuemin'], 0);
@@ -599,7 +599,7 @@ test('a11y.value translates numeric value props', function () {
 
 test('a11y.relation translates relationship props', function () {
 
-  const a11y = require('rnw-components-carbon/component/a11y')({ React: React, Utils: Utils });
+  const a11y = require('rnw-components-carbon/component/a11y.js')({ React: React, Utils: Utils });
   const props = a11y.relation({ controls: 'panel-1', describedby: 'desc-1' });
 
   assert.strictEqual(props['aria-controls'], 'panel-1');
@@ -609,7 +609,7 @@ test('a11y.relation translates relationship props', function () {
 
 test('a11y.position translates position props', function () {
 
-  const a11y = require('rnw-components-carbon/component/a11y')({ React: React, Utils: Utils });
+  const a11y = require('rnw-components-carbon/component/a11y.js')({ React: React, Utils: Utils });
   const props = a11y.position({ posinset: 3, setsize: 10, level: 2 });
 
   assert.strictEqual(props['aria-posinset'], 3);
@@ -620,7 +620,7 @@ test('a11y.position translates position props', function () {
 
 test('a11y.id generates unique monotonic ids', function () {
 
-  const a11y = require('rnw-components-carbon/component/a11y')({ React: React, Utils: Utils });
+  const a11y = require('rnw-components-carbon/component/a11y.js')({ React: React, Utils: Utils });
   const id1 = a11y.id('carbon-tab');
   const id2 = a11y.id('carbon-tab');
 
@@ -634,7 +634,7 @@ test('a11y.id generates unique monotonic ids', function () {
 
 test('usePressKeys returns onKeyDown on web', function () {
 
-  const usePressKeys = require('rnw-components-carbon/component/usePressKeys')({ React: React, Utils: Utils });
+  const usePressKeys = require('rnw-components-carbon/component/usePressKeys.js')({ React: React, Utils: Utils });
 
   let capturedProps = null;
 
@@ -654,7 +654,7 @@ test('usePressKeys returns onKeyDown on web', function () {
 
 test('createCompoundContext throws when useContext is called outside Provider', function () {
 
-  const createCompoundContext = require('rnw-components-carbon/component/createCompoundContext');
+  const createCompoundContext = require('rnw-components-carbon/component/createCompoundContext.js');
   const ctx = createCompoundContext({ React: React, Utils: Utils }, 'TestCompound');
 
   // Wrap in a component so the hook runs in a render context
@@ -671,7 +671,7 @@ test('createCompoundContext throws when useContext is called outside Provider', 
 
 test('createCompoundContext provides value inside Provider', function () {
 
-  const createCompoundContext = require('rnw-components-carbon/component/createCompoundContext');
+  const createCompoundContext = require('rnw-components-carbon/component/createCompoundContext.js');
   const ctx = createCompoundContext({ React: React, Utils: Utils }, 'TestCompound2');
 
   let captured = null;
@@ -696,7 +696,7 @@ test('createCompoundContext provides value inside Provider', function () {
 
 test('useControllableState uses value when controlled', function () {
 
-  const useControllableState = require('rnw-components-carbon/component/useControllableState')({ React: React, Utils: Utils, Debug: Debug });
+  const useControllableState = require('rnw-components-carbon/component/useControllableState.js')({ React: React, Utils: Utils, Debug: Debug });
 
   let capturedValue = null;
 
@@ -714,7 +714,7 @@ test('useControllableState uses value when controlled', function () {
 
 test('useControllableState uses defaultValue when uncontrolled', function () {
 
-  const useControllableState = require('rnw-components-carbon/component/useControllableState')({ React: React, Utils: Utils, Debug: Debug });
+  const useControllableState = require('rnw-components-carbon/component/useControllableState.js')({ React: React, Utils: Utils, Debug: Debug });
 
   let capturedValue = null;
 
