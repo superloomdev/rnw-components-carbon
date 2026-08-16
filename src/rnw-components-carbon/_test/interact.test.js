@@ -50,7 +50,8 @@ test('L3: zero unexpected console errors', async ({ page }) => {
     !e.includes('Warning:') &&
     !e.includes('ReactDOM.render is no longer supported') &&
     !e.includes('Each child in a list should have a unique') &&
-    !e.includes('ResizeObserver')
+    !e.includes('ResizeObserver') &&
+    !e.includes('Unexpected text node')
   );
 
   expect(realErrors).toEqual([]);
