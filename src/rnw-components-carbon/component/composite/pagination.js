@@ -1,6 +1,6 @@
 // Info: Pagination composite [S4 compound]. A pagination navigation container
 // with role="navigation" that renders page selector and prev/next buttons.
-// Uses M1 (a11y), M2 (usePressKeys). Composes PageSelector molecule and
+// Uses M1 (a11y), M2 (usePressKeys). Composes PaginationNav molecule and
 // Button atom.
 //   page        -> number (current page, 1-based)
 //   totalPage   -> number (total number of pages)
@@ -120,7 +120,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         }, '\u2039')
       ),
       // Page selector
-      React.createElement(Registry.PageSelector, {
+      React.createElement(Registry.PaginationNav, {
         currentPage: currentPage,
         totalPages: totalPages,
         onChange: handlePageChange

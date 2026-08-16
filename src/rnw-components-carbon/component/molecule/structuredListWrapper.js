@@ -1,7 +1,7 @@
-// Info: Fieldset molecule [S1]. A grouping container for related form fields
-// with an optional legend. Uses role="group" for screen reader semantics.
-//   children    -> form field elements
-//   legend      -> legend text (optional)
+// Info: StructuredListWrapper molecule [S1]. A simple structured list container.
+// Uses role="table" for screen reader semantics. Renders children in a
+// vertical column layout with border styling.
+//   children    -> structured list row elements
 //   style       -> custom style overrides
 'use strict';
 
@@ -9,7 +9,7 @@ const { View: RNView } = require('react-native');
 
 
 /********************************************************************
-Build the Fieldset molecule.
+Build the StructuredListWrapper molecule.
 
 @param {Object} Lib      - { Utils, Debug, React }
 @param {Object} CONFIG   - Package configuration
@@ -17,14 +17,14 @@ Build the Fieldset molecule.
 @param {Object} Registry - Component registry (for atom composition)
 @param {Object} Style_   - { utilities, tokens, breakpoint }
 
-@return {Function} - The Fieldset component
+@return {Function} - The StructuredListWrapper component
 *********************************************************************/
 module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
-  return function Fieldset (props) {
+  return function StructuredListWrapper (props) {
 
     const {
-      children, legend, style, isRtlActive, // eslint-disable-line no-unused-vars
+      children, style, isRtlActive, // eslint-disable-line no-unused-vars
       ...rest
     } = props;
 
@@ -33,23 +33,15 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     return React.createElement(
       RNView,
       Object.assign({
-        accessibilityRole: 'group',
+        accessibilityRole: 'table',
         style: [
+          Style_.utilities['flex_col'],
           Style_.utilities['border_default'],
           Style_.utilities['br_md'],
-          Style_.utilities['p_a_md'],
-          Style_.utilities['flex_col'],
+          { overflow: 'hidden' },
           style
         ]
       }, rest),
-      legend
-        ? React.createElement(Registry.Text, {
-          size: 'sm',
-          color: 'text_secondary',
-          weight: 'medium',
-          style: Style_.utilities['m_b_sm']
-        }, legend)
-        : null,
       children
     );
 

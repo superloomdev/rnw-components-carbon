@@ -1,5 +1,5 @@
-// Info: LongPressMenu composite [S3 overlay]. A menu triggered by long-press
-// on native, right-click on web. Uses M1 (a11y), M4 (OverlayHost),
+// Info: ActionSheet composite [S3 overlay]. A menu triggered by long-press
+// on native, right-click on web. Uses M1 (a11y), M4 (Overlay),
 // M5 (useAnchoredPosition), M7 (createCompoundContext).
 //   items       -> array of { label, onPress, disabled }
 //   children    -> the element to attach the long-press handler to
@@ -10,7 +10,7 @@ const { View: RNView, Platform } = require('react-native');
 
 
 /********************************************************************
-Build the LongPressMenu composite.
+Build the ActionSheet composite.
 
 @param {Object} Lib      - { Utils, Debug, React }
 @param {Object} CONFIG   - Package configuration
@@ -18,14 +18,14 @@ Build the LongPressMenu composite.
 @param {Object} Registry - Component registry (for atom composition)
 @param {Object} Style_   - { utilities, tokens, breakpoint }
 
-@return {Function} - The LongPressMenu component
+@return {Function} - The ActionSheet component
 *********************************************************************/
 module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
   const a11y = require('../a11y')(Lib);
   const Menu = require('./menu')(Lib, CONFIG, ERRORS, Registry, Style_);
 
-  return function LongPressMenu (props) {
+  return function ActionSheet (props) {
 
     const {
       items, children, style, isRtlActive, // eslint-disable-line no-unused-vars

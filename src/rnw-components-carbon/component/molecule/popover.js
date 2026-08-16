@@ -1,5 +1,5 @@
 // Info: Popover molecule [S3 overlay]. A floating content panel anchored to
-// a trigger. Uses M1 (a11y), M4 (OverlayHost), M5 (useAnchoredPosition).
+// a trigger. Uses M1 (a11y), M4 (Overlay), M5 (useAnchoredPosition).
 // Uses useFocusTrap with trap: false (Popover does not trap focus).
 //   isOpen      -> boolean
 //   onClose     -> function
@@ -27,8 +27,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
   const a11y = require('../a11y')(Lib);
   const useFocusTrap = require('../useFocusTrap')(Lib);
-  const overlayHost = require('../OverlayHost')(Lib);
-  const useOverlay = overlayHost.useOverlay;
+  const overlay = require('../Overlay')(Lib);
+  const useOverlay = overlay.useOverlay;
   const useAnchoredPosition = require('../useAnchoredPosition')(Lib);
 
   return function Popover (props) {
@@ -118,7 +118,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       );
     }
 
-    // On web, use OverlayHost
+    // On web, use Overlay
     const overlay = useOverlay({
       isOpen: !!isOpen,
       trap: false,
@@ -139,7 +139,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     }, ariaProps));
 
     if (overlay.layerIndex < 0 && isOpen) {
-      // Fallback: no OverlayHost mounted
+      // Fallback: no Overlay mounted
       return React.createElement(
         RNView,
         { style: { position: 'relative' } },

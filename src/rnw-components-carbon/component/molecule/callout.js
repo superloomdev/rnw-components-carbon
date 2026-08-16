@@ -1,6 +1,6 @@
 // Info: Callout molecule [S1]. A themed callout banner with title and
 // optional children content. Uses role="note" for screen reader semantics.
-// Similar to Alert but less urgent.
+// Similar to StaticNotification but less urgent.
 //   title       -> primary text
 //   kind        -> 'info' | 'success' | 'warning' | 'error'
 //   children    -> additional content (optional)

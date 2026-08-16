@@ -1,5 +1,5 @@
 // Info: Toggletip molecule [S3 overlay]. A tooltip triggered by press (not
-// hover). Uses M1 (a11y), M4 (OverlayHost), M5 (useAnchoredPosition).
+// hover). Uses M1 (a11y), M4 (Overlay), M5 (useAnchoredPosition).
 //   content     -> string or node (toggletip content)
 //   children    -> trigger element
 //   placement   -> string (default 'top')

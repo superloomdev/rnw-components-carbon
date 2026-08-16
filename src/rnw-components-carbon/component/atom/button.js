@@ -2,6 +2,7 @@
 // interaction states (enabled, hovered, pressed, focused, disabled), and
 // guarantees the minimum accessible hit target. Children can be a function
 // receiving the interaction state, or static content.
+//   kind        -> 'primary' | 'secondary' | 'danger' | 'ghost' (maps to background)
 'use strict';
 
 const { Pressable } = require('react-native');
@@ -70,13 +71,26 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
   };
 
 
+  // Map kind to background token. Replaces ButtonPrimary (app_primary)
+  // and ButtonLink (ghost / transparent).
+  const KIND_BACKGROUND = {
+    primary: 'app_primary',
+    secondary: 'app_secondary',
+    danger: 'app_danger',
+    ghost: undefined
+  };
+
+
   return function Button (props) {
 
     // Destructure props
     const {
-      onPress, disabled, background, radius, style, children, accessibilityLabel,
+      onPress, disabled, background, kind, radius, style, children, accessibilityLabel,
       isRtlActive, ...rest // eslint-disable-line no-unused-vars
     } = props;
+
+    // kind overrides background when provided
+    const effectiveBackground = kind ? KIND_BACKGROUND[kind] : background;
 
     const React = Lib.React;
 
@@ -100,15 +114,15 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       const classes = [...baseClasses];
 
       // Resolve background with state suffix
-      if (background) {
-        const bgKey = 'background_' + background + stateSuffix;
+      if (effectiveBackground) {
+        const bgKey = 'background_' + effectiveBackground + stateSuffix;
         const bgClass = Style_.utilities[bgKey];
 
         if (bgClass) {
           classes.push(bgClass);
         } else {
           // Fall back to the base background without state suffix
-          const baseBgKey = 'background_' + background;
+          const baseBgKey = 'background_' + effectiveBackground;
           const baseBgClass = Style_.utilities[baseBgKey];
 
           if (baseBgClass) {

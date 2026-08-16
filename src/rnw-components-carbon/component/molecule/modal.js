@@ -1,6 +1,6 @@
 // Info: Modal molecule [S3 overlay] (CANONICAL). A dialog overlay with focus
 // trap, Escape/back dismissal, outside-press dismissal, and focus restoration.
-// Uses OverlayHost (M4) for stacking and useFocusTrap for focus management.
+// Uses Overlay (M4) for stacking and useFocusTrap for focus management.
 //
 // S3 obligations (all six, from the plan):
 //   1. On open: record the previously focused element and move focus into the overlay
@@ -10,7 +10,7 @@
 //   5. On close: restore focus to the recorded element
 //   6. Set aria-modal on the overlay container for screen reader trapping
 //
-// OverlayHost integration: registers with the host so a Popover opened from
+// Overlay integration: registers with the host so a Popover opened from
 // inside a Modal paints above it. The host assigns zIndex from the stack
 // position. On native, uses RN Modal for hardware back support.
 'use strict';
@@ -35,8 +35,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
   const useFocusTrap = require('../useFocusTrap')(Lib);
 
   // Build the overlay host hook once
-  const overlayHost = require('../OverlayHost')(Lib);
-  const useOverlay = overlayHost.useOverlay;
+  const overlay = require('../Overlay')(Lib);
+  const useOverlay = overlay.useOverlay;
 
   return function Modal (props) {
 
@@ -118,7 +118,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
     }
 
-    // On web, register with OverlayHost for stacking
+    // On web, register with Overlay for stacking
     const overlay = useOverlay({
       isOpen: !!isOpen,
       trap: true,
@@ -133,7 +133,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       }
     });
 
-    // When no OverlayHost is mounted, fall back to fixed positioning
+    // When no Overlay is mounted, fall back to fixed positioning
     if (overlay.layerIndex < 0) {
 
       if (!isOpen) {
@@ -157,7 +157,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
     }
 
-    // OverlayHost renders the content; return null here
+    // Overlay renders the content; return null here
     return null;
 
   };

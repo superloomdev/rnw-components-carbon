@@ -1,4 +1,4 @@
-// Info: Toolbar molecule [S1]. A horizontal toolbar container for tool
+// Info: TableToolbar molecule [S1]. A horizontal toolbar container for tool
 // buttons. Uses role="toolbar" for screen reader semantics. Renders
 // children in a flex row with consistent spacing.
 //   children    -> tool button elements
@@ -9,7 +9,7 @@ const { View: RNView } = require('react-native');
 
 
 /********************************************************************
-Build the Toolbar molecule.
+Build the TableToolbar molecule.
 
 @param {Object} Lib      - { Utils, Debug, React }
 @param {Object} CONFIG   - Package configuration
@@ -17,11 +17,11 @@ Build the Toolbar molecule.
 @param {Object} Registry - Component registry (for atom composition)
 @param {Object} Style_   - { utilities, tokens, breakpoint }
 
-@return {Function} - The Toolbar component
+@return {Function} - The TableToolbar component
 *********************************************************************/
 module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
-  return function Toolbar (props) {
+  return function TableToolbar (props) {
 
     const {
       children, style, isRtlActive, // eslint-disable-line no-unused-vars

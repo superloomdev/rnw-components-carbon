@@ -1,5 +1,5 @@
 // Info: MenuButton composite [S3 overlay]. A button that opens a Menu.
-// Uses M1 (a11y), M4 (OverlayHost), M5 (useAnchoredPosition), M7 (createCompoundContext).
+// Uses M1 (a11y), M4 (Overlay), M5 (useAnchoredPosition), M7 (createCompoundContext).
 // Composes Button, Menu, MenuItem atoms.
 //   label       -> string (button label)
 //   items       -> array of { label, onPress, disabled }

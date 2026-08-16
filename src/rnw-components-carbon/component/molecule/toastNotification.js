@@ -1,4 +1,4 @@
-// Info: Toast molecule [S1/S2]. A transient notification that auto-dismisss
+// Info: ToastNotification molecule [S1/S2]. A transient notification that auto-dismisss
 // after a duration. Uses M1 (a11y) for aria-* state, role="alert" for
 // screen reader announcement, and a timer effect for auto-dismiss.
 //   title       -> primary text
@@ -28,7 +28,7 @@ const STATUS_ICON = {
 
 
 /********************************************************************
-Build the Toast molecule.
+Build the ToastNotification molecule.
 
 @param {Object} Lib      - { Utils, Debug, React }
 @param {Object} CONFIG   - Package configuration
@@ -36,14 +36,14 @@ Build the Toast molecule.
 @param {Object} Registry - Component registry (for atom composition)
 @param {Object} Style_   - { utilities, tokens, breakpoint }
 
-@return {Function} - The Toast component
+@return {Function} - The ToastNotification component
 *********************************************************************/
 module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
   const a11y = require('../a11y')(Lib);
   const usePressKeys = require('../usePressKeys')(Lib);
 
-  return function Toast (props) {
+  return function ToastNotification (props) {
 
     const {
       title, subtitle, status, onClose, duration, style, isRtlActive, // eslint-disable-line no-unused-vars

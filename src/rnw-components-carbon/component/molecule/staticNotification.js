@@ -1,4 +1,4 @@
-// Info: Alert molecule [S1]. A themed alert banner with title, kind, and
+// Info: StaticNotification molecule [S1]. A themed alert banner with title, kind, and
 // optional children content. Uses role="alert" for screen reader
 // announcement. Similar to Notification but more urgent.
 //   title       -> primary text
@@ -27,7 +27,7 @@ const KIND_ICON = {
 
 
 /********************************************************************
-Build the Alert molecule.
+Build the StaticNotification molecule.
 
 @param {Object} Lib      - { Utils, Debug, React }
 @param {Object} CONFIG   - Package configuration
@@ -35,11 +35,11 @@ Build the Alert molecule.
 @param {Object} Registry - Component registry (for atom composition)
 @param {Object} Style_   - { utilities, tokens, breakpoint }
 
-@return {Function} - The Alert component
+@return {Function} - The StaticNotification component
 *********************************************************************/
 module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
-  return function Alert (props) {
+  return function StaticNotification (props) {
 
     const {
       title, kind, children, style, isRtlActive, // eslint-disable-line no-unused-vars

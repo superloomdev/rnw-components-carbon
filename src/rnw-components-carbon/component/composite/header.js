@@ -1,7 +1,7 @@
 // Info: Header composite [S1/S2 compound]. A navigation header container
-// that groups HeaderNav, HeaderMenuButton, and HeaderPanel children. Uses
+// that groups HeaderNavigation, HeaderMenuButton, and HeaderPanel children. Uses
 // M1 (a11y) for the container. Composes View atom for the header bar.
-//   children    -> HeaderNav, HeaderMenuButton, HeaderPanel elements
+//   children    -> HeaderNavigation, HeaderMenuButton, HeaderPanel elements
 //   style       -> custom style overrides
 'use strict';
 

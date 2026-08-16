@@ -1,7 +1,7 @@
-// Info: StructuredList molecule [S1]. A simple structured list container.
-// Uses role="table" for screen reader semantics. Renders children in a
-// vertical column layout with border styling.
-//   children    -> structured list row elements
+// Info: TableBatchActions molecule [S1]. A horizontal toolbar container for action
+// buttons, typically used above data tables for batch operations. Uses
+// role="toolbar" for screen reader semantics.
+//   children    -> action button elements
 //   style       -> custom style overrides
 'use strict';
 
@@ -9,7 +9,7 @@ const { View: RNView } = require('react-native');
 
 
 /********************************************************************
-Build the StructuredList molecule.
+Build the TableBatchActions molecule.
 
 @param {Object} Lib      - { Utils, Debug, React }
 @param {Object} CONFIG   - Package configuration
@@ -17,11 +17,11 @@ Build the StructuredList molecule.
 @param {Object} Registry - Component registry (for atom composition)
 @param {Object} Style_   - { utilities, tokens, breakpoint }
 
-@return {Function} - The StructuredList component
+@return {Function} - The TableBatchActions component
 *********************************************************************/
 module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
-  return function StructuredList (props) {
+  return function TableBatchActions (props) {
 
     const {
       children, style, isRtlActive, // eslint-disable-line no-unused-vars
@@ -33,12 +33,14 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     return React.createElement(
       RNView,
       Object.assign({
-        accessibilityRole: 'table',
+        accessibilityRole: 'toolbar',
         style: [
-          Style_.utilities['flex_col'],
-          Style_.utilities['border_default'],
-          Style_.utilities['br_md'],
-          { overflow: 'hidden' },
+          Style_.utilities['background_background_secondary'],
+          Style_.utilities['p_h_md'],
+          Style_.utilities['p_v_sm'],
+          Style_.utilities['flex_row'],
+          Style_.utilities['align_center'],
+          Style_.utilities['justify_between'],
           style
         ]
       }, rest),

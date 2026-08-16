@@ -1,5 +1,5 @@
 // Info: ComboButton composite [S3 overlay]. A split button: primary action
-// plus a dropdown for secondary actions. Uses M1 (a11y), M4 (OverlayHost),
+// plus a dropdown for secondary actions. Uses M1 (a11y), M4 (Overlay),
 // M5 (useAnchoredPosition), M7 (createCompoundContext).
 //   primaryLabel  -> string (main button label)
 //   onPrimaryPress-> function (main button handler)

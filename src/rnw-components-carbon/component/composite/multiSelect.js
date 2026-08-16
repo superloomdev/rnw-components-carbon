@@ -1,5 +1,5 @@
 // Info: MultiSelect composite [S3 overlay]. A dropdown with multi-select
-// checkboxes. Uses M1 (a11y), M4 (OverlayHost), M5 (useAnchoredPosition),
+// checkboxes. Uses M1 (a11y), M4 (Overlay), M5 (useAnchoredPosition),
 // M8 (useControllableState). Role listbox.
 //   values      -> array (controlled)
 //   defaultValues-> array (uncontrolled)
@@ -30,8 +30,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
   const useControllableState = require('../useControllableState')(Lib);
   const usePressKeys = require('../usePressKeys')(Lib);
   const useAnchoredPosition = require('../useAnchoredPosition')(Lib);
-  const overlayHost = require('../OverlayHost')(Lib);
-  const useOverlay = overlayHost.useOverlay;
+  const overlay = require('../Overlay')(Lib);
+  const useOverlay = overlay.useOverlay;
 
   return function MultiSelect (props) {
 
@@ -209,7 +209,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       );
     }
 
-    // On web, use OverlayHost
+    // On web, use Overlay
     const overlay = useOverlay({
       isOpen: true,
       trap: false,

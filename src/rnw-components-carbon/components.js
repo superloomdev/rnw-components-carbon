@@ -163,8 +163,8 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.Text = make(require('./component/atom/text'));
       Component.Icon = make(require('./component/atom/icon'));
       Component.Image = make(require('./component/atom/image'));
-      Component.Badge = make(require('./component/atom/badge'));
-      Component.Separator = make(require('./component/atom/separator'));
+      // Badge and Separator deleted in P3: not Carbon exports.
+      // Carbon uses Tag and contextual dividers (MenuItemDivider, etc.) instead.
       Component.ProgressBar = make(require('./component/atom/progressBar'));
       Component.Button = make(require('./component/atom/button'));
       Component.TextInput = make(require('./component/atom/textInput'));
@@ -184,9 +184,9 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.IconIndicator = make(require('./component/atom/iconIndicator'));
 
       // ~~~~~~~~~~ Molecules (canonical) ~~~~~~~~~~
-      Component.ButtonPrimary = make(require('./component/molecule/buttonPrimary'));
-      Component.ButtonLink = make(require('./component/molecule/buttonLink'));
-      Component.Card = make(require('./component/molecule/card'));
+      // ButtonPrimary, ButtonLink, Card deleted in P3: not Carbon exports.
+      // Button kind="primary"|"ghost" replaces ButtonPrimary/ButtonLink.
+      // Tile replaces Card.
       Component.ListItem = make(require('./component/molecule/listItem'));
       Component.Dropdown = make(require('./component/molecule/dropdown'));
       Component.Modal = make(require('./component/molecule/modal'));
@@ -232,7 +232,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.MenuItemRadioGroup = make(require('./component/composite/menuItemRadioGroup'));
       Component.SidePanel = make(require('./component/composite/sidePanel'));
       Component.AILabel = make(require('./component/composite/aiLabel'));
-      Component.LongPressMenu = make(require('./component/composite/longPressMenu'));
+      Component.ActionSheet = make(require('./component/composite/actionSheet'));
 
       // ~~~~~~~~~~ Molecules (Wave 6 navigation) ~~~~~~~~~~
       Component.Tab = make(require('./component/molecule/tab'));
@@ -241,13 +241,12 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.AccordionItem = make(require('./component/molecule/accordionItem'));
       Component.BreadcrumbItem = make(require('./component/molecule/breadcrumbItem'));
       Component.Switch = make(require('./component/molecule/switch'));
-      Component.PageSelector = make(require('./component/molecule/pageSelector'));
+      Component.PaginationNav = make(require('./component/molecule/paginationNav'));
       Component.TreeNode = make(require('./component/molecule/treeNode'));
-      Component.Step = make(require('./component/molecule/step'));
-      Component.HeaderNav = make(require('./component/molecule/headerNav'));
+      Component.ProgressStep = make(require('./component/molecule/progressStep'));
+      Component.HeaderNavigation = make(require('./component/molecule/headerNavigation'));
       Component.HeaderMenuButton = make(require('./component/molecule/headerMenuButton'));
       Component.HeaderPanel = make(require('./component/molecule/headerPanel'));
-      Component.ProgressIndicator = make(require('./component/molecule/progressIndicator'));
 
       // ~~~~~~~~~~ Composites (Wave 6 navigation) ~~~~~~~~~~
       Component.Tabs = make(require('./component/composite/tabs'));
@@ -256,15 +255,15 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.ContentSwitcher = make(require('./component/composite/contentSwitcher'));
       Component.Pagination = make(require('./component/composite/pagination'));
       Component.TreeView = make(require('./component/composite/treeView'));
-      Component.Steps = make(require('./component/composite/steps'));
+      Component.ProgressIndicator = make(require('./component/composite/progressIndicator'));
       Component.Header = make(require('./component/composite/header'));
 
       // ~~~~~~~~~~ Molecules (Wave 8 feedback) ~~~~~~~~~~
       Component.Notification = make(require('./component/molecule/notification'));
-      Component.Toast = make(require('./component/molecule/toast'));
-      Component.ActionBar = make(require('./component/molecule/actionBar'));
-      Component.BatchAction = make(require('./component/molecule/batchAction'));
-      Component.Alert = make(require('./component/molecule/alert'));
+      Component.ToastNotification = make(require('./component/molecule/toastNotification'));
+      Component.TableBatchActions = make(require('./component/molecule/tableBatchActions'));
+      Component.TableBatchAction = make(require('./component/molecule/tableBatchAction'));
+      Component.StaticNotification = make(require('./component/molecule/staticNotification'));
       Component.Callout = make(require('./component/molecule/callout'));
 
       // ~~~~~~~~~~ Molecules (Wave 9 data and layout) ~~~~~~~~~~
@@ -278,45 +277,44 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.Row = make(require('./component/molecule/row'));
       Component.Column = make(require('./component/molecule/column'));
       Component.FlexGrid = make(require('./component/molecule/flexGrid'));
-      Component.Container = make(require('./component/molecule/container'));
-      Component.LayerMolecule = make(require('./component/molecule/layerMolecule'));
+      Component.TableContainer = make(require('./component/molecule/tableContainer'));
+      // LayerMolecule deleted in P3: duplicate of provider.Layer.
       Component.Form = make(require('./component/molecule/form'));
-      Component.Fieldset = make(require('./component/molecule/fieldset'));
-      Component.Legend = make(require('./component/molecule/legend'));
+      // Fieldset and Legend deleted in P3: internal parts of FormGroup.
       Component.OrderedList = make(require('./component/molecule/orderedList'));
       Component.UnorderedList = make(require('./component/molecule/unorderedList'));
-      Component.ListItemNav = make(require('./component/molecule/listItemNav'));
-      Component.StructuredList = make(require('./component/molecule/structuredList'));
+      Component.ContainedListItem = make(require('./component/molecule/containedListItem'));
+      Component.StructuredListWrapper = make(require('./component/molecule/structuredListWrapper'));
       Component.StructuredListRow = make(require('./component/molecule/structuredListRow'));
       Component.StructuredListCell = make(require('./component/molecule/structuredListCell'));
-      Component.Toolbar = make(require('./component/molecule/toolbar'));
-      Component.Divider = make(require('./component/molecule/divider'));
-      Component.ScrollGradient = make(require('./component/molecule/scrollGradient'));
+      Component.TableToolbar = make(require('./component/molecule/tableToolbar'));
+      // Divider deleted in P3: duplicate of Separator, which is also deleted.
+      // ScrollGradient deleted in P3: not in either Carbon package.
 
       // ~~~~~~~~~~ Composites (Wave 9 data and layout) ~~~~~~~~~~
       Component.DataTableRow = make(require('./component/composite/dataTableRow'));
-      Component.PaginationBar = make(require('./component/composite/paginationBar'));
+      // PaginationBar deleted in P3: duplicate of Pagination.
       Component.ToggletipLabel = make(require('./component/composite/toggletipLabel'));
-      Component.GridItem = make(require('./component/composite/gridItem'));
+      // GridItem deleted in P3: duplicate of Column.
 
       // ~~~~~~~~~~ Composites (Wave 6 form components) ~~~~~~~~~~
-      // Form composites use M1 (a11y), M3 (useRovingTabIndex), M4 (OverlayHost),
+      // Form composites use M1 (a11y), M3 (useRovingTabIndex), M4 (Overlay),
       // M5 (useAnchoredPosition), M7 (createCompoundContext), M8 (useControllableState).
       Component.Select = make(require('./component/composite/select'));
       Component.ComboBox = make(require('./component/composite/comboBox'));
       Component.MultiSelect = make(require('./component/composite/multiSelect'));
       Component.RadioButtonGroup = make(require('./component/composite/radioButtonGroup'));
       Component.CheckboxGroup = make(require('./component/composite/checkboxGroup'));
-      Component.SliderInput = make(require('./component/composite/sliderInput'));
+      // SliderInput deleted in P3: Slider has optional paired number input.
       Component.DatePicker = make(require('./component/composite/datePicker'));
       Component.TimePicker = make(require('./component/composite/timePicker'));
-      Component.DateRangePicker = make(require('./component/composite/dateRangePicker'));
-      Component.NumberInputComposite = make(require('./component/composite/numberInputComposite'));
-      Component.FileUploader = make(require('./component/composite/fileUploader'));
-      Component.FluidForm = make(require('./component/composite/fluidForm'));
+      // DateRangePicker deleted in P3: use DatePicker datePickerType="range".
+      // NumberInputComposite deleted in P3: duplicate of NumberInput molecule.
+      // FileUploader deleted in P3: replaced by FileUploaderItem and DocumentViewer.
+      // FluidForm composite deleted in P3: duplicate of provider.FluidForm.
       Component.FormGroup = make(require('./component/composite/formGroup'));
-      Component.ToggleGroup = make(require('./component/composite/toggleGroup'));
-      Component.TimeInput = make(require('./component/composite/timeInput'));
+      // ToggleGroup deleted in P3: not in either package. ContentSwitcher is the segmented control.
+      // TimeInput deleted in P3: TimePicker is the text field.
       Component.DateInput = make(require('./component/composite/dateInput'));
 
       // ~~~~~~~~~~ Structured exceptions (variant registry) ~~~~~~~~~~
@@ -336,7 +334,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       // Providers register at Component.provider.[name], matching the
       // Component.variant and Component.freeform namespacing. They do not
       // count toward the flat top-level key count.
-      const overlayHostModule = require('./component/OverlayHost')(Lib);
+      const overlayModule = require('./component/Overlay')(Lib);
       const liveRegionModule = require('./component/LiveRegionProvider')(Lib);
       const layerModule = require('./component/provider/layer')(Lib, CONFIG, ERRORS, Component, Style);
       const themeModule = require('./component/provider/theme')(Lib, CONFIG, ERRORS, Component, Style);
@@ -345,7 +343,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       const fluidFormModule = require('./component/provider/fluidForm')(Lib, CONFIG, ERRORS, Component, Style);
       const errorBoundaryModule = require('./component/provider/errorBoundary')(Lib, CONFIG, ERRORS, Component, Style);
       Component.provider = {
-        OverlayHost: overlayHostModule.OverlayHost,
+        Overlay: overlayModule.Overlay,
         LiveRegionProvider: liveRegionModule.LiveRegionProvider,
         Layer: layerModule.Layer,
         Theme: themeModule.Theme,

@@ -1,5 +1,5 @@
 // Info: OverflowMenu composite [S3 overlay]. A button that opens a Menu.
-// Uses M1 (a11y), M3 (useRovingTabIndex), M4 (OverlayHost), M5 (useAnchoredPosition),
+// Uses M1 (a11y), M3 (useRovingTabIndex), M4 (Overlay), M5 (useAnchoredPosition),
 // M7 (createCompoundContext). Composes Button, Menu, MenuItem atoms.
 //   items       -> array of { label, onPress, disabled }
 //   triggerLabel-> string (default 'Options')

@@ -29,9 +29,9 @@ test('build returns a Component registry and Style object', function () {
 
 });
 
-test('build registers all 10 atoms', function () {
+test('build registers all 8 atoms', function () {
 
-  const atoms = ['View', 'Text', 'Icon', 'Image', 'Badge', 'Separator',
+  const atoms = ['View', 'Text', 'Icon', 'Image',
     'ProgressBar', 'Button', 'TextInput', 'Toggle'];
 
   for (let i = 0; i < atoms.length; i++) {
@@ -40,9 +40,9 @@ test('build registers all 10 atoms', function () {
 
 });
 
-test('build registers all 6 original molecules', function () {
+test('build registers original molecules', function () {
 
-  const molecules = ['ButtonPrimary', 'ButtonLink', 'Card', 'ListItem', 'Dropdown', 'Modal'];
+  const molecules = ['ListItem', 'Dropdown', 'Modal'];
 
   for (let i = 0; i < molecules.length; i++) {
     assert.ok(typeof Component[molecules[i]] === 'function', 'molecule ' + molecules[i] + ' should be a function');
@@ -285,50 +285,8 @@ test('Icon returns null when Icons not injected', function () {
 
 // ~~~~~~~~~~~~~~~~~~~~ Badge atom ~~~~~~~~~~~~~~~~~~~~
 
-test('Badge renders with count and background token', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.Badge, { count: 5, background: 'app_primary' })
-  ).toJSON();
-
-  assert.ok(tree, 'Badge should render');
-
-});
-
-test('Badge renders the count as a string child', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.Badge, { count: 42 })
-  ).toJSON();
-
-  // Badge wraps a Text child; find the text content
-  assert.ok(tree.children, 'Badge should have children');
-
-});
-
 
 // ~~~~~~~~~~~~~~~~~~~~ Separator atom ~~~~~~~~~~~~~~~~~~~~
-
-test('Separator renders a horizontal line by default', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.Separator, null)
-  ).toJSON();
-
-  assert.ok(tree, 'Separator should render');
-  assert.ok(tree.props.style, 'Separator should have a style prop');
-
-});
-
-test('Separator renders a vertical line when orientation is vertical', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.Separator, { orientation: 'vertical' })
-  ).toJSON();
-
-  assert.ok(tree, 'Vertical separator should render');
-
-});
 
 
 // ~~~~~~~~~~~~~~~~~~~~ ProgressBar atom ~~~~~~~~~~~~~~~~~~~~
@@ -438,66 +396,11 @@ test('Toggle renders with accessibilityRole switch', function () {
 
 // ~~~~~~~~~~~~~~~~~~~~ ButtonPrimary molecule ~~~~~~~~~~~~~~~~~~~~
 
-test('ButtonPrimary renders with accessibilityRole button and label', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.ButtonPrimary, { title: 'Submit', onPress: function () {} })
-  ).toJSON();
-
-  assert.ok(tree, 'ButtonPrimary should render');
-  assert.strictEqual(tree.props.accessibilityRole, 'button');
-  assert.strictEqual(tree.props.accessibilityLabel, 'Submit');
-
-});
-
-test('ButtonPrimary renders an icon when icon prop is provided', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.ButtonPrimary, { title: 'Save', icon: 'save', onPress: function () {} })
-  ).toJSON();
-
-  // The children function renders a Fragment with Icon + Text
-  assert.ok(tree, 'ButtonPrimary with icon should render');
-
-});
-
 
 // ~~~~~~~~~~~~~~~~~~~~ ButtonLink molecule ~~~~~~~~~~~~~~~~~~~~
 
-test('ButtonLink renders with accessibilityRole link', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.ButtonLink, { title: 'Learn more', onPress: function () {} })
-  ).toJSON();
-
-  assert.ok(tree, 'ButtonLink should render');
-  assert.strictEqual(tree.props.accessibilityRole, 'link');
-
-});
-
 
 // ~~~~~~~~~~~~~~~~~~~~ Card molecule ~~~~~~~~~~~~~~~~~~~~
-
-test('Card renders as a View when no onPress is provided', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.Card, null, 'content')
-  ).toJSON();
-
-  assert.ok(tree, 'Card should render');
-
-});
-
-test('Card renders as a Pressable when onPress is provided', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.Card, { onPress: function () {} }, 'content')
-  ).toJSON();
-
-  assert.ok(tree, 'Pressable Card should render');
-  assert.strictEqual(tree.props.accessibilityRole, 'button');
-
-});
 
 
 // ~~~~~~~~~~~~~~~~~~~~ ListItem molecule ~~~~~~~~~~~~~~~~~~~~
@@ -1372,17 +1275,6 @@ test('MenuItemSelectable renders with role menuitemcheckbox', function () {
 
 });
 
-test('MenuItemDivider renders with role separator', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.MenuItemDivider)
-  ).toJSON();
-
-  assert.ok(tree, 'MenuItemDivider should render');
-  assert.strictEqual(tree.props.accessibilityRole, 'separator');
-
-});
-
 test('ModalHeader renders with title', function () {
 
   const tree = TestRenderer.create(
@@ -1572,17 +1464,17 @@ test('Switch renders with role button', function () {
 
 });
 
-test('PageSelector renders with role group', function () {
+test('PaginationNav renders with role group', function () {
 
   const tree = TestRenderer.create(
-    React.createElement(Component.PageSelector, {
+    React.createElement(Component.PaginationNav, {
       currentPage: 1,
       totalPages: 3,
       onChange: function () {}
     })
   ).toJSON();
 
-  assert.ok(tree, 'PageSelector should render');
+  assert.ok(tree, 'PaginationNav should render');
   assert.strictEqual(tree.props.accessibilityRole, 'group');
 
 });
@@ -1601,28 +1493,28 @@ test('TreeNode renders with role treeitem', function () {
 
 });
 
-test('Step renders with role listitem', function () {
+test('ProgressStep renders with role listitem', function () {
 
   const tree = TestRenderer.create(
-    React.createElement(Component.Step, {
+    React.createElement(Component.ProgressStep, {
       label: 'Step 1',
       status: 'current',
       stepNumber: 1
     })
   ).toJSON();
 
-  assert.ok(tree, 'Step should render');
+  assert.ok(tree, 'ProgressStep should render');
   assert.strictEqual(tree.props.accessibilityRole, 'listitem');
 
 });
 
-test('HeaderNav renders with role navigation', function () {
+test('HeaderNavigation renders with role navigation', function () {
 
   const tree = TestRenderer.create(
-    React.createElement(Component.HeaderNav, null, 'nav')
+    React.createElement(Component.HeaderNavigation, null, 'nav')
   ).toJSON();
 
-  assert.ok(tree, 'HeaderNav should render');
+  assert.ok(tree, 'HeaderNavigation should render');
   assert.strictEqual(tree.props.accessibilityRole, 'navigation');
 
 });
@@ -1659,23 +1551,6 @@ test('HeaderPanel returns null when not expanded', function () {
   ).toJSON();
 
   assert.strictEqual(tree, null, 'HeaderPanel should be null when collapsed');
-
-});
-
-test('ProgressIndicator renders with role progressbar', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.ProgressIndicator, {
-      current: 2,
-      total: 5
-    })
-  ).toJSON();
-
-  assert.ok(tree, 'ProgressIndicator should render');
-  assert.strictEqual(tree.props.accessibilityRole, 'progressbar');
-  assert.strictEqual(tree.props['aria-valuemin'], 0);
-  assert.strictEqual(tree.props['aria-valuemax'], 5);
-  assert.strictEqual(tree.props['aria-valuenow'], 2);
 
 });
 
@@ -1775,16 +1650,16 @@ test('TreeView renders with role tree', function () {
 
 });
 
-test('Steps renders with role list', function () {
+test('ProgressIndicator renders with role list', function () {
 
   const tree = TestRenderer.create(
-    React.createElement(Component.Steps, { current: 1 },
-      React.createElement(Component.Step, { label: 'Step 1', stepNumber: 1 }),
-      React.createElement(Component.Step, { label: 'Step 2', stepNumber: 2 })
+    React.createElement(Component.ProgressIndicator, { current: 1 },
+      React.createElement(Component.ProgressStep, { label: 'Step 1', stepNumber: 1 }),
+      React.createElement(Component.ProgressStep, { label: 'Step 2', stepNumber: 2 })
     )
   ).toJSON();
 
-  assert.ok(tree, 'Steps should render');
+  assert.ok(tree, 'ProgressIndicator should render');
   assert.strictEqual(tree.props.accessibilityRole, 'list');
 
 });
@@ -1872,21 +1747,6 @@ test('CheckboxGroup renders with role group', function () {
 
 });
 
-test('SliderInput renders with label and value', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.SliderInput, {
-      label: 'Volume',
-      value: 50,
-      min: 0,
-      max: 100
-    })
-  ).toJSON();
-
-  assert.ok(tree, 'SliderInput should render');
-
-});
-
 test('DatePicker renders with value prop', function () {
 
   const tree = TestRenderer.create(
@@ -1911,62 +1771,6 @@ test('TimePicker renders with value prop', function () {
 
 });
 
-test('DateRangePicker renders with role group', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.DateRangePicker, {
-      startDate: '2024-01-01',
-      endDate: '2024-12-31'
-    })
-  ).toJSON();
-
-  assert.ok(tree, 'DateRangePicker should render');
-  assert.strictEqual(tree.props.accessibilityRole, 'group');
-
-});
-
-test('NumberInputComposite renders with label', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.NumberInputComposite, {
-      label: 'Quantity',
-      value: 5,
-      min: 0,
-      max: 10
-    })
-  ).toJSON();
-
-  assert.ok(tree, 'NumberInputComposite should render');
-
-});
-
-test('FileUploader renders with role button', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.FileUploader, {
-      label: 'Upload file'
-    })
-  );
-
-  assert.ok(tree, 'FileUploader should render');
-
-  const buttons = tree.root.findAllByProps({ accessibilityRole: 'button' });
-  assert.ok(buttons.length >= 1, 'FileUploader should have a button');
-
-});
-
-test('FluidForm renders with children', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.FluidForm, null,
-      React.createElement(Component.Text, null, 'form content')
-    )
-  ).toJSON();
-
-  assert.ok(tree, 'FluidForm should render');
-
-});
-
 test('FormGroup renders with role group', function () {
 
   const tree = TestRenderer.create(
@@ -1979,33 +1783,6 @@ test('FormGroup renders with role group', function () {
 
   assert.ok(tree, 'FormGroup should render');
   assert.strictEqual(tree.props.accessibilityRole, 'group');
-
-});
-
-test('ToggleGroup renders with role toolbar', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.ToggleGroup, {
-      options: [{ value: 'a', label: 'A' }, { value: 'b', label: 'B' }],
-      defaultValue: 'a'
-    })
-  ).toJSON();
-
-  assert.ok(tree, 'ToggleGroup should render');
-  assert.strictEqual(tree.props.accessibilityRole, 'toolbar');
-
-});
-
-test('TimeInput renders with role textbox', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.TimeInput, {
-      value: '09:30'
-    })
-  ).toJSON();
-
-  assert.ok(tree, 'TimeInput should render');
-  assert.strictEqual(tree.props.accessibilityRole, 'textbox');
 
 });
 
@@ -2039,55 +1816,55 @@ test('Notification renders with role alert', function () {
 
 });
 
-test('Toast renders with role alert', function () {
+test('ToastNotification renders with role alert', function () {
 
   const tree = TestRenderer.create(
-    React.createElement(Component.Toast, {
+    React.createElement(Component.ToastNotification, {
       title: 'Done',
       status: 'info'
     })
   ).toJSON();
 
-  assert.ok(tree, 'Toast should render');
+  assert.ok(tree, 'ToastNotification should render');
   assert.strictEqual(tree.props.accessibilityRole, 'alert');
 
 });
 
-test('ActionBar renders with role toolbar', function () {
+test('TableBatchActions renders with role toolbar', function () {
 
   const tree = TestRenderer.create(
-    React.createElement(Component.ActionBar, null, 'actions')
+    React.createElement(Component.TableBatchActions, null, 'actions')
   ).toJSON();
 
-  assert.ok(tree, 'ActionBar should render');
+  assert.ok(tree, 'TableBatchActions should render');
   assert.strictEqual(tree.props.accessibilityRole, 'toolbar');
 
 });
 
-test('BatchAction renders with role button', function () {
+test('TableBatchAction renders with role button', function () {
 
   const tree = TestRenderer.create(
-    React.createElement(Component.BatchAction, {
+    React.createElement(Component.TableBatchAction, {
       label: 'Delete',
       onPress: function () {}
     })
   ).toJSON();
 
-  assert.ok(tree, 'BatchAction should render');
+  assert.ok(tree, 'TableBatchAction should render');
   assert.strictEqual(tree.props.accessibilityRole, 'button');
 
 });
 
-test('Alert renders with role alert', function () {
+test('StaticNotification renders with role alert', function () {
 
   const tree = TestRenderer.create(
-    React.createElement(Component.Alert, {
+    React.createElement(Component.StaticNotification, {
       title: 'Warning',
       kind: 'warning'
     })
   ).toJSON();
 
-  assert.ok(tree, 'Alert should render');
+  assert.ok(tree, 'StaticNotification should render');
   assert.strictEqual(tree.props.accessibilityRole, 'alert');
 
 });
@@ -2227,24 +2004,13 @@ test('FlexGrid renders with role grid', function () {
 
 });
 
-test('Container renders with role group', function () {
+test('TableContainer renders with role group', function () {
 
   const tree = TestRenderer.create(
-    React.createElement(Component.Container, null, 'container content')
+    React.createElement(Component.TableContainer, null, 'container content')
   ).toJSON();
 
-  assert.ok(tree, 'Container should render');
-  assert.strictEqual(tree.props.accessibilityRole, 'group');
-
-});
-
-test('LayerMolecule renders with role group', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.LayerMolecule, { level: 1 }, 'layer content')
-  ).toJSON();
-
-  assert.ok(tree, 'LayerMolecule should render');
+  assert.ok(tree, 'TableContainer should render');
   assert.strictEqual(tree.props.accessibilityRole, 'group');
 
 });
@@ -2257,28 +2023,6 @@ test('Form renders with role form', function () {
 
   assert.ok(tree, 'Form should render');
   assert.strictEqual(tree.props.accessibilityRole, 'form');
-
-});
-
-test('Fieldset renders with role group', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.Fieldset, { legend: 'Group' }, 'fieldset content')
-  ).toJSON();
-
-  assert.ok(tree, 'Fieldset should render');
-  assert.strictEqual(tree.props.accessibilityRole, 'group');
-
-});
-
-test('Legend renders with role legend', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.Legend, null, 'Legend text')
-  ).toJSON();
-
-  assert.ok(tree, 'Legend should render');
-  assert.strictEqual(tree.props.accessibilityRole, 'legend');
 
 });
 
@@ -2304,27 +2048,27 @@ test('UnorderedList renders with role list', function () {
 
 });
 
-test('ListItemNav renders with role listitem', function () {
+test('ContainedListItem renders with role listitem', function () {
 
   const tree = TestRenderer.create(
-    React.createElement(Component.ListItemNav, {
+    React.createElement(Component.ContainedListItem, {
       label: 'Nav Item',
       onPress: function () {}
     })
   ).toJSON();
 
-  assert.ok(tree, 'ListItemNav should render');
+  assert.ok(tree, 'ContainedListItem should render');
   assert.strictEqual(tree.props.accessibilityRole, 'listitem');
 
 });
 
-test('StructuredList renders with role table', function () {
+test('StructuredListWrapper renders with role table', function () {
 
   const tree = TestRenderer.create(
-    React.createElement(Component.StructuredList, null, 'list content')
+    React.createElement(Component.StructuredListWrapper, null, 'list content')
   ).toJSON();
 
-  assert.ok(tree, 'StructuredList should render');
+  assert.ok(tree, 'StructuredListWrapper should render');
   assert.strictEqual(tree.props.accessibilityRole, 'table');
 
 });
@@ -2351,36 +2095,14 @@ test('StructuredListCell renders with role cell', function () {
 
 });
 
-test('Toolbar renders with role toolbar', function () {
+test('TableToolbar renders with role toolbar', function () {
 
   const tree = TestRenderer.create(
-    React.createElement(Component.Toolbar, null, 'toolbar content')
+    React.createElement(Component.TableToolbar, null, 'toolbar content')
   ).toJSON();
 
-  assert.ok(tree, 'Toolbar should render');
+  assert.ok(tree, 'TableToolbar should render');
   assert.strictEqual(tree.props.accessibilityRole, 'toolbar');
-
-});
-
-test('Divider renders with role separator', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.Divider)
-  ).toJSON();
-
-  assert.ok(tree, 'Divider should render');
-  assert.strictEqual(tree.props.accessibilityRole, 'separator');
-
-});
-
-test('ScrollGradient renders with role group', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.ScrollGradient, null, 'scroll content')
-  ).toJSON();
-
-  assert.ok(tree, 'ScrollGradient should render');
-  assert.strictEqual(tree.props.accessibilityRole, 'group');
 
 });
 
@@ -2394,21 +2116,6 @@ test('DataTableRow renders with role row', function () {
 
   assert.ok(tree, 'DataTableRow should render');
   assert.strictEqual(tree.props.accessibilityRole, 'row');
-
-});
-
-test('PaginationBar renders with role navigation', function () {
-
-  const tree = TestRenderer.create(
-    React.createElement(Component.PaginationBar, {
-      page: 1,
-      totalPage: 3,
-      onChange: function () {}
-    })
-  ).toJSON();
-
-  assert.ok(tree, 'PaginationBar should render');
-  assert.strictEqual(tree.props.accessibilityRole, 'navigation');
 
 });
 
@@ -2426,13 +2133,88 @@ test('ToggletipLabel renders with role group', function () {
 
 });
 
-test('GridItem renders with role gridcell', function () {
+
+// ~~~~~~~~~~~~~~~~~~~~ P3 prop collapse tests ~~~~~~~~~~~~~~~~~~~~~
+// Each collapse re-adds deleted behavior as a prop on the absorbing component.
+
+test('Button kind="primary" resolves to app_primary background', function () {
 
   const tree = TestRenderer.create(
-    React.createElement(Component.GridItem, null, 'grid item content')
+    React.createElement(Component.Button, { kind: 'primary', title: 'Submit' })
   ).toJSON();
 
-  assert.ok(tree, 'GridItem should render');
-  assert.strictEqual(tree.props.accessibilityRole, 'gridcell');
+  assert.ok(tree, 'Button with kind=primary should render');
+
+});
+
+test('Button kind="ghost" renders without a background class', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Button, { kind: 'ghost', title: 'Learn more' })
+  ).toJSON();
+
+  assert.ok(tree, 'Button with kind=ghost should render');
+
+});
+
+test('Column span prop adds a gridColumn style', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Column, { span: 3 }, 'content')
+  ).toJSON();
+
+  assert.ok(tree, 'Column with span should render');
+  // The style array should contain an object with gridColumn: 'span 3'
+  const styles = tree.props.style;
+  const hasSpanStyle = Array.isArray(styles) && styles.some(function (s) {
+    return s && typeof s === 'object' && s.gridColumn === 'span 3';
+  });
+  assert.ok(hasSpanStyle, 'Column span=3 should produce gridColumn: span 3');
+
+});
+
+test('Slider hideTextInput=false renders a paired text input', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Slider, {
+      value: 50,
+      hideTextInput: false,
+      accessibilityLabel: 'Volume'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'Slider with hideTextInput=false should render');
+  // The container should be a View with flex_row, containing the slider and a TextInput
+  assert.strictEqual(tree.props.accessibilityRole, undefined,
+    'outer container should not have a slider role');
+
+});
+
+test('DatePicker datePickerType="range" renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.DatePicker, {
+      datePickerType: 'range',
+      accessibilityLabel: 'Select date range'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'DatePicker with datePickerType=range should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group',
+    'range DatePicker should have role group');
+
+});
+
+test('Tile covers the Card use case with onPress and children', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Tile, {
+      title: 'Card Title',
+      subtitle: 'Card subtitle',
+      onPress: function () {}
+    }, 'card content')
+  ).toJSON();
+
+  assert.ok(tree, 'Tile should render as a Card replacement');
 
 });

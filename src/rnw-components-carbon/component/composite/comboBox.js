@@ -1,5 +1,5 @@
 // Info: ComboBox composite [S3 overlay]. A select with text input filtering.
-// Uses M1 (a11y), M4 (OverlayHost), M5 (useAnchoredPosition), M8
+// Uses M1 (a11y), M4 (Overlay), M5 (useAnchoredPosition), M8
 // (useControllableState). Role combobox.
 //   value       -> string (controlled)
 //   defaultValue-> string (uncontrolled)
@@ -29,8 +29,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
   const a11y = require('../a11y')(Lib);
   const useControllableState = require('../useControllableState')(Lib);
   const useAnchoredPosition = require('../useAnchoredPosition')(Lib);
-  const overlayHost = require('../OverlayHost')(Lib);
-  const useOverlay = overlayHost.useOverlay;
+  const overlay = require('../Overlay')(Lib);
+  const useOverlay = overlay.useOverlay;
 
   return function ComboBox (props) {
 
@@ -195,7 +195,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       );
     }
 
-    // On web, use OverlayHost
+    // On web, use Overlay
     const overlay = useOverlay({
       isOpen: true,
       trap: false,

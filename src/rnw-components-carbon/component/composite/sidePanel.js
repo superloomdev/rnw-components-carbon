@@ -1,5 +1,5 @@
 // Info: SidePanel composite [S3 overlay]. A side panel that slides in from
-// the right. Uses M1 (a11y), M4 (OverlayHost). Uses useFocusTrap with
+// the right. Uses M1 (a11y), M4 (Overlay). Uses useFocusTrap with
 // trap: true. Composes View and Text atoms.
 //   isOpen      -> boolean
 //   onClose     -> function
@@ -27,8 +27,8 @@ Build the SidePanel composite.
 module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
   const useFocusTrap = require('../useFocusTrap')(Lib);
-  const overlayHost = require('../OverlayHost')(Lib);
-  const useOverlay = overlayHost.useOverlay;
+  const overlay = require('../Overlay')(Lib);
+  const useOverlay = overlay.useOverlay;
 
   return function SidePanel (props) {
 
@@ -105,7 +105,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       );
     }
 
-    // On web, use OverlayHost
+    // On web, use Overlay
     const overlay = useOverlay({
       isOpen: true,
       trap: true,

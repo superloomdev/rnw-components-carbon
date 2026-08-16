@@ -1,6 +1,6 @@
 // Info: Menu composite [S3/S4 overlay]. A menu container with role="menu"
 // that coordinates MenuItem children. Uses M1 (a11y), M3 (useRovingTabIndex),
-// M4 (OverlayHost), M5 (useAnchoredPosition), M7 (createCompoundContext).
+// M4 (Overlay), M5 (useAnchoredPosition), M7 (createCompoundContext).
 //   isOpen      -> boolean
 //   onClose     -> function
 //   children    -> MenuItem elements
@@ -26,8 +26,8 @@ Build the Menu composite.
 module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
   const useFocusTrap = require('../useFocusTrap')(Lib);
-  const overlayHost = require('../OverlayHost')(Lib);
-  const useOverlay = overlayHost.useOverlay;
+  const overlay = require('../Overlay')(Lib);
+  const useOverlay = overlay.useOverlay;
 
   return function Menu (props) {
 
@@ -78,7 +78,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       return null;
     }
 
-    // Use OverlayHost on web
+    // Use Overlay on web
     const overlay = useOverlay({
       isOpen: true,
       trap: true,
