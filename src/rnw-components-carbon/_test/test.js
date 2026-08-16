@@ -2134,6 +2134,137 @@ test('ToggletipLabel renders with role group', function () {
 });
 
 
+// ~~~~~~~~~~~~~~~~~~~~ P4.1 RN-only component tests ~~~~~~~~~~~~~~~~~~~~~
+
+test('ErrorState renders with role alert', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.ErrorState, { title: 'Error', subtitle: 'Something went wrong' })
+  ).toJSON();
+  assert.ok(tree, 'ErrorState should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'alert');
+
+});
+
+test('InlineLink renders with role link', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.InlineLink, { title: 'Learn more', onPress: function () {} })
+  ).toJSON();
+  assert.ok(tree, 'InlineLink should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'link');
+
+});
+
+test('InlineLink disabled does not fire onPress', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.InlineLink, { title: 'Disabled', disabled: true, onPress: function () {} })
+  ).toJSON();
+  assert.ok(tree, 'InlineLink disabled should render');
+  assert.strictEqual(tree.props.disabled, true);
+
+});
+
+test('LandingView renders with role main', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.LandingView, null, 'landing content')
+  ).toJSON();
+  assert.ok(tree, 'LandingView should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'main');
+
+});
+
+test('List renders with role list', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.List, null, 'item')
+  ).toJSON();
+  assert.ok(tree, 'List should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'list');
+
+});
+
+test('List ordered prop renders without error', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.List, { ordered: true }, 'item')
+  ).toJSON();
+  assert.ok(tree, 'List ordered should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'list');
+
+});
+
+test('NavigationList renders with role navigation', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.NavigationList, { title: 'Menu' }, 'nav item')
+  ).toJSON();
+  assert.ok(tree, 'NavigationList should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'navigation');
+
+});
+
+test('NavigationListItem renders with role link', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.NavigationListItem, {
+      title: 'Settings',
+      onPress: function () {}
+    })
+  ).toJSON();
+  assert.ok(tree, 'NavigationListItem should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'link');
+
+});
+
+test('WebHeader renders with role banner', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.WebHeader, null, 'header content')
+  ).toJSON();
+  assert.ok(tree, 'WebHeader should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'banner');
+
+});
+
+test('ViewWrapper renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.ViewWrapper, null, 'content')
+  ).toJSON();
+  assert.ok(tree, 'ViewWrapper should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('SafeAreaWrapper renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SafeAreaWrapper, null, 'content')
+  ).toJSON();
+  assert.ok(tree, 'SafeAreaWrapper should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('GrantPermission renders with role alertdialog', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.GrantPermission, {
+      title: 'Allow notifications',
+      subtitle: 'We need permission to send alerts',
+      onGrant: function () {},
+      onDeny: function () {}
+    })
+  ).toJSON();
+  assert.ok(tree, 'GrantPermission should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'alertdialog');
+
+});
+
+
 // ~~~~~~~~~~~~~~~~~~~~ P3 prop collapse tests ~~~~~~~~~~~~~~~~~~~~~
 // Each collapse re-adds deleted behavior as a prop on the absorbing component.
 
@@ -2217,4 +2348,101 @@ test('Tile covers the Card use case with onPress and children', function () {
 
   assert.ok(tree, 'Tile should render as a Card replacement');
 
+});
+
+
+// ~~~~~~~~~~~~~~~~~~~~ P4.1 batch 2 tests ~~~~~~~~~~~~~~~~~~~~~
+
+test('BottomNavigationBar renders with role tabbar', function () {
+  var tree = TestRenderer.create(
+    React.createElement(Component.BottomNavigationBar, {
+      items: [{ text: 'Home', onPress: function () {}, active: true }]
+    })
+  ).toJSON();
+  assert.ok(tree, 'BottomNavigationBar should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'tabbar');
+});
+
+test('BottomToolbar renders with role toolbar', function () {
+  var tree = TestRenderer.create(
+    React.createElement(Component.BottomToolbar, {
+      items: [{ text: 'Action', onPress: function () {} }]
+    })
+  ).toJSON();
+  assert.ok(tree, 'BottomToolbar should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'toolbar');
+});
+
+test('BottomToolbarPrimaryAction renders with role toolbar', function () {
+  var tree = TestRenderer.create(
+    React.createElement(Component.BottomToolbarPrimaryAction, {
+      primaryAction: { text: 'Submit', onPress: function () {} },
+      items: [{ text: 'Cancel', onPress: function () {} }]
+    })
+  ).toJSON();
+  assert.ok(tree, 'BottomToolbarPrimaryAction should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'toolbar');
+});
+
+test('DocumentViewer renders with role document', function () {
+  var tree = TestRenderer.create(
+    React.createElement(Component.DocumentViewer, { source: 'https://example.com' })
+  ).toJSON();
+  assert.ok(tree, 'DocumentViewer should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'document');
+});
+
+test('TopNavigationBar renders with role banner', function () {
+  var tree = TestRenderer.create(
+    React.createElement(Component.TopNavigationBar, { title: 'My App' })
+  ).toJSON();
+  assert.ok(tree, 'TopNavigationBar should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'banner');
+});
+
+test('TopNavigationBarLogin renders with role banner', function () {
+  var tree = TestRenderer.create(
+    React.createElement(Component.TopNavigationBarLogin, {
+      title: 'Login',
+      loginAction: { text: 'Sign In', onPress: function () {} }
+    })
+  ).toJSON();
+  assert.ok(tree, 'TopNavigationBarLogin should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'banner');
+});
+
+test('UiPanel renders with role group', function () {
+  var tree = TestRenderer.create(
+    React.createElement(Component.UiPanel, { title: 'Section', collapsed: false })
+  ).toJSON();
+  assert.ok(tree, 'UiPanel should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+});
+
+test('UiPanelItem renders with role button', function () {
+  var tree = TestRenderer.create(
+    React.createElement(Component.UiPanelItem, { text: 'Item', onPress: function () {} })
+  ).toJSON();
+  assert.ok(tree, 'UiPanelItem should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'button');
+});
+
+test('BottomSafeAreaColorOverride renders with role group', function () {
+  var tree = TestRenderer.create(
+    React.createElement(Component.BottomSafeAreaColorOverride, { color: '#fff' }, 'content')
+  ).toJSON();
+  assert.ok(tree, 'BottomSafeAreaColorOverride should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+});
+
+test('AcceptTerms renders with role main', function () {
+  var tree = TestRenderer.create(
+    React.createElement(Component.AcceptTerms, {
+      title: 'Terms',
+      source: 'https://example.com/terms',
+      resultsCallback: function () {}
+    })
+  ).toJSON();
+  assert.ok(tree, 'AcceptTerms should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'main');
 });

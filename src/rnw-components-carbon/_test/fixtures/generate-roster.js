@@ -71,25 +71,26 @@ const PLATFORM_NATIVE_PRIMARY = [
 // ---------------------------------------------------------------------------
 
 const CURRENT_FLAT = [
-  'AILabel', 'Accordion', 'AccordionItem', 'ActionSheet', 'AspectRatio',
-  'BadgeIndicator', 'Breadcrumb', 'BreadcrumbItem',
+  'AcceptTerms', 'AILabel', 'Accordion', 'AccordionItem', 'ActionSheet', 'AspectRatio',
+  'BadgeIndicator', 'BottomNavigationBar', 'BottomSafeAreaColorOverride',
+  'BottomToolbar', 'BottomToolbarPrimaryAction', 'Breadcrumb', 'BreadcrumbItem',
   'Button', 'ButtonSet', 'Callout',
   'Checkbox', 'CheckboxGroup', 'ClickableTile', 'CodeSnippet', 'Column',
   'ComboBox', 'ComboButton', 'ComposedModal', 'ContainedListItem',
   'ContentSwitcher', 'CopyButton', 'DataTable', 'DataTableRow', 'DateInput',
-  'DatePicker', 'DefinitionTooltip', 'Dropdown',
-  'ExpandableSearch', 'FlexGrid',
-  'Form', 'FormGroup', 'FormItem', 'FormLabel', 'Grid', 'Header',
+  'DatePicker', 'DefinitionTooltip', 'DocumentViewer', 'Dropdown',
+  'ErrorState', 'ExpandableSearch', 'FlexGrid',
+  'Form', 'FormGroup', 'FormItem', 'FormLabel', 'GrantPermission', 'Grid', 'Header',
   'HeaderMenuButton', 'HeaderNavigation', 'HeaderPanel', 'Heading', 'Icon',
-  'IconButton', 'IconIndicator', 'Image', 'InlineLoading',
-  'Link', 'ListItem', 'Loading',
+  'IconButton', 'IconIndicator', 'Image', 'InlineLink', 'InlineLoading',
+  'LandingView', 'Link', 'List', 'ListItem', 'Loading',
   'Menu', 'MenuButton', 'MenuItem', 'MenuItemDivider', 'MenuItemRadioGroup',
   'MenuItemSelectable', 'Modal', 'ModalBody', 'ModalFooter', 'ModalHeader',
-  'MultiSelect', 'Notification', 'NumberInput',
+  'MultiSelect', 'NavigationList', 'NavigationListItem', 'Notification', 'NumberInput',
   'OrderedList', 'OverflowMenu', 'Pagination', 'PaginationNav',
   'PasswordInput', 'Popover', 'ProgressBar', 'ProgressIndicator',
   'ProgressStep', 'RadioButton',
-  'RadioButtonGroup', 'Row', 'Search', 'Select',
+  'RadioButtonGroup', 'Row', 'SafeAreaWrapper', 'Search', 'Select',
   'SelectableTile', 'ShapeIndicator', 'SidePanel', 'Skeleton',
   'Slider', 'Stack', 'StaticNotification', 'StructuredListCell',
   'StructuredListRow', 'StructuredListWrapper', 'Switch', 'Tab', 'TabList',
@@ -97,8 +98,9 @@ const CURRENT_FLAT = [
   'TableCell', 'TableContainer', 'TableHead', 'TableHeader', 'TableRow',
   'TableToolbar', 'Tabs', 'Tag', 'Text', 'TextArea', 'TextInput', 'Tile',
   'TimePicker', 'ToastNotification', 'Toggle', 'Toggletip', 'ToggletipLabel',
-  'Tooltip', 'TreeNode', 'TreeView', 'TruncatedText', 'UnorderedList',
-  'UserAvatar', 'View'
+  'Tooltip', 'TopNavigationBar', 'TopNavigationBarLogin', 'TreeNode', 'TreeView',
+  'TruncatedText', 'UiPanel', 'UiPanelItem', 'UnorderedList',
+  'UserAvatar', 'View', 'ViewWrapper', 'WebHeader'
 ];
 
 const CURRENT_PROVIDERS = [

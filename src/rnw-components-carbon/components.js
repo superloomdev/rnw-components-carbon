@@ -297,6 +297,28 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.ToggletipLabel = make(require('./component/composite/toggletipLabel'));
       // GridItem deleted in P3: duplicate of Column.
 
+      // ~~~~~~~~~~ P4.1 RN-only components ~~~~~~~~~~
+      Component.InlineLink = make(require('./component/atom/inlineLink'));
+      Component.ErrorState = make(require('./component/molecule/errorState'));
+      Component.LandingView = make(require('./component/molecule/landingView'));
+      Component.List = make(require('./component/molecule/list'));
+      Component.NavigationList = make(require('./component/molecule/navigationList'));
+      Component.NavigationListItem = make(require('./component/molecule/navigationListItem'));
+      Component.WebHeader = make(require('./component/molecule/webHeader'));
+      Component.ViewWrapper = make(require('./component/molecule/viewWrapper'));
+      Component.SafeAreaWrapper = make(require('./component/molecule/safeAreaWrapper'));
+      Component.GrantPermission = make(require('./component/molecule/grantPermission'));
+      Component.BottomNavigationBar = make(require('./component/molecule/bottomNavigationBar'));
+      Component.BottomToolbar = make(require('./component/molecule/bottomToolbar'));
+      Component.BottomToolbarPrimaryAction = make(require('./component/molecule/bottomToolbarPrimaryAction'));
+      Component.BottomSafeAreaColorOverride = make(require('./component/molecule/bottomSafeAreaColorOverride'));
+      Component.DocumentViewer = make(require('./component/molecule/documentViewer'));
+      Component.TopNavigationBar = make(require('./component/molecule/topNavigationBar'));
+      Component.TopNavigationBarLogin = make(require('./component/molecule/topNavigationBarLogin'));
+      Component.UiPanel = make(require('./component/molecule/uiPanel'));
+      Component.UiPanelItem = make(require('./component/molecule/uiPanelItem'));
+      Component.AcceptTerms = make(require('./component/composite/acceptTerms'));
+
       // ~~~~~~~~~~ Composites (Wave 6 form components) ~~~~~~~~~~
       // Form composites use M1 (a11y), M3 (useRovingTabIndex), M4 (Overlay),
       // M5 (useAnchoredPosition), M7 (createCompoundContext), M8 (useControllableState).

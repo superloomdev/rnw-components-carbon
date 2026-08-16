@@ -7,17 +7,22 @@
   "counts": {
     "target": 231,
     "exceptions": 12,
-    "currentFlat": 116,
+    "currentFlat": 136,
     "currentProvider": 8,
     "total": 244
   },
   "builtFlat": [
     "AILabel",
+    "AcceptTerms",
     "Accordion",
     "AccordionItem",
     "ActionSheet",
     "AspectRatio",
     "BadgeIndicator",
+    "BottomNavigationBar",
+    "BottomSafeAreaColorOverride",
+    "BottomToolbar",
+    "BottomToolbarPrimaryAction",
     "Breadcrumb",
     "BreadcrumbItem",
     "Button",
@@ -39,13 +44,16 @@
     "DateInput",
     "DatePicker",
     "DefinitionTooltip",
+    "DocumentViewer",
     "Dropdown",
+    "ErrorState",
     "ExpandableSearch",
     "FlexGrid",
     "Form",
     "FormGroup",
     "FormItem",
     "FormLabel",
+    "GrantPermission",
     "Grid",
     "Header",
     "HeaderMenuButton",
@@ -56,8 +64,11 @@
     "IconButton",
     "IconIndicator",
     "Image",
+    "InlineLink",
     "InlineLoading",
+    "LandingView",
     "Link",
+    "List",
     "ListItem",
     "Loading",
     "Menu",
@@ -71,6 +82,8 @@
     "ModalFooter",
     "ModalHeader",
     "MultiSelect",
+    "NavigationList",
+    "NavigationListItem",
     "Notification",
     "NumberInput",
     "OrderedList",
@@ -85,6 +98,7 @@
     "RadioButton",
     "RadioButtonGroup",
     "Row",
+    "SafeAreaWrapper",
     "Search",
     "Select",
     "SelectableTile",
@@ -122,12 +136,18 @@
     "Toggletip",
     "ToggletipLabel",
     "Tooltip",
+    "TopNavigationBar",
+    "TopNavigationBarLogin",
     "TreeNode",
     "TreeView",
     "TruncatedText",
+    "UiPanel",
+    "UiPanelItem",
     "UnorderedList",
     "UserAvatar",
-    "View"
+    "View",
+    "ViewWrapper",
+    "WebHeader"
   ],
   "builtProvider": [
     "ErrorBoundary",
@@ -193,8 +213,8 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "Accordion",
@@ -249,32 +269,32 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "BottomSafeAreaColorOverride",
       "tier": "unknown",
       "platform": "native-primary",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "BottomToolbar",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "BottomToolbarPrimaryAction",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "Breadcrumb",
@@ -537,8 +557,8 @@
       "tier": "unknown",
       "platform": "split",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "Dropdown",
@@ -569,8 +589,8 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "ExpandableSearch",
@@ -713,8 +733,8 @@
       "tier": "unknown",
       "platform": "native-primary",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "Grid",
@@ -897,8 +917,8 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "InlineLoading",
@@ -921,8 +941,8 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "Layer",
@@ -945,8 +965,8 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "ListItem",
@@ -1073,16 +1093,16 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "NavigationListItem",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "Notification",
@@ -1265,8 +1285,8 @@
       "tier": "unknown",
       "platform": "native-primary",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "Search",
@@ -1993,16 +2013,16 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "TopNavigationBarLogin",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "TreeNode",
@@ -2033,16 +2053,16 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "UiPanelItem",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "UnorderedList",
@@ -2081,16 +2101,16 @@
       "tier": "unknown",
       "platform": "native-primary",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "WebHeader",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     }
   ]
 }
