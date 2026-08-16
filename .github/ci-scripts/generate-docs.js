@@ -6,7 +6,7 @@
 // if running the generator produces a diff. Hand-maintained tables drift
 // immediately at this scale (231+ components).
 //
-// Usage: node scripts/generate-docs.js
+// Usage: node .github/ci-scripts/generate-docs.js
 'use strict';
 
 
@@ -14,7 +14,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 
-const ROOT = path.resolve(__dirname, '..');
+const ROOT = path.resolve(__dirname, '..', '..');
 const FIXTURE_PATH = path.join(ROOT, '_test/fixtures/component-roster.json');
 
 
