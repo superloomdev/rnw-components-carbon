@@ -1,0 +1,73 @@
+// Info: TableToolbarAction molecule [S2 interactive]. A single action button
+// in the table toolbar. Uses role="button" for screen reader semantics and
+// M2 (usePressKeys) for keyboard activation. Composes Icon and Text atoms.
+//   icon        -> string (icon glyph name)
+//   onPress     -> function (press handler)
+//   label       -> string (button text / accessibility label)
+//   style       -> custom style overrides
+'use strict';
+
+const { Pressable } = require('react-native');
+
+
+/********************************************************************
+Build the TableToolbarAction molecule.
+
+@param {Object} Lib      - { Utils, Debug, React }
+@param {Object} CONFIG   - Package configuration
+@param {Object} ERRORS   - Frozen error catalog
+@param {Object} Registry - Component registry (for atom composition)
+@param {Object} Style_   - { utilities, tokens, breakpoint }
+
+@return {Function} - The TableToolbarAction component
+*********************************************************************/
+module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+
+  const usePressKeys = require('../usePressKeys')(Lib);
+
+  return function TableToolbarAction (props) {
+
+    const {
+      icon, onPress, label, style, isRtlActive, // eslint-disable-line no-unused-vars
+      ...rest
+    } = props;
+
+    const React = Lib.React;
+
+    const pressKeysProps = usePressKeys({
+      role: 'button',
+      onActivate: onPress,
+      disabled: false
+    });
+
+    return React.createElement(
+      Pressable,
+      Object.assign({
+        onPress: onPress,
+        accessibilityRole: 'button',
+        accessibilityLabel: label,
+        style: [
+          Style_.utilities['p_h_sm'],
+          Style_.utilities['p_v_sm'],
+          Style_.utilities['br_md'],
+          style
+        ]
+      }, pressKeysProps, rest),
+      icon
+        ? React.createElement(Registry.Icon, {
+          name: icon,
+          size: 'md',
+          color: 'TEXT_PRIMARY'
+        })
+        : null,
+      label
+        ? React.createElement(Registry.Text, {
+          size: 'sm',
+          color: 'text_primary'
+        }, label)
+        : null
+    );
+
+  };
+
+};

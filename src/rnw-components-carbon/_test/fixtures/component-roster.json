@@ -7,7 +7,7 @@
   "counts": {
     "target": 231,
     "exceptions": 12,
-    "currentFlat": 136,
+    "currentFlat": 152,
     "currentProvider": 8,
     "total": 244
   },
@@ -40,6 +40,9 @@
     "ContentSwitcher",
     "CopyButton",
     "DataTable",
+    "DataTableCell",
+    "DataTableHeader",
+    "DataTableHeaderSelected",
     "DataTableRow",
     "DateInput",
     "DatePicker",
@@ -115,15 +118,28 @@
     "Tab",
     "TabList",
     "TabPanel",
+    "Table",
+    "TableActionList",
     "TableBatchAction",
     "TableBatchActions",
     "TableBody",
     "TableCell",
     "TableContainer",
+    "TableDecoratorRow",
+    "TableExpandHeader",
+    "TableExpandRow",
+    "TableExpandedRow",
     "TableHead",
     "TableHeader",
     "TableRow",
+    "TableSelectAll",
+    "TableSelectRow",
+    "TableSlugRow",
     "TableToolbar",
+    "TableToolbarAction",
+    "TableToolbarContent",
+    "TableToolbarMenu",
+    "TableToolbarSearch",
     "Tabs",
     "Tag",
     "Text",
@@ -485,24 +501,24 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "DataTableHeader",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "DataTableHeaderSelected",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "DataTableRow",
@@ -1661,16 +1677,16 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "TableActionList",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "TableBatchAction",
@@ -1717,32 +1733,32 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "TableExpandHeader",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "TableExpandRow",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "TableExpandedRow",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "TableHead",
@@ -1773,24 +1789,24 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "TableSelectRow",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "TableSlugRow",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "TableToolbar",
@@ -1805,32 +1821,32 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "TableToolbarContent",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "TableToolbarMenu",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "TableToolbarSearch",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "Tabs",

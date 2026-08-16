@@ -319,6 +319,24 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.UiPanelItem = make(require('./component/molecule/uiPanelItem'));
       Component.AcceptTerms = make(require('./component/composite/acceptTerms'));
 
+      // ~~~~~~~~~~ P4.2 Table family ~~~~~~~~~~
+      Component.Table = make(require('./component/molecule/table'));
+      Component.DataTableCell = make(require('./component/molecule/dataTableCell'));
+      Component.DataTableHeader = make(require('./component/molecule/dataTableHeader'));
+      Component.DataTableHeaderSelected = make(require('./component/molecule/dataTableHeaderSelected'));
+      Component.TableActionList = make(require('./component/molecule/tableActionList'));
+      Component.TableDecoratorRow = make(require('./component/molecule/tableDecoratorRow'));
+      Component.TableExpandHeader = make(require('./component/molecule/tableExpandHeader'));
+      Component.TableExpandRow = make(require('./component/molecule/tableExpandRow'));
+      Component.TableExpandedRow = make(require('./component/molecule/tableExpandedRow'));
+      Component.TableSelectAll = make(require('./component/molecule/tableSelectAll'));
+      Component.TableSelectRow = make(require('./component/molecule/tableSelectRow'));
+      Component.TableSlugRow = make(require('./component/molecule/tableSlugRow'));
+      Component.TableToolbarAction = make(require('./component/molecule/tableToolbarAction'));
+      Component.TableToolbarContent = make(require('./component/molecule/tableToolbarContent'));
+      Component.TableToolbarMenu = make(require('./component/molecule/tableToolbarMenu'));
+      Component.TableToolbarSearch = make(require('./component/molecule/tableToolbarSearch'));
+
       // ~~~~~~~~~~ Composites (Wave 6 form components) ~~~~~~~~~~
       // Form composites use M1 (a11y), M3 (useRovingTabIndex), M4 (Overlay),
       // M5 (useAnchoredPosition), M7 (createCompoundContext), M8 (useControllableState).

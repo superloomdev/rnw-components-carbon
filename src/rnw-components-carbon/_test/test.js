@@ -2446,3 +2446,236 @@ test('AcceptTerms renders with role main', function () {
   assert.ok(tree, 'AcceptTerms should render');
   assert.strictEqual(tree.props.accessibilityRole, 'main');
 });
+
+// ~~~~~~~~~~ P4.2 Table family ~~~~~~~~~~
+
+test('Table renders with role table', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Table, null, 'content')
+  ).toJSON();
+
+  assert.ok(tree, 'Table should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'table');
+
+});
+
+test('DataTableCell renders with role cell', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.DataTableCell, { content: 'Value' })
+  ).toJSON();
+
+  assert.ok(tree, 'DataTableCell should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'cell');
+
+});
+
+test('DataTableHeader renders with role row', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.DataTableHeader, {
+      primaryAction: { label: 'Add', onPress: function () {} },
+      secondaryActions: [{ label: 'Filter', onPress: function () {} }]
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'DataTableHeader should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'row');
+
+});
+
+test('DataTableHeaderSelected renders with role row', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.DataTableHeaderSelected, {
+      selectedCount: 3,
+      batchActions: [{ label: 'Delete', onPress: function () {} }],
+      onCancel: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'DataTableHeaderSelected should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'row');
+
+});
+
+test('TableActionList renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TableActionList, null, 'actions')
+  ).toJSON();
+
+  assert.ok(tree, 'TableActionList should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('TableDecoratorRow renders with role row', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TableDecoratorRow)
+  ).toJSON();
+
+  assert.ok(tree, 'TableDecoratorRow should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'row');
+
+});
+
+test('TableExpandHeader renders with role columnheader', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TableExpandHeader, {
+      isExpanded: false,
+      onToggle: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'TableExpandHeader should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'columnheader');
+
+});
+
+test('TableExpandRow renders with role row', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TableExpandRow, {
+      isExpanded: false,
+      onToggle: function () {}
+    }, 'row content')
+  ).toJSON();
+
+  assert.ok(tree, 'TableExpandRow should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'row');
+
+});
+
+test('TableExpandedRow renders with role row', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TableExpandedRow, null, 'expanded content')
+  ).toJSON();
+
+  assert.ok(tree, 'TableExpandedRow should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'row');
+
+});
+
+test('TableSelectAll renders with role columnheader', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TableSelectAll, {
+      checked: false,
+      onSelectAll: function () {},
+      ariaLabel: 'Select all'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'TableSelectAll should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'columnheader');
+
+});
+
+test('TableSelectRow renders with role cell', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TableSelectRow, {
+      checked: false,
+      onSelect: function () {},
+      ariaLabel: 'Select row'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'TableSelectRow should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'cell');
+
+});
+
+test('TableSlugRow renders with role row', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TableSlugRow, { slug: 'Label' }, 'content')
+  ).toJSON();
+
+  assert.ok(tree, 'TableSlugRow should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'row');
+
+});
+
+test('TableToolbarAction renders with role button', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TableToolbarAction, {
+      icon: 'search',
+      onPress: function () {},
+      label: 'Search'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'TableToolbarAction should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'button');
+
+});
+
+test('TableToolbarContent renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TableToolbarContent, null, 'toolbar content')
+  ).toJSON();
+
+  assert.ok(tree, 'TableToolbarContent should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('TableToolbarMenu renders with role button', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TableToolbarMenu, {
+      label: 'Actions'
+    }, [{ label: 'Edit', onPress: function () {} }])
+  ).toJSON();
+
+  assert.ok(tree, 'TableToolbarMenu should render');
+  // TableToolbarMenu composes OverflowMenu; the button trigger is nested.
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'button'), 'TableToolbarMenu should contain a button trigger');
+
+});
+
+test('TableToolbarSearch renders with role searchbox', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TableToolbarSearch, {
+      value: '',
+      onChange: function () {},
+      placeholder: 'Search'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'TableToolbarSearch should render');
+  // The searchbox role is on the nested TextInput, not the container.
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'searchbox'), 'TableToolbarSearch should contain a searchbox input');
+
+});
