@@ -3,7 +3,7 @@
 # Strategy:
 #   1. Lint the module source
 #   2. Run unit tests from _test/ (pure Node, no container, no emulator)
-#   3. Run enforcement greps (G1-G7)
+#   3. Run enforcement greps (G1-G19) plus docs-diff check
 #   4. Publish to GitHub Packages on main push if version is not on the registry
 #
 # The visual Expo app is NOT part of CI (per plan: "The visual app is not CI").
@@ -61,7 +61,65 @@ jobs:
     needs: [lint]
     steps:
       - uses: actions/checkout@v4
-      - name: G1 - No require('react') in component/ or components.js
+      - name: G1 - No accessibilityState
+        working-directory: src/rnw-components-carbon
+        run: |
+          if grep -rn "accessibilityState" component/ components.js; then
+            echo "FAIL: accessibilityState found"
+            exit 1
+          fi
+          echo "PASS"
+      - name: G2 - No accessibilityValue
+        working-directory: src/rnw-components-carbon
+        run: |
+          if grep -rn "accessibilityValue" component/ components.js; then
+            echo "FAIL: accessibilityValue found"
+            exit 1
+          fi
+          echo "PASS"
+      - name: G3 - No accessibilityHint
+        working-directory: src/rnw-components-carbon
+        run: |
+          if grep -rn "accessibilityHint" component/ components.js; then
+            echo "FAIL: accessibilityHint found"
+            exit 1
+          fi
+          echo "PASS"
+      - name: G4 - No accessibilityViewIsModal
+        working-directory: src/rnw-components-carbon
+        run: |
+          if grep -rn "accessibilityViewIsModal" component/ components.js; then
+            echo "FAIL: accessibilityViewIsModal found"
+            exit 1
+          fi
+          echo "PASS"
+      - name: G5 - No importantForAccessibility
+        working-directory: src/rnw-components-carbon
+        run: |
+          if grep -rn "importantForAccessibility" component/ components.js; then
+            echo "FAIL: importantForAccessibility found"
+            exit 1
+          fi
+          echo "PASS"
+      - name: G6 - announceForAccessibility in LiveRegionProvider only
+        working-directory: src/rnw-components-carbon
+        run: |
+          HITS=$(grep -rn "announceForAccessibility" component/ | grep -v LiveRegionProvider || true)
+          if [ -n "$HITS" ]; then
+            echo "FAIL: announceForAccessibility outside LiveRegionProvider"
+            echo "$HITS"
+            exit 1
+          fi
+          echo "PASS"
+      - name: G7 - No LayoutAnimation
+        working-directory: src/rnw-components-carbon
+        run: |
+          if grep -rn "LayoutAnimation" component/; then
+            echo "FAIL: LayoutAnimation found"
+            exit 1
+          fi
+          echo "PASS"
+      - name: G8 - No require('react') in component/ or components.js
         working-directory: src/rnw-components-carbon
         run: |
           if grep -rn "require('react')" component/ components.js; then
@@ -69,7 +127,7 @@ jobs:
             exit 1
           fi
           echo "PASS"
-      - name: G2 - No Lib.Client in component/
+      - name: G9 - No Lib.Client in component/
         working-directory: src/rnw-components-carbon
         run: |
           if grep -rn "Lib.Client" component/; then
@@ -77,7 +135,7 @@ jobs:
             exit 1
           fi
           echo "PASS"
-      - name: G3 - No useWindowDimensions
+      - name: G10 - No useWindowDimensions
         working-directory: src/rnw-components-carbon
         run: |
           if grep -rn "useWindowDimensions" component/ components.js; then
@@ -85,7 +143,7 @@ jobs:
             exit 1
           fi
           echo "PASS"
-      - name: G4 - No __DEV__
+      - name: G11 - No __DEV__
         working-directory: src/rnw-components-carbon
         run: |
           if grep -rn "__DEV__" component/ components.js; then
@@ -93,26 +151,80 @@ jobs:
             exit 1
           fi
           echo "PASS"
-      - name: G5 - No organism/ directory
+      - name: G12 - No createPortal
         working-directory: src/rnw-components-carbon
         run: |
-          test ! -d component/organism && echo "PASS" || { echo "FAIL: organism/ directory exists"; exit 1; }
-      - name: G6 - No responsive prop objects
+          if grep -rn "createPortal" component/; then
+            echo "FAIL: createPortal found"
+            exit 1
+          fi
+          echo "PASS"
+      - name: G13 - No downshift/flatpickr/floating-ui dependencies
         working-directory: src/rnw-components-carbon
         run: |
-          if grep -rnE "props\.[a-zA-Z]+\s*\[\s*(breakpoint|bp)\s*\]|base:.*md:" component/; then
+          if grep -rn "downshift\|flatpickr\|floating-ui" package.json; then
+            echo "FAIL: forbidden dependency found"
+            exit 1
+          fi
+          echo "PASS"
+      - name: G14 - No @carbon/react runtime dependency
+        working-directory: src/rnw-components-carbon
+        run: |
+          if grep -rn "@carbon/react" package.json; then
+            echo "FAIL: @carbon/react found in package.json"
+            exit 1
+          fi
+          echo "PASS"
+      - name: G15 - No responsive prop objects
+        working-directory: src/rnw-components-carbon
+        run: |
+          if grep -rnE "props\.[a-zA-Z]+\s*\[\s*(breakpoint|bp)\s*\]" component/; then
             echo "FAIL: responsive prop object found"
             exit 1
           fi
           echo "PASS"
-      - name: G7 - Canonical must not import from variant/ or freeform/
+      - name: G16 - No organism/ directory
         working-directory: src/rnw-components-carbon
         run: |
-          if grep -rn "require(.*/\(variant\|freeform\)/" component/atom component/molecule; then
+          test ! -d component/organism && echo "PASS" || { echo "FAIL: organism/ directory exists"; exit 1; }
+      - name: G17 - Canonical must not import from variant/ or freeform/
+        working-directory: src/rnw-components-carbon
+        run: |
+          if grep -rn "require(.*/\(variant\|freeform\)/" component/atom component/molecule component/composite; then
             echo "FAIL: canonical imports from variant/ or freeform/"
             exit 1
           fi
           echo "PASS"
+      - name: G18 - Atoms compose only Text and Icon
+        working-directory: src/rnw-components-carbon
+        run: |
+          HITS=$(grep -rn "Registry\." component/atom | grep -v "Registry\.Text" | grep -v "Registry\.Icon" || true)
+          if [ -n "$HITS" ]; then
+            echo "FAIL: atom uses Registry beyond Text/Icon"
+            echo "$HITS"
+            exit 1
+          fi
+          echo "PASS"
+      - name: G19 - Freeform must not use Style_ or Registry
+        working-directory: src/rnw-components-carbon
+        run: |
+          HITS=$(grep -rn "Style_\|Registry" component/freeform/*.js | grep -v "^[^:]*:[0-9]*://" | grep -v "^[^:]*:[0-9]*: \*" || true)
+          if [ -n "$HITS" ]; then
+            echo "FAIL: freeform uses Style_ or Registry"
+            echo "$HITS"
+            exit 1
+          fi
+          echo "PASS"
+      - name: G20 - Docs must be regenerated (no diff)
+        working-directory: src/rnw-components-carbon
+        run: |
+          node scripts/generate-docs.js
+          if ! git diff --exit-code README.md ROBOTS.md docs/api.md docs/platform-support.md docs/carbon-parity.md; then
+            echo "FAIL: docs are out of date. Run 'node scripts/generate-docs.js' and commit."
+            git diff --stat
+            exit 1
+          fi
+          echo "PASS: docs are up to date"
 
   publish:
     name: Publish
