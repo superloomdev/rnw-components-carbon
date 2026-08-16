@@ -7,7 +7,7 @@
   "counts": {
     "target": 231,
     "exceptions": 12,
-    "currentFlat": 152,
+    "currentFlat": 167,
     "currentProvider": 8,
     "total": 244
   },
@@ -38,6 +38,7 @@
     "ComposedModal",
     "ContainedListItem",
     "ContentSwitcher",
+    "ControlledPasswordInput",
     "CopyButton",
     "DataTable",
     "DataTableCell",
@@ -46,13 +47,17 @@
     "DataTableRow",
     "DateInput",
     "DatePicker",
+    "DatePickerInput",
     "DefinitionTooltip",
     "DocumentViewer",
     "Dropdown",
+    "ErrorBoundaryContext",
     "ErrorState",
     "ExpandableSearch",
+    "FilterableMultiSelect",
     "FlexGrid",
     "Form",
+    "FormContext",
     "FormGroup",
     "FormItem",
     "FormLabel",
@@ -95,6 +100,8 @@
     "PaginationNav",
     "PasswordInput",
     "Popover",
+    "PopoverContent",
+    "PrefixContext",
     "ProgressBar",
     "ProgressIndicator",
     "ProgressStep",
@@ -104,6 +111,9 @@
     "SafeAreaWrapper",
     "Search",
     "Select",
+    "SelectItem",
+    "SelectItemGroup",
+    "SelectableTag",
     "SelectableTile",
     "ShapeIndicator",
     "SidePanel",
@@ -145,11 +155,16 @@
     "Text",
     "TextArea",
     "TextInput",
+    "ThemeContext",
     "Tile",
     "TimePicker",
+    "TimePickerSelect",
     "ToastNotification",
     "Toggle",
     "Toggletip",
+    "ToggletipActions",
+    "ToggletipButton",
+    "ToggletipContent",
     "ToggletipLabel",
     "Tooltip",
     "TopNavigationBar",
@@ -469,8 +484,8 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "Copy",
@@ -549,8 +564,8 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "DefinitionTooltip",
@@ -597,8 +612,8 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "ErrorState",
@@ -677,8 +692,8 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "FlexGrid",
@@ -709,8 +724,8 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "FormGroup",
@@ -1229,16 +1244,16 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "PrefixContext",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "ProgressBar",
@@ -1333,24 +1348,24 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "SelectItemGroup",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "SelectableTag",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "SelectableTile",
@@ -1909,8 +1924,8 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "Tile",
@@ -1957,8 +1972,8 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "ToastNotification",
@@ -1989,24 +2004,24 @@
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "ToggletipButton",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "ToggletipContent",
       "tier": "unknown",
       "platform": "both",
       "source": "carbon",
-      "registry": null,
-      "status": "todo"
+      "registry": "flat",
+      "status": "built"
     },
     {
       "name": "ToggletipLabel",

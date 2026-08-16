@@ -2679,3 +2679,255 @@ test('TableToolbarSearch renders with role searchbox', function () {
   assert.ok(findRole(tree, 'searchbox'), 'TableToolbarSearch should contain a searchbox input');
 
 });
+
+// ~~~~~~~~~~ P4.3 Form composites and selects ~~~~~~~~~~
+
+test('ControlledPasswordInput renders with role textbox', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.ControlledPasswordInput, {
+      value: 'secret',
+      onChange: function () {},
+      placeholder: 'Enter password'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'ControlledPasswordInput should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'textbox'), 'ControlledPasswordInput should contain a textbox');
+
+});
+
+test('DatePickerInput renders with role combobox', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.DatePickerInput, {
+      value: '2024-01-15',
+      onChange: function () {},
+      placeholder: 'Select date'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'DatePickerInput should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'combobox'), 'DatePickerInput should contain a combobox');
+
+});
+
+test('ErrorBoundaryContext renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.ErrorBoundaryContext, null, 'error content')
+  ).toJSON();
+
+  assert.ok(tree, 'ErrorBoundaryContext should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('FilterableMultiSelect renders with role combobox', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.FilterableMultiSelect, {
+      items: [{ value: 'a', label: 'A' }, { value: 'b', label: 'B' }],
+      selectedItems: [],
+      onChange: function () {},
+      placeholder: 'Select items'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'FilterableMultiSelect should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'combobox'), 'FilterableMultiSelect should contain a combobox');
+
+});
+
+test('FormContext renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.FormContext, null, 'form content')
+  ).toJSON();
+
+  assert.ok(tree, 'FormContext should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('PopoverContent renders with role tooltip', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.PopoverContent, null, 'popover content')
+  ).toJSON();
+
+  assert.ok(tree, 'PopoverContent should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'tooltip');
+
+});
+
+test('PrefixContext renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.PrefixContext, null, 'prefix content')
+  ).toJSON();
+
+  assert.ok(tree, 'PrefixContext should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('SelectItem renders with role option', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SelectItem, {
+      value: 'opt1',
+      text: 'Option 1',
+      onSelect: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'SelectItem should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'option');
+
+});
+
+test('SelectItemGroup renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SelectItemGroup, {
+      label: 'Group A'
+    }, 'item content')
+  ).toJSON();
+
+  assert.ok(tree, 'SelectItemGroup should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('SelectableTag renders with role button', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SelectableTag, {
+      text: 'Tag 1',
+      selected: false,
+      onSelect: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'SelectableTag should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'button');
+
+});
+
+test('ThemeContext renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.ThemeContext, null, 'theme content')
+  ).toJSON();
+
+  assert.ok(tree, 'ThemeContext should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('TimePickerSelect renders with role combobox', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.TimePickerSelect, {
+      value: '09:00',
+      onChange: function () {},
+      options: [{ value: '09:00', label: '9:00 AM' }]
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'TimePickerSelect should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'combobox'), 'TimePickerSelect should contain a combobox');
+
+});
+
+test('ToggletipActions renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.ToggletipActions, null, 'action buttons')
+  ).toJSON();
+
+  assert.ok(tree, 'ToggletipActions should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('ToggletipButton renders with role button', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.ToggletipButton, {
+      text: 'Action',
+      onPress: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'ToggletipButton should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'button'), 'ToggletipButton should contain a button');
+
+});
+
+test('ToggletipContent renders with role tooltip', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.ToggletipContent, null, 'toggletip content')
+  ).toJSON();
+
+  assert.ok(tree, 'ToggletipContent should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'tooltip');
+
+});
