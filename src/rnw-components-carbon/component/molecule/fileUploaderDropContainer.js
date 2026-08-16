@@ -16,15 +16,11 @@ Build the FileUploaderDropContainer molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The FileUploaderDropContainer component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function FileUploaderDropContainer (props) {
 
     const {
@@ -33,7 +29,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     } = props;
 
     const React = Lib.React;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
 
     // Handle press (simulates drop on native where drag-drop is unavailable)
     const handlePress = function () {
@@ -43,10 +39,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({});
+    const ariaProps = Parts.A11y.state({});
 
     // Build keyboard activation props
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'button',
       onActivate: handlePress,
       disabled: false
@@ -60,11 +56,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         accessibilityLabel: label || 'Drop files here'
       }, ariaProps, pressKeysProps, {
         style: [
-          Style_.utilities['flex_col'],
-          Style_.utilities['align_center'],
-          Style_.utilities['justify_center'],
-          Style_.utilities['p_a_lg'],
-          Style_.utilities['br_md'],
+          Style.utilities['flex_col'],
+          Style.utilities['align_center'],
+          Style.utilities['justify_center'],
+          Style.utilities['p_a_lg'],
+          Style.utilities['br_md'],
           {
             borderWidth: 2,
             borderStyle: 'dashed',

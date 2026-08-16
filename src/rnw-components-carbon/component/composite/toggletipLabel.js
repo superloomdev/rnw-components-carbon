@@ -18,14 +18,11 @@ Build the ToggletipLabel composite.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The ToggletipLabel component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function ToggletipLabel (props) {
 
     const {
@@ -36,15 +33,15 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const React = Lib.React;
 
     // Build aria props through the a11y translator
-    const ariaProps = a11y.state({});
+    const ariaProps = Parts.A11y.state({});
 
     return React.createElement(
       RNView,
       Object.assign({
         accessibilityRole: 'group',
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center'],
           style
         ]
       }, ariaProps, rest),
@@ -54,7 +51,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           size: 'sm',
           color: 'text_secondary',
           weight: 'medium',
-          style: Style_.utilities['m_e_xs']
+          style: Style.utilities['m_e_xs']
         }, label)
         : null,
       // Toggletip with content; pass an info icon as the trigger child

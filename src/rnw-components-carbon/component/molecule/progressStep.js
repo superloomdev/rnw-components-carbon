@@ -17,14 +17,11 @@ Build the ProgressStep molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The ProgressStep component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function ProgressStep (props) {
 
     const {
@@ -33,7 +30,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     } = props;
 
     const React = Lib.React;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
     const currentStatus = status || 'incomplete';
 
     // Determine the indicator color based on status
@@ -44,12 +41,12 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         : (colorMap.BORDER || '#e0e0e0');
 
     // Build aria state props
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       current: currentStatus === 'current' ? 'step' : undefined
     });
 
     // Build position props
-    const positionProps = a11y.position({
+    const positionProps = Parts.A11y.position({
       posinset: Lib.Utils.isNumber(stepNumber) ? stepNumber : undefined
     });
 
@@ -58,9 +55,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'listitem',
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
-          Style_.utilities['m_r_lg'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center'],
+          Style.utilities['m_r_lg'],
           style
         ]
       }, ariaProps, positionProps, rest),

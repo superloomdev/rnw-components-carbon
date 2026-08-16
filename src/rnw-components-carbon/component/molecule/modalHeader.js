@@ -18,11 +18,11 @@ Build the ModalHeader molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The ModalHeader component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function ModalHeader (props) {
 
@@ -37,16 +37,16 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       RNView,
       Object.assign({
         style: [
-          Style_.utilities['p_h_lg'],
-          Style_.utilities['p_v_md'],
-          Style_.utilities['border_default'],
+          Style.utilities['p_h_lg'],
+          Style.utilities['p_v_md'],
+          Style.utilities['border_default'],
           { borderBottomWidth: 1 },
           style
         ]
       }, rest),
       React.createElement(
         RNView,
-        { style: [Style_.utilities['flex_row'], Style_.utilities['align_center'], Style_.utilities['justify_between']] },
+        { style: [Style.utilities['flex_row'], Style.utilities['align_center'], Style.utilities['justify_between']] },
         React.createElement(RNView, { style: { flex: 1 } },
           title
             ? React.createElement(Registry.Text, {
@@ -59,7 +59,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
             ? React.createElement(Registry.Text, {
               size: 'sm',
               color: 'text_secondary',
-              style: Style_.utilities['m_t_xs']
+              style: Style.utilities['m_t_xs']
             }, subtitle)
             : null
         ),
@@ -70,7 +70,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
               onPress: closeOnPress,
               accessibilityRole: 'button',
               accessibilityLabel: 'Close',
-              style: Style_.utilities['m_s_sm']
+              style: Style.utilities['m_s_sm']
             },
             React.createElement(Registry.Text, {
               size: 'lg',

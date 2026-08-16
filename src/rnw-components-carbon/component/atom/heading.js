@@ -13,14 +13,11 @@ Build the Heading atom.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Heading component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) { // eslint-disable-line no-unused-vars
-
-  const a11y = require('../a11y')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
   return function Heading (props) {
 
     const {
@@ -36,7 +33,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) { // eslint-di
     const sizeToken = sizeMap[lvl] || 'xl';
 
     // Build aria position props for level through the a11y translator
-    const ariaProps = a11y.position({
+    const ariaProps = Parts.A11y.position({
       level: lvl
     });
 

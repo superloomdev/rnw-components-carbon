@@ -17,15 +17,11 @@ Build the Checkbox atom.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Checkbox component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Checkbox (props) {
 
     const {
@@ -46,20 +42,20 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       disabled: !!disabled,
       checked: checked
     });
 
     // Build keyboard activation props (Space activates checkbox role)
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'checkbox',
       onActivate: handlePress,
       disabled: !!disabled
     });
 
     // Resolve the checkbox box style based on checked state
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
     const boxBase = {
       width: 20,
       height: 20,
@@ -116,9 +112,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         disabled: !!disabled,
         accessibilityRole: 'checkbox',
         accessibilityLabel: accessibilityLabel || label,
-        style: [Style_.utilities['flex_row'], Style_.utilities['align_center'], style]
+        style: [Style.utilities['flex_row'], Style.utilities['align_center'], style]
       }, ariaProps, pressKeysProps, rest),
-      React.createElement(RNView, { style: [boxBase, boxStyle, Style_.utilities['m_e_xs']] }, checkmark),
+      React.createElement(RNView, { style: [boxBase, boxStyle, Style.utilities['m_e_xs']] }, checkmark),
       label ? React.createElement(Registry.Text, {
         size: 'md',
         color: disabled ? 'text_muted' : 'text_primary'

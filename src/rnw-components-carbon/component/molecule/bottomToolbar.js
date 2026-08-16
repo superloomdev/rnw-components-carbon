@@ -14,11 +14,11 @@ Build the BottomToolbar molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The BottomToolbar component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function BottomToolbar (props) {
 
@@ -48,8 +48,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'toolbar',
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['justify_evenly'],
+          Style.utilities['flex_row'],
+          Style.utilities['justify_evenly'],
           style
         ]
       }, rest),

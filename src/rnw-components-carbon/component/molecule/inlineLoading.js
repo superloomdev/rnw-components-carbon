@@ -15,14 +15,11 @@ Build the InlineLoading molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The InlineLoading component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function InlineLoading (props) {
 
     const {
@@ -31,11 +28,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     } = props;
 
     const React = Lib.React;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
     const st = status || 'active';
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       busy: st === 'active'
     });
 
@@ -44,13 +41,13 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'progressbar',
         accessibilityLabel: label || 'Loading',
-        style: [Style_.utilities['flex_row'], Style_.utilities['align_center'], style]
+        style: [Style.utilities['flex_row'], Style.utilities['align_center'], style]
       }, ariaProps, rest),
       st === 'active'
         ? React.createElement(ActivityIndicator, {
           size: 'small',
           color: colorMap.APP_PRIMARY || '#0f62fe',
-          style: Style_.utilities['m_e_xs']
+          style: Style.utilities['m_e_xs']
         })
         : null,
       React.createElement(Registry.Text, {

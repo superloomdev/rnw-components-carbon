@@ -17,15 +17,11 @@ Build the HeaderGlobalAction molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The HeaderGlobalAction component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function HeaderGlobalAction (props) {
 
     const {
@@ -36,10 +32,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const React = Lib.React;
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({});
+    const ariaProps = Parts.A11y.state({});
 
     // Build keyboard activation props
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'button',
       onActivate: onPress,
       disabled: false
@@ -53,8 +49,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         accessibilityLabel: label || icon
       }, ariaProps, pressKeysProps, {
         style: [
-          Style_.utilities['p_a_sm'],
-          Style_.utilities['br_sm'],
+          Style.utilities['p_a_sm'],
+          Style.utilities['br_sm'],
           style
         ]
       }, rest),

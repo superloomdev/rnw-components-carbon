@@ -15,11 +15,11 @@ Build the ButtonSet molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The ButtonSet component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function ButtonSet (props) {
 
@@ -34,8 +34,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       RNView,
       Object.assign({
         style: [
-          stacked ? null : Style_.utilities['flex_row'],
-          stacked ? null : Style_.utilities['align_center'],
+          stacked ? null : Style.utilities['flex_row'],
+          stacked ? null : Style.utilities['align_center'],
           style
         ]
       }, rest),

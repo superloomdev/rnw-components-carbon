@@ -19,15 +19,11 @@ Build the FileUploader composite.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The FileUploader component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function FileUploader (props) {
 
     const {
@@ -45,10 +41,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({});
+    const ariaProps = Parts.A11y.state({});
 
     // Build keyboard activation props for the drop area
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'button',
       onActivate: handlePress,
       disabled: false
@@ -60,10 +56,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         accessibilityRole: 'group',
         accessibilityLabel: label,
         style: [
-          Style_.utilities['flex_col'],
-          Style_.utilities['border_default'],
-          Style_.utilities['br_md'],
-          Style_.utilities['p_a_md'],
+          Style.utilities['flex_col'],
+          Style.utilities['border_default'],
+          Style.utilities['br_md'],
+          Style.utilities['p_a_md'],
           style
         ]
       }, rest),
@@ -72,7 +68,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           size: 'md',
           color: 'text_primary',
           weight: 'medium',
-          style: Style_.utilities['m_b_sm']
+          style: Style.utilities['m_b_sm']
         }, label)
         : null,
       React.createElement(
@@ -83,11 +79,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           accessibilityLabel: label || 'Upload files'
         }, ariaProps, pressKeysProps, {
           style: [
-            Style_.utilities['flex_col'],
-            Style_.utilities['align_center'],
-            Style_.utilities['p_a_md'],
-            Style_.utilities['br_md'],
-            Style_.utilities['background_background_secondary']
+            Style.utilities['flex_col'],
+            Style.utilities['align_center'],
+            Style.utilities['p_a_md'],
+            Style.utilities['br_md'],
+            Style.utilities['background_background_secondary']
           ]
         }),
         React.createElement(Registry.Text, {

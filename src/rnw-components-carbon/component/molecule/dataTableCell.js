@@ -19,11 +19,11 @@ Build the DataTableCell molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The DataTableCell component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function DataTableCell (props) {
 
@@ -36,9 +36,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const isHeader = type === 'header';
 
     const cellStyle = [
-      Style_.utilities['flex_1'],
-      Style_.utilities['p_h_md'],
-      Style_.utilities['p_v_sm'],
+      Style.utilities['flex_1'],
+      Style.utilities['p_h_md'],
+      Style.utilities['p_v_sm'],
       Lib.Utils.isNumber(width) ? { width: width } : null,
       style
     ];

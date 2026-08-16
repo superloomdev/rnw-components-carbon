@@ -146,16 +146,31 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
         allBreakpoints: allStyles
       };
 
-      // Build the RTL-injecting HOC once
-      const hoc = require('./component/componentHoc')(Lib);
+      // Mechanism parts - built once per instance, injected into every component
+      // factory. Parts are internal; they are never exported through the public
+      // interface. See module-structure.md, Parts Pattern.
+      const STYLE_CONTRACT = require('./data/style-contract.json');
+      const partsConfig = Object.assign({}, CONFIG, { STYLE_CONTRACT: STYLE_CONTRACT });
+
+      const Parts = {
+        A11y:             require('./parts/a11y')(Lib, partsConfig, ERRORS),
+        PressKeys:        require('./parts/press-keys')(Lib, partsConfig, ERRORS),
+        RovingTabIndex:   require('./parts/roving-tab-index')(Lib, partsConfig, ERRORS),
+        ControllableState: require('./parts/controllable-state')(Lib, partsConfig, ERRORS),
+        AnchoredPosition: require('./parts/anchored-position')(Lib, partsConfig, ERRORS),
+        FocusTrap:        require('./parts/focus-trap')(Lib, partsConfig, ERRORS),
+        Overlay:          require('./parts/overlay')(Lib, partsConfig, ERRORS),
+        CompoundContext:  require('./parts/compound-context')(Lib, partsConfig, ERRORS),
+        Units:            require('./parts/units')(Lib, partsConfig, ERRORS)
+      };
 
       // The shared component registry (molecules close over this object)
       const Component = {};
 
-      // Helper: instantiate a factory and wrap it with the HOC
+      // Helper: instantiate a factory with the full injection set
       // Lib is first, matching every other Superloom module
       const make = function (factory) {
-        return hoc(factory(Lib, CONFIG, ERRORS, Component, Style));
+        return factory(Lib, CONFIG, ERRORS, Parts, Component, Style);
       };
 
       // ~~~~~~~~~~ Atoms ~~~~~~~~~~
@@ -465,12 +480,12 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       // count toward the flat top-level key count.
       const overlayModule = require('./component/Overlay')(Lib);
       const liveRegionModule = require('./component/LiveRegionProvider')(Lib);
-      const layerModule = require('./component/provider/layer')(Lib, CONFIG, ERRORS, Component, Style);
-      const themeModule = require('./component/provider/theme')(Lib, CONFIG, ERRORS, Component, Style);
-      const featureFlagsModule = require('./component/provider/featureFlags')(Lib, CONFIG, ERRORS, Component, Style);
-      const idPrefixModule = require('./component/provider/idPrefix')(Lib, CONFIG, ERRORS, Component, Style);
-      const fluidFormModule = require('./component/provider/fluidForm')(Lib, CONFIG, ERRORS, Component, Style);
-      const errorBoundaryModule = require('./component/provider/errorBoundary')(Lib, CONFIG, ERRORS, Component, Style);
+      const layerModule = require('./component/provider/layer')(Lib, CONFIG, ERRORS, Parts, Component, Style);
+      const themeModule = require('./component/provider/theme')(Lib, CONFIG, ERRORS, Parts, Component, Style);
+      const featureFlagsModule = require('./component/provider/featureFlags')(Lib, CONFIG, ERRORS, Parts, Component, Style);
+      const idPrefixModule = require('./component/provider/idPrefix')(Lib, CONFIG, ERRORS, Parts, Component, Style);
+      const fluidFormModule = require('./component/provider/fluidForm')(Lib, CONFIG, ERRORS, Parts, Component, Style);
+      const errorBoundaryModule = require('./component/provider/errorBoundary')(Lib, CONFIG, ERRORS, Parts, Component, Style);
       Component.provider = {
         Overlay: overlayModule.Overlay,
         LiveRegionProvider: liveRegionModule.LiveRegionProvider,

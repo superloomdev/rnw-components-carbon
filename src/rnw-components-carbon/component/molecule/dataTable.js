@@ -16,11 +16,11 @@ Build the DataTable molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The DataTable component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function DataTable (props) {
 
@@ -37,9 +37,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       {
         accessibilityRole: 'row',
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['background_background_secondary'],
-          Style_.utilities['border_default']
+          Style.utilities['flex_row'],
+          Style.utilities['background_background_secondary'],
+          Style.utilities['border_default']
         ]
       },
       (headers || []).map(function (header, index) {
@@ -49,9 +49,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
             key: 'header-' + index,
             accessibilityRole: 'columnheader',
             style: [
-              Style_.utilities['flex_1'],
-              Style_.utilities['p_h_md'],
-              Style_.utilities['p_v_sm']
+              Style.utilities['flex_1'],
+              Style.utilities['p_h_md'],
+              Style.utilities['p_v_sm']
             ]
           },
           React.createElement(Registry.Text, {
@@ -71,8 +71,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           key: 'row-' + rowIndex,
           accessibilityRole: 'row',
           style: [
-            Style_.utilities['flex_row'],
-            Style_.utilities['border_default']
+            Style.utilities['flex_row'],
+            Style.utilities['border_default']
           ]
         },
         (row || []).map(function (cell, cellIndex) {
@@ -82,9 +82,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
               key: 'cell-' + rowIndex + '-' + cellIndex,
               accessibilityRole: 'cell',
               style: [
-                Style_.utilities['flex_1'],
-                Style_.utilities['p_h_md'],
-                Style_.utilities['p_v_sm']
+                Style.utilities['flex_1'],
+                Style.utilities['p_h_md'],
+                Style.utilities['p_v_sm']
               ]
             },
             React.createElement(Registry.Text, {
@@ -101,8 +101,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'table',
         style: [
-          Style_.utilities['border_default'],
-          Style_.utilities['br_md'],
+          Style.utilities['border_default'],
+          Style.utilities['br_md'],
           { overflow: 'hidden' },
           style
         ]

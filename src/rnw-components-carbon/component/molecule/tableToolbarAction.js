@@ -17,14 +17,11 @@ Build the TableToolbarAction molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The TableToolbarAction component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const usePressKeys = require('../usePressKeys')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function TableToolbarAction (props) {
 
     const {
@@ -34,7 +31,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
     const React = Lib.React;
 
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'button',
       onActivate: onPress,
       disabled: false
@@ -47,9 +44,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         accessibilityRole: 'button',
         accessibilityLabel: label,
         style: [
-          Style_.utilities['p_h_sm'],
-          Style_.utilities['p_v_sm'],
-          Style_.utilities['br_md'],
+          Style.utilities['p_h_sm'],
+          Style.utilities['p_v_sm'],
+          Style.utilities['br_md'],
           style
         ]
       }, pressKeysProps, rest),

@@ -17,14 +17,12 @@ Build the ComboButton composite.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The ComboButton component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const Menu = require('./menu')(Lib, CONFIG, ERRORS, Registry, Style_);
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+  const Menu = require('./menu')(Lib, CONFIG, ERRORS, Parts, Registry, Style);
 
   return function ComboButton (props) {
 
@@ -41,7 +39,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props for the dropdown trigger
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       expanded: !!isOpen
     });
 
@@ -62,7 +60,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
     return React.createElement(
       RNView,
-      Object.assign({ style: [Style_.utilities['flex_row'], style] }, rest),
+      Object.assign({ style: [Style.utilities['flex_row'], style] }, rest),
       // Primary button
       React.createElement(
         Registry.Button,
@@ -78,7 +76,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           },
           accessibilityRole: 'button',
           accessibilityLabel: 'More options',
-          style: [Style_.utilities['p_h_sm'], Style_.utilities['p_v_sm'], Style_.utilities['border_default']]
+          style: [Style.utilities['p_h_sm'], Style.utilities['p_v_sm'], Style.utilities['border_default']]
         }, ariaProps),
         React.createElement(Registry.Icon, {
           name: 'chevron-down',

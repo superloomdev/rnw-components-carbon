@@ -16,14 +16,11 @@ Build the Loading atom.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Loading component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Loading (props) {
 
     const {
@@ -32,18 +29,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     } = props;
 
     const React = Lib.React;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
 
     // Map size token to ActivityIndicator size
     const aiSize = size === 'sm' ? 'small' : size === 'lg' ? 'large' : 'small';
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       busy: true
     });
 
     // Build aria value props for indeterminate progressbar
-    const ariaValueProps = a11y.value({
+    const ariaValueProps = Parts.A11y.value({
       min: 0,
       max: 100,
       now: null
@@ -54,7 +51,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'progressbar',
         accessibilityLabel: label || 'Loading',
-        style: [Style_.utilities['flex_row'], Style_.utilities['align_center'], Style_.utilities['justify_center'], style]
+        style: [Style.utilities['flex_row'], Style.utilities['align_center'], Style.utilities['justify_center'], style]
       }, ariaProps, ariaValueProps, rest),
       React.createElement(ActivityIndicator, {
         size: aiSize,

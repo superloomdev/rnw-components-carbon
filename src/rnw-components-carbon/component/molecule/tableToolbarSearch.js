@@ -17,11 +17,11 @@ Build the TableToolbarSearch molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The TableToolbarSearch component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function TableToolbarSearch (props) {
 
@@ -36,12 +36,12 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       RNView,
       {
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
-          Style_.utilities['br_md'],
-          Style_.utilities['border_default'],
-          Style_.utilities['background_surface'],
-          Style_.utilities['p_h_sm'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center'],
+          Style.utilities['br_md'],
+          Style.utilities['border_default'],
+          Style.utilities['background_surface'],
+          Style.utilities['p_h_sm'],
           style
         ]
       },
@@ -49,7 +49,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         name: 'search',
         size: 'sm',
         color: 'TEXT_SECONDARY',
-        style: Style_.utilities['m_e_xs']
+        style: Style.utilities['m_e_xs']
       }),
       React.createElement(
         Registry.TextInput,

@@ -20,15 +20,12 @@ Build the SidePanel composite.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The SidePanel component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const useFocusTrap = require('../useFocusTrap')(Lib);
-  const overlay = require('../Overlay')(Lib);
-  const useOverlay = overlay.useOverlay;
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+  const useOverlay = Parts.Overlay.useOverlay;
 
   return function SidePanel (props) {
 
@@ -42,7 +39,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const panelWidth = width || 320;
 
     // Focus trap
-    const focusTrap = useFocusTrap({
+    const focusTrap = Parts.FocusTrap({
       isOpen: isOpen,
       onClose: onClose,
       trap: true
@@ -56,8 +53,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           ref: focusTrap.containerRef,
           accessibilityRole: 'dialog',
           style: [
-            Style_.utilities['background_surface'],
-            Style_.utilities['shadow_lg'],
+            Style.utilities['background_surface'],
+            Style.utilities['shadow_lg'],
             {
               position: 'absolute',
               top: 0, bottom: 0,
@@ -72,7 +69,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
             size: 'xl',
             color: 'text_primary',
             weight: 'semibold',
-            style: [Style_.utilities['p_h_lg'], Style_.utilities['p_v_md']]
+            style: [Style.utilities['p_h_lg'], Style.utilities['p_v_md']]
           }, title)
           : null,
         children

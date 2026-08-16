@@ -20,15 +20,13 @@ Build the TabsVertical composite.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The TabsVertical component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   const getSharedContext = require('../context/sharedContext');
-  const useRovingTabIndex = require('../useRovingTabIndex')(Lib);
-
   // Get the shared compound context (cached per Lib instance)
   const ctx = getSharedContext(Lib, 'TabsVertical');
 
@@ -46,7 +44,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const count = childArray.length;
 
     // Roving tab index for arrow key navigation (vertical orientation)
-    const roving = useRovingTabIndex({
+    const roving = Parts.RovingTabIndex({
       count: count,
       activeIndex: activeIndex,
       onActiveIndexChange: function (nextIndex) {
@@ -81,7 +79,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'tablist',
         style: [
-          Style_.utilities['flex_row'],
+          Style.utilities['flex_row'],
           style
         ]
       }, roving.containerProps, rest),

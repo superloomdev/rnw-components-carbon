@@ -15,15 +15,11 @@ Build the DefinitionTooltip molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The DefinitionTooltip component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const useAnchoredPosition = require('../useAnchoredPosition')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function DefinitionTooltip (props) {
 
     const {
@@ -36,7 +32,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const anchorRef = React.useRef(null);
 
     // Anchored position
-    const anchoredPos = useAnchoredPosition({
+    const anchoredPos = Parts.AnchoredPosition({
       placement: 'bottom',
       offset: 4,
       flip: true,
@@ -50,10 +46,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     }, [isVisible]);
 
     // Generate stable id
-    const defId = React.useRef(a11y.id('definition')).current;
+    const defId = React.useRef(Parts.A11y.id('definition')).current;
 
     // Build aria relation props
-    const ariaProps = a11y.relation({
+    const ariaProps = Parts.A11y.relation({
       describedby: defId
     });
 
@@ -77,10 +73,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           id: defId,
           accessibilityRole: 'tooltip',
           style: [
-            Style_.utilities['background_surface'],
-            Style_.utilities['br_sm'],
-            Style_.utilities['p_a_sm'],
-            Style_.utilities['shadow_sm'],
+            Style.utilities['background_surface'],
+            Style.utilities['br_sm'],
+            Style.utilities['p_a_sm'],
+            Style.utilities['shadow_sm'],
             {
               position: 'absolute',
               top: pos.top,

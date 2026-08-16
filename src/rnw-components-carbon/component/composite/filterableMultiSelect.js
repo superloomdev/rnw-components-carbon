@@ -20,18 +20,12 @@ Build the FilterableMultiSelect composite.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The FilterableMultiSelect component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const useControllableState = require('../useControllableState')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-  const useAnchoredPosition = require('../useAnchoredPosition')(Lib);
-  const overlay = require('../Overlay')(Lib);
-  const useOverlay = overlay.useOverlay;
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+  const useOverlay = Parts.Overlay.useOverlay;
 
   return function FilterableMultiSelect (props) {
 
@@ -45,7 +39,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const anchorRef = React.useRef(null);
 
     // Controlled/uncontrolled state for the selected values array
-    const state = useControllableState({
+    const state = Parts.ControllableState({
       value: selectedItems,
       defaultValue: [],
       onChange: onChange
@@ -56,7 +50,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const [isOpen, setIsOpen] = React.useState(false);
     const [filterText, setFilterText] = React.useState('');
     const isDisabled = !!disabled;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
     const itemList = items || [];
     const selectedArray = resolvedSelected || [];
 
@@ -74,7 +68,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       : selectedArray.length + ' selected';
 
     // Anchored position for the dropdown panel
-    const anchored = useAnchoredPosition({
+    const anchored = Parts.AnchoredPosition({
       placement: 'bottom-start',
       anchorRef: anchorRef
     });
@@ -113,13 +107,13 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props for the trigger
-    const ariaStateProps = a11y.state({
+    const ariaStateProps = Parts.A11y.state({
       disabled: isDisabled,
       expanded: !!isOpen
     });
 
     // Build keyboard activation props for the trigger
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'button',
       onActivate: handleToggle,
       disabled: isDisabled
@@ -136,14 +130,14 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           accessibilityRole: 'combobox',
           accessibilityLabel: accessibilityLabel || placeholder || 'Filterable multi-select',
           style: [
-            Style_.utilities['flex_row'],
-            Style_.utilities['align_center'],
-            Style_.utilities['justify_between'],
-            Style_.utilities['br_md'],
-            Style_.utilities['border_default'],
-            Style_.utilities['p_h_md'],
-            Style_.utilities['p_v_sm'],
-            Style_.utilities['background_surface'],
+            Style.utilities['flex_row'],
+            Style.utilities['align_center'],
+            Style.utilities['justify_between'],
+            Style.utilities['br_md'],
+            Style.utilities['border_default'],
+            Style.utilities['p_h_md'],
+            Style.utilities['p_v_sm'],
+            Style.utilities['background_surface'],
             isDisabled
               ? { backgroundColor: colorMap.BACKGROUND_SECONDARY || '#f4f4f4' }
               : null,
@@ -172,17 +166,17 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           accessibilityRole: 'listbox',
           'aria-multiselectable': true,
           style: [
-            Style_.utilities['background_surface'],
-            Style_.utilities['br_md'],
-            Style_.utilities['border_default'],
-            Style_.utilities['p_v_xs'],
+            Style.utilities['background_surface'],
+            Style.utilities['br_md'],
+            Style.utilities['border_default'],
+            Style.utilities['p_v_xs'],
             { position: 'absolute', top: pos.top, left: pos.left, minWidth: 200, zIndex: zIndex || 1000 }
           ]
         },
         // Filter text input
         React.createElement(
           RNView,
-          { style: [Style_.utilities['p_h_sm'], Style_.utilities['p_v_xs']] },
+          { style: [Style.utilities['p_h_sm'], Style.utilities['p_v_xs']] },
           React.createElement(Registry.TextInput, {
             value: filterText,
             onChangeText: setFilterText,
@@ -191,10 +185,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
             accessibilityRole: 'searchbox',
             accessibilityLabel: 'Filter options',
             style: [
-              Style_.utilities['br_sm'],
-              Style_.utilities['border_default'],
-              Style_.utilities['p_h_sm'],
-              Style_.utilities['p_v_xs']
+              Style.utilities['br_sm'],
+              Style.utilities['border_default'],
+              Style.utilities['p_h_sm'],
+              Style.utilities['p_v_xs']
             ]
           })
         ),

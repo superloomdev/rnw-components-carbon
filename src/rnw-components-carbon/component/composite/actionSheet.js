@@ -16,14 +16,12 @@ Build the ActionSheet composite.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The ActionSheet component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const Menu = require('./menu')(Lib, CONFIG, ERRORS, Registry, Style_);
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+  const Menu = require('./menu')(Lib, CONFIG, ERRORS, Parts, Registry, Style);
 
   return function ActionSheet (props) {
 
@@ -40,7 +38,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       expanded: !!isOpen
     });
 

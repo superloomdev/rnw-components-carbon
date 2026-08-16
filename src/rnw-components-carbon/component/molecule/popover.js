@@ -19,18 +19,12 @@ Build the Popover molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Popover component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const useFocusTrap = require('../useFocusTrap')(Lib);
-  const overlay = require('../Overlay')(Lib);
-  const useOverlay = overlay.useOverlay;
-  const useAnchoredPosition = require('../useAnchoredPosition')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+  const useOverlay = Parts.Overlay.useOverlay;
   return function Popover (props) {
 
     const {
@@ -42,14 +36,14 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const anchorRef = React.useRef(null);
 
     // Focus trap with trap: false (popover does not trap)
-    const focusTrap = useFocusTrap({
+    const focusTrap = Parts.FocusTrap({
       isOpen: isOpen,
       onClose: onClose,
       trap: false
     });
 
     // Anchored position calculation
-    const anchoredPos = useAnchoredPosition({
+    const anchoredPos = Parts.AnchoredPosition({
       placement: placement || 'top',
       offset: 8,
       flip: true,
@@ -64,8 +58,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     }, [isOpen]);
 
     // Build aria relation props
-    const contentId = React.useRef(a11y.id('popover')).current;
-    const ariaProps = a11y.relation({
+    const contentId = React.useRef(Parts.A11y.id('popover')).current;
+    const ariaProps = Parts.A11y.relation({
       describedby: isOpen ? contentId : null
     });
 
@@ -78,11 +72,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           id: contentId,
           ref: focusTrap.containerRef,
           style: [
-            Style_.utilities['background_surface'],
-            Style_.utilities['br_md'],
-            Style_.utilities['border_default'],
-            Style_.utilities['p_a_md'],
-            Style_.utilities['shadow_sm'],
+            Style.utilities['background_surface'],
+            Style.utilities['br_md'],
+            Style.utilities['border_default'],
+            Style.utilities['p_a_md'],
+            Style.utilities['shadow_sm'],
             {
               position: 'absolute',
               top: pos.top,

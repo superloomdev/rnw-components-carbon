@@ -22,14 +22,11 @@ Build the TreeNode molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The TreeNode component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   const getSharedContext = require('../context/sharedContext');
 
   // Get the shared TreeView context (cached per Lib instance)
@@ -43,7 +40,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     } = props;
 
     const React = Lib.React;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
 
     // Read TreeView context if available
     const ctxValue = React.useContext(treeViewCtx.Context);
@@ -64,18 +61,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       expanded: hasChildren ? isExpanded : undefined,
       selected: isSelected
     });
 
     // Build position props for tree level
-    const positionProps = a11y.position({
+    const positionProps = Parts.A11y.position({
       level: nodeLevel
     });
 
     // Build keyboard activation props
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'treeitem',
       onActivate: handleSelect,
       disabled: false
@@ -95,10 +92,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           accessibilityRole: 'button',
           accessibilityLabel: label,
           style: [
-            Style_.utilities['flex_row'],
-            Style_.utilities['align_center'],
-            Style_.utilities['p_h_sm'],
-            Style_.utilities['p_v_xs'],
+            Style.utilities['flex_row'],
+            Style.utilities['align_center'],
+            Style.utilities['p_h_sm'],
+            Style.utilities['p_v_xs'],
             {
               marginLeft: (nodeLevel - 1) * 20,
               backgroundColor: isSelected
@@ -112,7 +109,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           ? React.createElement(Registry.Text, {
             size: 'xs',
             color: 'text_secondary',
-            style: Style_.utilities['m_r_xs']
+            style: Style.utilities['m_r_xs']
           }, isExpanded ? '\u25BC' : '\u25B6')
           : React.createElement(RNView, {
             style: { width: 12, marginRight: 4 }

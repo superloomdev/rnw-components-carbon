@@ -19,14 +19,11 @@ Build the Search molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Search component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const useControllableState = require('../useControllableState')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Search (props) {
 
     const {
@@ -38,7 +35,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const React = Lib.React;
 
     // Controlled/uncontrolled state
-    const state = useControllableState({
+    const state = Parts.ControllableState({
       value: value,
       defaultValue: defaultValue || '',
       onChange: onChange
@@ -47,7 +44,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const setValue = state[1];
 
     const isDisabled = !!disabled;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
 
     // Clear button handler
     const handleClear = function () {
@@ -61,14 +58,14 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       RNView,
       {
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
-          Style_.utilities['br_md'],
-          Style_.utilities['border_default'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center'],
+          Style.utilities['br_md'],
+          Style.utilities['border_default'],
           isDisabled
             ? { backgroundColor: colorMap.BACKGROUND_SECONDARY || '#f4f4f4' }
-            : Style_.utilities['background_surface'],
-          Style_.utilities['p_h_sm'],
+            : Style.utilities['background_surface'],
+          Style.utilities['p_h_sm'],
           style
         ]
       },
@@ -77,7 +74,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         name: 'search',
         size: 'sm',
         color: 'TEXT_SECONDARY',
-        style: Style_.utilities['m_e_xs']
+        style: Style.utilities['m_e_xs']
       }),
       // Text input
       React.createElement(
@@ -100,7 +97,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
             onPress: handleClear,
             accessibilityRole: 'button',
             accessibilityLabel: 'Clear search',
-            style: Style_.utilities['m_s_xs']
+            style: Style.utilities['m_s_xs']
           },
           React.createElement(Registry.Icon, {
             name: 'close',

@@ -15,11 +15,11 @@ Build the Filename molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Filename component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function Filename (props) {
 
@@ -45,8 +45,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         accessibilityRole: 'text',
         accessibilityLabel: name,
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center'],
           style
         ]
       }, rest),
@@ -55,7 +55,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           name: statusIcon,
           size: 'sm',
           color: 'TEXT_SECONDARY',
-          style: Style_.utilities['m_e_xs']
+          style: Style.utilities['m_e_xs']
         })
         : null,
       React.createElement(Registry.Text, {

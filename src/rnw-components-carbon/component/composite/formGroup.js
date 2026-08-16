@@ -16,14 +16,11 @@ Build the FormGroup composite.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The FormGroup component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function FormGroup (props) {
 
     const {
@@ -37,7 +34,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const isInvalid = !!invalid;
 
     // Build aria state props for the group
-    const ariaStateProps = a11y.state({
+    const ariaStateProps = Parts.A11y.state({
       disabled: isDisabled,
       invalid: isInvalid
     });
@@ -48,7 +45,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         size: 'sm',
         color: isDisabled ? 'text_muted' : 'text_primary',
         weight: 'medium',
-        style: Style_.utilities['m_b_xs']
+        style: Style.utilities['m_b_xs']
       }, label)
       : null;
 
@@ -57,7 +54,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       ? React.createElement(Registry.Text, {
         size: 'xs',
         color: isInvalid ? 'status_danger' : 'text_secondary',
-        style: Style_.utilities['m_t_xs']
+        style: Style.utilities['m_t_xs']
       }, message)
       : null;
 
@@ -66,7 +63,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'group',
         accessibilityLabel: accessibilityLabel || label,
-        style: [Style_.utilities['m_b_md'], style]
+        style: [Style.utilities['m_b_md'], style]
       }, ariaStateProps, rest),
       labelElement,
       children,

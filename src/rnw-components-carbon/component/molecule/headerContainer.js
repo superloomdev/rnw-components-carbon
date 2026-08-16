@@ -14,11 +14,11 @@ Build the HeaderContainer molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The HeaderContainer component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function HeaderContainer (props) {
 
@@ -28,18 +28,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     } = props;
 
     const React = Lib.React;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
 
     return React.createElement(
       RNView,
       Object.assign({
         accessibilityRole: 'banner',
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
-          Style_.utilities['p_h_lg'],
-          Style_.utilities['p_v_md'],
-          Style_.utilities['background_surface'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center'],
+          Style.utilities['p_h_lg'],
+          Style.utilities['p_v_md'],
+          Style.utilities['background_surface'],
           {
             borderBottomWidth: 1,
             borderBottomColor: colorMap.BORDER || '#e0e0e0'

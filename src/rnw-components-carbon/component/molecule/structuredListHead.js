@@ -14,11 +14,11 @@ Build the StructuredListHead molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The StructuredListHead component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function StructuredListHead (props) {
 
@@ -28,14 +28,14 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     } = props;
 
     const React = Lib.React;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
 
     return React.createElement(
       RNView,
       Object.assign({
         accessibilityRole: 'rowgroup',
         style: [
-          Style_.utilities['flex_col'],
+          Style.utilities['flex_col'],
           {
             borderBottomWidth: 1,
             borderBottomColor: colorMap.BORDER || '#e0e0e0'

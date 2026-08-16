@@ -17,18 +17,14 @@ Build the Toggle atom.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Toggle component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   // Build the a11y translator once per factory
-  const a11y = require('../a11y')(Lib);
-
   // Build the keyboard activation hook once per factory
-  const usePressKeys = require('../usePressKeys')(Lib);
-
   return function Toggle (props) {
 
     // Destructure props
@@ -50,14 +46,14 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build keyboard activation props (Space activates switch role)
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'switch',
       onActivate: handleActivate,
       disabled: !!disabled
     });
 
     // Resolve colors from tokens
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
 
     // Track color when on: app primary; when off: a muted surface
     const trackOnColor = colorMap.APP_PRIMARY || '#0f62fe';
@@ -71,7 +67,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const disabledThumbColor = colorMap.TEXT_MUTED || '#999';
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       disabled: !!disabled,
       checked: !!value
     });

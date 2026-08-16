@@ -17,14 +17,11 @@ Build the NavigationListItem molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The NavigationListItem component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function NavigationListItem (props) {
 
     const {
@@ -35,7 +32,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const React = Lib.React;
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({});
+    const ariaProps = Parts.A11y.state({});
 
     return React.createElement(
       Pressable,
@@ -44,10 +41,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         accessibilityRole: 'link',
         accessibilityLabel: title,
         style: [
-          Style_.utilities['p_h_md'],
-          Style_.utilities['p_v_md'],
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
+          Style.utilities['p_h_md'],
+          Style.utilities['p_v_md'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center'],
           style
         ]
       }, ariaProps, rest),
@@ -57,7 +54,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           name: icon,
           size: 'md',
           color: 'TEXT_SECONDARY',
-          style: Style_.utilities['m_e_sm']
+          style: Style.utilities['m_e_sm']
         })
         : null,
       // Title

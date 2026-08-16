@@ -16,11 +16,11 @@ Build the BottomToolbarPrimaryAction molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The BottomToolbarPrimaryAction component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function BottomToolbarPrimaryAction (props) {
 
@@ -63,13 +63,13 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'toolbar',
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['items_center'],
-          Style_.utilities['justify_between'],
+          Style.utilities['flex_row'],
+          Style.utilities['items_center'],
+          Style.utilities['justify_between'],
           style
         ]
       }, rest),
-      React.createElement(RNView, { style: Style_.utilities['flex_row'] }, secondaryElements),
+      React.createElement(RNView, { style: Style.utilities['flex_row'] }, secondaryElements),
       primaryElement
     );
 

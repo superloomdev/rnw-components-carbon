@@ -19,14 +19,11 @@ Build the DatePickerInput molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The DatePickerInput component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const useControllableState = require('../useControllableState')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function DatePickerInput (props) {
 
     const {
@@ -38,7 +35,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const React = Lib.React;
 
     // Controlled/uncontrolled state for the date value
-    const state = useControllableState({
+    const state = Parts.ControllableState({
       value: value,
       defaultValue: '',
       onChange: onChange
@@ -53,8 +50,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       RNView,
       {
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center'],
           style
         ]
       },
@@ -82,7 +79,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           disabled: isDisabled,
           accessibilityRole: 'button',
           accessibilityLabel: 'Open date picker',
-          style: Style_.utilities['m_s_xs']
+          style: Style.utilities['m_s_xs']
         },
         React.createElement(Registry.Icon, {
           name: 'calendar',

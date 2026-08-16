@@ -17,14 +17,12 @@ Build the OverflowMenu composite.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The OverflowMenu component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const Menu = require('./menu')(Lib, CONFIG, ERRORS, Registry, Style_);
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+  const Menu = require('./menu')(Lib, CONFIG, ERRORS, Parts, Registry, Style);
 
   return function OverflowMenu (props) {
 
@@ -44,7 +42,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props for trigger
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       expanded: !!isOpen
     });
 
@@ -72,7 +70,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           onPress: handleTrigger,
           accessibilityRole: 'button',
           accessibilityLabel: triggerLabel || 'Options',
-          style: [Style_.utilities['p_h_sm'], Style_.utilities['p_v_sm'], style]
+          style: [Style.utilities['p_h_sm'], Style.utilities['p_v_sm'], style]
         }, ariaProps, rest),
         React.createElement(Registry.Icon, {
           name: 'overflow',

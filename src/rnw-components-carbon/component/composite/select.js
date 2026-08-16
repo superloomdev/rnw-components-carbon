@@ -20,18 +20,12 @@ Build the Select composite.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Select component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const useControllableState = require('../useControllableState')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-  const useAnchoredPosition = require('../useAnchoredPosition')(Lib);
-  const overlay = require('../Overlay')(Lib);
-  const useOverlay = overlay.useOverlay;
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+  const useOverlay = Parts.Overlay.useOverlay;
 
   return function Select (props) {
 
@@ -45,7 +39,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const anchorRef = React.useRef(null);
 
     // Controlled/uncontrolled state for the selected value
-    const state = useControllableState({
+    const state = Parts.ControllableState({
       value: value,
       defaultValue: defaultValue,
       onChange: onChange
@@ -56,7 +50,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const [isOpen, setIsOpen] = React.useState(false);
     const isDisabled = !!disabled;
     const isInvalid = !!invalid;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
     const optionList = options || [];
 
     // Find the selected option label
@@ -66,7 +60,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const displayLabel = selectedOption ? selectedOption.label : (placeholder || 'Select an option');
 
     // Anchored position for the dropdown panel
-    const anchored = useAnchoredPosition({
+    const anchored = Parts.AnchoredPosition({
       placement: 'bottom-start',
       anchorRef: anchorRef
     });
@@ -95,14 +89,14 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props for the trigger
-    const ariaStateProps = a11y.state({
+    const ariaStateProps = Parts.A11y.state({
       disabled: isDisabled,
       expanded: !!isOpen,
       invalid: isInvalid
     });
 
     // Build keyboard activation props for the combobox trigger
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'button',
       onActivate: handleToggle,
       disabled: isDisabled
@@ -119,14 +113,14 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           accessibilityRole: 'combobox',
           accessibilityLabel: accessibilityLabel || placeholder || 'Select',
           style: [
-            Style_.utilities['flex_row'],
-            Style_.utilities['align_center'],
-            Style_.utilities['justify_between'],
-            Style_.utilities['br_md'],
-            Style_.utilities['border_default'],
-            Style_.utilities['p_h_md'],
-            Style_.utilities['p_v_sm'],
-            Style_.utilities['background_surface'],
+            Style.utilities['flex_row'],
+            Style.utilities['align_center'],
+            Style.utilities['justify_between'],
+            Style.utilities['br_md'],
+            Style.utilities['border_default'],
+            Style.utilities['p_h_md'],
+            Style.utilities['p_v_sm'],
+            Style.utilities['background_surface'],
             isInvalid
               ? { borderColor: colorMap.STATUS_DANGER || '#da1e28' }
               : null,
@@ -156,10 +150,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         RNView,
         {
           style: [
-            Style_.utilities['background_surface'],
-            Style_.utilities['br_md'],
-            Style_.utilities['border_default'],
-            Style_.utilities['p_v_xs'],
+            Style.utilities['background_surface'],
+            Style.utilities['br_md'],
+            Style.utilities['border_default'],
+            Style.utilities['p_v_xs'],
             { position: 'absolute', top: pos.top, left: pos.left, minWidth: 200, zIndex: zIndex || 1000 }
           ]
         },
@@ -175,13 +169,13 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
               accessibilityRole: 'option',
               accessibilityLabel: opt.label,
               style: [
-                Style_.utilities['p_h_md'],
-                Style_.utilities['p_v_xs'],
+                Style.utilities['p_h_md'],
+                Style.utilities['p_v_xs'],
                 isSelected
                   ? { backgroundColor: colorMap.APP_PRIMARY_SUBTLE || '#edf5ff' }
                   : null
               ]
-            }, a11y.state({ selected: isSelected })),
+            }, Parts.A11y.state({ selected: isSelected })),
             React.createElement(Registry.Text, {
               size: 'md',
               color: isSelected ? 'app_primary' : 'text_primary'

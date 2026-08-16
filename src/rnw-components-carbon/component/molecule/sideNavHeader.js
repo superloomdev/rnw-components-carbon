@@ -15,11 +15,11 @@ Build the SideNavHeader molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The SideNavHeader component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function SideNavHeader (props) {
 
@@ -35,9 +35,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'group',
         style: [
-          Style_.utilities['flex_col'],
-          Style_.utilities['p_h_md'],
-          Style_.utilities['p_v_sm'],
+          Style.utilities['flex_col'],
+          Style.utilities['p_h_md'],
+          Style.utilities['p_v_sm'],
           style
         ]
       }, rest),
@@ -46,7 +46,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           size: 'sm',
           color: 'text_secondary',
           weight: 'medium',
-          style: Style_.utilities['m_b_xs']
+          style: Style.utilities['m_b_xs']
         }, title)
         : null,
       children

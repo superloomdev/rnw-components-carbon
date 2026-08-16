@@ -20,17 +20,12 @@ Build the ComboBox composite.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The ComboBox component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const useControllableState = require('../useControllableState')(Lib);
-  const useAnchoredPosition = require('../useAnchoredPosition')(Lib);
-  const overlay = require('../Overlay')(Lib);
-  const useOverlay = overlay.useOverlay;
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+  const useOverlay = Parts.Overlay.useOverlay;
 
   return function ComboBox (props) {
 
@@ -44,7 +39,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const anchorRef = React.useRef(null);
 
     // Controlled/uncontrolled state for the input text
-    const state = useControllableState({
+    const state = Parts.ControllableState({
       value: value,
       defaultValue: defaultValue || '',
       onChange: onChange
@@ -55,7 +50,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const [isOpen, setIsOpen] = React.useState(false);
     const isDisabled = !!disabled;
     const isInvalid = !!invalid;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
     const optionList = options || [];
 
     // Filter options based on the current input text
@@ -68,7 +63,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     });
 
     // Anchored position for the dropdown panel
-    const anchored = useAnchoredPosition({
+    const anchored = Parts.AnchoredPosition({
       placement: 'bottom-start',
       anchorRef: anchorRef
     });
@@ -94,7 +89,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props for the combobox
-    const ariaStateProps = a11y.state({
+    const ariaStateProps = Parts.A11y.state({
       disabled: isDisabled,
       expanded: !!isOpen,
       invalid: isInvalid
@@ -135,10 +130,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         RNView,
         {
           style: [
-            Style_.utilities['background_surface'],
-            Style_.utilities['br_md'],
-            Style_.utilities['border_default'],
-            Style_.utilities['p_v_xs'],
+            Style.utilities['background_surface'],
+            Style.utilities['br_md'],
+            Style.utilities['border_default'],
+            Style.utilities['p_v_xs'],
             { position: 'absolute', top: pos.top, left: pos.left, minWidth: 200, zIndex: zIndex || 1000 }
           ]
         },
@@ -146,7 +141,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           ? React.createElement(Registry.Text, {
             size: 'sm',
             color: 'text_muted',
-            style: [Style_.utilities['p_h_md'], Style_.utilities['p_v_xs']]
+            style: [Style.utilities['p_h_md'], Style.utilities['p_v_xs']]
           }, 'No results found')
           : filteredOptions.map(function (opt) {
             return React.createElement(
@@ -159,8 +154,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
                 accessibilityRole: 'option',
                 accessibilityLabel: opt.label,
                 style: [
-                  Style_.utilities['p_h_md'],
-                  Style_.utilities['p_v_xs']
+                  Style.utilities['p_h_md'],
+                  Style.utilities['p_v_xs']
                 ]
               },
               React.createElement(Registry.Text, {

@@ -15,11 +15,11 @@ Build the TabListVertical molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The TabListVertical component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function TabListVertical (props) {
 
@@ -35,8 +35,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'tablist',
         style: [
-          Style_.utilities['flex_col'],
-          Style_.utilities['border_default'],
+          Style.utilities['flex_col'],
+          Style.utilities['border_default'],
           { borderRightWidth: 1 },
           style
         ]

@@ -19,15 +19,12 @@ Build the Menu composite.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Menu component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const useFocusTrap = require('../useFocusTrap')(Lib);
-  const overlay = require('../Overlay')(Lib);
-  const useOverlay = overlay.useOverlay;
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+  const useOverlay = Parts.Overlay.useOverlay;
 
   return function Menu (props) {
 
@@ -39,7 +36,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const React = Lib.React;
 
     // Focus trap (menu traps focus while open)
-    const focusTrap = useFocusTrap({
+    const focusTrap = Parts.FocusTrap({
       isOpen: isOpen,
       onClose: onClose,
       trap: true
@@ -53,11 +50,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           ref: focusTrap.containerRef,
           accessibilityRole: 'menu',
           style: [
-            Style_.utilities['background_surface'],
-            Style_.utilities['br_md'],
-            Style_.utilities['border_default'],
-            Style_.utilities['p_v_xs'],
-            Style_.utilities['shadow_md'],
+            Style.utilities['background_surface'],
+            Style.utilities['br_md'],
+            Style.utilities['border_default'],
+            Style.utilities['p_v_xs'],
+            Style.utilities['shadow_md'],
             { minWidth: 200, zIndex: zIndex || 1000 },
             style
           ]

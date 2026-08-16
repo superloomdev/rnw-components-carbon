@@ -23,14 +23,11 @@ Build the NumberInput molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The NumberInput component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const useControllableState = require('../useControllableState')(Lib);
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   // a11y is used for aria-* value props on the spinbutton role
 
   // Role: 'spinbutton' on web, 'adjustable' on native
@@ -50,7 +47,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const React = Lib.React;
 
     // Controlled/uncontrolled state
-    const state = useControllableState({
+    const state = Parts.ControllableState({
       value: value,
       defaultValue: Lib.Utils.isNumber(defaultValue) ? defaultValue : 0,
       onChange: onChange
@@ -63,7 +60,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const stepVal = Lib.Utils.isNumber(step) ? step : 1;
     const minVal = Lib.Utils.isNumber(min) ? min : null;
     const maxVal = Lib.Utils.isNumber(max) ? max : null;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
 
     // Clamp a value to min/max
     const clamp = function (val) {
@@ -94,7 +91,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria value props through the a11y translator (state is handled by TextInput)
-    const ariaValueProps = a11y.value({
+    const ariaValueProps = Parts.A11y.value({
       min: minVal,
       max: maxVal,
       now: resolvedValue
@@ -104,16 +101,16 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       RNView,
       {
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
-          Style_.utilities['br_md'],
-          Style_.utilities['border_default'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center'],
+          Style.utilities['br_md'],
+          Style.utilities['border_default'],
           isInvalid
             ? { borderColor: colorMap.STATUS_DANGER || '#da1e28' }
             : null,
           isDisabled
             ? { backgroundColor: colorMap.BACKGROUND_SECONDARY || '#f4f4f4' }
-            : Style_.utilities['background_surface'],
+            : Style.utilities['background_surface'],
           style
         ]
       },
@@ -125,7 +122,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           disabled: isDisabled,
           accessibilityRole: 'button',
           accessibilityLabel: 'Decrement',
-          style: [Style_.utilities['p_h_sm'], Style_.utilities['p_v_xs']]
+          style: [Style.utilities['p_h_sm'], Style.utilities['p_v_xs']]
         },
         React.createElement(Registry.Text, {
           size: 'lg',
@@ -160,7 +157,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           disabled: isDisabled,
           accessibilityRole: 'button',
           accessibilityLabel: 'Increment',
-          style: [Style_.utilities['p_h_sm'], Style_.utilities['p_v_xs']]
+          style: [Style.utilities['p_h_sm'], Style.utilities['p_v_xs']]
         },
         React.createElement(Registry.Text, {
           size: 'lg',

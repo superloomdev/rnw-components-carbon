@@ -14,15 +14,13 @@ Build the TextInput atom.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The TextInput component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   // Build the a11y translator once per factory
-  const a11y = require('../a11y')(Lib);
-
   return function TextInput (props) {
 
     // Destructure props
@@ -36,18 +34,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
     // Resolve base styles from tokens
     const base = [
-      Style_.utilities['background_surface'] || { backgroundColor: '#fff' },
-      Style_.utilities['br_md'],
-      Style_.utilities['p_h_md'],
-      Style_.utilities['p_v_sm'],
-      Style_.utilities['font_size_md'],
-      Style_.utilities['font_text_primary'],
+      Style.utilities['background_surface'] || { backgroundColor: '#fff' },
+      Style.utilities['br_md'],
+      Style.utilities['p_h_md'],
+      Style.utilities['p_v_sm'],
+      Style.utilities['font_size_md'],
+      Style.utilities['font_text_primary'],
       // Focus swaps border to primary; otherwise default border
-      focused ? Style_.utilities['border_primary'] : Style_.utilities['border_default']
+      focused ? Style.utilities['border_primary'] : Style.utilities['border_default']
     ];
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       disabled: !!isDisabled,
       invalid: !!isInvalid
     });
@@ -56,7 +54,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       RNTextInput,
       Object.assign({
         style: [...base, style],
-        placeholderTextColor: Style_.tokens.Color.TEXT_MUTED || '#999',
+        placeholderTextColor: Style.tokens.Color.TEXT_MUTED || '#999',
         editable: !isDisabled,
         accessibilityRole: 'textbox',
         accessibilityLabel: accessibilityLabel,

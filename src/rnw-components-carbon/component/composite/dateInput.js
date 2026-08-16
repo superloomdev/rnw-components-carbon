@@ -16,15 +16,11 @@ Build the DateInput composite.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The DateInput component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) { // eslint-disable-line no-unused-vars
-
-  const a11y = require('../a11y')(Lib);
-  const useControllableState = require('../useControllableState')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
   return function DateInput (props) {
 
     const {
@@ -38,7 +34,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) { // eslint-di
     const isInvalid = !!invalid;
 
     // Controlled/uncontrolled state for the date value
-    const state = useControllableState({
+    const state = Parts.ControllableState({
       value: value,
       defaultValue: defaultValue || '',
       onChange: onChange
@@ -61,7 +57,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) { // eslint-di
     };
 
     // Build aria state props
-    const ariaStateProps = a11y.state({
+    const ariaStateProps = Parts.A11y.state({
       disabled: isDisabled,
       invalid: isInvalid
     });

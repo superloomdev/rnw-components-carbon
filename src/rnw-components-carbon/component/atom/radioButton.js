@@ -17,15 +17,11 @@ Build the RadioButton atom.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The RadioButton component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function RadioButton (props) {
 
     const {
@@ -46,20 +42,20 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       disabled: !!disabled,
       checked: !!checked
     });
 
     // Build keyboard activation props (Space activates radio role)
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'radio',
       onActivate: handlePress,
       disabled: !!disabled
     });
 
     // Resolve the radio circle style
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
     const circleBase = {
       width: 20,
       height: 20,
@@ -104,9 +100,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         disabled: !!disabled,
         accessibilityRole: 'radio',
         accessibilityLabel: accessibilityLabel || label,
-        style: [Style_.utilities['flex_row'], Style_.utilities['align_center'], style]
+        style: [Style.utilities['flex_row'], Style.utilities['align_center'], style]
       }, ariaProps, pressKeysProps, rest),
-      React.createElement(RNView, { style: [circleBase, circleStyle, Style_.utilities['m_e_xs']] }, innerDot),
+      React.createElement(RNView, { style: [circleBase, circleStyle, Style.utilities['m_e_xs']] }, innerDot),
       label ? React.createElement(Registry.Text, {
         size: 'md',
         color: disabled ? 'text_muted' : 'text_primary'

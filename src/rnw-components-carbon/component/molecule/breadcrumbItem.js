@@ -18,15 +18,11 @@ Build the BreadcrumbItem molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The BreadcrumbItem component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function BreadcrumbItem (props) {
 
     const {
@@ -45,12 +41,12 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       current: isCurrent ? 'page' : undefined
     });
 
     // Build keyboard activation props
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'link',
       onActivate: handlePress,
       disabled: isCurrent
@@ -62,8 +58,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         RNView,
         Object.assign({
           style: [
-            Style_.utilities['flex_row'],
-            Style_.utilities['align_center'],
+            Style.utilities['flex_row'],
+            Style.utilities['align_center'],
             style
           ]
         }, ariaProps, rest),
@@ -79,8 +75,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       RNView,
       Object.assign({
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center'],
           style
         ]
       }, rest),
@@ -91,7 +87,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           accessibilityRole: 'link',
           accessibilityLabel: typeof children === 'string' ? children : undefined,
           href: href,
-          style: Style_.utilities['m_r_xs']
+          style: Style.utilities['m_r_xs']
         }, ariaProps, pressKeysProps),
         React.createElement(Registry.Text, {
           size: 'sm',
@@ -102,7 +98,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       React.createElement(Registry.Text, {
         size: 'sm',
         color: 'text_muted',
-        style: Style_.utilities['m_h_xs']
+        style: Style.utilities['m_h_xs']
       }, '/')
     );
 

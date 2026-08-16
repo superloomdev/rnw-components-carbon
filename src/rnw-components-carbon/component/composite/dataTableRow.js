@@ -17,15 +17,11 @@ Build the DataTableRow composite.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The DataTableRow component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function DataTableRow (props) {
 
     const {
@@ -34,7 +30,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     } = props;
 
     const React = Lib.React;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
 
     // Build the row content (shared between pressable and static variants)
     const rowContent = (cells || []).map(function (cell, index) {
@@ -44,9 +40,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           key: 'cell-' + index,
           accessibilityRole: 'cell',
           style: [
-            Style_.utilities['flex_1'],
-            Style_.utilities['p_h_md'],
-            Style_.utilities['p_v_sm']
+            Style.utilities['flex_1'],
+            Style.utilities['p_h_md'],
+            Style.utilities['p_v_sm']
           ]
         },
         React.createElement(Registry.Text, {
@@ -58,9 +54,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
     // Row container styles
     const rowStyle = [
-      Style_.utilities['flex_row'],
-      Style_.utilities['align_center'],
-      Style_.utilities['border_default'],
+      Style.utilities['flex_row'],
+      Style.utilities['align_center'],
+      Style.utilities['border_default'],
       selected
         ? { backgroundColor: (colorMap.BACKGROUND_SECONDARY || '#f4f4f4') }
         : null,
@@ -80,11 +76,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     }
 
     // Pressable row: S2 interactive
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       selected: !!selected
     });
 
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'button',
       onActivate: onPress,
       disabled: false

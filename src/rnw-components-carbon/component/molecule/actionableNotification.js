@@ -36,15 +36,11 @@ Build the ActionableNotification molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The ActionableNotification component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function ActionableNotification (props) {
 
     const {
@@ -66,15 +62,15 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           onPress: onAction,
           accessibilityRole: 'button',
           accessibilityLabel: actionText
-        }, a11y.state({}), usePressKeys({
+        }, Parts.A11y.state({}), Parts.PressKeys({
           role: 'button',
           onActivate: onAction,
           disabled: false
         }), {
           style: [
-            Style_.utilities['p_h_sm'],
-            Style_.utilities['p_v_xs'],
-            Style_.utilities['m_e_sm']
+            Style.utilities['p_h_sm'],
+            Style.utilities['p_v_xs'],
+            Style.utilities['m_e_sm']
           ]
         }),
         React.createElement(Registry.Text, {
@@ -93,12 +89,12 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           onPress: onDismiss,
           accessibilityRole: 'button',
           accessibilityLabel: 'Dismiss notification'
-        }, a11y.state({}), usePressKeys({
+        }, Parts.A11y.state({}), Parts.PressKeys({
           role: 'button',
           onActivate: onDismiss,
           disabled: false
         }), {
-          style: Style_.utilities['p_a_xs']
+          style: Style.utilities['p_a_xs']
         }),
         React.createElement(Registry.Icon, {
           name: 'close',
@@ -113,12 +109,12 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'alert',
         style: [
-          Style_.utilities[bgKey] || Style_.utilities['background_surface'],
-          Style_.utilities['br_md'],
-          Style_.utilities['border_default'],
-          Style_.utilities['p_a_md'],
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_start'],
+          Style.utilities[bgKey] || Style.utilities['background_surface'],
+          Style.utilities['br_md'],
+          Style.utilities['border_default'],
+          Style.utilities['p_a_md'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_start'],
           style
         ]
       }, rest),
@@ -127,12 +123,12 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         name: iconName,
         size: 'md',
         color: 'TEXT_SECONDARY',
-        style: Style_.utilities['m_e_sm']
+        style: Style.utilities['m_e_sm']
       }),
       // Title and subtitle column
       React.createElement(
         Registry.View,
-        { style: Style_.utilities['flex_1'] },
+        { style: Style.utilities['flex_1'] },
         title
           ? React.createElement(Registry.Text, {
             size: 'md',
@@ -144,7 +140,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           ? React.createElement(Registry.Text, {
             size: 'sm',
             color: 'text_secondary',
-            style: Style_.utilities['m_t_xs']
+            style: Style.utilities['m_t_xs']
           }, subtitle)
           : null
       ),

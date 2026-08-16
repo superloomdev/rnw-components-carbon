@@ -18,14 +18,11 @@ Build the CopyButton molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The CopyButton component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function CopyButton (props) {
 
     const {
@@ -58,7 +55,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       disabled: !!disabled,
       pressed: copied
     });
@@ -71,13 +68,13 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         accessibilityRole: 'button',
         accessibilityLabel: label || 'Copy',
         style: [
-          Style_.utilities['p_h_md'],
-          Style_.utilities['p_v_sm'],
-          Style_.utilities['br_md'],
-          Style_.utilities['border_default'],
-          Style_.utilities['background_surface'],
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
+          Style.utilities['p_h_md'],
+          Style.utilities['p_v_sm'],
+          Style.utilities['br_md'],
+          Style.utilities['border_default'],
+          Style.utilities['background_surface'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center'],
           style
         ]
       }, ariaProps, rest),
@@ -85,7 +82,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         name: copied ? 'checkmark' : 'copy',
         size: 'sm',
         color: 'TEXT_SECONDARY',
-        style: Style_.utilities['m_e_xs']
+        style: Style.utilities['m_e_xs']
       }),
       React.createElement(Registry.Text, {
         size: 'md',

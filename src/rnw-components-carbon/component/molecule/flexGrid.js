@@ -16,11 +16,11 @@ Build the FlexGrid molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The FlexGrid component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function FlexGrid (props) {
 
@@ -37,8 +37,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'grid',
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['flex_wrap'],
+          Style.utilities['flex_row'],
+          Style.utilities['flex_wrap'],
           { marginHorizontal: -gapSize / 2 },
           style
         ]

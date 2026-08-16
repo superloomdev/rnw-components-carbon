@@ -15,11 +15,11 @@ Build the ContainedList molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The ContainedList component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function ContainedList (props) {
 
@@ -35,9 +35,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'list',
         style: [
-          Style_.utilities['br_md'],
-          Style_.utilities['border_default'],
-          Style_.utilities['background_surface'],
+          Style.utilities['br_md'],
+          Style.utilities['border_default'],
+          Style.utilities['background_surface'],
           style
         ]
       }, rest),
@@ -47,8 +47,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           color: 'text_primary',
           weight: 'medium',
           style: [
-            Style_.utilities['p_h_md'],
-            Style_.utilities['p_v_sm']
+            Style.utilities['p_h_md'],
+            Style.utilities['p_v_sm']
           ]
         }, label)
         : null,

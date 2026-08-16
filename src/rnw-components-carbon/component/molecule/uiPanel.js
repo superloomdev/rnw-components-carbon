@@ -18,11 +18,11 @@ Build the UiPanel molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The UiPanel component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function UiPanel (props) {
 
@@ -41,7 +41,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         onPress: onToggle,
         accessibilityRole: 'button',
         accessibilityLabel: title,
-        style: Style_.utilities['flex_row']
+        style: Style.utilities['flex_row']
       },
       React.createElement(Registry.Text, null, title || ''),
       React.createElement(Registry.Icon, { name: collapsed ? 'chevron--right' : 'chevron--down' })
@@ -55,7 +55,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'group',
         style: [
-          Style_.utilities['flex_col'],
+          Style.utilities['flex_col'],
           style
         ]
       }, rest),
