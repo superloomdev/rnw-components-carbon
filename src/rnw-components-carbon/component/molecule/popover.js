@@ -102,6 +102,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       });
     };
 
+    // Guard: children must be a valid React element for cloneElement
+    if (!children || !React.isValidElement(children)) {
+      return null;
+    }
+
     // On native, render inline
     if (Platform.OS !== 'web') {
       return React.createElement(

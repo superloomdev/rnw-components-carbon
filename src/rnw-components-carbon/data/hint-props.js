@@ -17,7 +17,7 @@ module.exports = {
   Link: { children: 'Link', onPress: noop },
   InlineLink: { children: 'Inline link', onPress: noop },
   ProgressBar: { value: 0.6 },
-  Slider: { value: 0.5, onValueChange: noop },
+  Slider: { value: 50, onChange: noop },
   Toggle: { value: true, onValueChange: noop },
   Checkbox: { checked: true, onChange: noop },
   RadioButton: { checked: true, onChange: noop },
