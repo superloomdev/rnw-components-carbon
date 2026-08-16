@@ -1,0 +1,62 @@
+// Info: TableSelectRow molecule [S2 interactive]. A cell with a checkbox to
+// select a single row. Uses role="cell" for screen reader semantics.
+// Composes the Checkbox atom and forwards its toggle to onSelect.
+//   checked     -> true | false (current selection state of the row)
+//   onSelect    -> function receiving the next boolean
+//   ariaLabel   -> string (accessibility label for the checkbox)
+//   style       -> custom style overrides
+'use strict';
+
+const { View: RNView } = require('react-native');
+
+
+/********************************************************************
+Build the TableSelectRow molecule.
+
+@param {Object} Lib      - { Utils, Debug, React }
+@param {Object} CONFIG   - Package configuration
+@param {Object} ERRORS   - Frozen error catalog
+@param {Object} Registry - Component registry (for atom composition)
+@param {Object} Style_   - { utilities, tokens, breakpoint }
+
+@return {Function} - The TableSelectRow component
+*********************************************************************/
+module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+
+  return function TableSelectRow (props) {
+
+    const {
+      checked, onSelect, ariaLabel, style, isRtlActive, // eslint-disable-line no-unused-vars
+      ...rest
+    } = props;
+
+    const React = Lib.React;
+
+    const handleChange = function (next) {
+
+      if (Lib.Utils.isFunction(onSelect)) {
+        onSelect(next);
+      }
+
+    };
+
+    return React.createElement(
+      RNView,
+      Object.assign({
+        accessibilityRole: 'cell',
+        style: [
+          Style_.utilities['p_h_sm'],
+          Style_.utilities['p_v_sm'],
+          style
+        ]
+      }, rest),
+      React.createElement(Registry.Checkbox, {
+        checked: checked,
+        onChange: handleChange,
+        accessibilityLabel: ariaLabel || 'Select row'
+      })
+    );
+
+  };
+
+};
