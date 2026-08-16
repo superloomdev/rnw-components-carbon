@@ -1,0 +1,2364 @@
+{
+  "generated": "2026-08-16",
+  "sources": {
+    "@carbon/react": "1.79.0",
+    "@carbon/react-native": "9.0.7"
+  },
+  "counts": {
+    "target": 231,
+    "exceptions": 10,
+    "currentFlat": 136,
+    "currentProvider": 8,
+    "total": 275
+  },
+  "builtFlat": [
+    "AILabel",
+    "Accordion",
+    "AccordionItem",
+    "ActionBar",
+    "Alert",
+    "AspectRatio",
+    "Badge",
+    "BadgeIndicator",
+    "BatchAction",
+    "Breadcrumb",
+    "BreadcrumbItem",
+    "Button",
+    "ButtonLink",
+    "ButtonPrimary",
+    "ButtonSet",
+    "Callout",
+    "Card",
+    "Checkbox",
+    "CheckboxGroup",
+    "ClickableTile",
+    "CodeSnippet",
+    "Column",
+    "ComboBox",
+    "ComboButton",
+    "ComposedModal",
+    "Container",
+    "ContentSwitcher",
+    "CopyButton",
+    "DataTable",
+    "DataTableRow",
+    "DateInput",
+    "DatePicker",
+    "DateRangePicker",
+    "DefinitionTooltip",
+    "Divider",
+    "Dropdown",
+    "ExpandableSearch",
+    "Fieldset",
+    "FileUploader",
+    "FlexGrid",
+    "FluidForm",
+    "Form",
+    "FormGroup",
+    "FormItem",
+    "FormLabel",
+    "Grid",
+    "GridItem",
+    "Header",
+    "HeaderMenuButton",
+    "HeaderNav",
+    "HeaderPanel",
+    "Heading",
+    "Icon",
+    "IconButton",
+    "IconIndicator",
+    "Image",
+    "InlineLoading",
+    "LayerMolecule",
+    "Legend",
+    "Link",
+    "ListItem",
+    "ListItemNav",
+    "Loading",
+    "LongPressMenu",
+    "Menu",
+    "MenuButton",
+    "MenuItem",
+    "MenuItemDivider",
+    "MenuItemRadioGroup",
+    "MenuItemSelectable",
+    "Modal",
+    "ModalBody",
+    "ModalFooter",
+    "ModalHeader",
+    "MultiSelect",
+    "Notification",
+    "NumberInput",
+    "NumberInputComposite",
+    "OrderedList",
+    "OverflowMenu",
+    "PageSelector",
+    "Pagination",
+    "PaginationBar",
+    "PasswordInput",
+    "Popover",
+    "ProgressBar",
+    "ProgressIndicator",
+    "RadioButton",
+    "RadioButtonGroup",
+    "Row",
+    "ScrollGradient",
+    "Search",
+    "Select",
+    "SelectableTile",
+    "Separator",
+    "ShapeIndicator",
+    "SidePanel",
+    "Skeleton",
+    "Slider",
+    "SliderInput",
+    "Stack",
+    "Step",
+    "Steps",
+    "StructuredList",
+    "StructuredListCell",
+    "StructuredListRow",
+    "Switch",
+    "Tab",
+    "TabList",
+    "TabPanel",
+    "TableBody",
+    "TableCell",
+    "TableHead",
+    "TableHeader",
+    "TableRow",
+    "Tabs",
+    "Tag",
+    "Text",
+    "TextArea",
+    "TextInput",
+    "Tile",
+    "TimeInput",
+    "TimePicker",
+    "Toast",
+    "Toggle",
+    "ToggleGroup",
+    "Toggletip",
+    "ToggletipLabel",
+    "Toolbar",
+    "Tooltip",
+    "TreeNode",
+    "TreeView",
+    "TruncatedText",
+    "UnorderedList",
+    "UserAvatar",
+    "View"
+  ],
+  "builtProvider": [
+    "ErrorBoundary",
+    "FeatureFlags",
+    "FluidForm",
+    "IdPrefix",
+    "Layer",
+    "LiveRegionProvider",
+    "OverlayHost",
+    "Theme"
+  ],
+  "components": [
+    {
+      "name": "AILabel",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "AILabelActions",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "AILabelContent",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "AISkeletonIcon",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "AISkeletonPlaceholder",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "AISkeletonText",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "AcceptTerms",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Accordion",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "AccordionItem",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ActionBar",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ActionSheet",
+      "tier": "unknown",
+      "platform": "split",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "ActionableNotification",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Alert",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "AspectRatio",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Badge",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "BadgeIndicator",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "unexported",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "BatchAction",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "BottomNavigationBar",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "BottomSafeAreaColorOverride",
+      "tier": "unknown",
+      "platform": "native-primary",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "BottomToolbar",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "BottomToolbarPrimaryAction",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Breadcrumb",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "BreadcrumbItem",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Button",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ButtonLink",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ButtonPrimary",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ButtonSet",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Callout",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Card",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Checkbox",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "CheckboxGroup",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ClassPrefix",
+      "tier": "unknown",
+      "platform": "excluded",
+      "source": "carbon",
+      "registry": null,
+      "status": "excluded"
+    },
+    {
+      "name": "ClickableTile",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "CodeSnippet",
+      "tier": "unknown",
+      "platform": "split",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Column",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ColumnHang",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "ComboBox",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ComboButton",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ComposedModal",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ContainedList",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "ContainedListItem",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Container",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Content",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "ContentSwitcher",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ControlledPasswordInput",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Copy",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "CopyButton",
+      "tier": "unknown",
+      "platform": "split",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "DataTable",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "DataTableCell",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "DataTableHeader",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "DataTableHeaderSelected",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "DataTableRow",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "DateInput",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "DatePicker",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "DatePickerInput",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "DateRangePicker",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "DefinitionTooltip",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "DismissibleTag",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Divider",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "DocumentViewer",
+      "tier": "unknown",
+      "platform": "split",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Dropdown",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ErrorBoundary",
+      "tier": "provider",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "provider",
+      "status": "built"
+    },
+    {
+      "name": "ErrorBoundaryContext",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "ErrorState",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "ExpandableSearch",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ExpandableTile",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "FeatureFlags",
+      "tier": "provider",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "provider",
+      "status": "built"
+    },
+    {
+      "name": "Fieldset",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "FileUploader",
+      "tier": "unknown",
+      "platform": "split",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "FileUploaderButton",
+      "tier": "unknown",
+      "platform": "split",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "FileUploaderDropContainer",
+      "tier": "unknown",
+      "platform": "split",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "FileUploaderItem",
+      "tier": "unknown",
+      "platform": "split",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Filename",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "FilterableMultiSelect",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "FlexGrid",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "FluidForm",
+      "tier": "provider",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "both",
+      "status": "built"
+    },
+    {
+      "name": "Form",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "FormContext",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "FormGroup",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "FormItem",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "FormLabel",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "GlobalTheme",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "GrantPermission",
+      "tier": "unknown",
+      "platform": "native-primary",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Grid",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "GridItem",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "GridSettings",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "HStack",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Header",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "HeaderContainer",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "HeaderGlobalAction",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "HeaderGlobalBar",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "HeaderMenu",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "HeaderMenuButton",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "HeaderMenuItem",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "HeaderName",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "HeaderNav",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "HeaderNavigation",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "HeaderPanel",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "HeaderSideNavItems",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Heading",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Icon",
+      "tier": "atom",
+      "platform": "both",
+      "source": "substrate",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "IconButton",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "IconIndicator",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "unexported",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "IconSwitch",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "IconTab",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "IdPrefix",
+      "tier": "provider",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "provider",
+      "status": "built"
+    },
+    {
+      "name": "Image",
+      "tier": "atom",
+      "platform": "both",
+      "source": "substrate",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "InlineLink",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "InlineLoading",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "InlineNotification",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "LandingView",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Layer",
+      "tier": "provider",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "provider",
+      "status": "built"
+    },
+    {
+      "name": "LayerMolecule",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Legend",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Link",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "List",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "ListItem",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ListItemNav",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "LiveRegionProvider",
+      "tier": "provider",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "provider",
+      "status": "built"
+    },
+    {
+      "name": "Loading",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "LongPressMenu",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Menu",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "MenuButton",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "MenuItem",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "MenuItemDivider",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "MenuItemGroup",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "MenuItemRadioGroup",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "MenuItemSelectable",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Modal",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ModalBody",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ModalFooter",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ModalHeader",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "MultiSelect",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "NavigationList",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "NavigationListItem",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Notification",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "NotificationActionButton",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "NotificationButton",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "NumberInput",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "NumberInputComposite",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "OperationalTag",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "OrderedList",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "OverflowMenu",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "OverflowMenuItem",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Overlay",
+      "tier": "unknown",
+      "platform": "split",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "OverlayHost",
+      "tier": "provider",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "provider",
+      "status": "built"
+    },
+    {
+      "name": "PageSelector",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Pagination",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "PaginationBar",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "PaginationNav",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "PasswordInput",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Popover",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "PopoverContent",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "PrefixContext",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "ProgressBar",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ProgressIndicator",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ProgressStep",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "RadioButton",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "RadioButtonGroup",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "RadioTile",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Row",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "SafeAreaWrapper",
+      "tier": "unknown",
+      "platform": "native-primary",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "ScrollGradient",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Search",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Section",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Select",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "SelectItem",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "SelectItemGroup",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "SelectableTag",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "SelectableTile",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Separator",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ShapeIndicator",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "unexported",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "SideNav",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "SideNavDetails",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "SideNavDivider",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "SideNavFooter",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "SideNavHeader",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "SideNavIcon",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "SideNavItem",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "SideNavItems",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "SideNavLink",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "SideNavLinkText",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "SideNavMenu",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "SideNavMenuItem",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "SideNavSwitcher",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "SidePanel",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "unexported",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Skeleton",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "collapse",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "SkeletonIcon",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "SkeletonPlaceholder",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "SkeletonText",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "SkipToContent",
+      "tier": "unknown",
+      "platform": "web-primary",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Slider",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "SliderInput",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Stack",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "StaticNotification",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Step",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Steps",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "StructuredList",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "StructuredListBody",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "StructuredListCell",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "StructuredListHead",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "StructuredListInput",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "StructuredListRow",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "StructuredListWrapper",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Switch",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Switcher",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "SwitcherDivider",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "SwitcherItem",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Tab",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "TabContent",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TabList",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "TabListVertical",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TabPanel",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "TabPanels",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Table",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TableActionList",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TableBatchAction",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TableBatchActions",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TableBody",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "TableCell",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "TableContainer",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TableDecoratorRow",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TableExpandHeader",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TableExpandRow",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TableExpandedRow",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TableHead",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "TableHeader",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "TableRow",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "TableSelectAll",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TableSelectRow",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TableSlugRow",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TableToolbar",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TableToolbarAction",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TableToolbarContent",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TableToolbarMenu",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TableToolbarSearch",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Tabs",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "TabsVertical",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Tag",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Text",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "TextArea",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "TextInput",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Theme",
+      "tier": "provider",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "provider",
+      "status": "built"
+    },
+    {
+      "name": "ThemeContext",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Tile",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "TileAboveTheFoldContent",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TileBelowTheFoldContent",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TileGroup",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TimeInput",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "TimePicker",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "TimePickerSelect",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Toast",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ToastNotification",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "Toggle",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ToggleGroup",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Toggletip",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ToggletipActions",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "ToggletipButton",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "ToggletipContent",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "ToggletipLabel",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Toolbar",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "non-carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "Tooltip",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "TopNavigationBar",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TopNavigationBarLogin",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "TreeNode",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "TreeView",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "TruncatedText",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "unexported",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "UiPanel",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "UiPanelItem",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "UnorderedList",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "UserAvatar",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "unexported",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "VStack",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "View",
+      "tier": "atom",
+      "platform": "both",
+      "source": "substrate",
+      "registry": "flat",
+      "status": "built"
+    },
+    {
+      "name": "ViewWrapper",
+      "tier": "unknown",
+      "platform": "native-primary",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    },
+    {
+      "name": "WebHeader",
+      "tier": "unknown",
+      "platform": "both",
+      "source": "carbon",
+      "registry": null,
+      "status": "todo"
+    }
+  ]
+}

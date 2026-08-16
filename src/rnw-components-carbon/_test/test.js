@@ -828,19 +828,54 @@ test('useControllableState uses defaultValue when uncontrolled', function () {
 });
 
 
-// ~~~~~~~~~~~~~~~~~~~~ Registry count assertion ~~~~~~~~~~~~~~~~~~~~
+// ~~~~~~~~~~~~~~~~~~~~ Registry name-set gates (P2) ~~~~~~~~~~~~~~~~~~~~
+// The count gate from 0100 is replaced by name-set gates. A count of 136
+// is satisfied by any 136 components; deepStrictEqual on sorted name arrays
+// names the exact missing and extra keys on failure.
 
-test('registry has 136 flat keys plus variant, freeform, and 8 providers', function () {
+test('registry flat keys match the roster fixture exactly', function () {
 
-  const flatKeys = Object.keys(Component).filter(function (k) {
+  const roster = require('./fixtures/component-roster.json');
+  const expectedFlat = roster.builtFlat.slice().sort();
+
+  const actualFlat = Object.keys(Component).filter(function (k) {
     return k !== 'variant' && k !== 'freeform' && k !== 'provider';
-  });
+  }).sort();
 
-  assert.strictEqual(flatKeys.length, 136, 'should have 136 flat component keys');
+  assert.deepStrictEqual(actualFlat, expectedFlat,
+    'flat registry must match the roster fixture builtFlat list');
+
+});
+
+test('registry provider keys match the roster fixture exactly', function () {
+
+  const roster = require('./fixtures/component-roster.json');
+  const expectedProvider = roster.builtProvider.slice().sort();
+
+  assert.ok(Component.provider, 'provider namespace should exist');
+  assert.deepStrictEqual(Object.keys(Component.provider).sort(), expectedProvider,
+    'provider registry must match the roster fixture builtProvider list');
+
+});
+
+test('variant and freeform namespaces exist', function () {
+
   assert.ok(Component.variant, 'variant namespace should exist');
   assert.ok(Component.freeform, 'freeform namespace should exist');
-  assert.ok(Component.provider, 'provider namespace should exist');
-  assert.strictEqual(Object.keys(Component.provider).length, 8, 'should have 8 providers');
+
+});
+
+test('every built component declares a valid platform capability', function () {
+
+  const VALID = ['both', 'split', 'web-primary', 'native-primary', 'excluded'];
+  const roster = require('./fixtures/component-roster.json');
+
+  roster.components.forEach(function (c) {
+    if (c.status === 'built' || c.status === 'excluded') {
+      assert.ok(VALID.indexOf(c.platform) !== -1,
+        c.name + ' has no valid platform value: ' + c.platform);
+    }
+  });
 
 });
 
