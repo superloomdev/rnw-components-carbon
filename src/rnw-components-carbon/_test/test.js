@@ -2931,3 +2931,556 @@ test('ToggletipContent renders with role tooltip', function () {
   assert.strictEqual(tree.props.accessibilityRole, 'tooltip');
 
 });
+
+// ~~~~~~~~~~~~~~~~~~~~ P4.4 Notifications and feedback ~~~~~~~~~~~~~~~~~~~~
+
+test('AILabelActions renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.AILabelActions, null, 'action buttons')
+  ).toJSON();
+
+  assert.ok(tree, 'AILabelActions should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('AILabelContent renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.AILabelContent, null, 'ai content')
+  ).toJSON();
+
+  assert.ok(tree, 'AILabelContent should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('AISkeletonIcon renders with role img', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.AISkeletonIcon)
+  ).toJSON();
+
+  assert.ok(tree, 'AISkeletonIcon should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'img');
+
+});
+
+test('AISkeletonPlaceholder renders with role img', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.AISkeletonPlaceholder)
+  ).toJSON();
+
+  assert.ok(tree, 'AISkeletonPlaceholder should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'img');
+
+});
+
+test('AISkeletonText renders with role img', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.AISkeletonText, { lines: 3 })
+  ).toJSON();
+
+  assert.ok(tree, 'AISkeletonText should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'img');
+
+});
+
+test('ActionableNotification renders with role alert', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.ActionableNotification, {
+      title: 'Title',
+      subtitle: 'Subtitle',
+      actionText: 'Undo',
+      onAction: function () {},
+      onDismiss: function () {},
+      kind: 'info'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'ActionableNotification should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'alert');
+
+});
+
+test('ColumnHang renders with role column', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.ColumnHang, null, 'hung content')
+  ).toJSON();
+
+  assert.ok(tree, 'ColumnHang should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'column');
+
+});
+
+test('ContainedList renders with role list', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.ContainedList, { label: 'My List' }, 'item')
+  ).toJSON();
+
+  assert.ok(tree, 'ContainedList should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'list');
+
+});
+
+test('Content renders with role main', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Content, null, 'main content')
+  ).toJSON();
+
+  assert.ok(tree, 'Content should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'main');
+
+});
+
+test('Copy renders with role button', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Copy, {
+      text: 'copy me',
+      onSuccess: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'Copy should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'button'), 'Copy should contain a button');
+
+});
+
+test('DismissibleTag renders with role button', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.DismissibleTag, {
+      text: 'Tag',
+      onDismiss: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'DismissibleTag should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'button'), 'DismissibleTag should contain a button');
+
+});
+
+test('ExpandableTile renders with role button', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.ExpandableTile, {
+      title: 'Tile',
+      expanded: false,
+      onToggle: function () {}
+    }, 'expanded content')
+  ).toJSON();
+
+  assert.ok(tree, 'ExpandableTile should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'button'), 'ExpandableTile should contain a button');
+
+});
+
+test('GlobalTheme renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.GlobalTheme, null, 'themed content')
+  ).toJSON();
+
+  assert.ok(tree, 'GlobalTheme should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('GridSettings renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.GridSettings, { columns: 12, gap: '16px' })
+  ).toJSON();
+
+  assert.ok(tree, 'GridSettings should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('HStack renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.HStack, { spacing: 'md' },
+      React.createElement(Component.Text, null, 'A'),
+      React.createElement(Component.Text, null, 'B')
+    )
+  ).toJSON();
+
+  assert.ok(tree, 'HStack should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('IconSwitch renders with role switch', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.IconSwitch, {
+      icon: 'light',
+      checked: false,
+      onToggle: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'IconSwitch should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'switch'), 'IconSwitch should contain a switch');
+
+});
+
+test('IconTab renders with role tab', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.IconTab, {
+      icon: 'home',
+      active: true,
+      onPress: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'IconTab should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'tab'), 'IconTab should contain a tab');
+
+});
+
+test('InlineNotification renders with role alert', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.InlineNotification, {
+      title: 'Notice',
+      subtitle: 'Details',
+      kind: 'info'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'InlineNotification should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'alert');
+
+});
+
+test('MenuItemGroup renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.MenuItemGroup, { label: 'Group' }, 'item')
+  ).toJSON();
+
+  assert.ok(tree, 'MenuItemGroup should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('NotificationActionButton renders with role button', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.NotificationActionButton, {
+      text: 'Action',
+      onPress: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'NotificationActionButton should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'button'), 'NotificationActionButton should contain a button');
+
+});
+
+test('NotificationButton renders with role button', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.NotificationButton, {
+      onPress: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'NotificationButton should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'button'), 'NotificationButton should contain a button');
+
+});
+
+test('OperationalTag renders with role button', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.OperationalTag, {
+      text: 'Tag',
+      onAction: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'OperationalTag should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'button'), 'OperationalTag should contain a button');
+
+});
+
+test('OverflowMenuItem renders with role menuitem', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.OverflowMenuItem, {
+      text: 'Item',
+      onPress: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'OverflowMenuItem should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'menuitem'), 'OverflowMenuItem should contain a menuitem');
+
+});
+
+test('RadioTile renders with role radio', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.RadioTile, {
+      name: 'group',
+      value: 'opt1',
+      checked: false,
+      onSelect: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'RadioTile should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'radio'), 'RadioTile should contain a radio');
+
+});
+
+test('Section renders with role region', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Section, null, 'section content')
+  ).toJSON();
+
+  assert.ok(tree, 'Section should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'region');
+
+});
+
+test('SkeletonIcon renders with role img', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SkeletonIcon)
+  ).toJSON();
+
+  assert.ok(tree, 'SkeletonIcon should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'img');
+
+});
+
+test('SkeletonPlaceholder renders with role img', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SkeletonPlaceholder)
+  ).toJSON();
+
+  assert.ok(tree, 'SkeletonPlaceholder should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'img');
+
+});
+
+test('SkeletonText renders with role img', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SkeletonText, { lines: 3 })
+  ).toJSON();
+
+  assert.ok(tree, 'SkeletonText should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'img');
+
+});
+
+test('SkipToContent renders with role link', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SkipToContent, {
+      targetId: 'main-content'
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'SkipToContent should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'link'), 'SkipToContent should contain a link');
+
+});
+
+test('VStack renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.VStack, { spacing: 'md' },
+      React.createElement(Component.Text, null, 'A'),
+      React.createElement(Component.Text, null, 'B')
+    )
+  ).toJSON();
+
+  assert.ok(tree, 'VStack should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('Switcher renders with role group', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.Switcher, null, 'switcher items')
+  ).toJSON();
+
+  assert.ok(tree, 'Switcher should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'group');
+
+});
+
+test('SwitcherDivider renders with role separator', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SwitcherDivider)
+  ).toJSON();
+
+  assert.ok(tree, 'SwitcherDivider should render');
+  assert.strictEqual(tree.props.accessibilityRole, 'separator');
+
+});
+
+test('SwitcherItem renders with role link', function () {
+
+  const tree = TestRenderer.create(
+    React.createElement(Component.SwitcherItem, {
+      text: 'Item',
+      onPress: function () {}
+    })
+  ).toJSON();
+
+  assert.ok(tree, 'SwitcherItem should render');
+  const findRole = function (node, role) {
+    if (!node) return false;
+    if (node.props && node.props.accessibilityRole === role) return true;
+    const kids = node.children;
+    if (Array.isArray(kids)) {
+      for (let i = 0; i < kids.length; i++) {
+        if (findRole(kids[i], role)) return true;
+      }
+    }
+    return false;
+  };
+  assert.ok(findRole(tree, 'link'), 'SwitcherItem should contain a link');
+
+});

@@ -1,0 +1,63 @@
+// Info: VStack molecule [S1 presentational]. A vertical stack container.
+// Uses role="group" for screen reader semantics.
+//   spacing     -> string (space token, default 'md')
+//   children    -> content to stack
+//   style       -> custom style overrides
+'use strict';
+
+const { View: RNView } = require('react-native');
+
+
+/********************************************************************
+Build the VStack molecule.
+
+@param {Object} Lib      - { Utils, Debug, React }
+@param {Object} CONFIG   - Package configuration
+@param {Object} ERRORS   - Frozen error catalog
+@param {Object} Registry - Component registry (for atom composition)
+@param {Object} Style_   - { utilities, tokens, breakpoint }
+
+@return {Function} - The VStack component
+*********************************************************************/
+module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+
+  return function VStack (props) {
+
+    const {
+      spacing, children, style, isRtlActive, // eslint-disable-line no-unused-vars
+      ...rest
+    } = props;
+
+    const React = Lib.React;
+    const gapToken = spacing || 'md';
+
+    // Map gap token to margin utility
+    const gapStyle = Style_.utilities['m_b_' + gapToken];
+
+    // Apply gap to all children except the last
+    const childArray = React.Children.toArray(children);
+    const spacedChildren = childArray.map(function (child, index) {
+      if (index < childArray.length - 1) {
+        return React.cloneElement(child, {
+          key: index,
+          style: [gapStyle, child.props && child.props.style]
+        });
+      }
+      return child;
+    });
+
+    return React.createElement(
+      RNView,
+      Object.assign({
+        accessibilityRole: 'group',
+        style: [
+          Style_.utilities['flex_col'],
+          style
+        ]
+      }, rest),
+      spacedChildren
+    );
+
+  };
+
+};
