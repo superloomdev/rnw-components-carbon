@@ -20,11 +20,11 @@ Build the GrantPermission molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The GrantPermission component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function GrantPermission (props) {
 
@@ -41,11 +41,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'alertdialog',
         style: [
-          Style_.utilities['background_surface'],
-          Style_.utilities['br_md'],
-          Style_.utilities['border_default'],
-          Style_.utilities['p_a_md'],
-          Style_.utilities['flex_col'],
+          Style.utilities['background_surface'],
+          Style.utilities['br_md'],
+          Style.utilities['border_default'],
+          Style.utilities['p_a_md'],
+          Style.utilities['flex_col'],
           style
         ]
       }, rest),
@@ -55,7 +55,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           name: iconName,
           size: 'lg',
           color: 'TEXT_SECONDARY',
-          style: Style_.utilities['m_b_sm']
+          style: Style.utilities['m_b_sm']
         })
         : null,
       // Title
@@ -71,7 +71,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         ? React.createElement(Registry.Text, {
           size: 'sm',
           color: 'text_secondary',
-          style: Style_.utilities['m_t_xs']
+          style: Style.utilities['m_t_xs']
         }, subtitle)
         : null,
       // Button row
@@ -79,9 +79,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         Registry.View,
         {
           style: [
-            Style_.utilities['flex_row'],
-            Style_.utilities['justify_end'],
-            Style_.utilities['m_t_md']
+            Style.utilities['flex_row'],
+            Style.utilities['justify_end'],
+            Style.utilities['m_t_md']
           ]
         },
         // Deny button
@@ -90,7 +90,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
             kind: 'ghost',
             title: 'Deny',
             onPress: onDeny,
-            style: Style_.utilities['m_e_sm']
+            style: Style.utilities['m_e_sm']
           })
           : null,
         // Grant button

@@ -14,11 +14,11 @@ Build the ToggletipContent molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The ToggletipContent component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function ToggletipContent (props) {
 
@@ -34,10 +34,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'tooltip',
         style: [
-          Style_.utilities['background_surface'],
-          Style_.utilities['br_md'],
-          Style_.utilities['p_a_sm'],
-          Style_.utilities['shadow_sm'],
+          Style.utilities['background_surface'],
+          Style.utilities['br_md'],
+          Style.utilities['p_a_sm'],
+          Style.utilities['shadow_sm'],
           style
         ]
       }, rest),

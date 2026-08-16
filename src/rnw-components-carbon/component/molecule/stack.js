@@ -16,11 +16,11 @@ Build the Stack molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Stack component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function Stack (props) {
 
@@ -35,8 +35,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
     // Map gap token to margin utility
     const gapStyle = dir === 'horizontal'
-      ? Style_.utilities['m_r_' + gapToken]
-      : Style_.utilities['m_b_' + gapToken];
+      ? Style.utilities['m_r_' + gapToken]
+      : Style.utilities['m_b_' + gapToken];
 
     // Apply gap to all children except the last
     const childArray = React.Children.toArray(children);
@@ -54,7 +54,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       RNView,
       Object.assign({
         style: [
-          dir === 'horizontal' ? Style_.utilities['flex_row'] : null,
+          dir === 'horizontal' ? Style.utilities['flex_row'] : null,
           style
         ]
       }, rest),

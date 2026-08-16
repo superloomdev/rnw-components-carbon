@@ -17,15 +17,11 @@ Build the HeaderMenuButton molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The HeaderMenuButton component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function HeaderMenuButton (props) {
 
     const {
@@ -34,7 +30,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     } = props;
 
     const React = Lib.React;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
 
     // Handle press
     const handlePress = function () {
@@ -44,12 +40,12 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       expanded: !!isActive
     });
 
     // Build keyboard activation props
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'button',
       onActivate: handlePress,
       disabled: false
@@ -62,9 +58,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         accessibilityRole: 'button',
         accessibilityLabel: label || 'Menu',
         style: [
-          Style_.utilities['p_h_sm'],
-          Style_.utilities['p_v_sm'],
-          Style_.utilities['br_sm'],
+          Style.utilities['p_h_sm'],
+          Style.utilities['p_v_sm'],
+          Style.utilities['br_sm'],
           {
             backgroundColor: isActive
               ? (colorMap.BACKGROUND_SECONDARY || '#f4f4f4')

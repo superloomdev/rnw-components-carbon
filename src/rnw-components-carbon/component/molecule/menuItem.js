@@ -18,15 +18,11 @@ Build the MenuItem molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The MenuItem component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function MenuItem (props) {
 
     const {
@@ -37,12 +33,12 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const React = Lib.React;
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       disabled: !!disabled
     });
 
     // Build keyboard activation props
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'menuitem',
       onActivate: onPress,
       disabled: !!disabled
@@ -56,10 +52,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         accessibilityRole: 'menuitem',
         accessibilityLabel: label,
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
-          Style_.utilities['p_h_md'],
-          Style_.utilities['p_v_sm'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center'],
+          Style.utilities['p_h_md'],
+          Style.utilities['p_v_sm'],
           style
         ]
       }, ariaProps, pressKeysProps, rest),
@@ -68,7 +64,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           name: icon,
           size: 'sm',
           color: 'TEXT_SECONDARY',
-          style: Style_.utilities['m_e_sm']
+          style: Style.utilities['m_e_sm']
         })
         : null,
       React.createElement(Registry.Text, {

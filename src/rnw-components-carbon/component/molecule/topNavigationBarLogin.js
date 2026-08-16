@@ -16,11 +16,11 @@ Build the TopNavigationBarLogin molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The TopNavigationBarLogin component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function TopNavigationBarLogin (props) {
 
@@ -48,9 +48,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'banner',
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['items_center'],
-          Style_.utilities['justify_between'],
+          Style.utilities['flex_row'],
+          Style.utilities['items_center'],
+          Style.utilities['justify_between'],
           style
         ]
       }, rest),

@@ -16,21 +16,18 @@ Build the TabPanel molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The TabPanel component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function TabPanel (props) {
 
     const { children, selected, style, isRtlActive, ...rest } = props; // eslint-disable-line no-unused-vars
 
     const React = Lib.React;
 
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       hidden: selected === false ? true : undefined
     });
 
@@ -43,7 +40,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'tabpanel',
         style: [
-          Style_.utilities['p_a_md'],
+          Style.utilities['p_a_md'],
           style
         ]
       }, ariaProps, rest),

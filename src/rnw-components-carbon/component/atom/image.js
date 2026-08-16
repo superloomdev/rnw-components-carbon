@@ -13,11 +13,11 @@ Build the Image atom.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Image component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function Image (props) {
 
@@ -28,7 +28,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const classes = [];
 
     if (radius) {
-      const brClass = Style_.utilities['br_' + radius];
+      const brClass = Style.utilities['br_' + radius];
 
       if (brClass) {
         classes.push(brClass);
@@ -39,7 +39,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     }
 
     if (background) {
-      const bgClass = Style_.utilities['background_' + background];
+      const bgClass = Style.utilities['background_' + background];
 
       if (bgClass) {
         classes.push(bgClass);

@@ -15,11 +15,11 @@ Build the StructuredListWrapper molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The StructuredListWrapper component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function StructuredListWrapper (props) {
 
@@ -35,9 +35,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'table',
         style: [
-          Style_.utilities['flex_col'],
-          Style_.utilities['border_default'],
-          Style_.utilities['br_md'],
+          Style.utilities['flex_col'],
+          Style.utilities['border_default'],
+          Style.utilities['br_md'],
           { overflow: 'hidden' },
           style
         ]

@@ -17,15 +17,11 @@ Build the ClickableTile molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The ClickableTile component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function ClickableTile (props) {
 
     const {
@@ -36,12 +32,12 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const React = Lib.React;
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       disabled: !!disabled
     });
 
     // Build keyboard activation props
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'button',
       onActivate: onPress,
       disabled: !!disabled
@@ -55,10 +51,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         accessibilityRole: 'button',
         accessibilityLabel: title,
         style: [
-          Style_.utilities['background_surface'],
-          Style_.utilities['br_md'],
-          Style_.utilities['border_default'],
-          Style_.utilities['p_a_md'],
+          Style.utilities['background_surface'],
+          Style.utilities['br_md'],
+          Style.utilities['border_default'],
+          Style.utilities['p_a_md'],
           style
         ]
       }, ariaProps, pressKeysProps, rest),
@@ -67,7 +63,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           size: 'lg',
           color: 'text_primary',
           weight: 'semibold',
-          style: Style_.utilities['m_b_xs']
+          style: Style.utilities['m_b_xs']
         }, title)
         : null,
       subtitle

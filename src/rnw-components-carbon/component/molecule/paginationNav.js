@@ -18,15 +18,11 @@ Build the PaginationNav molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The PaginationNav component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function PaginationNav (props) {
 
     const {
@@ -35,7 +31,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     } = props;
 
     const React = Lib.React;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
 
     const current = Lib.Utils.isNumber(currentPage) ? currentPage : 1;
     const total = Lib.Utils.isNumber(totalPages) ? totalPages : 1;
@@ -51,11 +47,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
       const isActive = pageNum === current;
 
-      const ariaProps = a11y.state({
+      const ariaProps = Parts.A11y.state({
         current: isActive ? 'page' : undefined
       });
 
-      const pressKeysProps = usePressKeys({
+      const pressKeysProps = Parts.PressKeys({
         role: 'button',
         onActivate: function () {
           if (Lib.Utils.isFunction(onChange)) {
@@ -77,7 +73,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           accessibilityRole: 'button',
           accessibilityLabel: 'Page ' + pageNum,
           style: [
-            Style_.utilities['br_sm'],
+            Style.utilities['br_sm'],
             {
               minWidth: 32,
               height: 32,
@@ -102,8 +98,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'group',
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center'],
           style
         ]
       }, rest),

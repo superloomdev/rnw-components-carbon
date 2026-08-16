@@ -16,15 +16,13 @@ Build the ButtonPrimaryOutlined variant.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The ButtonPrimaryOutlined component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   // Build the a11y translator once per factory
-  const a11y = require('../a11y')(Lib);
-
   return function ButtonPrimaryOutlined (props) {
 
     // Destructure props
@@ -35,12 +33,12 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
     // Container base styles
     const containerBase = [
-      Style_.utilities['br_md'],
-      Style_.utilities['p_h_lg'],
-      Style_.utilities['p_v_md'],
-      Style_.utilities['border_primary'],
-      Style_.utilities['flex_center'],
-      fullWidth ? Style_.utilities['flex_stretch'] : null
+      Style.utilities['br_md'],
+      Style.utilities['p_h_lg'],
+      Style.utilities['p_v_md'],
+      Style.utilities['border_primary'],
+      Style.utilities['flex_center'],
+      fullWidth ? Style.utilities['flex_stretch'] : null
     ];
 
     // Resolve background from state
@@ -51,15 +49,15 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       }
 
       if (pressed || hovered) {
-        return Style_.utilities['background_app_primary_subtle'];
+        return Style.utilities['background_app_primary_subtle'];
       }
 
-      return Style_.utilities['background_surface'];
+      return Style.utilities['background_surface'];
 
     };
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       disabled: !!disabled
     });
 
@@ -82,7 +80,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       }, ariaProps, rest),
       icon
         ? Lib.React.createElement(Registry.Icon, {
-          name: icon, size: 'md', color: 'APP_PRIMARY', style: Style_.utilities['m_e_sm']
+          name: icon, size: 'md', color: 'APP_PRIMARY', style: Style.utilities['m_e_sm']
         })
         : null,
       Lib.React.createElement(Registry.Text, {

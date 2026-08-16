@@ -17,15 +17,11 @@ Build the NotificationActionButton molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The NotificationActionButton component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function NotificationActionButton (props) {
 
     const {
@@ -34,13 +30,13 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     } = props;
 
     const React = Lib.React;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({});
+    const ariaProps = Parts.A11y.state({});
 
     // Build keyboard activation props
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'button',
       onActivate: onPress,
       disabled: false
@@ -54,9 +50,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         accessibilityLabel: text
       }, ariaProps, pressKeysProps, {
         style: [
-          Style_.utilities['p_h_md'],
-          Style_.utilities['p_v_sm'],
-          Style_.utilities['br_md'],
+          Style.utilities['p_h_md'],
+          Style.utilities['p_v_sm'],
+          Style.utilities['br_md'],
           {
             backgroundColor: kind === 'primary'
               ? (colorMap.APP_PRIMARY || '#0f62fe')

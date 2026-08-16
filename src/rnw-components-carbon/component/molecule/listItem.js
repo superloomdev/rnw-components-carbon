@@ -19,15 +19,13 @@ Build the ListItem molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The ListItem component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   // Build the a11y translator once per factory
-  const a11y = require('../a11y')(Lib);
-
   return function ListItem (props) {
 
     // Destructure props
@@ -49,13 +47,13 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           name: icon,
           size: 'md',
           color: 'TEXT_SECONDARY',
-          style: Style_.utilities['m_e_md']
+          style: Style.utilities['m_e_md']
         })
         : null,
       // Title and subtitle column
       Lib.React.createElement(
         Registry.View,
-        { style: Style_.utilities['flex_1'] },
+        { style: Style.utilities['flex_1'] },
         Lib.React.createElement(Registry.Text, {
           size: 'md',
           color: 'text_primary',
@@ -65,7 +63,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           ? Lib.React.createElement(Registry.Text, {
             size: 'sm',
             color: 'text_muted',
-            style: Style_.utilities['m_t_xs']
+            style: Style.utilities['m_t_xs']
           }, subtitle)
           : null
       ),
@@ -75,11 +73,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
     // Container styles
     const containerStyle = [
-      Style_.utilities['p_h_md'],
-      Style_.utilities['p_v_md'],
-      Style_.utilities['flex_row'],
-      Style_.utilities['align_center'],
-      pressed ? Style_.utilities['background_background_secondary'] : null,
+      Style.utilities['p_h_md'],
+      Style.utilities['p_v_md'],
+      Style.utilities['flex_row'],
+      Style.utilities['align_center'],
+      pressed ? Style.utilities['background_background_secondary'] : null,
       style
     ];
 
@@ -94,7 +92,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     }
 
     // Pressable list item
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       disabled: !!disabled,
       selected: !!selected
     });

@@ -20,11 +20,11 @@ Build the AcceptTerms composite.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The AcceptTerms component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function AcceptTerms (props) {
 
@@ -101,8 +101,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'main',
         style: [
-          Style_.utilities['flex_1'],
-          Style_.utilities['flex_col'],
+          Style.utilities['flex_1'],
+          Style.utilities['flex_col'],
           style
         ]
       }, rest),

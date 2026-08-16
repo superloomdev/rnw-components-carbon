@@ -20,15 +20,11 @@ Build the TextArea atom.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The TextArea component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const useControllableState = require('../useControllableState')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function TextArea (props) {
 
     const {
@@ -40,7 +36,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const React = Lib.React;
 
     // Controlled/uncontrolled state
-    const state = useControllableState({
+    const state = Parts.ControllableState({
       value: value,
       defaultValue: defaultValue || '',
       onChange: onChange
@@ -52,18 +48,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const isInvalid = !!invalid;
 
     // Base styles from tokens
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
     const base = [
-      Style_.utilities['p_h_md'],
-      Style_.utilities['p_v_sm'],
-      Style_.utilities['br_md'],
-      Style_.utilities['border_default'],
+      Style.utilities['p_h_md'],
+      Style.utilities['p_v_sm'],
+      Style.utilities['br_md'],
+      Style.utilities['border_default'],
       isInvalid
         ? { borderColor: colorMap.STATUS_DANGER || '#da1e28' }
         : null,
       isDisabled
         ? { backgroundColor: colorMap.BACKGROUND_SECONDARY || '#f4f4f4' }
-        : Style_.utilities['background_surface'],
+        : Style.utilities['background_surface'],
       {
         minHeight: (rows || 4) * 24,
         textAlignVertical: 'top'
@@ -71,7 +67,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     ];
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       disabled: isDisabled,
       invalid: isInvalid
     });

@@ -14,11 +14,11 @@ Build the View atom.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The View component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function View (props) {
 
@@ -29,7 +29,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const classes = [];
 
     if (background) {
-      const bgClass = Style_.utilities['background_' + background];
+      const bgClass = Style.utilities['background_' + background];
 
       if (bgClass) {
         classes.push(bgClass);
@@ -40,7 +40,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     }
 
     if (radius) {
-      const brClass = Style_.utilities['br_' + radius];
+      const brClass = Style.utilities['br_' + radius];
 
       if (brClass) {
         classes.push(brClass);
@@ -52,7 +52,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
     if (border) {
       const borderKey = border === true ? 'default' : border;
-      const borderClass = Style_.utilities['border_' + borderKey];
+      const borderClass = Style.utilities['border_' + borderKey];
 
       if (borderClass) {
         classes.push(borderClass);

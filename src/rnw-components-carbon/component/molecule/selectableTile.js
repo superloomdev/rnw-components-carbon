@@ -17,15 +17,11 @@ Build the SelectableTile molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The SelectableTile component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function SelectableTile (props) {
 
     const {
@@ -34,7 +30,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     } = props;
 
     const React = Lib.React;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
 
     // Handle toggle
     const handlePress = function () {
@@ -47,13 +43,13 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       disabled: !!disabled,
       checked: !!selected
     });
 
     // Build keyboard activation props
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'checkbox',
       onActivate: handlePress,
       disabled: !!disabled
@@ -67,8 +63,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         accessibilityRole: 'checkbox',
         accessibilityLabel: title,
         style: [
-          Style_.utilities['br_md'],
-          Style_.utilities['p_a_md'],
+          Style.utilities['br_md'],
+          Style.utilities['p_a_md'],
           {
             borderWidth: 2,
             borderColor: selected

@@ -19,11 +19,11 @@ Build the IconIndicator atom.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The IconIndicator component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function IconIndicator (props) {
 
@@ -33,7 +33,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     } = props;
 
     const React = Lib.React;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
     const s = Lib.Utils.isNumber(size) ? size : 24;
 
     // Resolve colors from token or raw hex

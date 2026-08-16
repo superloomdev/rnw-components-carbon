@@ -18,15 +18,11 @@ Build the FileUploaderItem molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The FileUploaderItem component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function FileUploaderItem (props) {
 
     const {
@@ -44,10 +40,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({});
+    const ariaProps = Parts.A11y.state({});
 
     // Build keyboard activation props for the remove button
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'button',
       onActivate: handleRemove,
       disabled: false
@@ -66,11 +62,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         accessibilityRole: 'listitem',
         accessibilityLabel: filename,
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
-          Style_.utilities['p_h_md'],
-          Style_.utilities['p_v_sm'],
-          Style_.utilities['border_default'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center'],
+          Style.utilities['p_h_md'],
+          Style.utilities['p_v_sm'],
+          Style.utilities['border_default'],
           style
         ]
       }, rest),
@@ -78,7 +74,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         name: statusIcon,
         size: 'sm',
         color: 'TEXT_SECONDARY',
-        style: Style_.utilities['m_e_sm']
+        style: Style.utilities['m_e_sm']
       }),
       React.createElement(Registry.Text, {
         size: 'md',
@@ -92,7 +88,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           accessibilityRole: 'button',
           accessibilityLabel: 'Remove ' + (filename || 'file')
         }, ariaProps, pressKeysProps, {
-          style: Style_.utilities['p_a_xs']
+          style: Style.utilities['p_a_xs']
         }),
         React.createElement(Registry.Icon, {
           name: 'close',

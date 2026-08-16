@@ -19,14 +19,11 @@ Build the AccordionItem molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The AccordionItem component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   const getSharedContext = require('../context/sharedContext');
 
   // Get the shared Accordion context (cached per Lib instance)
@@ -40,7 +37,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     } = props;
 
     const React = Lib.React;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
 
     // Read Accordion context if available
     const ctxValue = React.useContext(accordionCtx.Context);
@@ -61,12 +58,12 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       expanded: isExpanded
     });
 
     // Build keyboard activation props
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'button',
       onActivate: handleToggle,
       disabled: false
@@ -76,7 +73,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       RNView,
       Object.assign({
         style: [
-          Style_.utilities['border_default'],
+          Style.utilities['border_default'],
           { borderBottomWidth: 1 },
           style
         ]
@@ -89,11 +86,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           accessibilityRole: 'button',
           accessibilityLabel: title,
           style: [
-            Style_.utilities['flex_row'],
-            Style_.utilities['align_center'],
-            Style_.utilities['justify_between'],
-            Style_.utilities['p_h_md'],
-            Style_.utilities['p_v_md']
+            Style.utilities['flex_row'],
+            Style.utilities['align_center'],
+            Style.utilities['justify_between'],
+            Style.utilities['p_h_md'],
+            Style.utilities['p_v_md']
           ]
         }, ariaProps, pressKeysProps),
         React.createElement(Registry.Text, {
@@ -114,8 +111,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           {
             accessibilityRole: 'region',
             style: [
-              Style_.utilities['p_h_md'],
-              Style_.utilities['p_v_md'],
+              Style.utilities['p_h_md'],
+              Style.utilities['p_v_md'],
               { backgroundColor: colorMap.BACKGROUND_SECONDARY || '#f4f4f4' }
             ]
           },

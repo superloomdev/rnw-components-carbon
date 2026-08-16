@@ -22,11 +22,11 @@ Build the Text atom.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Text component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function Text (props) {
 
@@ -38,33 +38,33 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
     // Font size with fallback to default
     const sizeKey = 'font_size_' + (size || CONFIG.DEFAULT_FONT_SIZE);
-    let sizeStyle = Style_.utilities[sizeKey];
+    let sizeStyle = Style.utilities[sizeKey];
 
     if (!sizeStyle) {
       Lib.Debug.warn('unknown font size token, using default', { size: size });
-      sizeStyle = Style_.utilities['font_size_' + CONFIG.DEFAULT_FONT_SIZE];
+      sizeStyle = Style.utilities['font_size_' + CONFIG.DEFAULT_FONT_SIZE];
     }
 
     classes.push(sizeStyle);
 
     // Font color with fallback to default
     const colorKey = 'font_' + (color || CONFIG.DEFAULT_FONT_COLOR);
-    let colorStyle = Style_.utilities[colorKey];
+    let colorStyle = Style.utilities[colorKey];
 
     if (!colorStyle) {
       Lib.Debug.warn('unknown font color token, using default', { color: color });
-      colorStyle = Style_.utilities['font_' + CONFIG.DEFAULT_FONT_COLOR];
+      colorStyle = Style.utilities['font_' + CONFIG.DEFAULT_FONT_COLOR];
     }
 
     classes.push(colorStyle);
 
     // Font weight with fallback to default
     const weightKey = 'font_weight_' + (weight || CONFIG.DEFAULT_FONT_WEIGHT);
-    let weightStyle = Style_.utilities[weightKey];
+    let weightStyle = Style.utilities[weightKey];
 
     if (!weightStyle) {
       Lib.Debug.warn('unknown font weight token, using default', { weight: weight });
-      weightStyle = Style_.utilities['font_weight_' + CONFIG.DEFAULT_FONT_WEIGHT];
+      weightStyle = Style.utilities['font_weight_' + CONFIG.DEFAULT_FONT_WEIGHT];
     }
 
     classes.push(weightStyle);

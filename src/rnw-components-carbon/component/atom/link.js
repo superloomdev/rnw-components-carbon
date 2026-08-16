@@ -16,14 +16,11 @@ Build the Link atom.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Link component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) { // eslint-disable-line no-unused-vars
-
-  const a11y = require('../a11y')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
   return function Link (props) {
 
     const {
@@ -34,7 +31,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) { // eslint-di
     const React = Lib.React;
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       disabled: !!disabled
     });
 

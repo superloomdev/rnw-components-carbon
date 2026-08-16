@@ -18,14 +18,11 @@ Build the Skeleton atom.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Skeleton component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Skeleton (props) {
 
     const {
@@ -35,10 +32,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
     const React = Lib.React;
     const v = variant || 'text';
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
 
     // Build aria-hidden through the a11y translator
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       hidden: true
     });
 

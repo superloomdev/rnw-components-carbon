@@ -16,14 +16,11 @@ Build the TableExpandHeader molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The TableExpandHeader component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function TableExpandHeader (props) {
 
     const {
@@ -33,7 +30,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
     const React = Lib.React;
 
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       expanded: !!isExpanded
     });
 
@@ -44,8 +41,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         accessibilityRole: 'button',
         accessibilityLabel: isExpanded ? 'Collapse row' : 'Expand row',
         style: [
-          Style_.utilities['p_h_sm'],
-          Style_.utilities['p_v_xs']
+          Style.utilities['p_h_sm'],
+          Style.utilities['p_v_xs']
         ]
       },
       React.createElement(Registry.Icon, {
@@ -60,8 +57,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'columnheader',
         style: [
-          Style_.utilities['p_h_sm'],
-          Style_.utilities['p_v_sm'],
+          Style.utilities['p_h_sm'],
+          Style.utilities['p_v_sm'],
           style
         ]
       }, ariaProps, rest),

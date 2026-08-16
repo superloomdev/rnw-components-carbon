@@ -17,15 +17,11 @@ Build the SideNavItem molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The SideNavItem component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function SideNavItem (props) {
 
     const {
@@ -34,16 +30,16 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     } = props;
 
     const React = Lib.React;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
     const isActive = !!active;
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       current: isActive ? 'page' : undefined
     });
 
     // Build keyboard activation props
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'link',
       onActivate: onPress,
       disabled: false
@@ -57,10 +53,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         accessibilityLabel: text
       }, ariaProps, pressKeysProps, {
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
-          Style_.utilities['p_h_md'],
-          Style_.utilities['p_v_sm'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center'],
+          Style.utilities['p_h_md'],
+          Style.utilities['p_v_sm'],
           {
             backgroundColor: isActive
               ? (colorMap.APP_PRIMARY_SUBTLE || '#edf5ff')

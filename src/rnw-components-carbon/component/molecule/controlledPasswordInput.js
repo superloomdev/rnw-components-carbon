@@ -19,11 +19,11 @@ Build the ControlledPasswordInput molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The ControlledPasswordInput component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function ControlledPasswordInput (props) {
 
@@ -46,8 +46,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       RNView,
       {
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center'],
           style
         ]
       },
@@ -75,7 +75,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           disabled: isDisabled,
           accessibilityRole: 'button',
           accessibilityLabel: showPassword ? 'Hide password' : 'Show password',
-          style: Style_.utilities['m_s_xs']
+          style: Style.utilities['m_s_xs']
         },
         showPassword ? 'Hide' : 'Show'
       )

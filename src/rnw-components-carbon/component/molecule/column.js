@@ -15,11 +15,11 @@ Build the Column molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Column component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function Column (props) {
 
@@ -31,7 +31,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const React = Lib.React;
 
     // Build style array; span adds a grid-column span when provided
-    const styles = [Style_.utilities['flex_col']];
+    const styles = [Style.utilities['flex_col']];
 
     if (Lib.Utils.isNumber(span) && span > 0) {
       styles.push({ gridColumn: 'span ' + span });

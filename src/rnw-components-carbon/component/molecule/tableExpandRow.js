@@ -18,15 +18,11 @@ Build the TableExpandRow molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The TableExpandRow component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function TableExpandRow (props) {
 
     const {
@@ -36,11 +32,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
     const React = Lib.React;
 
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       expanded: !!isExpanded
     });
 
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'row',
       onActivate: onToggle,
       disabled: false
@@ -52,8 +48,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         onPress: onToggle,
         accessibilityRole: 'row',
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['border_default'],
+          Style.utilities['flex_row'],
+          Style.utilities['border_default'],
           style
         ]
       }, ariaProps, pressKeysProps, rest),

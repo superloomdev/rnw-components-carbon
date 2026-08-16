@@ -19,11 +19,11 @@ Build the TopNavigationBar molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The TopNavigationBar component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function TopNavigationBar (props) {
 
@@ -50,7 +50,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     // Title section
     const titleSection = React.createElement(
       RNView,
-      { style: Style_.utilities['flex_col'] },
+      { style: Style.utilities['flex_col'] },
       React.createElement(Registry.Text, { style: headerMode ? { fontSize: 20 } : null }, title || ''),
       subTitle ? React.createElement(Registry.Text, null, subTitle) : null
     );
@@ -60,17 +60,17 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'banner',
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['items_center'],
-          Style_.utilities['justify_between'],
+          Style.utilities['flex_row'],
+          Style.utilities['items_center'],
+          Style.utilities['justify_between'],
           style
         ]
       }, rest),
-      React.createElement(RNView, { style: Style_.utilities['flex_row'] },
+      React.createElement(RNView, { style: Style.utilities['flex_row'] },
         (Array.isArray(leftItems) ? leftItems : []).map(renderNavItem)
       ),
       titleSection,
-      React.createElement(RNView, { style: Style_.utilities['flex_row'] },
+      React.createElement(RNView, { style: Style.utilities['flex_row'] },
         (Array.isArray(rightItems) ? rightItems : []).map(renderNavItem)
       )
     );

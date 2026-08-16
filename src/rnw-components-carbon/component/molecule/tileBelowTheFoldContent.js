@@ -15,11 +15,11 @@ Build the TileBelowTheFoldContent molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The TileBelowTheFoldContent component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function TileBelowTheFoldContent (props) {
 
@@ -35,8 +35,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'group',
         style: [
-          Style_.utilities['p_h_md'],
-          Style_.utilities['p_b_md'],
+          Style.utilities['p_h_md'],
+          Style.utilities['p_b_md'],
           style
         ]
       }, rest),

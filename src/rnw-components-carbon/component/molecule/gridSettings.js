@@ -15,11 +15,11 @@ Build the GridSettings molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The GridSettings component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function GridSettings (props) {
 
@@ -35,8 +35,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'group',
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center'],
           {
             gridTemplateColumns: 'repeat(' + (columns || 12) + ', 1fr)',
             gap: gap || '16px'

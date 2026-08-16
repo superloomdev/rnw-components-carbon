@@ -18,11 +18,11 @@ Build the FormItem molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The FormItem component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function FormItem (props) {
 
@@ -40,7 +40,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         size: 'sm',
         color: disabled ? 'text_muted' : 'text_primary',
         weight: 'medium',
-        style: Style_.utilities['m_b_xs']
+        style: Style.utilities['m_b_xs']
       }, label, required
         ? React.createElement(Registry.Text, {
           size: 'sm',
@@ -55,19 +55,19 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       ? React.createElement(Registry.Text, {
         size: 'xs',
         color: 'status_danger',
-        style: Style_.utilities['m_t_xs']
+        style: Style.utilities['m_t_xs']
       }, errorText)
       : helperText
         ? React.createElement(Registry.Text, {
           size: 'xs',
           color: 'text_secondary',
-          style: Style_.utilities['m_t_xs']
+          style: Style.utilities['m_t_xs']
         }, helperText)
         : null;
 
     return React.createElement(
       Registry.View,
-      Object.assign({ style: [Style_.utilities['m_b_md'], style] }, rest),
+      Object.assign({ style: [Style.utilities['m_b_md'], style] }, rest),
       labelElement,
       children,
       messageElement

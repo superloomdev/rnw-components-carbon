@@ -19,15 +19,13 @@ Build the Tabs composite.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Tabs component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) { // eslint-disable-line no-unused-vars
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
 
   const getSharedContext = require('../context/sharedContext');
-  const useRovingTabIndex = require('../useRovingTabIndex')(Lib);
-
   // Get the shared compound context (cached per Lib instance)
   const ctx = getSharedContext(Lib, 'Tabs');
 
@@ -45,7 +43,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) { // eslint-di
     const count = childArray.length;
 
     // Roving tab index for arrow key navigation
-    const roving = useRovingTabIndex({
+    const roving = Parts.RovingTabIndex({
       count: count,
       activeIndex: activeIndex,
       onActiveIndexChange: function (nextIndex) {

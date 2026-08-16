@@ -19,18 +19,13 @@ Build the CheckboxGroup composite.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The CheckboxGroup component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const useControllableState = require('../useControllableState')(Lib);
-  const createCompoundContext = require('../createCompoundContext');
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   // Create the compound context for CheckboxGroup coordination
-  const checkboxContext = createCompoundContext(Lib, 'CheckboxGroup');
+  const checkboxContext = Parts.CompoundContext('CheckboxGroup');
 
   return function CheckboxGroup (props) {
 
@@ -45,7 +40,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const optionList = options || [];
 
     // Controlled/uncontrolled state for the selected values array
-    const state = useControllableState({
+    const state = Parts.ControllableState({
       value: values,
       defaultValue: defaultValues || [],
       onChange: onChange
@@ -67,7 +62,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props for the group
-    const ariaStateProps = a11y.state({
+    const ariaStateProps = Parts.A11y.state({
       disabled: isDisabled
     });
 
@@ -101,7 +96,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           accessibilityRole: 'group',
           accessibilityLabel: accessibilityLabel || name,
           style: [
-            Style_.utilities['flex_col'],
+            Style.utilities['flex_col'],
             style
           ]
         }, ariaStateProps, rest),

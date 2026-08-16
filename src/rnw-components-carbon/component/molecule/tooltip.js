@@ -17,15 +17,11 @@ Build the Tooltip molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Tooltip component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const useAnchoredPosition = require('../useAnchoredPosition')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Tooltip (props) {
 
     const {
@@ -38,7 +34,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const anchorRef = React.useRef(null);
 
     // Anchored position calculation
-    const anchoredPos = useAnchoredPosition({
+    const anchoredPos = Parts.AnchoredPosition({
       placement: placement || 'top',
       offset: 8,
       flip: true,
@@ -53,10 +49,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     }, [isVisible]);
 
     // Generate stable id for aria-describedby
-    const tooltipId = React.useRef(a11y.id('tooltip')).current;
+    const tooltipId = React.useRef(Parts.A11y.id('tooltip')).current;
 
     // Build aria relation props
-    const ariaProps = a11y.relation({
+    const ariaProps = Parts.A11y.relation({
       describedby: tooltipId
     });
 
@@ -90,11 +86,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           id: tooltipId,
           accessibilityRole: 'tooltip',
           style: [
-            Style_.utilities['background_surface'],
-            Style_.utilities['br_sm'],
-            Style_.utilities['p_h_sm'],
-            Style_.utilities['p_v_xs'],
-            Style_.utilities['shadow_sm'],
+            Style.utilities['background_surface'],
+            Style.utilities['br_sm'],
+            Style.utilities['p_h_sm'],
+            Style.utilities['p_v_xs'],
+            Style.utilities['shadow_sm'],
             {
               position: 'absolute',
               top: pos.top,

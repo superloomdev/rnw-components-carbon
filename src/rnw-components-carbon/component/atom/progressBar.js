@@ -19,22 +19,20 @@ Build the ProgressBar atom.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The ProgressBar component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   // Build the a11y translator once per factory
-  const a11y = require('../a11y')(Lib);
-
   return function ProgressBar (props) {
 
     // Destructure props
     const { value, color, trackColor, height, style, isRtlActive, ...rest } = props; // eslint-disable-line no-unused-vars
 
     // Resolve colors from tokens
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
     const fillColor = (color && colorMap[color.toUpperCase()]) || colorMap.APP_PRIMARY || '#0f62fe';
     const trackFillColor = (trackColor && colorMap[trackColor.toUpperCase()]) || colorMap.SURFACE || '#e0e0e0';
 
@@ -42,7 +40,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const barHeight = Lib.Utils.isNumber(height) ? height : 4;
 
     // Build aria value props through the a11y translator
-    const ariaProps = a11y.value({
+    const ariaProps = Parts.A11y.value({
       min: 0,
       max: 1,
       now: Lib.Utils.isNumber(value) ? Math.max(0, Math.min(1, value)) : undefined

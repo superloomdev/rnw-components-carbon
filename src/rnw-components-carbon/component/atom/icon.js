@@ -15,11 +15,11 @@ Build the Icon atom.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Icon component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function Icon (props) {
 
@@ -33,7 +33,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     }
 
     // Resolve size: token -> px, number -> px, default md
-    const fontSizeMap = Style_.tokens.Dimension.fontSize;
+    const fontSizeMap = Style.tokens.Dimension.fontSize;
     let px = fontSizeMap.md;
 
     if (Lib.Utils.isNumber(size)) {
@@ -43,7 +43,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     }
 
     // Resolve color: hex -> as-is, token -> palette, default TEXT_PRIMARY
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
     let hex = colorMap.TEXT_PRIMARY;
 
     if (color && color.charAt(0) === '#') {

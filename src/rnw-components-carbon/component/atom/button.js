@@ -15,16 +15,13 @@ Build the Button atom.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Button component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   // Build the a11y translator once per factory
-  const a11y = require('../a11y')(Lib);
-
-
   // ~~~~~~~~~~~~~~~~~~~~ Private ~~~~~~~~~~~~~~~~~~~~
 
   // Resolve the active interaction state to a token suffix
@@ -101,7 +98,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const baseClasses = [];
 
     if (radius) {
-      const brClass = Style_.utilities['br_' + radius];
+      const brClass = Style.utilities['br_' + radius];
       if (brClass) {
         baseClasses.push(brClass);
       }
@@ -116,14 +113,14 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       // Resolve background with state suffix
       if (effectiveBackground) {
         const bgKey = 'background_' + effectiveBackground + stateSuffix;
-        const bgClass = Style_.utilities[bgKey];
+        const bgClass = Style.utilities[bgKey];
 
         if (bgClass) {
           classes.push(bgClass);
         } else {
           // Fall back to the base background without state suffix
           const baseBgKey = 'background_' + effectiveBackground;
-          const baseBgClass = Style_.utilities[baseBgKey];
+          const baseBgClass = Style.utilities[baseBgKey];
 
           if (baseBgClass) {
             classes.push(baseBgClass);
@@ -134,7 +131,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
       // Focus ring for the focused state
       if (pressableState.focused && !disabled) {
-        classes.push(Style_.utilities['border_focused']);
+        classes.push(Style.utilities['border_focused']);
       }
 
       return [...classes, style];
@@ -142,7 +139,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       disabled: !!disabled
     });
 

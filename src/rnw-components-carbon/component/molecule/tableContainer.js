@@ -16,11 +16,11 @@ Build the TableContainer molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The TableContainer component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function TableContainer (props) {
 
@@ -43,7 +43,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
             marginLeft: 'auto',
             marginRight: 'auto'
           },
-          Style_.utilities['p_h_md'],
+          Style.utilities['p_h_md'],
           style
         ]
       }, rest),

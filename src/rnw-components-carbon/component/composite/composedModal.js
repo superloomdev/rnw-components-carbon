@@ -18,15 +18,12 @@ Build the ComposedModal composite.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The ComposedModal component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const useFocusTrap = require('../useFocusTrap')(Lib);
-  const overlay = require('../Overlay')(Lib);
-  const useOverlay = overlay.useOverlay;
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+  const useOverlay = Parts.Overlay.useOverlay;
 
   return function ComposedModal (props) {
 
@@ -38,7 +35,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const React = Lib.React;
 
     // Focus trap with trap: true for modal
-    const focusTrap = useFocusTrap({
+    const focusTrap = Parts.FocusTrap({
       isOpen: isOpen,
       onClose: onClose,
       trap: true,
@@ -53,9 +50,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           ref: focusTrap.containerRef,
           accessibilityRole: 'dialog',
           style: [
-            Style_.utilities['background_surface'],
-            Style_.utilities['br_lg'],
-            Style_.utilities['shadow_lg'],
+            Style.utilities['background_surface'],
+            Style.utilities['br_lg'],
+            Style.utilities['shadow_lg'],
             { margin: 24, maxWidth: 600, alignSelf: 'center' },
             style
           ]

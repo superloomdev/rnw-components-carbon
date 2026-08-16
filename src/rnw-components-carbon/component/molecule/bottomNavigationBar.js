@@ -15,11 +15,11 @@ Build the BottomNavigationBar molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The BottomNavigationBar component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function BottomNavigationBar (props) {
 
@@ -34,10 +34,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     // Render each navigation item
     const renderItem = function (item, index) {
 
-      const itemStyles = [Style_.utilities['flex_col'], Style_.utilities['items_center']];
+      const itemStyles = [Style.utilities['flex_col'], Style.utilities['items_center']];
 
       if (item.active) {
-        itemStyles.push(Style_.utilities['background_active']);
+        itemStyles.push(Style.utilities['background_active']);
       }
 
       return React.createElement(
@@ -60,8 +60,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'tabbar',
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['justify_between'],
+          Style.utilities['flex_row'],
+          Style.utilities['justify_between'],
           style
         ]
       }, rest),

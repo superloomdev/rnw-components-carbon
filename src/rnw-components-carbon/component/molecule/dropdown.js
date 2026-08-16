@@ -1,6 +1,6 @@
 // Info: Dropdown molecule [S3 overlay] (CANONICAL). A dropdown menu with
 // focus trap, Escape/back dismissal, outside-press dismissal, and focus
-// restoration. Uses Overlay (M4) for stacking, useAnchoredPosition (M5)
+// restoration. Uses Overlay (M4) for stacking, Parts.AnchoredPosition(M5)
 // for panel placement, and useFocusTrap for focus management. Composes
 // Button, Text, and Icon atoms.
 //
@@ -26,25 +26,18 @@ Build the Dropdown molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Dropdown component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   // Build the focus trap hook once
-  const useFocusTrap = require('../useFocusTrap')(Lib);
-
   // Build the a11y translator once per factory
-  const a11y = require('../a11y')(Lib);
-
   // Build the overlay host hook once
-  const overlay = require('../Overlay')(Lib);
-  const useOverlay = overlay.useOverlay;
+  const useOverlay = Parts.Overlay.useOverlay;
 
   // Build the anchored position hook once
-  const useAnchoredPosition = require('../useAnchoredPosition')(Lib);
-
   return function Dropdown (props) {
 
     // Destructure props
@@ -65,7 +58,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Use the focus trap hook for all six S3 obligations
-    const focusTrap = useFocusTrap({
+    const focusTrap = Parts.FocusTrap({
       isOpen: isOpen,
       onClose: handleClose
     });
@@ -75,7 +68,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const accessibilityProps = focusTrap.accessibilityProps;
 
     // Use anchored position for the dropdown panel
-    const anchoredPos = useAnchoredPosition({
+    const anchoredPos = Parts.AnchoredPosition({
       placement: 'bottom-start',
       offset: 4,
       flip: true,
@@ -108,7 +101,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props for the trigger through the a11y translator
-    const triggerAriaProps = a11y.state({
+    const triggerAriaProps = Parts.A11y.state({
       expanded: !!isOpen
     });
 
@@ -121,13 +114,13 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         accessibilityRole: 'button',
         accessibilityLabel: accessibilityLabel || triggerLabel,
         style: [
-          Style_.utilities['p_h_md'],
-          Style_.utilities['p_v_sm'],
-          Style_.utilities['br_md'],
-          Style_.utilities['border_default'],
-          Style_.utilities['background_surface'],
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center']
+          Style.utilities['p_h_md'],
+          Style.utilities['p_v_sm'],
+          Style.utilities['br_md'],
+          Style.utilities['border_default'],
+          Style.utilities['background_surface'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center']
         ]
       }, triggerAriaProps),
       React.createElement(Registry.Text, {
@@ -138,7 +131,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         name: isOpen ? 'chevron-up' : 'chevron-down',
         size: 'sm',
         color: 'TEXT_SECONDARY',
-        style: Style_.utilities['m_s_xs']
+        style: Style.utilities['m_s_xs']
       })
     );
 
@@ -159,8 +152,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           accessibilityRole: 'menuitem',
           accessibilityLabel: item.label,
           style: [
-            Style_.utilities['p_h_md'],
-            Style_.utilities['p_v_sm']
+            Style.utilities['p_h_md'],
+            Style.utilities['p_v_sm']
           ]
         },
         React.createElement(Registry.Text, {
@@ -192,10 +185,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         Object.assign({
           ref: containerRef,
           style: [
-            Style_.utilities['background_surface'],
-            Style_.utilities['br_md'],
-            Style_.utilities['border_default'],
-            Style_.utilities['p_v_xs'],
+            Style.utilities['background_surface'],
+            Style.utilities['br_md'],
+            Style.utilities['border_default'],
+            Style.utilities['p_v_xs'],
             panelStyle,
             zIndex ? { zIndex: zIndex } : {},
             style

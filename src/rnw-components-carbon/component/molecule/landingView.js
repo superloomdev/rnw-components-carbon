@@ -14,11 +14,11 @@ Build the LandingView molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The LandingView component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function LandingView (props) {
 
@@ -35,7 +35,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         accessibilityRole: 'main',
         style: [
           { flex: 1, minHeight: '100%' },
-          Style_.utilities['flex_col'],
+          Style.utilities['flex_col'],
           style
         ]
       }, rest),

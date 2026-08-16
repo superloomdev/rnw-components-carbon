@@ -19,14 +19,11 @@ Build the PasswordInput molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The PasswordInput component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const useControllableState = require('../useControllableState')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function PasswordInput (props) {
 
     const {
@@ -38,7 +35,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const React = Lib.React;
 
     // Controlled/uncontrolled state
-    const state = useControllableState({
+    const state = Parts.ControllableState({
       value: value,
       defaultValue: defaultValue || '',
       onChange: onChange
@@ -53,22 +50,22 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
     const isDisabled = !!disabled;
     const isInvalid = !!invalid;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
 
     return React.createElement(
       RNView,
       {
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
-          Style_.utilities['br_md'],
-          Style_.utilities['border_default'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center'],
+          Style.utilities['br_md'],
+          Style.utilities['border_default'],
           isInvalid
             ? { borderColor: colorMap.STATUS_DANGER || '#da1e28' }
             : null,
           isDisabled
             ? { backgroundColor: colorMap.BACKGROUND_SECONDARY || '#f4f4f4' }
-            : Style_.utilities['background_surface'],
+            : Style.utilities['background_surface'],
           style
         ]
       },
@@ -97,7 +94,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           disabled: isDisabled,
           accessibilityRole: 'button',
           accessibilityLabel: showPassword ? 'Hide password' : 'Show password',
-          style: Style_.utilities['m_s_xs']
+          style: Style.utilities['m_s_xs']
         },
         React.createElement(Registry.Icon, {
           name: showPassword ? 'eye-off' : 'eye',

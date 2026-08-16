@@ -22,15 +22,11 @@ Build the Slider atom.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Slider component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const useControllableState = require('../useControllableState')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   // Role: 'slider' on web, 'adjustable' on native
   const sliderRole = Platform.select({
     web: 'slider',
@@ -52,7 +48,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const React = Lib.React;
 
     // Controlled/uncontrolled state
-    const state = useControllableState({
+    const state = Parts.ControllableState({
       value: value,
       defaultValue: Lib.Utils.isNumber(defaultValue) ? defaultValue : (min || 0),
       onChange: onChange
@@ -66,10 +62,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const stepVal = Lib.Utils.isNumber(step) ? step : 1;
 
     // Resolve colors from tokens
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
 
     // Build aria state and value props through the a11y translator
-    const ariaStateProps = a11y.state({
+    const ariaStateProps = Parts.A11y.state({
       disabled: isDisabled
     });
 
@@ -77,7 +73,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const clampedValue = Math.max(minVal, Math.min(maxVal, resolvedValue));
     const displayText = Math.round(clampedValue) + '';
 
-    const ariaValueProps = a11y.value({
+    const ariaValueProps = Parts.A11y.value({
       min: minVal,
       max: maxVal,
       now: clampedValue,
@@ -201,7 +197,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     // Render slider + paired text input in a row
     return React.createElement(
       RNView,
-      { style: [Style_.utilities['flex_row'], Style_.utilities['align_center']] },
+      { style: [Style.utilities['flex_row'], Style.utilities['align_center']] },
       React.createElement(RNView, { style: { flex: 1 } }, sliderElement),
       React.createElement(
         Registry.TextInput,

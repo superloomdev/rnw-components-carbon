@@ -20,14 +20,11 @@ Build the IconButton molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The IconButton component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function IconButton (props) {
 
     const {
@@ -38,7 +35,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const React = Lib.React;
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({
+    const ariaProps = Parts.A11y.state({
       disabled: !!disabled
     });
 
@@ -50,9 +47,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         accessibilityRole: 'button',
         accessibilityLabel: label,
         style: [
-          Style_.utilities['p_h_sm'],
-          Style_.utilities['p_v_sm'],
-          Style_.utilities['br_md'],
+          Style.utilities['p_h_sm'],
+          Style.utilities['p_v_sm'],
+          Style.utilities['br_md'],
           style
         ]
       }, ariaProps, rest),

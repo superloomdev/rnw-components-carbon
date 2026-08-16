@@ -19,15 +19,13 @@ Build the ContentSwitcher composite.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The ContentSwitcher component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   const getSharedContext = require('../context/sharedContext');
-  const useRovingTabIndex = require('../useRovingTabIndex')(Lib);
-
   // Get the shared compound context (cached per Lib instance)
   const ctx = getSharedContext(Lib, 'ContentSwitcher');
 
@@ -45,7 +43,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const count = childArray.length;
 
     // Roving tab index for arrow key navigation
-    const roving = useRovingTabIndex({
+    const roving = Parts.RovingTabIndex({
       count: count,
       activeIndex: activeIndex,
       onActiveIndexChange: function (nextIndex) {
@@ -80,8 +78,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'tablist',
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center'],
           style
         ]
       }, roving.containerProps, rest),

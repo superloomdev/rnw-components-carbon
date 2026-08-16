@@ -15,11 +15,11 @@ Build the SelectItemGroup molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The SelectItemGroup component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function SelectItemGroup (props) {
 
@@ -36,7 +36,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         accessibilityRole: 'group',
         accessibilityLabel: label,
         style: [
-          Style_.utilities['flex_col'],
+          Style.utilities['flex_col'],
           style
         ]
       }, rest),
@@ -45,7 +45,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           size: 'sm',
           color: 'text_secondary',
           weight: 'medium',
-          style: Style_.utilities['p_h_md']
+          style: Style.utilities['p_h_md']
         }, label)
         : null,
       children

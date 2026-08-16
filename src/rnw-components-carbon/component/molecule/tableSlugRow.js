@@ -16,11 +16,11 @@ Build the TableSlugRow molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The TableSlugRow component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function TableSlugRow (props) {
 
@@ -36,9 +36,9 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'row',
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
-          Style_.utilities['border_default'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center'],
+          Style.utilities['border_default'],
           style
         ]
       }, rest),
@@ -46,8 +46,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         RNView,
         {
           style: [
-            Style_.utilities['p_h_md'],
-            Style_.utilities['p_v_sm']
+            Style.utilities['p_h_md'],
+            Style.utilities['p_v_sm']
           ]
         },
         React.createElement(Registry.Text, {

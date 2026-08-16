@@ -25,18 +25,15 @@ Build the Modal molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Modal component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   // Build the focus trap hook once
-  const useFocusTrap = require('../useFocusTrap')(Lib);
-
   // Build the overlay host hook once
-  const overlay = require('../Overlay')(Lib);
-  const useOverlay = overlay.useOverlay;
+  const useOverlay = Parts.Overlay.useOverlay;
 
   return function Modal (props) {
 
@@ -50,7 +47,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
 
     // Use the focus trap hook for all six S3 obligations
     // trap=true for Modal: Tab cycles within the dialog
-    const focusTrap = useFocusTrap({
+    const focusTrap = Parts.FocusTrap({
       isOpen: isOpen,
       onClose: onClose,
       trap: true,
@@ -81,10 +78,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         Object.assign({
           ref: containerRef,
           style: [
-            Style_.utilities['background_surface'],
-            Style_.utilities['br_lg'],
-            Style_.utilities['p_a_lg'],
-            Style_.utilities['border_default'],
+            Style.utilities['background_surface'],
+            Style.utilities['br_lg'],
+            Style.utilities['p_a_lg'],
+            Style.utilities['border_default'],
             {
               margin: 24,
               maxWidth: 600,

@@ -19,15 +19,11 @@ Build the Pagination composite.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Pagination component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function Pagination (props) {
 
     const {
@@ -36,7 +32,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     } = props;
 
     const React = Lib.React;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
 
     const currentPage = Lib.Utils.isNumber(page) ? page : 1;
     const totalPages = Lib.Utils.isNumber(totalPage) ? totalPage : 1;
@@ -51,11 +47,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     // Prev button
     const prevDisabled = currentPage <= 1;
 
-    const prevAriaProps = a11y.state({
+    const prevAriaProps = Parts.A11y.state({
       disabled: prevDisabled
     });
 
-    const prevPressKeys = usePressKeys({
+    const prevPressKeys = Parts.PressKeys({
       role: 'button',
       onActivate: function () {
         if (!prevDisabled) {
@@ -68,11 +64,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     // Next button
     const nextDisabled = currentPage >= totalPages;
 
-    const nextAriaProps = a11y.state({
+    const nextAriaProps = Parts.A11y.state({
       disabled: nextDisabled
     });
 
-    const nextPressKeys = usePressKeys({
+    const nextPressKeys = Parts.PressKeys({
       role: 'button',
       onActivate: function () {
         if (!nextDisabled) {
@@ -87,8 +83,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       Object.assign({
         accessibilityRole: 'navigation',
         style: [
-          Style_.utilities['flex_row'],
-          Style_.utilities['align_center'],
+          Style.utilities['flex_row'],
+          Style.utilities['align_center'],
           style
         ]
       }, rest),
@@ -103,10 +99,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           accessibilityRole: 'button',
           accessibilityLabel: 'Previous page',
           style: [
-            Style_.utilities['br_sm'],
-            Style_.utilities['p_h_sm'],
-            Style_.utilities['p_v_sm'],
-            Style_.utilities['m_r_sm'],
+            Style.utilities['br_sm'],
+            Style.utilities['p_h_sm'],
+            Style.utilities['p_v_sm'],
+            Style.utilities['m_r_sm'],
             {
               backgroundColor: prevDisabled
                 ? (colorMap.BACKGROUND_SECONDARY || '#f4f4f4')
@@ -136,10 +132,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           accessibilityRole: 'button',
           accessibilityLabel: 'Next page',
           style: [
-            Style_.utilities['br_sm'],
-            Style_.utilities['p_h_sm'],
-            Style_.utilities['p_v_sm'],
-            Style_.utilities['m_l_sm'],
+            Style.utilities['br_sm'],
+            Style.utilities['p_h_sm'],
+            Style.utilities['p_v_sm'],
+            Style.utilities['m_l_sm'],
             {
               backgroundColor: nextDisabled
                 ? (colorMap.BACKGROUND_SECONDARY || '#f4f4f4')

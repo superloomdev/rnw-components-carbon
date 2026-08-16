@@ -17,11 +17,11 @@ Build the Tile molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The Tile component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function Tile (props) {
 
@@ -36,10 +36,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       RNView,
       Object.assign({
         style: [
-          Style_.utilities['background_surface'],
-          Style_.utilities['br_md'],
-          Style_.utilities['border_default'],
-          Style_.utilities['p_a_md'],
+          Style.utilities['background_surface'],
+          Style.utilities['br_md'],
+          Style.utilities['border_default'],
+          Style.utilities['p_a_md'],
           style
         ]
       }, rest),
@@ -48,7 +48,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           name: icon,
           size: 'lg',
           color: 'TEXT_PRIMARY',
-          style: Style_.utilities['m_b_sm']
+          style: Style.utilities['m_b_sm']
         })
         : null,
       title
@@ -56,14 +56,14 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           size: 'lg',
           color: 'text_primary',
           weight: 'semibold',
-          style: Style_.utilities['m_b_xs']
+          style: Style.utilities['m_b_xs']
         }, title)
         : null,
       subtitle
         ? React.createElement(Registry.Text, {
           size: 'sm',
           color: 'text_secondary',
-          style: Style_.utilities['m_b_sm']
+          style: Style.utilities['m_b_sm']
         }, subtitle)
         : null,
       children

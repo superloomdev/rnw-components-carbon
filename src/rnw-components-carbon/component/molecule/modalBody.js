@@ -14,11 +14,11 @@ Build the ModalBody molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The ModalBody component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   return function ModalBody (props) {
 
@@ -29,7 +29,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     return React.createElement(
       RNView,
       Object.assign({
-        style: [Style_.utilities['p_h_lg'], Style_.utilities['p_v_md'], style]
+        style: [Style.utilities['p_h_lg'], Style.utilities['p_v_md'], style]
       }, rest),
       children
     );

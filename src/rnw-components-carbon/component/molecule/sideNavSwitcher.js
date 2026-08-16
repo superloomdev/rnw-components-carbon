@@ -17,15 +17,11 @@ Build the SideNavSwitcher molecule.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The SideNavSwitcher component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   return function SideNavSwitcher (props) {
 
     const {
@@ -43,10 +39,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props through the a11y translator
-    const ariaProps = a11y.state({});
+    const ariaProps = Parts.A11y.state({});
 
     // Build keyboard activation props
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'button',
       onActivate: handlePress,
       disabled: false
@@ -56,7 +52,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
       RNView,
       Object.assign({
         style: [
-          Style_.utilities['flex_col'],
+          Style.utilities['flex_col'],
           style
         ]
       }, rest),
@@ -64,7 +60,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         ? React.createElement(Registry.Text, {
           size: 'sm',
           color: 'text_secondary',
-          style: Style_.utilities['m_b_xs']
+          style: Style.utilities['m_b_xs']
         }, label)
         : null,
       React.createElement(
@@ -75,13 +71,13 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           accessibilityLabel: label || 'Switcher'
         }, ariaProps, pressKeysProps, {
           style: [
-            Style_.utilities['flex_row'],
-            Style_.utilities['align_center'],
-            Style_.utilities['justify_between'],
-            Style_.utilities['p_h_md'],
-            Style_.utilities['p_v_sm'],
-            Style_.utilities['border_default'],
-            Style_.utilities['br_sm']
+            Style.utilities['flex_row'],
+            Style.utilities['align_center'],
+            Style.utilities['justify_between'],
+            Style.utilities['p_h_md'],
+            Style.utilities['p_v_sm'],
+            Style.utilities['border_default'],
+            Style.utilities['br_sm']
           ]
         }),
         React.createElement(Registry.Text, {

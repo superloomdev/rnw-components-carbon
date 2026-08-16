@@ -19,18 +19,12 @@ Build the DatePicker composite.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Registry - Component registry (for atom composition)
-@param {Object} Style_   - { utilities, tokens, breakpoint }
+@param {Object} Style   - { utilities, tokens, breakpoint }
 
 @return {Function} - The DatePicker component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
-
-  const a11y = require('../a11y')(Lib);
-  const useControllableState = require('../useControllableState')(Lib);
-  const usePressKeys = require('../usePressKeys')(Lib);
-  const useAnchoredPosition = require('../useAnchoredPosition')(Lib);
-  const overlay = require('../Overlay')(Lib);
-  const useOverlay = overlay.useOverlay;
+module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+  const useOverlay = Parts.Overlay.useOverlay;
 
   return function DatePicker (props) {
 
@@ -48,7 +42,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const anchorRef = React.useRef(null);
 
     // Controlled/uncontrolled state for the selected date
-    const state = useControllableState({
+    const state = Parts.ControllableState({
       value: value,
       defaultValue: defaultValue || '',
       onChange: onChange
@@ -61,7 +55,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     const [viewMonth, setViewMonth] = React.useState(null);
     const isDisabled = !!disabled;
     const isInvalid = !!invalid;
-    const colorMap = Style_.tokens.Color;
+    const colorMap = Style.tokens.Color;
 
     // Initialize the calendar view from the current value or today
     React.useEffect(function () {
@@ -85,7 +79,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     }, [isOpen]);
 
     // Anchored position for the dropdown panel
-    const anchored = useAnchoredPosition({
+    const anchored = Parts.AnchoredPosition({
       placement: 'bottom-start',
       anchorRef: anchorRef
     });
@@ -133,13 +127,13 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
     };
 
     // Build aria state props for the trigger
-    const ariaStateProps = a11y.state({
+    const ariaStateProps = Parts.A11y.state({
       disabled: isDisabled,
       expanded: !!isOpen,
       invalid: isInvalid
     });
 
-    const pressKeysProps = usePressKeys({
+    const pressKeysProps = Parts.PressKeys({
       role: 'button',
       onActivate: handleToggle,
       disabled: isDisabled
@@ -178,14 +172,14 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           accessibilityRole: 'combobox',
           accessibilityLabel: accessibilityLabel || 'Date picker',
           style: [
-            Style_.utilities['flex_row'],
-            Style_.utilities['align_center'],
-            Style_.utilities['justify_between'],
-            Style_.utilities['br_md'],
-            Style_.utilities['border_default'],
-            Style_.utilities['p_h_md'],
-            Style_.utilities['p_v_sm'],
-            Style_.utilities['background_surface'],
+            Style.utilities['flex_row'],
+            Style.utilities['align_center'],
+            Style.utilities['justify_between'],
+            Style.utilities['br_md'],
+            Style.utilities['border_default'],
+            Style.utilities['p_h_md'],
+            Style.utilities['p_v_sm'],
+            Style.utilities['background_surface'],
             isInvalid
               ? { borderColor: colorMap.STATUS_DANGER || '#da1e28' }
               : null,
@@ -252,10 +246,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         RNView,
         {
           style: [
-            Style_.utilities['background_surface'],
-            Style_.utilities['br_md'],
-            Style_.utilities['border_default'],
-            Style_.utilities['p_a_sm'],
+            Style.utilities['background_surface'],
+            Style.utilities['br_md'],
+            Style.utilities['border_default'],
+            Style.utilities['p_a_sm'],
             { position: 'absolute', top: pos.top, left: pos.left, width: 240, zIndex: zIndex || 1000 }
           ]
         },
@@ -264,10 +258,10 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
           RNView,
           {
             style: [
-              Style_.utilities['flex_row'],
-              Style_.utilities['align_center'],
-              Style_.utilities['justify_between'],
-              Style_.utilities['m_b_xs']
+              Style.utilities['flex_row'],
+              Style.utilities['align_center'],
+              Style.utilities['justify_between'],
+              Style.utilities['m_b_xs']
             ]
           },
           React.createElement(
@@ -289,7 +283,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         // Calendar grid
         React.createElement(
           RNView,
-          { style: [Style_.utilities['flex_row'], Style_.utilities['flex_wrap']] },
+          { style: [Style.utilities['flex_row'], Style.utilities['flex_wrap']] },
           cells
         )
       );
@@ -311,7 +305,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Registry, Style_) {
         {
           accessibilityRole: 'group',
           accessibilityLabel: accessibilityLabel || 'date range picker',
-          style: [Style_.utilities['flex_row'], Style_.utilities['items_center'], style]
+          style: [Style.utilities['flex_row'], Style.utilities['items_center'], style]
         },
         renderTrigger(),
         React.createElement(Registry.Text, null, ' - '),
