@@ -65,8 +65,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       let year, month;
       if (resolvedValue) {
         const parts = String(resolvedValue).split('-');
-        year = parseInt(parts[0], 10);
-        month = parseInt(parts[1], 10) - 1;
+        year = Parts.Units.parseInteger(parts[0]);
+        month = (Parts.Units.parseInteger(parts[1]) || 1) - 1;
       } else {
         const now = new Date();
         year = now.getFullYear();
@@ -156,8 +156,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     let selectedDay = null;
     if (resolvedValue) {
       const parts = String(resolvedValue).split('-');
-      if (parseInt(parts[0], 10) === viewYear && parseInt(parts[1], 10) - 1 === viewMonth) {
-        selectedDay = parseInt(parts[2], 10);
+      if (Parts.Units.parseInteger(parts[0]) === viewYear && (Parts.Units.parseInteger(parts[1]) || 1) - 1 === viewMonth) {
+        selectedDay = Parts.Units.parseInteger(parts[2]);
       }
     }
 

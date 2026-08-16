@@ -55,8 +55,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     let currentMinute = 0;
     if (resolvedValue) {
       const parts = String(resolvedValue).split(':');
-      const parsedHour = parseInt(parts[0], 10);
-      const parsedMinute = parseInt(parts[1], 10);
+      const parsedHour = Parts.Units.parseInteger(parts[0]);
+      const parsedMinute = Parts.Units.parseInteger(parts[1]);
       if (Lib.Utils.isNumber(parsedHour)) {
         currentHour = parsedHour;
       }

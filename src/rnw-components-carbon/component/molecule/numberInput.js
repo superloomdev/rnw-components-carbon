@@ -136,8 +136,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         Object.assign({
           value: String(resolvedValue),
           onChangeText: function (text) {
-            const parsed = parseFloat(text);
-            if (!isNaN(parsed)) {
+            const parsed = Parts.Units.parseNumber(text);
+            if (parsed !== null) {
               setValue(clamp(parsed));
             }
           },

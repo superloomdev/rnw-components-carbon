@@ -43,7 +43,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     const ariaProps = Parts.A11y.value({
       min: 0,
       max: 1,
-      now: Lib.Utils.isNumber(value) ? Math.max(0, Math.min(1, value)) : undefined
+      now: Lib.Utils.isNumber(value) ? Parts.Units.clamp(value, 0, 1) : undefined
     });
 
     // Indeterminate mode: animated bar
@@ -77,8 +77,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     // Determinate mode: static fill width
     if (Lib.Utils.isNumber(value)) {
-      const clampedValue = Math.max(0, Math.min(1, value));
-      const fillPercent = Math.round(clampedValue * 100);
+      const clampedValue = Parts.Units.clamp(value, 0, 1);
+      const fillPercent = Parts.Units.round(clampedValue * 100);
 
       return Lib.React.createElement(
         RNView,
