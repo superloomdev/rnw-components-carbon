@@ -65,7 +65,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     // Disabled colors are dimmed
     const disabledTrackColor = colorMap.BACKGROUND_SECONDARY || '#e0e0e0';
-    const disabledThumbColor = colorMap.TEXT_MUTED || '#999';
+    const disabledThumbColor = colorMap.TEXT_DISABLED || '#a8a8a8';
 
     // Build aria state props through the a11y translator
     const ariaProps = Parts.A11y.state({

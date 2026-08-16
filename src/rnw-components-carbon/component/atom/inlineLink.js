@@ -47,7 +47,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
       }, ariaProps, rest),
       React.createElement(Registry.Text, {
         size: 'md',
-        color: disabled ? 'text_muted' : 'app_primary',
+        color: disabled ? 'text_disabled' : 'app_primary',
         weight: 'regular'
       }, title)
     );

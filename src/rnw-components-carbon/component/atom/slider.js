@@ -87,7 +87,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     // Resolve track and thumb colours
     const activeColor = isDisabled
-      ? (colorMap.TEXT_MUTED || '#999')
+      ? (colorMap.TEXT_DISABLED || '#a8a8a8')
       : (colorMap.APP_PRIMARY || '#0f62fe');
     const inactiveColor = colorMap.BACKGROUND_SECONDARY || '#e0e0e0';
 

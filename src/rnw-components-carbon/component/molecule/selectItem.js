@@ -70,7 +70,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, ariaProps, pressKeysProps, rest),
       React.createElement(Registry.Text, {
         size: 'md',
-        color: disabled ? 'text_muted' : 'text_primary'
+        color: disabled ? 'text_disabled' : 'text_primary'
       }, text)
     );
 

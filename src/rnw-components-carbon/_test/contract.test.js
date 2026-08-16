@@ -177,8 +177,7 @@ test('L4-R5: no Math.* / parseFloat / parseInt in component/ (except parts/units
     'a11y.js',
     'Overlay.js',
     'createCompoundContext.js',
-    'LiveRegionProvider.js',
-    'componentHoc.js'
+    'LiveRegionProvider.js'
   ];
 
   for (let f = 0; f < files.length; f++) {
@@ -392,6 +391,167 @@ test('L4-R8-PROOF: rule fires on a per-weight-face family', function () {
 
   assert.strictEqual(isSynth, false, 'Proof: Poppins_400Regular should not be synthesizing');
   assert.ok(badStyle.fontWeight, 'Proof: bad style has fontWeight (would fire the rule)');
+
+});
+
+
+// ~~~~~~~~~~~~~~~~~~~~ L4 Rule 9: TEXT_DISABLED only in disabled branches ~~~~~~~~~~~~~~~~~~~~
+
+test('L4-R9: text_disabled utility only used in disabled-conditional branches', function () {
+
+  const findings = [];
+  const files = collectFiles(COMPONENT_DIR);
+
+  for (let f = 0; f < files.length; f++) {
+    const lines = readLines(files[f]);
+    const rel = path.relative(COMPONENT_DIR, files[f]);
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+
+      if (line.trim().indexOf('//') === 0) {
+        continue;
+      }
+
+      // text_disabled must appear in a disabled ternary or if-block
+      if (line.indexOf("'text_disabled'") !== -1 || line.indexOf('"text_disabled"') !== -1) {
+        // Must be in a disabled ternary (disabled ? 'text_disabled' : ...)
+        if (line.indexOf('disabled') === -1 && line.indexOf('Disabled') === -1) {
+          findings.push(rel + ':' + (i + 1) + ' uses text_disabled without a disabled guard');
+        }
+      }
+
+    }
+
+  }
+
+  if (findings.length > 0) {
+    console.log('L4-R9 findings (' + findings.length + '):');
+    for (let i = 0; i < findings.length; i++) {
+      console.log('  ' + findings[i]);
+    }
+  }
+
+  assert.strictEqual(findings.length, 0,
+    'L4-R9: text_disabled used outside disabled branch:\n  ' + findings.join('\n  '));
+
+});
+
+
+// ~~~~~~~~~~~~~~~~~~~~ L4 Rule 10: BORDER tokens not used as text color ~~~~~~~~~~~~~~~~~~~~
+
+test('L4-R10: BORDER_SUBTLE and BORDER_STRONG never used as font color', function () {
+
+  const findings = [];
+  const files = collectFiles(COMPONENT_DIR);
+
+  for (let f = 0; f < files.length; f++) {
+    const lines = readLines(files[f]);
+    const rel = path.relative(COMPONENT_DIR, files[f]);
+
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+
+      if (line.trim().indexOf('//') === 0) {
+        continue;
+      }
+
+      // These border tokens should never appear as a color prop value on Text
+      if (/color:\s*['"]border_(?:subtle|strong)['"]/.test(line)) {
+        findings.push(rel + ':' + (i + 1) + ' uses a border token as text color');
+      }
+
+    }
+
+  }
+
+  if (findings.length > 0) {
+    console.log('L4-R10 findings (' + findings.length + '):');
+    for (let i = 0; i < findings.length; i++) {
+      console.log('  ' + findings[i]);
+    }
+  }
+
+  assert.strictEqual(findings.length, 0,
+    'L4-R10: border token used as text color:\n  ' + findings.join('\n  '));
+
+});
+
+
+// ~~~~~~~~~~~~~~~~~~~~ L4 Rule 11: Contrast - every font_* utility has sufficient contrast ~~~~~~~~~~~~~~~~~~~~
+
+test('L4-R11: every font color token meets 4.5:1 against BACKGROUND_PRIMARY', function () {
+
+  const { Style } = require('./loader');
+
+  // Relative luminance calculation (WCAG 2.x)
+  function sRGBtoLinear (c) {
+    c = c / 255;
+    return c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4);
+  }
+
+  function luminance (hex) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    return 0.2126 * sRGBtoLinear(r) + 0.7152 * sRGBtoLinear(g) + 0.0722 * sRGBtoLinear(b);
+  }
+
+  function contrastRatio (hex1, hex2) {
+    const l1 = luminance(hex1);
+    const l2 = luminance(hex2);
+    const lighter = Math.max(l1, l2);
+    const darker = Math.min(l1, l2);
+    return (lighter + 0.05) / (darker + 0.05);
+  }
+
+  // TEXT_DISABLED is exempt from contrast (SC 1.4.3 inactive component exclusion)
+  const EXEMPT_TOKENS = ['TEXT_DISABLED'];
+
+  const colorTokens = Style.tokens.Color;
+  const bgPrimary = colorTokens.BACKGROUND_PRIMARY;
+  const findings = [];
+
+  // Check all font color tokens from the utility generator
+  const FONT_TOKENS = [
+    'TEXT_PRIMARY', 'TEXT_SECONDARY', 'TEXT_MUTED', 'TEXT_DISABLED', 'TEXT_ON_PRIMARY',
+    'APP_PRIMARY', 'STATUS_SUCCESS', 'STATUS_DANGER', 'STATUS_WARNING', 'STATUS_INFO'
+  ];
+
+  for (let i = 0; i < FONT_TOKENS.length; i++) {
+    const token = FONT_TOKENS[i];
+    const value = colorTokens[token];
+
+    if (!value) {
+      continue;
+    }
+
+    // Exempt tokens (disabled text, etc.)
+    if (EXEMPT_TOKENS.indexOf(token) !== -1) {
+      continue;
+    }
+
+    // TEXT_ON_PRIMARY is checked against APP_PRIMARY, not BACKGROUND_PRIMARY
+    const bg = token === 'TEXT_ON_PRIMARY' ? colorTokens.APP_PRIMARY : bgPrimary;
+    const ratio = contrastRatio(value, bg);
+
+    if (ratio < 4.5) {
+      findings.push(token + ' (' + value + ') on ' +
+        (token === 'TEXT_ON_PRIMARY' ? 'APP_PRIMARY' : 'BACKGROUND_PRIMARY') +
+        ' (' + bg + '): ' + ratio.toFixed(2) + ':1 (needs 4.5:1)');
+    }
+
+  }
+
+  if (findings.length > 0) {
+    console.log('L4-R11 findings (' + findings.length + '):');
+    for (let i = 0; i < findings.length; i++) {
+      console.log('  ' + findings[i]);
+    }
+  }
+
+  assert.strictEqual(findings.length, 0,
+    'L4-R11: font colors fail contrast against primary background:\n  ' + findings.join('\n  '));
 
 });
 

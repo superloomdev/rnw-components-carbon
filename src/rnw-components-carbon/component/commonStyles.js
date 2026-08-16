@@ -49,7 +49,7 @@ const marginFor = function (side, value) {
 
 // Color tokens that get font_ utility classes
 const FONT_COLOR_TOKENS = [
-  'TEXT_PRIMARY', 'TEXT_SECONDARY', 'TEXT_MUTED', 'TEXT_ON_PRIMARY',
+  'TEXT_PRIMARY', 'TEXT_SECONDARY', 'TEXT_MUTED', 'TEXT_DISABLED', 'TEXT_ON_PRIMARY',
   'APP_PRIMARY', 'STATUS_SUCCESS', 'STATUS_DANGER', 'STATUS_WARNING', 'STATUS_INFO'
 ];
 

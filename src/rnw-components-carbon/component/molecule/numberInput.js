@@ -127,7 +127,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         },
         React.createElement(Registry.Text, {
           size: 'lg',
-          color: isDisabled ? 'text_muted' : 'text_primary',
+          color: isDisabled ? 'text_disabled' : 'text_primary',
           weight: 'bold'
         }, '-')
       ),
@@ -162,7 +162,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         },
         React.createElement(Registry.Text, {
           size: 'lg',
-          color: isDisabled ? 'text_muted' : 'text_primary',
+          color: isDisabled ? 'text_disabled' : 'text_primary',
           weight: 'bold'
         }, '+')
       )

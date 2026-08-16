@@ -69,12 +69,12 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     const circleStyle = checked
       ? {
         borderColor: disabled
-          ? (colorMap.TEXT_MUTED || '#999')
+          ? (colorMap.TEXT_DISABLED || '#a8a8a8')
           : (colorMap.APP_PRIMARY || '#0f62fe')
       }
       : {
         borderColor: disabled
-          ? (colorMap.TEXT_MUTED || '#999')
+          ? (colorMap.TEXT_DISABLED || '#a8a8a8')
           : (colorMap.BORDER || '#a8a8a8')
       };
 
@@ -88,7 +88,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           height: 10,
           borderRadius: 5,
           backgroundColor: disabled
-            ? (colorMap.TEXT_MUTED || '#999')
+            ? (colorMap.TEXT_DISABLED || '#a8a8a8')
             : (colorMap.APP_PRIMARY || '#0f62fe')
         }
       });
@@ -106,7 +106,7 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       React.createElement(RNView, { style: [circleBase, circleStyle, Style.utilities['m_e_xs']] }, innerDot),
       label ? React.createElement(Registry.Text, {
         size: 'md',
-        color: disabled ? 'text_muted' : 'text_primary'
+        color: disabled ? 'text_disabled' : 'text_primary'
       }, label) : null
     );
 
