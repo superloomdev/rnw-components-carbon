@@ -1,0 +1,211 @@
+// Info: Numeric and unit normalization for rnw-components-carbon.
+//
+// Owns every numeric conversion the components need, so that no component
+// calls Math.*, parseFloat, or parseInt directly. Every magic number the
+// conversions depend on (rem base, rounding precision, which style props
+// must be numeric) comes from data/style-contract.json by injection, so
+// nothing is hardcoded in this file.
+//
+// Loader pattern: FACTORY part. The components package hands out independent
+// instances per build() so two registries can hold different themes at once;
+// module-scope state would let one instance's CONFIG leak into another.
+'use strict';
+
+
+/////////////////////////// Module-Loader START ////////////////////////////////
+
+/********************************************************************
+    Factory part loader. Uniform parts signature.
+
+    @param {Object} shared_libs - Lib container with Utils and Debug
+    @param {Object} config - Merged config from the parent module
+    @param {Object} errors - Frozen error catalog from the parent module
+
+    @return {Object} - Public Units interface
+*********************************************************************/
+module.exports = function loader (shared_libs, config, errors) {
+
+  // Dependencies for this part, by reference from the shared container
+  const Lib = {
+    Utils: shared_libs.Utils,
+    Debug: shared_libs.Debug
+  };
+
+  // Intrinsic style contract; required once in components.js and injected here
+  const DATA = config.STYLE_CONTRACT;
+
+  // Frozen error catalog, held for parity with every other part
+  const ERRORS = errors; // eslint-disable-line no-unused-vars
+
+  // Compiled once per instance; the pattern ships as JSON data, not as code
+  const UNIT_PATTERN = new RegExp(DATA.unit_suffix_pattern);
+
+  return createInterface(Lib, DATA, UNIT_PATTERN);
+
+};/////////////////////////// Module-Loader END /////////////////////////////////
+
+
+
+/////////////////////////// createInterface START //////////////////////////////
+
+/********************************************************************
+    Build the Units interface over one instance's injected dependencies.
+
+    @param {Object} Lib - Dependency container with Utils and Debug
+    @param {Object} DATA - Parsed data/style-contract.json
+    @param {RegExp} UNIT_PATTERN - Compiled unit-suffix matcher
+
+    @return {Object} - Public Units interface
+*********************************************************************/
+const createInterface = function (Lib, DATA, UNIT_PATTERN) {
+
+
+  ///////////////////////////Public Functions START//////////////////////////////
+  const Units = {
+
+
+    // ~~~~~~~~~~~~~~~~~~~~ Conversion ~~~~~~~~~~~~~~~~~~~~
+    // Turn a raw token value into a number React Native can consume on every
+    // platform. A well-formed native projection needs none of this; these exist
+    // so a third-party theme cannot put a unit string into a style prop.
+
+    /********************************************************************
+        Convert a dimension value to a finite pixel number.
+
+        @param {Number|String} value - Raw token value, e.g. 16 or '0.75rem'
+
+        @return {Number|null} - Pixel number, or null when unconvertible
+    *********************************************************************/
+    toPx: function (value) {
+
+      // Already numeric: the native projection path, and the common case
+      if (Lib.Utils.isNumber(value)) {
+        return value;
+      }
+
+      // Anything non-string has no unit to strip
+      if (!Lib.Utils.isString(value)) {
+        return null;
+      }
+
+      // Only rem converts without a layout context; em and % need one
+      if (value.indexOf('rem') === -1) {
+        return null;
+      }
+
+      // Scale by the contract's rem base and round to its stated precision
+      const parsed = _Units.parseLeadingFloat(value);
+
+      // A malformed string such as 'rem' yields nothing usable
+      if (Lib.Utils.isNullOrUndefined(parsed)) {
+        return null;
+      }
+
+      return Lib.Utils.round(parsed * DATA.rem_base_px, DATA.decimal_precision);
+
+    },
+
+
+    /********************************************************************
+        Derive a line height from a font size and a ratio.
+
+        @param {Number} size - Font size in pixels
+        @param {Number} ratio - Line-height ratio
+
+        @return {Number|null} - Rounded line height, or null on bad input
+    *********************************************************************/
+    lineHeight: function (size, ratio) {
+
+      // Returning null rather than NaN is what stops a bad token silently
+      // reaching StyleSheet.create and falling back to a browser default
+      if (!Lib.Utils.isNumber(size) || !Lib.Utils.isNumber(ratio)) {
+        return null;
+      }
+
+      return Lib.Utils.round(size * ratio, DATA.line_height_precision);
+
+    },
+
+
+    /********************************************************************
+        Clamp a number between an inclusive minimum and maximum.
+
+        @param {Number} value - Value to clamp
+        @param {Number} min - Inclusive lower bound
+        @param {Number} max - Inclusive upper bound
+
+        @return {Number} - Clamped value
+    *********************************************************************/
+    clamp: function (value, min, max) {
+
+      // Non-numeric input resolves to the lower bound so NaN never propagates
+      if (!Lib.Utils.isNumber(value)) {
+        return min;
+      }
+
+      // Order the comparisons so a min above max still returns a bound
+      if (value < min) {
+        return min;
+      }
+
+      return value > max ? max : value;
+
+    },
+
+
+    // ~~~~~~~~~~~~~~~~~~~~ Native Contract ~~~~~~~~~~~~~~~~~~~~
+    // The enforcement side of the same contract. React Native on iOS and
+    // Android rejects unit strings for these props while web silently accepts
+    // them, so the check has to be explicit rather than left to the platform.
+
+    /********************************************************************
+        Report whether a style prop and value pair is invalid on native.
+
+        @param {String} prop - Style property name, e.g. 'padding'
+        @param {*} value - Candidate style value
+
+        @return {Boolean} - True when the pair would fail on iOS or Android
+    *********************************************************************/
+    isInvalidOnNative: function (prop, value) {
+
+      // Colour and layout-keyword props carry no numeric constraint
+      if (!Lib.Utils.inArray(DATA.numeric_style_props, prop)) {
+        return false;
+      }
+
+      // A unit-suffixed string renders on web and throws on native
+      return Lib.Utils.isString(value) && UNIT_PATTERN.test(value);
+
+    }
+
+  };///////////////////////////Public Functions END//////////////////////////////
+
+
+
+  ///////////////////////////Private Functions START////////////////////////////
+  const _Units = {
+
+    /********************************************************************
+        Parse the leading float from a unit-suffixed string.
+
+        @param {String} value - Unit-suffixed string, e.g. '0.75rem'
+
+        @return {Number|null} - The parsed number, or null when absent
+    *********************************************************************/
+    parseLeadingFloat: function (value) {
+
+      // Number.parseFloat is the one permitted use in the package; every
+      // other module reaches this behaviour through Units
+      const parsed = Number.parseFloat(value);
+
+      // isNumber rejects NaN, which is what parseFloat returns on failure
+      return Lib.Utils.isNumber(parsed) ? parsed : null;
+
+    }
+
+  };///////////////////////////Private Functions END/////////////////////////////
+
+
+  return Units;
+
+};/////////////////////////// createInterface END ///////////////////////////////
