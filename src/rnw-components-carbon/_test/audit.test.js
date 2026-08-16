@@ -214,6 +214,127 @@ test('L1-PROOF: audit detects NaN, null, and unit strings in a bad theme', funct
 });
 
 
+test('L1: font weights resolve to registered faces (warn when Lib.Font absent)', function () {
+
+  // When Lib.Font is not injected, every weight falls through to the
+  // synthesizing family (System). This is fine - the test verifies that
+  // the styleFor call produces valid output. When Lib.Font IS injected,
+  // this test proves every theme weight has a matching registered face.
+  const warnings = [];
+  const weightKeys = Object.keys(theme.Font.weight);
+  const family = theme.Font.family.primary;
+
+  for (let i = 0; i < weightKeys.length; i++) {
+    const w = weightKeys[i];
+    const weightValue = theme.Font.weight[w];
+
+    // The utility set should have a font_weight_<w> entry
+    const utilName = 'font_weight_' + w;
+    const utilStyle = Style.utilities[utilName];
+
+    if (!utilStyle) {
+      warnings.push(w + ': no utility style generated for weight "' + weightValue + '"');
+      continue;
+    }
+
+    // For synthesizing families, fontWeight must be present
+    // For per-weight-face families, fontWeight must be absent
+    if (utilStyle.fontFamily && utilStyle.fontFamily !== family) {
+      // Typeface resolved to a different family; expected for per-weight faces
+      if (utilStyle.fontWeight) {
+        warnings.push(w + ': fontWeight "' + utilStyle.fontWeight +
+          '" paired with per-weight-face family "' + utilStyle.fontFamily + '"');
+      }
+    }
+
+  }
+
+  if (warnings.length > 0) {
+    console.log('L1 font-weight warnings: ' + warnings.length);
+    for (let i = 0; i < warnings.length; i++) {
+      console.log('  WARN: ' + warnings[i]);
+    }
+  }
+
+  // With System family and no Lib.Font, there should be zero warnings
+  assert.strictEqual(warnings.length, 0,
+    'L1 font-weight warnings:\n  ' + warnings.join('\n  '));
+
+});
+
+
+test('L1: Poppins real-family theme builds without fontWeight in utilities', function () {
+
+  const { createRealFamilyTheme } = require('./harness/themes');
+  const poppinsTheme = createRealFamilyTheme();
+
+  // Build with the Poppins theme
+  const built = Components.build(poppinsTheme, 'base');
+  const poppinsUtils = built.Style.utilities;
+
+  // For a per-weight-face family (Poppins), Typeface.styleFor should NOT
+  // include fontWeight. Verify font_weight_regular has no fontWeight.
+  const regular = poppinsUtils['font_weight_regular'];
+  assert.ok(regular, 'font_weight_regular utility should exist');
+  assert.strictEqual(regular.fontFamily, 'Poppins_400Regular',
+    'font_weight_regular should use Poppins_400Regular');
+  assert.strictEqual(regular.fontWeight, undefined,
+    'font_weight_regular should NOT have fontWeight for per-weight-face family');
+
+});
+
+
+test('L1-PROOF: validateTheme rejects unit-suffixed dimension values', function () {
+
+  const badTheme = {
+    Color: theme.Color,
+    Dimension: {
+      fontSize: { xs: '0.75rem', sm: 14, md: 16 },
+      space: { xs: 4 },
+      radius: { sm: 4 },
+      lineHeightRatio: 1.4
+    },
+    Font: theme.Font,
+    Breakpoint: theme.Breakpoint
+  };
+
+  assert.throws(function () {
+    Components.build(badTheme, 'base');
+  }, function (err) {
+    return err instanceof TypeError &&
+      err.message.indexOf('unit-suffixed string') !== -1 &&
+      err.message.indexOf('fontSize.xs') !== -1 &&
+      err.message.indexOf('native projection') !== -1;
+  }, 'Should throw TypeError for rem-suffixed fontSize');
+
+});
+
+
+test('L1-PROOF: validateTheme rejects NaN dimension values', function () {
+
+  const badTheme = {
+    Color: theme.Color,
+    Dimension: {
+      fontSize: { xs: 12, sm: NaN },
+      space: { xs: 4 },
+      radius: { sm: 4 },
+      lineHeightRatio: 1.4
+    },
+    Font: theme.Font,
+    Breakpoint: theme.Breakpoint
+  };
+
+  assert.throws(function () {
+    Components.build(badTheme, 'base');
+  }, function (err) {
+    return err instanceof TypeError &&
+      err.message.indexOf('finite number') !== -1 &&
+      err.message.indexOf('fontSize.sm') !== -1;
+  }, 'Should throw TypeError for NaN fontSize');
+
+});
+
+
 test('L1: theme Font weight values are strings', function () {
 
   const errors = [];

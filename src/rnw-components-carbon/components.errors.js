@@ -30,6 +30,16 @@ module.exports = Object.freeze({
   ICONS_NOT_INJECTED: {
     type: 'rnw-components-carbon/icons-not-injected',
     message: 'Icon source is not injected. Provide shared_libs.Icons with a Glyph component'
+  },
+
+  THEME_VALUE_NOT_FINITE: {
+    type: 'rnw-components-carbon/theme-value-not-finite',
+    message: 'Theme dimension value must be a finite number'
+  },
+
+  THEME_VALUE_UNIT_STRING: {
+    type: 'rnw-components-carbon/theme-value-unit-string',
+    message: 'Theme dimension value contains a CSS unit suffix. Pass the native projection instead of the web projection'
   }
 
 });
