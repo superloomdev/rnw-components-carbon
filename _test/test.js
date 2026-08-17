@@ -22,10 +22,10 @@ import {
 } from './loader.js';
 
 // Mechanism imports (ESM - resolved at module level)
-const a11yPart = (await import('rnw-components-carbon/parts/a11y.js')).default;
-const pressKeysPart = (await import('rnw-components-carbon/parts/press-keys.js')).default;
-const controllableStatePart = (await import('rnw-components-carbon/parts/controllable-state.js')).default;
-const compoundContextPart = (await import('rnw-components-carbon/parts/compound-context.js')).default;
+const a11yPart = (await import('../parts/a11y.js')).default;
+const pressKeysPart = (await import('../parts/press-keys.js')).default;
+const controllableStatePart = (await import('../parts/controllable-state.js')).default;
+const compoundContextPart = (await import('../parts/compound-context.js')).default;
 
 const a11y = a11yPart({ React: React, Utils: Utils }, {}, {});
 const usePressKeys = pressKeysPart({ React: React, Utils: Utils }, {}, {});
