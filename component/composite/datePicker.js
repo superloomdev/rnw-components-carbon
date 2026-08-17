@@ -311,7 +311,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     };
 
     // Range mode: wrap two triggers in a group. The full range calendar
-    // is built in P4; P3 establishes the prop contract.
+    // and the prop contract are handled by this component.
     if (isRange) {
       return React.createElement(
         RNView,

@@ -4,9 +4,9 @@
 
 243 components ship. 229 (94%) work identically on web and native with no platform branch. 14 need platform attention.
 
-## Platform selection at build time
+## Platform selection at runtime
 
-Platform-specific implementations use `.web.js` and `.native.js` file extensions. The React Native bundler resolves the correct variant at build time, with no runtime cost. A component that works on both platforms has a single `.js` file.
+Platform-specific implementations use `Platform.OS` checks within single `.js` files. Split components branch at runtime with one API across both platforms. A component that works on both platforms has a single `.js` file.
 
 ## Safe area is not native-only
 
@@ -22,17 +22,17 @@ To enable safe area insets on web, add this meta tag to your HTML:
 
 | Component | Platform | Behavior |
 |---|---|---|
-| `ActionSheet` | split | One API, two build-time implementations (.web.js and .native.js) |
+| `ActionSheet` | split | One API, `Platform.OS` branches within a single `.js` file |
 | `BottomSafeAreaColorOverride` | native-primary | Full features on native, degrades safely on web |
-| `CodeSnippet` | split | One API, two build-time implementations (.web.js and .native.js) |
-| `CopyButton` | split | One API, two build-time implementations (.web.js and .native.js) |
-| `DocumentViewer` | split | One API, two build-time implementations (.web.js and .native.js) |
-| `FileUploader` | split | One API, two build-time implementations (.web.js and .native.js) |
-| `FileUploaderButton` | split | One API, two build-time implementations (.web.js and .native.js) |
-| `FileUploaderDropContainer` | split | One API, two build-time implementations (.web.js and .native.js) |
-| `FileUploaderItem` | split | One API, two build-time implementations (.web.js and .native.js) |
+| `CodeSnippet` | split | One API, `Platform.OS` branches within a single `.js` file |
+| `CopyButton` | split | One API, `Platform.OS` branches within a single `.js` file |
+| `DocumentViewer` | split | One API, `Platform.OS` branches within a single `.js` file |
+| `FileUploader` | split | One API, `Platform.OS` branches within a single `.js` file |
+| `FileUploaderButton` | split | One API, `Platform.OS` branches within a single `.js` file |
+| `FileUploaderDropContainer` | split | One API, `Platform.OS` branches within a single `.js` file |
+| `FileUploaderItem` | split | One API, `Platform.OS` branches within a single `.js` file |
 | `GrantPermission` | native-primary | Full features on native, degrades safely on web |
-| `Overlay` | split | One API, two build-time implementations (.web.js and .native.js) |
+| `Overlay` | split | One API, `Platform.OS` branches within a single `.js` file |
 | `SafeAreaWrapper` | native-primary | Full features on native, degrades safely on web |
 | `SkipToContent` | web-primary | Renders on web, returns null on native |
 | `ViewWrapper` | native-primary | Full features on native, degrades safely on web |

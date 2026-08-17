@@ -262,7 +262,7 @@ Someone porting Carbon code needs to look up a missing component and find what r
 |---|---|---|
 | `ClassPrefix` | Excluded | RN has no CSS classes to prefix |
 | `Fluid*` variants | Collapsed | `FluidForm` provider with a `fluid` prop |
-| `ButtonPrimary`, `ButtonLink` | Collapsed | `Button kind="primary" \| "ghost"` |
+| `ButtonPrimary`, `ButtonLink` | Collapsed | Use `Button` with `kind="primary"` or `kind="ghost"` |
 | `Card` | Collapsed | `Tile` covers the container use case |
 | `Badge` | Collapsed | `Tag` and `BadgeIndicator` (both shipped) |
 | `Separator` | Collapsed | Contextual dividers: `MenuItemDivider`, `SideNavDivider`, `SwitcherDivider` |

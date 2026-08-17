@@ -12,7 +12,7 @@ No interaction state. Maps token props to utility classes and passes everything 
 
 ### S2 Interactive
 
-Wraps a Pressable with interaction state (enabled, hovered, pressed, focused, disabled). Resolves the active state to a token suffix and guarantees the minimum accessible hit target. Examples: `Button`, `TextInput`, `ButtonPrimary`.
+Wraps a Pressable with interaction state (enabled, hovered, pressed, focused, disabled). Resolves the active state to a token suffix and guarantees the minimum accessible hit target. Examples: `Button`, `TextInput`.
 
 ### S3 Overlay
 
@@ -53,4 +53,4 @@ Spacing utilities use logical sides (`start`/`end`) instead of physical sides (`
 
 ## Composition Over Configuration
 
-Molecules compose atoms. `ButtonPrimary` uses `Component.Icon` and `Component.Text` rather than rendering `RNText` directly. This means a molecule inherits every token-driven behavior from its constituent atoms, and a theme change propagates through the entire tree without molecule-level changes.
+Molecules compose atoms. `IconButton` uses `Component.Icon` and `Component.Text` rather than rendering `RNText` directly. This means a molecule inherits every token-driven behavior from its constituent atoms, and a theme change propagates through the entire tree without molecule-level changes.

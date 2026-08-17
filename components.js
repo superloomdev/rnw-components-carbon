@@ -92,7 +92,7 @@ import tileFactory from './component/molecule/tile.js';
 import clickableTileFactory from './component/molecule/clickableTile.js';
 import selectableTileFactory from './component/molecule/selectableTile.js';
 
-// Molecules (Wave 5 overlays)
+// Molecules (overlays)
 import menuItemFactory from './component/molecule/menuItem.js';
 import menuItemSelectableFactory from './component/molecule/menuItemSelectable.js';
 import menuItemDividerFactory from './component/molecule/menuItemDivider.js';
@@ -104,7 +104,7 @@ import tooltipFactory from './component/molecule/tooltip.js';
 import definitionTooltipFactory from './component/molecule/definitionTooltip.js';
 import toggletipFactory from './component/molecule/toggletip.js';
 
-// Composites (Wave 5 overlays)
+// Composites (overlays)
 import menuFactory from './component/composite/menu.js';
 import overflowMenuFactory from './component/composite/overflowMenu.js';
 import menuButtonFactory from './component/composite/menuButton.js';
@@ -115,7 +115,7 @@ import sidePanelFactory from './component/composite/sidePanel.js';
 import aiLabelFactory from './component/composite/aiLabel.js';
 import actionSheetFactory from './component/composite/actionSheet.js';
 
-// Molecules (Wave 6 navigation)
+// Molecules (navigation)
 import tabFactory from './component/molecule/tab.js';
 import tabListFactory from './component/molecule/tabList.js';
 import tabPanelFactory from './component/molecule/tabPanel.js';
@@ -129,7 +129,7 @@ import headerNavigationFactory from './component/molecule/headerNavigation.js';
 import headerMenuButtonFactory from './component/molecule/headerMenuButton.js';
 import headerPanelFactory from './component/molecule/headerPanel.js';
 
-// Composites (Wave 6 navigation)
+// Composites (navigation)
 import tabsFactory from './component/composite/tabs.js';
 import accordionFactory from './component/composite/accordion.js';
 import breadcrumbFactory from './component/composite/breadcrumb.js';
@@ -139,7 +139,7 @@ import treeViewFactory from './component/composite/treeView.js';
 import progressIndicatorFactory from './component/composite/progressIndicator.js';
 import headerFactory from './component/composite/header.js';
 
-// Molecules (Wave 8 feedback)
+// Molecules (feedback)
 import notificationFactory from './component/molecule/notification.js';
 import toastNotificationFactory from './component/molecule/toastNotification.js';
 import tableBatchActionsFactory from './component/molecule/tableBatchActions.js';
@@ -147,7 +147,7 @@ import tableBatchActionFactory from './component/molecule/tableBatchAction.js';
 import staticNotificationFactory from './component/molecule/staticNotification.js';
 import calloutFactory from './component/molecule/callout.js';
 
-// Molecules (Wave 9 data and layout)
+// Molecules (data and layout)
 import dataTableFactory from './component/molecule/dataTable.js';
 import tableRowFactory from './component/molecule/tableRow.js';
 import tableCellFactory from './component/molecule/tableCell.js';
@@ -168,11 +168,11 @@ import structuredListRowFactory from './component/molecule/structuredListRow.js'
 import structuredListCellFactory from './component/molecule/structuredListCell.js';
 import tableToolbarFactory from './component/molecule/tableToolbar.js';
 
-// Composites (Wave 9 data and layout)
+// Composites (data and layout)
 import dataTableRowFactory from './component/composite/dataTableRow.js';
 import toggletipLabelFactory from './component/composite/toggletipLabel.js';
 
-// P4.1 RN-only components
+// Molecules (platform-specific)
 import errorStateFactory from './component/molecule/errorState.js';
 import landingViewFactory from './component/molecule/landingView.js';
 import listFactory from './component/molecule/list.js';
@@ -193,7 +193,7 @@ import uiPanelFactory from './component/molecule/uiPanel.js';
 import uiPanelItemFactory from './component/molecule/uiPanelItem.js';
 import acceptTermsFactory from './component/composite/acceptTerms.js';
 
-// P4.2 Table family
+// Molecules (table family)
 import tableFactory from './component/molecule/table.js';
 import dataTableCellFactory from './component/molecule/dataTableCell.js';
 import dataTableHeaderFactory from './component/molecule/dataTableHeader.js';
@@ -211,7 +211,7 @@ import tableToolbarContentFactory from './component/molecule/tableToolbarContent
 import tableToolbarMenuFactory from './component/molecule/tableToolbarMenu.js';
 import tableToolbarSearchFactory from './component/molecule/tableToolbarSearch.js';
 
-// P4.3 Form composites and selects
+// Molecules (form and select)
 import controlledPasswordInputFactory from './component/molecule/controlledPasswordInput.js';
 import datePickerInputFactory from './component/molecule/datePickerInput.js';
 import errorBoundaryContextFactory from './component/molecule/errorBoundaryContext.js';
@@ -228,7 +228,7 @@ import toggletipActionsFactory from './component/molecule/toggletipActions.js';
 import toggletipButtonFactory from './component/molecule/toggletipButton.js';
 import toggletipContentFactory from './component/molecule/toggletipContent.js';
 
-// P4.4 Notifications and feedback
+// Molecules (notifications and utilities)
 import aILabelActionsFactory from './component/molecule/aILabelActions.js';
 import aILabelContentFactory from './component/molecule/aILabelContent.js';
 import aISkeletonIconFactory from './component/molecule/aISkeletonIcon.js';
@@ -263,7 +263,7 @@ import switcherFactory from './component/molecule/switcher.js';
 import switcherDividerFactory from './component/molecule/switcherDivider.js';
 import switcherItemFactory from './component/molecule/switcherItem.js';
 
-// Composites (Wave 6 form components)
+// Composites (form)
 import selectFactory from './component/composite/select.js';
 import comboBoxFactory from './component/composite/comboBox.js';
 import multiSelectFactory from './component/composite/multiSelect.js';
@@ -274,7 +274,7 @@ import timePickerFactory from './component/composite/timePicker.js';
 import formGroupFactory from './component/composite/formGroup.js';
 import dateInputFactory from './component/composite/dateInput.js';
 
-// P4.5 FileUploader, Header, SideNav, StructuredList, Tab, Tile
+// Molecules (file uploader, header, side nav, structured list)
 import fileUploaderFactory from './component/composite/fileUploader.js';
 import fileUploaderButtonFactory from './component/molecule/fileUploaderButton.js';
 import fileUploaderDropContainerFactory from './component/molecule/fileUploaderDropContainer.js';
@@ -527,7 +527,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.ClickableTile = make(clickableTileFactory);
       Component.SelectableTile = make(selectableTileFactory);
 
-      // ~~~~~~~~~~ Molecules (Wave 5 overlays) ~~~~~~~~~~
+      // ~~~~~~~~~~ Molecules (overlays) ~~~~~~~~~~
       Component.MenuItem = make(menuItemFactory);
       Component.MenuItemSelectable = make(menuItemSelectableFactory);
       Component.MenuItemDivider = make(menuItemDividerFactory);
@@ -539,7 +539,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.DefinitionTooltip = make(definitionTooltipFactory);
       Component.Toggletip = make(toggletipFactory);
 
-      // ~~~~~~~~~~ Composites (Wave 5 overlays) ~~~~~~~~~~
+      // ~~~~~~~~~~ Composites (overlays) ~~~~~~~~~~
       Component.Menu = make(menuFactory);
       Component.OverflowMenu = make(overflowMenuFactory);
       Component.MenuButton = make(menuButtonFactory);
@@ -550,7 +550,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.AILabel = make(aiLabelFactory);
       Component.ActionSheet = make(actionSheetFactory);
 
-      // ~~~~~~~~~~ Molecules (Wave 6 navigation) ~~~~~~~~~~
+      // ~~~~~~~~~~ Molecules (navigation) ~~~~~~~~~~
       Component.Tab = make(tabFactory);
       Component.TabList = make(tabListFactory);
       Component.TabPanel = make(tabPanelFactory);
@@ -564,7 +564,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.HeaderMenuButton = make(headerMenuButtonFactory);
       Component.HeaderPanel = make(headerPanelFactory);
 
-      // ~~~~~~~~~~ Composites (Wave 6 navigation) ~~~~~~~~~~
+      // ~~~~~~~~~~ Composites (navigation) ~~~~~~~~~~
       Component.Tabs = make(tabsFactory);
       Component.Accordion = make(accordionFactory);
       Component.Breadcrumb = make(breadcrumbFactory);
@@ -574,7 +574,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.ProgressIndicator = make(progressIndicatorFactory);
       Component.Header = make(headerFactory);
 
-      // ~~~~~~~~~~ Molecules (Wave 8 feedback) ~~~~~~~~~~
+      // ~~~~~~~~~~ Molecules (feedback) ~~~~~~~~~~
       Component.Notification = make(notificationFactory);
       Component.ToastNotification = make(toastNotificationFactory);
       Component.TableBatchActions = make(tableBatchActionsFactory);
@@ -582,7 +582,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.StaticNotification = make(staticNotificationFactory);
       Component.Callout = make(calloutFactory);
 
-      // ~~~~~~~~~~ Molecules (Wave 9 data and layout) ~~~~~~~~~~
+      // ~~~~~~~~~~ Molecules (data and layout) ~~~~~~~~~~
       Component.DataTable = make(dataTableFactory);
       Component.TableRow = make(tableRowFactory);
       Component.TableCell = make(tableCellFactory);
@@ -603,11 +603,11 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.StructuredListCell = make(structuredListCellFactory);
       Component.TableToolbar = make(tableToolbarFactory);
 
-      // ~~~~~~~~~~ Composites (Wave 9 data and layout) ~~~~~~~~~~
+      // ~~~~~~~~~~ Composites (data and layout) ~~~~~~~~~~
       Component.DataTableRow = make(dataTableRowFactory);
       Component.ToggletipLabel = make(toggletipLabelFactory);
 
-      // ~~~~~~~~~~ P4.1 RN-only components ~~~~~~~~~~
+      // ~~~~~~~~~~ Molecules (platform-specific) ~~~~~~~~~~
       Component.InlineLink = make(inlineLinkFactory);
       Component.ErrorState = make(errorStateFactory);
       Component.LandingView = make(landingViewFactory);
@@ -629,7 +629,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.UiPanelItem = make(uiPanelItemFactory);
       Component.AcceptTerms = make(acceptTermsFactory);
 
-      // ~~~~~~~~~~ P4.2 Table family ~~~~~~~~~~
+      // ~~~~~~~~~~ Molecules (table family) ~~~~~~~~~~
       Component.Table = make(tableFactory);
       Component.DataTableCell = make(dataTableCellFactory);
       Component.DataTableHeader = make(dataTableHeaderFactory);
@@ -647,7 +647,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.TableToolbarMenu = make(tableToolbarMenuFactory);
       Component.TableToolbarSearch = make(tableToolbarSearchFactory);
 
-      // ~~~~~~~~~~ P4.3 Form composites and selects ~~~~~~~~~~
+      // ~~~~~~~~~~ Molecules (form and select) ~~~~~~~~~~
       Component.ControlledPasswordInput = make(controlledPasswordInputFactory);
       Component.DatePickerInput = make(datePickerInputFactory);
       Component.ErrorBoundaryContext = make(errorBoundaryContextFactory);
@@ -664,7 +664,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.ToggletipButton = make(toggletipButtonFactory);
       Component.ToggletipContent = make(toggletipContentFactory);
 
-      // ~~~~~~~~~~ P4.4 Notifications and feedback ~~~~~~~~~~
+      // ~~~~~~~~~~ Molecules (notifications and utilities) ~~~~~~~~~~
       Component.AILabelActions = make(aILabelActionsFactory);
       Component.AILabelContent = make(aILabelContentFactory);
       Component.AISkeletonIcon = make(aISkeletonIconFactory);
@@ -699,7 +699,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.SwitcherDivider = make(switcherDividerFactory);
       Component.SwitcherItem = make(switcherItemFactory);
 
-      // ~~~~~~~~~~ Composites (Wave 6 form components) ~~~~~~~~~~
+      // ~~~~~~~~~~ Composites (form) ~~~~~~~~~~
       Component.Select = make(selectFactory);
       Component.ComboBox = make(comboBoxFactory);
       Component.MultiSelect = make(multiSelectFactory);
@@ -710,7 +710,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       Component.FormGroup = make(formGroupFactory);
       Component.DateInput = make(dateInputFactory);
 
-      // ~~~~~~~~~~ P4.5 FileUploader, Header, SideNav, StructuredList, Tab, Tile ~~~~~~~~~~
+      // ~~~~~~~~~~ Molecules (file uploader, header, side nav, structured list) ~~~~~~~~~~
       Component.FileUploader = make(fileUploaderFactory);
       Component.FileUploaderButton = make(fileUploaderButtonFactory);
       Component.FileUploaderDropContainer = make(fileUploaderDropContainerFactory);
