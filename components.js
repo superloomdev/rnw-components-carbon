@@ -18,17 +18,11 @@
 
 
 // Imports
-import { createRequire } from 'node:module';
-
 import DEFAULT_CONFIG from './components.config.js';
 import ERRORS from './components.errors.js';
 import createValidators from './components.validators.js';
 import themeContractBridge from './components.theme-contract.js';
-
-// Load the style contract JSON through createRequire; import attributes are
-// not supported by the shared ESLint parser at this revision.
-const require = createRequire(import.meta.url);
-const STYLE_CONTRACT = require('./data/style-contract.json');
+import STYLE_CONTRACT from './data/style-contract.js';
 
 // Parts
 import partsA11y from './parts/a11y.js';
