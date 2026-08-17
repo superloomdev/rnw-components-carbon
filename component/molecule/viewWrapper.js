@@ -3,10 +3,13 @@
 // web. Uses role="group" for screen reader semantics.
 //   children    -> wrapped content
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Platform } = require('react-native');
 
+// Imports
+import { View as RNView, Platform } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ViewWrapper molecule.
@@ -20,9 +23,18 @@ Build the ViewWrapper molecule.
 
 @return {Function} - The ViewWrapper component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
 
-  return function ViewWrapper (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+
+
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ViewWrapper = function ViewWrapper (props) {
+
 
     const {
       children, style,
@@ -70,7 +82,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
       }, rest),
       children
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ViewWrapper = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ViewWrapper;
+
+}/////////////////////////// Component Factory END /////////////////////////////

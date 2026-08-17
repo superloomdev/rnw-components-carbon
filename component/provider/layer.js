@@ -1,10 +1,15 @@
 // Info: Layer provider [PROVIDER]. Auto-increments an elevation level on
-// nesting so descendants pick the next surface token. Uses M7
-// (createCompoundContext). Context holds an integer 0 through 2.
+// nesting so descendants pick the next surface token. Uses
+// createCompoundContext. Context holds an integer 0 through 2.
 //   children    -> content to render within the layer context
 //   level       -> number (optional override; defaults to parent level + 1)
-'use strict';
 
+
+// Imports
+// None.
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Layer provider.
@@ -12,14 +17,21 @@ Build the Layer provider.
 @param {Object} Lib      - { Utils, Debug, React }
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
-@param {Object} Parts    - Mechanisms: { A11y, PressKeys, ControllableState, Units, Overlay, AnchoredPosition }
+@param {Object} Parts    - Mechanisms: { ... }
 @param {Object} Registry - Component registry (unused by providers)
-@param {Object} Style   - { utilities, tokens, breakpoint }
+@param {Object} Style    - { utilities, tokens, breakpoint }
 
-@return {Function} - The Layer provider component
+@return {Object} - The Layer provider interface
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
 
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
   const React = Lib.React;
   const createContext = React.createContext;
 
@@ -53,11 +65,22 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
     );
 
   };
+  ////////////////////////// Public Functions END ////////////////////////////
 
+
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Layer = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the provider interface
   return {
     Layer: Layer,
     useLayer: useLayer,
     LayerContext: LayerContext
   };
 
-};
+}/////////////////////////// Component Factory END /////////////////////////////

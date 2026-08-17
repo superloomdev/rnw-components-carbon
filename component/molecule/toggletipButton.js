@@ -1,11 +1,16 @@
 // Info: ToggletipButton molecule [S2 interactive]. A button inside a
-// Toggletip. Composes Registry.Button with kind="ghost". Uses M1 (a11y) for
+// Toggletip. Composes Registry.Button with kind="ghost". Uses A11y for
 // aria-* state. Role="button".
 //   text        -> string (the button label)
 //   onPress     -> function (called when pressed)
 //   style       -> custom style overrides
-'use strict';
 
+
+// Imports
+
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ToggletipButton molecule.
@@ -19,9 +24,18 @@ Build the ToggletipButton molecule.
 
 @return {Function} - The ToggletipButton component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
 
-  return function ToggletipButton (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+
+
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ToggletipButton = function ToggletipButton (props) {
+
 
     const {
       text, onPress, style,
@@ -41,7 +55,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
       }, rest),
       text
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ToggletipButton = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ToggletipButton;
+
+}/////////////////////////// Component Factory END /////////////////////////////

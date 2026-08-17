@@ -1,14 +1,18 @@
 // Info: ComboButton composite [S3 overlay]. A split button: primary action
-// plus a dropdown for secondary actions. Uses M1 (a11y), M4 (Overlay),
-// M5 (useAnchoredPosition), M7 (createCompoundContext).
+// plus a dropdown for secondary actions. Uses A11y, Overlay,
+// AnchoredPosition, CompoundContext.
 //   primaryLabel  -> string (main button label)
 //   onPrimaryPress-> function (main button handler)
 //   items         -> array of { label, onPress, disabled }
 //   style         -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import menuFactory from './menu.js';
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ComboButton composite.
@@ -22,10 +26,19 @@ Build the ComboButton composite.
 
 @return {Function} - The ComboButton component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  const Menu = require('./menu')(Lib, CONFIG, ERRORS, Parts, Registry, Style);
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function ComboButton (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+
+  const Menu = menuFactory(Lib, CONFIG, ERRORS, Parts, Registry, Style);
+
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ComboButton = function ComboButton (props) {
+
 
     const {
       primaryLabel, onPrimaryPress, items, style,
@@ -87,7 +100,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       ),
       React.createElement(Menu, { isOpen: isOpen, onClose: handleClose }, menuItems)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ComboButton = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ComboButton;
+
+}/////////////////////////// Component Factory END /////////////////////////////

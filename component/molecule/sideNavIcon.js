@@ -2,10 +2,13 @@
 // Uses role="img" for screen reader semantics.
 //   name        -> string (icon name)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the SideNavIcon molecule.
@@ -19,9 +22,17 @@ Build the SideNavIcon molecule.
 
 @return {Function} - The SideNavIcon component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function SideNavIcon (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const SideNavIcon = function SideNavIcon (props) {
+
 
     const {
       name, style,
@@ -49,7 +60,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         color: 'TEXT_SECONDARY'
       })
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _SideNavIcon = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return SideNavIcon;
+
+}/////////////////////////// Component Factory END /////////////////////////////

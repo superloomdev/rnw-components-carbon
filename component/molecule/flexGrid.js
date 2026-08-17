@@ -4,10 +4,13 @@
 //   children    -> grid item elements
 //   gap         -> gap in pixels between items (default 0)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the FlexGrid molecule.
@@ -21,9 +24,17 @@ Build the FlexGrid molecule.
 
 @return {Function} - The FlexGrid component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function FlexGrid (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const FlexGrid = function FlexGrid (props) {
+
 
     const {
       children, gap, style,
@@ -57,7 +68,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         );
       })
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _FlexGrid = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return FlexGrid;
+
+}/////////////////////////// Component Factory END /////////////////////////////

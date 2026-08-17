@@ -1,6 +1,6 @@
 // Info: ActionableNotification molecule [S2 interactive]. A notification with
 // action buttons. Uses role="alert" for screen reader announcement. Uses M1
-// (a11y) for aria-* state and M2 (usePressKeys) for keyboard activation.
+// (a11y) for aria-* state and PressKeys for keyboard activation.
 //   title       -> primary text
 //   subtitle    -> secondary text (optional)
 //   actionText  -> string (action button label, optional)
@@ -8,26 +8,13 @@
 //   onDismiss   -> function (dismiss handler, optional)
 //   kind        -> 'info' | 'success' | 'warning' | 'error'
 //   style       -> custom style overrides
-'use strict';
-
-const { View: RNView, Pressable } = require('react-native');
 
 
-// Kind -> background utility key and icon name
-const KIND_BG = {
-  success: 'background_status_success_subtle',
-  error: 'background_status_danger_subtle',
-  warning: 'background_status_warning_subtle',
-  info: 'background_status_info_subtle'
-};
+// Imports
+import { View as RNView, Pressable } from 'react-native';
 
-const KIND_ICON = {
-  success: 'checkmark--filled',
-  error: 'error--filled',
-  warning: 'warning--filled',
-  info: 'information--filled'
-};
 
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ActionableNotification molecule.
@@ -41,8 +28,29 @@ Build the ActionableNotification molecule.
 
 @return {Function} - The ActionableNotification component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function ActionableNotification (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  const KIND_BG = {
+    success: 'background_status_success',
+    error: 'background_status_danger',
+    warning: 'background_status_warning',
+    info: 'background_status_info'
+  };
+
+  const KIND_ICON = {
+    success: 'checkmark',
+    error: 'error',
+    warning: 'warning',
+    info: 'information'
+  };
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ActionableNotification = function ActionableNotification (props) {
+
 
     const {
       title, subtitle, actionText, onAction, onDismiss, kind, style,
@@ -147,7 +155,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       actionButton,
       dismissButton
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ActionableNotification = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ActionableNotification;
+
+}/////////////////////////// Component Factory END /////////////////////////////

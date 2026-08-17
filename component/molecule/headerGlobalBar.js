@@ -2,10 +2,13 @@
 // header actions. Uses role="group" for screen reader semantics.
 //   children    -> HeaderGlobalAction elements
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the HeaderGlobalBar molecule.
@@ -19,9 +22,17 @@ Build the HeaderGlobalBar molecule.
 
 @return {Function} - The HeaderGlobalBar component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function HeaderGlobalBar (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const HeaderGlobalBar = function HeaderGlobalBar (props) {
+
 
     const {
       children, style,
@@ -42,7 +53,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, rest),
       children
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _HeaderGlobalBar = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return HeaderGlobalBar;
+
+}/////////////////////////// Component Factory END /////////////////////////////

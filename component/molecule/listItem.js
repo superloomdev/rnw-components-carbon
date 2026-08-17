@@ -7,10 +7,13 @@
 //   trailing     -> trailing element (optional)
 //   onPress      -> press handler (optional; when absent, item is static)
 //   selected     -> boolean, whether the item is selected
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ListItem molecule.
@@ -24,10 +27,17 @@ Build the ListItem molecule.
 
 @return {Function} - The ListItem component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  // Build the a11y translator once per factory
-  return function ListItem (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ListItem = function ListItem (props) {
+
 
     // Destructure props
     const {
@@ -117,7 +127,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, ariaProps, rest),
       rowContent
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ListItem = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ListItem;
+
+}/////////////////////////// Component Factory END /////////////////////////////

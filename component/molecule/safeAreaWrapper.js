@@ -5,10 +5,13 @@
 // Platform.OS === 'ios' check; reads insets from Lib.Device directly.
 //   children    -> wrapped content
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the SafeAreaWrapper molecule.
@@ -22,11 +25,15 @@ Build the SafeAreaWrapper molecule.
 
 @return {Function} - The SafeAreaWrapper component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
+
+  /////////////////////////// Static Constants START ////////////////////////////
+
 
   // Resolve safe area insets once per build from the device helper.
   // On desktop this returns zeros; on iOS PWA with viewport-fit=cover
   // it returns the real notch/home-indicator insets.
+
   const resolveInsets = function () {
 
     let insets = { top: 0, bottom: 0, left: 0, right: 0 };
@@ -47,7 +54,13 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
 
   };
 
-  return function SafeAreaWrapper (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const SafeAreaWrapper = function SafeAreaWrapper (props) {
+
 
     const {
       children, style,
@@ -74,7 +87,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
       }, rest),
       children
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _SafeAreaWrapper = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return SafeAreaWrapper;
+
+}/////////////////////////// Component Factory END /////////////////////////////

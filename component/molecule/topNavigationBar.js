@@ -7,10 +7,13 @@
 //   rightItems  -> array of { icon, text, onPress }
 //   headerMode  -> boolean (larger title when true)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the TopNavigationBar molecule.
@@ -24,9 +27,17 @@ Build the TopNavigationBar molecule.
 
 @return {Function} - The TopNavigationBar component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function TopNavigationBar (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const TopNavigationBar = function TopNavigationBar (props) {
+
 
     // Destructure props
     const {
@@ -75,7 +86,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         (Array.isArray(rightItems) ? rightItems : []).map(renderNavItem)
       )
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _TopNavigationBar = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return TopNavigationBar;
+
+}/////////////////////////// Component Factory END /////////////////////////////

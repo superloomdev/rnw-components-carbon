@@ -1,5 +1,5 @@
 // Info: PasswordInput molecule [S2 interactive]. A TextInput with a show/hide
-// password toggle button. Uses M1 (a11y) for aria-* state and M8
+// password toggle button. Uses A11y for aria-* state and M8
 // (useControllableState) for controlled/uncontrolled value.
 //   value         -> string (controlled)
 //   defaultValue  -> string (uncontrolled)
@@ -7,10 +7,13 @@
 //   placeholder   -> string
 //   disabled      -> boolean
 //   invalid       -> boolean
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the PasswordInput molecule.
@@ -24,8 +27,17 @@ Build the PasswordInput molecule.
 
 @return {Function} - The PasswordInput component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function PasswordInput (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const PasswordInput = function PasswordInput (props) {
+
 
     const {
       value, defaultValue, onChange, placeholder, disabled, invalid, style,
@@ -104,7 +116,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         })
       )
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _PasswordInput = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return PasswordInput;
+
+}/////////////////////////// Component Factory END /////////////////////////////

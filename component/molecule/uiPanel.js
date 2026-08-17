@@ -6,10 +6,13 @@
 //   onToggle    -> callback when header is pressed
 //   children    -> panel content
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the UiPanel molecule.
@@ -23,9 +26,17 @@ Build the UiPanel molecule.
 
 @return {Function} - The UiPanel component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function UiPanel (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const UiPanel = function UiPanel (props) {
+
 
     // Destructure props
     const {
@@ -63,7 +74,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       header,
       content
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _UiPanel = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return UiPanel;
+
+}/////////////////////////// Component Factory END /////////////////////////////

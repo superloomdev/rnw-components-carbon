@@ -2,10 +2,13 @@
 // separator row in a table. Uses role="row" for screen reader semantics.
 // Renders a thin bordered divider with no content.
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the TableDecoratorRow molecule.
@@ -19,9 +22,17 @@ Build the TableDecoratorRow molecule.
 
 @return {Function} - The TableDecoratorRow component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function TableDecoratorRow (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const TableDecoratorRow = function TableDecoratorRow (props) {
+
 
     const {
       style,
@@ -41,7 +52,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         ]
       }, rest)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _TableDecoratorRow = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return TableDecoratorRow;
+
+}/////////////////////////// Component Factory END /////////////////////////////

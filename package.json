@@ -8,11 +8,11 @@
   "contributors": [],
   "private": false,
   "license": "MIT",
+  "type": "module",
   "main": "components.js",
   "exports": {
     ".": "./components.js",
     "./data/*": "./data/*",
-    "./data/hint-props": "./data/hint-props.js",
     "./component/*": "./component/*",
     "./parts/*": "./parts/*"
   },

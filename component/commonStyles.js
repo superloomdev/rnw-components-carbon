@@ -8,9 +8,9 @@
 // so components can switch sets without regenerating styles on resize.
 //
 // Pure function, no side effects. Called by build() once per breakpoint.
-'use strict';
 
-const { StyleSheet } = require('react-native');
+// Imports
+import { StyleSheet as RNStyleSheet } from 'react-native';
 
 
 // Build the padding style object for a logical/physical side
@@ -80,7 +80,7 @@ space tokens.
 
 @return {Object} - StyleSheet of utility classes keyed by name
 *********************************************************************/
-module.exports = function generateCommonStyles (theme, breakpoint, Parts) {
+export default function generateCommonStyles (theme, breakpoint, Parts) {
 
   const Color = theme.Color;
   const Dimension = theme.Dimension;
@@ -213,6 +213,6 @@ module.exports = function generateCommonStyles (theme, breakpoint, Parts) {
 
 
   // Freeze into a native StyleSheet
-  return StyleSheet.create(styles);
+  return RNStyleSheet.create(styles);
 
-};
+}

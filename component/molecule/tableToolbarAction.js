@@ -1,14 +1,17 @@
 // Info: TableToolbarAction molecule [S2 interactive]. A single action button
 // in the table toolbar. Uses role="button" for screen reader semantics and
-// M2 (usePressKeys) for keyboard activation. Composes Icon and Text atoms.
+// PressKeys for keyboard activation. Composes Icon and Text atoms.
 //   icon        -> string (icon glyph name)
 //   onPress     -> function (press handler)
 //   label       -> string (button text / accessibility label)
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the TableToolbarAction molecule.
@@ -22,8 +25,17 @@ Build the TableToolbarAction molecule.
 
 @return {Function} - The TableToolbarAction component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function TableToolbarAction (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const TableToolbarAction = function TableToolbarAction (props) {
+
 
     const {
       icon, onPress, label, style,
@@ -65,7 +77,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         }, label)
         : null
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _TableToolbarAction = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return TableToolbarAction;
+
+}/////////////////////////// Component Factory END /////////////////////////////

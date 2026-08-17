@@ -4,10 +4,13 @@
 //   primaryAction -> object with { text, onPress }
 //   items         -> array of secondary { text, icon, onPress }
 //   style         -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the BottomToolbarPrimaryAction molecule.
@@ -21,9 +24,17 @@ Build the BottomToolbarPrimaryAction molecule.
 
 @return {Function} - The BottomToolbarPrimaryAction component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function BottomToolbarPrimaryAction (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const BottomToolbarPrimaryAction = function BottomToolbarPrimaryAction (props) {
+
 
     // Destructure props
     const {
@@ -73,7 +84,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       React.createElement(RNView, { style: Style.utilities['flex_row'] }, secondaryElements),
       primaryElement
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _BottomToolbarPrimaryAction = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return BottomToolbarPrimaryAction;
+
+}/////////////////////////// Component Factory END /////////////////////////////

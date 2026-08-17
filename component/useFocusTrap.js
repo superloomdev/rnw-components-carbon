@@ -16,10 +16,8 @@
 // the overlay structure handles VoiceOver focus trapping.
 //
 // This is genuinely new code. Neither CTP nor the prototype has focus management.
-/* global document */
-'use strict';
-
-const { Platform, BackHandler, AccessibilityInfo } = require('react-native');
+// Imports
+import { Platform as RNPlatform, BackHandler as RNBackHandler, AccessibilityInfo as RNAccessibilityInfo } from 'react-native';
 
 
 /********************************************************************
@@ -30,7 +28,7 @@ trapping for an overlay component.
 
 @return {Function} - useFocusTrap(options) -> { containerRef, onKeyDown, onOutsidePress }
 *********************************************************************/
-module.exports = function (Lib) {
+export default function (Lib) {
 
   const React = Lib.React;
 
@@ -69,7 +67,7 @@ module.exports = function (Lib) {
       }
 
       // Record the currently focused element for restoration on close
-      if (Platform.OS === 'web' && typeof document !== 'undefined') {
+      if (RNPlatform.OS === 'web' && typeof document !== 'undefined') {
         previousFocusRef.current = document.activeElement;
       }
 
@@ -85,11 +83,11 @@ module.exports = function (Lib) {
       }
 
       // On native, set accessibility focus on the container for VoiceOver
-      if (Platform.OS !== 'web' && containerRef.current) {
+      if (RNPlatform.OS !== 'web' && containerRef.current) {
         // AccessibilityInfo.setAccessibilityFocus needs a reactTag;
         // called multiple times as a workaround for RN async layout timing
-        AccessibilityInfo.setAccessibilityFocus(containerRef.current);
-        AccessibilityInfo.setAccessibilityFocus(containerRef.current);
+        RNAccessibilityInfo.setAccessibilityFocus(containerRef.current);
+        RNAccessibilityInfo.setAccessibilityFocus(containerRef.current);
       }
 
     }, [isOpen]);
@@ -103,7 +101,7 @@ module.exports = function (Lib) {
       }
 
       // Web: listen for Escape key
-      if (Platform.OS === 'web' && typeof document !== 'undefined') {
+      if (RNPlatform.OS === 'web' && typeof document !== 'undefined') {
 
         const handleKeyDown = function (event) {
 
@@ -123,7 +121,7 @@ module.exports = function (Lib) {
       }
 
       // Android: hardware back button
-      if (Platform.OS === 'android') {
+      if (RNPlatform.OS === 'android') {
 
         const handleBackPress = function () {
 
@@ -134,11 +132,11 @@ module.exports = function (Lib) {
 
         };
 
-        BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+        RNBackHandler.addEventListener('hardwareBackPress', handleBackPress);
 
         // Cleanup: remove the back handler
         return function () {
-          BackHandler.removeEventListener('hardwareBackPress', handleBackPress);
+          RNBackHandler.removeEventListener('hardwareBackPress', handleBackPress);
         };
 
       }
@@ -149,7 +147,7 @@ module.exports = function (Lib) {
     // Tab cycling on web: trap focus within the container (only when trap=true)
     React.useEffect(function () {
 
-      if (!isOpen || !trap || Platform.OS !== 'web' || typeof document === 'undefined') {
+      if (!isOpen || !trap || RNPlatform.OS !== 'web' || typeof document === 'undefined') {
         return;
       }
 
@@ -250,4 +248,4 @@ module.exports = function (Lib) {
 
   };
 
-};
+}

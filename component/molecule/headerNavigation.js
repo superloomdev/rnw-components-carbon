@@ -3,10 +3,13 @@
 // or menu items within a header bar.
 //   children    -> navigation content (links, menu items)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the HeaderNavigation molecule.
@@ -20,9 +23,17 @@ Build the HeaderNavigation molecule.
 
 @return {Function} - The HeaderNavigation component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function HeaderNavigation (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const HeaderNavigation = function HeaderNavigation (props) {
+
 
     const { children, style, ...rest } = props;
 
@@ -41,7 +52,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, rest),
       children
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _HeaderNavigation = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return HeaderNavigation;
+
+}/////////////////////////// Component Factory END /////////////////////////////

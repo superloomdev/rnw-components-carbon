@@ -1,14 +1,17 @@
 // Info: HeaderMenuButton molecule [S2 interactive]. A menu toggle button
-// for the Header composite with role="button". Uses M1 (a11y) for
-// aria-expanded when active, and M2 (usePressKeys) for keyboard activation.
+// for the Header composite with role="button". Uses A11y for
+// aria-expanded when active, and PressKeys for keyboard activation.
 //   onPress     -> function (press handler)
 //   label       -> string (button label)
 //   isActive    -> boolean, whether the menu is currently open
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the HeaderMenuButton molecule.
@@ -22,8 +25,17 @@ Build the HeaderMenuButton molecule.
 
 @return {Function} - The HeaderMenuButton component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function HeaderMenuButton (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const HeaderMenuButton = function HeaderMenuButton (props) {
+
 
     const {
       onPress, label, isActive, style,
@@ -75,7 +87,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         color: 'text_primary'
       }, '\u2630')
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _HeaderMenuButton = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return HeaderMenuButton;
+
+}/////////////////////////// Component Factory END /////////////////////////////

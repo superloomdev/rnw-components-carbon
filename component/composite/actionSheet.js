@@ -1,13 +1,17 @@
 // Info: ActionSheet composite [S3 overlay]. A menu triggered by long-press
-// on native, right-click on web. Uses M1 (a11y), M4 (Overlay),
-// M5 (useAnchoredPosition), M7 (createCompoundContext).
+// on native, right-click on web. Uses A11y, Overlay,
+// AnchoredPosition, CompoundContext.
 //   items       -> array of { label, onPress, disabled }
 //   children    -> the element to attach the long-press handler to
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Platform } = require('react-native');
 
+// Imports
+import menuFactory from './menu.js';
+import { View as RNView, Platform } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ActionSheet composite.
@@ -21,10 +25,19 @@ Build the ActionSheet composite.
 
 @return {Function} - The ActionSheet component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  const Menu = require('./menu')(Lib, CONFIG, ERRORS, Parts, Registry, Style);
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function ActionSheet (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+
+  const Menu = menuFactory(Lib, CONFIG, ERRORS, Parts, Registry, Style);
+
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ActionSheet = function ActionSheet (props) {
+
 
     const {
       items, children, style, // eslint-disable-line no-unused-vars
@@ -81,7 +94,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       trigger,
       React.createElement(Menu, { isOpen: isOpen, onClose: handleClose }, menuItems)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ActionSheet = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ActionSheet;
+
+}/////////////////////////// Component Factory END /////////////////////////////

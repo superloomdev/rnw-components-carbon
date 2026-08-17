@@ -1,15 +1,18 @@
 // Info: TableExpandRow molecule [S2 interactive]. A row that can expand to
 // reveal additional content. Uses role="row" for screen reader semantics,
-// M1 (a11y) for aria-expanded state, and M2 (usePressKeys) for keyboard
+// A11y for aria-expanded state, and PressKeys for keyboard
 // activation.
 //   isExpanded -> boolean, whether this row is currently expanded
 //   onToggle   -> function invoked when the row is pressed to toggle
 //   children   -> row cell elements
 //   style      -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the TableExpandRow molecule.
@@ -23,8 +26,17 @@ Build the TableExpandRow molecule.
 
 @return {Function} - The TableExpandRow component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function TableExpandRow (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const TableExpandRow = function TableExpandRow (props) {
+
 
     const {
       isExpanded, onToggle, children, style,
@@ -56,7 +68,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, ariaProps, pressKeysProps, rest),
       children
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _TableExpandRow = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return TableExpandRow;
+
+}/////////////////////////// Component Factory END /////////////////////////////

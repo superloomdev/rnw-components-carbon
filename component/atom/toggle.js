@@ -1,14 +1,17 @@
 // Info: Toggle atom [S2 interactive]. Wraps react-native Switch with token
 // consumption for the track and thumb colors. Passes accessibilityRole="switch"
-// and uses aria-checked for screen reader state announcement. Uses M2
-// (usePressKeys) for Space activation on web where the switch role needs it.
+// and uses aria-checked for screen reader state announcement. Uses
+// PressKeys for Space activation on web where the switch role needs it.
 //   value         -> boolean, whether the toggle is on
 //   onValueChange -> callback when the value changes
 //   disabled      -> boolean, whether the toggle is non-interactive
-'use strict';
 
-const { Switch: RNSwitch } = require('react-native');
 
+// Imports
+import { Switch as RNSwitch } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Toggle atom.
@@ -18,15 +21,20 @@ Build the Toggle atom.
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Parts    - Mechanisms: { A11y, PressKeys, ControllableState, Units, Overlay, AnchoredPosition }
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style   - { utilities, tokens, breakpoint }
+@param {Object} Style    - { utilities, tokens, breakpoint }
 
 @return {Function} - The Toggle component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  // Build the a11y translator once per factory
-  // Build the keyboard activation hook once per factory
-  return function Toggle (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Toggle = function Toggle (props) {
 
     // Destructure props
     const {
@@ -94,7 +102,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, ariaProps, pressKeysProps, rest)
     );
 
-  };
+  };////////////////////////// Public Functions END ////////////////////////////
 
-};
 
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Toggle = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Toggle;
+
+}/////////////////////////// Component Factory END /////////////////////////////

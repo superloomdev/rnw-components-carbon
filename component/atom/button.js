@@ -2,11 +2,14 @@
 // interaction states (enabled, hovered, pressed, focused, disabled), and
 // guarantees the minimum accessible hit target. Children can be a function
 // receiving the interaction state, or static content.
-//   kind        -> 'primary' | 'secondary' | 'danger' | 'ghost' (maps to background)
-'use strict';
+//   kind -> 'primary' | 'secondary' | 'danger' | 'ghost' (maps to background)
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Button atom.
@@ -14,63 +17,18 @@ Build the Button atom.
 @param {Object} Lib      - { Utils, Debug, React }
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
-@param {Object} Parts    - Mechanisms: { A11y, PressKeys, ControllableState, Units, Overlay, AnchoredPosition }
+@param {Object} Parts    - Mechanisms: { A11y, Units }
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style   - { utilities, tokens, breakpoint }
+@param {Object} Style    - { utilities, tokens, breakpoint }
 
 @return {Function} - The Button component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  // Build the a11y translator once per factory
-  // ~~~~~~~~~~~~~~~~~~~~ Private ~~~~~~~~~~~~~~~~~~~~
+  /////////////////////////// Static Constants START ////////////////////////////
 
-  // Resolve the active interaction state to a token suffix
-  const resolveStateSuffix = function (props, pressableState) {
-
-    // Disabled outranks every other state
-    if (props.disabled) {
-      return '_disabled';
-    }
-
-    // Pressed outranks hovered
-    if (pressableState.pressed) {
-      return '_pressed';
-    }
-
-    // Hovered is web and pointer only
-    if (pressableState.hovered) {
-      return '_hovered';
-    }
-
-    // Focused is the accessibility-visible state
-    if (pressableState.focused) {
-      return '_focused';
-    }
-
-    return '';
-
-  };
-
-
-  // Compute hitSlop so the touch target reaches the accessible minimum
-  const resolveHitSlop = function (height, width) {
-
-    // No padding needed once the visual box already clears the minimum on both axes
-    if (height >= CONFIG.MIN_HIT_TARGET && width >= CONFIG.MIN_HIT_TARGET) {
-      return undefined;
-    }
-
-    const padV = Parts.Units.clamp(Parts.Units.ceil((CONFIG.MIN_HIT_TARGET - height) / 2), 0, Infinity);
-    const padH = Parts.Units.clamp(Parts.Units.ceil((CONFIG.MIN_HIT_TARGET - width) / 2), 0, Infinity);
-
-    return { top: padV, bottom: padV, left: padH, right: padH };
-
-  };
-
-
-  // Map kind to background token. Replaces ButtonPrimary (app_primary)
-  // and ButtonLink (ghost / transparent).
+  // Map kind prop to background token. Replaces the legacy ButtonPrimary
+  // (app_primary) and ButtonLink (ghost / transparent) components.
   const KIND_BACKGROUND = {
     primary: 'app_primary',
     secondary: 'app_secondary',
@@ -78,8 +36,12 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     ghost: undefined
   };
 
+  /////////////////////////// Static Constants END //////////////////////////////
 
-  return function Button (props) {
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Button = function Button (props) {
 
     // Destructure props
     const {
@@ -95,7 +57,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     // Track visual dimensions for hitSlop calculation
     const layoutRef = React.useRef({ height: 0, width: 0 });
 
-    // Resolve base utility classes
+
+    // ---- Base utility classes ----
     const baseClasses = [];
 
     if (radius) {
@@ -105,10 +68,11 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }
     }
 
-    // Build the style function for Pressable
+
+    // ---- Style function for Pressable (resolves interaction states) ----
     const styleFn = function (pressableState) {
 
-      const stateSuffix = resolveStateSuffix(props, pressableState);
+      const stateSuffix = _Button.resolveStateSuffix(props, pressableState);
       const classes = [...baseClasses];
 
       // Resolve background with state suffix
@@ -139,11 +103,14 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     };
 
-    // Build aria state props through the a11y translator
+
+    // ---- Accessibility ----
     const ariaProps = Parts.A11y.state({
       disabled: !!disabled
     });
 
+
+    // Render
     return Lib.React.createElement(
       Pressable,
       Object.assign({
@@ -151,16 +118,82 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         disabled: disabled,
         accessibilityRole: 'button',
         accessibilityLabel: accessibilityLabel,
-        hitSlop: resolveHitSlop(layoutRef.current.height, layoutRef.current.width),
+        hitSlop: _Button.resolveHitSlop(layoutRef.current.height, layoutRef.current.width),
         onLayout: function (e) {
           layoutRef.current = e.nativeEvent.layout;
         },
         style: styleFn
       }, ariaProps, rest),
-      // Children can be a function receiving the pressable state, or static
       Lib.Utils.isFunction(children) ? children : children
     );
 
-  };
+  };////////////////////////// Public Functions END ////////////////////////////
 
-};
+
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Button = {
+
+    /********************************************************************
+    Resolve the active interaction state to a token suffix. Priority:
+    disabled > pressed > hovered > focused > default.
+
+    @param {Object} props          - Component props (reads disabled)
+    @param {Object} pressableState - RN Pressable state { pressed, hovered, focused }
+
+    @return {String} - Token suffix ('_disabled', '_pressed', '_hovered', '_focused', or '')
+    *********************************************************************/
+    resolveStateSuffix: function (props, pressableState) {
+
+      if (props.disabled) {
+        return '_disabled';
+      }
+
+      if (pressableState.pressed) {
+        return '_pressed';
+      }
+
+      if (pressableState.hovered) {
+        return '_hovered';
+      }
+
+      if (pressableState.focused) {
+        return '_focused';
+      }
+
+      return '';
+
+    },
+
+
+    /********************************************************************
+    Compute hitSlop so the touch target reaches the accessible minimum.
+    Returns undefined when the visual box already clears the minimum on
+    both axes.
+
+    @param {Number} height - Current layout height
+    @param {Number} width  - Current layout width
+
+    @return {Object|undefined} - Hit slop insets or undefined
+    *********************************************************************/
+    resolveHitSlop: function (height, width) {
+
+      if (height >= CONFIG.MIN_HIT_TARGET && width >= CONFIG.MIN_HIT_TARGET) {
+        return undefined;
+      }
+
+      const padV = Parts.Units.clamp(Parts.Units.ceil((CONFIG.MIN_HIT_TARGET - height) / 2), 0, Infinity);
+      const padH = Parts.Units.clamp(Parts.Units.ceil((CONFIG.MIN_HIT_TARGET - width) / 2), 0, Infinity);
+
+      return { top: padV, bottom: padV, left: padH, right: padH };
+
+    }
+
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Button;
+
+}/////////////////////////// Component Factory END /////////////////////////////

@@ -9,8 +9,6 @@
 // Loader pattern: FACTORY part. The components package hands out independent
 // instances per build() so two registries can hold different themes at once;
 // module-scope state would let one instance's CONFIG leak into another.
-'use strict';
-
 
 /////////////////////////// Module-Loader START ////////////////////////////////
 
@@ -23,7 +21,7 @@
 
     @return {Object} - Public Units interface
 *********************************************************************/
-module.exports = function loader (shared_libs, config, errors) {
+export default function (shared_libs, config, errors) {
 
   // Dependencies for this part, by reference from the shared container
   const Lib = {
@@ -42,7 +40,7 @@ module.exports = function loader (shared_libs, config, errors) {
 
   return createInterface(Lib, DATA, UNIT_PATTERN);
 
-};/////////////////////////// Module-Loader END /////////////////////////////////
+}/////////////////////////// Module-Loader END /////////////////////////////////
 
 
 

@@ -8,10 +8,13 @@
 //
 // Freeform factories receive Lib (for React access) but NOT Style or Registry.
 // They cannot read tokens or compose atoms.
-'use strict';
 
-const { View } = require('react-native');
 
+// Imports
+import { View } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the RawBox freeform component. No token access, no theme, no Registry.
@@ -20,12 +23,31 @@ Build the RawBox freeform component. No token access, no theme, no Registry.
 
 @return {Function} - The RawBox component
 *********************************************************************/
-module.exports = function (Lib) {
+export default function (Lib) {
 
-  return function RawBox (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const RawBox = function RawBox (props) {
+
 
     return Lib.React.createElement(View, { style: props.style }, props.children);
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _RawBox = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return RawBox;
+
+}/////////////////////////// Component Factory END /////////////////////////////

@@ -4,10 +4,13 @@
 //   title       -> main title string
 //   loginAction -> object with { text, onPress }
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the TopNavigationBarLogin molecule.
@@ -21,9 +24,17 @@ Build the TopNavigationBarLogin molecule.
 
 @return {Function} - The TopNavigationBarLogin component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function TopNavigationBarLogin (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const TopNavigationBarLogin = function TopNavigationBarLogin (props) {
+
 
     // Destructure props
     const {
@@ -58,7 +69,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       React.createElement(Registry.Text, null, title || ''),
       loginButton
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _TopNavigationBarLogin = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return TopNavigationBarLogin;
+
+}/////////////////////////// Component Factory END /////////////////////////////

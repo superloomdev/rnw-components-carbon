@@ -2,10 +2,13 @@
 // for text lines. Uses role="img" for screen reader semantics.
 //   lines       -> number (default 3)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the AISkeletonText molecule.
@@ -19,9 +22,17 @@ Build the AISkeletonText molecule.
 
 @return {Function} - The AISkeletonText component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function AISkeletonText (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const AISkeletonText = function AISkeletonText (props) {
+
 
     const {
       lines, style,
@@ -56,7 +67,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, rest),
       lineElements
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _AISkeletonText = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return AISkeletonText;
+
+}/////////////////////////// Component Factory END /////////////////////////////

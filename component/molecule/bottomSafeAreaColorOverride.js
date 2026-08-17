@@ -5,10 +5,13 @@
 //   color       -> background color for the bottom safe area
 //   children    -> content above the safe area
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Platform } = require('react-native');
 
+// Imports
+import { View as RNView, Platform } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the BottomSafeAreaColorOverride molecule.
@@ -22,9 +25,17 @@ Build the BottomSafeAreaColorOverride molecule.
 
 @return {Function} - The BottomSafeAreaColorOverride component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function BottomSafeAreaColorOverride (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const BottomSafeAreaColorOverride = function BottomSafeAreaColorOverride (props) {
+
 
     // Destructure props
     const {
@@ -59,7 +70,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       children,
       React.createElement(RNView, { style: { backgroundColor: color || 'transparent', height: 34 } })
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _BottomSafeAreaColorOverride = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return BottomSafeAreaColorOverride;
+
+}/////////////////////////// Component Factory END /////////////////////////////

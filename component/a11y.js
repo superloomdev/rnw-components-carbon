@@ -7,13 +7,12 @@
 //
 // Never emits the deprecated RN accessibility state/value/hint props or
 // the view-is-modal/elements-hidden/important-for-accessibility props.
-// Those are silent no-ops on web (see Plan 0100 Part 0). accessibilityRole
-// and accessibilityLabel remain correct and are passed directly by
-// components, not through this module.
+// Those are silent no-ops on web. accessibilityRole and accessibilityLabel
+// remain correct and are passed directly by components, not through this
+// module.
 //
 // Omits keys whose value is null or undefined so the DOM never receives
 // aria-checked="undefined".
-'use strict';
 
 
 /********************************************************************
@@ -24,7 +23,7 @@ counter storage.
 
 @return {Object} - { state, value, relation, position, id }
 *********************************************************************/
-module.exports = function (Lib) { // eslint-disable-line no-unused-vars
+export default function (Lib) { // eslint-disable-line no-unused-vars
 
   // Monotonic id counter, stable per loader instance
   let idCounter = 0;
@@ -213,4 +212,4 @@ module.exports = function (Lib) { // eslint-disable-line no-unused-vars
     id: id
   };
 
-};
+}

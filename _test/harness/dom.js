@@ -1,10 +1,10 @@
-'use strict';
-
-// Bootstrap jsdom globals so react-native-web can render in Node.
+// Info: Bootstrap jsdom globals so react-native-web can render in Node.
+//
 // RNW's createCSSStyleSheet needs ShadowRoot; navigator must be set
 // via defineProperty because it is getter-only on modern Node.
 
-const { JSDOM } = require('jsdom');
+import { JSDOM } from 'jsdom';
+
 
 const dom = new JSDOM('<!DOCTYPE html><html><body><div id="root"></div></body></html>', {
   url: 'http://localhost',
@@ -57,27 +57,17 @@ if (typeof global.matchMedia === 'undefined') {
 
 if (typeof global.ResizeObserver === 'undefined') {
   global.ResizeObserver = function () {
-    return {
-      observe: function () {},
-      unobserve: function () {},
-      disconnect: function () {}
-    };
+    return { observe: function () {}, unobserve: function () {}, disconnect: function () {} };
   };
 }
 
 if (typeof global.IntersectionObserver === 'undefined') {
   global.IntersectionObserver = function () {
-    return {
-      observe: function () {},
-      unobserve: function () {},
-      disconnect: function () {}
-    };
+    return { observe: function () {}, unobserve: function () {}, disconnect: function () {} };
   };
 }
 
 
-module.exports = {
-  dom: dom,
-  window: dom.window,
-  document: dom.window.document
-};
+export { dom };
+export const window = dom.window;
+export const document = dom.window.document;

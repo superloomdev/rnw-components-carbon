@@ -4,11 +4,10 @@
 // component render a non-empty output without throwing.
 //
 // Callbacks are no-ops; the harness does not assert behavior, only render.
-'use strict';
 
-var noop = function () {};
+const noop = function () {};
 
-module.exports = {
+export default {
   Button: { children: 'Button', onPress: noop },
   IconButton: { name: 'add', onPress: noop },
   Tag: { label: 'Tag' },

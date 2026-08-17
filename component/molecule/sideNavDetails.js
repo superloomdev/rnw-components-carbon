@@ -3,10 +3,13 @@
 //   title       -> string (section title)
 //   children    -> detail content elements
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the SideNavDetails molecule.
@@ -20,9 +23,17 @@ Build the SideNavDetails molecule.
 
 @return {Function} - The SideNavDetails component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function SideNavDetails (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const SideNavDetails = function SideNavDetails (props) {
+
 
     const {
       title, children, style,
@@ -52,7 +63,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         : null,
       children
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _SideNavDetails = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return SideNavDetails;
+
+}/////////////////////////// Component Factory END /////////////////////////////

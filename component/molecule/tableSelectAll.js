@@ -6,10 +6,13 @@
 //   onSelectAll -> function receiving the next boolean
 //   ariaLabel   -> string (accessibility label for the checkbox)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the TableSelectAll molecule.
@@ -23,9 +26,17 @@ Build the TableSelectAll molecule.
 
 @return {Function} - The TableSelectAll component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function TableSelectAll (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const TableSelectAll = function TableSelectAll (props) {
+
 
     const {
       checked, onSelectAll, ariaLabel, style,
@@ -58,7 +69,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         accessibilityLabel: ariaLabel || 'Select all rows'
       })
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _TableSelectAll = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return TableSelectAll;
+
+}/////////////////////////// Component Factory END /////////////////////////////

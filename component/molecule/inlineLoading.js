@@ -1,12 +1,15 @@
 // Info: InlineLoading molecule [S1 presentational]. A small inline loading
-// indicator with optional status text. Uses M1 (a11y) and M6 (useAnnounce).
+// indicator with optional status text. Uses A11y and useAnnounce.
 //   status      -> 'active' | 'inactive' | 'error' (default 'active')
 //   label       -> string (loading text, default 'Loading...')
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, ActivityIndicator } = require('react-native');
 
+// Imports
+import { View as RNView, ActivityIndicator } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the InlineLoading molecule.
@@ -20,8 +23,17 @@ Build the InlineLoading molecule.
 
 @return {Function} - The InlineLoading component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function InlineLoading (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const InlineLoading = function InlineLoading (props) {
+
 
     const {
       status, label, style,
@@ -56,7 +68,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         color: st === 'error' ? 'status_danger' : 'text_secondary'
       }, label || (st === 'active' ? 'Loading...' : st === 'error' ? 'Error' : 'Loaded'))
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _InlineLoading = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return InlineLoading;
+
+}/////////////////////////// Component Factory END /////////////////////////////

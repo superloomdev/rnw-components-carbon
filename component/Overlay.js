@@ -12,11 +12,9 @@
 //
 // Contexts are created once per loader call, in createInterface, and
 // stored on state.contexts. They are NOT created inside build.
-'use strict';
 
-/* global document */
-
-const { View: RNView, Platform } = require('react-native');
+// Imports
+import { View as RNView, Platform as RNPlatform } from 'react-native';
 
 
 /********************************************************************
@@ -26,7 +24,7 @@ Build the Overlay provider and useOverlay hook.
 
 @return {Object} - { Overlay, useOverlay, createContext }
 *********************************************************************/
-module.exports = function (Lib) {
+export default function (Lib) {
 
   const React = Lib.React;
   const createContext = Lib.React.createContext;
@@ -79,7 +77,7 @@ module.exports = function (Lib) {
     // Escape dismisses the topmost layer on web
     React.useEffect(function () {
 
-      if (Platform.OS !== 'web' || typeof document === 'undefined') {
+      if (RNPlatform.OS !== 'web' || typeof document === 'undefined') {
         return;
       }
 
@@ -133,7 +131,7 @@ module.exports = function (Lib) {
         {
           pointerEvents: 'box-none',
           style: {
-            position: Platform.OS === 'web' ? 'fixed' : 'absolute',
+            position: RNPlatform.OS === 'web' ? 'fixed' : 'absolute',
             top: 0, left: 0, right: 0, bottom: 0,
             zIndex: 9999
           }
@@ -224,4 +222,4 @@ module.exports = function (Lib) {
     OverlayContext: OverlayContext
   };
 
-};
+}

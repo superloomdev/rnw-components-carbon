@@ -1,10 +1,13 @@
 // Info: View atom [S1 presentational]. The base layout box. Convenience props
 // map to generated utility classes (background / radius / border); anything
 // else falls through `style`.
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the View atom.
@@ -12,15 +15,22 @@ Build the View atom.
 @param {Object} Lib      - { Utils, Debug, React }
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
-@param {Object} Parts    - Mechanisms: { A11y, PressKeys, ControllableState, Units, Overlay, AnchoredPosition }
+@param {Object} Parts    - Mechanisms: { Direction, Units, Typeface }
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style   - { utilities, tokens, breakpoint }
+@param {Object} Style    - { utilities, tokens, breakpoint }
 
 @return {Function} - The View component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function View (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const View = function View (props) {
 
     // Destructure token props from pass-through props
     const { background, radius, border, style, children, ...rest } = props;
@@ -28,6 +38,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     // Resolve token props to utility classes
     const classes = [];
 
+
+    // ---- Background ----
     if (background) {
       const bgClass = Style.utilities['background_' + background];
 
@@ -39,6 +51,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     }
 
+
+    // ---- Border radius ----
     if (radius) {
       const brClass = Style.utilities['br_' + radius];
 
@@ -50,6 +64,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     }
 
+
+    // ---- Border ----
     if (border) {
       const borderKey = border === true ? 'default' : border;
       const borderClass = Style.utilities['border_' + borderKey];
@@ -62,12 +78,26 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     }
 
+
+    // Render
     return Lib.React.createElement(
       RNView,
       Object.assign({ style: [...classes, style] }, rest),
       children
     );
 
-  };
+  };////////////////////////// Public Functions END ////////////////////////////
 
-};
+
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _View = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return View;
+
+}/////////////////////////// Component Factory END /////////////////////////////

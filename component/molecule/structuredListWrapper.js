@@ -3,10 +3,13 @@
 // vertical column layout with border styling.
 //   children    -> structured list row elements
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the StructuredListWrapper molecule.
@@ -20,9 +23,17 @@ Build the StructuredListWrapper molecule.
 
 @return {Function} - The StructuredListWrapper component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function StructuredListWrapper (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const StructuredListWrapper = function StructuredListWrapper (props) {
+
 
     const {
       children, style,
@@ -45,7 +56,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, rest),
       children
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _StructuredListWrapper = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return StructuredListWrapper;
+
+}/////////////////////////// Component Factory END /////////////////////////////

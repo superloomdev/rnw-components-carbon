@@ -6,10 +6,13 @@
 //   batchActions  -> array of action objects { label, onPress, kind }
 //   onCancel      -> function invoked when the cancel button is pressed
 //   style         -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the DataTableHeaderSelected molecule.
@@ -23,9 +26,17 @@ Build the DataTableHeaderSelected molecule.
 
 @return {Function} - The DataTableHeaderSelected component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function DataTableHeaderSelected (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const DataTableHeaderSelected = function DataTableHeaderSelected (props) {
+
 
     const {
       selectedCount, batchActions, onCancel, style,
@@ -89,7 +100,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       ),
       cancelButton
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _DataTableHeaderSelected = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return DataTableHeaderSelected;
+
+}/////////////////////////// Component Factory END /////////////////////////////

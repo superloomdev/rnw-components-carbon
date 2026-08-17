@@ -1,15 +1,18 @@
 // Info: ShapeIndicator atom [S1 presentational]. A colored shape indicator
-// (circle, square, triangle) for status display. Uses M1 (a11y) for aria-*.
+// (circle, square, triangle) for status display. Uses A11y for aria-*.
 // Uses shared_libs.Svg as an optional injection; degrades to colored View.
 //   shape       -> 'circle' | 'square' | 'triangle' (default 'circle')
 //   color       -> string (color token or hex, default 'app_primary')
 //   size        -> number (pixels, default 16)
 //   label       -> string (accessibility label)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ShapeIndicator atom.
@@ -19,13 +22,20 @@ Build the ShapeIndicator atom.
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Parts    - Mechanisms: { A11y, PressKeys, ControllableState, Units, Overlay, AnchoredPosition }
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style   - { utilities, tokens, breakpoint }
+@param {Object} Style    - { utilities, tokens, breakpoint }
 
 @return {Function} - The ShapeIndicator component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function ShapeIndicator (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ShapeIndicator = function ShapeIndicator (props) {
 
     const {
       shape, color, size, label, style,
@@ -77,6 +87,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, rest)
     );
 
-  };
+  };////////////////////////// Public Functions END ////////////////////////////
 
-};
+
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ShapeIndicator = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ShapeIndicator;
+
+}/////////////////////////// Component Factory END /////////////////////////////

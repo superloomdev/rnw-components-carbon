@@ -1,10 +1,13 @@
 // Info: MenuItemDivider molecule [S1 presentational]. A horizontal separator
 // within a menu. Uses role="separator". No mechanisms needed.
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the MenuItemDivider molecule.
@@ -18,9 +21,17 @@ Build the MenuItemDivider molecule.
 
 @return {Function} - The MenuItemDivider component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function MenuItemDivider (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const MenuItemDivider = function MenuItemDivider (props) {
+
 
     const { style, ...rest } = props;
 
@@ -38,7 +49,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         style
       ]
     }, rest));
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _MenuItemDivider = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return MenuItemDivider;
+
+}/////////////////////////// Component Factory END /////////////////////////////

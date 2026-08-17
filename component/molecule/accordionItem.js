@@ -1,16 +1,20 @@
 // Info: AccordionItem molecule [S2 interactive]. A collapsible section with
 // a button header (role="button") and a content region (role="region"). Uses
-// M1 (a11y) for aria-expanded, and M2 (usePressKeys) for keyboard activation.
+// A11y for aria-expanded, and PressKeys for keyboard activation.
 // Can optionally consume Accordion context for expanded state coordination.
 //   title       -> string (header label)
 //   children    -> expandable content
 //   expanded    -> boolean, whether the item is expanded
 //   onToggle    -> function (called when header is pressed)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import getSharedContext from '../context/sharedContext.js';
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the AccordionItem molecule.
@@ -24,13 +28,21 @@ Build the AccordionItem molecule.
 
 @return {Function} - The AccordionItem component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  const getSharedContext = require('../context/sharedContext');
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+
 
   // Get the shared Accordion context (cached per Lib instance)
   const accordionCtx = getSharedContext(Lib, 'Accordion');
 
-  return function AccordionItem (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const AccordionItem = function AccordionItem (props) {
+
 
     const {
       title, children, expanded, onToggle, style,
@@ -121,7 +133,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         )
         : null
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _AccordionItem = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return AccordionItem;
+
+}/////////////////////////// Component Factory END /////////////////////////////

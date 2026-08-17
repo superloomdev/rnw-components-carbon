@@ -1,6 +1,6 @@
 // Info: FilterableMultiSelect composite [S3 overlay]. A multi-select with a
 // filter input. Composes Registry.MultiSelect with a filter TextInput. Uses
-// M1 (a11y), M4 (Overlay), M5 (useAnchoredPosition), M8 (useControllableState).
+// A11y, Overlay, AnchoredPosition, ControllableState.
 // Role combobox.
 //   items          -> array of { value, label } (all available items)
 //   selectedItems  -> array (controlled, selected values)
@@ -8,10 +8,13 @@
 //   placeholder    -> string (filter placeholder)
 //   disabled       -> boolean
 //   style          -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable, Platform } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable, Platform } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the FilterableMultiSelect composite.
@@ -25,10 +28,19 @@ Build the FilterableMultiSelect composite.
 
 @return {Function} - The FilterableMultiSelect component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+
   const useOverlay = Parts.Overlay.useOverlay;
 
-  return function FilterableMultiSelect (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const FilterableMultiSelect = function FilterableMultiSelect (props) {
+
 
     const {
       items, selectedItems, onChange, placeholder, disabled,
@@ -258,7 +270,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     }
 
     return React.createElement(RNView, { style: { position: 'relative' } }, renderTrigger());
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _FilterableMultiSelect = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return FilterableMultiSelect;
+
+}/////////////////////////// Component Factory END /////////////////////////////

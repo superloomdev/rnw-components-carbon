@@ -1,84 +1,10 @@
-'use strict';
+// Info: Theme fixtures for rnw-components-carbon tests.
+//
+// Provides the fixed-value control theme and the Poppins real-family theme.
+// The themer-driven matrix is removed; tests use the fixed control theme.
 
-// Real themer-driven theme generation. Never hand-written.
-// Builds the matrix: platforms x variants, using the same template the demo
-// uses. The native projection is the primary matrix for all component tests;
-// the web projection is tested only to assert it is rejected.
-
-const path = require('path');
-
-
-/********************************************************************
-Build a real theme from the themer engine for a given platform.
-
-@param {Object} Themer   - Built themer instance
-@param {Object} Components - Built Components instance (for themeContract)
-@param {String} platform  - 'native' or 'web'
-
-@return {Object} - Theme contract { Color, Dimension, Font, Breakpoint }
-*********************************************************************/
-function buildRealTheme (Themer, Components, platform) {
-
-  // Load the template from the demo app if available, otherwise use inline
-  let template;
-  try {
-    template = require(path.resolve(
-      __dirname, '..', '..', '..', '..', '..', 'codebase-demo-client-rnw',
-      'src', 'themes', 'themer-template.js'
-    ));
-  } catch (e) {
-    // Fallback inline template matching the demo's structure
-    template = createFallbackTemplate();
-  }
-
-  // Build with the real engine
-  const built = Themer.buildTheme(template, [], platform);
-
-  // Bridge through themeContract to get the shape components expect
-  return Components.themeContract(built);
-
-}
-
-
-/********************************************************************
-Create the theme matrix: platforms x variants.
-
-@param {Object} deps - { Utils, Debug }
-
-@return {Object} - { native, web, createTestTheme }
-*********************************************************************/
-function createThemeMatrix (deps) {
-
-  const Utils = deps.Utils;
-  const Debug = deps.Debug;
-
-  const Themer = require('helper-themer')({ Utils: Utils, Debug: Debug });
-
-  // We need a minimal Components instance to use themeContract
-  // But themeContract is a static reshaper, we can call it from any instance
-  const React = deps.React;
-  const Device = deps.Device;
-  const Components = require('rnw-components-carbon')({
-    Utils: Utils,
-    Debug: Debug,
-    React: React,
-    Device: Device
-  });
-
-  return {
-    native: buildRealTheme(Themer, Components, 'native'),
-    web: buildRealTheme(Themer, Components, 'web'),
-
-    // Retained for one purpose: a fixed-value control case
-    createTestTheme: createTestTheme
-  };
-
-}
-
-
-// The fixed-value control theme. Retained for backward compatibility with
-// existing tests that need deterministic values. It is no longer the default.
-function createTestTheme () {
+// The fixed-value control theme. Deterministic, integer-only values.
+export function createTestTheme () {
 
   return {
     Color: {
@@ -129,100 +55,10 @@ function createTestTheme () {
 }
 
 
-// Fallback template when the demo template is not accessible
-function createFallbackTemplate () {
-
-  return {
-    polarity: 'light',
-    ramp: [
-      '#ffffff', '#f4f4f4', '#e0e0e0', '#c6c6c6', '#a8a8a8',
-      '#8d8d8d', '#6f6f6f', '#525252', '#393939', '#262626', '#161616'
-    ],
-    palette: {
-      blue60: '#0f62fe',
-      red60: '#da1e28',
-      green60: '#198038',
-      yellow60: '#f1c21b',
-      indigo60: '#4f46e5'
-    },
-    scales: {
-      base_font_size: 16,
-      geometric: { base: 16, ratio: 1.2 },
-      miniUnit: { base: 4 }
-    },
-    tokens: {
-      _white: '#ffffff',
-      _black: '#161616',
-      'color.APP_PRIMARY': '#4F46E5',
-      'color.TEXT_PRIMARY': '#111827',
-      'color.BACKGROUND_PRIMARY': '#FFFFFF',
-      'color.STATUS_SUCCESS': '#0e6027',
-      'color.STATUS_DANGER': '#da1e28',
-      'color.STATUS_WARNING': '#8e6a00',
-      'color.STATUS_INFO': '#2563EB',
-      'color.TEXT_ON_PRIMARY': '#FFFFFF',
-      'color.APP_PRIMARY_HOVERED': { op: 'mix', args: ['color.APP_PRIMARY', '_white', 90] },
-      'color.APP_PRIMARY_PRESSED': { op: 'mix', args: ['color.APP_PRIMARY', '_white', 82] },
-      'color.APP_PRIMARY_FOCUSED': { op: 'mix', args: ['color.APP_PRIMARY', '_white', 86] },
-      'color.APP_PRIMARY_DISABLED': { op: 'mix', args: ['color.APP_PRIMARY', '_white', 45] },
-      'color.APP_PRIMARY_SUBTLE': { op: 'mix', args: ['color.APP_PRIMARY', 'color.BACKGROUND_PRIMARY', 12] },
-      'color.TEXT_SECONDARY': { op: 'mix', args: ['color.TEXT_PRIMARY', 'color.BACKGROUND_PRIMARY', 62] },
-      'color.TEXT_MUTED': { op: 'mix', args: ['color.TEXT_PRIMARY', 'color.BACKGROUND_PRIMARY', 40] },
-      'color.BACKGROUND_SECONDARY': { op: 'mix', args: ['color.TEXT_PRIMARY', 'color.BACKGROUND_PRIMARY', 4] },
-      'color.SURFACE': '{color.BACKGROUND_PRIMARY}',
-      'color.BORDER': { op: 'mix', args: ['color.TEXT_PRIMARY', 'color.BACKGROUND_PRIMARY', 14] },
-      'color.STATUS_SUCCESS_SUBTLE': { op: 'mix', args: ['color.STATUS_SUCCESS', 'color.BACKGROUND_PRIMARY', 12] },
-      'color.STATUS_DANGER_SUBTLE': { op: 'mix', args: ['color.STATUS_DANGER', 'color.BACKGROUND_PRIMARY', 12] },
-      'color.STATUS_WARNING_SUBTLE': { op: 'mix', args: ['color.STATUS_WARNING', 'color.BACKGROUND_PRIMARY', 12] },
-      'color.STATUS_INFO_SUBTLE': { op: 'mix', args: ['color.STATUS_INFO', 'color.BACKGROUND_PRIMARY', 12] },
-      'dimension.font_size.xs': { scale: 'geometric', step: -1 },
-      'dimension.font_size.sm': { scale: 'geometric', step: 0 },
-      'dimension.font_size.md': { scale: 'geometric', step: 1 },
-      'dimension.font_size.lg': { scale: 'geometric', step: 2 },
-      'dimension.font_size.xl': { scale: 'geometric', step: 3 },
-      'dimension.font_size.xxl': { scale: 'geometric', step: 4 },
-      'dimension.space.none': { scale: 'miniUnit', multiplier: 0 },
-      'dimension.space.xs': { scale: 'miniUnit', multiplier: 1 },
-      'dimension.space.sm': { scale: 'miniUnit', multiplier: 2 },
-      'dimension.space.md': { scale: 'miniUnit', multiplier: 3 },
-      'dimension.space.lg': { scale: 'miniUnit', multiplier: 4 },
-      'dimension.space.xl': { scale: 'miniUnit', multiplier: 6 },
-      'dimension.space.xxl': { scale: 'miniUnit', multiplier: 8 },
-      'dimension.radius.none': 0,
-      'dimension.radius.sm': 4,
-      'dimension.radius.md': 8,
-      'dimension.radius.lg': 12,
-      'dimension.radius.pill': 999,
-      'dimension.line_height_ratio': 1.45,
-      'font.family.primary': 'System',
-      'font.family.secondary': 'System',
-      'font.weight.regular': '400',
-      'font.weight.medium': '500',
-      'font.weight.semibold': '600',
-      'font.weight.bold': '700'
-    },
-    meta: {
-      '_white': { group: 'colour' },
-      '_black': { group: 'colour' },
-      'color.APP_PRIMARY': { group: 'colour' },
-      'color.TEXT_PRIMARY': { group: 'colour' },
-      'color.BACKGROUND_PRIMARY': { group: 'colour' },
-      'color.STATUS_SUCCESS': { group: 'colour' },
-      'color.STATUS_DANGER': { group: 'colour' },
-      'color.STATUS_WARNING': { group: 'colour' },
-      'color.STATUS_INFO': { group: 'colour' },
-      'color.TEXT_ON_PRIMARY': { group: 'colour' }
-    }
-  };
-
-}
-
-
-// Real-family theme variant for exercising the native per-weight-face path.
+// Real-family theme for exercising the native per-weight-face path.
 // Uses Poppins family names to prove that Typeface.isSynthesizing returns
-// false and fontWeight is omitted from the style fragment. The component
-// package does not ship Poppins fonts; this is a name-only test fixture.
-function createRealFamilyTheme () {
+// false and fontWeight is omitted from the style fragment.
+export function createRealFamilyTheme () {
 
   return {
     Color: {
@@ -271,10 +107,3 @@ function createRealFamilyTheme () {
   };
 
 }
-
-
-module.exports = {
-  createThemeMatrix: createThemeMatrix,
-  createTestTheme: createTestTheme,
-  createRealFamilyTheme: createRealFamilyTheme
-};

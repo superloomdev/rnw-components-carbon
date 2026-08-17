@@ -1,13 +1,16 @@
 // Info: HeaderMenuItem molecule [S2 interactive]. A single item in a header
-// menu. Uses role="menuitem" for screen reader semantics. Uses M1 (a11y)
-// for aria-* state and M2 (usePressKeys) for keyboard activation.
+// menu. Uses role="menuitem" for screen reader semantics. Uses A11y
+// for aria-* state and PressKeys for keyboard activation.
 //   text        -> string (item label)
 //   onPress     -> function (press handler)
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the HeaderMenuItem molecule.
@@ -21,8 +24,17 @@ Build the HeaderMenuItem molecule.
 
 @return {Function} - The HeaderMenuItem component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function HeaderMenuItem (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const HeaderMenuItem = function HeaderMenuItem (props) {
+
 
     const {
       text, onPress, style,
@@ -59,7 +71,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         color: 'text_primary'
       }, text || '')
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _HeaderMenuItem = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return HeaderMenuItem;
+
+}/////////////////////////// Component Factory END /////////////////////////////

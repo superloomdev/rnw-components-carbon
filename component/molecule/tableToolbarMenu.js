@@ -5,10 +5,13 @@
 //   label       -> string (trigger label, default 'Options')
 //   children    -> array of menu item objects { label, onPress, disabled }
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the TableToolbarMenu molecule.
@@ -22,9 +25,18 @@ Build the TableToolbarMenu molecule.
 
 @return {Function} - The TableToolbarMenu component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
 
-  return function TableToolbarMenu (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+
+
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const TableToolbarMenu = function TableToolbarMenu (props) {
+
 
     const {
       label, children, style,
@@ -41,7 +53,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
         items: children
       }, rest))
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _TableToolbarMenu = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return TableToolbarMenu;
+
+}/////////////////////////// Component Factory END /////////////////////////////

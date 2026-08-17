@@ -1,6 +1,6 @@
 // Info: Select composite [S3 overlay]. A dropdown select with a trigger
-// button and a menu of options. Uses M1 (a11y), M4 (Overlay),
-// M5 (useAnchoredPosition), M8 (useControllableState). Role combobox.
+// button and a menu of options. Uses A11y, Overlay,
+// AnchoredPosition, ControllableState. Role combobox.
 //   value       -> string (controlled)
 //   defaultValue-> string (uncontrolled)
 //   onChange    -> callback receiving the selected value
@@ -8,10 +8,13 @@
 //   placeholder -> string (default 'Select an option')
 //   disabled    -> boolean
 //   invalid     -> boolean
-'use strict';
 
-const { View: RNView, Pressable, Platform } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable, Platform } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Select composite.
@@ -25,10 +28,19 @@ Build the Select composite.
 
 @return {Function} - The Select component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+
   const useOverlay = Parts.Overlay.useOverlay;
 
-  return function Select (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Select = function Select (props) {
+
 
     const {
       value, defaultValue, onChange, options, placeholder, disabled, invalid,
@@ -235,7 +247,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     }
 
     return React.createElement(RNView, { style: { position: 'relative' } }, renderTrigger());
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Select = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Select;
+
+}/////////////////////////// Component Factory END /////////////////////////////

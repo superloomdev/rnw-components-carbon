@@ -1,15 +1,18 @@
 // Info: TimePicker composite [S3 overlay]. A time picker with a trigger
-// button and a time selection view. Uses M1 (a11y), M4 (Overlay),
-// M5 (useAnchoredPosition), M8 (useControllableState). Role combobox.
+// button and a time selection view. Uses A11y, Overlay,
+// AnchoredPosition, ControllableState. Role combobox.
 //   value       -> string HH:MM (controlled)
 //   defaultValue-> string HH:MM (uncontrolled)
 //   onChange    -> callback receiving the selected time string
 //   disabled    -> boolean
 //   invalid     -> boolean
-'use strict';
 
-const { View: RNView, Pressable, Platform } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable, Platform } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the TimePicker composite.
@@ -23,10 +26,19 @@ Build the TimePicker composite.
 
 @return {Function} - The TimePicker component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+
   const useOverlay = Parts.Overlay.useOverlay;
 
-  return function TimePicker (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const TimePicker = function TimePicker (props) {
+
 
     const {
       value, defaultValue, onChange, disabled, invalid,
@@ -322,7 +334,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     }
 
     return React.createElement(RNView, { style: { position: 'relative' } }, renderTrigger());
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _TimePicker = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return TimePicker;
+
+}/////////////////////////// Component Factory END /////////////////////////////

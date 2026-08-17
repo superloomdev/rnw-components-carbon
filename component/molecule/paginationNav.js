@@ -1,15 +1,18 @@
 // Info: PaginationNav molecule [S2 interactive]. A page navigation control
 // with role="group" that renders page number buttons for pagination. Uses
-// M1 (a11y) for aria-current on the active page, and M2 (usePressKeys) for
+// A11y for aria-current on the active page, and PressKeys for
 // keyboard activation on each page button.
 //   currentPage -> number (the active page, 1-based)
 //   totalPages  -> number (total number of pages)
 //   onChange    -> function (called with selected page number)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the PaginationNav molecule.
@@ -23,8 +26,17 @@ Build the PaginationNav molecule.
 
 @return {Function} - The PaginationNav component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function PaginationNav (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const PaginationNav = function PaginationNav (props) {
+
 
     const {
       currentPage, totalPages, onChange, style,
@@ -106,7 +118,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, rest),
       pages.map(renderPageButton)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _PaginationNav = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return PaginationNav;
+
+}/////////////////////////// Component Factory END /////////////////////////////

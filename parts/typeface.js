@@ -8,8 +8,6 @@
 // theme's Font.family.primary.
 //
 // Loader pattern: FACTORY part. Uniform parts signature.
-'use strict';
-
 
 /////////////////////////// Module-Loader START ////////////////////////////////
 
@@ -23,7 +21,7 @@
 
     @return {Object} - Public Typeface interface
 *********************************************************************/
-module.exports = function loader (shared_libs, config, errors) {
+export default function (shared_libs, config, errors) {
 
   // Dependencies for this part, by reference from the shared container
   const Lib = {
@@ -37,7 +35,7 @@ module.exports = function loader (shared_libs, config, errors) {
 
   return createInterface(Lib);
 
-};/////////////////////////// Module-Loader END /////////////////////////////////
+}/////////////////////////// Module-Loader END /////////////////////////////////
 
 
 

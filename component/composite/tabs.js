@@ -1,16 +1,20 @@
 // Info: Tabs composite [S4 compound]. A tab navigation container with
-// role="tablist" that coordinates Tab children. Uses M1 (a11y), M3
-// (useRovingTabIndex), M7 (createCompoundContext). Wraps each Tab child
+// role="tablist" that coordinates Tab children. Uses A11y, M3
+// (useRovingTabIndex), CompoundContext. Wraps each Tab child
 // in a context Provider so it can read its index, selected state, and
 // focusable flag without cloneElement (which breaks under the HOC).
 //   selectedIndex -> number (0-based active tab index)
 //   onChange      -> function (called with new index)
 //   children      -> Tab elements
 //   style         -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import getSharedContext from '../context/sharedContext.js';
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Tabs composite.
@@ -24,13 +28,21 @@ Build the Tabs composite.
 
 @return {Function} - The Tabs component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
 
-  const getSharedContext = require('../context/sharedContext');
+  /////////////////////////// Static Constants START ////////////////////////////
+
+
   // Get the shared compound context (cached per Lib instance)
   const ctx = getSharedContext(Lib, 'Tabs');
 
-  return function Tabs (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Tabs = function Tabs (props) {
+
 
     const {
       selectedIndex, onChange, children, style,
@@ -82,7 +94,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
       }, roving.containerProps, rest),
       wrappedChildren
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Tabs = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Tabs;
+
+}/////////////////////////// Component Factory END /////////////////////////////

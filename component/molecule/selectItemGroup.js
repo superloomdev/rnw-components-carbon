@@ -3,10 +3,13 @@
 //   label       -> string (the group label)
 //   children    -> SelectItem elements
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the SelectItemGroup molecule.
@@ -20,9 +23,17 @@ Build the SelectItemGroup molecule.
 
 @return {Function} - The SelectItemGroup component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function SelectItemGroup (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const SelectItemGroup = function SelectItemGroup (props) {
+
 
     const {
       label, children, style,
@@ -51,7 +62,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         : null,
       children
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _SelectItemGroup = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return SelectItemGroup;
+
+}/////////////////////////// Component Factory END /////////////////////////////

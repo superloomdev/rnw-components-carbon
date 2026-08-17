@@ -1,12 +1,15 @@
 // Info: DefinitionTooltip molecule [S3 overlay]. A tooltip that shows a
-// definition on hover/focus. Uses M1 (a11y), M5 (useAnchoredPosition).
+// definition on hover/focus. Uses A11y, AnchoredPosition.
 //   term        -> string (the term being defined, shown inline)
 //   definition  -> string (the definition content)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable, Platform } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable, Platform } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the DefinitionTooltip molecule.
@@ -20,8 +23,17 @@ Build the DefinitionTooltip molecule.
 
 @return {Function} - The DefinitionTooltip component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function DefinitionTooltip (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const DefinitionTooltip = function DefinitionTooltip (props) {
+
 
     const {
       term, definition, style, // eslint-disable-line no-unused-vars
@@ -113,7 +125,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       ),
       isVisible ? renderDefinition() : null
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _DefinitionTooltip = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return DefinitionTooltip;
+
+}/////////////////////////// Component Factory END /////////////////////////////

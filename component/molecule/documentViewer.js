@@ -4,10 +4,13 @@
 // WebView). P3 establishes the prop contract; platform split is P6.
 //   source      -> string (URL or HTML content)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the DocumentViewer molecule.
@@ -21,9 +24,17 @@ Build the DocumentViewer molecule.
 
 @return {Function} - The DocumentViewer component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function DocumentViewer (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const DocumentViewer = function DocumentViewer (props) {
+
 
     // Destructure props
     const {
@@ -44,7 +55,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, rest),
       React.createElement(Registry.Text, null, source || '')
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _DocumentViewer = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return DocumentViewer;
+
+}/////////////////////////// Component Factory END /////////////////////////////

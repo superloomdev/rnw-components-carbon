@@ -1,13 +1,16 @@
 // Info: DismissibleTag molecule [S2 interactive]. A tag that can be dismissed.
-// Uses role="button" for screen reader semantics. Uses M1 (a11y) for aria-*
-// state and M2 (usePressKeys) for keyboard activation.
+// Uses role="button" for screen reader semantics. Uses A11y for aria-*
+// state and PressKeys for keyboard activation.
 //   text        -> string (the tag label)
 //   onDismiss   -> function (called when dismiss is pressed)
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the DismissibleTag molecule.
@@ -21,8 +24,17 @@ Build the DismissibleTag molecule.
 
 @return {Function} - The DismissibleTag component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function DismissibleTag (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const DismissibleTag = function DismissibleTag (props) {
+
 
     const {
       text, onDismiss, style,
@@ -74,7 +86,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         style: Style.utilities['m_s_xs']
       })
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _DismissibleTag = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return DismissibleTag;
+
+}/////////////////////////// Component Factory END /////////////////////////////

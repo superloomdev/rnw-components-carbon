@@ -1,12 +1,15 @@
 // Info: Header composite [S1/S2 compound]. A navigation header container
 // that groups HeaderNavigation, HeaderMenuButton, and HeaderPanel children. Uses
-// M1 (a11y) for the container. Composes View atom for the header bar.
+// A11y for the container. Composes View atom for the header bar.
 //   children    -> HeaderNavigation, HeaderMenuButton, HeaderPanel elements
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Header composite.
@@ -20,9 +23,17 @@ Build the Header composite.
 
 @return {Function} - The Header component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function Header (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Header = function Header (props) {
+
 
     const { children, style, ...rest } = props;
 
@@ -48,7 +59,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, rest),
       children
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Header = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Header;
+
+}/////////////////////////// Component Factory END /////////////////////////////

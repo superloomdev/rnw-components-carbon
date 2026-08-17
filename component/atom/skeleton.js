@@ -1,15 +1,18 @@
 // Info: Skeleton atom [S1 presentational]. A placeholder for loading states.
-// Sets aria-hidden so screen readers skip placeholder content. Uses M1 (a11y)
+// Sets aria-hidden so screen readers skip placeholder content. Uses A11y
 // for the aria-hidden prop.
 //   variant    -> 'text' | 'icon' | 'placeholder' (default 'text')
 //   lines      -> number (for text variant, default 1)
 //   width      -> number or string (default '100%')
 //   height     -> number or string (default 16 for text, 48 for placeholder)
 //   style      -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Skeleton atom.
@@ -19,12 +22,20 @@ Build the Skeleton atom.
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Parts    - Mechanisms: { A11y, PressKeys, ControllableState, Units, Overlay, AnchoredPosition }
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style   - { utilities, tokens, breakpoint }
+@param {Object} Style    - { utilities, tokens, breakpoint }
 
 @return {Function} - The Skeleton component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function Skeleton (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Skeleton = function Skeleton (props) {
 
     const {
       variant, lines, width, height, style,
@@ -81,6 +92,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       Object.assign({ style: [boxStyle, style] }, ariaProps, rest)
     );
 
-  };
+  };////////////////////////// Public Functions END ////////////////////////////
 
-};
+
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Skeleton = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Skeleton;
+
+}/////////////////////////// Component Factory END /////////////////////////////

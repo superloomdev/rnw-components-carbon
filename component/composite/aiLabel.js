@@ -1,13 +1,16 @@
 // Info: AILabel composite [S3 overlay]. An AI-generated content label with
-// a toggletip that shows details. Uses M1 (a11y), M5 (useAnchoredPosition).
+// a toggletip that shows details. Uses A11y, AnchoredPosition.
 // Composes Icon, Text, Toggletip atoms/molecules.
 //   label       -> string (label text, default 'AI')
 //   details     -> string (toggletip content)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the AILabel composite.
@@ -21,8 +24,17 @@ Build the AILabel composite.
 
 @return {Function} - The AILabel component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function AILabel (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const AILabel = function AILabel (props) {
+
 
     const {
       label, details, style,
@@ -81,7 +93,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         )
         : null
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _AILabel = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return AILabel;
+
+}/////////////////////////// Component Factory END /////////////////////////////

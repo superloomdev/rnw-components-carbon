@@ -1,14 +1,17 @@
 // Info: Tile molecule [S1 presentational]. A clickable tile card with
-// title, subtitle, and optional icon. Uses M1 (a11y).
+// title, subtitle, and optional icon. Uses A11y.
 //   title       -> string
 //   subtitle    -> string
 //   icon        -> string (icon name)
 //   children    -> additional content
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Tile molecule.
@@ -22,9 +25,17 @@ Build the Tile molecule.
 
 @return {Function} - The Tile component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function Tile (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Tile = function Tile (props) {
+
 
     const {
       title, subtitle, icon, children, style,
@@ -69,7 +80,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         : null,
       children
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Tile = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Tile;
+
+}/////////////////////////// Component Factory END /////////////////////////////

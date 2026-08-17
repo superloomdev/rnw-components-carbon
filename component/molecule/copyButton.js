@@ -1,15 +1,18 @@
 // Info: CopyButton molecule [S2 interactive]. A button that copies text to
-// clipboard and shows a success state. Uses M1 (a11y) for aria-* state and
-// M6 (useAnnounce) for screen reader announcement of the copy action.
+// clipboard and shows a success state. Uses A11y for aria-* state and
+// useAnnounce for screen reader announcement of the copy action.
 //   text        -> string (the text to copy)
 //   label       -> string (button label, default 'Copy')
 //   onCopy      -> function (callback after copy)
 //   disabled    -> boolean
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the CopyButton molecule.
@@ -23,8 +26,17 @@ Build the CopyButton molecule.
 
 @return {Function} - The CopyButton component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function CopyButton (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const CopyButton = function CopyButton (props) {
+
 
     const {
       text, label, onCopy, disabled, style,
@@ -90,7 +102,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         color: disabled ? 'text_disabled' : 'text_primary'
       }, copied ? 'Copied!' : (label || 'Copy'))
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _CopyButton = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return CopyButton;
+
+}/////////////////////////// Component Factory END /////////////////////////////

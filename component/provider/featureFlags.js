@@ -1,9 +1,14 @@
 // Info: FeatureFlags provider [PROVIDER]. Provides feature flag values to
-// descendants via context. Uses M7 (createCompoundContext pattern).
+// descendants via context. Uses createCompoundContext pattern.
 //   flags       -> object (key-value map of feature flags)
 //   children    -> content to render within the flag context
-'use strict';
 
+
+// Imports
+// None.
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the FeatureFlags provider.
@@ -11,14 +16,21 @@ Build the FeatureFlags provider.
 @param {Object} Lib      - { Utils, Debug, React }
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
-@param {Object} Parts    - Mechanisms: { A11y, PressKeys, ControllableState, Units, Overlay, AnchoredPosition }
+@param {Object} Parts    - Mechanisms: { ... }
 @param {Object} Registry - Component registry (unused by providers)
-@param {Object} Style   - { utilities, tokens, breakpoint }
+@param {Object} Style    - { utilities, tokens, breakpoint }
 
-@return {Function} - The FeatureFlags provider component
+@return {Object} - The FeatureFlags provider interface
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
 
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
   const React = Lib.React;
   const createContext = React.createContext;
 
@@ -44,11 +56,22 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
     );
 
   };
+  ////////////////////////// Public Functions END ////////////////////////////
 
+
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _FeatureFlags = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the provider interface
   return {
     FeatureFlags: FeatureFlags,
     useFeatureFlags: useFeatureFlags,
     FeatureFlagsContext: FeatureFlagsContext
   };
 
-};
+}/////////////////////////// Component Factory END /////////////////////////////

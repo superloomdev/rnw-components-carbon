@@ -1,16 +1,19 @@
 // Info: DatePicker composite [S3 overlay]. A date picker with a trigger
-// button and a calendar-like view. Uses M1 (a11y), M4 (Overlay),
-// M5 (useAnchoredPosition), M8 (useControllableState). Role combobox.
+// button and a calendar-like view. Uses A11y, Overlay,
+// AnchoredPosition, ControllableState. Role combobox.
 //   value       -> string YYYY-MM-DD (controlled)
 //   defaultValue-> string YYYY-MM-DD (uncontrolled)
 //   onChange    -> callback receiving the selected date string
 //   disabled    -> boolean
 //   invalid     -> boolean
 //   datePickerType -> 'single' | 'range' (default 'single'; 'range' absorbed from DateRangePicker)
-'use strict';
 
-const { View: RNView, Pressable, Platform } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable, Platform } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the DatePicker composite.
@@ -24,10 +27,19 @@ Build the DatePicker composite.
 
 @return {Function} - The DatePicker component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+
   const useOverlay = Parts.Overlay.useOverlay;
 
-  return function DatePicker (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const DatePicker = function DatePicker (props) {
+
 
     const {
       value, defaultValue, onChange, disabled, invalid, datePickerType,
@@ -355,7 +367,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     }
 
     return React.createElement(RNView, { style: { position: 'relative' } }, renderTrigger());
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _DatePicker = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return DatePicker;
+
+}/////////////////////////// Component Factory END /////////////////////////////

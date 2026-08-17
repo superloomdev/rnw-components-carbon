@@ -7,10 +7,13 @@
 //   width       -> numeric cell width in pixels
 //   onPress     -> optional press handler (makes the cell pressable)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the DataTableCell molecule.
@@ -24,9 +27,17 @@ Build the DataTableCell molecule.
 
 @return {Function} - The DataTableCell component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function DataTableCell (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const DataTableCell = function DataTableCell (props) {
+
 
     const {
       content, type, width, onPress, style,
@@ -70,7 +81,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, rest),
       textElement
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _DataTableCell = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return DataTableCell;
+
+}/////////////////////////// Component Factory END /////////////////////////////

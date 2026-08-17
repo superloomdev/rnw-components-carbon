@@ -5,10 +5,13 @@
 //   onChange    -> callback receiving the text value
 //   placeholder -> string (placeholder text, default 'Search')
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the TableToolbarSearch molecule.
@@ -22,9 +25,17 @@ Build the TableToolbarSearch molecule.
 
 @return {Function} - The TableToolbarSearch component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function TableToolbarSearch (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const TableToolbarSearch = function TableToolbarSearch (props) {
+
 
     const {
       value, onChange, placeholder, style,
@@ -64,7 +75,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         }, rest)
       )
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _TableToolbarSearch = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return TableToolbarSearch;
+
+}/////////////////////////// Component Factory END /////////////////////////////

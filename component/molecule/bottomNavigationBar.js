@@ -3,10 +3,13 @@
 // reader semantics. Each item is a Pressable with icon and label.
 //   items       -> array of { icon, text, onPress, active }
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the BottomNavigationBar molecule.
@@ -20,9 +23,17 @@ Build the BottomNavigationBar molecule.
 
 @return {Function} - The BottomNavigationBar component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function BottomNavigationBar (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const BottomNavigationBar = function BottomNavigationBar (props) {
+
 
     // Destructure props
     const {
@@ -68,7 +79,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, rest),
       (Array.isArray(items) ? items : []).map(renderItem)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _BottomNavigationBar = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return BottomNavigationBar;
+
+}/////////////////////////// Component Factory END /////////////////////////////

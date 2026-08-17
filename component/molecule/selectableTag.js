@@ -1,14 +1,17 @@
 // Info: SelectableTag molecule [S2 interactive]. A tag that can be
-// selected/deselected. Uses M1 (a11y) for aria-* state and M2 (usePressKeys)
+// selected/deselected. Uses A11y for aria-* state and PressKeys
 // for keyboard activation. Role="button".
 //   text        -> string (the tag label)
 //   selected    -> boolean (whether the tag is selected)
 //   onSelect    -> function (called with next boolean)
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the SelectableTag molecule.
@@ -22,8 +25,17 @@ Build the SelectableTag molecule.
 
 @return {Function} - The SelectableTag component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function SelectableTag (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const SelectableTag = function SelectableTag (props) {
+
 
     const {
       text, selected, onSelect, style,
@@ -81,7 +93,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         color: selected ? 'app_primary' : 'text_primary'
       }, text)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _SelectableTag = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return SelectableTag;
+
+}/////////////////////////// Component Factory END /////////////////////////////

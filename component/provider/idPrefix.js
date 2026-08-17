@@ -1,9 +1,14 @@
 // Info: IdPrefix provider [PROVIDER]. Provides an id prefix to descendants
-// for generating unique element ids. Uses M7 (createCompoundContext pattern).
+// for generating unique element ids. Uses createCompoundContext pattern.
 //   prefix      -> string (the id prefix, e.g. 'my-app')
 //   children    -> content to render within the prefix context
-'use strict';
 
+
+// Imports
+// None.
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the IdPrefix provider.
@@ -11,14 +16,21 @@ Build the IdPrefix provider.
 @param {Object} Lib      - { Utils, Debug, React }
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
-@param {Object} Parts    - Mechanisms: { A11y, PressKeys, ControllableState, Units, Overlay, AnchoredPosition }
+@param {Object} Parts    - Mechanisms: { ... }
 @param {Object} Registry - Component registry (unused by providers)
-@param {Object} Style   - { utilities, tokens, breakpoint }
+@param {Object} Style    - { utilities, tokens, breakpoint }
 
-@return {Function} - The IdPrefix provider component
+@return {Object} - The IdPrefix provider interface
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
 
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
   const React = Lib.React;
   const createContext = React.createContext;
 
@@ -44,11 +56,22 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
     );
 
   };
+  ////////////////////////// Public Functions END ////////////////////////////
 
+
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _IdPrefix = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the provider interface
   return {
     IdPrefix: IdPrefix,
     useIdPrefix: useIdPrefix,
     IdPrefixContext: IdPrefixContext
   };
 
-};
+}/////////////////////////// Component Factory END /////////////////////////////

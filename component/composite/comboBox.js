@@ -1,5 +1,5 @@
 // Info: ComboBox composite [S3 overlay]. A select with text input filtering.
-// Uses M1 (a11y), M4 (Overlay), M5 (useAnchoredPosition), M8
+// Uses A11y, Overlay, AnchoredPosition, M8
 // (useControllableState). Role combobox.
 //   value       -> string (controlled)
 //   defaultValue-> string (uncontrolled)
@@ -8,10 +8,13 @@
 //   placeholder -> string (default 'Search')
 //   disabled    -> boolean
 //   invalid     -> boolean
-'use strict';
 
-const { View: RNView, Pressable, Platform } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable, Platform } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ComboBox composite.
@@ -25,10 +28,19 @@ Build the ComboBox composite.
 
 @return {Function} - The ComboBox component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+
   const useOverlay = Parts.Overlay.useOverlay;
 
-  return function ComboBox (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ComboBox = function ComboBox (props) {
+
 
     const {
       value, defaultValue, onChange, options, placeholder, disabled, invalid,
@@ -217,7 +229,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     }
 
     return renderTrigger();
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ComboBox = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ComboBox;
+
+}/////////////////////////// Component Factory END /////////////////////////////

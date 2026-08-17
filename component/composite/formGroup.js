@@ -6,8 +6,13 @@
 //   invalid     -> boolean (shows message in danger color)
 //   message     -> string (helper or error text shown below the group)
 //   disabled    -> boolean (dims the label)
-'use strict';
 
+
+// Imports
+
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the FormGroup composite.
@@ -21,8 +26,17 @@ Build the FormGroup composite.
 
 @return {Function} - The FormGroup component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function FormGroup (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const FormGroup = function FormGroup (props) {
+
 
     const {
       children, label, invalid, message, disabled,
@@ -70,7 +84,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       children,
       messageElement
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _FormGroup = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return FormGroup;
+
+}/////////////////////////// Component Factory END /////////////////////////////

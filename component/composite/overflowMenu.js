@@ -1,14 +1,18 @@
 // Info: OverflowMenu composite [S3 overlay]. A button that opens a Menu.
-// Uses M1 (a11y), M3 (useRovingTabIndex), M4 (Overlay), M5 (useAnchoredPosition),
-// M7 (createCompoundContext). Composes Button, Menu, MenuItem atoms.
+// Uses A11y, RovingTabIndex, Overlay, AnchoredPosition,
+// CompoundContext. Composes Button, Menu, MenuItem atoms.
 //   items       -> array of { label, onPress, disabled }
 //   triggerLabel-> string (default 'Options')
 //   placement   -> string (default 'bottom-end')
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import menuFactory from './menu.js';
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the OverflowMenu composite.
@@ -22,10 +26,19 @@ Build the OverflowMenu composite.
 
 @return {Function} - The OverflowMenu component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  const Menu = require('./menu')(Lib, CONFIG, ERRORS, Parts, Registry, Style);
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function OverflowMenu (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+
+  const Menu = menuFactory(Lib, CONFIG, ERRORS, Parts, Registry, Style);
+
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const OverflowMenu = function OverflowMenu (props) {
+
 
     const {
       items, triggerLabel, placement, style, // eslint-disable-line no-unused-vars
@@ -81,7 +94,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       ),
       React.createElement(Menu, { isOpen: isOpen, onClose: handleClose }, menuItems)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _OverflowMenu = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return OverflowMenu;
+
+}/////////////////////////// Component Factory END /////////////////////////////

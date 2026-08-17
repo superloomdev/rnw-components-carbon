@@ -1,5 +1,6 @@
-'use strict';
-module.exports = function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
+import mechanism from '../component/Overlay.js';
+
+export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
   const Lib = { Utils: shared_libs.Utils, Debug: shared_libs.Debug, React: shared_libs.React };
-  return require('../component/Overlay')(Lib);
-};
+  return mechanism(Lib);
+}

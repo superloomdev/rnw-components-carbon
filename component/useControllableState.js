@@ -5,7 +5,6 @@
 // not undefined, uncontrolled otherwise. Warns once through Lib.Debug.warn
 // when a component switches modes between renders. Never warns on every
 // render.
-'use strict';
 
 
 /********************************************************************
@@ -16,7 +15,7 @@ Build the useControllableState hook.
 @return {Function} - useControllableState({ value, defaultValue, onChange })
                      -> [resolvedValue, setValue]
 *********************************************************************/
-module.exports = function (Lib) {
+export default function (Lib) {
 
   const React = Lib.React;
 
@@ -97,4 +96,4 @@ module.exports = function (Lib) {
 
   };
 
-};
+}

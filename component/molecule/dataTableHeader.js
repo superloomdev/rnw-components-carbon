@@ -5,10 +5,13 @@
 //   primaryAction    -> single action object { label, onPress, kind }
 //   secondaryActions -> array of action objects { label, onPress, kind }
 //   style            -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the DataTableHeader molecule.
@@ -22,9 +25,17 @@ Build the DataTableHeader molecule.
 
 @return {Function} - The DataTableHeader component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function DataTableHeader (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const DataTableHeader = function DataTableHeader (props) {
+
 
     const {
       primaryAction, secondaryActions, style,
@@ -78,7 +89,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         secondary
       )
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _DataTableHeader = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return DataTableHeader;
+
+}/////////////////////////// Component Factory END /////////////////////////////

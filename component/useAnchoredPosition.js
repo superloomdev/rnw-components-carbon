@@ -13,11 +13,9 @@
 // Does not add @floating-ui/react or @floating-ui/react-native. The
 // former is DOM-only; the latter drops middleware fidelity and adds a
 // dependency for behavior we need in ~40 lines.
-'use strict';
 
-/* global window */
-
-const { Platform } = require('react-native');
+// Imports
+import { Platform as RNPlatform } from 'react-native';
 
 
 // Pure function: compute position from a measured rect
@@ -100,7 +98,7 @@ Build the useAnchoredPosition hook.
 
 @return {Function} - useAnchoredPosition(options) -> { position, actualPlacement, measure }
 *********************************************************************/
-module.exports = function (Lib) {
+export default function (Lib) {
 
   const React = Lib.React;
 
@@ -132,7 +130,7 @@ module.exports = function (Lib) {
       const anchor = anchorRef.current;
 
       // Web: use getBoundingClientRect
-      if (Platform.OS === 'web' && typeof anchor.getBoundingClientRect === 'function') {
+      if (RNPlatform.OS === 'web' && typeof anchor.getBoundingClientRect === 'function') {
 
         const rect = anchor.getBoundingClientRect();
         const vw = typeof window !== 'undefined' ? window.innerWidth : 0;
@@ -189,4 +187,4 @@ module.exports = function (Lib) {
 
   };
 
-};
+}

@@ -1,13 +1,16 @@
 // Info: FileUploaderDropContainer molecule [S2 interactive]. A drag-drop area
-// for files. Uses role="button" for screen reader semantics. Uses M1 (a11y)
-// for aria-* state and M2 (usePressKeys) for keyboard activation.
+// for files. Uses role="button" for screen reader semantics. Uses A11y
+// for aria-* state and PressKeys for keyboard activation.
 //   onDrop      -> function (called with dropped files)
 //   label       -> string (drop area label)
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the FileUploaderDropContainer molecule.
@@ -21,8 +24,17 @@ Build the FileUploaderDropContainer molecule.
 
 @return {Function} - The FileUploaderDropContainer component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function FileUploaderDropContainer (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const FileUploaderDropContainer = function FileUploaderDropContainer (props) {
+
 
     const {
       onDrop, label, style,
@@ -75,7 +87,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         color: 'text_secondary'
       }, label || 'Drag and drop files here or click to browse')
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _FileUploaderDropContainer = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return FileUploaderDropContainer;
+
+}/////////////////////////// Component Factory END /////////////////////////////

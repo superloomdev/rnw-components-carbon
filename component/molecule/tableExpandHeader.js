@@ -4,10 +4,13 @@
 //   isExpanded -> boolean, whether the row group is currently expanded
 //   onToggle   -> function invoked when the toggle is pressed
 //   style      -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the TableExpandHeader molecule.
@@ -21,8 +24,17 @@ Build the TableExpandHeader molecule.
 
 @return {Function} - The TableExpandHeader component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function TableExpandHeader (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const TableExpandHeader = function TableExpandHeader (props) {
+
 
     const {
       isExpanded, onToggle, style,
@@ -65,7 +77,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, ariaProps, rest),
       toggle
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _TableExpandHeader = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return TableExpandHeader;
+
+}/////////////////////////// Component Factory END /////////////////////////////

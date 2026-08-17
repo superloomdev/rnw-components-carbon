@@ -3,9 +3,8 @@
 // Frozen on export. Injected into validators and the public interface.
 // Boot-time misconfiguration throws TypeError; render-time prop errors
 // warn and fall back deterministically (see docs/philosophy.md).
-'use strict';
 
-module.exports = Object.freeze({
+export default Object.freeze({
 
   THEME_INVALID: {
     type: 'rnw-components-carbon/theme-invalid',

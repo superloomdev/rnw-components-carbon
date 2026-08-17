@@ -1,14 +1,17 @@
 // Info: MenuItemRadioGroup composite [S4 compound]. A group of menu items
-// with role="group" where exactly one is selected. Uses M1 (a11y),
-// M3 (useRovingTabIndex), M7 (createCompoundContext).
+// with role="group" where exactly one is selected. Uses A11y,
+// RovingTabIndex, CompoundContext.
 //   items       -> array of { label, value }
 //   value       -> string (selected value)
 //   onChange    -> function (called with selected value)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the MenuItemRadioGroup composite.
@@ -22,9 +25,18 @@ Build the MenuItemRadioGroup composite.
 
 @return {Function} - The MenuItemRadioGroup component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
 
-  return function MenuItemRadioGroup (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+
+
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const MenuItemRadioGroup = function MenuItemRadioGroup (props) {
+
 
     const {
       items, value, onChange, style,
@@ -55,7 +67,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
       }, rest),
       radioItems
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _MenuItemRadioGroup = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return MenuItemRadioGroup;
+
+}/////////////////////////// Component Factory END /////////////////////////////

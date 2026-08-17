@@ -1,14 +1,17 @@
 // Info: ClickableTile molecule [S2 interactive]. A tile that acts as a
-// button. Uses M1 (a11y) for aria-* state and M2 (usePressKeys) for keyboard.
+// button. Uses A11y for aria-* state and PressKeys for keyboard.
 //   title       -> string
 //   subtitle    -> string
 //   onPress     -> function
 //   disabled    -> boolean
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ClickableTile molecule.
@@ -22,8 +25,17 @@ Build the ClickableTile molecule.
 
 @return {Function} - The ClickableTile component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function ClickableTile (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ClickableTile = function ClickableTile (props) {
+
 
     const {
       title, subtitle, onPress, disabled, style,
@@ -74,7 +86,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         }, subtitle)
         : null
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ClickableTile = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ClickableTile;
+
+}/////////////////////////// Component Factory END /////////////////////////////

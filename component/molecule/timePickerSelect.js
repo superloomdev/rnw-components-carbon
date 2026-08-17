@@ -4,8 +4,13 @@
 //   onChange    -> callback receiving the selected value
 //   options     -> array of { value, label }
 //   style       -> custom style overrides
-'use strict';
 
+
+// Imports
+
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the TimePickerSelect molecule.
@@ -19,9 +24,18 @@ Build the TimePickerSelect molecule.
 
 @return {Function} - The TimePickerSelect component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
 
-  return function TimePickerSelect (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+
+
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const TimePickerSelect = function TimePickerSelect (props) {
+
 
     const {
       value, onChange, options, style,
@@ -40,7 +54,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
         style: style
       }, rest)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _TimePickerSelect = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return TimePickerSelect;
+
+}/////////////////////////// Component Factory END /////////////////////////////

@@ -1,14 +1,17 @@
 // Info: CodeSnippet molecule [S1/S2]. A code display block with optional copy
-// button. Uses M1 (a11y) for aria-* and M6 (useAnnounce) for copy feedback.
+// button. Uses A11y for aria-* and useAnnounce for copy feedback.
 //   code        -> string (the code to display)
 //   language    -> string (language label, e.g. 'javascript')
 //   showCopy    -> boolean (default true)
 //   onCopy      -> function (callback after copy)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the CodeSnippet molecule.
@@ -22,9 +25,17 @@ Build the CodeSnippet molecule.
 
 @return {Function} - The CodeSnippet component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function CodeSnippet (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const CodeSnippet = function CodeSnippet (props) {
+
 
     const {
       code, language, showCopy, onCopy, style, // eslint-disable-line no-unused-vars
@@ -61,7 +72,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         })
         : null
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _CodeSnippet = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return CodeSnippet;
+
+}/////////////////////////// Component Factory END /////////////////////////////

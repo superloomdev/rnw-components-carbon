@@ -1,14 +1,17 @@
 // Info: IconTab molecule [S2 interactive]. A tab with only an icon. Uses
-// role="tab" for screen reader semantics. Uses M1 (a11y) for aria-* state and
-// M2 (usePressKeys) for keyboard activation.
+// role="tab" for screen reader semantics. Uses A11y for aria-* state and
+// PressKeys for keyboard activation.
 //   icon        -> string (icon name)
 //   active      -> boolean (whether this tab is active)
 //   onPress     -> function (press handler)
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the IconTab molecule.
@@ -22,8 +25,17 @@ Build the IconTab molecule.
 
 @return {Function} - The IconTab component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function IconTab (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const IconTab = function IconTab (props) {
+
 
     const {
       icon, active, onPress, style,
@@ -72,7 +84,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         color: isActive ? 'text_primary' : 'TEXT_SECONDARY'
       })
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _IconTab = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return IconTab;
+
+}/////////////////////////// Component Factory END /////////////////////////////

@@ -1,9 +1,8 @@
 // Info: Default configuration for rnw-components-carbon.
 //
 // All keys can be overridden by passing a config object to the loader.
-'use strict';
 
-module.exports = {
+export default {
 
   // Default font size token when a component receives no size prop
   DEFAULT_FONT_SIZE: 'md',

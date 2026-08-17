@@ -1,15 +1,18 @@
 // Info: ComposedModal composite [S3/S4 overlay]. A modal dialog with
-// ModalHeader, ModalBody, ModalFooter coordination. Uses M1 (a11y),
-// M4 (Overlay), M7 (createCompoundContext). Uses useFocusTrap with
+// ModalHeader, ModalBody, ModalFooter coordination. Uses A11y,
+// Overlay, CompoundContext. Uses useFocusTrap with
 // trap: true. Composes ModalHeader, ModalBody, ModalFooter molecules.
 //   isOpen      -> boolean
 //   onClose     -> function
 //   children    -> ModalHeader, ModalBody, ModalFooter elements
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable, Modal: RNModal, Platform } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable, Modal as RNModal, Platform } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ComposedModal composite.
@@ -23,10 +26,19 @@ Build the ComposedModal composite.
 
 @return {Function} - The ComposedModal component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+
   const useOverlay = Parts.Overlay.useOverlay;
 
-  return function ComposedModal (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ComposedModal = function ComposedModal (props) {
+
 
     const {
       isOpen, onClose, children, style,
@@ -112,7 +124,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     }
 
     return null;
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ComposedModal = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ComposedModal;
+
+}/////////////////////////// Component Factory END /////////////////////////////

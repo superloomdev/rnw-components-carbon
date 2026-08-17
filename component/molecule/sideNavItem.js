@@ -1,14 +1,17 @@
 // Info: SideNavItem molecule [S2 interactive]. A single navigation item.
-// Uses role="link" for screen reader semantics. Uses M1 (a11y) for aria-*
-// state (current) and M2 (usePressKeys) for keyboard activation.
+// Uses role="link" for screen reader semantics. Uses A11y for aria-*
+// state (current) and PressKeys for keyboard activation.
 //   text        -> string (item label)
 //   onPress     -> function (press handler)
 //   active      -> boolean (whether this item is active)
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the SideNavItem molecule.
@@ -22,8 +25,17 @@ Build the SideNavItem molecule.
 
 @return {Function} - The SideNavItem component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function SideNavItem (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const SideNavItem = function SideNavItem (props) {
+
 
     const {
       text, onPress, active, style,
@@ -72,7 +84,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         weight: isActive ? 'medium' : 'regular'
       }, text || '')
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _SideNavItem = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return SideNavItem;
+
+}/////////////////////////// Component Factory END /////////////////////////////

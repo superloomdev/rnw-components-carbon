@@ -1,14 +1,18 @@
 // Info: MenuButton composite [S3 overlay]. A button that opens a Menu.
-// Uses M1 (a11y), M4 (Overlay), M5 (useAnchoredPosition), M7 (createCompoundContext).
+// Uses A11y, Overlay, AnchoredPosition, CompoundContext.
 // Composes Button, Menu, MenuItem atoms.
 //   label       -> string (button label)
 //   items       -> array of { label, onPress, disabled }
 //   icon        -> string (optional leading icon)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import menuFactory from './menu.js';
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the MenuButton composite.
@@ -22,10 +26,19 @@ Build the MenuButton composite.
 
 @return {Function} - The MenuButton component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  const Menu = require('./menu')(Lib, CONFIG, ERRORS, Parts, Registry, Style);
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function MenuButton (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+
+  const Menu = menuFactory(Lib, CONFIG, ERRORS, Parts, Registry, Style);
+
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const MenuButton = function MenuButton (props) {
+
 
     const {
       label, items, icon, style, // eslint-disable-line no-unused-vars
@@ -74,7 +87,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       ),
       React.createElement(Menu, { isOpen: isOpen, onClose: handleClose }, menuItems)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _MenuButton = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return MenuButton;
+
+}/////////////////////////// Component Factory END /////////////////////////////
