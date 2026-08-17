@@ -106,7 +106,7 @@ import comboButtonFactory from './component/composite/comboButton.js';
 import composedModalFactory from './component/composite/composedModal.js';
 import menuItemRadioGroupFactory from './component/composite/menuItemRadioGroup.js';
 import sidePanelFactory from './component/composite/sidePanel.js';
-import aiLabelFactory from './component/composite/aiLabel.js';
+import aiLabelFactory from './component/composite/aILabel.js';
 import actionSheetFactory from './component/composite/actionSheet.js';
 
 // Molecules (navigation)
@@ -312,8 +312,8 @@ import buttonPrimaryOutlinedFactory from './component/variant/buttonPrimaryOutli
 import rawBoxFactory from './component/freeform/rawBox.js';
 
 // Providers
-import overlayProviderFactory from './component/Overlay.js';
-import liveRegionProviderFactory from './component/LiveRegionProvider.js';
+import overlayProviderFactory from './component/provider/overlay.js';
+import liveRegionProviderFactory from './component/provider/liveRegionProvider.js';
 import layerProviderFactory from './component/provider/layer.js';
 import themeProviderFactory from './component/provider/theme.js';
 import featureFlagsProviderFactory from './component/provider/featureFlags.js';
