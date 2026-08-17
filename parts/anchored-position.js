@@ -58,11 +58,29 @@ const createInterface = function (Lib) {
 
   ///////////////////////////Private Functions START///////////////////////////////
 
+  const _AnchoredPosition = {
+
+    // Parse a placement string into base and alignment parts
+    parsePlacement: function (placement) {
+
+      const dashIndex = placement.indexOf('-');
+
+      if (dashIndex < 0) {
+        return { base: placement, alignment: null };
+      }
+
+      return { base: placement.substring(0, dashIndex), alignment: placement.substring(dashIndex + 1) };
+
+    }
+
+  };
+
   // Pure function: compute position from a measured rect
   const computePosition = function (rect, placement, offset, vw, vh, flip) {
 
-    let basePlacement = placement.split('-')[0];
-    const alignment = placement.indexOf('-') >= 0 ? placement.split('-')[1] : null;
+    const parsed = _AnchoredPosition.parsePlacement(placement);
+    let basePlacement = parsed.base;
+    const alignment = parsed.alignment;
 
     let actualPlacement = placement;
     let top = 0;

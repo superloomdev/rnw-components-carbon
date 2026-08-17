@@ -43,8 +43,8 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     // Resolve colors from tokens
     const colorMap = Style.tokens.Color;
-    const fillColor = (color && colorMap[color.toUpperCase()]) || colorMap.APP_PRIMARY || '#0f62fe';
-    const trackFillColor = (trackColor && colorMap[trackColor.toUpperCase()]) || colorMap.SURFACE || '#e0e0e0';
+    const fillColor = _ProgressBar.resolveColorToken(color, colorMap, colorMap.APP_PRIMARY || '#0f62fe');
+    const trackFillColor = _ProgressBar.resolveColorToken(trackColor, colorMap, colorMap.SURFACE || '#e0e0e0');
 
     // Resolve height
     const barHeight = Lib.Utils.isNumber(height) ? height : 4;
@@ -142,8 +142,19 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
 
   ////////////////////////// Private Functions START ///////////////////////////
-  const _ProgressBar = { // eslint-disable-line no-unused-vars
-    // None.
+  const _ProgressBar = {
+
+    // Resolve a color token with a fallback: token -> palette, else fallback
+    resolveColorToken: function (color, colorMap, fallback) {
+
+      if (color && colorMap[color.toUpperCase()]) {
+        return colorMap[color.toUpperCase()];
+      }
+
+      return fallback;
+
+    }
+
   };////////////////////////// Private Functions END ///////////////////////////
 
 

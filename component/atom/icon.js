@@ -56,13 +56,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     // Resolve color: hex -> as-is, token -> palette, default TEXT_PRIMARY
     const colorMap = Style.tokens.Color;
-    let hex = colorMap.TEXT_PRIMARY;
-
-    if (color && color.charAt(0) === '#') {
-      hex = color;
-    } else if (color && colorMap[color.toUpperCase()]) {
-      hex = colorMap[color.toUpperCase()];
-    }
+    const hex = _Icon.resolveColorToken(color, colorMap);
 
     return Lib.React.createElement(
       Lib.Icons.Glyph,
@@ -74,8 +68,23 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
 
   ////////////////////////// Private Functions START ///////////////////////////
-  const _Icon = { // eslint-disable-line no-unused-vars
-    // None.
+  const _Icon = {
+
+    // Resolve a color prop to a hex value: hex -> as-is, token -> palette, default TEXT_PRIMARY
+    resolveColorToken: function (color, colorMap) {
+
+      if (color && color.charAt(0) === '#') {
+        return color;
+      }
+
+      if (color && colorMap[color.toUpperCase()]) {
+        return colorMap[color.toUpperCase()];
+      }
+
+      return colorMap.TEXT_PRIMARY;
+
+    }
+
   };////////////////////////// Private Functions END ///////////////////////////
 
 

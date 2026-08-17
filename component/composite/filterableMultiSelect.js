@@ -71,7 +71,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     const filteredItems = filterText
       ? itemList.filter(function (item) {
         const label = item.label || item.value || '';
-        return label.toLowerCase().indexOf(filterText.toLowerCase()) >= 0;
+        return Parts.Filter.matchesLabel(filterText, label);
       })
       : itemList;
 

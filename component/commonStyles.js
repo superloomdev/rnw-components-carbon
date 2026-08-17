@@ -30,6 +30,12 @@ const paddingFor = function (side, value) {
 };
 
 
+// Normalize a token name to lowercase for style key generation
+const normalizeToken = function (token) {
+  return token.toLowerCase();
+};
+
+
 // Build the margin style object for a logical/physical side
 const marginFor = function (side, value) {
 
@@ -109,7 +115,7 @@ export default function generateCommonStyles (theme, breakpoint, Parts) {
     const token = FONT_COLOR_TOKENS[i];
 
     if (Color[token] !== undefined) {
-      styles['font_' + token.toLowerCase()] = { color: Color[token] };
+      styles['font_' + normalizeToken(token)] = { color: Color[token] };
     }
 
   }
@@ -138,7 +144,7 @@ export default function generateCommonStyles (theme, breakpoint, Parts) {
     const token = BACKGROUND_COLOR_TOKENS[i];
 
     if (Color[token] !== undefined) {
-      styles['background_' + token.toLowerCase()] = { backgroundColor: Color[token] };
+      styles['background_' + normalizeToken(token)] = { backgroundColor: Color[token] };
     }
 
   }
