@@ -22,12 +22,12 @@ import {
 } from './loader.js';
 
 // Mechanism imports (ESM - resolved at module level)
-const a11yModule = await import('rnw-components-carbon/component/a11y.js');
+const a11yPart = (await import('rnw-components-carbon/parts/a11y.js')).default;
 const pressKeysPart = (await import('rnw-components-carbon/parts/press-keys.js')).default;
 const controllableStatePart = (await import('rnw-components-carbon/parts/controllable-state.js')).default;
 const compoundContextModule = await import('rnw-components-carbon/component/createCompoundContext.js');
 
-const a11y = a11yModule.default({ React: React, Utils: Utils });
+const a11y = a11yPart({ React: React, Utils: Utils }, {}, {});
 const usePressKeys = pressKeysPart({ React: React, Utils: Utils }, {}, {});
 const useControllableState = controllableStatePart({ React: React, Utils: Utils, Debug: { warn: function () {} } }, {}, {});
 const createCompoundContext = compoundContextModule.default;

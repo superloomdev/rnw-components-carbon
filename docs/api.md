@@ -953,15 +953,15 @@ Frozen object of valid token sets:
 
 ## Mechanisms
 
-Eight shared mechanisms live in `component/` and are used across all components.
+Eight shared mechanisms live in `parts/` and are used across all components.
 
 ### a11y (M1)
 
 The single translator from semantic state to `aria-*` props. The only module allowed to emit accessibility state/value/relation/position props.
 
 ```javascript
-import a11yFactory from './component/a11y.js';
-const a11y = a11yFactory(Lib);
+import a11yPart from './parts/a11y.js';
+const a11y = a11yPart({ React: React, Utils: Utils, Debug: Debug }, {}, {});
 a11y.state({ checked: true, disabled: false });  // -> { 'aria-checked': true }
 a11y.value({ min: 0, max: 1, now: 0.5 });        // -> { 'aria-valuemin': 0, ... }
 a11y.relation({ controls: 'panel-1' });           // -> { 'aria-controls': 'panel-1' }
