@@ -69,888 +69,6 @@ Frozen object of valid token sets:
 }
 ```
 
-## Component Props
-
-### View
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `background` | String | - | Background color token (e.g. `'surface'`) |
-| `radius` | String | - | Radius token (e.g. `'lg'`) |
-| `border` | String\|Boolean | - | Border token or `true` for default |
-| `style` | Object\|Array | - | Additional style |
-| `...rest` | - | - | Passed through to RN View |
-
-### Text
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `size` | String | `'md'` | Font size token |
-| `color` | String | `'text_primary'` | Font color token |
-| `weight` | String | `'regular'` | Font weight token |
-| `align` | String | - | Text align (`'left'`, `'center'`, `'right'`) |
-| `style` | Object\|Array | - | Additional style |
-| `...rest` | - | - | Passed through to RN Text |
-
-### Icon
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `name` | String | - | Glyph name (vendor-specific) |
-| `size` | String\|Number | `'md'` | Size token or raw pixels |
-| `color` | String | `'TEXT_PRIMARY'` | Color token or raw hex |
-| `style` | Object | - | Additional style |
-
-### Button
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `onPress` | Function | - | Press handler |
-| `disabled` | Boolean | `false` | Disabled state |
-| `kind` | String | - | `primary` \| `secondary` \| `danger` \| `ghost` (overrides `background`) |
-| `background` | String | - | Background color token (with state suffixes) |
-| `radius` | String | - | Radius token |
-| `accessibilityLabel` | String | - | A11y label |
-| `style` | Object\|Array | - | Additional style |
-| `children` | Function\|Node | - | Content or function receiving pressable state |
-
-### TextInput
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `isInvalid` | Boolean | `false` | Invalid state (a11y) |
-| `isDisabled` | Boolean | `false` | Disabled state |
-| `accessibilityLabel` | String | - | A11y label |
-| `onFocus` | Function | - | Focus handler |
-| `onBlur` | Function | - | Blur handler |
-| `style` | Object\|Array | - | Additional style |
-| `...rest` | - | - | Passed through to RN TextInput |
-
-### Toggle
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `value` | Boolean | `false` | Whether the toggle is on |
-| `onValueChange` | Function | - | Change callback |
-| `disabled` | Boolean | `false` | Disabled state |
-| `accessibilityLabel` | String | - | A11y label |
-
-### Modal
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `isOpen` | Boolean | `false` | Whether the modal is open |
-| `onClose` | Function | - | Called on Escape, outside-press, or hardware back |
-| `initialFocusRef` | Ref | - | Element to focus on open |
-| `finalFocusRef` | Ref | - | Element to focus on close |
-| `children` | Node | - | Modal content |
-
-### Dropdown
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `triggerLabel` | String | - | Trigger button label |
-| `items` | Array | - | Array of `{ value, label }` objects |
-| `onSelect` | Function | - | Called with the selected item |
-| `accessibilityLabel` | String | - | A11y label for the trigger |
-
-### ProgressBar
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `value` | Number\|null | - | 0 to 1 for determinate, null for indeterminate |
-| `color` | String | `'app_primary'` | Fill color token |
-| `trackColor` | String | `'surface'` | Track color token |
-| `height` | Number | `4` | Bar height in pixels |
-| `style` | Object\|Array | - | Additional style |
-
-### Checkbox
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `checked` | Boolean\|String | `false` | `true`, `false`, or `'mixed'` for indeterminate |
-| `onChange` | Function | - | Called with the next boolean value |
-| `disabled` | Boolean | `false` | Disabled state |
-| `label` | String | - | Label text rendered alongside the checkbox |
-| `accessibilityLabel` | String | - | A11y label (falls back to `label`) |
-| `style` | Object\|Array | - | Additional style |
-
-### RadioButton
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `checked` | Boolean | `false` | Whether the radio is selected |
-| `onChange` | Function | - | Called with `true` on press |
-| `disabled` | Boolean | `false` | Disabled state |
-| `label` | String | - | Label text rendered alongside the radio |
-| `accessibilityLabel` | String | - | A11y label (falls back to `label`) |
-| `style` | Object\|Array | - | Additional style |
-
-### TextArea
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `value` | String | - | Controlled value |
-| `defaultValue` | String | `''` | Uncontrolled initial value |
-| `onChange` | Function | - | Called with the text value |
-| `disabled` | Boolean | `false` | Disabled state |
-| `invalid` | Boolean | `false` | Invalid state (a11y) |
-| `placeholder` | String | - | Placeholder text |
-| `rows` | Number | `4` | Visual height in lines |
-| `accessibilityLabel` | String | - | A11y label |
-| `style` | Object\|Array | - | Additional style |
-
-### Slider
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `value` | Number | - | Controlled value |
-| `defaultValue` | Number | `min` or `0` | Uncontrolled initial value |
-| `onChange` | Function | - | Called with the next number |
-| `min` | Number | `0` | Minimum value |
-| `max` | Number | `100` | Maximum value |
-| `step` | Number | `1` | Step increment |
-| `disabled` | Boolean | `false` | Disabled state |
-| `accessibilityLabel` | String | - | A11y label |
-| `style` | Object\|Array | - | Additional style |
-
-### Link
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `href` | String | - | URL (web only, maps to native anchor) |
-| `onPress` | Function | - | Press handler |
-| `disabled` | Boolean | `false` | Disabled state |
-| `children` | Node | - | Link text content |
-| `accessibilityLabel` | String | - | A11y label |
-| `style` | Object\|Array | - | Additional style |
-
-### Search
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `value` | String | - | Controlled value |
-| `defaultValue` | String | `''` | Uncontrolled initial value |
-| `onChange` | Function | - | Called with the text value |
-| `onClear` | Function | - | Called when clear button is pressed |
-| `placeholder` | String | `'Search'` | Placeholder text |
-| `disabled` | Boolean | `false` | Disabled state |
-| `accessibilityLabel` | String | - | A11y label |
-| `style` | Object\|Array | - | Additional style |
-
-### PasswordInput
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `value` | String | - | Controlled value |
-| `defaultValue` | String | `''` | Uncontrolled initial value |
-| `onChange` | Function | - | Called with the text value |
-| `placeholder` | String | - | Placeholder text |
-| `disabled` | Boolean | `false` | Disabled state |
-| `invalid` | Boolean | `false` | Invalid state (a11y) |
-| `accessibilityLabel` | String | - | A11y label |
-| `style` | Object\|Array | - | Additional style |
-
-### NumberInput
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `value` | Number | - | Controlled value |
-| `defaultValue` | Number | `0` | Uncontrolled initial value |
-| `onChange` | Function | - | Called with the next number |
-| `min` | Number | - | Minimum value |
-| `max` | Number | - | Maximum value |
-| `step` | Number | `1` | Step increment |
-| `disabled` | Boolean | `false` | Disabled state |
-| `invalid` | Boolean | `false` | Invalid state (a11y) |
-| `accessibilityLabel` | String | - | A11y label |
-| `style` | Object\|Array | - | Additional style |
-
-### ExpandableSearch
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `value` | String | - | Controlled value |
-| `defaultValue` | String | `''` | Uncontrolled initial value |
-| `onChange` | Function | - | Called with the text value |
-| `onClear` | Function | - | Called when clear button is pressed |
-| `placeholder` | String | `'Search'` | Placeholder text |
-| `disabled` | Boolean | `false` | Disabled state |
-| `defaultExpanded` | Boolean | `false` | Whether the search starts expanded |
-| `accessibilityLabel` | String | - | A11y label |
-| `style` | Object\|Array | - | Additional style |
-
-### FormLabel
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | String\|Node | - | Label text |
-| `htmlFor` | String | - | ID of associated control (web only) |
-| `required` | Boolean | `false` | Shows required indicator |
-| `disabled` | Boolean | `false` | Dims the label |
-| `style` | Object\|Array | - | Additional style |
-
-### FormItem
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `label` | String | - | Label text (rendered as FormLabel) |
-| `children` | Node | - | The form control element |
-| `helperText` | String | - | Helper text shown below the control |
-| `errorText` | String | - | Error text shown in danger color |
-| `required` | Boolean | `false` | Passed to the label |
-| `disabled` | Boolean | `false` | Passed to the label |
-| `style` | Object\|Array | - | Additional style |
-
-## Wave 6-9 Component Props
-
-### Tab
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `label` | String | - | Tab label text |
-| `selected` | Boolean | `false` | Whether this tab is selected |
-| `onPress` | Function | - | Press handler |
-| `disabled` | Boolean | `false` | Disabled state |
-| `style` | Object\|Array | - | Additional style |
-
-### TabList
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Tab elements |
-| `style` | Object\|Array | - | Additional style |
-
-### TabPanel
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Panel content |
-| `selected` | Boolean | - | Whether this panel is visible |
-| `style` | Object\|Array | - | Additional style |
-
-### AccordionItem
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `title` | String | - | Header label |
-| `children` | Node | - | Expandable content |
-| `expanded` | Boolean | `false` | Whether the item is expanded |
-| `onToggle` | Function | - | Called with next expanded state |
-| `style` | Object\|Array | - | Additional style |
-
-### BreadcrumbItem
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `href` | String | - | Optional URL |
-| `onPress` | Function | - | Press handler |
-| `children` | Node | - | Label content |
-| `isCurrentPage` | Boolean | `false` | Whether this is the current page |
-| `style` | Object\|Array | - | Additional style |
-
-### Switch
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `label` | String | - | Switch label text |
-| `selected` | Boolean | `false` | Whether this switch is selected |
-| `onPress` | Function | - | Press handler |
-| `disabled` | Boolean | `false` | Disabled state |
-| `style` | Object\|Array | - | Additional style |
-
-### PageSelector
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `currentPage` | Number | `1` | Active page (1-based) |
-| `totalPages` | Number | `1` | Total number of pages |
-| `onChange` | Function | - | Called with selected page number |
-| `style` | Object\|Array | - | Additional style |
-
-### TreeNode
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `label` | String | - | Node label |
-| `children` | Node | - | Child TreeNode elements |
-| `expanded` | Boolean | `false` | Whether the node is expanded |
-| `onToggle` | Function | - | Called with next expanded state |
-| `selected` | Boolean | `false` | Whether this node is selected |
-| `level` | Number | `1` | Depth in the tree (1-based) |
-| `style` | Object\|Array | - | Additional style |
-
-### Step
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `label` | String | - | Step label |
-| `status` | String | `'incomplete'` | `'complete'`, `'current'`, or `'incomplete'` |
-| `stepNumber` | Number | - | 1-based step position |
-| `style` | Object\|Array | - | Additional style |
-
-### HeaderNav
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Navigation content (links, menu items) |
-| `style` | Object\|Array | - | Additional style |
-
-### HeaderMenuButton
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `onPress` | Function | - | Press handler |
-| `label` | String | - | Button label |
-| `isActive` | Boolean | `false` | Whether the menu is currently open |
-| `style` | Object\|Array | - | Additional style |
-
-### HeaderPanel
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Panel content |
-| `expanded` | Boolean | - | Whether the panel is visible |
-| `style` | Object\|Array | - | Additional style |
-
-### ProgressIndicator
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `current` | Number | `0` | Current step (1-based) |
-| `total` | Number | `0` | Total number of steps |
-| `label` | String | - | Optional accessible label |
-| `style` | Object\|Array | - | Additional style |
-
-### Tabs
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `selectedIndex` | Number | `0` | 0-based active tab index |
-| `onChange` | Function | - | Called with new index |
-| `children` | Node | - | Tab elements |
-| `style` | Object\|Array | - | Additional style |
-
-### Accordion
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `allowMultiple` | Boolean | `false` | Allow multiple items expanded at once |
-| `expandedKeys` | Array | `[]` | Keys of expanded items |
-| `onChange` | Function | - | Called with key of toggled item |
-| `children` | Node | - | AccordionItem elements |
-| `style` | Object\|Array | - | Additional style |
-
-### Breadcrumb
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | BreadcrumbItem elements |
-| `style` | Object\|Array | - | Additional style |
-
-### ContentSwitcher
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `selectedIndex` | Number | `0` | 0-based active switch index |
-| `onChange` | Function | - | Called with new index |
-| `children` | Node | - | Switch elements |
-| `style` | Object\|Array | - | Additional style |
-
-### Pagination
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `page` | Number | `1` | Current page (1-based) |
-| `totalPage` | Number | `1` | Total number of pages |
-| `onChange` | Function | - | Called with new page number |
-| `pageSize` | Number | - | Items per page |
-| `style` | Object\|Array | - | Additional style |
-
-### TreeView
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `data` | Array | `[]` | Array of `{ key, label, children, expanded, selected }` |
-| `onSelect` | Function | - | Called with selected node key |
-| `expandedKeys` | Array | `[]` | Keys of expanded nodes |
-| `style` | Object\|Array | - | Additional style |
-
-### Steps
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `current` | Number | `0` | 1-based current step number |
-| `children` | Node | - | Step elements |
-| `style` | Object\|Array | - | Additional style |
-
-### Header
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | HeaderNav, HeaderMenuButton, HeaderPanel elements |
-| `style` | Object\|Array | - | Additional style |
-
-### Select
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `value` | String | - | Controlled value |
-| `defaultValue` | String | - | Uncontrolled initial value |
-| `onChange` | Function | - | Called with the selected value |
-| `options` | Array | `[]` | Array of `{ value, label }` objects |
-| `placeholder` | String | `'Select an option'` | Placeholder text |
-| `disabled` | Boolean | `false` | Disabled state |
-| `invalid` | Boolean | `false` | Invalid state |
-| `style` | Object\|Array | - | Additional style |
-
-### ComboBox
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `value` | String | - | Controlled value |
-| `defaultValue` | String | `''` | Uncontrolled initial value |
-| `onChange` | Function | - | Called with the selected value |
-| `options` | Array | `[]` | Array of `{ value, label }` objects |
-| `placeholder` | String | `'Search'` | Placeholder text |
-| `disabled` | Boolean | `false` | Disabled state |
-| `invalid` | Boolean | `false` | Invalid state |
-| `style` | Object\|Array | - | Additional style |
-
-### MultiSelect
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `values` | Array | - | Controlled selected values |
-| `defaultValues` | Array | `[]` | Uncontrolled initial values |
-| `onChange` | Function | - | Called with the selected values array |
-| `options` | Array | `[]` | Array of `{ value, label }` objects |
-| `placeholder` | String | `'Select options'` | Placeholder text |
-| `disabled` | Boolean | `false` | Disabled state |
-| `invalid` | Boolean | `false` | Invalid state |
-| `style` | Object\|Array | - | Additional style |
-
-### RadioButtonGroup
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `value` | String | - | Controlled value |
-| `defaultValue` | String | - | Uncontrolled initial value |
-| `onChange` | Function | - | Called with the selected value |
-| `options` | Array | `[]` | Array of `{ value, label, disabled }` objects |
-| `disabled` | Boolean | `false` | Disables the entire group |
-| `name` | String | - | Group name for form submission |
-| `orientation` | String | `'vertical'` | `'horizontal'` or `'vertical'` |
-| `style` | Object\|Array | - | Additional style |
-
-### CheckboxGroup
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `values` | Array | - | Controlled selected values |
-| `defaultValues` | Array | `[]` | Uncontrolled initial values |
-| `onChange` | Function | - | Called with the selected values array |
-| `options` | Array | `[]` | Array of `{ value, label, disabled }` objects |
-| `disabled` | Boolean | `false` | Disables the entire group |
-| `name` | String | - | Group name for form submission |
-| `style` | Object\|Array | - | Additional style |
-
-### SliderInput
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `label` | String | - | Label text above the slider |
-| `value` | Number | - | Controlled value |
-| `defaultValue` | Number | `min` or `0` | Uncontrolled initial value |
-| `onChange` | Function | - | Called with the next number |
-| `min` | Number | `0` | Minimum value |
-| `max` | Number | `100` | Maximum value |
-| `step` | Number | `1` | Step increment |
-| `disabled` | Boolean | `false` | Disabled state |
-| `invalid` | Boolean | `false` | Invalid state |
-| `style` | Object\|Array | - | Additional style |
-
-### DatePicker
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `value` | String | - | Controlled value (`YYYY-MM-DD`) |
-| `defaultValue` | String | `''` | Uncontrolled initial value |
-| `onChange` | Function | - | Called with the selected date string |
-| `disabled` | Boolean | `false` | Disabled state |
-| `invalid` | Boolean | `false` | Invalid state |
-| `style` | Object\|Array | - | Additional style |
-
-### TimePicker
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `value` | String | - | Controlled value (`HH:MM`) |
-| `defaultValue` | String | `''` | Uncontrolled initial value |
-| `onChange` | Function | - | Called with the selected time string |
-| `disabled` | Boolean | `false` | Disabled state |
-| `invalid` | Boolean | `false` | Invalid state |
-| `style` | Object\|Array | - | Additional style |
-
-### DateRangePicker
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `startDate` | String | - | Start date (`YYYY-MM-DD`) |
-| `endDate` | String | - | End date (`YYYY-MM-DD`) |
-| `onChange` | Function | - | Called with `{ startDate, endDate }` |
-| `disabled` | Boolean | `false` | Disabled state |
-| `style` | Object\|Array | - | Additional style |
-
-### NumberInputComposite
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `label` | String | - | Label text above the input |
-| `value` | Number | - | Controlled value |
-| `defaultValue` | Number | `0` | Uncontrolled initial value |
-| `onChange` | Function | - | Called with the next number |
-| `min` | Number | - | Minimum value |
-| `max` | Number | - | Maximum value |
-| `step` | Number | `1` | Step increment |
-| `unit` | String | - | Optional unit suffix (e.g. `'px'`, `'%'`) |
-| `disabled` | Boolean | `false` | Disabled state |
-| `invalid` | Boolean | `false` | Invalid state |
-| `style` | Object\|Array | - | Additional style |
-
-### FileUploader
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `label` | String | `'Upload file'` | Button text |
-| `accept` | String | - | File type filter (e.g. `'image/*'`) |
-| `multiple` | Boolean | `false` | Allow multiple file selection |
-| `onChange` | Function | - | Called with the selected file(s) |
-| `disabled` | Boolean | `false` | Disabled state |
-| `style` | Object\|Array | - | Additional style |
-
-### FluidForm
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Form content within the fluid context |
-| `fluid` | Boolean | `true` | Pass `false` to opt out of fluid labels |
-| `style` | Object\|Array | - | Additional style |
-
-### FormGroup
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Form field elements |
-| `label` | String | - | Optional group label |
-| `invalid` | Boolean | `false` | Shows message in danger color |
-| `message` | String | - | Helper or error text shown below the group |
-| `disabled` | Boolean | `false` | Dims the label |
-| `style` | Object\|Array | - | Additional style |
-
-### ToggleGroup
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `value` | String | - | Controlled pressed toggle value |
-| `defaultValue` | String | - | Uncontrolled initial value |
-| `onChange` | Function | - | Called with the selected value |
-| `options` | Array | `[]` | Array of `{ value, label, disabled }` objects |
-| `disabled` | Boolean | `false` | Disables the entire group |
-| `orientation` | String | `'horizontal'` | `'horizontal'` or `'vertical'` |
-| `style` | Object\|Array | - | Additional style |
-
-### TimeInput
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `value` | String | - | Controlled value (`HH:MM`) |
-| `defaultValue` | String | `''` | Uncontrolled initial value |
-| `onChange` | Function | - | Called with the time string |
-| `disabled` | Boolean | `false` | Disabled state |
-| `invalid` | Boolean | `false` | Invalid state |
-| `style` | Object\|Array | - | Additional style |
-
-### DateInput
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `value` | String | - | Controlled value (`YYYY-MM-DD`) |
-| `defaultValue` | String | `''` | Uncontrolled initial value |
-| `onChange` | Function | - | Called with the date string |
-| `disabled` | Boolean | `false` | Disabled state |
-| `invalid` | Boolean | `false` | Invalid state |
-| `style` | Object\|Array | - | Additional style |
-
-### Notification
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `title` | String | - | Primary text |
-| `subtitle` | String | - | Secondary text |
-| `status` | String | `'info'` | `'success'`, `'error'`, `'warning'`, or `'info'` |
-| `onClose` | Function | - | Close handler (when absent, no close button) |
-| `children` | Node | - | Additional content |
-| `style` | Object\|Array | - | Additional style |
-
-### Toast
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `title` | String | - | Primary text |
-| `subtitle` | String | - | Secondary text |
-| `status` | String | `'info'` | `'success'`, `'error'`, `'warning'`, or `'info'` |
-| `onClose` | Function | - | Close handler (called on close or auto-dismiss) |
-| `duration` | Number | `3000` | Milliseconds before auto-dismiss |
-| `style` | Object\|Array | - | Additional style |
-
-### ActionBar
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Action button elements |
-| `style` | Object\|Array | - | Additional style |
-
-### BatchAction
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `label` | String | - | Button text |
-| `onPress` | Function | - | Press handler |
-| `disabled` | Boolean | `false` | Disabled state |
-| `style` | Object\|Array | - | Additional style |
-
-### Alert
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `title` | String | - | Primary text |
-| `kind` | String | `'info'` | `'info'`, `'success'`, `'warning'`, or `'error'` |
-| `children` | Node | - | Additional content |
-| `style` | Object\|Array | - | Additional style |
-
-### Callout
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `title` | String | - | Primary text |
-| `kind` | String | `'info'` | `'info'`, `'success'`, `'warning'`, or `'error'` |
-| `children` | Node | - | Additional content |
-| `style` | Object\|Array | - | Additional style |
-
-### DataTable
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `headers` | Array | `[]` | Array of header strings |
-| `rows` | Array | `[]` | Array of arrays (each inner array is a row of cell values) |
-| `style` | Object\|Array | - | Additional style |
-
-### TableRow
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Cell elements |
-| `style` | Object\|Array | - | Additional style |
-
-### TableCell
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Cell content |
-| `style` | Object\|Array | - | Additional style |
-
-### TableHeader
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Header content |
-| `style` | Object\|Array | - | Additional style |
-
-### TableBody
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Row elements |
-| `style` | Object\|Array | - | Additional style |
-
-### TableHead
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Header row elements |
-| `style` | Object\|Array | - | Additional style |
-
-### Grid
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Grid item elements |
-| `columns` | Number | `2` | Number of columns |
-| `gap` | Number | `0` | Gap in pixels between items |
-| `style` | Object\|Array | - | Additional style |
-
-### Row
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Content elements |
-| `style` | Object\|Array | - | Additional style |
-
-### Column
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Content elements |
-| `style` | Object\|Array | - | Additional style |
-
-### FlexGrid
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Grid item elements |
-| `gap` | Number | `0` | Gap in pixels between items |
-| `style` | Object\|Array | - | Additional style |
-
-### Container
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Content elements |
-| `maxWidth` | Number | `1200` | Maximum width in pixels |
-| `style` | Object\|Array | - | Additional style |
-
-### LayerMolecule
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Content elements |
-| `level` | Number | `0` | Surface elevation level (`0`, `1`, or `2`) |
-| `style` | Object\|Array | - | Additional style |
-
-### Form
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Form field elements |
-| `onSubmit` | Function | - | Submit handler function |
-| `style` | Object\|Array | - | Additional style |
-
-### Fieldset
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Form field elements |
-| `legend` | String | - | Legend text |
-| `style` | Object\|Array | - | Additional style |
-
-### Legend
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Legend content |
-| `style` | Object\|Array | - | Additional style |
-
-### OrderedList
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | List item elements |
-| `style` | Object\|Array | - | Additional style |
-
-### UnorderedList
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | List item elements |
-| `style` | Object\|Array | - | Additional style |
-
-### ListItemNav
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `label` | String | - | Primary text for the nav item |
-| `onPress` | Function | - | Press handler |
-| `children` | Node | - | Additional content |
-| `style` | Object\|Array | - | Additional style |
-
-### StructuredList
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Structured list row elements |
-| `style` | Object\|Array | - | Additional style |
-
-### StructuredListRow
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Cell elements |
-| `style` | Object\|Array | - | Additional style |
-
-### StructuredListCell
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Cell content |
-| `style` | Object\|Array | - | Additional style |
-
-### Toolbar
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Tool button elements |
-| `style` | Object\|Array | - | Additional style |
-
-### Divider
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `orientation` | String | `'horizontal'` | `'horizontal'` or `'vertical'` |
-| `style` | Object\|Array | - | Additional style |
-
-### ScrollGradient
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Scrollable content |
-| `style` | Object\|Array | - | Additional style |
-
-### DataTableRow
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `cells` | Array | `[]` | Array of cell values (strings or elements) |
-| `onPress` | Function | - | Press handler (when absent, row is static) |
-| `selected` | Boolean | `false` | Whether the row is selected |
-| `style` | Object\|Array | - | Additional style |
-
-### PaginationBar
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `page` | Number | `1` | Current page (1-based) |
-| `totalPage` | Number | `1` | Total number of pages |
-| `onChange` | Function | - | Called with new page number |
-| `style` | Object\|Array | - | Additional style |
-
-### ToggletipLabel
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `label` | String | - | Label text |
-| `toggletipContent` | Node | - | Content to show in the toggletip |
-| `children` | Node | - | Additional content |
-| `style` | Object\|Array | - | Additional style |
-
-### GridItem
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `children` | Node | - | Grid item content |
-| `span` | Number | `1` | Number of columns to span |
-| `style` | Object\|Array | - | Additional style |
-
 ## Mechanisms
 
 Eight shared mechanisms live in `parts/` and are used across all components.
@@ -1004,1458 +122,2640 @@ Controlled/uncontrolled state hook. Controlled when `value` is not undefined, un
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/aILabel.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | string (label text, default 'AI') |
+| `details` | - | - | string (toggletip content) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### AILabelActions
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/aILabelActions.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | action button elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### AILabelContent
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/aILabelContent.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | content elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### AISkeletonIcon
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/aISkeletonIcon.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `style` | Object|Array | - | custom style overrides |
 
 ### AISkeletonPlaceholder
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/aISkeletonPlaceholder.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `style` | Object|Array | - | custom style overrides |
 
 ### AISkeletonText
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/aISkeletonText.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `lines` | Number | 3 | number (default 3) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### AcceptTerms
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/acceptTerms.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | document title |
+| `source` | - | - | URL or HTML content for DocumentViewer |
+| `resultsCallback` | Boolean | - | called with true (agree) or false (disagree) |
+| `textStrings` | - | {} | { disagree, agree, modalTitle, modalBody, |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Accordion
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/accordion.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `allowMultiple` | Boolean | - | boolean (allow multiple items expanded at once) |
+| `expandedKeys` | Array | - | array (keys of expanded items) |
+| `onChange` | Function | - | function (called with key of toggled item) |
+| `children` | Node | - | AccordionItem elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### AccordionItem
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/accordionItem.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | string (header label) |
+| `children` | Node | - | expandable content |
+| `expanded` | Boolean | - | boolean, whether the item is expanded |
+| `onToggle` | Function | - | function (called when header is pressed) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### ActionSheet
 
 **Tier:** composite | **Platform:** Split (web and native differ) | **Source:** non-carbon
 
-See `component/composite/actionSheet.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `items` | Array | - | array of { label, onPress, disabled } |
+| `children` | Node | - | the element to attach the long-press handler to |
+| `style` | Object|Array | - | custom style overrides |
+| `// eslint-disable-line no-unused-vars
+      ...rest` | - | - | - |
 
 ### ActionableNotification
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/actionableNotification.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | primary text |
+| `subtitle` | - | - | secondary text (optional) |
+| `actionText` | - | - | string (action button label, optional) |
+| `onAction` | Function | - | function (action handler, optional) |
+| `onDismiss` | Function | - | function (dismiss handler, optional) |
+| `kind` | String | 'info' | 'info' | 'success' | 'warning' | 'error' |
+| `style` | Object|Array | - | custom style overrides |
 
 ### AspectRatio
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/atom/aspectRatio.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `ratio` | Number | - | number (width/height, default 1) |
+| `children` | Node | - | content to render inside |
+| `style` | Object|Array | - | custom style overrides |
 
 ### BadgeIndicator
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** unexported
 
-See `component/atom/badgeIndicator.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `count` | Number | - | number (the count to display) |
+| `max` | Number | - | number (display '99+' when count exceeds max, default 99) |
+| `color` | - | - | string (color token, default 'app_primary') |
+| `style` | Object|Array | - | custom style overrides |
+| `// eslint-disable-line no-unused-vars
+      ...rest` | - | - | - |
 
 ### BottomNavigationBar
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/bottomNavigationBar.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `items` | Array | - | array of { icon, text, onPress, active } |
+| `style` | Object|Array | - | custom style overrides |
 
 ### BottomSafeAreaColorOverride
 
 **Tier:** molecule | **Platform:** Native primary (degrades on web) | **Source:** non-carbon
 
-See `component/molecule/bottomSafeAreaColorOverride.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `color` | - | - | background color for the bottom safe area |
+| `children` | Node | - | content above the safe area |
+| `style` | Object|Array | - | custom style overrides |
 
 ### BottomToolbar
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/bottomToolbar.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `items` | Array | - | array of { text, icon, onPress } |
+| `style` | Object|Array | - | custom style overrides |
 
 ### BottomToolbarPrimaryAction
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/bottomToolbarPrimaryAction.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `primaryAction` | - | - | object with { text, onPress } |
+| `items` | Array | - | array of secondary { text, icon, onPress } |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Breadcrumb
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/breadcrumb.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | BreadcrumbItem elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### BreadcrumbItem
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/breadcrumbItem.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `href` | - | - | string (optional URL) |
+| `onPress` | Function | - | function (press handler) |
+| `children` | Node | - | label content |
+| `isCurrentPage` | Boolean | - | boolean, whether this is the current page |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Button
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/atom/button.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `onPress` | Function | - | - |
+| `disabled` | Boolean | - | - |
+| `background` | - | - | - |
+| `kind` | String | - | 'primary' | 'secondary' | 'danger' | 'ghost' (maps to background) |
+| `radius` | - | - | - |
+| `style` | Object|Array | - | - |
+| `children` | Node | - | - |
+| `accessibilityLabel` | - | - | - |
 
 ### ButtonSet
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/buttonSet.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | button elements |
+| `stacked` | Boolean | - | boolean (stack vertically, default false) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Callout
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/callout.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | primary text |
+| `kind` | String | 'info' | 'info' | 'success' | 'warning' | 'error' |
+| `children` | Node | - | additional content (optional) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Checkbox
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/atom/checkbox.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `checked` | String | - | true | false | 'mixed' |
+| `onChange` | Function | - | callback receiving the next boolean |
+| `disabled` | Boolean | - | boolean |
+| `label` | - | - | string (rendered as Text child) |
+| `style` | Object|Array | - | - |
+| `accessibilityLabel` | - | - | - |
 
 ### CheckboxGroup
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/checkboxGroup.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `values` | Array | - | array (controlled) |
+| `defaultValues` | - | - | - |
+| `onChange` | Function | - | callback receiving the selected values array |
+| `options` | Array | [] | array of { value, label, disabled } |
+| `disabled` | Boolean | - | boolean (disables the entire group) |
+| `name` | - | - | string (group name for form submission) |
+| `style` | Object|Array | - | - |
+| `accessibilityLabel` | - | - | - |
 
 ### ClickableTile
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/clickableTile.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | string |
+| `subtitle` | - | - | string |
+| `onPress` | Function | - | function |
+| `disabled` | Boolean | - | boolean |
+| `style` | Object|Array | - | custom style overrides |
 
 ### CodeSnippet
 
 **Tier:** molecule | **Platform:** Split (web and native differ) | **Source:** non-carbon
 
-See `component/molecule/codeSnippet.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `code` | - | - | string (the code to display) |
+| `language` | - | - | string (language label, e.g. 'javascript') |
+| `showCopy` | Boolean | - | boolean (default true) |
+| `onCopy` | Function | - | function (callback after copy) |
+| `style` | Object|Array | - | custom style overrides |
+| `// eslint-disable-line no-unused-vars
+      ...rest` | - | - | - |
 
 ### Column
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/column.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | content elements |
+| `span` | Number | - | number (grid column span; absorbed from GridItem) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### ColumnHang
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/columnHang.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | content elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### ComboBox
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/comboBox.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | - | - | string (controlled) |
+| `defaultValue` | - | - | - |
+| `onChange` | Function | - | callback receiving the selected value |
+| `options` | Array | [] | array of { value, label } |
+| `placeholder` | - | - | string (default 'Search') |
+| `disabled` | Boolean | - | boolean |
+| `invalid` | Boolean | - | boolean |
+| `style` | Object|Array | - | - |
+| `accessibilityLabel` | - | - | - |
 
 ### ComboButton
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/comboButton.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `primaryLabel` | - | - | string (main button label) |
+| `onPrimaryPress` | Function | - | - |
+| `items` | Array | - | array of { label, onPress, disabled } |
+| `style` | Object|Array | - | custom style overrides |
 
 ### ComposedModal
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/composedModal.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `isOpen` | Boolean | - | boolean |
+| `onClose` | Function | - | function |
+| `children` | Node | - | ModalHeader, ModalBody, ModalFooter elements |
+| `style` | Object|Array | - | custom style overrides |
+| `initialFocusRef` | - | - | - |
 
 ### ContainedList
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/containedList.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | string (list label, optional) |
+| `children` | Node | - | list item elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### ContainedListItem
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/containedListItem.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | primary text for the nav item |
+| `onPress` | Function | - | press handler |
+| `children` | Node | - | additional content (optional) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Content
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/content.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | content elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### ContentSwitcher
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/contentSwitcher.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `selectedIndex` | Number | - | number (0-based active switch index) |
+| `onChange` | Function | - | function (called with new index) |
+| `children` | Node | - | Switch elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### ControlledPasswordInput
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/controlledPasswordInput.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | - | - | string (controlled) |
+| `onChange` | Function | - | callback receiving the text value |
+| `placeholder` | - | - | string |
+| `disabled` | Boolean | - | boolean |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Copy
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/copy.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `text` | - | - | string (the text to copy) |
+| `onSuccess` | Function | - | function (callback after successful copy) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### CopyButton
 
 **Tier:** molecule | **Platform:** Split (web and native differ) | **Source:** non-carbon
 
-See `component/molecule/copyButton.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `text` | - | - | string (the text to copy) |
+| `label` | - | - | string (button label, default 'Copy') |
+| `onCopy` | Function | - | function (callback after copy) |
+| `disabled` | Boolean | - | boolean |
+| `style` | Object|Array | - | custom style overrides |
 
 ### DataTable
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/dataTable.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `headers` | Array | - | array of header strings |
+| `rows` | Array | - | array of arrays (each inner array is a row of cell values) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### DataTableCell
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/dataTableCell.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `content` | - | - | string or node rendered inside the cell |
+| `type` | String | - | 'default' | 'header' (controls text styling) |
+| `width` | - | - | numeric cell width in pixels |
+| `onPress` | Function | - | optional press handler (makes the cell pressable) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### DataTableHeader
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/dataTableHeader.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `primaryAction` | - | - | single action object { label, onPress, kind } |
+| `secondaryActions` | Array | - | array of action objects { label, onPress, kind } |
+| `style` | Object|Array | - | custom style overrides |
 
 ### DataTableHeaderSelected
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/dataTableHeaderSelected.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `selectedCount` | Number | 0 | number of selected rows |
+| `batchActions` | Array | - | array of action objects { label, onPress, kind } |
+| `onCancel` | Function | - | function invoked when the cancel button is pressed |
+| `style` | Object|Array | - | custom style overrides |
 
 ### DataTableRow
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/dataTableRow.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `cells` | Array | - | array of cell values (strings or elements) |
+| `onPress` | Function | - | press handler (optional; when absent, row is static) |
+| `selected` | Boolean | - | boolean, whether the row is selected |
+| `style` | Object|Array | - | custom style overrides |
 
 ### DateInput
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/dateInput.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | - | - | string YYYY-MM-DD (controlled) |
+| `defaultValue` | - | - | - |
+| `onChange` | Function | - | callback receiving the date string |
+| `disabled` | Boolean | - | boolean |
+| `invalid` | Boolean | - | boolean |
+| `style` | Object|Array | - | - |
+| `accessibilityLabel` | - | - | - |
 
 ### DatePicker
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/datePicker.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | - | - | string YYYY-MM-DD (controlled) |
+| `defaultValue` | - | - | - |
+| `onChange` | Function | - | callback receiving the selected date string |
+| `disabled` | Boolean | - | boolean |
+| `invalid` | Boolean | - | boolean |
+| `datePickerType` | String | - | 'single' | 'range' (default 'single'; 'range' absorbed from DateRangePicker) |
+| `style` | Object|Array | - | - |
+| `accessibilityLabel` | - | - | - |
 
 ### DatePickerInput
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/datePickerInput.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | - | - | string (controlled) |
+| `onChange` | Function | - | callback receiving the selected date string |
+| `placeholder` | - | - | string |
+| `disabled` | Boolean | - | boolean |
+| `style` | Object|Array | - | custom style overrides |
 
 ### DefinitionTooltip
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/definitionTooltip.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `term` | - | - | string (the term being defined, shown inline) |
+| `definition` | - | - | string (the definition content) |
+| `style` | Object|Array | - | custom style overrides |
+| `// eslint-disable-line no-unused-vars
+      ...rest` | - | - | - |
 
 ### DismissibleTag
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/dismissibleTag.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `text` | - | - | string (the tag label) |
+| `onDismiss` | Function | - | function (called when dismiss is pressed) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### DocumentViewer
 
 **Tier:** molecule | **Platform:** Split (web and native differ) | **Source:** non-carbon
 
-See `component/molecule/documentViewer.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `source` | - | - | string (URL or HTML content) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Dropdown
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/dropdown.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `triggerLabel` | - | - | - |
+| `items` | - | - | - |
+| `onSelect` | Function | - | - |
+| `style` | Object|Array | - | - |
+| `accessibilityLabel` | - | - | - |
 
 ### ErrorBoundary
 
 **Tier:** provider | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/provider/errorBoundary.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `onError` | Function | - | function (called with the error) |
+| `fallback` | - | - | node (rendered when an error is caught) |
+| `children` | Node | - | content to protect |
 
 ### ErrorBoundaryContext
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/errorBoundaryContext.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | content to render within the error context |
+| `style` | Object|Array | - | custom style overrides |
 
 ### ErrorState
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/errorState.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | primary text |
+| `subtitle` | - | - | secondary text (optional) |
+| `icon` | - | 'error--filled' | icon name (optional, defaults to error--filled) |
+| `children` | Node | - | additional content (optional) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### ExpandableSearch
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/expandableSearch.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | - | - | string (controlled) |
+| `defaultValue` | - | - | string (uncontrolled) |
+| `onChange` | Function | - | callback receiving the text value |
+| `onClear` | Function | - | callback when clear button is pressed |
+| `placeholder` | - | - | string (default 'Search') |
+| `disabled` | Boolean | - | boolean |
+| `defaultExpanded` | Boolean | - | boolean (default false) |
+| `style` | Object|Array | - | - |
+| `accessibilityLabel` | - | - | - |
 
 ### ExpandableTile
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/expandableTile.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | string (tile title) |
+| `expanded` | Boolean | - | boolean (whether the tile is expanded) |
+| `onToggle` | Function | - | function (called with next boolean) |
+| `children` | Node | - | content (shown when expanded) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### FeatureFlags
 
 **Tier:** provider | **Platform:** Both web and native | **Source:** unexported
 
-See `component/provider/featureFlags.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `flags` | Number | {} | object (key-value map of feature flags) |
+| `children` | Node | - | content to render within the flag context |
 
 ### FileUploader
 
 **Tier:** composite | **Platform:** Split (web and native differ) | **Source:** non-carbon
 
-See `component/composite/fileUploader.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | string (uploader label) |
+| `accept` | Array | - | string | array (accepted file types) |
+| `multiple` | Boolean | - | boolean (allow multiple files) |
+| `onChange` | Function | - | function (called with selected files) |
+| `style` | Object|Array | - | custom style overrides |
+| `// eslint-disable-line no-unused-vars
+      ...rest` | - | - | - |
 
 ### FileUploaderButton
 
 **Tier:** molecule | **Platform:** Split (web and native differ) | **Source:** non-carbon
 
-See `component/molecule/fileUploaderButton.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | string (button label) |
+| `onPress` | Function | - | function (press handler) |
+| `disabled` | Boolean | - | boolean |
+| `style` | Object|Array | - | custom style overrides |
 
 ### FileUploaderDropContainer
 
 **Tier:** molecule | **Platform:** Split (web and native differ) | **Source:** non-carbon
 
-See `component/molecule/fileUploaderDropContainer.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `onDrop` | Function | - | function (called with dropped files) |
+| `label` | - | - | string (drop area label) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### FileUploaderItem
 
 **Tier:** molecule | **Platform:** Split (web and native differ) | **Source:** non-carbon
 
-See `component/molecule/fileUploaderItem.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `filename` | - | - | string (name of the uploaded file) |
+| `status` | String | - | string ('uploading' | 'edit' | 'complete') |
+| `onRemove` | Function | - | function (called when remove is pressed) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Filename
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/filename.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `name` | - | - | string (the filename to display) |
+| `status` | String | - | string ('uploading' | 'edit' | 'complete') |
+| `style` | Object|Array | - | custom style overrides |
 
 ### FilterableMultiSelect
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/filterableMultiSelect.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `items` | Array | [] | array of { value, label } (all available items) |
+| `selectedItems` | Array | - | array (controlled, selected values) |
+| `onChange` | Function | - | callback receiving the selected values array |
+| `placeholder` | - | - | string (filter placeholder) |
+| `disabled` | Boolean | - | boolean |
+| `style` | Object|Array | - | custom style overrides |
+| `accessibilityLabel` | - | - | - |
 
 ### FlexGrid
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/flexGrid.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | grid item elements |
+| `gap` | - | - | gap in pixels between items (default 0) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### FluidForm
 
 **Tier:** provider | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/provider/fluidForm.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `fluid` | Boolean | true | boolean (default true) |
+| `children` | Node | - | content to render within the fluid context |
 
 ### Form
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/form.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | form field elements |
+| `onSubmit` | Function | - | submit handler function |
+| `style` | Object|Array | - | custom style overrides |
 
 ### FormContext
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/formContext.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | content to render within the form context |
+| `style` | Object|Array | - | custom style overrides |
 
 ### FormGroup
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/formGroup.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | form field elements |
+| `label` | - | - | string (optional group label) |
+| `invalid` | Boolean | - | boolean (shows message in danger color) |
+| `message` | - | - | string (helper or error text shown below the group) |
+| `disabled` | Boolean | - | boolean (dims the label) |
+| `style` | Object|Array | - | - |
+| `accessibilityLabel` | - | - | - |
 
 ### FormItem
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/formItem.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | string, rendered through FormLabel |
+| `children` | Node | - | the form control element |
+| `helperText` | - | - | string, shown below the control when no error |
+| `errorText` | - | - | string, shown below the control in danger color |
+| `required` | Boolean | - | boolean, passed to FormLabel |
+| `disabled` | Boolean | - | boolean, passed to FormLabel |
+| `style` | Object|Array | - | custom style overrides |
 
 ### FormLabel
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/formLabel.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | string or node, the label text |
+| `htmlFor` | - | - | string, the id of the associated control (web only) |
+| `required` | Boolean | - | boolean, shows required indicator |
+| `disabled` | Boolean | - | boolean, dims the label |
+| `style` | Object|Array | - | custom style overrides |
 
 ### GlobalTheme
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/globalTheme.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | content to theme |
+| `style` | Object|Array | - | custom style overrides |
 
 ### GrantPermission
 
 **Tier:** molecule | **Platform:** Native primary (degrades on web) | **Source:** non-carbon
 
-See `component/molecule/grantPermission.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | primary text |
+| `subtitle` | - | - | secondary text (optional) |
+| `icon` | - | 'information--filled' | icon name (optional) |
+| `onGrant` | Function | - | grant handler |
+| `onDeny` | Function | - | deny handler (optional) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Grid
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/grid.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | grid item elements |
+| `columns` | Number | - | number of columns (default 2) |
+| `gap` | - | - | gap in pixels between items (default 0) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### GridSettings
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/gridSettings.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `columns` | Number | - | number (grid column count) |
+| `gap` | - | - | string (grid gap token) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### HStack
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/hStack.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `spacing` | - | 'md' | string (space token, default 'md') |
+| `children` | Node | - | content to stack |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Header
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/header.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | HeaderNavigation, HeaderMenuButton, HeaderPanel elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### HeaderContainer
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/headerContainer.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | header content elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### HeaderGlobalAction
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/headerGlobalAction.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `icon` | - | - | string (icon name) |
+| `onPress` | Function | - | function (press handler) |
+| `label` | - | - | string (accessibility label) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### HeaderGlobalBar
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/headerGlobalBar.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | HeaderGlobalAction elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### HeaderMenu
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/headerMenu.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | string (menu label) |
+| `children` | Node | - | HeaderMenuItem elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### HeaderMenuButton
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/headerMenuButton.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `onPress` | Function | - | function (press handler) |
+| `label` | - | - | string (button label) |
+| `isActive` | Boolean | - | boolean, whether the menu is currently open |
+| `style` | Object|Array | - | custom style overrides |
 
 ### HeaderMenuItem
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/headerMenuItem.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `text` | - | - | string (item label) |
+| `onPress` | Function | - | function (press handler) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### HeaderName
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/headerName.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `text` | - | - | string (application name) |
+| `onPress` | Function | - | function (press handler) |
+| `prefix` | - | - | string (optional prefix before the name) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### HeaderNavigation
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/headerNavigation.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | navigation content (links, menu items) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### HeaderPanel
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/headerPanel.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | panel content |
+| `expanded` | Boolean | - | boolean, whether the panel is visible |
+| `style` | Object|Array | - | custom style overrides |
 
 ### HeaderSideNavItems
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/headerSideNavItems.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | side nav item elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Heading
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/atom/heading.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `level` | - | - | 1-6 (default 1, maps to aria-level) |
+| `children` | Node | - | heading text content |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Icon
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** substrate
 
-See `component/atom/icon.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `name` | - | - | glyph name (vendor-specific, set by the host adapter) |
+| `size` | Number | - | dimension token (xs..xxl) OR a raw number |
+| `color` | - | - | color token (e.g. 'TEXT_PRIMARY' / 'text_primary') OR a raw hex |
+| `style` | Object|Array | - | - |
 
 ### IconButton
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/iconButton.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `name` | - | - | string (icon glyph name) |
+| `onPress` | Function | - | function |
+| `disabled` | Boolean | - | boolean |
+| `size` | - | - | string (icon size token, default 'md') |
+| `color` | - | - | string (icon color token) |
+| `label` | - | - | string (accessibility label, required) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### IconIndicator
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** unexported
 
-See `component/atom/iconIndicator.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `iconName` | - | - | string (name of the icon to render) |
+| `color` | - | - | string (background color token or hex) |
+| `iconColor` | - | - | string (icon color token or hex, default 'text_on_primary') |
+| `size` | Number | - | number (pixels, default 24) |
+| `label` | - | - | string (accessibility label) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### IconSwitch
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/iconSwitch.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `icon` | - | - | string (icon name) |
+| `checked` | Boolean | - | boolean (whether the switch is on) |
+| `onToggle` | Function | - | function (called with next boolean) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### IconTab
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/iconTab.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `icon` | - | - | string (icon name) |
+| `active` | Boolean | - | boolean (whether this tab is active) |
+| `onPress` | Function | - | function (press handler) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### IdPrefix
 
 **Tier:** provider | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/provider/idPrefix.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `prefix` | - | '' | string (the id prefix, e.g. 'my-app') |
+| `children` | Node | - | content to render within the prefix context |
 
 ### Image
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** substrate
 
-See `component/atom/image.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `radius` | - | - | - |
+| `background` | - | - | - |
+| `style` | Object|Array | - | - |
 
 ### InlineLink
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/atom/inlineLink.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `onPress` | Function | - | callback |
+| `title` | - | - | link text content |
+| `disabled` | Boolean | - | boolean |
+| `style` | Object|Array | - | custom style overrides |
+| `accessibilityLabel` | - | - | - |
 
 ### InlineLoading
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/inlineLoading.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `status` | String | 'active' | 'active' | 'inactive' | 'error' (default 'active') |
+| `label` | - | - | string (loading text, default 'Loading...') |
+| `style` | Object|Array | - | custom style overrides |
 
 ### InlineNotification
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/inlineNotification.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | primary text |
+| `subtitle` | - | - | secondary text (optional) |
+| `kind` | String | 'info' | 'info' | 'success' | 'warning' | 'error' |
+| `style` | Object|Array | - | custom style overrides |
 
 ### LandingView
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/landingView.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | page content |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Layer
 
 **Tier:** provider | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/provider/layer.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `level` | Number | - | number (optional override; defaults to parent level + 1) |
+| `children` | Node | - | content to render within the layer context |
 
 ### Link
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/atom/link.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `href` | - | - | string (URL, web only) |
+| `onPress` | Function | - | callback |
+| `disabled` | Boolean | - | boolean |
+| `children` | Node | - | link text content |
+| `style` | Object|Array | - | - |
+| `accessibilityLabel` | - | - | - |
 
 ### List
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/list.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `ordered` | Boolean | - | boolean (when true, renders an ordered list) |
+| `children` | Node | - | list items |
+| `style` | Object|Array | - | custom style overrides |
+| `// eslint-disable-line no-unused-vars
+      ...rest` | - | - | - |
 
 ### ListItem
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/listItem.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | primary text |
+| `subtitle` | - | - | secondary text (optional) |
+| `icon` | - | - | leading icon name (optional) |
+| `trailing` | - | - | trailing element (optional) |
+| `onPress` | Function | - | press handler (optional; when absent, item is static) |
+| `selected` | Boolean | - | boolean, whether the item is selected |
+| `disabled` | Boolean | - | - |
+| `style` | Object|Array | - | - |
 
 ### LiveRegionProvider
 
 **Tier:** provider | **Platform:** Both web and native | **Source:** infrastructure
 
-See `component/provider/liveRegionProvider.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | - |
 
 ### Loading
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/atom/loading.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | string (announced to screen readers) |
+| `size` | String | - | 'sm' | 'md' | 'lg' (default 'md') |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Menu
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/menu.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `isOpen` | Boolean | - | boolean |
+| `onClose` | Function | - | function |
+| `children` | Node | - | MenuItem elements |
+| `placement` | - | - | string (default 'bottom-start') |
+| `style` | Object|Array | - | custom style overrides |
+| `// eslint-disable-line no-unused-vars
+      ...rest` | - | - | - |
 
 ### MenuButton
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/menuButton.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | string (button label) |
+| `items` | Array | - | array of { label, onPress, disabled } |
+| `icon` | - | - | string (optional leading icon) |
+| `style` | Object|Array | - | custom style overrides |
+| `// eslint-disable-line no-unused-vars
+      ...rest` | - | - | - |
 
 ### MenuItem
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/menuItem.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | string |
+| `onPress` | Function | - | function |
+| `disabled` | Boolean | - | boolean |
+| `icon` | - | - | string (optional leading icon) |
+| `shortcut` | - | - | string (optional shortcut hint) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### MenuItemDivider
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/menuItemDivider.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `style` | Object|Array | - | custom style overrides |
 
 ### MenuItemGroup
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/menuItemGroup.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | string (group label, optional) |
+| `children` | Node | - | menu item elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### MenuItemRadioGroup
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/menuItemRadioGroup.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `items` | Array | - | array of { label, value } |
+| `value` | Number | - | string (selected value) |
+| `onChange` | Function | - | function (called with selected value) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### MenuItemSelectable
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/menuItemSelectable.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | string |
+| `checked` | Boolean | - | boolean |
+| `onChange` | Function | - | function (called with next boolean) |
+| `disabled` | Boolean | - | boolean |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Modal
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/modal.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `isOpen` | Boolean | - | - |
+| `onClose` | Function | - | - |
+| `children` | Node | - | - |
+| `style` | Object|Array | - | - |
+| `initialFocusRef` | - | - | - |
+| `finalFocusRef` | - | - | - |
 
 ### ModalBody
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/modalBody.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | modal body content |
+| `style` | Object|Array | - | custom style overrides |
 
 ### ModalFooter
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/modalFooter.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | footer content (usually buttons) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### ModalHeader
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/modalHeader.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | string |
+| `subtitle` | - | - | string (optional) |
+| `closeOnPress` | - | - | - |
+| `children` | Node | - | additional content |
+| `style` | Object|Array | - | custom style overrides |
 
 ### MultiSelect
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/multiSelect.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `values` | Array | - | array (controlled) |
+| `defaultValues` | - | - | - |
+| `onChange` | Function | - | callback receiving the selected values array |
+| `options` | Array | [] | array of { value, label } |
+| `placeholder` | - | - | string (default 'Select options') |
+| `disabled` | Boolean | - | boolean |
+| `invalid` | Boolean | - | boolean |
+| `style` | Object|Array | - | - |
+| `accessibilityLabel` | - | - | - |
 
 ### NavigationList
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/navigationList.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | heading text (optional) |
+| `children` | Node | - | navigation list items |
+| `style` | Object|Array | - | custom style overrides |
 
 ### NavigationListItem
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/navigationListItem.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | primary text |
+| `onPress` | Function | - | press handler |
+| `icon` | - | - | leading icon name (optional) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Notification
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/notification.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | primary text |
+| `subtitle` | - | - | secondary text (optional) |
+| `status` | String | 'info' | 'success' | 'error' | 'warning' | 'info' |
+| `onClose` | Function | - | close handler (optional; when absent, no close button) |
+| `children` | Node | - | additional content (optional) |
+| `style` | Object|Array | - | - |
 
 ### NotificationActionButton
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/notificationActionButton.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `text` | - | - | string (button label) |
+| `onPress` | Function | - | function (press handler) |
+| `kind` | - | - | string (button kind, optional) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### NotificationButton
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/notificationButton.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `onPress` | Function | - | function (press handler) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### NumberInput
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/numberInput.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | Number | - | number (controlled) |
+| `defaultValue` | Number | - | number (uncontrolled) |
+| `onChange` | Function | - | callback receiving the next number |
+| `min` | Number | - | number |
+| `max` | Number | - | number |
+| `step` | Number | - | number (default 1) |
+| `disabled` | Boolean | - | boolean |
+| `invalid` | Boolean | - | boolean |
+| `style` | Object|Array | - | - |
+| `accessibilityLabel` | - | - | - |
 
 ### OperationalTag
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/operationalTag.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `text` | - | - | string (the tag label) |
+| `onAction` | Function | - | function (called when the tag is pressed) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### OrderedList
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/orderedList.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | list item elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### OverflowMenu
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/overflowMenu.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `items` | Array | - | array of { label, onPress, disabled } |
+| `triggerLabel` | - | - | - |
+| `placement` | - | - | string (default 'bottom-end') |
+| `style` | Object|Array | - | custom style overrides |
+| `// eslint-disable-line no-unused-vars
+      ...rest` | - | - | - |
 
 ### OverflowMenuItem
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/overflowMenuItem.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `text` | - | - | string (item label) |
+| `onPress` | Function | - | function (press handler) |
+| `disabled` | Boolean | - | boolean |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Overlay
 
 **Tier:** provider | **Platform:** Split (web and native differ) | **Source:** non-carbon
 
-See `component/provider/overlay.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | - |
 
 ### Pagination
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/pagination.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `page` | Number | - | number (current page, 1-based) |
+| `totalPage` | Number | - | number (total number of pages) |
+| `onChange` | Function | - | function (called with new page number) |
+| `pageSize` | Number | - | number (items per page, optional) |
+| `style` | Object|Array | - | custom style overrides |
+| `// eslint-disable-line no-unused-vars
+      ...rest` | - | - | - |
 
 ### PaginationNav
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/paginationNav.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `currentPage` | Number | - | number (the active page, 1-based) |
+| `totalPages` | Number | - | number (total number of pages) |
+| `onChange` | Function | - | function (called with selected page number) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### PasswordInput
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/passwordInput.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | - | - | string (controlled) |
+| `defaultValue` | - | - | string (uncontrolled) |
+| `onChange` | Function | - | callback receiving the text value |
+| `placeholder` | - | - | string |
+| `disabled` | Boolean | - | boolean |
+| `invalid` | Boolean | - | boolean |
+| `style` | Object|Array | - | - |
+| `accessibilityLabel` | - | - | - |
 
 ### Popover
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/popover.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `isOpen` | Boolean | - | boolean |
+| `onClose` | Function | - | function |
+| `placement` | - | - | string (default 'top') |
+| `content` | - | - | node (popover content) |
+| `children` | Node | - | trigger element |
+| `style` | Object|Array | - | custom style overrides |
 
 ### PopoverContent
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/popoverContent.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | popover content elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### PrefixContext
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/prefixContext.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | content to render within the prefix context |
+| `style` | Object|Array | - | custom style overrides |
 
 ### ProgressBar
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/atom/progressBar.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | - | - | 0 to 1 for determinate, null for indeterminate |
+| `color` | - | - | background color token for the fill (default app_primary) |
+| `trackColor` | - | - | background color token for the track (default surface) |
+| `height` | - | - | bar height in pixels (default 4) |
+| `style` | Object|Array | - | - |
 
 ### ProgressIndicator
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/progressIndicator.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `current` | Number | - | number (1-based current step number) |
+| `children` | Node | - | ProgressStep elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### ProgressStep
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/progressStep.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | string (step label) |
+| `status` | String | 'incomplete' | 'complete' | 'current' | 'incomplete' |
+| `stepNumber` | Number | - | number (1-based step position) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### RadioButton
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/atom/radioButton.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `checked` | Boolean | - | boolean |
+| `onChange` | Function | - | callback receiving the next boolean (always true) |
+| `disabled` | Boolean | - | boolean |
+| `label` | - | - | string (rendered as Text child) |
+| `style` | Object|Array | - | - |
+| `accessibilityLabel` | - | - | - |
 
 ### RadioButtonGroup
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/radioButtonGroup.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | - | - | string (controlled) |
+| `defaultValue` | - | - | - |
+| `onChange` | Function | - | callback receiving the selected value |
+| `options` | Array | [] | array of { value, label, disabled } |
+| `disabled` | Boolean | - | boolean (disables the entire group) |
+| `name` | - | - | string (group name for form submission) |
+| `orientation` | String | - | 'horizontal' | 'vertical' (default 'vertical') |
+| `style` | Object|Array | - | - |
+| `accessibilityLabel` | - | - | - |
 
 ### RadioTile
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/radioTile.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `name` | - | - | string (radio group name) |
+| `value` | Number | - | string (tile value) |
+| `checked` | Boolean | - | boolean (whether this tile is selected) |
+| `onSelect` | Function | - | function (called with the value) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Row
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/row.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | content elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### SafeAreaWrapper
 
 **Tier:** molecule | **Platform:** Native primary (degrades on web) | **Source:** non-carbon
 
-See `component/molecule/safeAreaWrapper.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | wrapped content |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Search
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/search.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | - | - | string (controlled) |
+| `defaultValue` | - | - | string (uncontrolled) |
+| `onChange` | Function | - | callback receiving the text value |
+| `onClear` | Function | - | callback when clear button is pressed |
+| `placeholder` | - | - | string (default 'Search') |
+| `disabled` | Boolean | - | boolean |
+| `style` | Object|Array | - | - |
+| `accessibilityLabel` | - | - | - |
 
 ### Section
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/section.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | content elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Select
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/select.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | - | - | string (controlled) |
+| `defaultValue` | - | - | - |
+| `onChange` | Function | - | callback receiving the selected value |
+| `options` | Array | [] | array of { value, label } |
+| `placeholder` | - | - | string (default 'Select an option') |
+| `disabled` | Boolean | - | boolean |
+| `invalid` | Boolean | - | boolean |
+| `style` | Object|Array | - | - |
+| `accessibilityLabel` | - | - | - |
 
 ### SelectItem
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/selectItem.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | Number | - | string (the option value) |
+| `text` | - | - | string (the display label) |
+| `onSelect` | Function | - | function (called with the value when selected) |
+| `disabled` | Boolean | - | boolean |
+| `style` | Object|Array | - | custom style overrides |
 
 ### SelectItemGroup
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/selectItemGroup.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | string (the group label) |
+| `children` | Node | - | SelectItem elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### SelectableTag
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/selectableTag.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `text` | - | - | string (the tag label) |
+| `selected` | Boolean | - | boolean (whether the tag is selected) |
+| `onSelect` | Function | - | function (called with next boolean) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### SelectableTile
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/selectableTile.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | string |
+| `selected` | Boolean | - | boolean |
+| `onSelect` | Function | - | function (called with next boolean) |
+| `disabled` | Boolean | - | boolean |
+| `style` | Object|Array | - | custom style overrides |
 
 ### ShapeIndicator
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** unexported
 
-See `component/atom/shapeIndicator.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `shape` | String | 'circle' | 'circle' | 'square' | 'triangle' (default 'circle') |
+| `color` | - | - | string (color token or hex, default 'app_primary') |
+| `size` | Number | - | number (pixels, default 16) |
+| `label` | - | - | string (accessibility label) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### SideNav
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/sideNav.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | side nav content elements |
+| `expanded` | Boolean | - | boolean (whether the side nav is expanded) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### SideNavDetails
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/sideNavDetails.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | string (section title) |
+| `children` | Node | - | detail content elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### SideNavDivider
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/sideNavDivider.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `style` | Object|Array | - | custom style overrides |
 
 ### SideNavFooter
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/sideNavFooter.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | footer content elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### SideNavHeader
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/sideNavHeader.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | string (section title) |
+| `children` | Node | - | header content elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### SideNavIcon
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/sideNavIcon.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `name` | - | - | string (icon name) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### SideNavItem
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/sideNavItem.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `text` | - | - | string (item label) |
+| `onPress` | Function | - | function (press handler) |
+| `active` | Boolean | - | boolean (whether this item is active) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### SideNavItems
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/sideNavItems.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | side nav item elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### SideNavLink
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/sideNavLink.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `text` | - | - | string (link label) |
+| `onPress` | Function | - | function (press handler) |
+| `icon` | - | - | string (optional leading icon name) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### SideNavLinkText
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/sideNavLinkText.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | text content |
+| `style` | Object|Array | - | custom style overrides |
 
 ### SideNavMenu
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/sideNavMenu.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | string (menu label) |
+| `expanded` | Boolean | - | boolean (whether the menu is expanded) |
+| `onToggle` | Function | - | function (called with next boolean) |
+| `children` | Node | - | SideNavMenuItem elements (shown when expanded) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### SideNavMenuItem
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/sideNavMenuItem.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `text` | - | - | string (item label) |
+| `onPress` | Function | - | function (press handler) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### SideNavSwitcher
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/sideNavSwitcher.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | string (switcher label) |
+| `options` | Array | - | array (switcher options) |
+| `onChange` | Function | - | function (called with selected option) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### SidePanel
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** unexported
 
-See `component/composite/sidePanel.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `isOpen` | Boolean | - | boolean |
+| `onClose` | Function | - | function |
+| `title` | - | - | string (optional panel header) |
+| `children` | Node | - | panel content |
+| `side` | String | 'right' | 'left' | 'right' (default 'right') |
+| `width` | Number | 320 | number (default 320) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Skeleton
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** collapse
 
-See `component/atom/skeleton.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `variant` | String | 'text' | 'text' | 'icon' | 'placeholder' (default 'text') |
+| `lines` | Number | 1 | number (for text variant, default 1) |
+| `width` | Number | '100%' | number or string (default '100%') |
+| `height` | Number | defaultHeight | number or string (default 16 for text, 48 for placeholder) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### SkeletonIcon
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/skeletonIcon.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `style` | Object|Array | - | custom style overrides |
 
 ### SkeletonPlaceholder
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/skeletonPlaceholder.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `style` | Object|Array | - | custom style overrides |
 
 ### SkeletonText
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/skeletonText.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `lines` | Number | 3 | number (default 3) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### SkipToContent
 
 **Tier:** molecule | **Platform:** Web primary (null on native) | **Source:** non-carbon
 
-See `component/molecule/skipToContent.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `href` | - | (targetId ? ('#' + targetId) : '#main-content') | string (link target, optional) |
+| `targetId` | - | - | string (id of the content to skip to) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Slider
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/atom/slider.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | Number | - | number (controlled) |
+| `defaultValue` | - | - | - |
+| `min` | Number | - | number (default 0) |
+| `max` | Number | - | number (default 100) |
+| `step` | Number | - | number (default 1) |
+| `onChange` | Function | - | callback receiving the next number |
+| `disabled` | Boolean | - | boolean |
+| `hideTextInput` | Boolean | - | boolean (default true; when false, shows a paired NumberInput) |
+| `style` | Object|Array | - | - |
+| `accessibilityLabel` | - | - | - |
 
 ### Stack
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/stack.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `direction` | String | 'vertical' | 'vertical' | 'horizontal' (default 'vertical') |
+| `gap` | - | 'md' | string (space token, default 'md') |
+| `children` | Node | - | content to stack |
+| `style` | Object|Array | - | custom style overrides |
 
 ### StaticNotification
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/staticNotification.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | primary text |
+| `kind` | String | 'info' | 'info' | 'success' | 'warning' | 'error' |
+| `children` | Node | - | additional content (optional) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### StructuredListBody
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/structuredListBody.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | structured list row elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### StructuredListCell
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/structuredListCell.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | cell content |
+| `style` | Object|Array | - | custom style overrides |
 
 ### StructuredListHead
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/structuredListHead.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | structured list row elements (header rows) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### StructuredListInput
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/structuredListInput.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `name` | - | - | string (radio group name) |
+| `value` | Number | - | string (input value) |
+| `checked` | Boolean | - | boolean (whether this input is selected) |
+| `onChange` | Function | - | function (called with the value) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### StructuredListRow
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/structuredListRow.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | cell elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### StructuredListWrapper
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/structuredListWrapper.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | structured list row elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Switch
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/switch.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | string (switch label text) |
+| `selected` | Boolean | - | boolean, whether this switch is selected |
+| `onPress` | Function | - | function (press handler) |
+| `disabled` | Boolean | - | boolean |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Switcher
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/switcher.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | switcher item elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### SwitcherDivider
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/switcherDivider.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `style` | Object|Array | - | custom style overrides |
 
 ### SwitcherItem
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/switcherItem.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `text` | - | - | string (item label) |
+| `onPress` | Function | - | function (press handler) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Tab
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tab.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | string (tab label text) |
+| `selected` | Boolean | - | boolean, whether this tab is selected |
+| `onPress` | Function | - | function (press handler) |
+| `disabled` | Boolean | - | boolean |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TabContent
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tabContent.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | tab panel content |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TabList
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tabList.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Tab elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TabListVertical
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tabListVertical.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | Tab elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TabPanel
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tabPanel.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | panel content |
+| `selected` | Boolean | - | boolean, whether this panel is visible |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TabPanels
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tabPanels.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | tab panel elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Table
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/table.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | table content elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TableActionList
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tableActionList.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | action button elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TableBatchAction
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tableBatchAction.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | button text |
+| `onPress` | Function | - | press handler |
+| `disabled` | Boolean | - | boolean |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TableBatchActions
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tableBatchActions.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | action button elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TableBody
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tableBody.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | row elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TableCell
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tableCell.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | cell content |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TableContainer
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tableContainer.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | content elements |
+| `maxWidth` | - | - | maximum width in pixels (default 1200) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TableDecoratorRow
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tableDecoratorRow.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `style` | Object|Array | - | custom style overrides |
 
 ### TableExpandHeader
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tableExpandHeader.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `isExpanded` | Boolean | - | boolean, whether the row group is currently expanded |
+| `onToggle` | Function | - | function invoked when the toggle is pressed |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TableExpandRow
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tableExpandRow.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `isExpanded` | Boolean | - | boolean, whether this row is currently expanded |
+| `onToggle` | Function | - | function invoked when the row is pressed to toggle |
+| `children` | Node | - | row cell elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TableExpandedRow
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tableExpandedRow.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | expanded content elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TableHead
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tableHead.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | header row elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TableHeader
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tableHeader.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | header content |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TableRow
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tableRow.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | cell elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TableSelectAll
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tableSelectAll.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `checked` | String | - | true | false | 'mixed' (current selection state) |
+| `onSelectAll` | Function | - | function receiving the next boolean |
+| `ariaLabel` | - | - | string (accessibility label for the checkbox) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TableSelectRow
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tableSelectRow.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `checked` | Boolean | - | true | false (current selection state of the row) |
+| `onSelect` | Function | - | function receiving the next boolean |
+| `ariaLabel` | - | - | string (accessibility label for the checkbox) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TableSlugRow
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tableSlugRow.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `slug` | - | - | string (short label rendered at the row start) |
+| `children` | Node | - | row cell elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TableToolbar
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tableToolbar.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | tool button elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TableToolbarAction
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tableToolbarAction.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `icon` | - | - | string (icon glyph name) |
+| `onPress` | Function | - | function (press handler) |
+| `label` | - | - | string (button text / accessibility label) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TableToolbarContent
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tableToolbarContent.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | toolbar content elements (actions, search) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TableToolbarMenu
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tableToolbarMenu.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | string (trigger label, default 'Options') |
+| `children` | Node | - | array of menu item objects { label, onPress, disabled } |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TableToolbarSearch
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tableToolbarSearch.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | Number | - | string (controlled search value) |
+| `onChange` | Function | - | callback receiving the text value |
+| `placeholder` | - | - | string (placeholder text, default 'Search') |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Tabs
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/tabs.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `selectedIndex` | Number | - | number (0-based active tab index) |
+| `onChange` | Function | - | function (called with new index) |
+| `children` | Node | - | Tab elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TabsVertical
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/tabsVertical.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `selectedIndex` | Number | - | number (0-based active tab index) |
+| `onChange` | Function | - | function (called with new index) |
+| `children` | Node | - | TabListVertical and TabPanels elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Tag
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/atom/tag.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | string, tag text |
+| `onDismiss` | Function | - | function (when provided, renders a close button) |
+| `disabled` | Boolean | - | boolean |
+| `selected` | Boolean | - | boolean (for selectable tags) |
+| `onPress` | Function | - | function (for selectable tags) |
+| `variant` | String | - | 'default' | 'operational' (color scheme) |
+| `style` | Object|Array | - | custom style overrides |
+| `accessibilityLabel` | - | - | - |
 
 ### Text
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/atom/text.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `size` | - | - | font_size_<size>     (xs|sm|md|lg|xl|xxl) |
+| `color` | - | - | font_<color>         (text_primary|text_secondary|app_primary|...) |
+| `weight` | - | - | - |
+| `align` | - | - | - |
+| `style` | Object|Array | - | - |
+| `children` | Node | - | - |
 
 ### TextArea
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/atom/textArea.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | - | - | string (controlled) |
+| `defaultValue` | - | - | string (uncontrolled) |
+| `onChange` | Function | - | callback receiving the text value |
+| `disabled` | Boolean | - | boolean |
+| `invalid` | Boolean | - | boolean |
+| `placeholder` | - | - | string |
+| `rows` | Number | - | number (visual height in lines, default 4) |
+| `style` | Object|Array | - | - |
+| `accessibilityLabel` | - | - | - |
 
 ### TextInput
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/atom/textInput.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `style` | Object|Array | - | - |
+| `accessibilityLabel` | - | - | - |
+| `isInvalid` | Boolean | - | - |
+| `isDisabled` | Boolean | - | - |
+| `onFocus` | Function | - | - |
+| `onBlur` | Function | - | - |
 
 ### Theme
 
 **Tier:** provider | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/provider/theme.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `theme` | - | - | object (theme contract to provide) |
+| `children` | Node | - | content to render within the theme context |
 
 ### ThemeContext
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/themeContext.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | content to render within the theme context |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Tile
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tile.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | string |
+| `subtitle` | - | - | string |
+| `icon` | - | - | string (icon name) |
+| `children` | Node | - | additional content |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TileAboveTheFoldContent
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tileAboveTheFoldContent.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | above-the-fold content |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TileBelowTheFoldContent
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tileBelowTheFoldContent.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | below-the-fold content |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TileGroup
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tileGroup.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | tile elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TimePicker
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/timePicker.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | - | - | string HH:MM (controlled) |
+| `defaultValue` | - | - | - |
+| `onChange` | Function | - | callback receiving the selected time string |
+| `disabled` | Boolean | - | boolean |
+| `invalid` | Boolean | - | boolean |
+| `style` | Object|Array | - | - |
+| `accessibilityLabel` | - | - | - |
 
 ### TimePickerSelect
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/timePickerSelect.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | Number | - | string (controlled, the selected time value) |
+| `onChange` | Function | - | callback receiving the selected value |
+| `options` | Array | - | array of { value, label } |
+| `style` | Object|Array | - | custom style overrides |
 
 ### ToastNotification
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/toastNotification.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | primary text |
+| `subtitle` | - | - | secondary text (optional) |
+| `status` | String | 'info' | 'success' | 'error' | 'warning' | 'info' |
+| `onClose` | Function | - | close handler (called on close or auto-dismiss) |
+| `duration` | - | - | milliseconds before auto-dismiss (default 3000) |
+| `style` | Object|Array | - | - |
 
 ### Toggle
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/atom/toggle.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `value` | Boolean | - | boolean, whether the toggle is on |
+| `onValueChange` | Function | - | callback when the value changes |
+| `disabled` | Boolean | - | boolean, whether the toggle is non-interactive |
+| `style` | Object|Array | - | - |
+| `accessibilityLabel` | - | - | - |
 
 ### Toggletip
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/toggletip.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `content` | - | - | string or node (toggletip content) |
+| `children` | Node | - | trigger element |
+| `placement` | - | - | string (default 'top') |
+| `style` | Object|Array | - | custom style overrides |
 
 ### ToggletipActions
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/toggletipActions.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | action button elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### ToggletipButton
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/toggletipButton.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `text` | - | - | string (the button label) |
+| `onPress` | Function | - | function (called when pressed) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### ToggletipContent
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/toggletipContent.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | toggletip content elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### ToggletipLabel
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/toggletipLabel.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | the label text |
+| `toggletipContent` | - | - | content to show in the toggletip |
+| `children` | Node | - | additional content (optional) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### Tooltip
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/tooltip.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `content` | - | - | string or node (tooltip content) |
+| `children` | Node | - | trigger element |
+| `placement` | - | - | string (default 'top') |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TopNavigationBar
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/topNavigationBar.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | main title string |
+| `subTitle` | - | - | optional subtitle string |
+| `leftItems` | Array | - | array of { icon, text, onPress } |
+| `rightItems` | Array | - | array of { icon, text, onPress } |
+| `headerMode` | Boolean | - | boolean (larger title when true) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TopNavigationBarLogin
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/topNavigationBarLogin.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | main title string |
+| `loginAction` | - | - | object with { text, onPress } |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TreeNode
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/treeNode.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `label` | - | - | string (node label) |
+| `children` | Node | - | child TreeNode elements (optional) |
+| `expanded` | Boolean | - | boolean, whether the node is expanded |
+| `onToggle` | Function | - | function (called when expand/collapse is pressed) |
+| `selected` | Boolean | - | boolean, whether this node is selected |
+| `level` | Number | - | number (depth in the tree, 1-based) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TreeView
 
 **Tier:** composite | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/composite/treeView.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `data` | Array | - | array of { key, label, children, expanded, selected } |
+| `onSelect` | Function | - | function (called with selected node key) |
+| `expandedKeys` | Array | - | array (keys of expanded nodes) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### TruncatedText
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** unexported
 
-See `component/molecule/truncatedText.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | string (the text content) |
+| `maxLines` | Number | - | number (max lines before truncation, default 2) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### UiPanel
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/uiPanel.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `title` | - | - | panel header text |
+| `collapsed` | Boolean | - | boolean (true = content hidden) |
+| `onToggle` | Function | - | callback when header is pressed |
+| `children` | Node | - | panel content |
+| `style` | Object|Array | - | custom style overrides |
 
 ### UiPanelItem
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/uiPanelItem.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `icon` | - | - | icon name (optional) |
+| `text` | - | - | item label |
+| `onPress` | Function | - | callback when pressed |
+| `style` | Object|Array | - | custom style overrides |
 
 ### UnorderedList
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/unorderedList.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | list item elements |
+| `style` | Object|Array | - | custom style overrides |
 
 ### UserAvatar
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** unexported
 
-See `component/molecule/userAvatar.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `src` | - | - | string (image URL) |
+| `initials` | - | - | string (fallback text, e.g. 'JD') |
+| `size` | String | - | 'sm' | 'md' | 'lg' (default 'md') |
+| `label` | - | - | string (accessibility label) |
+| `style` | Object|Array | - | custom style overrides |
 
 ### VStack
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/vStack.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `spacing` | - | 'md' | string (space token, default 'md') |
+| `children` | Node | - | content to stack |
+| `style` | Object|Array | - | custom style overrides |
 
 ### View
 
 **Tier:** atom | **Platform:** Both web and native | **Source:** substrate
 
-See `component/atom/view.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `background` | - | - | - |
+| `radius` | - | - | - |
+| `border` | - | - | - |
+| `style` | Object|Array | - | - |
+| `children` | Node | - | - |
 
 ### ViewWrapper
 
 **Tier:** molecule | **Platform:** Native primary (degrades on web) | **Source:** non-carbon
 
-See `component/molecule/viewWrapper.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | wrapped content |
+| `style` | Object|Array | - | custom style overrides |
 
 ### WebHeader
 
 **Tier:** molecule | **Platform:** Both web and native | **Source:** non-carbon
 
-See `component/molecule/webHeader.js` for the Info header and prop list.
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `children` | Node | - | header content |
+| `style` | Object|Array | - | custom style overrides |
 
 <!-- END GENERATED: component-sections -->

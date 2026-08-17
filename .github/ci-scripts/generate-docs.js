@@ -170,6 +170,245 @@ function generateRobotsList (roster) {
 
 
 // ---------------------------------------------------------------------------
+// Props extraction from component source files
+// ---------------------------------------------------------------------------
+
+// Parse the Info header (top-of-file comment block) for prop descriptions.
+// Matches lines like: "   title       -> primary text"
+// Returns a { name: description } map.
+function parseInfoHeader (source) {
+
+  const map = {};
+
+  // Only scan the first 15 lines — the Info header is always at the top
+  const lines = source.split('\n').slice(0, 15);
+
+  for (let i = 0; i < lines.length; i++) {
+
+    // Stop at the first non-comment line (blank or code)
+    if (lines[i].indexOf('//') === -1 && lines[i].trim() !== '') {
+      break;
+    }
+
+    // Match: //   <name>  -> <description>
+    const match = lines[i].match(/^\/\/\s+([a-zA-Z_][a-zA-Z0-9_]*)\s+->\s*(.+)$/);
+
+    if (match) {
+      map[match[1]] = match[2].trim();
+    }
+
+  }
+
+  return map;
+
+}
+
+
+// Extract prop names from a destructuring pattern: const { a, b, ...rest } = props;
+// Handles multi-line destructuring (the common case — 221 of 245 files).
+// Returns an array of prop names, or null if no destructuring found.
+function extractDestructuredProps (source) {
+
+  // Match "const {" ... "} = props;" across multiple lines
+  const match = source.match(/const\s*\{([^}]*)\}\s*=\s*props\s*;/);
+
+  if (!match) {
+    return null;
+  }
+
+  const inner = match[1];
+
+  // Split on commas, trim each, filter out ...rest and empty strings
+  return inner
+    .split(',')
+    .map(function (s) {
+      return s.trim();
+    })
+    .filter(function (s) {
+      return s !== '' && s.indexOf('...') !== 0;
+    })
+    .map(function (s) {
+      // Handle "name = default" (though measured: zero files use this form)
+      return s.split('=')[0].trim();
+    });
+
+}
+
+
+// Extract prop names from member access patterns: props.X or this.props.X
+// Used for providers and other files that never destructure.
+// Returns an array of unique prop names, or null if no member access found.
+function extractMemberAccessProps (source) {
+
+  const names = new Set();
+
+  // Match props.X (but not this.props.X — handled separately below)
+  // Also match this.props.X
+  const matches = source.matchAll(/(?:this\.)?props\.([a-zA-Z_][a-zA-Z0-9_]*)/g);
+
+  for (const match of matches) {
+    names.add(match[1]);
+  }
+
+  if (names.size === 0) {
+    return null;
+  }
+
+  return Array.from(names);
+
+}
+
+
+// Find the default value for a prop by searching for the post-destructuring
+// resolution pattern: const resolvedX = X || 'literal'
+// or: const x = props.X || 'literal'
+// Returns the default string (e.g. "'info'") or '-' if not found.
+function findDefaultValue (source, propName) {
+
+  // Pattern: = <propName> || <literal>
+  // The literal can be a string ('info'), a number (0), or a boolean (false)
+  const pattern = new RegExp(
+    '=\\s*(?:props\\.)?' + propName + '\\s*\\|\\|\\s*([^,;\\n]+)'
+  );
+
+  const match = source.match(pattern);
+
+  if (match) {
+    return match[1].trim();
+  }
+
+  // Pattern: = <propName> !== false (boolean default true)
+  const boolPattern = new RegExp(
+    '=\\s*(?:props\\.)?' + propName + '\\s*!==\\s*false'
+  );
+
+  if (boolPattern.test(source)) {
+    return 'true';
+  }
+
+  return '-';
+
+}
+
+
+// Infer a type string from the prop name and description.
+function inferType (propName, description) {
+
+  // Children is always Node
+  if (propName === 'children') {
+    return 'Node';
+  }
+
+  // Style is always Object|Array
+  if (propName === 'style') {
+    return 'Object|Array';
+  }
+
+  // onPress, onChange, onClose, onValueChange, etc. are Functions
+  if (propName.indexOf('on') === 0 && propName.length > 2 &&
+      propName[2] === propName[2].toUpperCase()) {
+    return 'Function';
+  }
+
+  // If description exists, infer from it
+  if (description && description !== '-') {
+
+    // Quoted union: 'info' | 'success' | ... -> String
+    if (/'[^']*'\s*\|/.test(description) || /\|[^|]*'[^']*'/.test(description)) {
+      return 'String';
+    }
+
+    // Boolean keywords in description
+    if (/\b(boolean|true|false)\b/i.test(description)) {
+      return 'Boolean';
+    }
+
+    // Function keyword in description
+    if (/\b(function|handler|callback)\b/i.test(description)) {
+      return 'Function';
+    }
+
+    // Array keyword in description
+    if (/\barray\b/i.test(description)) {
+      return 'Array';
+    }
+
+    // Number keyword in description
+    if (/\b(number|count|index|value)\b/i.test(description)) {
+      return 'Number';
+    }
+
+  }
+
+  // Name-based heuristics
+  if (propName.indexOf('is') === 0 && propName.length > 2 &&
+      propName[2] === propName[2].toUpperCase()) {
+    return 'Boolean';
+  }
+
+  if (propName === 'disabled' || propName === 'invalid' ||
+      propName === 'selected' || propName === 'checked' ||
+      propName === 'expanded' || propName === 'open' ||
+      propName === 'fluid' || propName === 'fullWidth' ||
+      propName === 'hovered' || propName === 'pressed') {
+    return 'Boolean';
+  }
+
+  if (propName === 'style') {
+    return 'Object|Array';
+  }
+
+  return '-';
+
+}
+
+
+// Extract all props from a component source file.
+// Returns an array of { name, type, default, description }.
+// Returns null if the file has no props (e.g. infrastructure).
+function extractProps (filePath) {
+
+  if (!fs.existsSync(filePath)) {
+    throw new Error('Component source file not found: ' + filePath);
+  }
+
+  const source = fs.readFileSync(filePath, 'utf8');
+
+  // Step 1: Parse Info header for descriptions
+  const headerMap = parseInfoHeader(source);
+
+  // Step 2: Collect prop names using both forms
+  let propNames = extractDestructuredProps(source);
+
+  if (!propNames) {
+    // Form B: member access (providers, rawBox, errorBoundary)
+    propNames = extractMemberAccessProps(source);
+  }
+
+  if (!propNames || propNames.length === 0) {
+    return null;
+  }
+
+  // Step 3: Build the prop table rows
+  return propNames.map(function (name) {
+
+    const description = headerMap[name] || '-';
+    const type = inferType(name, description);
+    const defaultValue = findDefaultValue(source, name);
+
+    return {
+      name: name,
+      type: type,
+      default: defaultValue,
+      description: description
+    };
+
+  });
+
+}
+
+
+// ---------------------------------------------------------------------------
 // API.md component sections
 // ---------------------------------------------------------------------------
 
@@ -182,12 +421,37 @@ function generateApiSections (roster) {
   const sections = [];
 
   built.forEach(function (c) {
+
     sections.push('### ' + c.name);
     sections.push('');
     sections.push('**Tier:** ' + c.tier + ' | **Platform:** ' + PLATFORM_WORDING[c.platform] + ' | **Source:** ' + c.source);
     sections.push('');
-    sections.push('See `component/' + c.tier + '/' + c.name.charAt(0).toLowerCase() + c.name.slice(1) + '.js` for the Info header and prop list.');
+
+    // Resolve the source file path
+    const fileName = c.name.charAt(0).toLowerCase() + c.name.slice(1) + '.js';
+    const filePath = path.join(ROOT, 'component', c.tier, fileName);
+
+    // Extract props from the source file
+    const props = extractProps(filePath);
+
+    if (props && props.length > 0) {
+
+      // Emit a props table
+      sections.push('| Prop | Type | Default | Description |');
+      sections.push('|---|---|---|---|');
+
+      props.forEach(function (p) {
+        sections.push(
+          '| `' + p.name + '` | ' + p.type + ' | ' + p.default + ' | ' + p.description + ' |'
+        );
+      });
+
+    } else {
+      sections.push('No props (renders children only).');
+    }
+
     sections.push('');
+
   });
 
   return sections.join('\n');
@@ -383,6 +647,7 @@ main();
 export {
   generateComponentTable,
   generateCountSummary,
+  generateApiSections,
   generatePlatformSupport,
   generateCarbonParity
 };
