@@ -12,9 +12,7 @@
   "main": "components.js",
   "exports": {
     ".": "./components.js",
-    "./data/*": "./data/*",
-    "./component/*": "./component/*",
-    "./parts/*": "./parts/*"
+    "./data/*": "./data/*"
   },
   "engines": {
     "node": ">=24"
