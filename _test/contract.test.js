@@ -162,7 +162,7 @@ describe('L4-R5: No Math.*/parseFloat/parseInt in components', function () {
 
     const EXEMPT = [
       'commonStyles.js', 'usePressKeys.js',
-      'useControllableState.js', 'useAnchoredPosition.js', 'useFocusTrap.js',
+      'useControllableState.js', 'useFocusTrap.js',
       'a11y.js', 'Overlay.js', 'createCompoundContext.js', 'LiveRegionProvider.js'
     ];
 
