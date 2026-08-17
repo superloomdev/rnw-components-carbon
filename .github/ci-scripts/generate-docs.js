@@ -7,13 +7,13 @@
 // immediately at this scale (231+ components).
 //
 // Usage: node .github/ci-scripts/generate-docs.js
-'use strict';
+
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 
-const fs = require('node:fs');
-const path = require('node:path');
-
-
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..', '..');
 const FIXTURE_PATH = path.join(ROOT, '_test/fixtures/component-roster.json');
 
@@ -378,13 +378,11 @@ function main () {
 
 }
 
-if (require.main === module) {
-  main();
-}
+main();
 
-module.exports = {
-  generateComponentTable: generateComponentTable,
-  generateCountSummary: generateCountSummary,
-  generatePlatformSupport: generatePlatformSupport,
-  generateCarbonParity: generateCarbonParity
+export {
+  generateComponentTable,
+  generateCountSummary,
+  generatePlatformSupport,
+  generateCarbonParity
 };
