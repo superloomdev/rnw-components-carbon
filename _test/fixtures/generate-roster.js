@@ -9,11 +9,13 @@
 // Usage: node _test/fixtures/generate-roster.js
 //   --query   query the live registry via the loader and mark built names
 //   --seed    seed without querying (uses the embedded current-registry list)
-'use strict';
+
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 
-const fs = require('node:fs');
-const path = require('node:path');
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 
 // ---------------------------------------------------------------------------
@@ -257,7 +259,7 @@ function generate () {
 // 6. Write and exit.
 // ---------------------------------------------------------------------------
 
-if (require.main === module) {
+if (process.argv[1] && import.meta.url.endsWith(process.argv[1].replace(/.*\//, ''))) {
 
   const fixture = generate();
   const outPath = path.join(__dirname, 'component-roster.json');
@@ -279,5 +281,4 @@ if (require.main === module) {
 
 }
 
-
-module.exports = { generate: generate };
+export { generate };

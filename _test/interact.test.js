@@ -6,10 +6,9 @@
 // - Keyboard activation works (Enter/Space)
 // - Focus management (tab order)
 // - ARIA attributes are present in real DOM
-'use strict';
 
-const { test, expect } = require('@playwright/test');
-const AxeBuilder = require('@axe-core/playwright').default;
+import { test, expect } from '@playwright/test';
+import AxeBuilder from '@axe-core/playwright';
 
 
 // ─── Console Error Sweep ───────────────────────────────────────────────────

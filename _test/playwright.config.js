@@ -1,10 +1,9 @@
 // Info: Playwright configuration for L3 interaction tests.
 // Headless Chromium only. Starts Vite dev server on port 5199 automatically.
-'use strict';
 
-const { defineConfig } = require('@playwright/test');
+import { defineConfig } from '@playwright/test';
 
-module.exports = defineConfig({
+export default defineConfig({
 
   testDir: '.',
   testMatch: 'interact.test.js',
