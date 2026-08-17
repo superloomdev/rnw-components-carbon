@@ -43,4 +43,3 @@ These components cannot exist in React Native and are not in the registry:
 
 | Component | Reason |
 |---|---|
-| `ClassPrefix` | RN has no CSS classes to prefix |

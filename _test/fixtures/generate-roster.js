@@ -150,13 +150,54 @@ function sourceOf (name, unionSet) {
 
 }
 
+// ---------------------------------------------------------------------------
+// 5. Tier mapping from the filesystem. Each component directory is its tier.
+// ---------------------------------------------------------------------------
+
+const COMPONENT_DIRS = ['atom', 'molecule', 'composite', 'provider', 'variant', 'freeform'];
+
+function toPascalCase (filename) {
+  // component/molecule/aILabelActions.js -> AILabelActions
+  const base = filename.replace(/\.js$/, '');
+  return base.charAt(0).toUpperCase() + base.slice(1);
+}
+
+function buildTierMap () {
+  const map = {};
+  const repoRoot = path.resolve(__dirname, '../..');
+  for (let i = 0; i < COMPONENT_DIRS.length; i += 1) {
+    const dir = COMPONENT_DIRS[i];
+    const dirPath = path.join(repoRoot, 'component', dir);
+    const files = fs.readdirSync(dirPath);
+    for (let j = 0; j < files.length; j += 1) {
+      const file = files[j];
+      if (!file.endsWith('.js')) {
+        continue;
+      }
+      const pascalName = toPascalCase(file);
+      map[pascalName] = dir;
+    }
+  }
+  return map;
+}
+
+const TIER_MAP = buildTierMap();
+
 function tierOf (name) {
 
-  // Providers are known
+  // Derive from disk first
+  const diskTier = TIER_MAP[name];
+
+  // Override with sanctioned lists so behavior for special cases does not regress
   if (CURRENT_PROVIDERS.indexOf(name) !== -1) return 'provider';
-  // Substrate primitives are atoms
   if (SUBSTRATE.indexOf(name) !== -1) return 'atom';
-  // Default to unknown for todo items; the real tier is filled in later
+
+  // Real component found on disk
+  if (diskTier) {
+    return diskTier;
+  }
+
+  // Unknown means a name is in a target list but has no implementation yet
   return 'unknown';
 
 }

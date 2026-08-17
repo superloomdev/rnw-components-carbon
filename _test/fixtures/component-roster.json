@@ -1,15 +1,12 @@
 {
-  "generated": "2026-08-16",
-  "sources": {
-    "@carbon/react": "1.79.0",
-    "@carbon/react-native": "9.0.7"
-  },
+  "generated": "2026-08-17",
+  "sources": [],
   "counts": {
-    "target": 231,
+    "target": 0,
     "exceptions": 12,
     "currentFlat": 235,
     "currentProvider": 8,
-    "total": 244
+    "total": 243
   },
   "builtFlat": [
     "AILabel",
@@ -261,103 +258,103 @@
   "components": [
     {
       "name": "AILabel",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "AILabelActions",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "AILabelContent",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "AISkeletonIcon",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "AISkeletonPlaceholder",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "AISkeletonText",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "AcceptTerms",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Accordion",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "AccordionItem",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ActionSheet",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "split",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ActionableNotification",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "AspectRatio",
-      "tier": "unknown",
+      "tier": "atom",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "BadgeIndicator",
-      "tier": "unknown",
+      "tier": "atom",
       "platform": "both",
       "source": "unexported",
       "registry": "flat",
@@ -365,305 +362,297 @@
     },
     {
       "name": "BottomNavigationBar",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "BottomSafeAreaColorOverride",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "native-primary",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "BottomToolbar",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "BottomToolbarPrimaryAction",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Breadcrumb",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "BreadcrumbItem",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Button",
-      "tier": "unknown",
+      "tier": "atom",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ButtonSet",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Callout",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Checkbox",
-      "tier": "unknown",
+      "tier": "atom",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "CheckboxGroup",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
-      "name": "ClassPrefix",
-      "tier": "unknown",
-      "platform": "excluded",
-      "source": "carbon",
-      "registry": null,
-      "status": "excluded"
-    },
-    {
       "name": "ClickableTile",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "CodeSnippet",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "split",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Column",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ColumnHang",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ComboBox",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ComboButton",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ComposedModal",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ContainedList",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ContainedListItem",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Content",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ContentSwitcher",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ControlledPasswordInput",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Copy",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "CopyButton",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "split",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "DataTable",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "DataTableCell",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "DataTableHeader",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "DataTableHeaderSelected",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "DataTableRow",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "DateInput",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "DatePicker",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "DatePickerInput",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "DefinitionTooltip",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "DismissibleTag",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "DocumentViewer",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "split",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Dropdown",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
@@ -671,39 +660,39 @@
       "name": "ErrorBoundary",
       "tier": "provider",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "provider",
       "status": "built"
     },
     {
       "name": "ErrorBoundaryContext",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ErrorState",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ExpandableSearch",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ExpandableTile",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
@@ -717,57 +706,57 @@
     },
     {
       "name": "FileUploader",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "split",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "FileUploaderButton",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "split",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "FileUploaderDropContainer",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "split",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "FileUploaderItem",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "split",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Filename",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "FilterableMultiSelect",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "FlexGrid",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
@@ -781,177 +770,177 @@
     },
     {
       "name": "Form",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "FormContext",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "FormGroup",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "FormItem",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "FormLabel",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "GlobalTheme",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "GrantPermission",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "native-primary",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Grid",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "GridSettings",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "HStack",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Header",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "HeaderContainer",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "HeaderGlobalAction",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "HeaderGlobalBar",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "HeaderMenu",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "HeaderMenuButton",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "HeaderMenuItem",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "HeaderName",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "HeaderNavigation",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "HeaderPanel",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "HeaderSideNavItems",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Heading",
-      "tier": "unknown",
+      "tier": "atom",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
@@ -965,15 +954,15 @@
     },
     {
       "name": "IconButton",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "IconIndicator",
-      "tier": "unknown",
+      "tier": "atom",
       "platform": "both",
       "source": "unexported",
       "registry": "flat",
@@ -981,17 +970,17 @@
     },
     {
       "name": "IconSwitch",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "IconTab",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
@@ -999,7 +988,7 @@
       "name": "IdPrefix",
       "tier": "provider",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "provider",
       "status": "built"
     },
@@ -1013,33 +1002,33 @@
     },
     {
       "name": "InlineLink",
-      "tier": "unknown",
+      "tier": "atom",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "InlineLoading",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "InlineNotification",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "LandingView",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
@@ -1047,31 +1036,31 @@
       "name": "Layer",
       "tier": "provider",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "provider",
       "status": "built"
     },
     {
       "name": "Link",
-      "tier": "unknown",
+      "tier": "atom",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "List",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ListItem",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
@@ -1085,185 +1074,185 @@
     },
     {
       "name": "Loading",
-      "tier": "unknown",
+      "tier": "atom",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Menu",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "MenuButton",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "MenuItem",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "MenuItemDivider",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "MenuItemGroup",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "MenuItemRadioGroup",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "MenuItemSelectable",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Modal",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ModalBody",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ModalFooter",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ModalHeader",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "MultiSelect",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "NavigationList",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "NavigationListItem",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Notification",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "NotificationActionButton",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "NotificationButton",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "NumberInput",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "OperationalTag",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "OrderedList",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "OverflowMenu",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "OverflowMenuItem",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
@@ -1271,181 +1260,181 @@
       "name": "Overlay",
       "tier": "provider",
       "platform": "split",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "provider",
       "status": "built"
     },
     {
       "name": "Pagination",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "PaginationNav",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "PasswordInput",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Popover",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "PopoverContent",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "PrefixContext",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ProgressBar",
-      "tier": "unknown",
+      "tier": "atom",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ProgressIndicator",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ProgressStep",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "RadioButton",
-      "tier": "unknown",
+      "tier": "atom",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "RadioButtonGroup",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "RadioTile",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Row",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SafeAreaWrapper",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "native-primary",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Search",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Section",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Select",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SelectItem",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SelectItemGroup",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SelectableTag",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SelectableTile",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ShapeIndicator",
-      "tier": "unknown",
+      "tier": "atom",
       "platform": "both",
       "source": "unexported",
       "registry": "flat",
@@ -1453,111 +1442,111 @@
     },
     {
       "name": "SideNav",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SideNavDetails",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SideNavDivider",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SideNavFooter",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SideNavHeader",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SideNavIcon",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SideNavItem",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SideNavItems",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SideNavLink",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SideNavLinkText",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SideNavMenu",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SideNavMenuItem",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SideNavSwitcher",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SidePanel",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
       "source": "unexported",
       "registry": "flat",
@@ -1565,7 +1554,7 @@
     },
     {
       "name": "Skeleton",
-      "tier": "unknown",
+      "tier": "atom",
       "platform": "both",
       "source": "collapse",
       "registry": "flat",
@@ -1573,409 +1562,409 @@
     },
     {
       "name": "SkeletonIcon",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SkeletonPlaceholder",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SkeletonText",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SkipToContent",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "web-primary",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Slider",
-      "tier": "unknown",
+      "tier": "atom",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Stack",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "StaticNotification",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "StructuredListBody",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "StructuredListCell",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "StructuredListHead",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "StructuredListInput",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "StructuredListRow",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "StructuredListWrapper",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Switch",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Switcher",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SwitcherDivider",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "SwitcherItem",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Tab",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TabContent",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TabList",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TabListVertical",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TabPanel",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TabPanels",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Table",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TableActionList",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TableBatchAction",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TableBatchActions",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TableBody",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TableCell",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TableContainer",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TableDecoratorRow",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TableExpandHeader",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TableExpandRow",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TableExpandedRow",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TableHead",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TableHeader",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TableRow",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TableSelectAll",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TableSelectRow",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TableSlugRow",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TableToolbar",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TableToolbarAction",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TableToolbarContent",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TableToolbarMenu",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TableToolbarSearch",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Tabs",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TabsVertical",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Tag",
-      "tier": "unknown",
+      "tier": "atom",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Text",
-      "tier": "unknown",
+      "tier": "atom",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TextArea",
-      "tier": "unknown",
+      "tier": "atom",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TextInput",
-      "tier": "unknown",
+      "tier": "atom",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
@@ -1983,165 +1972,165 @@
       "name": "Theme",
       "tier": "provider",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "provider",
       "status": "built"
     },
     {
       "name": "ThemeContext",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Tile",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TileAboveTheFoldContent",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TileBelowTheFoldContent",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TileGroup",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TimePicker",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TimePickerSelect",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ToastNotification",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Toggle",
-      "tier": "unknown",
+      "tier": "atom",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Toggletip",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ToggletipActions",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ToggletipButton",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ToggletipContent",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "ToggletipLabel",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "Tooltip",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TopNavigationBar",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TopNavigationBarLogin",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TreeNode",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TreeView",
-      "tier": "unknown",
+      "tier": "composite",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "TruncatedText",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
       "source": "unexported",
       "registry": "flat",
@@ -2149,31 +2138,31 @@
     },
     {
       "name": "UiPanel",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "UiPanelItem",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "UnorderedList",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "UserAvatar",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
       "source": "unexported",
       "registry": "flat",
@@ -2181,9 +2170,9 @@
     },
     {
       "name": "VStack",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
@@ -2197,17 +2186,17 @@
     },
     {
       "name": "ViewWrapper",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "native-primary",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     },
     {
       "name": "WebHeader",
-      "tier": "unknown",
+      "tier": "molecule",
       "platform": "both",
-      "source": "carbon",
+      "source": "non-carbon",
       "registry": "flat",
       "status": "built"
     }
