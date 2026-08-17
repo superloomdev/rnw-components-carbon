@@ -77,7 +77,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }
       let year, month;
       if (resolvedValue) {
-        const parts = String(resolvedValue).split('-');
+        const parts = _DatePicker.parseDateParts(resolvedValue);
         year = Parts.Units.parseInteger(parts[0]);
         month = (Parts.Units.parseInteger(parts[1]) || 1) - 1;
       } else {
@@ -168,7 +168,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     // Parse the selected day from the current value
     let selectedDay = null;
     if (resolvedValue) {
-      const parts = String(resolvedValue).split('-');
+      const parts = _DatePicker.parseDateParts(resolvedValue);
       if (Parts.Units.parseInteger(parts[0]) === viewYear && (Parts.Units.parseInteger(parts[1]) || 1) - 1 === viewMonth) {
         selectedDay = Parts.Units.parseInteger(parts[2]);
       }
@@ -372,8 +372,13 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
 
   ////////////////////////// Private Functions START ///////////////////////////
-  const _DatePicker = { // eslint-disable-line no-unused-vars
-    // None.
+  const _DatePicker = {
+
+    // Split a date string (YYYY-MM-DD) into parts, tolerating non-string input
+    parseDateParts: function (value) {
+      return String(value).split('-');
+    }
+
   };////////////////////////// Private Functions END ///////////////////////////
 
 

@@ -68,11 +68,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     // Filter options based on the current input text
     const filteredOptions = optionList.filter(function (opt) {
-      if (!inputValue) {
-        return true;
-      }
-      const lowerInput = String(inputValue).toLowerCase();
-      return String(opt.label).toLowerCase().indexOf(lowerInput) >= 0;
+      return Parts.Filter.matchesLabel(inputValue, opt.label);
     });
 
     // Anchored position for the dropdown panel

@@ -67,7 +67,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     let currentHour = 9;
     let currentMinute = 0;
     if (resolvedValue) {
-      const parts = String(resolvedValue).split(':');
+      const parts = _TimePicker.parseTimeParts(resolvedValue);
       const parsedHour = Parts.Units.parseInteger(parts[0]);
       const parsedMinute = Parts.Units.parseInteger(parts[1]);
       if (Lib.Utils.isNumber(parsedHour)) {
@@ -339,8 +339,13 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
 
   ////////////////////////// Private Functions START ///////////////////////////
-  const _TimePicker = { // eslint-disable-line no-unused-vars
-    // None.
+  const _TimePicker = {
+
+    // Split a time string (HH:MM) into parts, tolerating non-string input
+    parseTimeParts: function (value) {
+      return String(value).split(':');
+    }
+
   };////////////////////////// Private Functions END ///////////////////////////
 
 

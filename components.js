@@ -36,6 +36,7 @@ import partsCompoundContext from './parts/compound-context.js';
 import partsUnits from './parts/units.js';
 import partsTypeface from './parts/typeface.js';
 import partsDirection from './parts/direction.js';
+import partsFilter from './parts/filter.js';
 
 // Utilities
 import generateStyles from './component/commonStyles.js';
@@ -438,7 +439,8 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
         CompoundContext:  partsCompoundContext(Lib, partsConfig, ERRORS),
         Units:            partsUnits(Lib, partsConfig, ERRORS),
         Typeface:         partsTypeface(Lib, partsConfig, ERRORS),
-        Direction:        partsDirection(Lib, partsConfig, ERRORS)
+        Direction:        partsDirection(Lib, partsConfig, ERRORS),
+        Filter:           partsFilter(Lib, partsConfig, ERRORS)
       };
 
       // Generate utility styles for every breakpoint, memoized by key

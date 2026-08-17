@@ -60,16 +60,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslin
 
     // Auto-insert dashes as the user types YYYY-MM-DD
     const handleChange = function (text) {
-      const digits = text.replace(/[^0-9]/g, '');
-      let normalized;
-      if (digits.length <= 4) {
-        normalized = digits;
-      } else if (digits.length <= 6) {
-        normalized = digits.substring(0, 4) + '-' + digits.substring(4);
-      } else {
-        normalized = digits.substring(0, 4) + '-' + digits.substring(4, 6) + '-' + digits.substring(6, 8);
-      }
-      setValue(normalized);
+      setValue(_DateInput.formatDateDigits(text));
     };
 
     // Build aria state props
@@ -98,8 +89,25 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslin
 
 
   ////////////////////////// Private Functions START ///////////////////////////
-  const _DateInput = { // eslint-disable-line no-unused-vars
-    // None.
+  const _DateInput = {
+
+    // Strip non-digits and insert dashes to format YYYY-MM-DD
+    formatDateDigits: function (text) {
+
+      const digits = text.replace(/[^0-9]/g, '');
+
+      if (digits.length <= 4) {
+        return digits;
+      }
+
+      if (digits.length <= 6) {
+        return digits.substring(0, 4) + '-' + digits.substring(4);
+      }
+
+      return digits.substring(0, 4) + '-' + digits.substring(4, 6) + '-' + digits.substring(6, 8);
+
+    }
+
   };////////////////////////// Private Functions END ///////////////////////////
 
 
