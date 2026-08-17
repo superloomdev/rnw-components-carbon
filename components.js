@@ -758,7 +758,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       // Providers register at Component.provider.[name], matching the
       // Component.variant and Component.freeform namespacing. They do not
       // count toward the flat top-level key count.
-      const overlayModule = overlayProviderFactory(Lib);
+      const overlayModule = overlayProviderFactory(Lib, Parts);
       const liveRegionModule = liveRegionProviderFactory(Lib);
       const layerModule = layerProviderFactory(Lib, CONFIG, ERRORS, Parts, Component, Style);
       const themeModule = themeProviderFactory(Lib, CONFIG, ERRORS, Parts, Component, Style);
