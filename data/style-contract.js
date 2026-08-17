@@ -1,0 +1,48 @@
+// Info: Style contract. Governs numeric-only enforcement and unit-suffix
+// detection for RN style values. The canonical data lives here; the JSON
+// sibling is generated from this file by the doc generator if needed.
+
+export default {
+  rem_base_px: 16,
+  decimal_precision: 0,
+  line_height_precision: 0,
+  numeric_style_props: [
+    'fontSize',
+    'lineHeight',
+    'padding',
+    'paddingTop',
+    'paddingBottom',
+    'paddingLeft',
+    'paddingRight',
+    'paddingHorizontal',
+    'paddingVertical',
+    'paddingStart',
+    'paddingEnd',
+    'margin',
+    'marginTop',
+    'marginBottom',
+    'marginLeft',
+    'marginRight',
+    'marginHorizontal',
+    'marginVertical',
+    'marginStart',
+    'marginEnd',
+    'borderRadius',
+    'borderWidth',
+    'width',
+    'height',
+    'minWidth',
+    'minHeight',
+    'maxWidth',
+    'maxHeight',
+    'top',
+    'left',
+    'right',
+    'bottom',
+    'gap',
+    'rowGap',
+    'columnGap',
+    'flexBasis'
+  ],
+  unit_suffix_pattern: '(rem|em|%|vh|vw|px|pt)$'
+};
