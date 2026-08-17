@@ -161,8 +161,7 @@ describe('L4-R5: No Math.*/parseFloat/parseInt in components', function () {
     const files = collectFiles(COMPONENT_DIR);
 
     const EXEMPT = [
-      'commonStyles.js',
-      'Overlay.js', 'LiveRegionProvider.js'
+      'commonStyles.js'
     ];
 
     for (let f = 0; f < files.length; f++) {

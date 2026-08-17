@@ -96,7 +96,7 @@ jobs:
           echo "PASS"
       - name: G6 - announceForAccessibility in LiveRegionProvider only
         run: |
-          HITS=$(grep -rn "announceForAccessibility" component/ | grep -v LiveRegionProvider || true)
+          HITS=$(grep -rn "announceForAccessibility" component/ | grep -v "provider/liveRegionProvider" || true)
           if [ -n "$HITS" ]; then
             echo "FAIL: announceForAccessibility outside LiveRegionProvider"
             echo "$HITS"
