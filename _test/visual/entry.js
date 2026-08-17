@@ -2,18 +2,17 @@
 // Exports React, ReactDOM, and the component registry builder.
 // Hint-props for interactive components are inlined here (the package no
 // longer ships a shared hint-props file; each consumer owns its own).
-'use strict';
 
-var React = require('react');
-var ReactDOM = require('react-dom/client');
-var UtilsFactory = require('helper-utils');
-var DebugFactory = require('helper-debug');
-var ComponentsFactory = require('rnw-components-carbon');
+import React from 'react';
+import * as ReactDOM from 'react-dom/client';
+import UtilsFactory from 'helper-utils';
+import DebugFactory from 'helper-debug';
+import ComponentsFactory from 'rnw-components-carbon';
 
-var noop = function () {};
+const noop = function () {};
 
 // Components excluded: Tooltip/DefinitionTooltip require React element children
-var INTERACTIVE = [
+const INTERACTIVE = [
   'Button', 'IconButton', 'Toggle', 'Checkbox', 'RadioButton',
   'Switch', 'Link', 'InlineLink', 'Tab', 'AccordionItem',
   'Slider', 'CopyButton',
@@ -22,7 +21,7 @@ var INTERACTIVE = [
 
 // Minimal render-hint props for the interactive subset. Each entry provides
 // the prop set that lets a component render non-empty output without throwing.
-var HINT_PROPS = {
+const HINT_PROPS = {
   Button: { children: 'Button', onPress: noop },
   IconButton: { name: 'add', onPress: noop },
   Toggle: { value: true, onValueChange: noop },
@@ -42,24 +41,24 @@ var HINT_PROPS = {
 };
 
 function buildRegistry() {
-  var Utils = UtilsFactory();
-  var Debug = DebugFactory({ Utils: Utils });
-  var Device = {
+  const Utils = UtilsFactory();
+  const Debug = DebugFactory({ Utils: Utils });
+  const Device = {
     getPlatform: function () { return { success: true, platform: 'web', error: null }; },
     getViewport: function () { return { success: true, width: 1280, height: 800, error: null }; },
     onViewportChange: function () { return { success: true, unsubscribe: function () {}, error: null }; }
   };
-  var Icons = {
+  const Icons = {
     Glyph: function (props) {
       return React.createElement('span', { 'data-icon': props.name, 'aria-hidden': 'true' }, props.name);
     }
   };
 
-  var Components = ComponentsFactory({
+  const Components = ComponentsFactory({
     Utils: Utils, Debug: Debug, React: React, Device: Device, Icons: Icons
   });
 
-  var theme = {
+  const theme = {
     Color: {
       APP_PRIMARY: '#0f62fe', APP_PRIMARY_HOVERED: '#0353e9',
       APP_PRIMARY_PRESSED: '#0043d9', APP_PRIMARY_DISABLED: '#a6c8ff',
@@ -86,7 +85,7 @@ function buildRegistry() {
     Breakpoint: { base: 0, sm: 480, md: 768, lg: 1024, xl: 1280 }
   };
 
-  var built = Components.build(theme, 'base');
+  const built = Components.build(theme, 'base');
   return { C: built.Component, ALL_NAMES: Object.keys(built.Component) };
 }
 
@@ -110,9 +109,4 @@ class SafeBoundary extends React.Component {
   }
 }
 
-exports.React = React;
-exports.ReactDOM = ReactDOM;
-exports.SafeBoundary = SafeBoundary;
-exports.buildRegistry = buildRegistry;
-exports.HINT_PROPS = HINT_PROPS;
-exports.INTERACTIVE = INTERACTIVE;
+export { React, ReactDOM, SafeBoundary, buildRegistry, HINT_PROPS, INTERACTIVE };

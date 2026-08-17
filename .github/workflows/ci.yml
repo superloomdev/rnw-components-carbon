@@ -221,34 +221,34 @@ jobs:
         run: npm install
       - name: L4-R1 - No non-existent RN exports
         working-directory: _test
-        run: node --test --test-name-pattern="L4-R1" contract.test.js
+        run: node --import ./harness/register.js --test --test-name-pattern="L4-R1" contract.test.js
       - name: L4-R4 - No cloneElement in composites
         working-directory: _test
-        run: node --test --test-name-pattern="L4-R4" contract.test.js
+        run: node --import ./harness/register.js --test --test-name-pattern="L4-R4" contract.test.js
       - name: L4-R5 - No Math/parseFloat/parseInt in components
         working-directory: _test
-        run: node --test --test-name-pattern="L4-R5" contract.test.js
+        run: node --import ./harness/register.js --test --test-name-pattern="L4-R5" contract.test.js
       - name: L4-R6 - No direct mechanism requires
         working-directory: _test
-        run: node --test --test-name-pattern="L4-R6" contract.test.js
+        run: node --import ./harness/register.js --test --test-name-pattern="L4-R6" contract.test.js
       - name: L4-R7 - No Style_ identifiers
         working-directory: _test
-        run: node --test --test-name-pattern="L4-R7" contract.test.js
+        run: node --import ./harness/register.js --test --test-name-pattern="L4-R7" contract.test.js
       - name: L4-R8 - No fontWeight with per-weight-face family
         working-directory: _test
-        run: node --test --test-name-pattern="L4-R8" contract.test.js
+        run: node --import ./harness/register.js --test --test-name-pattern="L4-R8" contract.test.js
       - name: L4-R9 - text_disabled only in disabled branches
         working-directory: _test
-        run: node --test --test-name-pattern="L4-R9" contract.test.js
+        run: node --import ./harness/register.js --test --test-name-pattern="L4-R9" contract.test.js
       - name: L4-R10 - BORDER tokens not used as font color
         working-directory: _test
-        run: node --test --test-name-pattern="L4-R10" contract.test.js
+        run: node --import ./harness/register.js --test --test-name-pattern="L4-R10" contract.test.js
       - name: L4-R11 - Contrast enforcement
         working-directory: _test
-        run: node --test --test-name-pattern="L4-R11" contract.test.js
+        run: node --import ./harness/register.js --test --test-name-pattern="L4-R11" contract.test.js
       - name: L4-PROOF - Rules detect violations
         working-directory: _test
-        run: node --test --test-name-pattern="L4-PROOF" contract.test.js
+        run: node --import ./harness/register.js --test --test-name-pattern="L4-PROOF" contract.test.js
 
   audit:
     name: L1 Audit Tests
@@ -267,7 +267,7 @@ jobs:
         run: npm install
       - name: Run L1 audit tests
         working-directory: _test
-        run: node --test audit.test.js
+        run: node --import ./harness/register.js --test audit.test.js
 
   playwright:
     name: L3 Visual Tests
@@ -289,7 +289,7 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Build visual bundle
         working-directory: _test
-        run: npx esbuild visual/entry.js --bundle --format=esm --outfile=visual/bundle.js --platform=browser --alias:react-native=react-native-web --define:process.env.NODE_ENV=\"development\"
+        run: npx esbuild visual/entry.js --bundle --format=esm --outfile=visual/bundle.js --platform=browser --alias:react-native=react-native-web --external:node:module --define:process.env.NODE_ENV=\"development\"
       - name: Run L3 Playwright tests
         working-directory: _test
         run: npx playwright test
