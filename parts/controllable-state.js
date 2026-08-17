@@ -1,6 +1,125 @@
-import mechanism from '../component/useControllableState.js';
+// Info: Controlled/uncontrolled state hook.
+//
+// Every Carbon form component supports both controlled and uncontrolled
+// use. This hook implements the pattern once. Controlled when `value` is
+// not undefined, uncontrolled otherwise. Warns once through Lib.Debug.warn
+// when a component switches modes between renders. Never warns on every
+// render.
 
+
+/////////////////////////// Module-Loader START ////////////////////////////////
+
+/********************************************************************
+    Factory part loader. Uniform parts signature.
+
+    @param {Object} shared_libs - Lib container with Utils, Debug, React
+    @param {Object} config - Merged config from the parent module
+    @param {Object} errors - Frozen error catalog from the parent module
+
+    @return {Function} - useControllableState hook
+*********************************************************************/
 export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
+
   const Lib = { Utils: shared_libs.Utils, Debug: shared_libs.Debug, React: shared_libs.React };
-  return mechanism(Lib);
-}
+
+  return createInterface(Lib);
+
+}/////////////////////////// Module-Loader END /////////////////////////////////
+
+
+
+/////////////////////////// createInterface START //////////////////////////////
+
+/********************************************************************
+    Build the useControllableState hook.
+
+    @param {Object} Lib - The shared Lib container (requires React, Debug)
+
+    @return {Function} - useControllableState({ value, defaultValue, onChange })
+                         -> [resolvedValue, setValue]
+*********************************************************************/
+const createInterface = function (Lib) {
+
+
+  ///////////////////////////Public Functions START//////////////////////////////
+
+  const useControllableState = function (options) {
+
+    const value = options.value;
+    const defaultValue = options.defaultValue;
+    const onChange = options.onChange;
+
+
+    // Track whether we started in controlled mode
+    const controlledRef = Lib.React.useRef(value !== undefined);
+
+
+    // Internal state for uncontrolled mode
+    const internalState = Lib.React.useState(defaultValue);
+    const internalValue = internalState[0];
+    const setInternalValue = internalState[1];
+
+
+    // Warn once if the component switches between controlled and uncontrolled
+    const warnedRef = Lib.React.useRef(false);
+
+    Lib.React.useEffect(function () {
+
+      if (warnedRef.current) {
+        return;
+      }
+
+      const isControlled = value !== undefined;
+
+      if (controlledRef.current !== isControlled) {
+        warnedRef.current = true;
+        Lib.Debug.warn(
+          'useControllableState: component switched from ' +
+          (controlledRef.current ? 'controlled' : 'uncontrolled') +
+          ' to ' + (isControlled ? 'controlled' : 'uncontrolled') +
+          ' mode. This is likely a bug.'
+        );
+      }
+
+    }, [value]);
+
+
+    // The resolved value: external when controlled, internal when not
+    const resolvedValue = value !== undefined ? value : internalValue;
+
+
+    // Setter: calls onChange for controlled, updates internal for uncontrolled
+    const setValue = Lib.React.useCallback(function (nextValue) {
+
+      // Allow functional updates: setValue(prev => prev + 1)
+      let actualNext = nextValue;
+
+      if (value !== undefined) {
+        // Controlled mode: delegate to onChange
+        if (Lib.Utils.isFunction(onChange)) {
+          onChange(actualNext);
+        }
+      } else {
+        // Uncontrolled mode: update internal state and call onChange
+        if (Lib.Utils.isFunction(actualNext)) {
+          actualNext = actualNext(internalValue);
+        }
+
+        setInternalValue(actualNext);
+
+        if (Lib.Utils.isFunction(onChange)) {
+          onChange(actualNext);
+        }
+      }
+
+    }, [value, onChange, internalValue]);
+
+
+    return [resolvedValue, setValue];
+
+  };
+
+
+  return useControllableState;
+
+};/////////////////////////// createInterface END //////////////////////////////
