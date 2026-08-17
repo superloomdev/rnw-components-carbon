@@ -3,7 +3,7 @@
 // repeated requires within the same build share the same context.
 
 // Imports
-import createCompoundContext from '../createCompoundContext.js';
+import compoundContextPart from '../../parts/compound-context.js';
 
 
 const cache = new WeakMap();
@@ -11,15 +11,15 @@ const cache = new WeakMap();
 export default function (Lib, displayName) {
 
   if (!cache.has(Lib)) {
-    cache.set(Lib, {});
+    cache.set(Lib, { make: compoundContextPart(Lib), contexts: {} });
   }
 
-  const libCache = cache.get(Lib);
+  const entry = cache.get(Lib);
 
-  if (!libCache[displayName]) {
-    libCache[displayName] = createCompoundContext(Lib, displayName);
+  if (!entry.contexts[displayName]) {
+    entry.contexts[displayName] = entry.make(displayName);
   }
 
-  return libCache[displayName];
+  return entry.contexts[displayName];
 
 }
