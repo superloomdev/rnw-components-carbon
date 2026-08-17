@@ -1,5 +1,7 @@
 // Info: Single entry point for esbuild. Bundles everything into one ESM file.
 // Exports React, ReactDOM, and the component registry builder.
+// Hint-props for interactive components are inlined here (the package no
+// longer ships a shared hint-props file; each consumer owns its own).
 'use strict';
 
 var React = require('react');
@@ -7,7 +9,8 @@ var ReactDOM = require('react-dom/client');
 var UtilsFactory = require('helper-utils');
 var DebugFactory = require('helper-debug');
 var ComponentsFactory = require('rnw-components-carbon');
-var HINT_PROPS = require('rnw-components-carbon/data/hint-props');
+
+var noop = function () {};
 
 // Components excluded: Tooltip/DefinitionTooltip require React element children
 var INTERACTIVE = [
@@ -16,6 +19,27 @@ var INTERACTIVE = [
   'Slider', 'CopyButton',
   'MenuItem', 'SelectItem', 'ClickableTile', 'SelectableTile'
 ];
+
+// Minimal render-hint props for the interactive subset. Each entry provides
+// the prop set that lets a component render non-empty output without throwing.
+var HINT_PROPS = {
+  Button: { children: 'Button', onPress: noop },
+  IconButton: { name: 'add', onPress: noop },
+  Toggle: { value: true, onValueChange: noop },
+  Checkbox: { checked: true, onChange: noop },
+  RadioButton: { checked: true, onChange: noop },
+  Switch: { label: 'Switch', selected: true, onPress: noop },
+  Link: { children: 'Link', onPress: noop },
+  InlineLink: { title: 'Inline link', onPress: noop },
+  Tab: { label: 'Tab', onPress: noop },
+  AccordionItem: { title: 'Item', children: 'Body' },
+  Slider: { value: 50, onChange: noop },
+  CopyButton: { text: 'copied text', onCopy: noop },
+  MenuItem: { label: 'Menu item', onPress: noop },
+  SelectItem: { text: 'Option', value: 'opt1' },
+  ClickableTile: { title: 'Clickable tile', onPress: noop },
+  SelectableTile: { title: 'Selectable tile' }
+};
 
 function buildRegistry() {
   var Utils = UtilsFactory();
