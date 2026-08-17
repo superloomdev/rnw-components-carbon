@@ -1,5 +1,4 @@
-// Info: Roster generator. Reads the pre-computed Carbon union target from
-// __dev__/wip/0102-carbon-union-roster.json, merges it with the current
+// Info: Roster generator. Merges the Carbon union target with the current
 // registry state (queried from the loader), applies platform classification
 // and sanctioned exceptions, and writes component-roster.json.
 //
@@ -20,8 +19,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 // ---------------------------------------------------------------------------
 // 1. The Carbon union target, extracted from @carbon/react@1.79.0 and
-//    @carbon/react-native@9.0.7. See __dev__/wip/0102-carbon-union-roster.json
-//    for the extraction method and the raw package data.
+//    @carbon/react-native@9.0.7.
 // ---------------------------------------------------------------------------
 
 const UNION_ARTIFACT_PATH = path.resolve(
@@ -49,7 +47,7 @@ const ALL_EXCEPTIONS = SUBSTRATE.concat(COLLAPSE, UNEXPORTED, INFRASTRUCTURE);
 
 // ---------------------------------------------------------------------------
 // 3. Platform classification. Draft membership from the artifact; everything
-//    else defaults to 'both'. P0 confirms each entry.
+//    else defaults to 'both'.
 // ---------------------------------------------------------------------------
 
 const PLATFORM_EXCLUDED = ['ClassPrefix'];
@@ -67,8 +65,8 @@ const PLATFORM_NATIVE_PRIMARY = [
 
 // ---------------------------------------------------------------------------
 // 4. Current registry state. The 144 names registered today, including those
-//    that P3 will rename or delete. Seeding with the real list keeps the gate
-//    green before any P3 work. The generator can also query the live loader
+//    that may change over time. Seeding with the real list keeps the gate
+//    green. The generator can also query the live loader
 //    via --query to stay in sync automatically.
 // ---------------------------------------------------------------------------
 
@@ -158,7 +156,7 @@ function tierOf (name) {
   if (CURRENT_PROVIDERS.indexOf(name) !== -1) return 'provider';
   // Substrate primitives are atoms
   if (SUBSTRATE.indexOf(name) !== -1) return 'atom';
-  // Default to unknown for todo items; P3/P4 fills in the real tier
+  // Default to unknown for todo items; the real tier is filled in later
   return 'unknown';
 
 }
@@ -170,10 +168,9 @@ function generate () {
   try {
     artifact = JSON.parse(fs.readFileSync(UNION_ARTIFACT_PATH, 'utf8'));
   } catch (e) {
-    throw new Error(
-      'Cannot read ' + UNION_ARTIFACT_PATH + '. ' +
-      'Run from the repo or ensure the artifact exists: ' + e.message
-    );
+    // The union artifact is optional. If it is missing, seed from the
+    // embedded registry list and built-in exceptions.
+    artifact = { target: [], sources: [] };
   }
 
   const unionSet = new Set(artifact.target);

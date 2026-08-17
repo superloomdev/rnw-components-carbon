@@ -107,6 +107,7 @@ Frozen object of valid token sets:
 |---|---|---|---|
 | `onPress` | Function | - | Press handler |
 | `disabled` | Boolean | `false` | Disabled state |
+| `kind` | String | - | `primary` \| `secondary` \| `danger` \| `ghost` (overrides `background`) |
 | `background` | String | - | Background color token (with state suffixes) |
 | `radius` | String | - | Radius token |
 | `accessibilityLabel` | String | - | A11y label |
@@ -133,16 +134,6 @@ Frozen object of valid token sets:
 | `onValueChange` | Function | - | Change callback |
 | `disabled` | Boolean | `false` | Disabled state |
 | `accessibilityLabel` | String | - | A11y label |
-
-### ButtonPrimary
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `title` | String | - | Button label |
-| `icon` | String | - | Leading icon name |
-| `onPress` | Function | - | Press handler |
-| `disabled` | Boolean | `false` | Disabled state |
-| `fullWidth` | Boolean | `false` | Stretch to container width |
 
 ### Modal
 

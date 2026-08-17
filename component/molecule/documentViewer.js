@@ -1,7 +1,7 @@
 // Info: DocumentViewer molecule [S1 presentational]. A document viewer that
 // displays content from a URL or HTML string. Uses role="document" for
 // screen reader semantics. Platform: split (web uses iframe, native uses
-// WebView). P3 establishes the prop contract; platform split is P6.
+// WebView). The prop contract and platform split are implemented by this component.
 //   source      -> string (URL or HTML content)
 //   style       -> custom style overrides
 

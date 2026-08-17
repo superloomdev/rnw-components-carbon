@@ -17,7 +17,9 @@ Peer dependencies: `react`, `react-native`, `helper-utils`, `helper-debug`, `hel
 ## Quick Start
 
 ```javascript
-const Components = require('rnw-components-carbon')({
+import loader from '@superloomdev/rnw-components-carbon';
+
+const Components = loader({
   Utils: Utils,
   Debug: Debug,
   React: React,
@@ -35,10 +37,10 @@ const { Component, Style } = Components.build(theme, 'base');
 const MyScreen = function () {
   return React.createElement(Component.View, { background: 'surface', p_a_lg: true },
     React.createElement(Component.Text, { size: 'xl', weight: 'bold' }, 'Hello'),
-    React.createElement(Component.ButtonPrimary, {
-      title: 'Submit',
+    React.createElement(Component.Button, {
+      kind: 'primary',
       onPress: function () { /* ... */ }
-    })
+    }, React.createElement(Component.Text, { color: 'text_on_primary' }, 'Submit'))
   );
 };
 ```
