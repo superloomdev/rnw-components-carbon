@@ -9,9 +9,9 @@
 // You must pass focusable={false} explicitly to unselected items. RNW
 // auto-assigns tabindex="0" to radio and checkbox roles, so omitting it
 // produces a tab stop on every item.
-'use strict';
 
-const { Platform } = require('react-native');
+// Imports
+import { Platform as RNPlatform } from 'react-native';
 
 
 /********************************************************************
@@ -21,7 +21,7 @@ Build the useRovingTabIndex hook.
 
 @return {Function} - useRovingTabIndex(options) -> { getItemProps, containerProps }
 *********************************************************************/
-module.exports = function (Lib) {
+export default function (Lib) {
 
   const React = Lib.React;
 
@@ -81,7 +81,7 @@ module.exports = function (Lib) {
     // Container props: key handler on web only
     const containerProps = {};
 
-    if (Platform.OS === 'web') {
+    if (RNPlatform.OS === 'web') {
       containerProps.onKeyDown = handleKeyDown;
     }
 
@@ -108,4 +108,4 @@ module.exports = function (Lib) {
 
   };
 
-};
+}

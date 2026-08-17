@@ -3,10 +3,13 @@
 //   label       -> string (list label, optional)
 //   children    -> list item elements
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ContainedList molecule.
@@ -20,9 +23,17 @@ Build the ContainedList molecule.
 
 @return {Function} - The ContainedList component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function ContainedList (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ContainedList = function ContainedList (props) {
+
 
     const {
       label, children, style,
@@ -55,7 +66,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         : null,
       children
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ContainedList = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ContainedList;
+
+}/////////////////////////// Component Factory END /////////////////////////////

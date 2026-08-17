@@ -1,6 +1,6 @@
 // Info: RadioButtonGroup composite [S4 compound]. A group of radio buttons
-// where exactly one is selected. Uses M1 (a11y), M3 (useRovingTabIndex),
-// M7 (createCompoundContext), M8 (useControllableState). Role radiogroup.
+// where exactly one is selected. Uses A11y, RovingTabIndex,
+// CompoundContext, ControllableState. Role radiogroup.
 //   value       -> string (controlled)
 //   defaultValue-> string (uncontrolled)
 //   onChange    -> callback receiving the selected value
@@ -8,10 +8,13 @@
 //   disabled    -> boolean (disables the entire group)
 //   name        -> string (group name for form submission)
 //   orientation -> 'horizontal' | 'vertical' (default 'vertical')
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the RadioButtonGroup composite.
@@ -25,11 +28,20 @@ Build the RadioButtonGroup composite.
 
 @return {Function} - The RadioButtonGroup component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+
   // Create the compound context for RadioButtonGroup coordination
   const radioContext = Parts.CompoundContext('RadioButtonGroup');
 
-  return function RadioButtonGroup (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const RadioButtonGroup = function RadioButtonGroup (props) {
+
 
     const {
       value, defaultValue, onChange, options, disabled, name, orientation,
@@ -115,7 +127,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         radioButtons
       )
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _RadioButtonGroup = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return RadioButtonGroup;
+
+}/////////////////////////// Component Factory END /////////////////////////////

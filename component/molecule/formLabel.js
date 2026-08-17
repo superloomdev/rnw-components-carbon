@@ -1,15 +1,18 @@
 // Info: FormLabel molecule [S1 presentational]. A label for form fields.
-// Uses M1 (a11y) for aria-* relation props (aria-labelledby wiring is done
+// Uses A11y for aria-* relation props (aria-labelledby wiring is done
 // by the parent FormItem). Composes Text atom.
 //   children     -> string or node, the label text
 //   htmlFor      -> string, the id of the associated control (web only)
 //   required     -> boolean, shows required indicator
 //   disabled     -> boolean, dims the label
 //   style        -> custom style overrides
-'use strict';
 
-const { Platform } = require('react-native');
 
+// Imports
+import { Platform } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the FormLabel molecule.
@@ -23,9 +26,17 @@ Build the FormLabel molecule.
 
 @return {Function} - The FormLabel component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function FormLabel (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const FormLabel = function FormLabel (props) {
+
 
     const {
       children, htmlFor, required, disabled, style,
@@ -59,7 +70,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         }, ' *')
         : null
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _FormLabel = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return FormLabel;
+
+}/////////////////////////// Component Factory END /////////////////////////////

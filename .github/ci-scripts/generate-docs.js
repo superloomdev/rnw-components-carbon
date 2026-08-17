@@ -19,7 +19,7 @@ const FIXTURE_PATH = path.join(ROOT, '_test/fixtures/component-roster.json');
 
 
 // ---------------------------------------------------------------------------
-// Platform wording (exact, from plan 0102 Part 5.1)
+// Platform wording
 // ---------------------------------------------------------------------------
 
 const PLATFORM_WORDING = {

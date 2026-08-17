@@ -1,10 +1,14 @@
 // Info: Heading atom [S1 presentational]. A text element with role="header"
-// and a level prop. Uses M1 (a11y) for aria-* level.
+// and a level prop. Uses the A11y mechanism for aria-* level.
 //   level       -> 1-6 (default 1, maps to aria-level)
 //   children    -> heading text content
 //   style       -> custom style overrides
-'use strict';
 
+
+// Imports
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Heading atom.
@@ -14,12 +18,20 @@ Build the Heading atom.
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Parts    - Mechanisms: { A11y, PressKeys, ControllableState, Units, Overlay, AnchoredPosition }
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style   - { utilities, tokens, breakpoint }
+@param {Object} Style    - { utilities, tokens, breakpoint }
 
 @return {Function} - The Heading component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
-  return function Heading (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Heading = function Heading (props) {
 
     const {
       level, children, style,
@@ -50,6 +62,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
       children
     );
 
-  };
+  };////////////////////////// Public Functions END ////////////////////////////
 
-};
+
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Heading = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Heading;
+
+}/////////////////////////// Component Factory END /////////////////////////////

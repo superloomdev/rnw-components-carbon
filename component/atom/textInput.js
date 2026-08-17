@@ -2,10 +2,13 @@
 // Border/radius/padding/font all come from tokens; focus swaps the border
 // to the primary color (focus ring). Placeholder color uses a derived muted
 // token. Passes accessibilityRole and aria-* for screen readers.
-'use strict';
 
-const { TextInput: RNTextInput } = require('react-native');
 
+// Imports
+import { TextInput as RNTextInput } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the TextInput atom.
@@ -15,14 +18,20 @@ Build the TextInput atom.
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Parts    - Mechanisms: { A11y, PressKeys, ControllableState, Units, Overlay, AnchoredPosition }
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style   - { utilities, tokens, breakpoint }
+@param {Object} Style    - { utilities, tokens, breakpoint }
 
 @return {Function} - The TextInput component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  // Build the a11y translator once per factory
-  return function TextInput (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const TextInput = function TextInput (props) {
 
     // Destructure props
     const {
@@ -80,6 +89,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, ariaProps, rest)
     );
 
-  };
+  };////////////////////////// Public Functions END ////////////////////////////
 
-};
+
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _TextInput = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return TextInput;
+
+}/////////////////////////// Component Factory END /////////////////////////////

@@ -1,15 +1,18 @@
 // Info: SideNavMenu molecule [S2 interactive]. A collapsible menu in the
-// side nav. Uses role="button" for screen reader semantics. Uses M1 (a11y)
-// for aria-expanded state and M2 (usePressKeys) for keyboard activation.
+// side nav. Uses role="button" for screen reader semantics. Uses A11y
+// for aria-expanded state and PressKeys for keyboard activation.
 //   label       -> string (menu label)
 //   expanded    -> boolean (whether the menu is expanded)
 //   onToggle    -> function (called with next boolean)
 //   children    -> SideNavMenuItem elements (shown when expanded)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the SideNavMenu molecule.
@@ -23,8 +26,17 @@ Build the SideNavMenu molecule.
 
 @return {Function} - The SideNavMenu component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function SideNavMenu (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const SideNavMenu = function SideNavMenu (props) {
+
 
     const {
       label, expanded, onToggle, children, style,
@@ -91,7 +103,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         ? React.createElement(RNView, null, children)
         : null
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _SideNavMenu = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return SideNavMenu;
+
+}/////////////////////////// Component Factory END /////////////////////////////

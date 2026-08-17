@@ -1,7 +1,7 @@
 // Info: Slider atom [S2 interactive]. A custom range slider built from View
 // and Pressable. React Native removed Slider from core in 0.62 and
 // react-native-web does not export it, so the atom uses primitives instead.
-// Uses M1 (a11y) for aria-* state and value, M2 (usePressKeys) for keyboard.
+// Uses A11y for aria-* state and value, PressKeys for keyboard.
 //   value       -> number (controlled)
 //   defaultValue-> number (uncontrolled)
 //   min         -> number (default 0)
@@ -10,10 +10,13 @@
 //   onChange    -> callback receiving the next number
 //   disabled    -> boolean
 //   hideTextInput -> boolean (default true; when false, shows a paired NumberInput)
-'use strict';
 
-const { View: RNView, Pressable, Platform } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable, Platform } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Slider atom.
@@ -23,11 +26,13 @@ Build the Slider atom.
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Parts    - Mechanisms: { A11y, PressKeys, ControllableState, Units, Overlay, AnchoredPosition }
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style   - { utilities, tokens, breakpoint }
+@param {Object} Style    - { utilities, tokens, breakpoint }
 
 @return {Function} - The Slider component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
   // Role: 'slider' on web, 'adjustable' on native
   const sliderRole = Platform.select({
     web: 'slider',
@@ -37,8 +42,12 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   // Track and thumb dimensions
   const TRACK_HEIGHT = 4;
   const THUMB_SIZE = 20;
+  /////////////////////////// Static Constants END //////////////////////////////
 
-  return function Slider (props) {
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Slider = function Slider (props) {
 
     const {
       value, defaultValue, min, max, step, onChange, disabled, hideTextInput,
@@ -217,6 +226,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       )
     );
 
-  };
+  };////////////////////////// Public Functions END ////////////////////////////
 
-};
+
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Slider = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Slider;
+
+}/////////////////////////// Component Factory END /////////////////////////////

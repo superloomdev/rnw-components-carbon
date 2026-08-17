@@ -1,14 +1,17 @@
 // Info: NotificationActionButton molecule [S2 interactive]. An action button
 // in a notification. Uses role="button" for screen reader semantics. Uses M1
-// (a11y) for aria-* state and M2 (usePressKeys) for keyboard activation.
+// (a11y) for aria-* state and PressKeys for keyboard activation.
 //   text        -> string (button label)
 //   onPress     -> function (press handler)
 //   kind        -> string (button kind, optional)
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the NotificationActionButton molecule.
@@ -22,8 +25,17 @@ Build the NotificationActionButton molecule.
 
 @return {Function} - The NotificationActionButton component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function NotificationActionButton (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const NotificationActionButton = function NotificationActionButton (props) {
+
 
     const {
       text, onPress, kind, style,
@@ -70,7 +82,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         weight: 'medium'
       }, text)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _NotificationActionButton = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return NotificationActionButton;
+
+}/////////////////////////// Component Factory END /////////////////////////////

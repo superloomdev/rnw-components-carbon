@@ -1,14 +1,17 @@
 // Info: Checkbox atom [S2 interactive]. A Pressable with role="checkbox"
 // that toggles checked state. Supports 'mixed' for indeterminate.
-// Uses M1 (a11y) for aria-* state and M2 (usePressKeys) for Space activation.
+// Uses a11y for aria-* state and PressKeys for Space activation.
 //   checked       -> true | false | 'mixed'
 //   onChange      -> callback receiving the next boolean
 //   disabled      -> boolean
 //   label         -> string (rendered as Text child)
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Checkbox atom.
@@ -18,12 +21,20 @@ Build the Checkbox atom.
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Parts    - Mechanisms: { A11y, PressKeys, ControllableState, Units, Overlay, AnchoredPosition }
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style   - { utilities, tokens, breakpoint }
+@param {Object} Style    - { utilities, tokens, breakpoint }
 
 @return {Function} - The Checkbox component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function Checkbox (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Checkbox = function Checkbox (props) {
 
     const {
       checked, onChange, disabled, label, style,
@@ -122,6 +133,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, label) : null
     );
 
-  };
+  };////////////////////////// Public Functions END ////////////////////////////
 
-};
+
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Checkbox = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Checkbox;
+
+}/////////////////////////// Component Factory END /////////////////////////////

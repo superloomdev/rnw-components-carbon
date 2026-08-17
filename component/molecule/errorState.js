@@ -5,10 +5,13 @@
 //   icon        -> icon name (optional, defaults to error--filled)
 //   children    -> additional content (optional)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ErrorState molecule.
@@ -22,9 +25,17 @@ Build the ErrorState molecule.
 
 @return {Function} - The ErrorState component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function ErrorState (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ErrorState = function ErrorState (props) {
+
 
     const {
       title, subtitle, icon, children, style,
@@ -76,7 +87,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         children || null
       )
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ErrorState = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ErrorState;
+
+}/////////////////////////// Component Factory END /////////////////////////////

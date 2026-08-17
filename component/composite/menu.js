@@ -1,16 +1,19 @@
 // Info: Menu composite [S3/S4 overlay]. A menu container with role="menu"
-// that coordinates MenuItem children. Uses M1 (a11y), M3 (useRovingTabIndex),
-// M4 (Overlay), M5 (useAnchoredPosition), M7 (createCompoundContext).
+// that coordinates MenuItem children. Uses A11y, RovingTabIndex,
+// Overlay, AnchoredPosition, CompoundContext.
 //   isOpen      -> boolean
 //   onClose     -> function
 //   children    -> MenuItem elements
 //   placement   -> string (default 'bottom-start')
 //   anchorRef   -> ref (external anchor; if not provided, uses internal)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Menu composite.
@@ -24,10 +27,19 @@ Build the Menu composite.
 
 @return {Function} - The Menu component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+
   const useOverlay = Parts.Overlay.useOverlay;
 
-  return function Menu (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Menu = function Menu (props) {
+
 
     const {
       isOpen, onClose, children, placement, style, // eslint-disable-line no-unused-vars
@@ -101,7 +113,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     }
 
     return null;
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Menu = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Menu;
+
+}/////////////////////////// Component Factory END /////////////////////////////

@@ -1,15 +1,18 @@
 // Info: BreadcrumbItem molecule [S2 interactive]. A single breadcrumb link
-// with role="link". Uses M1 (a11y) for aria-current when the item is the
-// current page, and M2 (usePressKeys) for keyboard activation.
+// with role="link". Uses A11y for aria-current when the item is the
+// current page, and PressKeys for keyboard activation.
 //   href          -> string (optional URL)
 //   onPress       -> function (press handler)
 //   children      -> label content
 //   isCurrentPage -> boolean, whether this is the current page
 //   style         -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the BreadcrumbItem molecule.
@@ -23,8 +26,17 @@ Build the BreadcrumbItem molecule.
 
 @return {Function} - The BreadcrumbItem component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function BreadcrumbItem (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const BreadcrumbItem = function BreadcrumbItem (props) {
+
 
     const {
       href, onPress, children, isCurrentPage, style,
@@ -102,7 +114,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         style: Style.utilities['m_h_xs']
       }, '/')
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _BreadcrumbItem = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return BreadcrumbItem;
+
+}/////////////////////////// Component Factory END /////////////////////////////

@@ -1,16 +1,19 @@
 // Info: StructuredListInput molecule [S2 interactive]. A radio/checkbox
 // input in a structured list. Uses role="radio" for screen reader
-// semantics. Uses M1 (a11y) for aria-* state and M2 (usePressKeys) for
+// semantics. Uses A11y for aria-* state and PressKeys for
 // keyboard activation.
 //   name        -> string (radio group name)
 //   value       -> string (input value)
 //   checked     -> boolean (whether this input is selected)
 //   onChange    -> function (called with the value)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the StructuredListInput molecule.
@@ -24,8 +27,17 @@ Build the StructuredListInput molecule.
 
 @return {Function} - The StructuredListInput component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function StructuredListInput (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const StructuredListInput = function StructuredListInput (props) {
+
 
     const {
       name, value, checked, onChange, style,
@@ -89,7 +101,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         })
         : null
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _StructuredListInput = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return StructuredListInput;
+
+}/////////////////////////// Component Factory END /////////////////////////////

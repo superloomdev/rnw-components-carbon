@@ -14,10 +14,13 @@
 //
 // useAnchoredPosition measures the trigger and positions the panel below it,
 // flipping above when there is not enough space.
-'use strict';
 
-const { View: RNView, Pressable, Platform } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable, Platform } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Dropdown molecule.
@@ -31,15 +34,23 @@ Build the Dropdown molecule.
 
 @return {Function} - The Dropdown component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
 
   // Build the focus trap hook once
-  // Build the a11y translator once per factory
   // Build the overlay host hook once,
   const useOverlay = Parts.Overlay.useOverlay;
 
   // Build the anchored position hook once,
-  return function Dropdown (props) {
+
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Dropdown = function Dropdown (props) {
+
 
     // Destructure props,
     const {
@@ -249,7 +260,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     // Overlay renders the panel; return just the trigger,
     return trigger;
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Dropdown = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Dropdown;
+
+}/////////////////////////// Component Factory END /////////////////////////////

@@ -1,14 +1,17 @@
 // Info: HeaderName molecule [S2 interactive]. The application name in the
-// header. Uses role="link" for screen reader semantics. Uses M1 (a11y) for
-// aria-* state and M2 (usePressKeys) for keyboard activation.
+// header. Uses role="link" for screen reader semantics. Uses A11y for
+// aria-* state and PressKeys for keyboard activation.
 //   text        -> string (application name)
 //   onPress     -> function (press handler)
 //   prefix      -> string (optional prefix before the name)
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the HeaderName molecule.
@@ -22,8 +25,17 @@ Build the HeaderName molecule.
 
 @return {Function} - The HeaderName component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function HeaderName (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const HeaderName = function HeaderName (props) {
+
 
     const {
       text, onPress, prefix, style,
@@ -71,7 +83,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         weight: 'semibold'
       }, text || '')
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _HeaderName = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return HeaderName;
+
+}/////////////////////////// Component Factory END /////////////////////////////

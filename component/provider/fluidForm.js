@@ -1,9 +1,14 @@
 // Info: FluidForm provider [PROVIDER]. Marks a form as fluid (label inside
-// field) for descendants. Uses M7 (createCompoundContext pattern).
+// field) for descendants. Uses createCompoundContext pattern.
 //   fluid       -> boolean (default true)
 //   children    -> content to render within the fluid context
-'use strict';
 
+
+// Imports
+// None.
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the FluidForm provider.
@@ -11,14 +16,21 @@ Build the FluidForm provider.
 @param {Object} Lib      - { Utils, Debug, React }
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
-@param {Object} Parts    - Mechanisms: { A11y, PressKeys, ControllableState, Units, Overlay, AnchoredPosition }
+@param {Object} Parts    - Mechanisms: { ... }
 @param {Object} Registry - Component registry (unused by providers)
-@param {Object} Style   - { utilities, tokens, breakpoint }
+@param {Object} Style    - { utilities, tokens, breakpoint }
 
-@return {Function} - The FluidForm provider component
+@return {Object} - The FluidForm provider interface
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
 
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
   const React = Lib.React;
   const createContext = React.createContext;
 
@@ -44,11 +56,22 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
     );
 
   };
+  ////////////////////////// Public Functions END ////////////////////////////
 
+
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _FluidForm = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the provider interface
   return {
     FluidForm: FluidForm,
     useFluidForm: useFluidForm,
     FluidFormContext: FluidFormContext
   };
 
-};
+}/////////////////////////// Component Factory END /////////////////////////////

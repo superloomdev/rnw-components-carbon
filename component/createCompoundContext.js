@@ -19,7 +19,6 @@
 // It inspects child.type and breaks the moment a child is wrapped in
 // React.memo or forwardRef, which our HOC does. Use Context for every
 // parent-child coordination.
-'use strict';
 
 
 /********************************************************************
@@ -30,7 +29,7 @@ Create a compound context pair: a Provider and a useContext hook.
 
 @return {Object} - { Provider, useContext, Context }
 *********************************************************************/
-module.exports = function (Lib, displayName) {
+export default function (Lib, displayName) {
 
   const React = Lib.React;
   const createContext = Lib.React.createContext;
@@ -69,4 +68,4 @@ module.exports = function (Lib, displayName) {
     Context: Context
   };
 
-};
+}

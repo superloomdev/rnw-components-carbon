@@ -7,10 +7,13 @@
 //   color       -> background color token for the fill (default app_primary)
 //   trackColor  -> background color token for the track (default surface)
 //   height      -> bar height in pixels (default 4)
-'use strict';
 
-const { View: RNView, Animated } = require('react-native');
 
+// Imports
+import { View as RNView, Animated } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ProgressBar atom.
@@ -20,14 +23,20 @@ Build the ProgressBar atom.
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Parts    - Mechanisms: { A11y, PressKeys, ControllableState, Units, Overlay, AnchoredPosition }
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style   - { utilities, tokens, breakpoint }
+@param {Object} Style    - { utilities, tokens, breakpoint }
 
 @return {Function} - The ProgressBar component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  // Build the a11y translator once per factory
-  return function ProgressBar (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ProgressBar = function ProgressBar (props) {
 
     // Destructure props
     const { value, color, trackColor, height, style, ...rest } = props;
@@ -128,6 +137,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       })
     );
 
-  };
+  };////////////////////////// Public Functions END ////////////////////////////
 
-};
+
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ProgressBar = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ProgressBar;
+
+}/////////////////////////// Component Factory END /////////////////////////////

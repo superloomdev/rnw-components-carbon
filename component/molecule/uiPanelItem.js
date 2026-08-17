@@ -5,10 +5,13 @@
 //   text        -> item label
 //   onPress     -> callback when pressed
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the UiPanelItem molecule.
@@ -22,9 +25,17 @@ Build the UiPanelItem molecule.
 
 @return {Function} - The UiPanelItem component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function UiPanelItem (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const UiPanelItem = function UiPanelItem (props) {
+
 
     // Destructure props
     const {
@@ -49,7 +60,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       icon ? React.createElement(Registry.Icon, { name: icon }) : null,
       React.createElement(Registry.Text, null, text || '')
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _UiPanelItem = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return UiPanelItem;
+
+}/////////////////////////// Component Factory END /////////////////////////////

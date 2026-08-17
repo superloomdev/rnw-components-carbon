@@ -2,10 +2,13 @@
 // state. Wraps children in a group with role="group".
 //   children    -> content to render within the form context
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the FormContext molecule.
@@ -19,9 +22,17 @@ Build the FormContext molecule.
 
 @return {Function} - The FormContext component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function FormContext (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const FormContext = function FormContext (props) {
+
 
     const {
       children, style,
@@ -41,7 +52,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, rest),
       children
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _FormContext = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return FormContext;
+
+}/////////////////////////// Component Factory END /////////////////////////////

@@ -1,14 +1,17 @@
 // Info: Tooltip molecule [S3 overlay]. A floating tooltip with content
 // accessible via aria-describedby. Triggers on hover and focus on web,
-// long-press on native. Uses M1 (a11y), M4 (Overlay), M5 (useAnchoredPosition).
+// long-press on native. Uses A11y, Overlay, AnchoredPosition.
 //   content     -> string or node (tooltip content)
 //   children    -> trigger element
 //   placement   -> string (default 'top')
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Platform } = require('react-native');
 
+// Imports
+import { View as RNView, Platform } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Tooltip molecule.
@@ -22,8 +25,17 @@ Build the Tooltip molecule.
 
 @return {Function} - The Tooltip component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function Tooltip (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Tooltip = function Tooltip (props) {
+
 
     const {
       content, children, placement, style,
@@ -124,7 +136,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       trigger,
       isVisible ? renderTooltip() : null
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Tooltip = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Tooltip;
+
+}/////////////////////////// Component Factory END /////////////////////////////

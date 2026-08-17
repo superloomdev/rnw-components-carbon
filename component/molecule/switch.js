@@ -1,6 +1,6 @@
 // Info: Switch molecule [S2 interactive]. A content switcher button with
 // role="button" that toggles selected state. Used inside the ContentSwitcher
-// composite. Uses M1 (a11y) for aria-pressed and aria-disabled, and M2
+// composite. Uses A11y for aria-pressed and aria-disabled, and M2
 // (usePressKeys) for keyboard activation. Can optionally consume
 // ContentSwitcher context for selection coordination.
 //   label       -> string (switch label text)
@@ -8,10 +8,14 @@
 //   onPress     -> function (press handler)
 //   disabled    -> boolean
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import getSharedContext from '../context/sharedContext.js';
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Switch molecule.
@@ -25,13 +29,21 @@ Build the Switch molecule.
 
 @return {Function} - The Switch component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  const getSharedContext = require('../context/sharedContext');
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+
 
   // Get the shared ContentSwitcher context (cached per Lib instance)
   const contentSwitcherCtx = getSharedContext(Lib, 'ContentSwitcher');
 
-  return function Switch (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Switch = function Switch (props) {
+
 
     const {
       label, selected, onPress, disabled, style,
@@ -104,7 +116,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         weight: 'medium'
       }, label)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Switch = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Switch;
+
+}/////////////////////////// Component Factory END /////////////////////////////

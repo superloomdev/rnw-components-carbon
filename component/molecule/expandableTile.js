@@ -1,15 +1,18 @@
 // Info: ExpandableTile molecule [S2 interactive]. A tile that expands to show
-// more content. Uses role="button" for screen reader semantics. Uses M1 (a11y)
-// for aria-* state and M2 (usePressKeys) for keyboard activation.
+// more content. Uses role="button" for screen reader semantics. Uses A11y
+// for aria-* state and PressKeys for keyboard activation.
 //   title       -> string (tile title)
 //   expanded    -> boolean (whether the tile is expanded)
 //   onToggle    -> function (called with next boolean)
 //   children    -> content (shown when expanded)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ExpandableTile molecule.
@@ -23,8 +26,17 @@ Build the ExpandableTile molecule.
 
 @return {Function} - The ExpandableTile component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function ExpandableTile (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ExpandableTile = function ExpandableTile (props) {
+
 
     const {
       title, expanded, onToggle, children, style,
@@ -103,7 +115,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         )
         : null
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ExpandableTile = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ExpandableTile;
+
+}/////////////////////////// Component Factory END /////////////////////////////

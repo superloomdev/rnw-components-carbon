@@ -1,6 +1,6 @@
 // Info: ExpandableSearch molecule [S2 interactive]. A search input that
-// collapses to a search icon button and expands on press. Uses M1 (a11y)
-// for aria-* state and M8 (useControllableState) for controlled/uncontrolled
+// collapses to a search icon button and expands on press. Uses A11y
+// for aria-* state and ControllableState for controlled/uncontrolled
 // value. Composes TextInput, Icon, and Pressable atoms.
 //   value         -> string (controlled)
 //   defaultValue  -> string (uncontrolled)
@@ -9,10 +9,13 @@
 //   placeholder   -> string (default 'Search')
 //   disabled      -> boolean
 //   defaultExpanded -> boolean (default false)
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ExpandableSearch molecule.
@@ -26,10 +29,19 @@ Build the ExpandableSearch molecule.
 
 @return {Function} - The ExpandableSearch component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+
   // a11y not needed: TextInput handles its own aria-* state
 
-  return function ExpandableSearch (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ExpandableSearch = function ExpandableSearch (props) {
+
 
     const {
       value, defaultValue, onChange, onClear, placeholder, disabled,
@@ -154,7 +166,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         )
         : null
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ExpandableSearch = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ExpandableSearch;
+
+}/////////////////////////// Component Factory END /////////////////////////////

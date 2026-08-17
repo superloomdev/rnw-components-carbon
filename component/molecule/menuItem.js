@@ -1,15 +1,18 @@
 // Info: MenuItem molecule [S2 interactive]. A menu item with role="menuitem".
-// Uses M1 (a11y) for aria-* state and M2 (usePressKeys) for keyboard activation.
+// Uses A11y for aria-* state and PressKeys for keyboard activation.
 //   label       -> string
 //   onPress     -> function
 //   disabled    -> boolean
 //   icon        -> string (optional leading icon)
 //   shortcut    -> string (optional shortcut hint)
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the MenuItem molecule.
@@ -23,8 +26,17 @@ Build the MenuItem molecule.
 
 @return {Function} - The MenuItem component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function MenuItem (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const MenuItem = function MenuItem (props) {
+
 
     const {
       label, onPress, disabled, icon, shortcut, style,
@@ -80,7 +92,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         }, shortcut)
         : null
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _MenuItem = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return MenuItem;
+
+}/////////////////////////// Component Factory END /////////////////////////////

@@ -1,14 +1,17 @@
 // Info: SelectableTile molecule [S2 interactive]. A tile that acts as a
-// checkbox. Uses M1 (a11y) for aria-* state and M2 (usePressKeys) for keyboard.
+// checkbox. Uses A11y for aria-* state and PressKeys for keyboard.
 //   title       -> string
 //   selected    -> boolean
 //   onSelect    -> function (called with next boolean)
 //   disabled    -> boolean
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the SelectableTile molecule.
@@ -22,8 +25,17 @@ Build the SelectableTile molecule.
 
 @return {Function} - The SelectableTile component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function SelectableTile (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const SelectableTile = function SelectableTile (props) {
+
 
     const {
       title, selected, onSelect, disabled, style,
@@ -86,7 +98,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         }, title)
         : null
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _SelectableTile = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return SelectableTile;
+
+}/////////////////////////// Component Factory END /////////////////////////////

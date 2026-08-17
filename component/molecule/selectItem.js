@@ -1,15 +1,18 @@
 // Info: SelectItem molecule [S2 interactive]. A single option in a Select.
-// Uses M1 (a11y) for aria-* state and M2 (usePressKeys) for keyboard
+// Uses A11y for aria-* state and PressKeys for keyboard
 // activation. Role="option".
 //   value       -> string (the option value)
 //   text        -> string (the display label)
 //   onSelect    -> function (called with the value when selected)
 //   disabled    -> boolean
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the SelectItem molecule.
@@ -23,8 +26,17 @@ Build the SelectItem molecule.
 
 @return {Function} - The SelectItem component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function SelectItem (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const SelectItem = function SelectItem (props) {
+
 
     const {
       value, text, onSelect, disabled, style,
@@ -73,7 +85,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         color: disabled ? 'text_disabled' : 'text_primary'
       }, text)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _SelectItem = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return SelectItem;
+
+}/////////////////////////// Component Factory END /////////////////////////////

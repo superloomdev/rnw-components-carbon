@@ -2,10 +2,13 @@
 // ComposedModal, typically holding action buttons. Composes View atom.
 //   children    -> footer content (usually buttons)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ModalFooter molecule.
@@ -19,9 +22,17 @@ Build the ModalFooter molecule.
 
 @return {Function} - The ModalFooter component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function ModalFooter (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ModalFooter = function ModalFooter (props) {
+
 
     const { children, style, ...rest } = props;
 
@@ -42,7 +53,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, rest),
       children
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ModalFooter = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ModalFooter;
+
+}/////////////////////////// Component Factory END /////////////////////////////

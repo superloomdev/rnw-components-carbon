@@ -5,10 +5,13 @@
 //   onPress     -> press handler
 //   icon        -> leading icon name (optional)
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the NavigationListItem molecule.
@@ -22,8 +25,17 @@ Build the NavigationListItem molecule.
 
 @return {Function} - The NavigationListItem component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function NavigationListItem (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const NavigationListItem = function NavigationListItem (props) {
+
 
     const {
       title, onPress, icon, style,
@@ -65,7 +77,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         weight: 'regular'
       }, title)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _NavigationListItem = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return NavigationListItem;
+
+}/////////////////////////// Component Factory END /////////////////////////////

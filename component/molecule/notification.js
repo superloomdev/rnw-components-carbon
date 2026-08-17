@@ -6,26 +6,13 @@
 //   status      -> 'success' | 'error' | 'warning' | 'info'
 //   onClose     -> close handler (optional; when absent, no close button)
 //   children    -> additional content (optional)
-'use strict';
-
-const { View: RNView, Pressable } = require('react-native');
 
 
-// Status -> background utility key and icon name
-const STATUS_BG = {
-  success: 'background_status_success_subtle',
-  error: 'background_status_danger_subtle',
-  warning: 'background_status_warning_subtle',
-  info: 'background_status_info_subtle'
-};
+// Imports
+import { View as RNView, Pressable } from 'react-native';
 
-const STATUS_ICON = {
-  success: 'checkmark--filled',
-  error: 'error--filled',
-  warning: 'warning--filled',
-  info: 'information--filled'
-};
 
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Notification molecule.
@@ -39,8 +26,29 @@ Build the Notification molecule.
 
 @return {Function} - The Notification component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function Notification (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  const STATUS_BG = {
+    success: 'background_status_success',
+    error: 'background_status_danger',
+    warning: 'background_status_warning',
+    info: 'background_status_info'
+  };
+
+  const STATUS_ICON = {
+    success: 'checkmark',
+    error: 'error',
+    warning: 'warning',
+    info: 'information'
+  };
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Notification = function Notification (props) {
+
 
     const {
       title, subtitle, status, onClose, children, style,
@@ -118,7 +126,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       ),
       closeButton
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Notification = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Notification;
+
+}/////////////////////////// Component Factory END /////////////////////////////

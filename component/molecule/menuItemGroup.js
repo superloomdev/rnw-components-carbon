@@ -3,10 +3,13 @@
 //   label       -> string (group label, optional)
 //   children    -> menu item elements
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the MenuItemGroup molecule.
@@ -20,9 +23,17 @@ Build the MenuItemGroup molecule.
 
 @return {Function} - The MenuItemGroup component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function MenuItemGroup (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const MenuItemGroup = function MenuItemGroup (props) {
+
 
     const {
       label, children, style,
@@ -50,7 +61,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         : null,
       children
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _MenuItemGroup = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return MenuItemGroup;
+
+}/////////////////////////// Component Factory END /////////////////////////////

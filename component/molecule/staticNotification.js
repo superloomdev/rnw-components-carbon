@@ -5,26 +5,13 @@
 //   kind        -> 'info' | 'success' | 'warning' | 'error'
 //   children    -> additional content (optional)
 //   style       -> custom style overrides
-'use strict';
-
-const { View: RNView } = require('react-native');
 
 
-// Kind -> background utility key and icon name
-const KIND_BG = {
-  success: 'background_status_success_subtle',
-  error: 'background_status_danger_subtle',
-  warning: 'background_status_warning_subtle',
-  info: 'background_status_info_subtle'
-};
+// Imports
+import { View as RNView } from 'react-native';
 
-const KIND_ICON = {
-  success: 'checkmark--filled',
-  error: 'error--filled',
-  warning: 'warning--filled',
-  info: 'information--filled'
-};
 
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the StaticNotification molecule.
@@ -38,9 +25,29 @@ Build the StaticNotification molecule.
 
 @return {Function} - The StaticNotification component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function StaticNotification (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  const KIND_BG = {
+    success: 'background_status_success',
+    error: 'background_status_danger',
+    warning: 'background_status_warning',
+    info: 'background_status_info'
+  };
+
+  const KIND_ICON = {
+    success: 'checkmark',
+    error: 'error',
+    warning: 'warning',
+    info: 'information'
+  };
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const StaticNotification = function StaticNotification (props) {
+
 
     const {
       title, kind, children, style,
@@ -95,7 +102,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         )
         : null
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _StaticNotification = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return StaticNotification;
+
+}/////////////////////////// Component Factory END /////////////////////////////

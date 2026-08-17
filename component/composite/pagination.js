@@ -1,16 +1,19 @@
 // Info: Pagination composite [S4 compound]. A pagination navigation container
 // with role="navigation" that renders page selector and prev/next buttons.
-// Uses M1 (a11y), M2 (usePressKeys). Composes PaginationNav molecule and
+// Uses A11y, PressKeys. Composes PaginationNav molecule and
 // Button atom.
 //   page        -> number (current page, 1-based)
 //   totalPage   -> number (total number of pages)
 //   onChange    -> function (called with new page number)
 //   pageSize    -> number (items per page, optional)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Pagination composite.
@@ -24,8 +27,17 @@ Build the Pagination composite.
 
 @return {Function} - The Pagination component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function Pagination (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Pagination = function Pagination (props) {
+
 
     const {
       page, totalPage, onChange, pageSize, style, // eslint-disable-line no-unused-vars
@@ -150,7 +162,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         }, '\u203A')
       )
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Pagination = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Pagination;
+
+}/////////////////////////// Component Factory END /////////////////////////////

@@ -4,10 +4,13 @@
 // composition but still consumes the token system, so it stays in sync with
 // theme changes. Registered in the variant registry (Component.variant) -
 // discoverable, not a loose one-off.
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ButtonPrimaryOutlined variant.
@@ -21,10 +24,17 @@ Build the ButtonPrimaryOutlined variant.
 
 @return {Function} - The ButtonPrimaryOutlined component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  // Build the a11y translator once per factory
-  return function ButtonPrimaryOutlined (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ButtonPrimaryOutlined = function ButtonPrimaryOutlined (props) {
+
 
     // Destructure props
     const { title, icon, onPress, disabled, fullWidth, style, ...rest } = props;
@@ -88,7 +98,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         color: 'app_primary', weight: 'semibold', size: 'md'
       }, title)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ButtonPrimaryOutlined = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ButtonPrimaryOutlined;
+
+}/////////////////////////// Component Factory END /////////////////////////////

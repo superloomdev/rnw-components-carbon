@@ -1,14 +1,17 @@
 // Info: ProgressStep molecule [S1 presentational]. A single step in a ProgressIndicator
-// navigation component with role="listitem". Uses M1 (a11y) for
+// navigation component with role="listitem". Uses A11y for
 // aria-current when the step is the current step.
 //   label       -> string (step label)
 //   status      -> 'complete' | 'current' | 'incomplete'
 //   stepNumber  -> number (1-based step position)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ProgressStep molecule.
@@ -22,8 +25,17 @@ Build the ProgressStep molecule.
 
 @return {Function} - The ProgressStep component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function ProgressStep (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ProgressStep = function ProgressStep (props) {
+
 
     const {
       label, status, stepNumber, style,
@@ -87,7 +99,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         weight: currentStatus === 'current' ? 'medium' : 'regular'
       }, label)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ProgressStep = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ProgressStep;
+
+}/////////////////////////// Component Factory END /////////////////////////////

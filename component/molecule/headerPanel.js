@@ -1,13 +1,16 @@
 // Info: HeaderPanel molecule [S1 presentational]. An expandable panel
-// within the Header composite with role="region". Uses M1 (a11y) for
+// within the Header composite with role="region". Uses A11y for
 // aria-hidden when collapsed.
 //   children    -> panel content
 //   expanded    -> boolean, whether the panel is visible
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the HeaderPanel molecule.
@@ -21,8 +24,17 @@ Build the HeaderPanel molecule.
 
 @return {Function} - The HeaderPanel component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function HeaderPanel (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const HeaderPanel = function HeaderPanel (props) {
+
 
     const { children, expanded, style, ...rest } = props;
 
@@ -48,7 +60,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, ariaProps, rest),
       children
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _HeaderPanel = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return HeaderPanel;
+
+}/////////////////////////// Component Factory END /////////////////////////////

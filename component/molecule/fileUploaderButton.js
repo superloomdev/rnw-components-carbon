@@ -1,14 +1,17 @@
 // Info: FileUploaderButton molecule [S2 interactive]. A button that triggers
 // file selection. Uses role="button" for screen reader semantics. Uses M1
-// (a11y) for aria-* state and M2 (usePressKeys) for keyboard activation.
+// (a11y) for aria-* state and PressKeys for keyboard activation.
 //   label       -> string (button label)
 //   onPress     -> function (press handler)
 //   disabled    -> boolean
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the FileUploaderButton molecule.
@@ -22,8 +25,17 @@ Build the FileUploaderButton molecule.
 
 @return {Function} - The FileUploaderButton component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function FileUploaderButton (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const FileUploaderButton = function FileUploaderButton (props) {
+
 
     const {
       label, onPress, disabled, style,
@@ -74,7 +86,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         weight: 'medium'
       }, label || 'Add file')
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _FileUploaderButton = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return FileUploaderButton;
+
+}/////////////////////////// Component Factory END /////////////////////////////

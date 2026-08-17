@@ -1,15 +1,18 @@
 // Info: ToggletipLabel composite [S1/S3]. A label with an inline toggletip
-// that shows additional content on interaction. Uses M1 (a11y) for aria-*
+// that shows additional content on interaction. Uses A11y for aria-*
 // state and role="group" for screen reader semantics. Composes the
 // Toggletip molecule for the tooltip behavior.
 //   label             -> the label text
 //   toggletipContent  -> content to show in the toggletip
 //   children          -> additional content (optional)
 //   style             -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ToggletipLabel composite.
@@ -23,8 +26,17 @@ Build the ToggletipLabel composite.
 
 @return {Function} - The ToggletipLabel component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function ToggletipLabel (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ToggletipLabel = function ToggletipLabel (props) {
+
 
     const {
       label, toggletipContent, children, style,
@@ -66,7 +78,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       // Additional children
       children || null
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ToggletipLabel = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ToggletipLabel;
+
+}/////////////////////////// Component Factory END /////////////////////////////

@@ -1,10 +1,13 @@
 // Info: Image atom [S1 presentational]. Wraps react-native Image with token
 // consumption for radius and background. Source, resize mode, and other props
 // pass through directly.
-'use strict';
 
-const { Image: RNImage } = require('react-native');
 
+// Imports
+import { Image as RNImage } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Image atom.
@@ -14,13 +17,20 @@ Build the Image atom.
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Parts    - Mechanisms: { A11y, PressKeys, ControllableState, Units, Overlay, AnchoredPosition }
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style   - { utilities, tokens, breakpoint }
+@param {Object} Style    - { utilities, tokens, breakpoint }
 
 @return {Function} - The Image component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function Image (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Image = function Image (props) {
 
     // Destructure token props from pass-through props
     const { radius, background, style, ...rest } = props;
@@ -55,6 +65,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       Object.assign({ style: [...classes, style] }, rest)
     );
 
-  };
+  };////////////////////////// Public Functions END ////////////////////////////
 
-};
+
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Image = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Image;
+
+}/////////////////////////// Component Factory END /////////////////////////////

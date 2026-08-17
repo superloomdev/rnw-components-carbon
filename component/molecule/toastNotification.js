@@ -1,31 +1,18 @@
 // Info: ToastNotification molecule [S1/S2]. A transient notification that auto-dismisss
-// after a duration. Uses M1 (a11y) for aria-* state, role="alert" for
+// after a duration. Uses A11y for aria-* state, role="alert" for
 // screen reader announcement, and a timer effect for auto-dismiss.
 //   title       -> primary text
 //   subtitle    -> secondary text (optional)
 //   status      -> 'success' | 'error' | 'warning' | 'info'
 //   onClose     -> close handler (called on close or auto-dismiss)
 //   duration    -> milliseconds before auto-dismiss (default 3000)
-'use strict';
-
-const { View: RNView, Pressable } = require('react-native');
 
 
-// Status -> background utility key and icon name
-const STATUS_BG = {
-  success: 'background_status_success_subtle',
-  error: 'background_status_danger_subtle',
-  warning: 'background_status_warning_subtle',
-  info: 'background_status_info_subtle'
-};
+// Imports
+import { View as RNView, Pressable } from 'react-native';
 
-const STATUS_ICON = {
-  success: 'checkmark--filled',
-  error: 'error--filled',
-  warning: 'warning--filled',
-  info: 'information--filled'
-};
 
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ToastNotification molecule.
@@ -39,8 +26,29 @@ Build the ToastNotification molecule.
 
 @return {Function} - The ToastNotification component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function ToastNotification (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  const STATUS_BG = {
+    success: 'background_status_success',
+    error: 'background_status_danger',
+    warning: 'background_status_warning',
+    info: 'background_status_info'
+  };
+
+  const STATUS_ICON = {
+    success: 'checkmark',
+    error: 'error',
+    warning: 'warning',
+    info: 'information'
+  };
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ToastNotification = function ToastNotification (props) {
+
 
     const {
       title, subtitle, status, onClose, duration, style,
@@ -135,7 +143,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       ),
       closeButton
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ToastNotification = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ToastNotification;
+
+}/////////////////////////// Component Factory END /////////////////////////////

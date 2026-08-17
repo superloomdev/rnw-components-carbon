@@ -1,10 +1,13 @@
 // Info: SwitcherDivider molecule [S1 presentational]. A divider in a switcher
 // panel. Uses role="separator" for screen reader semantics.
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the SwitcherDivider molecule.
@@ -18,9 +21,17 @@ Build the SwitcherDivider molecule.
 
 @return {Function} - The SwitcherDivider component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function SwitcherDivider (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const SwitcherDivider = function SwitcherDivider (props) {
+
 
     const {
       style,
@@ -44,7 +55,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         ]
       }, rest)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _SwitcherDivider = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return SwitcherDivider;
+
+}/////////////////////////// Component Factory END /////////////////////////////

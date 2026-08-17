@@ -1,14 +1,17 @@
 // Info: HeaderGlobalAction molecule [S2 interactive]. A global action button
 // in the header. Uses role="button" for screen reader semantics. Uses M1
-// (a11y) for aria-* state and M2 (usePressKeys) for keyboard activation.
+// (a11y) for aria-* state and PressKeys for keyboard activation.
 //   icon        -> string (icon name)
 //   onPress     -> function (press handler)
 //   label       -> string (accessibility label)
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the HeaderGlobalAction molecule.
@@ -22,8 +25,17 @@ Build the HeaderGlobalAction molecule.
 
 @return {Function} - The HeaderGlobalAction component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function HeaderGlobalAction (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const HeaderGlobalAction = function HeaderGlobalAction (props) {
+
 
     const {
       icon, onPress, label, style,
@@ -66,7 +78,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           color: 'text_primary'
         }, label || '')
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _HeaderGlobalAction = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return HeaderGlobalAction;
+
+}/////////////////////////// Component Factory END /////////////////////////////

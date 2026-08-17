@@ -8,8 +8,13 @@
 //   required     -> boolean, passed to FormLabel
 //   disabled     -> boolean, passed to FormLabel
 //   style        -> custom style overrides
-'use strict';
 
+
+// Imports
+
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the FormItem molecule.
@@ -23,9 +28,17 @@ Build the FormItem molecule.
 
 @return {Function} - The FormItem component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function FormItem (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const FormItem = function FormItem (props) {
+
 
     const {
       label, children, helperText, errorText, required, disabled, style,
@@ -72,7 +85,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       children,
       messageElement
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _FormItem = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return FormItem;
+
+}/////////////////////////// Component Factory END /////////////////////////////

@@ -1,14 +1,17 @@
 // Info: SideNavSwitcher molecule [S2 interactive]. A switcher in the side
-// nav. Uses role="button" for screen reader semantics. Uses M1 (a11y) for
-// aria-* state and M2 (usePressKeys) for keyboard activation.
+// nav. Uses role="button" for screen reader semantics. Uses A11y for
+// aria-* state and PressKeys for keyboard activation.
 //   label       -> string (switcher label)
 //   options     -> array (switcher options)
 //   onChange    -> function (called with selected option)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the SideNavSwitcher molecule.
@@ -22,8 +25,17 @@ Build the SideNavSwitcher molecule.
 
 @return {Function} - The SideNavSwitcher component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function SideNavSwitcher (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const SideNavSwitcher = function SideNavSwitcher (props) {
+
 
     const {
       label, options, onChange, style,
@@ -92,7 +104,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         })
       )
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _SideNavSwitcher = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return SideNavSwitcher;
+
+}/////////////////////////// Component Factory END /////////////////////////////

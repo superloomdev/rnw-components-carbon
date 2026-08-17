@@ -5,8 +5,12 @@
 //   color -> color token (e.g. 'TEXT_PRIMARY' / 'text_primary') OR a raw hex
 // The icon source is injected as shared_libs.Icons (capability-named, never
 // vendor-named) so the library does not couple to a specific icon set.
-'use strict';
 
+
+// Imports
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Icon atom.
@@ -16,13 +20,20 @@ Build the Icon atom.
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Parts    - Mechanisms: { A11y, PressKeys, ControllableState, Units, Overlay, AnchoredPosition }
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style   - { utilities, tokens, breakpoint }
+@param {Object} Style    - { utilities, tokens, breakpoint }
 
 @return {Function} - The Icon component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function Icon (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Icon = function Icon (props) {
 
     // Destructure token props from pass-through props
     const { name, size, color, style, ...rest } = props;
@@ -58,6 +69,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       Object.assign({ name: name, size: px, color: hex, style: style }, rest)
     );
 
-  };
+  };////////////////////////// Public Functions END ////////////////////////////
 
-};
+
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Icon = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Icon;
+
+}/////////////////////////// Component Factory END /////////////////////////////

@@ -1,5 +1,5 @@
 // Info: SidePanel composite [S3 overlay]. A side panel that slides in from
-// the right. Uses M1 (a11y), M4 (Overlay). Uses useFocusTrap with
+// the right. Uses A11y, Overlay. Uses useFocusTrap with
 // trap: true. Composes View and Text atoms.
 //   isOpen      -> boolean
 //   onClose     -> function
@@ -8,10 +8,13 @@
 //   side        -> 'left' | 'right' (default 'right')
 //   width       -> number (default 320)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable, Modal: RNModal, Platform } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable, Modal as RNModal, Platform } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the SidePanel composite.
@@ -25,10 +28,19 @@ Build the SidePanel composite.
 
 @return {Function} - The SidePanel component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+
   const useOverlay = Parts.Overlay.useOverlay;
 
-  return function SidePanel (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const SidePanel = function SidePanel (props) {
+
 
     const {
       isOpen, onClose, title, children, side, width, style,
@@ -128,7 +140,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     }
 
     return null;
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _SidePanel = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return SidePanel;
+
+}/////////////////////////// Component Factory END /////////////////////////////

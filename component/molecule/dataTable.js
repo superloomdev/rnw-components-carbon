@@ -4,10 +4,13 @@
 //   headers     -> array of header strings
 //   rows        -> array of arrays (each inner array is a row of cell values)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the DataTable molecule.
@@ -21,9 +24,17 @@ Build the DataTable molecule.
 
 @return {Function} - The DataTable component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function DataTable (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const DataTable = function DataTable (props) {
+
 
     const {
       headers, rows, style,
@@ -111,7 +122,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       headerRow,
       dataRows
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _DataTable = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return DataTable;
+
+}/////////////////////////// Component Factory END /////////////////////////////

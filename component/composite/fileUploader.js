@@ -7,10 +7,13 @@
 //   multiple    -> boolean (allow multiple files)
 //   onChange    -> function (called with selected files)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the FileUploader composite.
@@ -24,8 +27,17 @@ Build the FileUploader composite.
 
 @return {Function} - The FileUploader component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function FileUploader (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const FileUploader = function FileUploader (props) {
+
 
     const {
       label, accept, multiple, onChange, style, // eslint-disable-line no-unused-vars
@@ -93,7 +105,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         }, multiple ? 'Drag and drop files or click to select' : 'Drag and drop a file or click to select')
       )
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _FileUploader = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return FileUploader;
+
+}/////////////////////////// Component Factory END /////////////////////////////

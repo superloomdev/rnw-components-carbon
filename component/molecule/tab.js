@@ -1,16 +1,20 @@
 // Info: Tab molecule [S2 interactive]. A tab trigger with role="tab" that
-// fires onPress when activated. Uses M1 (a11y) for aria-selected and
-// aria-disabled, and M2 (usePressKeys) for keyboard activation. Can
+// fires onPress when activated. Uses A11y for aria-selected and
+// aria-disabled, and PressKeys for keyboard activation. Can
 // optionally consume Tabs context for roving tab index coordination.
 //   label       -> string (tab label text)
 //   selected    -> boolean, whether this tab is selected
 //   onPress     -> function (press handler)
 //   disabled    -> boolean
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import getSharedContext from '../context/sharedContext.js';
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Tab molecule.
@@ -24,13 +28,21 @@ Build the Tab molecule.
 
 @return {Function} - The Tab component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  const getSharedContext = require('../context/sharedContext');
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+
 
   // Get the shared Tabs context (cached per Lib instance)
   const tabsCtx = getSharedContext(Lib, 'Tabs');
 
-  return function Tab (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Tab = function Tab (props) {
+
 
     const {
       label, selected, onPress, disabled, style,
@@ -103,7 +115,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         weight: isSelected ? 'medium' : 'regular'
       }, label)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Tab = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Tab;
+
+}/////////////////////////// Component Factory END /////////////////////////////

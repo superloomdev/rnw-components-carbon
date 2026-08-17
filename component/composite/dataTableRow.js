@@ -1,14 +1,17 @@
 // Info: DataTableRow composite [S2 interactive]. An interactive table row
-// with press handling and selection state. Uses M1 (a11y) for aria-* state
-// and M2 (usePressKeys) for keyboard activation. role="row".
+// with press handling and selection state. Uses A11y for aria-* state
+// and PressKeys for keyboard activation. role="row".
 //   cells       -> array of cell values (strings or elements)
 //   onPress     -> press handler (optional; when absent, row is static)
 //   selected    -> boolean, whether the row is selected
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the DataTableRow composite.
@@ -22,8 +25,17 @@ Build the DataTableRow composite.
 
 @return {Function} - The DataTableRow component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function DataTableRow (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const DataTableRow = function DataTableRow (props) {
+
 
     const {
       cells, onPress, selected, style,
@@ -98,7 +110,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, ariaProps, pressKeysProps, rest),
       rowContent
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _DataTableRow = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return DataTableRow;
+
+}/////////////////////////// Component Factory END /////////////////////////////

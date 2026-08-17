@@ -15,7 +15,317 @@
 //
 // Compatibility: React Native Web (web, iOS, Android). Requires the RNW
 // runtime. Node.js for testing with injected stubs.
-'use strict';
+
+
+// Imports
+import { createRequire } from 'node:module';
+
+import DEFAULT_CONFIG from './components.config.js';
+import ERRORS from './components.errors.js';
+import createValidators from './components.validators.js';
+import themeContractBridge from './components.theme-contract.js';
+
+// Load the style contract JSON through createRequire; import attributes are
+// not supported by the shared ESLint parser at this revision.
+const require = createRequire(import.meta.url);
+const STYLE_CONTRACT = require('./data/style-contract.json');
+
+// Parts
+import partsA11y from './parts/a11y.js';
+import partsPressKeys from './parts/press-keys.js';
+import partsRovingTabIndex from './parts/roving-tab-index.js';
+import partsControllableState from './parts/controllable-state.js';
+import partsAnchoredPosition from './parts/anchored-position.js';
+import partsFocusTrap from './parts/focus-trap.js';
+import partsOverlay from './parts/overlay.js';
+import partsCompoundContext from './parts/compound-context.js';
+import partsUnits from './parts/units.js';
+import partsTypeface from './parts/typeface.js';
+import partsDirection from './parts/direction.js';
+
+// Utilities
+import generateStyles from './component/commonStyles.js';
+
+// Atoms
+import viewFactory from './component/atom/view.js';
+import textFactory from './component/atom/text.js';
+import iconFactory from './component/atom/icon.js';
+import imageFactory from './component/atom/image.js';
+import progressBarFactory from './component/atom/progressBar.js';
+import buttonFactory from './component/atom/button.js';
+import textInputFactory from './component/atom/textInput.js';
+import toggleFactory from './component/atom/toggle.js';
+import checkboxFactory from './component/atom/checkbox.js';
+import radioButtonFactory from './component/atom/radioButton.js';
+import textAreaFactory from './component/atom/textArea.js';
+import sliderFactory from './component/atom/slider.js';
+import linkFactory from './component/atom/link.js';
+import skeletonFactory from './component/atom/skeleton.js';
+import loadingFactory from './component/atom/loading.js';
+import tagFactory from './component/atom/tag.js';
+import aspectRatioFactory from './component/atom/aspectRatio.js';
+import headingFactory from './component/atom/heading.js';
+import badgeIndicatorFactory from './component/atom/badgeIndicator.js';
+import shapeIndicatorFactory from './component/atom/shapeIndicator.js';
+import iconIndicatorFactory from './component/atom/iconIndicator.js';
+import inlineLinkFactory from './component/atom/inlineLink.js';
+
+// Molecules (canonical)
+import listItemFactory from './component/molecule/listItem.js';
+import dropdownFactory from './component/molecule/dropdown.js';
+import modalFactory from './component/molecule/modal.js';
+import searchFactory from './component/molecule/search.js';
+import passwordInputFactory from './component/molecule/passwordInput.js';
+import numberInputFactory from './component/molecule/numberInput.js';
+import expandableSearchFactory from './component/molecule/expandableSearch.js';
+import formLabelFactory from './component/molecule/formLabel.js';
+import formItemFactory from './component/molecule/formItem.js';
+import stackFactory from './component/molecule/stack.js';
+import buttonSetFactory from './component/molecule/buttonSet.js';
+import iconButtonFactory from './component/molecule/iconButton.js';
+import copyButtonFactory from './component/molecule/copyButton.js';
+import userAvatarFactory from './component/molecule/userAvatar.js';
+import truncatedTextFactory from './component/molecule/truncatedText.js';
+import codeSnippetFactory from './component/molecule/codeSnippet.js';
+import inlineLoadingFactory from './component/molecule/inlineLoading.js';
+import tileFactory from './component/molecule/tile.js';
+import clickableTileFactory from './component/molecule/clickableTile.js';
+import selectableTileFactory from './component/molecule/selectableTile.js';
+
+// Molecules (Wave 5 overlays)
+import menuItemFactory from './component/molecule/menuItem.js';
+import menuItemSelectableFactory from './component/molecule/menuItemSelectable.js';
+import menuItemDividerFactory from './component/molecule/menuItemDivider.js';
+import modalHeaderFactory from './component/molecule/modalHeader.js';
+import modalBodyFactory from './component/molecule/modalBody.js';
+import modalFooterFactory from './component/molecule/modalFooter.js';
+import popoverFactory from './component/molecule/popover.js';
+import tooltipFactory from './component/molecule/tooltip.js';
+import definitionTooltipFactory from './component/molecule/definitionTooltip.js';
+import toggletipFactory from './component/molecule/toggletip.js';
+
+// Composites (Wave 5 overlays)
+import menuFactory from './component/composite/menu.js';
+import overflowMenuFactory from './component/composite/overflowMenu.js';
+import menuButtonFactory from './component/composite/menuButton.js';
+import comboButtonFactory from './component/composite/comboButton.js';
+import composedModalFactory from './component/composite/composedModal.js';
+import menuItemRadioGroupFactory from './component/composite/menuItemRadioGroup.js';
+import sidePanelFactory from './component/composite/sidePanel.js';
+import aiLabelFactory from './component/composite/aiLabel.js';
+import actionSheetFactory from './component/composite/actionSheet.js';
+
+// Molecules (Wave 6 navigation)
+import tabFactory from './component/molecule/tab.js';
+import tabListFactory from './component/molecule/tabList.js';
+import tabPanelFactory from './component/molecule/tabPanel.js';
+import accordionItemFactory from './component/molecule/accordionItem.js';
+import breadcrumbItemFactory from './component/molecule/breadcrumbItem.js';
+import switchFactory from './component/molecule/switch.js';
+import paginationNavFactory from './component/molecule/paginationNav.js';
+import treeNodeFactory from './component/molecule/treeNode.js';
+import progressStepFactory from './component/molecule/progressStep.js';
+import headerNavigationFactory from './component/molecule/headerNavigation.js';
+import headerMenuButtonFactory from './component/molecule/headerMenuButton.js';
+import headerPanelFactory from './component/molecule/headerPanel.js';
+
+// Composites (Wave 6 navigation)
+import tabsFactory from './component/composite/tabs.js';
+import accordionFactory from './component/composite/accordion.js';
+import breadcrumbFactory from './component/composite/breadcrumb.js';
+import contentSwitcherFactory from './component/composite/contentSwitcher.js';
+import paginationFactory from './component/composite/pagination.js';
+import treeViewFactory from './component/composite/treeView.js';
+import progressIndicatorFactory from './component/composite/progressIndicator.js';
+import headerFactory from './component/composite/header.js';
+
+// Molecules (Wave 8 feedback)
+import notificationFactory from './component/molecule/notification.js';
+import toastNotificationFactory from './component/molecule/toastNotification.js';
+import tableBatchActionsFactory from './component/molecule/tableBatchActions.js';
+import tableBatchActionFactory from './component/molecule/tableBatchAction.js';
+import staticNotificationFactory from './component/molecule/staticNotification.js';
+import calloutFactory from './component/molecule/callout.js';
+
+// Molecules (Wave 9 data and layout)
+import dataTableFactory from './component/molecule/dataTable.js';
+import tableRowFactory from './component/molecule/tableRow.js';
+import tableCellFactory from './component/molecule/tableCell.js';
+import tableHeaderFactory from './component/molecule/tableHeader.js';
+import tableBodyFactory from './component/molecule/tableBody.js';
+import tableHeadFactory from './component/molecule/tableHead.js';
+import gridFactory from './component/molecule/grid.js';
+import rowFactory from './component/molecule/row.js';
+import columnFactory from './component/molecule/column.js';
+import flexGridFactory from './component/molecule/flexGrid.js';
+import tableContainerFactory from './component/molecule/tableContainer.js';
+import formFactory from './component/molecule/form.js';
+import orderedListFactory from './component/molecule/orderedList.js';
+import unorderedListFactory from './component/molecule/unorderedList.js';
+import containedListItemFactory from './component/molecule/containedListItem.js';
+import structuredListWrapperFactory from './component/molecule/structuredListWrapper.js';
+import structuredListRowFactory from './component/molecule/structuredListRow.js';
+import structuredListCellFactory from './component/molecule/structuredListCell.js';
+import tableToolbarFactory from './component/molecule/tableToolbar.js';
+
+// Composites (Wave 9 data and layout)
+import dataTableRowFactory from './component/composite/dataTableRow.js';
+import toggletipLabelFactory from './component/composite/toggletipLabel.js';
+
+// P4.1 RN-only components
+import errorStateFactory from './component/molecule/errorState.js';
+import landingViewFactory from './component/molecule/landingView.js';
+import listFactory from './component/molecule/list.js';
+import navigationListFactory from './component/molecule/navigationList.js';
+import navigationListItemFactory from './component/molecule/navigationListItem.js';
+import webHeaderFactory from './component/molecule/webHeader.js';
+import viewWrapperFactory from './component/molecule/viewWrapper.js';
+import safeAreaWrapperFactory from './component/molecule/safeAreaWrapper.js';
+import grantPermissionFactory from './component/molecule/grantPermission.js';
+import bottomNavigationBarFactory from './component/molecule/bottomNavigationBar.js';
+import bottomToolbarFactory from './component/molecule/bottomToolbar.js';
+import bottomToolbarPrimaryActionFactory from './component/molecule/bottomToolbarPrimaryAction.js';
+import bottomSafeAreaColorOverrideFactory from './component/molecule/bottomSafeAreaColorOverride.js';
+import documentViewerFactory from './component/molecule/documentViewer.js';
+import topNavigationBarFactory from './component/molecule/topNavigationBar.js';
+import topNavigationBarLoginFactory from './component/molecule/topNavigationBarLogin.js';
+import uiPanelFactory from './component/molecule/uiPanel.js';
+import uiPanelItemFactory from './component/molecule/uiPanelItem.js';
+import acceptTermsFactory from './component/composite/acceptTerms.js';
+
+// P4.2 Table family
+import tableFactory from './component/molecule/table.js';
+import dataTableCellFactory from './component/molecule/dataTableCell.js';
+import dataTableHeaderFactory from './component/molecule/dataTableHeader.js';
+import dataTableHeaderSelectedFactory from './component/molecule/dataTableHeaderSelected.js';
+import tableActionListFactory from './component/molecule/tableActionList.js';
+import tableDecoratorRowFactory from './component/molecule/tableDecoratorRow.js';
+import tableExpandHeaderFactory from './component/molecule/tableExpandHeader.js';
+import tableExpandRowFactory from './component/molecule/tableExpandRow.js';
+import tableExpandedRowFactory from './component/molecule/tableExpandedRow.js';
+import tableSelectAllFactory from './component/molecule/tableSelectAll.js';
+import tableSelectRowFactory from './component/molecule/tableSelectRow.js';
+import tableSlugRowFactory from './component/molecule/tableSlugRow.js';
+import tableToolbarActionFactory from './component/molecule/tableToolbarAction.js';
+import tableToolbarContentFactory from './component/molecule/tableToolbarContent.js';
+import tableToolbarMenuFactory from './component/molecule/tableToolbarMenu.js';
+import tableToolbarSearchFactory from './component/molecule/tableToolbarSearch.js';
+
+// P4.3 Form composites and selects
+import controlledPasswordInputFactory from './component/molecule/controlledPasswordInput.js';
+import datePickerInputFactory from './component/molecule/datePickerInput.js';
+import errorBoundaryContextFactory from './component/molecule/errorBoundaryContext.js';
+import filterableMultiSelectFactory from './component/composite/filterableMultiSelect.js';
+import formContextFactory from './component/molecule/formContext.js';
+import popoverContentFactory from './component/molecule/popoverContent.js';
+import prefixContextFactory from './component/molecule/prefixContext.js';
+import selectItemFactory from './component/molecule/selectItem.js';
+import selectItemGroupFactory from './component/molecule/selectItemGroup.js';
+import selectableTagFactory from './component/molecule/selectableTag.js';
+import themeContextFactory from './component/molecule/themeContext.js';
+import timePickerSelectFactory from './component/molecule/timePickerSelect.js';
+import toggletipActionsFactory from './component/molecule/toggletipActions.js';
+import toggletipButtonFactory from './component/molecule/toggletipButton.js';
+import toggletipContentFactory from './component/molecule/toggletipContent.js';
+
+// P4.4 Notifications and feedback
+import aILabelActionsFactory from './component/molecule/aILabelActions.js';
+import aILabelContentFactory from './component/molecule/aILabelContent.js';
+import aISkeletonIconFactory from './component/molecule/aISkeletonIcon.js';
+import aISkeletonPlaceholderFactory from './component/molecule/aISkeletonPlaceholder.js';
+import aISkeletonTextFactory from './component/molecule/aISkeletonText.js';
+import actionableNotificationFactory from './component/molecule/actionableNotification.js';
+import columnHangFactory from './component/molecule/columnHang.js';
+import containedListFactory from './component/molecule/containedList.js';
+import contentFactory from './component/molecule/content.js';
+import copyFactory from './component/molecule/copy.js';
+import dismissibleTagFactory from './component/molecule/dismissibleTag.js';
+import expandableTileFactory from './component/molecule/expandableTile.js';
+import globalThemeFactory from './component/molecule/globalTheme.js';
+import gridSettingsFactory from './component/molecule/gridSettings.js';
+import hStackFactory from './component/molecule/hStack.js';
+import iconSwitchFactory from './component/molecule/iconSwitch.js';
+import iconTabFactory from './component/molecule/iconTab.js';
+import inlineNotificationFactory from './component/molecule/inlineNotification.js';
+import menuItemGroupFactory from './component/molecule/menuItemGroup.js';
+import notificationActionButtonFactory from './component/molecule/notificationActionButton.js';
+import notificationButtonFactory from './component/molecule/notificationButton.js';
+import operationalTagFactory from './component/molecule/operationalTag.js';
+import overflowMenuItemFactory from './component/molecule/overflowMenuItem.js';
+import radioTileFactory from './component/molecule/radioTile.js';
+import sectionFactory from './component/molecule/section.js';
+import skeletonIconFactory from './component/molecule/skeletonIcon.js';
+import skeletonPlaceholderFactory from './component/molecule/skeletonPlaceholder.js';
+import skeletonTextFactory from './component/molecule/skeletonText.js';
+import skipToContentFactory from './component/molecule/skipToContent.js';
+import vStackFactory from './component/molecule/vStack.js';
+import switcherFactory from './component/molecule/switcher.js';
+import switcherDividerFactory from './component/molecule/switcherDivider.js';
+import switcherItemFactory from './component/molecule/switcherItem.js';
+
+// Composites (Wave 6 form components)
+import selectFactory from './component/composite/select.js';
+import comboBoxFactory from './component/composite/comboBox.js';
+import multiSelectFactory from './component/composite/multiSelect.js';
+import radioButtonGroupFactory from './component/composite/radioButtonGroup.js';
+import checkboxGroupFactory from './component/composite/checkboxGroup.js';
+import datePickerFactory from './component/composite/datePicker.js';
+import timePickerFactory from './component/composite/timePicker.js';
+import formGroupFactory from './component/composite/formGroup.js';
+import dateInputFactory from './component/composite/dateInput.js';
+
+// P4.5 FileUploader, Header, SideNav, StructuredList, Tab, Tile
+import fileUploaderFactory from './component/composite/fileUploader.js';
+import fileUploaderButtonFactory from './component/molecule/fileUploaderButton.js';
+import fileUploaderDropContainerFactory from './component/molecule/fileUploaderDropContainer.js';
+import fileUploaderItemFactory from './component/molecule/fileUploaderItem.js';
+import filenameFactory from './component/molecule/filename.js';
+import headerContainerFactory from './component/molecule/headerContainer.js';
+import headerGlobalActionFactory from './component/molecule/headerGlobalAction.js';
+import headerGlobalBarFactory from './component/molecule/headerGlobalBar.js';
+import headerMenuFactory from './component/molecule/headerMenu.js';
+import headerMenuItemFactory from './component/molecule/headerMenuItem.js';
+import headerNameFactory from './component/molecule/headerName.js';
+import headerSideNavItemsFactory from './component/molecule/headerSideNavItems.js';
+import sideNavFactory from './component/molecule/sideNav.js';
+import sideNavDetailsFactory from './component/molecule/sideNavDetails.js';
+import sideNavDividerFactory from './component/molecule/sideNavDivider.js';
+import sideNavFooterFactory from './component/molecule/sideNavFooter.js';
+import sideNavHeaderFactory from './component/molecule/sideNavHeader.js';
+import sideNavIconFactory from './component/molecule/sideNavIcon.js';
+import sideNavItemFactory from './component/molecule/sideNavItem.js';
+import sideNavItemsFactory from './component/molecule/sideNavItems.js';
+import sideNavLinkFactory from './component/molecule/sideNavLink.js';
+import sideNavLinkTextFactory from './component/molecule/sideNavLinkText.js';
+import sideNavMenuFactory from './component/molecule/sideNavMenu.js';
+import sideNavMenuItemFactory from './component/molecule/sideNavMenuItem.js';
+import sideNavSwitcherFactory from './component/molecule/sideNavSwitcher.js';
+import structuredListBodyFactory from './component/molecule/structuredListBody.js';
+import structuredListHeadFactory from './component/molecule/structuredListHead.js';
+import structuredListInputFactory from './component/molecule/structuredListInput.js';
+import tabContentFactory from './component/molecule/tabContent.js';
+import tabListVerticalFactory from './component/molecule/tabListVertical.js';
+import tabPanelsFactory from './component/molecule/tabPanels.js';
+import tabsVerticalFactory from './component/composite/tabsVertical.js';
+import tileAboveTheFoldContentFactory from './component/molecule/tileAboveTheFoldContent.js';
+import tileBelowTheFoldContentFactory from './component/molecule/tileBelowTheFoldContent.js';
+import tileGroupFactory from './component/molecule/tileGroup.js';
+
+// Variants
+import buttonPrimaryOutlinedFactory from './component/variant/buttonPrimaryOutlined.js';
+
+// Freeform
+import rawBoxFactory from './component/freeform/rawBox.js';
+
+// Providers
+import overlayProviderFactory from './component/Overlay.js';
+import liveRegionProviderFactory from './component/LiveRegionProvider.js';
+import layerProviderFactory from './component/provider/layer.js';
+import themeProviderFactory from './component/provider/theme.js';
+import featureFlagsProviderFactory from './component/provider/featureFlags.js';
+import idPrefixProviderFactory from './component/provider/idPrefix.js';
+import fluidFormProviderFactory from './component/provider/fluidForm.js';
+import errorBoundaryProviderFactory from './component/provider/errorBoundary.js';
 
 
 /////////////////////////// Module-Loader START ////////////////////////////////
@@ -30,7 +340,7 @@ registry, styles, and injected dependencies.
 
 @return {Object} - Public Components interface
 *********************************************************************/
-module.exports = function loader (shared_libs, config) {
+export default function loader (shared_libs, config) {
 
   // Dependencies for this instance - by reference from the shared container
   const Lib = {
@@ -45,15 +355,12 @@ module.exports = function loader (shared_libs, config) {
   // Merge overrides over defaults
   const CONFIG = Object.assign(
     {},
-    require('./components.config'),
+    DEFAULT_CONFIG,
     config || {}
   );
 
-  // Own frozen error catalog
-  const ERRORS = require('./components.errors');
-
   // Load the validators singleton and inject Lib + ERRORS
-  const Validators = require('./components.validators')(Lib, ERRORS);
+  const Validators = createValidators(Lib, ERRORS);
 
   // Validate config - throws on misconfiguration
   Validators.validateConfig(CONFIG);
@@ -61,9 +368,9 @@ module.exports = function loader (shared_libs, config) {
   // Validate required injections - throws on missing dependency
   Validators.validateInjections(shared_libs);
 
-  // Mutable per-instance state: the built registry and styles, rebuilt on re-theme
-  // Contexts are created once per loader call, NOT inside build, so a rebuild
-  // does not orphan mounted Consumers (Plan 0100 M7)
+  // Mutable per-instance state: the built registry and styles, rebuilt on re-theme.
+  // Contexts are created once per loader call, not inside build, so a rebuild
+  // does not orphan mounted Consumers.
   const state = {
     registry: null,
     styles: null,
@@ -76,7 +383,8 @@ module.exports = function loader (shared_libs, config) {
 
   return createInterface(Lib, CONFIG, ERRORS, Validators, state);
 
-};///////////////////////////// Module-Loader END ///////////////////////////////
+}/////////////////////////// Module-Loader END /////////////////////////////////
+
 
 
 /////////////////////////// createInterface START //////////////////////////////
@@ -123,25 +431,23 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       // Mechanism parts - built once per instance, injected into every component
       // factory. Parts are internal; they are never exported through the public
       // interface. See module-structure.md, Parts Pattern.
-      const STYLE_CONTRACT = require('./data/style-contract.json');
       const partsConfig = Object.assign({}, CONFIG, { STYLE_CONTRACT: STYLE_CONTRACT });
 
       const Parts = {
-        A11y:             require('./parts/a11y')(Lib, partsConfig, ERRORS),
-        PressKeys:        require('./parts/press-keys')(Lib, partsConfig, ERRORS),
-        RovingTabIndex:   require('./parts/roving-tab-index')(Lib, partsConfig, ERRORS),
-        ControllableState: require('./parts/controllable-state')(Lib, partsConfig, ERRORS),
-        AnchoredPosition: require('./parts/anchored-position')(Lib, partsConfig, ERRORS),
-        FocusTrap:        require('./parts/focus-trap')(Lib, partsConfig, ERRORS),
-        Overlay:          require('./parts/overlay')(Lib, partsConfig, ERRORS),
-        CompoundContext:  require('./parts/compound-context')(Lib, partsConfig, ERRORS),
-        Units:            require('./parts/units')(Lib, partsConfig, ERRORS),
-        Typeface:         require('./parts/typeface')(Lib, partsConfig, ERRORS),
-        Direction:        require('./parts/direction')(Lib, partsConfig, ERRORS)
+        A11y:             partsA11y(Lib, partsConfig, ERRORS),
+        PressKeys:        partsPressKeys(Lib, partsConfig, ERRORS),
+        RovingTabIndex:   partsRovingTabIndex(Lib, partsConfig, ERRORS),
+        ControllableState: partsControllableState(Lib, partsConfig, ERRORS),
+        AnchoredPosition: partsAnchoredPosition(Lib, partsConfig, ERRORS),
+        FocusTrap:        partsFocusTrap(Lib, partsConfig, ERRORS),
+        Overlay:          partsOverlay(Lib, partsConfig, ERRORS),
+        CompoundContext:  partsCompoundContext(Lib, partsConfig, ERRORS),
+        Units:            partsUnits(Lib, partsConfig, ERRORS),
+        Typeface:         partsTypeface(Lib, partsConfig, ERRORS),
+        Direction:        partsDirection(Lib, partsConfig, ERRORS)
       };
 
       // Generate utility styles for every breakpoint, memoized by key
-      const generateStyles = require('./component/commonStyles');
       const allStyles = {};
       const breakpointKeys = Object.keys(theme.Breakpoint);
 
@@ -177,296 +483,273 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       };
 
       // ~~~~~~~~~~ Atoms ~~~~~~~~~~
-      Component.View = make(require('./component/atom/view'));
-      Component.Text = make(require('./component/atom/text'));
-      Component.Icon = make(require('./component/atom/icon'));
-      Component.Image = make(require('./component/atom/image'));
-      // Badge and Separator deleted in P3: not Carbon exports.
-      // Carbon uses Tag and contextual dividers (MenuItemDivider, etc.) instead.
-      Component.ProgressBar = make(require('./component/atom/progressBar'));
-      Component.Button = make(require('./component/atom/button'));
-      Component.TextInput = make(require('./component/atom/textInput'));
-      Component.Toggle = make(require('./component/atom/toggle'));
-      Component.Checkbox = make(require('./component/atom/checkbox'));
-      Component.RadioButton = make(require('./component/atom/radioButton'));
-      Component.TextArea = make(require('./component/atom/textArea'));
-      Component.Slider = make(require('./component/atom/slider'));
-      Component.Link = make(require('./component/atom/link'));
-      Component.Skeleton = make(require('./component/atom/skeleton'));
-      Component.Loading = make(require('./component/atom/loading'));
-      Component.Tag = make(require('./component/atom/tag'));
-      Component.AspectRatio = make(require('./component/atom/aspectRatio'));
-      Component.Heading = make(require('./component/atom/heading'));
-      Component.BadgeIndicator = make(require('./component/atom/badgeIndicator'));
-      Component.ShapeIndicator = make(require('./component/atom/shapeIndicator'));
-      Component.IconIndicator = make(require('./component/atom/iconIndicator'));
+      Component.View = make(viewFactory);
+      Component.Text = make(textFactory);
+      Component.Icon = make(iconFactory);
+      Component.Image = make(imageFactory);
+      Component.ProgressBar = make(progressBarFactory);
+      Component.Button = make(buttonFactory);
+      Component.TextInput = make(textInputFactory);
+      Component.Toggle = make(toggleFactory);
+      Component.Checkbox = make(checkboxFactory);
+      Component.RadioButton = make(radioButtonFactory);
+      Component.TextArea = make(textAreaFactory);
+      Component.Slider = make(sliderFactory);
+      Component.Link = make(linkFactory);
+      Component.Skeleton = make(skeletonFactory);
+      Component.Loading = make(loadingFactory);
+      Component.Tag = make(tagFactory);
+      Component.AspectRatio = make(aspectRatioFactory);
+      Component.Heading = make(headingFactory);
+      Component.BadgeIndicator = make(badgeIndicatorFactory);
+      Component.ShapeIndicator = make(shapeIndicatorFactory);
+      Component.IconIndicator = make(iconIndicatorFactory);
 
       // ~~~~~~~~~~ Molecules (canonical) ~~~~~~~~~~
-      // ButtonPrimary, ButtonLink, Card deleted in P3: not Carbon exports.
-      // Button kind="primary"|"ghost" replaces ButtonPrimary/ButtonLink.
-      // Tile replaces Card.
-      Component.ListItem = make(require('./component/molecule/listItem'));
-      Component.Dropdown = make(require('./component/molecule/dropdown'));
-      Component.Modal = make(require('./component/molecule/modal'));
-      Component.Search = make(require('./component/molecule/search'));
-      Component.PasswordInput = make(require('./component/molecule/passwordInput'));
-      Component.NumberInput = make(require('./component/molecule/numberInput'));
-      Component.ExpandableSearch = make(require('./component/molecule/expandableSearch'));
-      Component.FormLabel = make(require('./component/molecule/formLabel'));
-      Component.FormItem = make(require('./component/molecule/formItem'));
-      Component.Stack = make(require('./component/molecule/stack'));
-      Component.ButtonSet = make(require('./component/molecule/buttonSet'));
-      Component.IconButton = make(require('./component/molecule/iconButton'));
-      Component.CopyButton = make(require('./component/molecule/copyButton'));
-      Component.UserAvatar = make(require('./component/molecule/userAvatar'));
-      Component.TruncatedText = make(require('./component/molecule/truncatedText'));
-      Component.CodeSnippet = make(require('./component/molecule/codeSnippet'));
-      Component.InlineLoading = make(require('./component/molecule/inlineLoading'));
-      Component.Tile = make(require('./component/molecule/tile'));
-      Component.ClickableTile = make(require('./component/molecule/clickableTile'));
-      Component.SelectableTile = make(require('./component/molecule/selectableTile'));
+      Component.ListItem = make(listItemFactory);
+      Component.Dropdown = make(dropdownFactory);
+      Component.Modal = make(modalFactory);
+      Component.Search = make(searchFactory);
+      Component.PasswordInput = make(passwordInputFactory);
+      Component.NumberInput = make(numberInputFactory);
+      Component.ExpandableSearch = make(expandableSearchFactory);
+      Component.FormLabel = make(formLabelFactory);
+      Component.FormItem = make(formItemFactory);
+      Component.Stack = make(stackFactory);
+      Component.ButtonSet = make(buttonSetFactory);
+      Component.IconButton = make(iconButtonFactory);
+      Component.CopyButton = make(copyButtonFactory);
+      Component.UserAvatar = make(userAvatarFactory);
+      Component.TruncatedText = make(truncatedTextFactory);
+      Component.CodeSnippet = make(codeSnippetFactory);
+      Component.InlineLoading = make(inlineLoadingFactory);
+      Component.Tile = make(tileFactory);
+      Component.ClickableTile = make(clickableTileFactory);
+      Component.SelectableTile = make(selectableTileFactory);
 
       // ~~~~~~~~~~ Molecules (Wave 5 overlays) ~~~~~~~~~~
-      Component.MenuItem = make(require('./component/molecule/menuItem'));
-      Component.MenuItemSelectable = make(require('./component/molecule/menuItemSelectable'));
-      Component.MenuItemDivider = make(require('./component/molecule/menuItemDivider'));
-      Component.ModalHeader = make(require('./component/molecule/modalHeader'));
-      Component.ModalBody = make(require('./component/molecule/modalBody'));
-      Component.ModalFooter = make(require('./component/molecule/modalFooter'));
-      Component.Popover = make(require('./component/molecule/popover'));
-      Component.Tooltip = make(require('./component/molecule/tooltip'));
-      Component.DefinitionTooltip = make(require('./component/molecule/definitionTooltip'));
-      Component.Toggletip = make(require('./component/molecule/toggletip'));
+      Component.MenuItem = make(menuItemFactory);
+      Component.MenuItemSelectable = make(menuItemSelectableFactory);
+      Component.MenuItemDivider = make(menuItemDividerFactory);
+      Component.ModalHeader = make(modalHeaderFactory);
+      Component.ModalBody = make(modalBodyFactory);
+      Component.ModalFooter = make(modalFooterFactory);
+      Component.Popover = make(popoverFactory);
+      Component.Tooltip = make(tooltipFactory);
+      Component.DefinitionTooltip = make(definitionTooltipFactory);
+      Component.Toggletip = make(toggletipFactory);
 
       // ~~~~~~~~~~ Composites (Wave 5 overlays) ~~~~~~~~~~
-      // Composites are multi-part components that use M7 (createCompoundContext)
-      // for parent-child coordination. They register as flat keys, same as
-      // atoms and molecules.
-      Component.Menu = make(require('./component/composite/menu'));
-      Component.OverflowMenu = make(require('./component/composite/overflowMenu'));
-      Component.MenuButton = make(require('./component/composite/menuButton'));
-      Component.ComboButton = make(require('./component/composite/comboButton'));
-      Component.ComposedModal = make(require('./component/composite/composedModal'));
-      Component.MenuItemRadioGroup = make(require('./component/composite/menuItemRadioGroup'));
-      Component.SidePanel = make(require('./component/composite/sidePanel'));
-      Component.AILabel = make(require('./component/composite/aiLabel'));
-      Component.ActionSheet = make(require('./component/composite/actionSheet'));
+      Component.Menu = make(menuFactory);
+      Component.OverflowMenu = make(overflowMenuFactory);
+      Component.MenuButton = make(menuButtonFactory);
+      Component.ComboButton = make(comboButtonFactory);
+      Component.ComposedModal = make(composedModalFactory);
+      Component.MenuItemRadioGroup = make(menuItemRadioGroupFactory);
+      Component.SidePanel = make(sidePanelFactory);
+      Component.AILabel = make(aiLabelFactory);
+      Component.ActionSheet = make(actionSheetFactory);
 
       // ~~~~~~~~~~ Molecules (Wave 6 navigation) ~~~~~~~~~~
-      Component.Tab = make(require('./component/molecule/tab'));
-      Component.TabList = make(require('./component/molecule/tabList'));
-      Component.TabPanel = make(require('./component/molecule/tabPanel'));
-      Component.AccordionItem = make(require('./component/molecule/accordionItem'));
-      Component.BreadcrumbItem = make(require('./component/molecule/breadcrumbItem'));
-      Component.Switch = make(require('./component/molecule/switch'));
-      Component.PaginationNav = make(require('./component/molecule/paginationNav'));
-      Component.TreeNode = make(require('./component/molecule/treeNode'));
-      Component.ProgressStep = make(require('./component/molecule/progressStep'));
-      Component.HeaderNavigation = make(require('./component/molecule/headerNavigation'));
-      Component.HeaderMenuButton = make(require('./component/molecule/headerMenuButton'));
-      Component.HeaderPanel = make(require('./component/molecule/headerPanel'));
+      Component.Tab = make(tabFactory);
+      Component.TabList = make(tabListFactory);
+      Component.TabPanel = make(tabPanelFactory);
+      Component.AccordionItem = make(accordionItemFactory);
+      Component.BreadcrumbItem = make(breadcrumbItemFactory);
+      Component.Switch = make(switchFactory);
+      Component.PaginationNav = make(paginationNavFactory);
+      Component.TreeNode = make(treeNodeFactory);
+      Component.ProgressStep = make(progressStepFactory);
+      Component.HeaderNavigation = make(headerNavigationFactory);
+      Component.HeaderMenuButton = make(headerMenuButtonFactory);
+      Component.HeaderPanel = make(headerPanelFactory);
 
       // ~~~~~~~~~~ Composites (Wave 6 navigation) ~~~~~~~~~~
-      Component.Tabs = make(require('./component/composite/tabs'));
-      Component.Accordion = make(require('./component/composite/accordion'));
-      Component.Breadcrumb = make(require('./component/composite/breadcrumb'));
-      Component.ContentSwitcher = make(require('./component/composite/contentSwitcher'));
-      Component.Pagination = make(require('./component/composite/pagination'));
-      Component.TreeView = make(require('./component/composite/treeView'));
-      Component.ProgressIndicator = make(require('./component/composite/progressIndicator'));
-      Component.Header = make(require('./component/composite/header'));
+      Component.Tabs = make(tabsFactory);
+      Component.Accordion = make(accordionFactory);
+      Component.Breadcrumb = make(breadcrumbFactory);
+      Component.ContentSwitcher = make(contentSwitcherFactory);
+      Component.Pagination = make(paginationFactory);
+      Component.TreeView = make(treeViewFactory);
+      Component.ProgressIndicator = make(progressIndicatorFactory);
+      Component.Header = make(headerFactory);
 
       // ~~~~~~~~~~ Molecules (Wave 8 feedback) ~~~~~~~~~~
-      Component.Notification = make(require('./component/molecule/notification'));
-      Component.ToastNotification = make(require('./component/molecule/toastNotification'));
-      Component.TableBatchActions = make(require('./component/molecule/tableBatchActions'));
-      Component.TableBatchAction = make(require('./component/molecule/tableBatchAction'));
-      Component.StaticNotification = make(require('./component/molecule/staticNotification'));
-      Component.Callout = make(require('./component/molecule/callout'));
+      Component.Notification = make(notificationFactory);
+      Component.ToastNotification = make(toastNotificationFactory);
+      Component.TableBatchActions = make(tableBatchActionsFactory);
+      Component.TableBatchAction = make(tableBatchActionFactory);
+      Component.StaticNotification = make(staticNotificationFactory);
+      Component.Callout = make(calloutFactory);
 
       // ~~~~~~~~~~ Molecules (Wave 9 data and layout) ~~~~~~~~~~
-      Component.DataTable = make(require('./component/molecule/dataTable'));
-      Component.TableRow = make(require('./component/molecule/tableRow'));
-      Component.TableCell = make(require('./component/molecule/tableCell'));
-      Component.TableHeader = make(require('./component/molecule/tableHeader'));
-      Component.TableBody = make(require('./component/molecule/tableBody'));
-      Component.TableHead = make(require('./component/molecule/tableHead'));
-      Component.Grid = make(require('./component/molecule/grid'));
-      Component.Row = make(require('./component/molecule/row'));
-      Component.Column = make(require('./component/molecule/column'));
-      Component.FlexGrid = make(require('./component/molecule/flexGrid'));
-      Component.TableContainer = make(require('./component/molecule/tableContainer'));
-      // LayerMolecule deleted in P3: duplicate of provider.Layer.
-      Component.Form = make(require('./component/molecule/form'));
-      // Fieldset and Legend deleted in P3: internal parts of FormGroup.
-      Component.OrderedList = make(require('./component/molecule/orderedList'));
-      Component.UnorderedList = make(require('./component/molecule/unorderedList'));
-      Component.ContainedListItem = make(require('./component/molecule/containedListItem'));
-      Component.StructuredListWrapper = make(require('./component/molecule/structuredListWrapper'));
-      Component.StructuredListRow = make(require('./component/molecule/structuredListRow'));
-      Component.StructuredListCell = make(require('./component/molecule/structuredListCell'));
-      Component.TableToolbar = make(require('./component/molecule/tableToolbar'));
-      // Divider deleted in P3: duplicate of Separator, which is also deleted.
-      // ScrollGradient deleted in P3: not in either Carbon package.
+      Component.DataTable = make(dataTableFactory);
+      Component.TableRow = make(tableRowFactory);
+      Component.TableCell = make(tableCellFactory);
+      Component.TableHeader = make(tableHeaderFactory);
+      Component.TableBody = make(tableBodyFactory);
+      Component.TableHead = make(tableHeadFactory);
+      Component.Grid = make(gridFactory);
+      Component.Row = make(rowFactory);
+      Component.Column = make(columnFactory);
+      Component.FlexGrid = make(flexGridFactory);
+      Component.TableContainer = make(tableContainerFactory);
+      Component.Form = make(formFactory);
+      Component.OrderedList = make(orderedListFactory);
+      Component.UnorderedList = make(unorderedListFactory);
+      Component.ContainedListItem = make(containedListItemFactory);
+      Component.StructuredListWrapper = make(structuredListWrapperFactory);
+      Component.StructuredListRow = make(structuredListRowFactory);
+      Component.StructuredListCell = make(structuredListCellFactory);
+      Component.TableToolbar = make(tableToolbarFactory);
 
       // ~~~~~~~~~~ Composites (Wave 9 data and layout) ~~~~~~~~~~
-      Component.DataTableRow = make(require('./component/composite/dataTableRow'));
-      // PaginationBar deleted in P3: duplicate of Pagination.
-      Component.ToggletipLabel = make(require('./component/composite/toggletipLabel'));
-      // GridItem deleted in P3: duplicate of Column.
+      Component.DataTableRow = make(dataTableRowFactory);
+      Component.ToggletipLabel = make(toggletipLabelFactory);
 
       // ~~~~~~~~~~ P4.1 RN-only components ~~~~~~~~~~
-      Component.InlineLink = make(require('./component/atom/inlineLink'));
-      Component.ErrorState = make(require('./component/molecule/errorState'));
-      Component.LandingView = make(require('./component/molecule/landingView'));
-      Component.List = make(require('./component/molecule/list'));
-      Component.NavigationList = make(require('./component/molecule/navigationList'));
-      Component.NavigationListItem = make(require('./component/molecule/navigationListItem'));
-      Component.WebHeader = make(require('./component/molecule/webHeader'));
-      Component.ViewWrapper = make(require('./component/molecule/viewWrapper'));
-      Component.SafeAreaWrapper = make(require('./component/molecule/safeAreaWrapper'));
-      Component.GrantPermission = make(require('./component/molecule/grantPermission'));
-      Component.BottomNavigationBar = make(require('./component/molecule/bottomNavigationBar'));
-      Component.BottomToolbar = make(require('./component/molecule/bottomToolbar'));
-      Component.BottomToolbarPrimaryAction = make(require('./component/molecule/bottomToolbarPrimaryAction'));
-      Component.BottomSafeAreaColorOverride = make(require('./component/molecule/bottomSafeAreaColorOverride'));
-      Component.DocumentViewer = make(require('./component/molecule/documentViewer'));
-      Component.TopNavigationBar = make(require('./component/molecule/topNavigationBar'));
-      Component.TopNavigationBarLogin = make(require('./component/molecule/topNavigationBarLogin'));
-      Component.UiPanel = make(require('./component/molecule/uiPanel'));
-      Component.UiPanelItem = make(require('./component/molecule/uiPanelItem'));
-      Component.AcceptTerms = make(require('./component/composite/acceptTerms'));
+      Component.InlineLink = make(inlineLinkFactory);
+      Component.ErrorState = make(errorStateFactory);
+      Component.LandingView = make(landingViewFactory);
+      Component.List = make(listFactory);
+      Component.NavigationList = make(navigationListFactory);
+      Component.NavigationListItem = make(navigationListItemFactory);
+      Component.WebHeader = make(webHeaderFactory);
+      Component.ViewWrapper = make(viewWrapperFactory);
+      Component.SafeAreaWrapper = make(safeAreaWrapperFactory);
+      Component.GrantPermission = make(grantPermissionFactory);
+      Component.BottomNavigationBar = make(bottomNavigationBarFactory);
+      Component.BottomToolbar = make(bottomToolbarFactory);
+      Component.BottomToolbarPrimaryAction = make(bottomToolbarPrimaryActionFactory);
+      Component.BottomSafeAreaColorOverride = make(bottomSafeAreaColorOverrideFactory);
+      Component.DocumentViewer = make(documentViewerFactory);
+      Component.TopNavigationBar = make(topNavigationBarFactory);
+      Component.TopNavigationBarLogin = make(topNavigationBarLoginFactory);
+      Component.UiPanel = make(uiPanelFactory);
+      Component.UiPanelItem = make(uiPanelItemFactory);
+      Component.AcceptTerms = make(acceptTermsFactory);
 
       // ~~~~~~~~~~ P4.2 Table family ~~~~~~~~~~
-      Component.Table = make(require('./component/molecule/table'));
-      Component.DataTableCell = make(require('./component/molecule/dataTableCell'));
-      Component.DataTableHeader = make(require('./component/molecule/dataTableHeader'));
-      Component.DataTableHeaderSelected = make(require('./component/molecule/dataTableHeaderSelected'));
-      Component.TableActionList = make(require('./component/molecule/tableActionList'));
-      Component.TableDecoratorRow = make(require('./component/molecule/tableDecoratorRow'));
-      Component.TableExpandHeader = make(require('./component/molecule/tableExpandHeader'));
-      Component.TableExpandRow = make(require('./component/molecule/tableExpandRow'));
-      Component.TableExpandedRow = make(require('./component/molecule/tableExpandedRow'));
-      Component.TableSelectAll = make(require('./component/molecule/tableSelectAll'));
-      Component.TableSelectRow = make(require('./component/molecule/tableSelectRow'));
-      Component.TableSlugRow = make(require('./component/molecule/tableSlugRow'));
-      Component.TableToolbarAction = make(require('./component/molecule/tableToolbarAction'));
-      Component.TableToolbarContent = make(require('./component/molecule/tableToolbarContent'));
-      Component.TableToolbarMenu = make(require('./component/molecule/tableToolbarMenu'));
-      Component.TableToolbarSearch = make(require('./component/molecule/tableToolbarSearch'));
+      Component.Table = make(tableFactory);
+      Component.DataTableCell = make(dataTableCellFactory);
+      Component.DataTableHeader = make(dataTableHeaderFactory);
+      Component.DataTableHeaderSelected = make(dataTableHeaderSelectedFactory);
+      Component.TableActionList = make(tableActionListFactory);
+      Component.TableDecoratorRow = make(tableDecoratorRowFactory);
+      Component.TableExpandHeader = make(tableExpandHeaderFactory);
+      Component.TableExpandRow = make(tableExpandRowFactory);
+      Component.TableExpandedRow = make(tableExpandedRowFactory);
+      Component.TableSelectAll = make(tableSelectAllFactory);
+      Component.TableSelectRow = make(tableSelectRowFactory);
+      Component.TableSlugRow = make(tableSlugRowFactory);
+      Component.TableToolbarAction = make(tableToolbarActionFactory);
+      Component.TableToolbarContent = make(tableToolbarContentFactory);
+      Component.TableToolbarMenu = make(tableToolbarMenuFactory);
+      Component.TableToolbarSearch = make(tableToolbarSearchFactory);
 
       // ~~~~~~~~~~ P4.3 Form composites and selects ~~~~~~~~~~
-      Component.ControlledPasswordInput = make(require('./component/molecule/controlledPasswordInput'));
-      Component.DatePickerInput = make(require('./component/molecule/datePickerInput'));
-      Component.ErrorBoundaryContext = make(require('./component/molecule/errorBoundaryContext'));
-      Component.FilterableMultiSelect = make(require('./component/composite/filterableMultiSelect'));
-      Component.FormContext = make(require('./component/molecule/formContext'));
-      Component.PopoverContent = make(require('./component/molecule/popoverContent'));
-      Component.PrefixContext = make(require('./component/molecule/prefixContext'));
-      Component.SelectItem = make(require('./component/molecule/selectItem'));
-      Component.SelectItemGroup = make(require('./component/molecule/selectItemGroup'));
-      Component.SelectableTag = make(require('./component/molecule/selectableTag'));
-      Component.ThemeContext = make(require('./component/molecule/themeContext'));
-      Component.TimePickerSelect = make(require('./component/molecule/timePickerSelect'));
-      Component.ToggletipActions = make(require('./component/molecule/toggletipActions'));
-      Component.ToggletipButton = make(require('./component/molecule/toggletipButton'));
-      Component.ToggletipContent = make(require('./component/molecule/toggletipContent'));
+      Component.ControlledPasswordInput = make(controlledPasswordInputFactory);
+      Component.DatePickerInput = make(datePickerInputFactory);
+      Component.ErrorBoundaryContext = make(errorBoundaryContextFactory);
+      Component.FilterableMultiSelect = make(filterableMultiSelectFactory);
+      Component.FormContext = make(formContextFactory);
+      Component.PopoverContent = make(popoverContentFactory);
+      Component.PrefixContext = make(prefixContextFactory);
+      Component.SelectItem = make(selectItemFactory);
+      Component.SelectItemGroup = make(selectItemGroupFactory);
+      Component.SelectableTag = make(selectableTagFactory);
+      Component.ThemeContext = make(themeContextFactory);
+      Component.TimePickerSelect = make(timePickerSelectFactory);
+      Component.ToggletipActions = make(toggletipActionsFactory);
+      Component.ToggletipButton = make(toggletipButtonFactory);
+      Component.ToggletipContent = make(toggletipContentFactory);
 
       // ~~~~~~~~~~ P4.4 Notifications and feedback ~~~~~~~~~~
-      Component.AILabelActions = make(require('./component/molecule/aILabelActions'));
-      Component.AILabelContent = make(require('./component/molecule/aILabelContent'));
-      Component.AISkeletonIcon = make(require('./component/molecule/aISkeletonIcon'));
-      Component.AISkeletonPlaceholder = make(require('./component/molecule/aISkeletonPlaceholder'));
-      Component.AISkeletonText = make(require('./component/molecule/aISkeletonText'));
-      Component.ActionableNotification = make(require('./component/molecule/actionableNotification'));
-      Component.ColumnHang = make(require('./component/molecule/columnHang'));
-      Component.ContainedList = make(require('./component/molecule/containedList'));
-      Component.Content = make(require('./component/molecule/content'));
-      Component.Copy = make(require('./component/molecule/copy'));
-      Component.DismissibleTag = make(require('./component/molecule/dismissibleTag'));
-      Component.ExpandableTile = make(require('./component/molecule/expandableTile'));
-      Component.GlobalTheme = make(require('./component/molecule/globalTheme'));
-      Component.GridSettings = make(require('./component/molecule/gridSettings'));
-      Component.HStack = make(require('./component/molecule/hStack'));
-      Component.IconSwitch = make(require('./component/molecule/iconSwitch'));
-      Component.IconTab = make(require('./component/molecule/iconTab'));
-      Component.InlineNotification = make(require('./component/molecule/inlineNotification'));
-      Component.MenuItemGroup = make(require('./component/molecule/menuItemGroup'));
-      Component.NotificationActionButton = make(require('./component/molecule/notificationActionButton'));
-      Component.NotificationButton = make(require('./component/molecule/notificationButton'));
-      Component.OperationalTag = make(require('./component/molecule/operationalTag'));
-      Component.OverflowMenuItem = make(require('./component/molecule/overflowMenuItem'));
-      Component.RadioTile = make(require('./component/molecule/radioTile'));
-      Component.Section = make(require('./component/molecule/section'));
-      Component.SkeletonIcon = make(require('./component/molecule/skeletonIcon'));
-      Component.SkeletonPlaceholder = make(require('./component/molecule/skeletonPlaceholder'));
-      Component.SkeletonText = make(require('./component/molecule/skeletonText'));
-      Component.SkipToContent = make(require('./component/molecule/skipToContent'));
-      Component.VStack = make(require('./component/molecule/vStack'));
-      Component.Switcher = make(require('./component/molecule/switcher'));
-      Component.SwitcherDivider = make(require('./component/molecule/switcherDivider'));
-      Component.SwitcherItem = make(require('./component/molecule/switcherItem'));
+      Component.AILabelActions = make(aILabelActionsFactory);
+      Component.AILabelContent = make(aILabelContentFactory);
+      Component.AISkeletonIcon = make(aISkeletonIconFactory);
+      Component.AISkeletonPlaceholder = make(aISkeletonPlaceholderFactory);
+      Component.AISkeletonText = make(aISkeletonTextFactory);
+      Component.ActionableNotification = make(actionableNotificationFactory);
+      Component.ColumnHang = make(columnHangFactory);
+      Component.ContainedList = make(containedListFactory);
+      Component.Content = make(contentFactory);
+      Component.Copy = make(copyFactory);
+      Component.DismissibleTag = make(dismissibleTagFactory);
+      Component.ExpandableTile = make(expandableTileFactory);
+      Component.GlobalTheme = make(globalThemeFactory);
+      Component.GridSettings = make(gridSettingsFactory);
+      Component.HStack = make(hStackFactory);
+      Component.IconSwitch = make(iconSwitchFactory);
+      Component.IconTab = make(iconTabFactory);
+      Component.InlineNotification = make(inlineNotificationFactory);
+      Component.MenuItemGroup = make(menuItemGroupFactory);
+      Component.NotificationActionButton = make(notificationActionButtonFactory);
+      Component.NotificationButton = make(notificationButtonFactory);
+      Component.OperationalTag = make(operationalTagFactory);
+      Component.OverflowMenuItem = make(overflowMenuItemFactory);
+      Component.RadioTile = make(radioTileFactory);
+      Component.Section = make(sectionFactory);
+      Component.SkeletonIcon = make(skeletonIconFactory);
+      Component.SkeletonPlaceholder = make(skeletonPlaceholderFactory);
+      Component.SkeletonText = make(skeletonTextFactory);
+      Component.SkipToContent = make(skipToContentFactory);
+      Component.VStack = make(vStackFactory);
+      Component.Switcher = make(switcherFactory);
+      Component.SwitcherDivider = make(switcherDividerFactory);
+      Component.SwitcherItem = make(switcherItemFactory);
 
       // ~~~~~~~~~~ Composites (Wave 6 form components) ~~~~~~~~~~
-      // Form composites use M1 (a11y), M3 (useRovingTabIndex), M4 (Overlay),
-      // M5 (useAnchoredPosition), M7 (createCompoundContext), M8 (useControllableState).
-      Component.Select = make(require('./component/composite/select'));
-      Component.ComboBox = make(require('./component/composite/comboBox'));
-      Component.MultiSelect = make(require('./component/composite/multiSelect'));
-      Component.RadioButtonGroup = make(require('./component/composite/radioButtonGroup'));
-      Component.CheckboxGroup = make(require('./component/composite/checkboxGroup'));
-      // SliderInput deleted in P3: Slider has optional paired number input.
-      Component.DatePicker = make(require('./component/composite/datePicker'));
-      Component.TimePicker = make(require('./component/composite/timePicker'));
-      // DateRangePicker deleted in P3: use DatePicker datePickerType="range".
-      // NumberInputComposite deleted in P3: duplicate of NumberInput molecule.
-      // FileUploader deleted in P3: replaced by FileUploaderItem and DocumentViewer.
-      // FluidForm composite deleted in P3: duplicate of provider.FluidForm.
-      Component.FormGroup = make(require('./component/composite/formGroup'));
-      // ToggleGroup deleted in P3: not in either package. ContentSwitcher is the segmented control.
-      // TimeInput deleted in P3: TimePicker is the text field.
-      Component.DateInput = make(require('./component/composite/dateInput'));
+      Component.Select = make(selectFactory);
+      Component.ComboBox = make(comboBoxFactory);
+      Component.MultiSelect = make(multiSelectFactory);
+      Component.RadioButtonGroup = make(radioButtonGroupFactory);
+      Component.CheckboxGroup = make(checkboxGroupFactory);
+      Component.DatePicker = make(datePickerFactory);
+      Component.TimePicker = make(timePickerFactory);
+      Component.FormGroup = make(formGroupFactory);
+      Component.DateInput = make(dateInputFactory);
 
       // ~~~~~~~~~~ P4.5 FileUploader, Header, SideNav, StructuredList, Tab, Tile ~~~~~~~~~~
-      Component.FileUploader = make(require('./component/composite/fileUploader'));
-      Component.FileUploaderButton = make(require('./component/molecule/fileUploaderButton'));
-      Component.FileUploaderDropContainer = make(require('./component/molecule/fileUploaderDropContainer'));
-      Component.FileUploaderItem = make(require('./component/molecule/fileUploaderItem'));
-      Component.Filename = make(require('./component/molecule/filename'));
-      Component.HeaderContainer = make(require('./component/molecule/headerContainer'));
-      Component.HeaderGlobalAction = make(require('./component/molecule/headerGlobalAction'));
-      Component.HeaderGlobalBar = make(require('./component/molecule/headerGlobalBar'));
-      Component.HeaderMenu = make(require('./component/molecule/headerMenu'));
-      Component.HeaderMenuItem = make(require('./component/molecule/headerMenuItem'));
-      Component.HeaderName = make(require('./component/molecule/headerName'));
-      Component.HeaderSideNavItems = make(require('./component/molecule/headerSideNavItems'));
-      Component.SideNav = make(require('./component/molecule/sideNav'));
-      Component.SideNavDetails = make(require('./component/molecule/sideNavDetails'));
-      Component.SideNavDivider = make(require('./component/molecule/sideNavDivider'));
-      Component.SideNavFooter = make(require('./component/molecule/sideNavFooter'));
-      Component.SideNavHeader = make(require('./component/molecule/sideNavHeader'));
-      Component.SideNavIcon = make(require('./component/molecule/sideNavIcon'));
-      Component.SideNavItem = make(require('./component/molecule/sideNavItem'));
-      Component.SideNavItems = make(require('./component/molecule/sideNavItems'));
-      Component.SideNavLink = make(require('./component/molecule/sideNavLink'));
-      Component.SideNavLinkText = make(require('./component/molecule/sideNavLinkText'));
-      Component.SideNavMenu = make(require('./component/molecule/sideNavMenu'));
-      Component.SideNavMenuItem = make(require('./component/molecule/sideNavMenuItem'));
-      Component.SideNavSwitcher = make(require('./component/molecule/sideNavSwitcher'));
-      Component.StructuredListBody = make(require('./component/molecule/structuredListBody'));
-      Component.StructuredListHead = make(require('./component/molecule/structuredListHead'));
-      Component.StructuredListInput = make(require('./component/molecule/structuredListInput'));
-      Component.TabContent = make(require('./component/molecule/tabContent'));
-      Component.TabListVertical = make(require('./component/molecule/tabListVertical'));
-      Component.TabPanels = make(require('./component/molecule/tabPanels'));
-      Component.TabsVertical = make(require('./component/composite/tabsVertical'));
-      Component.TileAboveTheFoldContent = make(require('./component/molecule/tileAboveTheFoldContent'));
-      Component.TileBelowTheFoldContent = make(require('./component/molecule/tileBelowTheFoldContent'));
-      Component.TileGroup = make(require('./component/molecule/tileGroup'));
+      Component.FileUploader = make(fileUploaderFactory);
+      Component.FileUploaderButton = make(fileUploaderButtonFactory);
+      Component.FileUploaderDropContainer = make(fileUploaderDropContainerFactory);
+      Component.FileUploaderItem = make(fileUploaderItemFactory);
+      Component.Filename = make(filenameFactory);
+      Component.HeaderContainer = make(headerContainerFactory);
+      Component.HeaderGlobalAction = make(headerGlobalActionFactory);
+      Component.HeaderGlobalBar = make(headerGlobalBarFactory);
+      Component.HeaderMenu = make(headerMenuFactory);
+      Component.HeaderMenuItem = make(headerMenuItemFactory);
+      Component.HeaderName = make(headerNameFactory);
+      Component.HeaderSideNavItems = make(headerSideNavItemsFactory);
+      Component.SideNav = make(sideNavFactory);
+      Component.SideNavDetails = make(sideNavDetailsFactory);
+      Component.SideNavDivider = make(sideNavDividerFactory);
+      Component.SideNavFooter = make(sideNavFooterFactory);
+      Component.SideNavHeader = make(sideNavHeaderFactory);
+      Component.SideNavIcon = make(sideNavIconFactory);
+      Component.SideNavItem = make(sideNavItemFactory);
+      Component.SideNavItems = make(sideNavItemsFactory);
+      Component.SideNavLink = make(sideNavLinkFactory);
+      Component.SideNavLinkText = make(sideNavLinkTextFactory);
+      Component.SideNavMenu = make(sideNavMenuFactory);
+      Component.SideNavMenuItem = make(sideNavMenuItemFactory);
+      Component.SideNavSwitcher = make(sideNavSwitcherFactory);
+      Component.StructuredListBody = make(structuredListBodyFactory);
+      Component.StructuredListHead = make(structuredListHeadFactory);
+      Component.StructuredListInput = make(structuredListInputFactory);
+      Component.TabContent = make(tabContentFactory);
+      Component.TabListVertical = make(tabListVerticalFactory);
+      Component.TabPanels = make(tabPanelsFactory);
+      Component.TabsVertical = make(tabsVerticalFactory);
+      Component.TileAboveTheFoldContent = make(tileAboveTheFoldContentFactory);
+      Component.TileBelowTheFoldContent = make(tileBelowTheFoldContentFactory);
+      Component.TileGroup = make(tileGroupFactory);
 
       // ~~~~~~~~~~ Structured exceptions (variant registry) ~~~~~~~~~~
       Component.variant = {
-        ButtonPrimaryOutlined: make(require('./component/variant/buttonPrimaryOutlined'))
+        ButtonPrimaryOutlined: make(buttonPrimaryOutlinedFactory)
       };
 
       // ~~~~~~~~~~ Unstructured exceptions (freeform; NO tokens) ~~~~~~~~~~
@@ -474,21 +757,21 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       // Registry. They cannot read tokens or compose atoms. They take raw
       // styles only and do not retheme.
       Component.freeform = {
-        RawBox: require('./component/freeform/rawBox')(Lib)
+        RawBox: rawBoxFactory(Lib)
       };
 
       // ~~~~~~~~~~ Providers (context-only, no tokens, no visual output) ~~~~~~~~~~
       // Providers register at Component.provider.[name], matching the
       // Component.variant and Component.freeform namespacing. They do not
       // count toward the flat top-level key count.
-      const overlayModule = require('./component/Overlay')(Lib);
-      const liveRegionModule = require('./component/LiveRegionProvider')(Lib);
-      const layerModule = require('./component/provider/layer')(Lib, CONFIG, ERRORS, Parts, Component, Style);
-      const themeModule = require('./component/provider/theme')(Lib, CONFIG, ERRORS, Parts, Component, Style);
-      const featureFlagsModule = require('./component/provider/featureFlags')(Lib, CONFIG, ERRORS, Parts, Component, Style);
-      const idPrefixModule = require('./component/provider/idPrefix')(Lib, CONFIG, ERRORS, Parts, Component, Style);
-      const fluidFormModule = require('./component/provider/fluidForm')(Lib, CONFIG, ERRORS, Parts, Component, Style);
-      const errorBoundaryModule = require('./component/provider/errorBoundary')(Lib, CONFIG, ERRORS, Parts, Component, Style);
+      const overlayModule = overlayProviderFactory(Lib);
+      const liveRegionModule = liveRegionProviderFactory(Lib);
+      const layerModule = layerProviderFactory(Lib, CONFIG, ERRORS, Parts, Component, Style);
+      const themeModule = themeProviderFactory(Lib, CONFIG, ERRORS, Parts, Component, Style);
+      const featureFlagsModule = featureFlagsProviderFactory(Lib, CONFIG, ERRORS, Parts, Component, Style);
+      const idPrefixModule = idPrefixProviderFactory(Lib, CONFIG, ERRORS, Parts, Component, Style);
+      const fluidFormModule = fluidFormProviderFactory(Lib, CONFIG, ERRORS, Parts, Component, Style);
+      const errorBoundaryModule = errorBoundaryProviderFactory(Lib, CONFIG, ERRORS, Parts, Component, Style);
       Component.provider = {
         Overlay: overlayModule.Overlay,
         LiveRegionProvider: liveRegionModule.LiveRegionProvider,
@@ -541,8 +824,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
     themeContract: function (themer_output) {
 
       // Delegate to the bridge module
-      const bridge = require('./components.theme-contract');
-      return bridge(themer_output);
+      return themeContractBridge(themer_output);
 
     },
 

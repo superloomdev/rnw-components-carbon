@@ -1,10 +1,13 @@
 // Info: AISkeletonPlaceholder molecule [S1 presentational]. A skeleton
 // placeholder box. Uses role="img" for screen reader semantics.
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the AISkeletonPlaceholder molecule.
@@ -18,9 +21,17 @@ Build the AISkeletonPlaceholder molecule.
 
 @return {Function} - The AISkeletonPlaceholder component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function AISkeletonPlaceholder (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const AISkeletonPlaceholder = function AISkeletonPlaceholder (props) {
+
 
     const {
       style,
@@ -46,7 +57,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         ]
       }, rest)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _AISkeletonPlaceholder = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return AISkeletonPlaceholder;
+
+}/////////////////////////// Component Factory END /////////////////////////////

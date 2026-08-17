@@ -1,14 +1,18 @@
 // Info: ProgressIndicator composite [S4 compound]. A step navigation container with
-// role="list" that coordinates ProgressStep children. Uses M1 (a11y), M7
+// role="list" that coordinates ProgressStep children. Uses A11y, M7
 // (createCompoundContext). Wraps each ProgressStep child in a context Provider so
 // it can read its index and current status without cloneElement.
 //   current     -> number (1-based current step number)
 //   children    -> ProgressStep elements
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import getSharedContext from '../context/sharedContext.js';
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ProgressIndicator composite.
@@ -22,14 +26,21 @@ Build the ProgressIndicator composite.
 
 @return {Function} - The ProgressIndicator component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  const getSharedContext = require('../context/sharedContext');
+  /////////////////////////// Static Constants START ////////////////////////////
+
 
   // Get the shared compound context (cached per Lib instance)
   const ctx = getSharedContext(Lib, 'ProgressIndicator');
 
-  return function ProgressIndicator (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ProgressIndicator = function ProgressIndicator (props) {
+
 
     const {
       current, children, style,
@@ -77,7 +88,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, rest),
       wrappedChildren
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ProgressIndicator = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ProgressIndicator;
+
+}/////////////////////////// Component Factory END /////////////////////////////

@@ -1,15 +1,17 @@
 // Info: Copy molecule [S2 interactive]. A copy-to-clipboard button. Uses
-// role="button" for screen reader semantics. Uses M1 (a11y) for aria-* state
-// and M2 (usePressKeys) for keyboard activation. Platform: split (web uses
+// role="button" for screen reader semantics. Uses A11y for aria-* state
+// and PressKeys for keyboard activation. Platform: split (web uses
 // navigator.clipboard, native uses injected clipboard).
 //   text        -> string (the text to copy)
 //   onSuccess   -> function (callback after successful copy)
 //   style       -> custom style overrides
-/* global navigator */
-'use strict';
 
-const { Pressable, Platform } = require('react-native');
 
+// Imports
+import { Pressable, Platform } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Copy molecule.
@@ -23,8 +25,17 @@ Build the Copy molecule.
 
 @return {Function} - The Copy component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function Copy (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Copy = function Copy (props) {
+
 
     const {
       text, onSuccess, style,
@@ -100,7 +111,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         color: 'text_primary'
       }, copied ? 'Copied!' : 'Copy')
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Copy = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Copy;
+
+}/////////////////////////// Component Factory END /////////////////////////////

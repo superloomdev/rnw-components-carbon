@@ -11,9 +11,9 @@
 // on Space to suppress page scroll.
 //
 // On native: returns an empty object; native activation already works.
-'use strict';
 
-const { Platform } = require('react-native');
+// Imports
+import { Platform as RNPlatform } from 'react-native';
 
 
 // Roles that should activate on Space (in addition to Enter)
@@ -35,7 +35,7 @@ Enter and Space activation per role.
 
 @return {Function} - usePressKeys({ role, onActivate, disabled }) -> props
 *********************************************************************/
-module.exports = function (Lib) {
+export default function (Lib) {
 
   const React = Lib.React;
 
@@ -48,7 +48,7 @@ module.exports = function (Lib) {
 
 
     // On native, activation already works; return nothing
-    if (Platform.OS !== 'web') {
+    if (RNPlatform.OS !== 'web') {
       return {};
     }
 
@@ -86,4 +86,4 @@ module.exports = function (Lib) {
 
   };
 
-};
+}

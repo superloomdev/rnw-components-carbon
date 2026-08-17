@@ -15,9 +15,9 @@
 // after any RNW upgrade. This is the single documented exception to
 // the aria-only rule. No other file in the package may use an
 // accessibility* state prop.
-'use strict';
 
-const { View: RNView, Platform, AccessibilityInfo } = require('react-native');
+// Imports
+import { View as RNView, Platform as RNPlatform, AccessibilityInfo as RNAccessibilityInfo } from 'react-native';
 
 
 /********************************************************************
@@ -27,7 +27,7 @@ Build the LiveRegionProvider and useAnnounce hook.
 
 @return {Object} - { LiveRegionProvider, useAnnounce, LiveRegionContext }
 *********************************************************************/
-module.exports = function (Lib) {
+export default function (Lib) {
 
   const React = Lib.React;
   const createContext = Lib.React.createContext;
@@ -58,9 +58,9 @@ module.exports = function (Lib) {
       const level = politeness || 'polite';
 
       // On native, use AccessibilityInfo.announceForAccessibility
-      if (Platform.OS !== 'web') {
-        if (AccessibilityInfo && Lib.Utils.isFunction(AccessibilityInfo.announceForAccessibility)) {
-          AccessibilityInfo.announceForAccessibility(message);
+      if (RNPlatform.OS !== 'web') {
+        if (RNAccessibilityInfo && Lib.Utils.isFunction(RNAccessibilityInfo.announceForAccessibility)) {
+          RNAccessibilityInfo.announceForAccessibility(message);
         }
         return;
       }
@@ -84,7 +84,7 @@ module.exports = function (Lib) {
 
 
     // On native, no regions needed; just provide the context
-    if (Platform.OS !== 'web') {
+    if (RNPlatform.OS !== 'web') {
       return React.createElement(
         LiveRegionContext.Provider,
         { value: contextValue },
@@ -144,4 +144,4 @@ module.exports = function (Lib) {
     LiveRegionContext: LiveRegionContext
   };
 
-};
+}

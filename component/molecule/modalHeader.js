@@ -1,15 +1,18 @@
 // Info: ModalHeader molecule [S1 presentational]. Header section of a
-// ComposedModal. Uses M7 (createCompoundContext) to coordinate with
+// ComposedModal. Uses CompoundContext to coordinate with
 // ComposedModal. Composes Text and View atoms.
 //   title       -> string
 //   subtitle    -> string (optional)
 //   closeOnPress-> function (optional close handler)
 //   children    -> additional content
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the ModalHeader molecule.
@@ -23,9 +26,17 @@ Build the ModalHeader molecule.
 
 @return {Function} - The ModalHeader component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function ModalHeader (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const ModalHeader = function ModalHeader (props) {
+
 
     const {
       title, subtitle, closeOnPress, children, style,
@@ -82,7 +93,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       ),
       children
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _ModalHeader = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return ModalHeader;
+
+}/////////////////////////// Component Factory END /////////////////////////////

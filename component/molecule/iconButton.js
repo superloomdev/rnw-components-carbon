@@ -1,5 +1,5 @@
 // Info: IconButton molecule [S2 interactive]. A button with only an icon.
-// Uses M1 (a11y) for aria-* state and M5 (useAnchoredPosition) when used
+// Uses A11y for aria-* state and AnchoredPosition when used
 // as an anchor for overlays. Composes Icon atom.
 //   name        -> string (icon glyph name)
 //   onPress     -> function
@@ -8,10 +8,13 @@
 //   color       -> string (icon color token)
 //   label       -> string (accessibility label, required)
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the IconButton molecule.
@@ -25,8 +28,17 @@ Build the IconButton molecule.
 
 @return {Function} - The IconButton component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function IconButton (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const IconButton = function IconButton (props) {
+
 
     const {
       name, onPress, disabled, size, color, label, style,
@@ -60,7 +72,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         color: color || 'TEXT_PRIMARY'
       })
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _IconButton = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return IconButton;
+
+}/////////////////////////// Component Factory END /////////////////////////////

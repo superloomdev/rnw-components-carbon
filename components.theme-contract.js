@@ -6,7 +6,6 @@
 // not own (breakpoints are a layout concern, not a design token).
 //
 // Pure function, no side effects. Called at build time.
-'use strict';
 
 
 // Default breakpoint definitions. These are layout boundaries, not design
@@ -33,7 +32,7 @@ Tokens named font.family.primary -> Font.family.primary
 
 @return {Object} - { Color, Dimension, Font, Breakpoint }
 *********************************************************************/
-module.exports = function themeContract (themer_output) {
+export default function themeContract (themer_output) {
 
   // Accept either the full buildTheme result or just the tokens map
   const flat = (themer_output && themer_output.tokens) ? themer_output.tokens : themer_output;
@@ -111,4 +110,4 @@ module.exports = function themeContract (themer_output) {
     Breakpoint: DEFAULT_BREAKPOINTS
   };
 
-};
+}

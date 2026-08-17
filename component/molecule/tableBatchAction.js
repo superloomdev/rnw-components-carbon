@@ -1,14 +1,17 @@
 // Info: TableBatchAction molecule [S2 interactive]. A single action button used
-// within TableBatchActions for batch operations. Uses M1 (a11y) for aria-* state
-// and M2 (usePressKeys) for keyboard activation.
+// within TableBatchActions for batch operations. Uses A11y for aria-* state
+// and PressKeys for keyboard activation.
 //   label       -> button text
 //   onPress     -> press handler
 //   disabled    -> boolean
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the TableBatchAction molecule.
@@ -22,8 +25,17 @@ Build the TableBatchAction molecule.
 
 @return {Function} - The TableBatchAction component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function TableBatchAction (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const TableBatchAction = function TableBatchAction (props) {
+
 
     const {
       label, onPress, disabled, style,
@@ -64,7 +76,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         weight: 'medium'
       }, label)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _TableBatchAction = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return TableBatchAction;
+
+}/////////////////////////// Component Factory END /////////////////////////////

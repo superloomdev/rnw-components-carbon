@@ -8,10 +8,13 @@
 //   onGrant     -> grant handler
 //   onDeny      -> deny handler (optional)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the GrantPermission molecule.
@@ -25,9 +28,17 @@ Build the GrantPermission molecule.
 
 @return {Function} - The GrantPermission component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function GrantPermission (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const GrantPermission = function GrantPermission (props) {
+
 
     const {
       title, subtitle, icon, onGrant, onDeny, style,
@@ -104,7 +115,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           : null
       )
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _GrantPermission = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return GrantPermission;
+
+}/////////////////////////// Component Factory END /////////////////////////////

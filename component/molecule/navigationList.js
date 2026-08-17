@@ -4,10 +4,13 @@
 //   title       -> heading text (optional)
 //   children    -> navigation list items
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the NavigationList molecule.
@@ -21,9 +24,17 @@ Build the NavigationList molecule.
 
 @return {Function} - The NavigationList component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function NavigationList (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const NavigationList = function NavigationList (props) {
+
 
     const {
       title, children, style,
@@ -50,7 +61,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         : null,
       children
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _NavigationList = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return NavigationList;
+
+}/////////////////////////// Component Factory END /////////////////////////////

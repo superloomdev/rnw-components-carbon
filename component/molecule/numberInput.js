@@ -1,7 +1,7 @@
 // Info: NumberInput molecule [S2 interactive]. A TextInput with increment and
 // decrement buttons. Uses Platform.select for accessibilityRole: 'spinbutton'
-// on web, 'adjustable' on native. Uses M1 (a11y) for aria-* state and value,
-// M2 (usePressKeys) for keyboard activation, M8 (useControllableState) for
+// on web, 'adjustable' on native. Uses A11y for aria-* state and value,
+// PressKeys for keyboard activation, ControllableState for
 // controlled/uncontrolled value.
 //   value         -> number (controlled)
 //   defaultValue  -> number (uncontrolled)
@@ -11,10 +11,13 @@
 //   step          -> number (default 1)
 //   disabled      -> boolean
 //   invalid       -> boolean
-'use strict';
 
-const { View: RNView, Pressable, Platform } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable, Platform } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the NumberInput molecule.
@@ -28,7 +31,10 @@ Build the NumberInput molecule.
 
 @return {Function} - The NumberInput component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+
   // a11y is used for aria-* value props on the spinbutton role
 
   // Role: 'spinbutton' on web, 'adjustable' on native
@@ -37,7 +43,13 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     default: 'adjustable'
   });
 
-  return function NumberInput (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const NumberInput = function NumberInput (props) {
+
 
     const {
       value, defaultValue, onChange, min, max, step, disabled, invalid, style,
@@ -167,7 +179,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         }, '+')
       )
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _NumberInput = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return NumberInput;
+
+}/////////////////////////// Component Factory END /////////////////////////////

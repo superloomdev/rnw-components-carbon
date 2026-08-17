@@ -1,31 +1,31 @@
-'use strict';
+// Info: Test loader for rnw-components-carbon.
+//
+// Builds the component library with stub injections and exports everything
+// needed by the test suite. DOM bootstrap and react-native -> react-native-web
+// resolution are handled by the --import and --loader flags in the test script.
+//
+// This file is the single source of truth for test dependencies.
+// process.env is ONLY read here.
 
-// Bootstrap jsdom globals before any react-native-web require.
-// RNW needs a DOM environment to define its components and stylesheets.
-require('./harness/dom');
+import { createRequire } from 'node:module';
 
-// Intercept require('react-native') to use real react-native-web.
-// RNW provides the same API surface minus a few removed exports
-// (Slider was removed from RN core in 0.62 and RNW never shipped it).
-// Resolve the path once from _test/ where react-native-web is installed.
-const Module = require('module');
-const originalResolveFilename = Module._resolveFilename;
-const rnwPath = require.resolve('react-native-web');
-
-Module._resolveFilename = function (request, parent, isMain, options) {
-
-  if (request === 'react-native') {
-    return rnwPath;
-  }
-
-  return originalResolveFilename.apply(this, arguments);
-
-};
+const require = createRequire(import.meta.url);
 
 
-// --- Stubs for injected dependencies ---
+// ========================= DEPENDENCY CONTAINER =========================== //
 
-// Device stub with viewport subscription support
+const React = require('react');
+const TestRenderer = require('react-test-renderer');
+const UtilsFactory = require('helper-utils');
+const DebugFactory = require('helper-debug');
+
+const Utils = UtilsFactory();
+const Debug = DebugFactory({ Utils: Utils });
+
+
+// ========================= TEST STUBS ===================================== //
+
+// Device stub: emitter-stub pattern with viewport subscription support
 function createDeviceStub (width, height) {
 
   const listeners = [];
@@ -56,20 +56,18 @@ function createDeviceStub (width, height) {
     },
 
     // Test helper: simulate a viewport change event
-    _emitChange: function (dims) {
+    _emit: function (dims) {
       current = { width: dims.width, height: dims.height };
       for (let i = 0; i < listeners.length; i++) {
         listeners[i](dims);
       }
     },
 
-    // Pass-through for unused optional APIs
-    getNetworkState: async function () {
-      return { success: true, isConnected: true, type: 'wifi', error: null };
+    // Test helper: count active listeners
+    _listenerCount: function () {
+      return listeners.length;
     },
-    onAppStateChange: function () {
-      return { success: true, unsubscribe: function () {}, error: null };
-    },
+
     getSafeAreaInsets: function () {
       return { success: true, top: 0, bottom: 0, left: 0, right: 0, error: null };
     }
@@ -78,19 +76,24 @@ function createDeviceStub (width, height) {
 
 }
 
-// Icon stub: renders a proper React element so test-renderer can handle it
+
+// Icons stub: renders a proper React element so test-renderer can handle it
 function createIconsStub () {
 
   return {
-    Glyph: function (props) {
-      return React.createElement('Glyph', props);
+    Glyph: function GlyphStub (props) {
+      return React.createElement('span', {
+        'data-icon': props.name,
+        'data-size': props.size,
+        'data-color': props.color
+      });
     }
   };
 
 }
 
 
-// --- Build a real theme contract for testing ---
+// ========================= THEME CONTRACT ================================= //
 
 function createTestTheme () {
 
@@ -143,16 +146,16 @@ function createTestTheme () {
 }
 
 
-// --- Build the Components module with stubs ---
+// ========================= BUILD COMPONENTS =============================== //
 
-const Utils = require('helper-utils')();
-const Debug = require('helper-debug')({ Utils: Utils });
-const React = require('react');
-const TestRenderer = require('react-test-renderer');
 const Device = createDeviceStub(375, 812);
 const Icons = createIconsStub();
 
-const Components = require('rnw-components-carbon')({
+// Dynamic import of the ESM components package
+const componentsModule = await import('rnw-components-carbon');
+const componentsLoader = componentsModule.default;
+
+const Components = componentsLoader({
   Utils: Utils,
   Debug: Debug,
   React: React,
@@ -160,23 +163,27 @@ const Components = require('rnw-components-carbon')({
   Icons: Icons
 });
 
-// Build the themed registry
+// Build the themed registry at the base breakpoint
 const testTheme = createTestTheme();
 const built = Components.build(testTheme, 'base');
 
 
-module.exports = {
-  Components: Components,
-  Component: built.Component,
-  Style: built.Style,
-  theme: testTheme,
-  Utils: Utils,
-  Debug: Debug,
-  React: React,
-  TestRenderer: TestRenderer,
-  Device: Device,
-  Icons: Icons,
-  createDeviceStub: createDeviceStub,
-  createIconsStub: createIconsStub,
-  createTestTheme: createTestTheme
+// ========================= EXPORTS ======================================== //
+
+export {
+  Components,
+  Utils,
+  Debug,
+  React,
+  TestRenderer,
+  Device,
+  Icons,
+  createDeviceStub,
+  createIconsStub,
+  createTestTheme,
+  componentsLoader
 };
+
+export const Component = built.Component;
+export const Style = built.Style;
+export const theme = testTheme;

@@ -1,6 +1,6 @@
 // Info: TreeNode molecule [S2 interactive]. A tree node with role="treeitem"
-// that can expand/collapse to reveal child nodes. Uses M1 (a11y) for
-// aria-expanded, aria-selected, and aria-level, and M2 (usePressKeys) for
+// that can expand/collapse to reveal child nodes. Uses A11y for
+// aria-expanded, aria-selected, and aria-level, and PressKeys for
 // keyboard activation. Can optionally consume TreeView context for selection
 // coordination.
 //   label       -> string (node label)
@@ -10,10 +10,14 @@
 //   selected    -> boolean, whether this node is selected
 //   level       -> number (depth in the tree, 1-based)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import getSharedContext from '../context/sharedContext.js';
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the TreeNode molecule.
@@ -27,13 +31,21 @@ Build the TreeNode molecule.
 
 @return {Function} - The TreeNode component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  const getSharedContext = require('../context/sharedContext');
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+
 
   // Get the shared TreeView context (cached per Lib instance)
   const treeViewCtx = getSharedContext(Lib, 'TreeView');
 
-  return function TreeNode (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const TreeNode = function TreeNode (props) {
+
 
     const {
       label, children, expanded, onToggle, selected, level, style,
@@ -127,7 +139,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         ? React.createElement(RNView, null, children)
         : null
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _TreeNode = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return TreeNode;
+
+}/////////////////////////// Component Factory END /////////////////////////////

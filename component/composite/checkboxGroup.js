@@ -1,16 +1,19 @@
 // Info: CheckboxGroup composite [S4 compound]. A group of checkboxes where
-// multiple can be selected. Uses M1 (a11y), M7 (createCompoundContext),
-// M8 (useControllableState). Role group.
+// multiple can be selected. Uses A11y, CompoundContext,
+// ControllableState. Role group.
 //   values      -> array (controlled)
 //   defaultValues-> array (uncontrolled)
 //   onChange    -> callback receiving the selected values array
 //   options     -> array of { value, label, disabled }
 //   disabled    -> boolean (disables the entire group)
 //   name        -> string (group name for form submission)
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the CheckboxGroup composite.
@@ -24,11 +27,20 @@ Build the CheckboxGroup composite.
 
 @return {Function} - The CheckboxGroup component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+
   // Create the compound context for CheckboxGroup coordination
   const checkboxContext = Parts.CompoundContext('CheckboxGroup');
 
-  return function CheckboxGroup (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const CheckboxGroup = function CheckboxGroup (props) {
+
 
     const {
       values, defaultValues, onChange, options, disabled, name,
@@ -104,7 +116,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         checkboxes
       )
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _CheckboxGroup = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return CheckboxGroup;
+
+}/////////////////////////// Component Factory END /////////////////////////////

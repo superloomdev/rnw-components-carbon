@@ -1,15 +1,19 @@
 // Info: TreeView composite [S4 compound]. A tree navigation container with
 // role="tree" that renders TreeNode elements from a data prop. Uses M1
-// (a11y), M7 (createCompoundContext). Provides selection and expansion
+// (a11y), CompoundContext. Provides selection and expansion
 // state to TreeNode descendants through context.
 //   data          -> array of { key, label, children, expanded, selected }
 //   onSelect      -> function (called with selected node key)
 //   expandedKeys  -> array (keys of expanded nodes)
 //   style         -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import getSharedContext from '../context/sharedContext.js';
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the TreeView composite.
@@ -23,14 +27,17 @@ Build the TreeView composite.
 
 @return {Function} - The TreeView component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
 
-  const getSharedContext = require('../context/sharedContext');
+  /////////////////////////// Static Constants START ////////////////////////////
+
+
 
   // Get the shared compound context (cached per Lib instance)
   const ctx = getSharedContext(Lib, 'TreeView');
 
   // Recursively render tree nodes from data
+
   const renderNodes = function (React, nodes, level, expandedKeys, selectedKey, onSelect) {
 
     if (!Array.isArray(nodes)) {
@@ -67,7 +74,13 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
     });
   };
 
-  return function TreeView (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const TreeView = function TreeView (props) {
+
 
     const {
       data, onSelect, expandedKeys, style,
@@ -109,7 +122,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
       }, rest),
       renderedNodes
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _TreeView = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return TreeView;
+
+}/////////////////////////// Component Factory END /////////////////////////////

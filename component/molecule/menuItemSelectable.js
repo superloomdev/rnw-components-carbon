@@ -1,15 +1,18 @@
 // Info: MenuItemSelectable molecule [S2 interactive]. A menu item with
-// role="menuitemcheckbox" that toggles checked state. Uses M1 (a11y) and
-// M2 (usePressKeys).
+// role="menuitemcheckbox" that toggles checked state. Uses A11y and
+// PressKeys.
 //   label       -> string
 //   checked     -> boolean
 //   onChange    -> function (called with next boolean)
 //   disabled    -> boolean
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the MenuItemSelectable molecule.
@@ -23,8 +26,17 @@ Build the MenuItemSelectable molecule.
 
 @return {Function} - The MenuItemSelectable component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function MenuItemSelectable (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const MenuItemSelectable = function MenuItemSelectable (props) {
+
 
     const {
       label, checked, onChange, disabled, style,
@@ -105,7 +117,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         style: { flex: 1 }
       }, label)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _MenuItemSelectable = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return MenuItemSelectable;
+
+}/////////////////////////// Component Factory END /////////////////////////////

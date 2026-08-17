@@ -1,16 +1,19 @@
 // Info: DatePickerInput molecule [S2 interactive]. A text input that opens a
 // DatePicker. Composes Registry.TextInput and Registry.DatePicker. Uses M1
-// (a11y) for aria-* state and M8 (useControllableState) for controlled/
+// (a11y) for aria-* state and ControllableState for controlled/
 // uncontrolled value.
 //   value       -> string (controlled)
 //   onChange    -> callback receiving the selected date string
 //   placeholder -> string
 //   disabled    -> boolean
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the DatePickerInput molecule.
@@ -24,8 +27,17 @@ Build the DatePickerInput molecule.
 
 @return {Function} - The DatePickerInput component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function DatePickerInput (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const DatePickerInput = function DatePickerInput (props) {
+
 
     const {
       value, onChange, placeholder, disabled, style,
@@ -99,7 +111,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         })
         : null
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _DatePickerInput = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return DatePickerInput;
+
+}/////////////////////////// Component Factory END /////////////////////////////

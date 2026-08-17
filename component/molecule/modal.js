@@ -13,10 +13,13 @@
 // Overlay integration: registers with the host so a Popover opened from
 // inside a Modal paints above it. The host assigns zIndex from the stack
 // position. On native, uses RN Modal for hardware back support.
-'use strict';
 
-const { View: RNView, Pressable, Modal: RNModal, Platform } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable, Modal as RNModal, Platform } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Modal molecule.
@@ -30,13 +33,21 @@ Build the Modal molecule.
 
 @return {Function} - The Modal component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
 
   // Build the focus trap hook once
   // Build the overlay host hook once,
   const useOverlay = Parts.Overlay.useOverlay;
 
-  return function Modal (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Modal = function Modal (props) {
+
 
     // Destructure props,
     const {
@@ -157,7 +168,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     // Overlay renders the content; return null here,
     return null;
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Modal = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Modal;
+
+}/////////////////////////// Component Factory END /////////////////////////////

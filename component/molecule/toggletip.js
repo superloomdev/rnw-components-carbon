@@ -1,13 +1,16 @@
 // Info: Toggletip molecule [S3 overlay]. A tooltip triggered by press (not
-// hover). Uses M1 (a11y), M4 (Overlay), M5 (useAnchoredPosition).
+// hover). Uses A11y, Overlay, AnchoredPosition.
 //   content     -> string or node (toggletip content)
 //   children    -> trigger element
 //   placement   -> string (default 'top')
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Toggletip molecule.
@@ -21,8 +24,17 @@ Build the Toggletip molecule.
 
 @return {Function} - The Toggletip component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function Toggletip (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Toggletip = function Toggletip (props) {
+
 
     const {
       content, children, placement, style
@@ -105,7 +117,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       trigger,
       isOpen ? renderTip() : null
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Toggletip = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Toggletip;
+
+}/////////////////////////// Component Factory END /////////////////////////////

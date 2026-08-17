@@ -1,15 +1,18 @@
 // Info: FileUploaderItem molecule [S2 interactive]. A single uploaded file
 // item with name and remove button. Uses role="listitem" for screen reader
-// semantics. Uses M1 (a11y) for aria-* state and M2 (usePressKeys) for
+// semantics. Uses A11y for aria-* state and PressKeys for
 // keyboard activation on the remove button.
 //   filename    -> string (name of the uploaded file)
 //   status      -> string ('uploading' | 'edit' | 'complete')
 //   onRemove    -> function (called when remove is pressed)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the FileUploaderItem molecule.
@@ -23,8 +26,17 @@ Build the FileUploaderItem molecule.
 
 @return {Function} - The FileUploaderItem component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function FileUploaderItem (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const FileUploaderItem = function FileUploaderItem (props) {
+
 
     const {
       filename, status, onRemove, style,
@@ -98,7 +110,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         })
       )
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _FileUploaderItem = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return FileUploaderItem;
+
+}/////////////////////////// Component Factory END /////////////////////////////

@@ -1,13 +1,18 @@
 // Info: DateInput composite [S2 interactive]. A simple text input with date
-// format validation (YYYY-MM-DD). Uses M1 (a11y), M8 (useControllableState).
+// format validation (YYYY-MM-DD). Uses A11y, ControllableState.
 // Role input.
 //   value       -> string YYYY-MM-DD (controlled)
 //   defaultValue-> string YYYY-MM-DD (uncontrolled)
 //   onChange    -> callback receiving the date string
 //   disabled    -> boolean
 //   invalid     -> boolean
-'use strict';
 
+
+// Imports
+
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the DateInput composite.
@@ -21,8 +26,18 @@ Build the DateInput composite.
 
 @return {Function} - The DateInput component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
-  return function DateInput (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
+
+  /////////////////////////// Static Constants START ////////////////////////////
+
+
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const DateInput = function DateInput (props) {
+
 
     const {
       value, defaultValue, onChange, disabled, invalid,
@@ -78,7 +93,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
         style: style
       }, ariaStateProps, rest)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _DateInput = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return DateInput;
+
+}/////////////////////////// Component Factory END /////////////////////////////

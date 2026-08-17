@@ -1,14 +1,17 @@
 // Info: IconSwitch molecule [S2 interactive]. A switch with an icon. Uses
-// role="switch" for screen reader semantics. Uses M1 (a11y) for aria-* state
-// and M2 (usePressKeys) for keyboard activation.
+// role="switch" for screen reader semantics. Uses A11y for aria-* state
+// and PressKeys for keyboard activation.
 //   icon        -> string (icon name)
 //   checked     -> boolean (whether the switch is on)
 //   onToggle    -> function (called with next boolean)
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the IconSwitch molecule.
@@ -22,8 +25,17 @@ Build the IconSwitch molecule.
 
 @return {Function} - The IconSwitch component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function IconSwitch (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const IconSwitch = function IconSwitch (props) {
+
 
     const {
       icon, checked, onToggle, style,
@@ -83,7 +95,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         })
         : null
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _IconSwitch = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return IconSwitch;
+
+}/////////////////////////// Component Factory END /////////////////////////////

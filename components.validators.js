@@ -4,9 +4,8 @@
 // Never self-requires the error catalog or data files.
 // Boot-time validation throws TypeError; render-time validation is
 // handled inside component factories via Lib.Debug.warn + fallback.
-'use strict';
 
-module.exports = function (Lib, ERRORS) {
+export default function (Lib, ERRORS) {
 
   const Validators = {
 
@@ -188,4 +187,4 @@ module.exports = function (Lib, ERRORS) {
 
   return Validators;
 
-};
+}

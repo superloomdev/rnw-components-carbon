@@ -3,10 +3,13 @@
 //   name        -> string (the filename to display)
 //   status      -> string ('uploading' | 'edit' | 'complete')
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Filename molecule.
@@ -20,9 +23,17 @@ Build the Filename molecule.
 
 @return {Function} - The Filename component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function Filename (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Filename = function Filename (props) {
+
 
     const {
       name, status, style,
@@ -64,7 +75,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         color: 'text_primary'
       }, name || '')
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Filename = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Filename;
+
+}/////////////////////////// Component Factory END /////////////////////////////

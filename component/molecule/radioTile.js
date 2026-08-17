@@ -1,15 +1,18 @@
 // Info: RadioTile molecule [S2 interactive]. A selectable tile in a radio
-// group. Uses role="radio" for screen reader semantics. Uses M1 (a11y) for
-// aria-* state and M2 (usePressKeys) for keyboard activation.
+// group. Uses role="radio" for screen reader semantics. Uses A11y for
+// aria-* state and PressKeys for keyboard activation.
 //   name        -> string (radio group name)
 //   value       -> string (tile value)
 //   checked     -> boolean (whether this tile is selected)
 //   onSelect    -> function (called with the value)
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the RadioTile molecule.
@@ -23,8 +26,17 @@ Build the RadioTile molecule.
 
 @return {Function} - The RadioTile component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function RadioTile (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const RadioTile = function RadioTile (props) {
+
 
     const {
       name, value, checked, onSelect, style,
@@ -82,7 +94,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         weight: 'medium'
       }, value)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _RadioTile = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return RadioTile;
+
+}/////////////////////////// Component Factory END /////////////////////////////

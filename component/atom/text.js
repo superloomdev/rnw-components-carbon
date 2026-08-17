@@ -3,17 +3,13 @@
 //   size  -> font_size_<size>     (xs|sm|md|lg|xl|xxl)
 //   color -> font_<color>         (text_primary|text_secondary|app_primary|...)
 //   weight-> font_weight_<weight> (regular|medium|semibold|bold)
-// Applies iOS writingDirection under RTL (matches the reference's platform branch).
-'use strict';
-
-const { Text: RNText, StyleSheet, Platform } = require('react-native');
 
 
-// Styles that are not token-derived and never change with the theme
-const StaticStyle = StyleSheet.create({
-  rtlIOS: { writingDirection: 'rtl' }
-});
+// Imports
+import { Text as RNText, StyleSheet, Platform } from 'react-native';
 
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Text atom.
@@ -21,15 +17,28 @@ Build the Text atom.
 @param {Object} Lib      - { Utils, Debug, React }
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
-@param {Object} Parts    - Mechanisms: { A11y, PressKeys, ControllableState, Units, Overlay, AnchoredPosition }
+@param {Object} Parts    - Mechanisms: { Direction, Units, Typeface }
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style   - { utilities, tokens, breakpoint }
+@param {Object} Style    - { utilities, tokens, breakpoint }
 
 @return {Function} - The Text component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function Text (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+
+  // Pre-registered with RN's style engine once per system build.
+  // Applies iOS writingDirection under RTL when the system direction resolves as right-to-left
+  const StaticStyle = StyleSheet.create({
+    rtlIOS: { writingDirection: 'rtl' }
+  });
+
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Text = function Text (props) {
 
     // Destructure token props from pass-through props
     const { size, color, weight, align, style, children, ...rest } = props;
@@ -37,7 +46,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     // Resolve token props to utility classes, falling back to defaults
     const classes = [];
 
-    // Font size with fallback to default
+
+    // ---- Font size ----
     const sizeKey = 'font_size_' + (size || CONFIG.DEFAULT_FONT_SIZE);
     let sizeStyle = Style.utilities[sizeKey];
 
@@ -48,7 +58,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     classes.push(sizeStyle);
 
-    // Font color with fallback to default
+
+    // ---- Font color ----
     const colorKey = 'font_' + (color || CONFIG.DEFAULT_FONT_COLOR);
     let colorStyle = Style.utilities[colorKey];
 
@@ -59,7 +70,8 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     classes.push(colorStyle);
 
-    // Font weight with fallback to default
+
+    // ---- Font weight ----
     const weightKey = 'font_weight_' + (weight || CONFIG.DEFAULT_FONT_WEIGHT);
     let weightStyle = Style.utilities[weightKey];
 
@@ -70,22 +82,38 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     classes.push(weightStyle);
 
-    // Alignment is a plain style, not a token
+
+    // ---- Alignment ----
     if (align) {
       classes.push({ textAlign: align });
     }
 
-    // iOS needs an explicit writing direction under RTL
+
+    // ---- RTL writing direction (iOS only) ----
     if (Parts.Direction.isRtl() && Platform.OS === 'ios') {
       classes.push(StaticStyle.rtlIOS);
     }
 
+
+    // Render
     return Lib.React.createElement(
       RNText,
       Object.assign({ style: [...classes, style] }, rest),
       children
     );
 
-  };
+  };////////////////////////// Public Functions END ////////////////////////////
 
-};
+
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Text = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Text;
+
+}/////////////////////////// Component Factory END /////////////////////////////

@@ -1,13 +1,16 @@
 // Info: OperationalTag molecule [S2 interactive]. An operational tag with an
-// action. Uses role="button" for screen reader semantics. Uses M1 (a11y) for
-// aria-* state and M2 (usePressKeys) for keyboard activation.
+// action. Uses role="button" for screen reader semantics. Uses A11y for
+// aria-* state and PressKeys for keyboard activation.
 //   text        -> string (the tag label)
 //   onAction    -> function (called when the tag is pressed)
 //   style       -> custom style overrides
-'use strict';
 
-const { Pressable } = require('react-native');
 
+// Imports
+import { Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the OperationalTag molecule.
@@ -21,8 +24,17 @@ Build the OperationalTag molecule.
 
 @return {Function} - The OperationalTag component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function OperationalTag (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const OperationalTag = function OperationalTag (props) {
+
 
     const {
       text, onAction, style,
@@ -68,7 +80,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         color: 'text_primary'
       }, text)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _OperationalTag = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return OperationalTag;
+
+}/////////////////////////// Component Factory END /////////////////////////////

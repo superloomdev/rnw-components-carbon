@@ -3,10 +3,13 @@
 //   columns     -> number (grid column count)
 //   gap         -> string (grid gap token)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the GridSettings molecule.
@@ -20,9 +23,17 @@ Build the GridSettings molecule.
 
 @return {Function} - The GridSettings component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function GridSettings (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const GridSettings = function GridSettings (props) {
+
 
     const {
       columns, gap, style,
@@ -46,7 +57,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         ]
       }, rest)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _GridSettings = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return GridSettings;
+
+}/////////////////////////// Component Factory END /////////////////////////////

@@ -6,9 +6,7 @@
 // instead of receiving it through a HOC prop.
 //
 // Loader pattern: FACTORY part. Uniform parts signature.
-'use strict';
-
-const { I18nManager, Platform } = require('react-native');
+import { I18nManager, Platform } from 'react-native';
 
 
 /////////////////////////// Module-Loader START ////////////////////////////////
@@ -22,7 +20,7 @@ const { I18nManager, Platform } = require('react-native');
 
     @return {Object} - Public Direction interface
 *********************************************************************/
-module.exports = function loader (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
+export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
 
   // Resolve direction once per build.
   // Web: check config for locale IS_RTL flag (if available)
@@ -39,7 +37,7 @@ module.exports = function loader (shared_libs, config, errors) { // eslint-disab
 
   return createInterface(rtlActive);
 
-};/////////////////////////// Module-Loader END /////////////////////////////////
+}/////////////////////////// Module-Loader END /////////////////////////////////
 
 
 

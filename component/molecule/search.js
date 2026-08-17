@@ -1,5 +1,5 @@
 // Info: Search molecule [S2 interactive]. A TextInput with a search icon
-// and optional clear button. Uses M1 (a11y) for aria-* state and M8
+// and optional clear button. Uses A11y for aria-* state and M8
 // (useControllableState) for controlled/uncontrolled value.
 //   value         -> string (controlled)
 //   defaultValue  -> string (uncontrolled)
@@ -7,10 +7,13 @@
 //   onClear       -> callback when clear button is pressed
 //   placeholder   -> string (default 'Search')
 //   disabled      -> boolean
-'use strict';
 
-const { View: RNView, Pressable } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Search molecule.
@@ -24,8 +27,17 @@ Build the Search molecule.
 
 @return {Function} - The Search component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function Search (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Search = function Search (props) {
+
 
     const {
       value, defaultValue, onChange, onClear, placeholder, disabled, style,
@@ -108,7 +120,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         )
         : null
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Search = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Search;
+
+}/////////////////////////// Component Factory END /////////////////////////////

@@ -1,5 +1,5 @@
 // Info: Popover molecule [S3 overlay]. A floating content panel anchored to
-// a trigger. Uses M1 (a11y), M4 (Overlay), M5 (useAnchoredPosition).
+// a trigger. Uses A11y, Overlay, AnchoredPosition.
 // Uses useFocusTrap with trap: false (Popover does not trap focus).
 //   isOpen      -> boolean
 //   onClose     -> function
@@ -7,10 +7,13 @@
 //   content     -> node (popover content)
 //   children    -> trigger element
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView, Pressable, Platform } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable, Platform } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Popover molecule.
@@ -24,9 +27,19 @@ Build the Popover molecule.
 
 @return {Function} - The Popover component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+
   const useOverlay = Parts.Overlay.useOverlay;
-  return function Popover (props) {
+
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Popover = function Popover (props) {
+
 
     const {
       isOpen, onClose, placement, content, children, style,
@@ -150,7 +163,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     }
 
     return trigger;
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Popover = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Popover;
+
+}/////////////////////////// Component Factory END /////////////////////////////

@@ -3,10 +3,13 @@
 // reader semantics. Renders children in a horizontal flex row with padding.
 //   children    -> toolbar content elements (actions, search)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the TableToolbarContent molecule.
@@ -20,9 +23,17 @@ Build the TableToolbarContent molecule.
 
 @return {Function} - The TableToolbarContent component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function TableToolbarContent (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const TableToolbarContent = function TableToolbarContent (props) {
+
 
     const {
       children, style,
@@ -45,7 +56,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, rest),
       children
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _TableToolbarContent = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return TableToolbarContent;
+
+}/////////////////////////// Component Factory END /////////////////////////////

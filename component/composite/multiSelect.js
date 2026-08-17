@@ -1,6 +1,6 @@
 // Info: MultiSelect composite [S3 overlay]. A dropdown with multi-select
-// checkboxes. Uses M1 (a11y), M4 (Overlay), M5 (useAnchoredPosition),
-// M8 (useControllableState). Role listbox.
+// checkboxes. Uses A11y, Overlay, AnchoredPosition,
+// ControllableState. Role listbox.
 //   values      -> array (controlled)
 //   defaultValues-> array (uncontrolled)
 //   onChange    -> callback receiving the selected values array
@@ -8,10 +8,13 @@
 //   placeholder -> string (default 'Select options')
 //   disabled    -> boolean
 //   invalid     -> boolean
-'use strict';
 
-const { View: RNView, Pressable, Platform } = require('react-native');
 
+// Imports
+import { View as RNView, Pressable, Platform } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the MultiSelect composite.
@@ -25,10 +28,19 @@ Build the MultiSelect composite.
 
 @return {Function} - The MultiSelect component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+
   const useOverlay = Parts.Overlay.useOverlay;
 
-  return function MultiSelect (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const MultiSelect = function MultiSelect (props) {
+
 
     const {
       values, defaultValues, onChange, options, placeholder, disabled, invalid,
@@ -230,7 +242,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     }
 
     return React.createElement(RNView, { style: { position: 'relative' } }, renderTrigger());
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _MultiSelect = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return MultiSelect;
+
+}/////////////////////////// Component Factory END /////////////////////////////

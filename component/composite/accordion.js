@@ -1,5 +1,5 @@
 // Info: Accordion composite [S4 compound]. An accordion container that
-// coordinates AccordionItem children. Uses M1 (a11y), M7
+// coordinates AccordionItem children. Uses A11y, M7
 // (createCompoundContext). Wraps each AccordionItem child in a context
 // Provider so it can read its key, expanded state, and toggle handler
 // without cloneElement (which breaks under the HOC).
@@ -8,10 +8,14 @@
 //   onChange       -> function (called with key of toggled item)
 //   children       -> AccordionItem elements
 //   style          -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import getSharedContext from '../context/sharedContext.js';
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the Accordion composite.
@@ -25,14 +29,22 @@ Build the Accordion composite.
 
 @return {Function} - The Accordion component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // eslint-disable-line no-unused-vars
 
-  const getSharedContext = require('../context/sharedContext');
+  /////////////////////////// Static Constants START ////////////////////////////
+
+
 
   // Get the shared compound context (cached per Lib instance)
   const ctx = getSharedContext(Lib, 'Accordion');
 
-  return function Accordion (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const Accordion = function Accordion (props) {
+
 
     const {
       allowMultiple, expandedKeys, onChange, children, style,
@@ -68,7 +80,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) { // esl
       }, rest),
       wrappedChildren
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _Accordion = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return Accordion;
+
+}/////////////////////////// Component Factory END /////////////////////////////

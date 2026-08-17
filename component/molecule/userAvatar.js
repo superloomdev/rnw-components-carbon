@@ -1,14 +1,17 @@
 // Info: UserAvatar molecule [S1 presentational]. A user avatar with image
-// and optional fallback initials. Uses M1 (a11y) for aria-* label.
+// and optional fallback initials. Uses A11y for aria-* label.
 //   src         -> string (image URL)
 //   initials    -> string (fallback text, e.g. 'JD')
 //   size        -> 'sm' | 'md' | 'lg' (default 'md')
 //   label       -> string (accessibility label)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the UserAvatar molecule.
@@ -22,9 +25,17 @@ Build the UserAvatar molecule.
 
 @return {Function} - The UserAvatar component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function UserAvatar (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const UserAvatar = function UserAvatar (props) {
+
 
     const {
       src, initials, size, label, style,
@@ -75,7 +86,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         weight: 'medium'
       }, initials || '?')
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _UserAvatar = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return UserAvatar;
+
+}/////////////////////////// Component Factory END /////////////////////////////

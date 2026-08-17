@@ -1,6 +1,6 @@
 // Info: TabsVertical composite [S4 compound]. A vertical tabs container
 // coordinating TabListVertical and TabPanels. Uses role="tablist" for
-// screen reader semantics. Uses M1 (a11y), M3 (useRovingTabIndex), M7
+// screen reader semantics. Uses A11y, RovingTabIndex, M7
 // (createCompoundContext). Wraps each child in a context Provider so it
 // can read its index, selected state, and focusable flag without
 // cloneElement (which breaks under the HOC).
@@ -8,10 +8,14 @@
 //   onChange      -> function (called with new index)
 //   children      -> TabListVertical and TabPanels elements
 //   style         -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import getSharedContext from '../context/sharedContext.js';
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the TabsVertical composite.
@@ -25,13 +29,20 @@ Build the TabsVertical composite.
 
 @return {Function} - The TabsVertical component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  const getSharedContext = require('../context/sharedContext');
+  /////////////////////////// Static Constants START ////////////////////////////
+
   // Get the shared compound context (cached per Lib instance)
   const ctx = getSharedContext(Lib, 'TabsVertical');
 
-  return function TabsVertical (props) {
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const TabsVertical = function TabsVertical (props) {
+
 
     const {
       selectedIndex, onChange, children, style,
@@ -86,7 +97,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, roving.containerProps, rest),
       wrappedChildren
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _TabsVertical = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return TabsVertical;
+
+}/////////////////////////// Component Factory END /////////////////////////////

@@ -2,10 +2,13 @@
 // structured list. Uses role="rowgroup" for screen reader semantics.
 //   children    -> structured list row elements (header rows)
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the StructuredListHead molecule.
@@ -19,9 +22,17 @@ Build the StructuredListHead molecule.
 
 @return {Function} - The StructuredListHead component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function StructuredListHead (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const StructuredListHead = function StructuredListHead (props) {
+
 
     const {
       children, style,
@@ -46,7 +57,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, rest),
       children
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _StructuredListHead = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return StructuredListHead;
+
+}/////////////////////////// Component Factory END /////////////////////////////

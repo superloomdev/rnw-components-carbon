@@ -1,10 +1,13 @@
 // Info: SkeletonIcon molecule [S1 presentational]. A skeleton placeholder for
 // an icon. Uses role="img" for screen reader semantics.
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the SkeletonIcon molecule.
@@ -18,9 +21,17 @@ Build the SkeletonIcon molecule.
 
 @return {Function} - The SkeletonIcon component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function SkeletonIcon (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const SkeletonIcon = function SkeletonIcon (props) {
+
 
     const {
       style,
@@ -46,7 +57,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         ]
       }, rest)
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _SkeletonIcon = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return SkeletonIcon;
+
+}/////////////////////////// Component Factory END /////////////////////////////

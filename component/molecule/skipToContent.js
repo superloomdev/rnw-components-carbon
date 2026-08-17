@@ -4,11 +4,13 @@
 //   href        -> string (link target, optional)
 //   targetId    -> string (id of the content to skip to)
 //   style       -> custom style overrides
-/* global document */
-'use strict';
 
-const { Pressable, Platform } = require('react-native');
 
+// Imports
+import { Pressable, Platform } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the SkipToContent molecule.
@@ -22,8 +24,17 @@ Build the SkipToContent molecule.
 
 @return {Function} - The SkipToContent component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function SkipToContent (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const SkipToContent = function SkipToContent (props) {
+
 
     const {
       href, targetId, style,
@@ -81,7 +92,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         weight: 'medium'
       }, 'Skip to content')
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _SkipToContent = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return SkipToContent;
+
+}/////////////////////////// Component Factory END /////////////////////////////

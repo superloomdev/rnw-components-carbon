@@ -3,10 +3,13 @@
 // reader semantics. Renders children with a secondary background and padding.
 //   children    -> expanded content elements
 //   style       -> custom style overrides
-'use strict';
 
-const { View: RNView } = require('react-native');
 
+// Imports
+import { View as RNView } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the TableExpandedRow molecule.
@@ -20,9 +23,17 @@ Build the TableExpandedRow molecule.
 
 @return {Function} - The TableExpandedRow component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
-  return function TableExpandedRow (props) {
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const TableExpandedRow = function TableExpandedRow (props) {
+
 
     const {
       children, style,
@@ -44,7 +55,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, rest),
       children
     );
+  };////////////////////////// Public Functions END ////////////////////////////
 
-  };
 
-};
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _TableExpandedRow = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return TableExpandedRow;
+
+}/////////////////////////// Component Factory END /////////////////////////////

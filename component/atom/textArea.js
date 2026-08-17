@@ -1,6 +1,6 @@
 // Info: TextArea atom [S2 interactive]. A multiline text input with token
-// consumption for border and background. Uses M1 (a11y) for aria-* state and
-// M8 (useControllableState) for controlled/uncontrolled value.
+// consumption for border and background. Uses a11y for aria-* state and
+// ControllableState for controlled/uncontrolled value.
 //   value         -> string (controlled)
 //   defaultValue  -> string (uncontrolled)
 //   onChange      -> callback receiving the text value
@@ -8,10 +8,13 @@
 //   invalid       -> boolean
 //   placeholder   -> string
 //   rows          -> number (visual height in lines, default 4)
-'use strict';
 
-const { TextInput: RNTextInput } = require('react-native');
 
+// Imports
+import { TextInput as RNTextInput } from 'react-native';
+
+
+/////////////////////////// Component Factory START ////////////////////////////
 
 /********************************************************************
 Build the TextArea atom.
@@ -21,12 +24,20 @@ Build the TextArea atom.
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Parts    - Mechanisms: { A11y, PressKeys, ControllableState, Units, Overlay, AnchoredPosition }
 @param {Object} Registry - Component registry (unused by atoms)
-@param {Object} Style   - { utilities, tokens, breakpoint }
+@param {Object} Style    - { utilities, tokens, breakpoint }
 
 @return {Function} - The TextArea component
 *********************************************************************/
-module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
-  return function TextArea (props) {
+export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
+
+  /////////////////////////// Static Constants START ////////////////////////////
+  // None.
+  /////////////////////////// Static Constants END //////////////////////////////
+
+
+
+  /////////////////////////// Public Functions START ////////////////////////////
+  const TextArea = function TextArea (props) {
 
     const {
       value, defaultValue, onChange, disabled, invalid, placeholder, rows,
@@ -89,6 +100,18 @@ module.exports = function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, ariaProps, rest)
     );
 
-  };
+  };////////////////////////// Public Functions END ////////////////////////////
 
-};
+
+
+  ////////////////////////// Private Functions START ///////////////////////////
+  const _TextArea = { // eslint-disable-line no-unused-vars
+    // None.
+  };////////////////////////// Private Functions END ///////////////////////////
+
+
+
+  // Return the public component
+  return TextArea;
+
+}/////////////////////////// Component Factory END /////////////////////////////
