@@ -110,3 +110,4 @@ class SafeBoundary extends React.Component {
 }
 
 export { React, ReactDOM, SafeBoundary, buildRegistry, HINT_PROPS, INTERACTIVE };
+export default { React, ReactDOM, SafeBoundary, buildRegistry, HINT_PROPS, INTERACTIVE };
