@@ -27,8 +27,10 @@ import { Platform as RNPlatform } from 'react-native';
 *********************************************************************/
 export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
 
+  // Capture shared libraries for this part
   const Lib = { Utils: shared_libs.Utils, Debug: shared_libs.Debug, React: shared_libs.React };
 
+  // Delegate to createInterface to build the hook
   return createInterface(Lib);
 
 }/////////////////////////// Module-Loader END /////////////////////////////////
@@ -62,6 +64,7 @@ const createInterface = function (Lib) {
     // Arrow key handler on the container
     const handleKeyDown = Lib.React.useCallback(function (event) {
 
+      // Track the candidate next index for the arrow key press
       let nextIndex;
 
       // Determine which keys to listen to based on orientation
@@ -95,6 +98,7 @@ const createInterface = function (Lib) {
       // Prevent default scroll behavior
       event.preventDefault();
 
+      // Notify the parent of the new active index when it changes
       if (nextIndex !== activeIndex && Lib.Utils.isFunction(onActiveIndexChange)) {
         onActiveIndexChange(nextIndex);
       }
@@ -113,6 +117,7 @@ const createInterface = function (Lib) {
     // Per-item props: focusable on the active item only
     const getItemProps = function (index) {
 
+      // Mark the active item as focusable; all others are not
       const isActive = index === activeIndex;
       const props = {
         focusable: isActive
@@ -134,6 +139,7 @@ const createInterface = function (Lib) {
   };
 
 
+  // Expose the hook to consumers
   return useRovingTabIndex;
 
 };/////////////////////////// createInterface END //////////////////////////////

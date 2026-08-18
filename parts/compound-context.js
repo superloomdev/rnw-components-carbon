@@ -34,8 +34,10 @@
 *********************************************************************/
 export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
 
+  // Extract the shared libraries needed by this factory
   const Lib = { Utils: shared_libs.Utils, Debug: shared_libs.Debug, React: shared_libs.React };
 
+  // Return the context factory so callers can create compound context pairs
   return createInterface(Lib);
 
 }/////////////////////////// Module-Loader END /////////////////////////////////
@@ -82,6 +84,7 @@ const createInterface = function (Lib) {
     // Hook that throws when used outside its Provider
     const useContext = function () {
 
+      // Read the current context value from the nearest Provider
       const value = React.useContext(Context);
 
       // undefined means no Provider is mounted above this consumer
@@ -92,6 +95,7 @@ const createInterface = function (Lib) {
         );
       }
 
+      // Return the resolved context value to the calling component
       return value;
 
     };
@@ -107,6 +111,7 @@ const createInterface = function (Lib) {
   };
 
 
+  // Return the context factory for compound components
   return makeCompoundContext;
 
 };/////////////////////////// createInterface END //////////////////////////////

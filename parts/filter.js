@@ -18,11 +18,13 @@
 *********************************************************************/
 export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
 
+  // Collect the shared libs needed by the Filter interface
   const Lib = {
     Utils: shared_libs.Utils,
     Debug: shared_libs.Debug
   };
 
+  // Return the Filter interface built from the shared libs
   return createInterface(Lib);
 
 }/////////////////////////// Module-Loader END /////////////////////////////////
@@ -49,12 +51,15 @@ const createInterface = function (Lib) { // eslint-disable-line no-unused-vars
     // Case-insensitive substring match: returns true if label contains input
     matchesLabel: function (inputValue, label) {
 
+      // Return true for empty input so all options stay visible
       if (!inputValue) {
         return true;
       }
 
+      // Normalize the input to lowercase for case-insensitive comparison
       const lowerInput = String(inputValue).toLowerCase();
 
+      // Return whether the label contains the normalized input substring
       return String(label).toLowerCase().indexOf(lowerInput) >= 0;
 
     }

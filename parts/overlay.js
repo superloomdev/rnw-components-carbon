@@ -30,8 +30,10 @@
 *********************************************************************/
 export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
 
+  // Capture shared libraries for this part
   const Lib = { Utils: shared_libs.Utils, Debug: shared_libs.Debug, React: shared_libs.React };
 
+  // Delegate to createInterface to build the public API
   return createInterface(Lib);
 
 }/////////////////////////// Module-Loader END /////////////////////////////////
@@ -56,6 +58,7 @@ const createInterface = function (Lib) {
   const OverlayContext = Lib.React.createContext({
     layers: [],
     register: function () {
+      // No host mounted; return an invalid layer index
       return -1;
     },
     unregister: function () {}
@@ -81,6 +84,7 @@ const createInterface = function (Lib) {
     const onClose = options.onClose;
     const render = options.render;
 
+    // Access the overlay host context and prepare a layer id ref
     const ctx = Lib.React.useContext(OverlayContext);
     const layerIdRef = Lib.React.useRef(-1);
 
@@ -88,6 +92,7 @@ const createInterface = function (Lib) {
     // Register on open, unregister on close
     Lib.React.useEffect(function () {
 
+      // Register the overlay layer when it opens
       if (isOpen) {
         layerIdRef.current = ctx.register({
           id: ctx.layers.length,
@@ -97,7 +102,9 @@ const createInterface = function (Lib) {
         });
       }
 
+      // Unregister the layer on cleanup to keep the stack in sync
       return function () {
+        // Only unregister if a layer was actually registered
         if (layerIdRef.current >= 0) {
           ctx.unregister(layerIdRef.current);
           layerIdRef.current = -1;
@@ -110,6 +117,7 @@ const createInterface = function (Lib) {
     // Update the layer when trap/onClose/render change
     Lib.React.useEffect(function () {
 
+      // Re-register the layer with updated options when they change
       if (layerIdRef.current >= 0 && isOpen) {
         // Re-register with updated values
         ctx.unregister(layerIdRef.current);
@@ -133,6 +141,7 @@ const createInterface = function (Lib) {
   };
 
 
+  // Expose the hook and context to consumers
   return {
     useOverlay: useOverlay,
     OverlayContext: OverlayContext
