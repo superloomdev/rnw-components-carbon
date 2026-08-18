@@ -21,7 +21,7 @@ import { Platform as RNPlatform } from 'react-native';
 /////////////////////////// Module-Loader START ////////////////////////////////
 
 /********************************************************************
-    Factory part loader. Uniform parts signature.
+Factory part loader. Uniform parts signature.
 
 @param {Object} shared_libs - Lib container with Utils, Debug, React, Device
 @param {Object} config - Merged config from the parent module
@@ -49,7 +49,7 @@ export default function (shared_libs, config, errors) { // eslint-disable-line n
 /////////////////////////// createInterface START //////////////////////////////
 
 /********************************************************************
-    Build the useAnchoredPosition hook.
+Build the useAnchoredPosition hook.
 
 @param {Object} Lib - The shared Lib container (requires React)
 

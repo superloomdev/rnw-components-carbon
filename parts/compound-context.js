@@ -24,7 +24,7 @@
 /////////////////////////// Module-Loader START ////////////////////////////////
 
 /********************************************************************
-    Factory part loader. Uniform parts signature.
+Factory part loader. Uniform parts signature.
 
 @param {Object} shared_libs - Lib container with Utils, Debug, React
 @param {Object} config - Merged config from the parent module
@@ -47,7 +47,7 @@ export default function (shared_libs, config, errors) { // eslint-disable-line n
 /////////////////////////// createInterface START //////////////////////////////
 
 /********************************************************************
-    Create a compound context pair: a Provider and a useContext hook.
+Create a compound context pair: a Provider and a useContext hook.
 
 @param {Object} Lib - The shared Lib container (requires React)
 
@@ -59,7 +59,7 @@ const createInterface = function (Lib) {
   ///////////////////////////Public Functions START//////////////////////////////
 
   /********************************************************************
-    Return a context factory bound to the given display name.
+Return a context factory bound to the given display name.
 
 @param {String} displayName - Human-readable name for error messages
 

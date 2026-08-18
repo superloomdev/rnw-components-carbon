@@ -11,8 +11,8 @@ export default function (Lib, ERRORS) {
   const Validators = {
 
     /********************************************************************
-    Validate the merged config object. Throws TypeError on any
-    misconfiguration so the module fails at startup, not at call time.
+Validate the merged config object. Throws TypeError on any
+misconfiguration so the module fails at startup, not at call time.
 
 @param {Object} CONFIG - Merged config for this instance
 @return {void}
@@ -48,8 +48,8 @@ export default function (Lib, ERRORS) {
 
 
     /********************************************************************
-    Validate the injected shared_libs container. Throws TypeError when
-    a required injection is missing.
+Validate the injected shared_libs container. Throws TypeError when
+a required injection is missing.
 
 @param {Object} shared_libs - The shared library container
 @return {void}
@@ -80,9 +80,9 @@ export default function (Lib, ERRORS) {
 
 
     /********************************************************************
-    Validate a theme contract at build time. Throws TypeError when the
-    theme is malformed or missing a required token group. This is a
-    boot-time check, so it throws normally.
+Validate a theme contract at build time. Throws TypeError when the
+theme is malformed or missing a required token group. This is a
+boot-time check, so it throws normally.
 
 @param {Object} theme - The theme contract { Color, Dimension, Font, Breakpoint }
 @return {void}

@@ -41,8 +41,8 @@ export default function (shared_libs, config, errors) { // eslint-disable-line n
 /////////////////////////// createInterface START //////////////////////////////
 
 /********************************************************************
-    Build the a11y translator. Closes over Lib for the id generator's
-    counter storage.
+Build the a11y translator. Closes over Lib for the id generator's
+counter storage.
 
 @param {Object} Lib - The shared Lib container (requires React for refs)
 

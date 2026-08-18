@@ -13,7 +13,7 @@
 /////////////////////////// Module-Loader START ////////////////////////////////
 
 /********************************************************************
-    Factory part loader. Uniform parts signature.
+Factory part loader. Uniform parts signature.
 
 @param {Object} shared_libs - Lib container with Utils and Debug
 @param {Object} config - Merged config from the parent module
@@ -48,7 +48,7 @@ export default function (shared_libs, config, errors) {
 /////////////////////////// createInterface START //////////////////////////////
 
 /********************************************************************
-    Build the Units interface over one instance's injected dependencies.
+Build the Units interface over one instance's injected dependencies.
 
 @param {Object} Lib - Dependency container with Utils and Debug
 @param {Object} DATA - Parsed data/style-contract.json
