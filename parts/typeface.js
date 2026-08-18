@@ -80,17 +80,17 @@ const createInterface = function (Lib) {
 
 
     /********************************************************************
-Resolve a font role and weight to the concrete family name.
+    Resolve a font role and weight to the concrete family name.
 
-When Lib.Font is available, delegates to Font.resolveFamily to get
-the family registered for the given role. When absent, returns the
-theme family directly.
+    When Lib.Font is available, delegates to Font.resolveFamily to get
+    the family registered for the given role. When absent, returns the
+    theme family directly.
 
-@param {String} role   - Font role key (e.g. 'primary', 'secondary')
-@param {String} weight - Weight key (e.g. 'regular', 'bold')
-@param {Object} Font   - Theme Font contract { family, weight }
+    @param {String} role   - Font role key (e.g. 'primary', 'secondary')
+    @param {String} weight - Weight key (e.g. 'regular', 'bold')
+    @param {Object} Font   - Theme Font contract { family, weight }
 
-@return {String} - Concrete family name
+    @return {String} - Concrete family name
     *********************************************************************/
     resolve: function (role, weight, Font) {
 
@@ -113,19 +113,19 @@ theme family directly.
 
 
     /********************************************************************
-Return the full style fragment for a role and weight.
+    Return the full style fragment for a role and weight.
 
-For synthesizing families (System, web-safe stacks), the fragment
-includes both fontFamily and fontWeight - the platform renderer
-synthesizes the weight. For per-weight-face families (e.g.
-Poppins_400Regular), the fragment includes only fontFamily - the
-weight is baked into the face file.
+    For synthesizing families (System, web-safe stacks), the fragment
+    includes both fontFamily and fontWeight - the platform renderer
+    synthesizes the weight. For per-weight-face families (e.g.
+    Poppins_400Regular), the fragment includes only fontFamily - the
+    weight is baked into the face file.
 
-@param {String} role   - Font role key (e.g. 'primary', 'secondary')
-@param {String} weight - Weight value (e.g. '400', '700')
-@param {Object} Font   - Theme Font contract { family, weight }
+    @param {String} role   - Font role key (e.g. 'primary', 'secondary')
+    @param {String} weight - Weight value (e.g. '400', '700')
+    @param {Object} Font   - Theme Font contract { family, weight }
 
-@return {Object} - Style fragment { fontFamily } or { fontFamily, fontWeight }
+    @return {Object} - Style fragment { fontFamily } or { fontFamily, fontWeight }
     *********************************************************************/
     styleFor: function (role, weight, Font) {
 
@@ -144,11 +144,11 @@ weight is baked into the face file.
 
 
     /********************************************************************
-True when the family synthesizes weight via the platform renderer.
+    True when the family synthesizes weight via the platform renderer.
 
-@param {String} family - Font family name
+    @param {String} family - Font family name
 
-@return {Boolean} - True for System and web-safe stack families
+    @return {Boolean} - True for System and web-safe stack families
     *********************************************************************/
     isSynthesizing: function (family) {
 

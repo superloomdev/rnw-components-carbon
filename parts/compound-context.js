@@ -59,12 +59,12 @@ const createInterface = function (Lib) {
   ///////////////////////////Public Functions START//////////////////////////////
 
   /********************************************************************
-Return a context factory bound to the given display name.
+  Return a context factory bound to the given display name.
 
-@param {String} displayName - Human-readable name for error messages
+  @param {String} displayName - Human-readable name for error messages
 
-@return {Object} - { Provider, useContext, Context }
-    *********************************************************************/
+  @return {Object} - { Provider, useContext, Context }
+  *********************************************************************/
   const makeCompoundContext = function (displayName) {
 
     // Create a React context with the given display name for compound components

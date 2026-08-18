@@ -58,16 +58,16 @@ const createInterface = function (Lib) {
   ///////////////////////////Public Functions START//////////////////////////////
 
   /********************************************************************
-React hook that traps focus within an overlay while it is open.
+  React hook that traps focus within an overlay while it is open.
 
-@param {Object}   options
-@param {Boolean}  options.isOpen        - Whether the overlay is currently open
-@param {Function} options.onClose       - Called when Escape or outside press dismisses
-@param {Object}   [options.initialFocusRef] - Ref to focus on open (defaults to first focusable)
-@param {Object}   [options.finalFocusRef]   - Ref to focus on close (defaults to trigger)
+  @param {Object}   options
+  @param {Boolean}  options.isOpen        - Whether the overlay is currently open
+  @param {Function} options.onClose       - Called when Escape or outside press dismisses
+  @param {Object}   [options.initialFocusRef] - Ref to focus on open (defaults to first focusable)
+  @param {Object}   [options.finalFocusRef]   - Ref to focus on close (defaults to trigger)
 
-@return {Object} - { containerRef, onOutsidePress, accessibilityProps }
-    *********************************************************************/
+  @return {Object} - { containerRef, onOutsidePress, accessibilityProps }
+  *********************************************************************/
   const useFocusTrap = function (options) {
 
     // Destructure focus trap options: isOpen, onClose, initialFocusRef, finalFocusRef, trap

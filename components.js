@@ -407,14 +407,14 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
     // ~~~~~~~~~~~~~~~~~~~~ Registry Build ~~~~~~~~~~~~~~~~~~~~
 
     /********************************************************************
-Build the themed component registry from a theme contract. Generates
-utility styles per breakpoint, wires the HOC, and instantiates every
-atom, molecule, variant, and freeform component.
+    Build the themed component registry from a theme contract. Generates
+    utility styles per breakpoint, wires the HOC, and instantiates every
+    atom, molecule, variant, and freeform component.
 
-@param {Object} theme       - Theme contract { Color, Dimension, Font, Breakpoint }
-@param {String} breakpoint  - Active breakpoint key (default 'base')
+    @param {Object} theme       - Theme contract { Color, Dimension, Font, Breakpoint }
+    @param {String} breakpoint  - Active breakpoint key (default 'base')
 
-@return {Object} - { Component, Style }
+    @return {Object} - { Component, Style }
     *********************************************************************/
     build: function (theme, breakpoint) {
 
@@ -793,14 +793,14 @@ atom, molecule, variant, and freeform component.
 
 
     /********************************************************************
-Rebuild the themed component registry from a new theme. Returns a
-new registry object; the previous registry is never mutated. This
-is the runtime re-theming mechanism.
+    Rebuild the themed component registry from a new theme. Returns a
+    new registry object; the previous registry is never mutated. This
+    is the runtime re-theming mechanism.
 
-@param {Object} theme       - New theme contract
-@param {String} breakpoint  - Active breakpoint key
+    @param {Object} theme       - New theme contract
+    @param {String} breakpoint  - Active breakpoint key
 
-@return {Object} - { Component, Style }
+    @return {Object} - { Component, Style }
     *********************************************************************/
     rebuild: function (theme, breakpoint) {
 
@@ -811,13 +811,13 @@ is the runtime re-theming mechanism.
 
 
     /********************************************************************
-Bridge themer output to the component theme contract. Converts the
-flat emitted token map from buildTheme() into the nested
-{ Color, Dimension, Font, Breakpoint } shape the library consumes.
+    Bridge themer output to the component theme contract. Converts the
+    flat emitted token map from buildTheme() into the nested
+    { Color, Dimension, Font, Breakpoint } shape the library consumes.
 
-@param {Object} themer_output - Result from Lib.Themer.buildTheme()
+    @param {Object} themer_output - Result from Lib.Themer.buildTheme()
 
-@return {Object} - { Color, Dimension, Font, Breakpoint }
+    @return {Object} - { Color, Dimension, Font, Breakpoint }
     *********************************************************************/
     themeContract: function (themer_output) {
 
@@ -830,14 +830,14 @@ flat emitted token map from buildTheme() into the nested
     // ~~~~~~~~~~~~~~~~~~~~ Hooks ~~~~~~~~~~~~~~~~~~~~
 
     /********************************************************************
-React hook that resolves the active breakpoint from the injected
-Device helper. Seeds from Device.getViewport() and subscribes to
-viewport changes, unsubscribing on unmount. Returns the active
-breakpoint key.
+    React hook that resolves the active breakpoint from the injected
+    Device helper. Seeds from Device.getViewport() and subscribes to
+    viewport changes, unsubscribing on unmount. Returns the active
+    breakpoint key.
 
-@param {Object} theme  - Theme contract with Breakpoint group
+    @param {Object} theme  - Theme contract with Breakpoint group
 
-@return {String} - Active breakpoint key ('base', 'sm', 'md', 'lg', 'xl')
+    @return {String} - Active breakpoint key ('base', 'sm', 'md', 'lg', 'xl')
     *********************************************************************/
     useBreakpoint: function (theme) {
 
@@ -912,11 +912,11 @@ breakpoint key.
     // ~~~~~~~~~~~~~~~~~~~~ Token Constants ~~~~~~~~~~~~~~~~~~~~
 
     /********************************************************************
-Export the valid token sets as constants so applications reference
-a constant instead of a string literal. This shrinks the error
-surface for render-time prop validation.
+    Export the valid token sets as constants so applications reference
+    a constant instead of a string literal. This shrinks the error
+    surface for render-time prop validation.
 
-@return {Object} - { fontSize, fontColor, fontWeight, space, radius }
+    @return {Object} - { fontSize, fontColor, fontWeight, space, radius }
     *********************************************************************/
     tokens: Object.freeze({
       fontSize: ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
