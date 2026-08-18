@@ -66,16 +66,16 @@ const createInterface = function (Lib) {
 
 
   /********************************************************************
-Hook for overlay components to register themselves with the host.
+  Hook for overlay components to register themselves with the host.
 
-@param {Object} options
-@param {Boolean}  options.isOpen - Whether the overlay is open
-@param {Boolean}  [options.trap] - Whether this layer traps focus
-@param {Function} options.onClose - Called on Escape/outside dismissal
-@param {Function} options.render - Function returning the overlay children
+  @param {Object} options
+  @param {Boolean}  options.isOpen - Whether the overlay is open
+  @param {Boolean}  [options.trap] - Whether this layer traps focus
+  @param {Function} options.onClose - Called on Escape/outside dismissal
+  @param {Function} options.render - Function returning the overlay children
 
-@return {Object} - { layerIndex, zIndex }
-    *********************************************************************/
+  @return {Object} - { layerIndex, zIndex }
+  *********************************************************************/
   const useOverlay = function (options) {
 
     // Destructure overlay options: isOpen, trap, onClose, render

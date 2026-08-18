@@ -70,11 +70,11 @@ const createInterface = function (Lib, DATA, UNIT_PATTERN) {
     // so a third-party theme cannot put a unit string into a style prop.
 
     /********************************************************************
-        Convert a dimension value to a finite pixel number.
+    Convert a dimension value to a finite pixel number.
 
-        @param {Number|String} value - Raw token value, e.g. 16 or '0.75rem'
+    @param {Number|String} value - Raw token value, e.g. 16 or '0.75rem'
 
-        @return {Number|null} - Pixel number, or null when unconvertible
+    @return {Number|null} - Pixel number, or null when unconvertible
     *********************************************************************/
     toPx: function (value) {
 
@@ -108,12 +108,12 @@ const createInterface = function (Lib, DATA, UNIT_PATTERN) {
 
 
     /********************************************************************
-        Derive a line height from a font size and a ratio.
+    Derive a line height from a font size and a ratio.
 
-        @param {Number} size - Font size in pixels
-        @param {Number} ratio - Line-height ratio
+    @param {Number} size - Font size in pixels
+    @param {Number} ratio - Line-height ratio
 
-        @return {Number|null} - Rounded line height, or null on bad input
+    @return {Number|null} - Rounded line height, or null on bad input
     *********************************************************************/
     lineHeight: function (size, ratio) {
 
@@ -130,13 +130,13 @@ const createInterface = function (Lib, DATA, UNIT_PATTERN) {
 
 
     /********************************************************************
-        Clamp a number between an inclusive minimum and maximum.
+    Clamp a number between an inclusive minimum and maximum.
 
-        @param {Number} value - Value to clamp
-        @param {Number} min - Inclusive lower bound
-        @param {Number} max - Inclusive upper bound
+    @param {Number} value - Value to clamp
+    @param {Number} min - Inclusive lower bound
+    @param {Number} max - Inclusive upper bound
 
-        @return {Number} - Clamped value
+    @return {Number} - Clamped value
     *********************************************************************/
     clamp: function (value, min, max) {
 
@@ -157,11 +157,11 @@ const createInterface = function (Lib, DATA, UNIT_PATTERN) {
 
 
     /********************************************************************
-        Round a number to the nearest integer.
+    Round a number to the nearest integer.
 
-        @param {Number} value - Value to round
+    @param {Number} value - Value to round
 
-        @return {Number} - Rounded value, or 0 on non-numeric input
+    @return {Number} - Rounded value, or 0 on non-numeric input
     *********************************************************************/
     round: function (value) {
 
@@ -177,11 +177,11 @@ const createInterface = function (Lib, DATA, UNIT_PATTERN) {
 
 
     /********************************************************************
-        Round a number up to the nearest integer.
+    Round a number up to the nearest integer.
 
-        @param {Number} value - Value to round up
+    @param {Number} value - Value to round up
 
-        @return {Number} - Ceiling value, or 0 on non-numeric input
+    @return {Number} - Ceiling value, or 0 on non-numeric input
     *********************************************************************/
     ceil: function (value) {
 
@@ -197,13 +197,13 @@ const createInterface = function (Lib, DATA, UNIT_PATTERN) {
 
 
     /********************************************************************
-        Parse an integer from a string. Centralizes parseInt so
-        components never call it directly.
+    Parse an integer from a string. Centralizes parseInt so
+    components never call it directly.
 
-        @param {String} value - String to parse
-        @param {Number} [radix] - Radix (default 10)
+    @param {String} value - String to parse
+    @param {Number} [radix] - Radix (default 10)
 
-        @return {Number|null} - Parsed integer, or null on failure
+    @return {Number|null} - Parsed integer, or null on failure
     *********************************************************************/
     parseInteger: function (value, radix) {
 
@@ -217,12 +217,12 @@ const createInterface = function (Lib, DATA, UNIT_PATTERN) {
 
 
     /********************************************************************
-        Parse a float from a string. Centralizes parseFloat so
-        components never call it directly.
+    Parse a float from a string. Centralizes parseFloat so
+    components never call it directly.
 
-        @param {String} value - String to parse
+    @param {String} value - String to parse
 
-        @return {Number|null} - Parsed float, or null on failure
+    @return {Number|null} - Parsed float, or null on failure
     *********************************************************************/
     parseNumber: function (value) {
 
@@ -241,12 +241,12 @@ const createInterface = function (Lib, DATA, UNIT_PATTERN) {
     // them, so the check has to be explicit rather than left to the platform.
 
     /********************************************************************
-        Report whether a style prop and value pair is invalid on native.
+    Report whether a style prop and value pair is invalid on native.
 
-        @param {String} prop - Style property name, e.g. 'padding'
-        @param {*} value - Candidate style value
+    @param {String} prop - Style property name, e.g. 'padding'
+    @param {*} value - Candidate style value
 
-        @return {Boolean} - True when the pair would fail on iOS or Android
+    @return {Boolean} - True when the pair would fail on iOS or Android
     *********************************************************************/
     isInvalidOnNative: function (prop, value) {
 
@@ -268,11 +268,11 @@ const createInterface = function (Lib, DATA, UNIT_PATTERN) {
   const _Units = {
 
     /********************************************************************
-        Parse the leading float from a unit-suffixed string.
+    Parse the leading float from a unit-suffixed string.
 
-        @param {String} value - Unit-suffixed string, e.g. '0.75rem'
+    @param {String} value - Unit-suffixed string, e.g. '0.75rem'
 
-        @return {Number|null} - The parsed number, or null when absent
+    @return {Number|null} - The parsed number, or null when absent
     *********************************************************************/
     parseLeadingFloat: function (value) {
 

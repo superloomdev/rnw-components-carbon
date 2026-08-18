@@ -135,13 +135,13 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   const _Button = {
 
     /********************************************************************
-Resolve the active interaction state to a token suffix. Priority:
-disabled > pressed > hovered > focused > default.
+    Resolve the active interaction state to a token suffix. Priority:
+    disabled > pressed > hovered > focused > default.
 
-@param {Object} props          - Component props (reads disabled)
-@param {Object} pressableState - RN Pressable state { pressed, hovered, focused }
+    @param {Object} props          - Component props (reads disabled)
+    @param {Object} pressableState - RN Pressable state { pressed, hovered, focused }
 
-@return {String} - Token suffix ('_disabled', '_pressed', '_hovered', '_focused', or '')
+    @return {String} - Token suffix ('_disabled', '_pressed', '_hovered', '_focused', or '')
     *********************************************************************/
     resolveStateSuffix: function (props, pressableState) {
 
@@ -167,14 +167,14 @@ disabled > pressed > hovered > focused > default.
 
 
     /********************************************************************
-Compute hitSlop so the touch target reaches the accessible minimum.
-Returns undefined when the visual box already clears the minimum on
-both axes.
+    Compute hitSlop so the touch target reaches the accessible minimum.
+    Returns undefined when the visual box already clears the minimum on
+    both axes.
 
-@param {Number} height - Current layout height
-@param {Number} width  - Current layout width
+    @param {Number} height - Current layout height
+    @param {Number} width  - Current layout width
 
-@return {Object|undefined} - Hit slop insets or undefined
+    @return {Object|undefined} - Hit slop insets or undefined
     *********************************************************************/
     resolveHitSlop: function (height, width) {
 

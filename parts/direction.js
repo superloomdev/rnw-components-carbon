@@ -61,9 +61,9 @@ const createInterface = function (rtlActive) {
 
 
     /********************************************************************
-Returns true when RTL layout is active.
+    Returns true when RTL layout is active.
 
-@return {Boolean} - True for RTL, false for LTR
+    @return {Boolean} - True for RTL, false for LTR
     *********************************************************************/
     isRtl: function () {
 
