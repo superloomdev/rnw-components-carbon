@@ -19,11 +19,11 @@ import { Platform as RNPlatform } from 'react-native';
 /********************************************************************
     Factory part loader. Uniform parts signature.
 
-    @param {Object} shared_libs - Lib container with Utils, Debug, React
-    @param {Object} config - Merged config from the parent module
-    @param {Object} errors - Frozen error catalog from the parent module
+@param {Object} shared_libs - Lib container with Utils, Debug, React
+@param {Object} config - Merged config from the parent module
+@param {Object} errors - Frozen error catalog from the parent module
 
-    @return {Function} - useRovingTabIndex hook
+@return {Function} - useRovingTabIndex hook
 *********************************************************************/
 export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
 
@@ -42,9 +42,9 @@ export default function (shared_libs, config, errors) { // eslint-disable-line n
 /********************************************************************
     Build the useRovingTabIndex hook.
 
-    @param {Object} Lib - The shared Lib container (requires React)
+@param {Object} Lib - The shared Lib container (requires React)
 
-    @return {Function} - useRovingTabIndex(options) -> { getItemProps, containerProps }
+@return {Function} - useRovingTabIndex(options) -> { getItemProps, containerProps }
 *********************************************************************/
 const createInterface = function (Lib) {
 

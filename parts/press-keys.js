@@ -21,11 +21,11 @@ import { Platform as RNPlatform } from 'react-native';
 /********************************************************************
     Factory part loader. Uniform parts signature.
 
-    @param {Object} shared_libs - Lib container with Utils, Debug, React
-    @param {Object} config - Merged config from the parent module
-    @param {Object} errors - Frozen error catalog from the parent module
+@param {Object} shared_libs - Lib container with Utils, Debug, React
+@param {Object} config - Merged config from the parent module
+@param {Object} errors - Frozen error catalog from the parent module
 
-    @return {Function} - usePressKeys hook
+@return {Function} - usePressKeys hook
 *********************************************************************/
 export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
 
@@ -56,9 +56,9 @@ const SPACE_ACTIVATING_ROLES = {
     Build the usePressKeys hook. Returns a React hook that normalizes
     Enter and Space activation per role.
 
-    @param {Object} Lib - The shared Lib container (requires React)
+@param {Object} Lib - The shared Lib container (requires React)
 
-    @return {Function} - usePressKeys({ role, onActivate, disabled }) -> props
+@return {Function} - usePressKeys({ role, onActivate, disabled }) -> props
 *********************************************************************/
 const createInterface = function (Lib) {
 

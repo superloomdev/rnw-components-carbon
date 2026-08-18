@@ -18,13 +18,13 @@
 /////////////////////////// Module-Loader START ////////////////////////////////
 
 /********************************************************************
-    Factory part loader. Uniform parts signature.
+Factory part loader. Uniform parts signature.
 
-    @param {Object} shared_libs - Lib container with Utils, Debug, React
-    @param {Object} config - Merged config from the parent module
-    @param {Object} errors - Frozen error catalog from the parent module
+@param {Object} shared_libs - Lib container with Utils, Debug, React
+@param {Object} config - Merged config from the parent module
+@param {Object} errors - Frozen error catalog from the parent module
 
-    @return {Object} - { state, value, relation, position, id }
+@return {Object} - { state, value, relation, position, id }
 *********************************************************************/
 export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
 
@@ -44,9 +44,9 @@ export default function (shared_libs, config, errors) { // eslint-disable-line n
     Build the a11y translator. Closes over Lib for the id generator's
     counter storage.
 
-    @param {Object} Lib - The shared Lib container (requires React for refs)
+@param {Object} Lib - The shared Lib container (requires React for refs)
 
-    @return {Object} - { state, value, relation, position, id }
+@return {Object} - { state, value, relation, position, id }
 *********************************************************************/
 const createInterface = function (Lib) {
 

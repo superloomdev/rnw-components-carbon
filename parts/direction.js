@@ -14,11 +14,11 @@ import { I18nManager, Platform } from 'react-native';
 /********************************************************************
     Factory part loader. Uniform parts signature.
 
-    @param {Object} shared_libs - Lib container with Utils, Debug, React
-    @param {Object} config - Merged config from the parent module
-    @param {Object} errors - Frozen error catalog from the parent module
+@param {Object} shared_libs - Lib container with Utils, Debug, React
+@param {Object} config - Merged config from the parent module
+@param {Object} errors - Frozen error catalog from the parent module
 
-    @return {Object} - Public Direction interface
+@return {Object} - Public Direction interface
 *********************************************************************/
 export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
 
@@ -47,9 +47,9 @@ export default function (shared_libs, config, errors) { // eslint-disable-line n
 /********************************************************************
     Build the Direction interface over the resolved RTL state.
 
-    @param {Boolean} rtlActive - Whether RTL layout is active
+@param {Boolean} rtlActive - Whether RTL layout is active
 
-    @return {Object} - Public Direction interface
+@return {Object} - Public Direction interface
 *********************************************************************/
 const createInterface = function (rtlActive) {
 
@@ -63,7 +63,7 @@ const createInterface = function (rtlActive) {
     /********************************************************************
     Returns true when RTL layout is active.
 
-    @return {Boolean} - True for RTL, false for LTR
+@return {Boolean} - True for RTL, false for LTR
     *********************************************************************/
     isRtl: function () {
 

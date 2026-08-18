@@ -26,11 +26,11 @@
 /********************************************************************
     Factory part loader. Uniform parts signature.
 
-    @param {Object} shared_libs - Lib container with Utils, Debug, React
-    @param {Object} config - Merged config from the parent module
-    @param {Object} errors - Frozen error catalog from the parent module
+@param {Object} shared_libs - Lib container with Utils, Debug, React
+@param {Object} config - Merged config from the parent module
+@param {Object} errors - Frozen error catalog from the parent module
 
-    @return {Function} - (displayName) -> { Provider, useContext, Context }
+@return {Function} - (displayName) -> { Provider, useContext, Context }
 *********************************************************************/
 export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
 
@@ -49,9 +49,9 @@ export default function (shared_libs, config, errors) { // eslint-disable-line n
 /********************************************************************
     Create a compound context pair: a Provider and a useContext hook.
 
-    @param {Object} Lib - The shared Lib container (requires React)
+@param {Object} Lib - The shared Lib container (requires React)
 
-    @return {Function} - (displayName) -> { Provider, useContext, Context }
+@return {Function} - (displayName) -> { Provider, useContext, Context }
 *********************************************************************/
 const createInterface = function (Lib) {
 
@@ -61,9 +61,9 @@ const createInterface = function (Lib) {
   /********************************************************************
     Return a context factory bound to the given display name.
 
-    @param {String} displayName - Human-readable name for error messages
+@param {String} displayName - Human-readable name for error messages
 
-    @return {Object} - { Provider, useContext, Context }
+@return {Object} - { Provider, useContext, Context }
     *********************************************************************/
   const makeCompoundContext = function (displayName) {
 

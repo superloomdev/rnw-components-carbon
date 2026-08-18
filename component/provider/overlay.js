@@ -11,10 +11,10 @@ import { View as RNView, Platform as RNPlatform } from 'react-native';
 /********************************************************************
     Build the Overlay provider component.
 
-    @param {Object} Lib   - The shared Lib container (requires React)
-    @param {Object} Parts - The built parts object from components.js
+@param {Object} Lib   - The shared Lib container (requires React)
+@param {Object} Parts - The built parts object from components.js
 
-    @return {Object} - { Overlay, useOverlay, OverlayContext }
+@return {Object} - { Overlay, useOverlay, OverlayContext }
 *********************************************************************/
 export default function (Lib, Parts) {
 
