@@ -14,8 +14,8 @@ export default function (Lib, ERRORS) {
     Validate the merged config object. Throws TypeError on any
     misconfiguration so the module fails at startup, not at call time.
 
-    @param {Object} CONFIG - Merged config for this instance
-    @return {void}
+@param {Object} CONFIG - Merged config for this instance
+@return {void}
     *********************************************************************/
     validateConfig: function (CONFIG) {
 
@@ -51,8 +51,8 @@ export default function (Lib, ERRORS) {
     Validate the injected shared_libs container. Throws TypeError when
     a required injection is missing.
 
-    @param {Object} shared_libs - The shared library container
-    @return {void}
+@param {Object} shared_libs - The shared library container
+@return {void}
     *********************************************************************/
     validateInjections: function (shared_libs) {
 
@@ -84,8 +84,8 @@ export default function (Lib, ERRORS) {
     theme is malformed or missing a required token group. This is a
     boot-time check, so it throws normally.
 
-    @param {Object} theme - The theme contract { Color, Dimension, Font, Breakpoint }
-    @return {void}
+@param {Object} theme - The theme contract { Color, Dimension, Font, Breakpoint }
+@return {void}
     *********************************************************************/
     validateTheme: function (theme) {
 

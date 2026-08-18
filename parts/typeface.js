@@ -14,12 +14,12 @@
 /********************************************************************
     Factory part loader. Uniform parts signature.
 
-    @param {Object} shared_libs - Lib container with Utils, Debug, and
+@param {Object} shared_libs - Lib container with Utils, Debug, and
                                   optionally Font
-    @param {Object} config - Merged config from the parent module
-    @param {Object} errors - Frozen error catalog from the parent module
+@param {Object} config - Merged config from the parent module
+@param {Object} errors - Frozen error catalog from the parent module
 
-    @return {Object} - Public Typeface interface
+@return {Object} - Public Typeface interface
 *********************************************************************/
 export default function (shared_libs, config, errors) {
 
@@ -45,10 +45,10 @@ export default function (shared_libs, config, errors) {
 /********************************************************************
     Build the Typeface interface over one instance's injected dependencies.
 
-    @param {Object} Lib - Dependency container with Utils, Debug, and
+@param {Object} Lib - Dependency container with Utils, Debug, and
                           optionally Font
 
-    @return {Object} - Public Typeface interface
+@return {Object} - Public Typeface interface
 *********************************************************************/
 const createInterface = function (Lib) {
 
@@ -86,11 +86,11 @@ const createInterface = function (Lib) {
     the family registered for the given role. When absent, returns the
     theme family directly.
 
-    @param {String} role   - Font role key (e.g. 'primary', 'secondary')
-    @param {String} weight - Weight key (e.g. 'regular', 'bold')
-    @param {Object} Font   - Theme Font contract { family, weight }
+@param {String} role   - Font role key (e.g. 'primary', 'secondary')
+@param {String} weight - Weight key (e.g. 'regular', 'bold')
+@param {Object} Font   - Theme Font contract { family, weight }
 
-    @return {String} - Concrete family name
+@return {String} - Concrete family name
     *********************************************************************/
     resolve: function (role, weight, Font) {
 
@@ -121,11 +121,11 @@ const createInterface = function (Lib) {
     Poppins_400Regular), the fragment includes only fontFamily - the
     weight is baked into the face file.
 
-    @param {String} role   - Font role key (e.g. 'primary', 'secondary')
-    @param {String} weight - Weight value (e.g. '400', '700')
-    @param {Object} Font   - Theme Font contract { family, weight }
+@param {String} role   - Font role key (e.g. 'primary', 'secondary')
+@param {String} weight - Weight value (e.g. '400', '700')
+@param {Object} Font   - Theme Font contract { family, weight }
 
-    @return {Object} - Style fragment { fontFamily } or { fontFamily, fontWeight }
+@return {Object} - Style fragment { fontFamily } or { fontFamily, fontWeight }
     *********************************************************************/
     styleFor: function (role, weight, Font) {
 
@@ -146,9 +146,9 @@ const createInterface = function (Lib) {
     /********************************************************************
     True when the family synthesizes weight via the platform renderer.
 
-    @param {String} family - Font family name
+@param {String} family - Font family name
 
-    @return {Boolean} - True for System and web-safe stack families
+@return {Boolean} - True for System and web-safe stack families
     *********************************************************************/
     isSynthesizing: function (family) {
 

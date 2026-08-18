@@ -15,11 +15,11 @@
 /********************************************************************
     Factory part loader. Uniform parts signature.
 
-    @param {Object} shared_libs - Lib container with Utils and Debug
-    @param {Object} config - Merged config from the parent module
-    @param {Object} errors - Frozen error catalog from the parent module
+@param {Object} shared_libs - Lib container with Utils and Debug
+@param {Object} config - Merged config from the parent module
+@param {Object} errors - Frozen error catalog from the parent module
 
-    @return {Object} - Public Units interface
+@return {Object} - Public Units interface
 *********************************************************************/
 export default function (shared_libs, config, errors) {
 
@@ -50,11 +50,11 @@ export default function (shared_libs, config, errors) {
 /********************************************************************
     Build the Units interface over one instance's injected dependencies.
 
-    @param {Object} Lib - Dependency container with Utils and Debug
-    @param {Object} DATA - Parsed data/style-contract.json
-    @param {RegExp} UNIT_PATTERN - Compiled unit-suffix matcher
+@param {Object} Lib - Dependency container with Utils and Debug
+@param {Object} DATA - Parsed data/style-contract.json
+@param {RegExp} UNIT_PATTERN - Compiled unit-suffix matcher
 
-    @return {Object} - Public Units interface
+@return {Object} - Public Units interface
 *********************************************************************/
 const createInterface = function (Lib, DATA, UNIT_PATTERN) {
 

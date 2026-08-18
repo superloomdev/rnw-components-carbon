@@ -23,11 +23,11 @@ import { Platform as RNPlatform } from 'react-native';
 /********************************************************************
     Factory part loader. Uniform parts signature.
 
-    @param {Object} shared_libs - Lib container with Utils, Debug, React, Device
-    @param {Object} config - Merged config from the parent module
-    @param {Object} errors - Frozen error catalog from the parent module
+@param {Object} shared_libs - Lib container with Utils, Debug, React, Device
+@param {Object} config - Merged config from the parent module
+@param {Object} errors - Frozen error catalog from the parent module
 
-    @return {Function} - useAnchoredPosition hook
+@return {Function} - useAnchoredPosition hook
 *********************************************************************/
 export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
 
@@ -51,9 +51,9 @@ export default function (shared_libs, config, errors) { // eslint-disable-line n
 /********************************************************************
     Build the useAnchoredPosition hook.
 
-    @param {Object} Lib - The shared Lib container (requires React)
+@param {Object} Lib - The shared Lib container (requires React)
 
-    @return {Function} - useAnchoredPosition(options) -> { position, actualPlacement, measure }
+@return {Function} - useAnchoredPosition(options) -> { position, actualPlacement, measure }
 *********************************************************************/
 const createInterface = function (Lib) {
 

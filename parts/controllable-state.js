@@ -12,11 +12,11 @@
 /********************************************************************
     Factory part loader. Uniform parts signature.
 
-    @param {Object} shared_libs - Lib container with Utils, Debug, React
-    @param {Object} config - Merged config from the parent module
-    @param {Object} errors - Frozen error catalog from the parent module
+@param {Object} shared_libs - Lib container with Utils, Debug, React
+@param {Object} config - Merged config from the parent module
+@param {Object} errors - Frozen error catalog from the parent module
 
-    @return {Function} - useControllableState hook
+@return {Function} - useControllableState hook
 *********************************************************************/
 export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
 
@@ -35,9 +35,9 @@ export default function (shared_libs, config, errors) { // eslint-disable-line n
 /********************************************************************
     Build the useControllableState hook.
 
-    @param {Object} Lib - The shared Lib container (requires React, Debug)
+@param {Object} Lib - The shared Lib container (requires React, Debug)
 
-    @return {Function} - useControllableState({ value, defaultValue, onChange })
+@return {Function} - useControllableState({ value, defaultValue, onChange })
                          -> [resolvedValue, setValue]
 *********************************************************************/
 const createInterface = function (Lib) {

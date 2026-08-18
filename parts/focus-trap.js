@@ -24,11 +24,11 @@ import { Platform as RNPlatform, BackHandler as RNBackHandler, AccessibilityInfo
 /********************************************************************
     Factory part loader. Uniform parts signature.
 
-    @param {Object} shared_libs - Lib container with Utils, Debug, React
-    @param {Object} config - Merged config from the parent module
-    @param {Object} errors - Frozen error catalog from the parent module
+@param {Object} shared_libs - Lib container with Utils, Debug, React
+@param {Object} config - Merged config from the parent module
+@param {Object} errors - Frozen error catalog from the parent module
 
-    @return {Function} - useFocusTrap hook
+@return {Function} - useFocusTrap hook
 *********************************************************************/
 export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
 
@@ -48,9 +48,9 @@ export default function (shared_libs, config, errors) { // eslint-disable-line n
     Build the useFocusTrap hook. Returns a React hook that manages focus
     trapping for an overlay component.
 
-    @param {Object} Lib - The shared Lib container (requires React, Debug)
+@param {Object} Lib - The shared Lib container (requires React, Debug)
 
-    @return {Function} - useFocusTrap(options) -> { containerRef, onKeyDown, onOutsidePress }
+@return {Function} - useFocusTrap(options) -> { containerRef, onKeyDown, onOutsidePress }
 *********************************************************************/
 const createInterface = function (Lib) {
 
@@ -60,13 +60,13 @@ const createInterface = function (Lib) {
   /********************************************************************
     React hook that traps focus within an overlay while it is open.
 
-    @param {Object}   options
-    @param {Boolean}  options.isOpen        - Whether the overlay is currently open
-    @param {Function} options.onClose       - Called when Escape or outside press dismisses
-    @param {Object}   [options.initialFocusRef] - Ref to focus on open (defaults to first focusable)
-    @param {Object}   [options.finalFocusRef]   - Ref to focus on close (defaults to trigger)
+@param {Object}   options
+@param {Boolean}  options.isOpen        - Whether the overlay is currently open
+@param {Function} options.onClose       - Called when Escape or outside press dismisses
+@param {Object}   [options.initialFocusRef] - Ref to focus on open (defaults to first focusable)
+@param {Object}   [options.finalFocusRef]   - Ref to focus on close (defaults to trigger)
 
-    @return {Object} - { containerRef, onOutsidePress, accessibilityProps }
+@return {Object} - { containerRef, onOutsidePress, accessibilityProps }
     *********************************************************************/
   const useFocusTrap = function (options) {
 

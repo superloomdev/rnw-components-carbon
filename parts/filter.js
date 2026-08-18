@@ -10,11 +10,11 @@
 /********************************************************************
     Factory part loader. Uniform parts signature.
 
-    @param {Object} shared_libs - Lib container with Utils and Debug
-    @param {Object} config - Merged config from the parent module
-    @param {Object} errors - Frozen error catalog from the parent module
+@param {Object} shared_libs - Lib container with Utils and Debug
+@param {Object} config - Merged config from the parent module
+@param {Object} errors - Frozen error catalog from the parent module
 
-    @return {Object} - Public Filter interface
+@return {Object} - Public Filter interface
 *********************************************************************/
 export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
 
@@ -36,9 +36,9 @@ export default function (shared_libs, config, errors) { // eslint-disable-line n
 /********************************************************************
     Build the Filter interface.
 
-    @param {Object} Lib - The shared Lib container
+@param {Object} Lib - The shared Lib container
 
-    @return {Object} - { matchesLabel }
+@return {Object} - { matchesLabel }
 *********************************************************************/
 const createInterface = function (Lib) { // eslint-disable-line no-unused-vars
 

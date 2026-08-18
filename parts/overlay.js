@@ -22,11 +22,11 @@
 /********************************************************************
     Factory part loader. Uniform parts signature.
 
-    @param {Object} shared_libs - Lib container with Utils, Debug, React
-    @param {Object} config - Merged config from the parent module
-    @param {Object} errors - Frozen error catalog from the parent module
+@param {Object} shared_libs - Lib container with Utils, Debug, React
+@param {Object} config - Merged config from the parent module
+@param {Object} errors - Frozen error catalog from the parent module
 
-    @return {Object} - { useOverlay, OverlayContext }
+@return {Object} - { useOverlay, OverlayContext }
 *********************************************************************/
 export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
 
@@ -45,9 +45,9 @@ export default function (shared_libs, config, errors) { // eslint-disable-line n
 /********************************************************************
     Build the Overlay context and useOverlay hook.
 
-    @param {Object} Lib - The shared Lib container (requires React)
+@param {Object} Lib - The shared Lib container (requires React)
 
-    @return {Object} - { useOverlay, OverlayContext }
+@return {Object} - { useOverlay, OverlayContext }
 *********************************************************************/
 const createInterface = function (Lib) {
 
@@ -68,13 +68,13 @@ const createInterface = function (Lib) {
   /********************************************************************
     Hook for overlay components to register themselves with the host.
 
-    @param {Object} options
-    @param {Boolean}  options.isOpen - Whether the overlay is open
-    @param {Boolean}  [options.trap] - Whether this layer traps focus
-    @param {Function} options.onClose - Called on Escape/outside dismissal
-    @param {Function} options.render - Function returning the overlay children
+@param {Object} options
+@param {Boolean}  options.isOpen - Whether the overlay is open
+@param {Boolean}  [options.trap] - Whether this layer traps focus
+@param {Function} options.onClose - Called on Escape/outside dismissal
+@param {Function} options.render - Function returning the overlay children
 
-    @return {Object} - { layerIndex, zIndex }
+@return {Object} - { layerIndex, zIndex }
     *********************************************************************/
   const useOverlay = function (options) {
 

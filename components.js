@@ -411,10 +411,10 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
     utility styles per breakpoint, wires the HOC, and instantiates every
     atom, molecule, variant, and freeform component.
 
-    @param {Object} theme       - Theme contract { Color, Dimension, Font, Breakpoint }
-    @param {String} breakpoint  - Active breakpoint key (default 'base')
+@param {Object} theme       - Theme contract { Color, Dimension, Font, Breakpoint }
+@param {String} breakpoint  - Active breakpoint key (default 'base')
 
-    @return {Object} - { Component, Style }
+@return {Object} - { Component, Style }
     *********************************************************************/
     build: function (theme, breakpoint) {
 
@@ -797,10 +797,10 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
     new registry object; the previous registry is never mutated. This
     is the runtime re-theming mechanism.
 
-    @param {Object} theme       - New theme contract
-    @param {String} breakpoint  - Active breakpoint key
+@param {Object} theme       - New theme contract
+@param {String} breakpoint  - Active breakpoint key
 
-    @return {Object} - { Component, Style }
+@return {Object} - { Component, Style }
     *********************************************************************/
     rebuild: function (theme, breakpoint) {
 
@@ -815,9 +815,9 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
     flat emitted token map from buildTheme() into the nested
     { Color, Dimension, Font, Breakpoint } shape the library consumes.
 
-    @param {Object} themer_output - Result from Lib.Themer.buildTheme()
+@param {Object} themer_output - Result from Lib.Themer.buildTheme()
 
-    @return {Object} - { Color, Dimension, Font, Breakpoint }
+@return {Object} - { Color, Dimension, Font, Breakpoint }
     *********************************************************************/
     themeContract: function (themer_output) {
 
@@ -835,9 +835,9 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
     viewport changes, unsubscribing on unmount. Returns the active
     breakpoint key.
 
-    @param {Object} theme  - Theme contract with Breakpoint group
+@param {Object} theme  - Theme contract with Breakpoint group
 
-    @return {String} - Active breakpoint key ('base', 'sm', 'md', 'lg', 'xl')
+@return {String} - Active breakpoint key ('base', 'sm', 'md', 'lg', 'xl')
     *********************************************************************/
     useBreakpoint: function (theme) {
 
@@ -916,7 +916,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
     a constant instead of a string literal. This shrinks the error
     surface for render-time prop validation.
 
-    @return {Object} - { fontSize, fontColor, fontWeight, space, radius }
+@return {Object} - { fontSize, fontColor, fontWeight, space, radius }
     *********************************************************************/
     tokens: Object.freeze({
       fontSize: ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'],
