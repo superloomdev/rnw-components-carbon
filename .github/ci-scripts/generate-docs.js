@@ -180,7 +180,7 @@ function parseInfoHeader (source) {
 
   const map = {};
 
-  // Only scan the first 15 lines — the Info header is always at the top
+  // Only scan the first 15 lines - the Info header is always at the top
   const lines = source.split('\n').slice(0, 15);
 
   for (let i = 0; i < lines.length; i++) {
@@ -205,7 +205,7 @@ function parseInfoHeader (source) {
 
 
 // Extract prop names from a destructuring pattern: const { a, b, ...rest } = props;
-// Handles multi-line destructuring (the common case — 221 of 245 files).
+// Handles multi-line destructuring (the common case - 221 of 245 files).
 // Returns an array of prop names, or null if no destructuring found.
 function extractDestructuredProps (source) {
 
@@ -242,7 +242,7 @@ function extractMemberAccessProps (source) {
 
   const names = new Set();
 
-  // Match props.X (but not this.props.X — handled separately below)
+  // Match props.X (but not this.props.X - handled separately below)
   // Also match this.props.X
   const matches = source.matchAll(/(?:this\.)?props\.([a-zA-Z_][a-zA-Z0-9_]*)/g);
 
