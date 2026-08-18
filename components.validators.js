@@ -39,7 +39,7 @@ export default function (Lib, ERRORS) {
       }
 
       // BREAKPOINT_ORDER must be a non-empty array of strings
-      if (!Array.isArray(CONFIG.BREAKPOINT_ORDER) || CONFIG.BREAKPOINT_ORDER.length === 0) {
+      if (!Array.isArray(CONFIG.BREAKPOINT_ORDER) || Lib.Utils.isEmptyArray(CONFIG.BREAKPOINT_ORDER)) {
         throw new TypeError('rnw-components-carbon: BREAKPOINT_ORDER must be a non-empty array');
       }
 

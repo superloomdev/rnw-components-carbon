@@ -59,6 +59,7 @@ const createInterface = function (Lib) { // eslint-disable-line no-unused-vars
   // checked accepts true | false | 'mixed'.
   const state = function (opts) {
 
+    // Translate semantic state options into aria-* props, omitting null/undefined values
     if (!opts) {
       return {};
     }
@@ -230,6 +231,7 @@ const createInterface = function (Lib) { // eslint-disable-line no-unused-vars
   };
 
 
+  // Return the public a11y translator interface
   return {
     state: state,
     value: value,

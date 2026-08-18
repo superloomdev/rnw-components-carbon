@@ -60,6 +60,7 @@ const createInterface = function (Lib, DATA, UNIT_PATTERN) {
 
   ///////////////////////////Public Functions START//////////////////////////////
   const Units = {
+    // Public Units interface: numeric conversion and native contract enforcement
 
 
     // ~~~~~~~~~~~~~~~~~~~~ Conversion ~~~~~~~~~~~~~~~~~~~~
@@ -237,7 +238,7 @@ const createInterface = function (Lib, DATA, UNIT_PATTERN) {
     *********************************************************************/
     isInvalidOnNative: function (prop, value) {
 
-      // Colour and layout-keyword props carry no numeric constraint
+      // Color and layout-keyword props carry no numeric constraint
       if (!Lib.Utils.inArray(DATA.numeric_style_props, prop)) {
         return false;
       }
@@ -264,7 +265,7 @@ const createInterface = function (Lib, DATA, UNIT_PATTERN) {
     parseLeadingFloat: function (value) {
 
       // Number.parseFloat is the one permitted use in the package; every
-      // other module reaches this behaviour through Units
+      // other module reaches this behavior through Units
       const parsed = Number.parseFloat(value);
 
       // isNumber rejects NaN, which is what parseFloat returns on failure
@@ -275,6 +276,7 @@ const createInterface = function (Lib, DATA, UNIT_PATTERN) {
   };///////////////////////////Private Functions END/////////////////////////////
 
 
+  // Return the public Units interface
   return Units;
 
 };/////////////////////////// createInterface END ///////////////////////////////

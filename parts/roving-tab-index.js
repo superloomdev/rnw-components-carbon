@@ -51,6 +51,7 @@ const createInterface = function (Lib) {
 
   const useRovingTabIndex = function (options) {
 
+    // Destructure roving tab index options: count, activeIndex, orientation, loop
     const count = options.count;
     const activeIndex = options.activeIndex;
     const onActiveIndexChange = options.onActiveIndexChange;
@@ -124,6 +125,7 @@ const createInterface = function (Lib) {
     };
 
 
+    // Return the container props and per-item props getter
     return {
       getItemProps: getItemProps,
       containerProps: containerProps

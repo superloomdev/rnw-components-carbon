@@ -146,7 +146,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
             { position: 'absolute', top: pos.top, left: pos.left, minWidth: 200, zIndex: zIndex || 1000 }
           ]
         },
-        filteredOptions.length === 0
+        Lib.Utils.isEmptyArray(filteredOptions)
           ? React.createElement(Registry.Text, {
             size: 'sm',
             color: 'text_muted',

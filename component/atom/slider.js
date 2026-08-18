@@ -94,7 +94,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     const range = maxVal - minVal;
     const fillPercent = range > 0 ? ((clampedValue - minVal) / range) * 100 : 0;
 
-    // Resolve track and thumb colours
+    // Resolve track and thumb colors
     const activeColor = isDisabled
       ? (colorMap.TEXT_DISABLED || '#a8a8a8')
       : (colorMap.APP_PRIMARY || '#0f62fe');

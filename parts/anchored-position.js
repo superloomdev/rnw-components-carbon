@@ -153,6 +153,7 @@ const createInterface = function (Lib) {
 
   const useAnchoredPosition = function (options) {
 
+    // Destructure positioning options: placement, offset, flip, anchorRef
     const placement = options.placement || 'bottom';
     const offset = options.offset || 8;
     const flip = options.flip !== false;
@@ -227,6 +228,7 @@ const createInterface = function (Lib) {
     }, [anchorRef, placement, offset, flip]);
 
 
+    // Return the computed position, actual placement, and measure callback
     return {
       position: pos.position,
       actualPlacement: pos.actualPlacement,
