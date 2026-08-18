@@ -32,8 +32,10 @@ import { Platform as RNPlatform, BackHandler as RNBackHandler, AccessibilityInfo
 *********************************************************************/
 export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
 
+  // Collect the shared libs needed by the focus trap hook
   const Lib = { Utils: shared_libs.Utils, Debug: shared_libs.Debug, React: shared_libs.React };
 
+  // Return the useFocusTrap hook built from the shared libs
   return createInterface(Lib);
 
 }/////////////////////////// Module-Loader END /////////////////////////////////
@@ -85,6 +87,7 @@ const createInterface = function (Lib) {
     // On open: record previous focus and move focus into the overlay
     Lib.React.useEffect(function () {
 
+      // Bail out when the overlay is not open
       if (!isOpen) {
         return;
       }
@@ -119,6 +122,7 @@ const createInterface = function (Lib) {
     // Escape key and hardware back handler
     Lib.React.useEffect(function () {
 
+      // Bail out when the overlay is not open
       if (!isOpen) {
         return;
       }
@@ -128,12 +132,14 @@ const createInterface = function (Lib) {
 
         const handleKeyDown = function (event) {
 
+          // Close the overlay when Escape is pressed
           if (event.key === 'Escape') {
             onClose();
           }
 
         };
 
+        // Attach the keydown listener to the document
         document.addEventListener('keydown', handleKeyDown);
 
         // Cleanup: remove the keydown listener
@@ -148,6 +154,7 @@ const createInterface = function (Lib) {
 
         const handleBackPress = function () {
 
+          // Close the overlay on hardware back press
           onClose();
 
           // Return true to prevent default back behavior
@@ -155,6 +162,7 @@ const createInterface = function (Lib) {
 
         };
 
+        // Attach the back press handler to the Android back handler
         RNBackHandler.addEventListener('hardwareBackPress', handleBackPress);
 
         // Cleanup: remove the back handler
@@ -170,10 +178,12 @@ const createInterface = function (Lib) {
     // Tab cycling on web: trap focus within the container (only when trap=true)
     Lib.React.useEffect(function () {
 
+      // Bail out when trapping is disabled or not on web
       if (!isOpen || !trap || RNPlatform.OS !== 'web' || typeof document === 'undefined') {
         return;
       }
 
+      // Define the Tab key handler that cycles focus within the container
       const handleTabKey = function (event) {
 
         // Only handle Tab key
@@ -184,6 +194,7 @@ const createInterface = function (Lib) {
         // Find all focusable elements within the container
         const container = containerRef.current;
 
+        // Bail out when the container ref is not available
         if (!container) {
           return;
         }
@@ -193,11 +204,13 @@ const createInterface = function (Lib) {
           'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         );
 
+        // Prevent Tab navigation when there are no focusable elements
         if (Lib.Utils.isEmptyArray(focusable)) {
           event.preventDefault();
           return;
         }
 
+        // Identify the first and last focusable elements for wrap-around
         const first = focusable[0];
         const last = focusable[focusable.length - 1];
 
@@ -218,6 +231,7 @@ const createInterface = function (Lib) {
 
       };
 
+      // Attach the Tab key listener to the document
       document.addEventListener('keydown', handleTabKey);
 
       // Cleanup: remove the Tab key listener
@@ -231,6 +245,7 @@ const createInterface = function (Lib) {
     // On close: restore focus to the previously focused element
     Lib.React.useEffect(function () {
 
+      // Bail out when the overlay is still open
       if (isOpen) {
         return;
       }
@@ -258,6 +273,7 @@ const createInterface = function (Lib) {
     // Outside press handler for the backdrop
     const onOutsidePress = function () {
 
+      // Close the overlay when the backdrop is pressed
       onClose();
 
     };
@@ -273,6 +289,7 @@ const createInterface = function (Lib) {
   };
 
 
+  // Return the public useFocusTrap hook
   return useFocusTrap;
 
 };/////////////////////////// createInterface END //////////////////////////////

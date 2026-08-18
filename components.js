@@ -376,6 +376,7 @@ export default function loader (shared_libs, config) {
     }
   };
 
+  // Return the public interface for this instance
   return createInterface(Lib, CONFIG, ERRORS, Validators, state);
 
 }/////////////////////////// Module-Loader END /////////////////////////////////
@@ -428,6 +429,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
       // interface. See module-structure.md, Parts Pattern.
       const partsConfig = Object.assign({}, CONFIG, { STYLE_CONTRACT: STYLE_CONTRACT });
 
+      // Instantiate each mechanism part with the shared injection set
       const Parts = {
         A11y:             partsA11y(Lib, partsConfig, ERRORS),
         PressKeys:        partsPressKeys(Lib, partsConfig, ERRORS),
@@ -846,6 +848,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
         const order = CONFIG.BREAKPOINT_ORDER;
         let active = 'base';
 
+        // Check each breakpoint in descending width order
         for (let i = order.length - 1; i >= 0; i--) {
           const bpKey = order[i];
           const bpWidth = theme.Breakpoint[bpKey];
@@ -857,6 +860,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
 
         }
 
+        // Return the matched breakpoint key
         return active;
 
       };
@@ -880,6 +884,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
           // Resolve the new breakpoint and update state if it changed
           const next = resolveBreakpoint(dims.width);
 
+          // Update state only when the breakpoint actually changes
           if (next !== currentBreakpoint) {
             setBreakpoint(next);
           }
@@ -889,6 +894,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
         // Return the cleanup function to unsubscribe on unmount
         return function () {
 
+          // Unsubscribe only if the subscription succeeded
           if (subResult.success && Lib.Utils.isFunction(subResult.unsubscribe)) {
             subResult.unsubscribe();
           }
@@ -897,6 +903,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
 
       }, [currentBreakpoint]);
 
+      // Return the current breakpoint key
       return currentBreakpoint;
 
     },
@@ -923,6 +930,7 @@ const createInterface = function (Lib, CONFIG, ERRORS, Validators, state) {
   };///////////////////////////Public Functions END//////////////////////////////
 
 
+  // Return the public Components interface
   return Components;
 
 };/////////////////////////// createInterface END //////////////////////////////

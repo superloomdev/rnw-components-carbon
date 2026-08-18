@@ -42,6 +42,7 @@ export default function themeContract (themer_output) {
     return { Color: {}, Dimension: {}, Font: { family: {}, weight: {} }, Breakpoint: DEFAULT_BREAKPOINTS };
   }
 
+  // Initialize the nested token group containers
   const Color = {};
   const Dimension = {};
   const Font = { family: {}, weight: {} };
@@ -49,6 +50,7 @@ export default function themeContract (themer_output) {
   // Walk the flat token map and partition by prefix
   const flatKeys = Object.keys(flat);
 
+  // Partition each flat token into its nested group by prefix
   for (let i = 0; i < flatKeys.length; i++) {
     const key = flatKeys[i];
     const value = flat[key];

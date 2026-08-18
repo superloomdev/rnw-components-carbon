@@ -29,8 +29,10 @@ import { Platform as RNPlatform } from 'react-native';
 *********************************************************************/
 export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
 
+  // Capture shared libraries for this part
   const Lib = { Utils: shared_libs.Utils, Debug: shared_libs.Debug, React: shared_libs.React };
 
+  // Delegate to createInterface to build the hook
   return createInterface(Lib);
 
 }/////////////////////////// Module-Loader END /////////////////////////////////
@@ -112,6 +114,7 @@ const createInterface = function (Lib) {
   };
 
 
+  // Expose the hook to consumers
   return usePressKeys;
 
 };/////////////////////////// createInterface END //////////////////////////////

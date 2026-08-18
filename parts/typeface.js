@@ -33,6 +33,7 @@ export default function (shared_libs, config, errors) {
   // Frozen error catalog, held for parity with every other part
   const ERRORS = errors; // eslint-disable-line no-unused-vars
 
+  // Build the public interface from the injected dependencies
   return createInterface(Lib);
 
 }/////////////////////////// Module-Loader END /////////////////////////////////
@@ -98,6 +99,7 @@ const createInterface = function (Lib) {
 
         const result = Lib.Font.resolveFamily(role);
 
+        // Use the font module's family when it confirms a resolution
         if (result.success && result.family) {
           return result.family;
         }
@@ -162,6 +164,7 @@ const createInterface = function (Lib) {
         }
       }
 
+      // Not a known synthesizing family, so it carries per-weight faces
       return false;
 
     }

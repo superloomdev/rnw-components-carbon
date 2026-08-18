@@ -35,6 +35,7 @@ export default function (shared_libs, config, errors) { // eslint-disable-line n
     rtlActive = I18nManager.isRTL;
   }
 
+  // Return the Direction interface built from the resolved RTL state
   return createInterface(rtlActive);
 
 }/////////////////////////// Module-Loader END /////////////////////////////////
@@ -66,6 +67,7 @@ const createInterface = function (rtlActive) {
     *********************************************************************/
     isRtl: function () {
 
+      // Return the resolved RTL state
       return rtlActive;
 
     }

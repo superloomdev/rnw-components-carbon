@@ -38,6 +38,7 @@ export default function (shared_libs, config, errors) {
   // Compiled once per instance; the pattern ships as JSON data, not as code
   const UNIT_PATTERN = new RegExp(DATA.unit_suffix_pattern);
 
+  // Build the public interface from the injected dependencies
   return createInterface(Lib, DATA, UNIT_PATTERN);
 
 }/////////////////////////// Module-Loader END /////////////////////////////////
@@ -100,6 +101,7 @@ const createInterface = function (Lib, DATA, UNIT_PATTERN) {
         return null;
       }
 
+      // Convert rem to pixels using the contract's base and precision
       return Lib.Utils.round(parsed * DATA.rem_base_px, DATA.decimal_precision);
 
     },
@@ -121,6 +123,7 @@ const createInterface = function (Lib, DATA, UNIT_PATTERN) {
         return null;
       }
 
+      // Scale the font size by the ratio at the contract's precision
       return Lib.Utils.round(size * ratio, DATA.line_height_precision);
 
     },
@@ -147,6 +150,7 @@ const createInterface = function (Lib, DATA, UNIT_PATTERN) {
         return min;
       }
 
+      // Value is within bounds or above max, so cap at max otherwise pass through
       return value > max ? max : value;
 
     },
@@ -161,10 +165,12 @@ const createInterface = function (Lib, DATA, UNIT_PATTERN) {
     *********************************************************************/
     round: function (value) {
 
+      // Non-numeric input resolves to zero so NaN never propagates
       if (!Lib.Utils.isNumber(value)) {
         return 0;
       }
 
+      // Delegate to the platform round now that input is confirmed numeric
       return Math.round(value);
 
     },
@@ -179,10 +185,12 @@ const createInterface = function (Lib, DATA, UNIT_PATTERN) {
     *********************************************************************/
     ceil: function (value) {
 
+      // Non-numeric input resolves to zero so NaN never propagates
       if (!Lib.Utils.isNumber(value)) {
         return 0;
       }
 
+      // Delegate to the platform ceiling now that input is confirmed numeric
       return Math.ceil(value);
 
     },
@@ -199,8 +207,10 @@ const createInterface = function (Lib, DATA, UNIT_PATTERN) {
     *********************************************************************/
     parseInteger: function (value, radix) {
 
+      // Centralized parseInt so no component calls it directly
       const parsed = parseInt(value, radix || 10);
 
+      // Return null on failure so callers never receive NaN
       return Lib.Utils.isNumber(parsed) ? parsed : null;
 
     },
@@ -216,8 +226,10 @@ const createInterface = function (Lib, DATA, UNIT_PATTERN) {
     *********************************************************************/
     parseNumber: function (value) {
 
+      // Centralized parseFloat so no component calls it directly
       const parsed = parseFloat(value);
 
+      // Return null on failure so callers never receive NaN
       return Lib.Utils.isNumber(parsed) ? parsed : null;
 
     },

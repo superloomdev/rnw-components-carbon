@@ -31,6 +31,7 @@ import { Platform as RNPlatform } from 'react-native';
 *********************************************************************/
 export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
 
+  // Extract the shared libraries we need from the provided container
   const Lib = {
     Utils: shared_libs.Utils,
     Debug: shared_libs.Debug,
@@ -38,6 +39,7 @@ export default function (shared_libs, config, errors) { // eslint-disable-line n
     Device: shared_libs.Device
   };
 
+  // Delegate to createInterface to build and return the hook
   return createInterface(Lib);
 
 }/////////////////////////// Module-Loader END /////////////////////////////////
@@ -63,12 +65,16 @@ const createInterface = function (Lib) {
     // Parse a placement string into base and alignment parts
     parsePlacement: function (placement) {
 
+      // Locate the dash separating base placement from alignment
       const dashIndex = placement.indexOf('-');
 
+      // Return early when no alignment suffix is present
       if (dashIndex < 0) {
+        // Return the placement as-is with no alignment
         return { base: placement, alignment: null };
       }
 
+      // Split the placement string into base and alignment components
       return { base: placement.substring(0, dashIndex), alignment: placement.substring(dashIndex + 1) };
 
     }
@@ -78,10 +84,12 @@ const createInterface = function (Lib) {
   // Pure function: compute position from a measured rect
   const computePosition = function (rect, placement, offset, vw, vh, flip) {
 
+    // Parse the placement string into base and alignment parts
     const parsed = _AnchoredPosition.parsePlacement(placement);
     let basePlacement = parsed.base;
     const alignment = parsed.alignment;
 
+    // Initialize tracking variables for the computed position
     let actualPlacement = placement;
     let top = 0;
     let left = 0;
@@ -141,6 +149,7 @@ const createInterface = function (Lib) {
 
     }
 
+    // Return the final position and the placement that was actually used
     return {
       position: { top: top, left: left },
       actualPlacement: actualPlacement
@@ -159,11 +168,13 @@ const createInterface = function (Lib) {
     const flip = options.flip !== false;
     const anchorRef = options.anchorRef;
 
+    // Define the initial state before any measurement has occurred
     const initialState = {
       position: null,
       actualPlacement: placement
     };
 
+    // Create the React state slot that holds the current position
     const state = Lib.React.useState(initialState);
     const pos = state[0];
     const setPos = state[1];
@@ -172,26 +183,33 @@ const createInterface = function (Lib) {
     // Measure the anchor and compute the overlay position
     const measure = Lib.React.useCallback(function () {
 
+      // Bail out when there is no anchor element to measure
       if (!anchorRef || !anchorRef.current) {
+        // Return early since there is nothing to position against
         return;
       }
 
+      // Grab the anchor element for measurement
       const anchor = anchorRef.current;
 
       // Web: use getBoundingClientRect
       if (RNPlatform.OS === 'web' && typeof anchor.getBoundingClientRect === 'function') {
 
+        // Measure the anchor rect and viewport dimensions on web
         const rect = anchor.getBoundingClientRect();
         const vw = typeof window !== 'undefined' ? window.innerWidth : 0;
         const vh = typeof window !== 'undefined' ? window.innerHeight : 0;
 
+        // Compute the overlay position from the measured rect
         const computed = computePosition(rect, placement, offset, vw, vh, flip);
 
+        // Update state with the computed position and placement
         setPos({
           position: computed.position,
           actualPlacement: computed.actualPlacement
         });
 
+        // Return after web measurement since there is no async path needed
         return;
       }
 
@@ -200,12 +218,15 @@ const createInterface = function (Lib) {
 
         anchor.measureInWindow(function (x, y, width, height) {
 
+          // Build a normalized rect from the native measurement callback
           const rect = { left: x, top: y, width: width, height: height,
             right: x + width, bottom: y + height };
 
+          // Default viewport dimensions to zero until measured
           let vw = 0;
           let vh = 0;
 
+          // Query the device for viewport dimensions when available
           if (Lib.Device && Lib.Utils.isFunction(Lib.Device.getViewport)) {
             const vp = Lib.Device.getViewport();
             if (vp && vp.success) {
@@ -214,8 +235,10 @@ const createInterface = function (Lib) {
             }
           }
 
+          // Compute the overlay position from the measured rect
           const computed = computePosition(rect, placement, offset, vw, vh, flip);
 
+          // Update state with the computed position and placement
           setPos({
             position: computed.position,
             actualPlacement: computed.actualPlacement
@@ -238,6 +261,7 @@ const createInterface = function (Lib) {
   };
 
 
+  // Return the public hook as the module's interface
   return useAnchoredPosition;
 
 };/////////////////////////// createInterface END //////////////////////////////

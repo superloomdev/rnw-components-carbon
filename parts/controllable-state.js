@@ -20,8 +20,10 @@
 *********************************************************************/
 export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
 
+  // Extract the libraries needed by this part
   const Lib = { Utils: shared_libs.Utils, Debug: shared_libs.Debug, React: shared_libs.React };
 
+  // Return the hook factory for the parent module
   return createInterface(Lib);
 
 }/////////////////////////// Module-Loader END /////////////////////////////////
@@ -64,14 +66,19 @@ const createInterface = function (Lib) {
     // Warn once if the component switches between controlled and uncontrolled
     const warnedRef = Lib.React.useRef(false);
 
+    // Detect mode switches between renders and warn once
     Lib.React.useEffect(function () {
 
+      // Skip if we have already warned about a mode switch
       if (warnedRef.current) {
+        // Exit early since the warning was already shown
         return;
       }
 
+      // Determine the current controlled state for this render
       const isControlled = value !== undefined;
 
+      // Warn once when the mode differs from the initial mode
       if (controlledRef.current !== isControlled) {
         warnedRef.current = true;
         Lib.Debug.warn(
@@ -95,6 +102,7 @@ const createInterface = function (Lib) {
       // Allow functional updates: setValue(prev => prev + 1)
       let actualNext = nextValue;
 
+      // Branch on controlled vs uncontrolled to route the update
       if (value !== undefined) {
         // Controlled mode: delegate to onChange
         if (Lib.Utils.isFunction(onChange)) {
@@ -106,8 +114,10 @@ const createInterface = function (Lib) {
           actualNext = actualNext(internalValue);
         }
 
+        // Commit the new value to internal state
         setInternalValue(actualNext);
 
+        // Notify the listener of the uncontrolled state change
         if (Lib.Utils.isFunction(onChange)) {
           onChange(actualNext);
         }
@@ -122,6 +132,7 @@ const createInterface = function (Lib) {
   };
 
 
+  // Expose the hook as the module's interface
   return useControllableState;
 
 };/////////////////////////// createInterface END //////////////////////////////

@@ -28,8 +28,10 @@
 *********************************************************************/
 export default function (shared_libs, config, errors) { // eslint-disable-line no-unused-vars
 
+  // Build the Lib container from shared_libs
   const Lib = { Utils: shared_libs.Utils, Debug: shared_libs.Debug, React: shared_libs.React };
 
+  // Return the public a11y translator interface
   return createInterface(Lib);
 
 }/////////////////////////// Module-Loader END /////////////////////////////////
@@ -46,7 +48,7 @@ export default function (shared_libs, config, errors) { // eslint-disable-line n
 
     @return {Object} - { state, value, relation, position, id }
 *********************************************************************/
-const createInterface = function (Lib) { // eslint-disable-line no-unused-vars
+const createInterface = function (Lib) {
 
 
   ///////////////////////////Public Functions START//////////////////////////////
@@ -59,73 +61,75 @@ const createInterface = function (Lib) { // eslint-disable-line no-unused-vars
   // checked accepts true | false | 'mixed'.
   const state = function (opts) {
 
-    // Translate semantic state options into aria-* props, omitting null/undefined values
+    // Validate: return empty object if no options provided
     if (!opts) {
       return {};
     }
 
+    // Init: prepare the props accumulator
     const props = {};
 
     // checked: true, false, or 'mixed' (for indeterminate checkboxes)
-    if (opts.checked !== null && opts.checked !== undefined) {
+    if (!Lib.Utils.isNullOrUndefined(opts.checked)) {
       props['aria-checked'] = opts.checked;
     }
 
     // disabled: boolean
-    if (opts.disabled !== null && opts.disabled !== undefined) {
+    if (!Lib.Utils.isNullOrUndefined(opts.disabled)) {
       props['aria-disabled'] = !!opts.disabled;
     }
 
     // expanded: boolean
-    if (opts.expanded !== null && opts.expanded !== undefined) {
+    if (!Lib.Utils.isNullOrUndefined(opts.expanded)) {
       props['aria-expanded'] = !!opts.expanded;
     }
 
     // selected: boolean
-    if (opts.selected !== null && opts.selected !== undefined) {
+    if (!Lib.Utils.isNullOrUndefined(opts.selected)) {
       props['aria-selected'] = !!opts.selected;
     }
 
     // invalid: boolean
-    if (opts.invalid !== null && opts.invalid !== undefined) {
+    if (!Lib.Utils.isNullOrUndefined(opts.invalid)) {
       props['aria-invalid'] = !!opts.invalid;
     }
 
     // required: boolean
-    if (opts.required !== null && opts.required !== undefined) {
+    if (!Lib.Utils.isNullOrUndefined(opts.required)) {
       props['aria-required'] = !!opts.required;
     }
 
     // readonly: boolean
-    if (opts.readonly !== null && opts.readonly !== undefined) {
+    if (!Lib.Utils.isNullOrUndefined(opts.readonly)) {
       props['aria-readonly'] = !!opts.readonly;
     }
 
     // busy: boolean
-    if (opts.busy !== null && opts.busy !== undefined) {
+    if (!Lib.Utils.isNullOrUndefined(opts.busy)) {
       props['aria-busy'] = !!opts.busy;
     }
 
     // pressed: boolean (for toggle buttons)
-    if (opts.pressed !== null && opts.pressed !== undefined) {
+    if (!Lib.Utils.isNullOrUndefined(opts.pressed)) {
       props['aria-pressed'] = !!opts.pressed;
     }
 
     // current: 'page' | 'step' | 'location' | 'date' | 'time' | true | false
-    if (opts.current !== null && opts.current !== undefined) {
+    if (!Lib.Utils.isNullOrUndefined(opts.current)) {
       props['aria-current'] = opts.current;
     }
 
     // hidden: boolean
-    if (opts.hidden !== null && opts.hidden !== undefined) {
+    if (!Lib.Utils.isNullOrUndefined(opts.hidden)) {
       props['aria-hidden'] = !!opts.hidden;
     }
 
     // modal: boolean (for overlay containers)
-    if (opts.modal !== null && opts.modal !== undefined) {
+    if (!Lib.Utils.isNullOrUndefined(opts.modal)) {
       props['aria-modal'] = !!opts.modal;
     }
 
+    // Return the accumulated aria-* props
     return props;
 
   };
@@ -134,28 +138,35 @@ const createInterface = function (Lib) { // eslint-disable-line no-unused-vars
   // Numeric value semantics for slider, progressbar, spinbutton.
   const value = function (opts) {
 
+    // Validate: return empty object if no options provided
     if (!opts) {
       return {};
     }
 
+    // Init: prepare the props accumulator
     const props = {};
 
-    if (opts.min !== null && opts.min !== undefined) {
+    // min: minimum value for range widgets
+    if (!Lib.Utils.isNullOrUndefined(opts.min)) {
       props['aria-valuemin'] = opts.min;
     }
 
-    if (opts.max !== null && opts.max !== undefined) {
+    // max: maximum value for range widgets
+    if (!Lib.Utils.isNullOrUndefined(opts.max)) {
       props['aria-valuemax'] = opts.max;
     }
 
-    if (opts.now !== null && opts.now !== undefined) {
+    // now: current value for range widgets
+    if (!Lib.Utils.isNullOrUndefined(opts.now)) {
       props['aria-valuenow'] = opts.now;
     }
 
-    if (opts.text !== null && opts.text !== undefined) {
+    // text: human-readable text alternative for the current value
+    if (!Lib.Utils.isNullOrUndefined(opts.text)) {
       props['aria-valuetext'] = opts.text;
     }
 
+    // Return the accumulated aria-value* props
     return props;
 
   };
@@ -164,32 +175,40 @@ const createInterface = function (Lib) { // eslint-disable-line no-unused-vars
   // Relationship props. Web-only in effect; harmless on native.
   const relation = function (opts) {
 
+    // Validate: return empty object if no options provided
     if (!opts) {
       return {};
     }
 
+    // Init: prepare the props accumulator
     const props = {};
 
+    // controls: id of element(s) controlled by this element
     if (opts.controls) {
       props['aria-controls'] = opts.controls;
     }
 
+    // describedby: id of element(s) that describe this element
     if (opts.describedby) {
       props['aria-describedby'] = opts.describedby;
     }
 
+    // labelledby: id of element(s) that label this element
     if (opts.labelledby) {
       props['aria-labelledby'] = opts.labelledby;
     }
 
+    // owns: id of element(s) owned by this element (not a DOM child)
     if (opts.owns) {
       props['aria-owns'] = opts.owns;
     }
 
+    // activedescendant: id of the active descendant when focus is delegated
     if (opts.activedescendant) {
       props['aria-activedescendant'] = opts.activedescendant;
     }
 
+    // Return the accumulated aria-relation props
     return props;
 
   };
@@ -198,24 +217,30 @@ const createInterface = function (Lib) { // eslint-disable-line no-unused-vars
   // Position-in-set for list/option/step semantics.
   const position = function (opts) {
 
+    // Validate: return empty object if no options provided
     if (!opts) {
       return {};
     }
 
+    // Init: prepare the props accumulator
     const props = {};
 
-    if (opts.posinset !== null && opts.posinset !== undefined) {
+    // posinset: position of the item within the set
+    if (!Lib.Utils.isNullOrUndefined(opts.posinset)) {
       props['aria-posinset'] = opts.posinset;
     }
 
-    if (opts.setsize !== null && opts.setsize !== undefined) {
+    // setsize: total number of items in the set
+    if (!Lib.Utils.isNullOrUndefined(opts.setsize)) {
       props['aria-setsize'] = opts.setsize;
     }
 
-    if (opts.level !== null && opts.level !== undefined) {
+    // level: hierarchy level for tree/nested list items
+    if (!Lib.Utils.isNullOrUndefined(opts.level)) {
       props['aria-level'] = opts.level;
     }
 
+    // Return the accumulated aria-position props
     return props;
 
   };
@@ -225,7 +250,10 @@ const createInterface = function (Lib) { // eslint-disable-line no-unused-vars
   // Callers hold the result in a ref so it is stable across re-renders.
   const id = function (prefix) {
 
+    // Advance the monotonic counter
     idCounter += 1;
+
+    // Return the prefixed id
     return (prefix || 'carbon') + '-' + idCounter;
 
   };

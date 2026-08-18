@@ -7,6 +7,7 @@
 
 export default function (Lib, ERRORS) {
 
+  // Build the validators object with boot-time validation methods
   const Validators = {
 
     /********************************************************************
@@ -143,6 +144,7 @@ export default function (Lib, ERRORS) {
       const UNIT_PATTERN = /(?:rem|em|%|vh|vw|px|pt)$/;
       const dimensionGroups = ['fontSize', 'space', 'radius'];
 
+      // Iterate each dimension group to validate its token values
       for (let g = 0; g < dimensionGroups.length; g++) {
         const groupName = dimensionGroups[g];
         const group = theme.Dimension[groupName];
@@ -185,6 +187,7 @@ export default function (Lib, ERRORS) {
 
   };
 
+  // Return the validators singleton for this instance
   return Validators;
 
 }
