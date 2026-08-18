@@ -12,7 +12,7 @@
 /////////////////////////// Module-Loader START ////////////////////////////////
 
 /********************************************************************
-    Factory part loader. Uniform parts signature.
+Factory part loader. Uniform parts signature.
 
 @param {Object} shared_libs - Lib container with Utils, Debug, and
                                   optionally Font
@@ -43,7 +43,7 @@ export default function (shared_libs, config, errors) {
 /////////////////////////// createInterface START //////////////////////////////
 
 /********************************************************************
-    Build the Typeface interface over one instance's injected dependencies.
+Build the Typeface interface over one instance's injected dependencies.
 
 @param {Object} Lib - Dependency container with Utils, Debug, and
                           optionally Font
@@ -80,11 +80,11 @@ const createInterface = function (Lib) {
 
 
     /********************************************************************
-    Resolve a font role and weight to the concrete family name.
+Resolve a font role and weight to the concrete family name.
 
-    When Lib.Font is available, delegates to Font.resolveFamily to get
-    the family registered for the given role. When absent, returns the
-    theme family directly.
+When Lib.Font is available, delegates to Font.resolveFamily to get
+the family registered for the given role. When absent, returns the
+theme family directly.
 
 @param {String} role   - Font role key (e.g. 'primary', 'secondary')
 @param {String} weight - Weight key (e.g. 'regular', 'bold')
@@ -113,13 +113,13 @@ const createInterface = function (Lib) {
 
 
     /********************************************************************
-    Return the full style fragment for a role and weight.
+Return the full style fragment for a role and weight.
 
-    For synthesizing families (System, web-safe stacks), the fragment
-    includes both fontFamily and fontWeight - the platform renderer
-    synthesizes the weight. For per-weight-face families (e.g.
-    Poppins_400Regular), the fragment includes only fontFamily - the
-    weight is baked into the face file.
+For synthesizing families (System, web-safe stacks), the fragment
+includes both fontFamily and fontWeight - the platform renderer
+synthesizes the weight. For per-weight-face families (e.g.
+Poppins_400Regular), the fragment includes only fontFamily - the
+weight is baked into the face file.
 
 @param {String} role   - Font role key (e.g. 'primary', 'secondary')
 @param {String} weight - Weight value (e.g. '400', '700')
@@ -144,7 +144,7 @@ const createInterface = function (Lib) {
 
 
     /********************************************************************
-    True when the family synthesizes weight via the platform renderer.
+True when the family synthesizes weight via the platform renderer.
 
 @param {String} family - Font family name
 

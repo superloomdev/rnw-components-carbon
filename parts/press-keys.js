@@ -19,7 +19,7 @@ import { Platform as RNPlatform } from 'react-native';
 /////////////////////////// Module-Loader START ////////////////////////////////
 
 /********************************************************************
-    Factory part loader. Uniform parts signature.
+Factory part loader. Uniform parts signature.
 
 @param {Object} shared_libs - Lib container with Utils, Debug, React
 @param {Object} config - Merged config from the parent module
@@ -53,8 +53,8 @@ const SPACE_ACTIVATING_ROLES = {
 
 
 /********************************************************************
-    Build the usePressKeys hook. Returns a React hook that normalizes
-    Enter and Space activation per role.
+Build the usePressKeys hook. Returns a React hook that normalizes
+Enter and Space activation per role.
 
 @param {Object} Lib - The shared Lib container (requires React)
 

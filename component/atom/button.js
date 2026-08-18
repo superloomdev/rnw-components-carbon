@@ -135,8 +135,8 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
   const _Button = {
 
     /********************************************************************
-    Resolve the active interaction state to a token suffix. Priority:
-    disabled > pressed > hovered > focused > default.
+Resolve the active interaction state to a token suffix. Priority:
+disabled > pressed > hovered > focused > default.
 
 @param {Object} props          - Component props (reads disabled)
 @param {Object} pressableState - RN Pressable state { pressed, hovered, focused }
@@ -167,9 +167,9 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
 
     /********************************************************************
-    Compute hitSlop so the touch target reaches the accessible minimum.
-    Returns undefined when the visual box already clears the minimum on
-    both axes.
+Compute hitSlop so the touch target reaches the accessible minimum.
+Returns undefined when the visual box already clears the minimum on
+both axes.
 
 @param {Number} height - Current layout height
 @param {Number} width  - Current layout width

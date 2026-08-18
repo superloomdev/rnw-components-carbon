@@ -22,7 +22,7 @@ import { Platform as RNPlatform, BackHandler as RNBackHandler, AccessibilityInfo
 /////////////////////////// Module-Loader START ////////////////////////////////
 
 /********************************************************************
-    Factory part loader. Uniform parts signature.
+Factory part loader. Uniform parts signature.
 
 @param {Object} shared_libs - Lib container with Utils, Debug, React
 @param {Object} config - Merged config from the parent module
@@ -45,8 +45,8 @@ export default function (shared_libs, config, errors) { // eslint-disable-line n
 /////////////////////////// createInterface START //////////////////////////////
 
 /********************************************************************
-    Build the useFocusTrap hook. Returns a React hook that manages focus
-    trapping for an overlay component.
+Build the useFocusTrap hook. Returns a React hook that manages focus
+trapping for an overlay component.
 
 @param {Object} Lib - The shared Lib container (requires React, Debug)
 
@@ -58,7 +58,7 @@ const createInterface = function (Lib) {
   ///////////////////////////Public Functions START//////////////////////////////
 
   /********************************************************************
-    React hook that traps focus within an overlay while it is open.
+React hook that traps focus within an overlay while it is open.
 
 @param {Object}   options
 @param {Boolean}  options.isOpen        - Whether the overlay is currently open

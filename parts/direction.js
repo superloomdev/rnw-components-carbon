@@ -12,7 +12,7 @@ import { I18nManager, Platform } from 'react-native';
 /////////////////////////// Module-Loader START ////////////////////////////////
 
 /********************************************************************
-    Factory part loader. Uniform parts signature.
+Factory part loader. Uniform parts signature.
 
 @param {Object} shared_libs - Lib container with Utils, Debug, React
 @param {Object} config - Merged config from the parent module
@@ -45,7 +45,7 @@ export default function (shared_libs, config, errors) { // eslint-disable-line n
 /////////////////////////// createInterface START //////////////////////////////
 
 /********************************************************************
-    Build the Direction interface over the resolved RTL state.
+Build the Direction interface over the resolved RTL state.
 
 @param {Boolean} rtlActive - Whether RTL layout is active
 
@@ -61,7 +61,7 @@ const createInterface = function (rtlActive) {
 
 
     /********************************************************************
-    Returns true when RTL layout is active.
+Returns true when RTL layout is active.
 
 @return {Boolean} - True for RTL, false for LTR
     *********************************************************************/

@@ -8,7 +8,7 @@
 /////////////////////////// Module-Loader START ////////////////////////////////
 
 /********************************************************************
-    Factory part loader. Uniform parts signature.
+Factory part loader. Uniform parts signature.
 
 @param {Object} shared_libs - Lib container with Utils and Debug
 @param {Object} config - Merged config from the parent module
@@ -34,7 +34,7 @@ export default function (shared_libs, config, errors) { // eslint-disable-line n
 /////////////////////////// createInterface START //////////////////////////////
 
 /********************************************************************
-    Build the Filter interface.
+Build the Filter interface.
 
 @param {Object} Lib - The shared Lib container
 
