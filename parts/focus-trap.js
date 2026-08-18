@@ -68,6 +68,7 @@ const createInterface = function (Lib) {
     *********************************************************************/
   const useFocusTrap = function (options) {
 
+    // Destructure focus trap options: isOpen, onClose, initialFocusRef, finalFocusRef, trap
     const isOpen = options.isOpen;
     const onClose = options.onClose;
     const initialFocusRef = options.initialFocusRef;
@@ -192,7 +193,7 @@ const createInterface = function (Lib) {
           'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
         );
 
-        if (focusable.length === 0) {
+        if (Lib.Utils.isEmptyArray(focusable)) {
           event.preventDefault();
           return;
         }
@@ -262,6 +263,7 @@ const createInterface = function (Lib) {
     };
 
 
+    // Return the container ref, outside press handler, and accessibility props
     return {
       containerRef: containerRef,
       onOutsidePress: onOutsidePress,

@@ -75,6 +75,7 @@ const createInterface = function (Lib) {
     *********************************************************************/
   const useOverlay = function (options) {
 
+    // Destructure overlay options: isOpen, trap, onClose, render
     const isOpen = options.isOpen;
     const trap = options.trap;
     const onClose = options.onClose;
@@ -123,6 +124,7 @@ const createInterface = function (Lib) {
     }, [trap, onClose, render]);
 
 
+    // Return the layer index and computed z-index
     return {
       layerIndex: layerIdRef.current,
       zIndex: layerIdRef.current >= 0 ? 1000 + layerIdRef.current : undefined

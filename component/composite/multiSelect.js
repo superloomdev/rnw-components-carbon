@@ -68,7 +68,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     const selectedArray = resolvedValues || [];
 
     // Build the display label from selected count
-    const displayLabel = selectedArray.length === 0
+    const displayLabel = Lib.Utils.isEmptyArray(selectedArray)
       ? (placeholder || 'Select options')
       : selectedArray.length + ' selected';
 

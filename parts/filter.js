@@ -44,6 +44,7 @@ const createInterface = function (Lib) { // eslint-disable-line no-unused-vars
   ///////////////////////////Public Functions START//////////////////////////////
 
   const Filter = {
+    // Public Filter interface: case-insensitive label matching
 
     // Case-insensitive substring match: returns true if label contains input
     matchesLabel: function (inputValue, label) {
@@ -61,6 +62,7 @@ const createInterface = function (Lib) { // eslint-disable-line no-unused-vars
   };
 
 
+  // Return the public Filter interface
   return Filter;
 
 };/////////////////////////// createInterface END //////////////////////////////

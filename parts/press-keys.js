@@ -65,6 +65,7 @@ const createInterface = function (Lib) {
 
   const usePressKeys = function (options) {
 
+    // Destructure activation options: role, onActivate, disabled
     const role = options.role;
     const onActivate = options.onActivate;
     const disabled = options.disabled;
@@ -103,6 +104,7 @@ const createInterface = function (Lib) {
     }, [role, onActivate, disabled]);
 
 
+    // Return the keydown handler for the host element
     return {
       onKeyDown: handleKeyDown
     };

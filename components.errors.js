@@ -2,7 +2,7 @@
 //
 // Frozen on export. Injected into validators and the public interface.
 // Boot-time misconfiguration throws TypeError; render-time prop errors
-// warn and fall back deterministically (see docs/philosophy.md).
+// warn and fall back deterministically.
 
 export default Object.freeze({
 

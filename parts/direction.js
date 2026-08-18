@@ -56,6 +56,7 @@ const createInterface = function (rtlActive) {
   ///////////////////////////Public Functions START//////////////////////////////
 
   const Direction = {
+    // Public Direction interface: RTL state accessor
 
 
     /********************************************************************
@@ -73,6 +74,7 @@ const createInterface = function (rtlActive) {
   };///////////////////////////Public Functions END//////////////////////////////
 
 
+  // Return the public Direction interface
   return Direction;
 
 };/////////////////////////// createInterface END //////////////////////////////

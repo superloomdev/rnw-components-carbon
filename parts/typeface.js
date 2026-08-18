@@ -4,7 +4,7 @@
 // (loads and registers faces), and the components (request a weight). When
 // Lib.Font is injected the resolver can map a role+weight to the concrete
 // family the font module registered. When Lib.Font is absent, the part
-// falls back to the pre-existing behaviour: pair fontWeight with the
+// falls back to the pre-existing behavior: pair fontWeight with the
 // theme's Font.family.primary.
 //
 // Loader pattern: FACTORY part. Uniform parts signature.
@@ -75,6 +75,7 @@ const createInterface = function (Lib) {
   ///////////////////////////Public Functions START//////////////////////////////
 
   const Typeface = {
+    // Public Typeface interface: font role/weight resolution and style fragments
 
 
     /********************************************************************
@@ -169,6 +170,7 @@ const createInterface = function (Lib) {
   };///////////////////////////Public Functions END//////////////////////////////
 
 
+  // Return the public Typeface interface
   return Typeface;
 
 };/////////////////////////// createInterface END //////////////////////////////

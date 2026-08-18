@@ -65,6 +65,7 @@ const createInterface = function (Lib) {
     *********************************************************************/
   const makeCompoundContext = function (displayName) {
 
+    // Create a React context with the given display name for compound components
     const React = Lib.React;
     const createContext = Lib.React.createContext;
 
@@ -96,6 +97,7 @@ const createInterface = function (Lib) {
     };
 
 
+    // Return the Provider, useContext hook, and Context object
     return {
       Provider: Context.Provider,
       useContext: useContext,

@@ -45,6 +45,7 @@ const createInterface = function (Lib) {
 
   const useControllableState = function (options) {
 
+    // Destructure controlled/uncontrolled state options
     const value = options.value;
     const defaultValue = options.defaultValue;
     const onChange = options.onChange;
@@ -115,6 +116,7 @@ const createInterface = function (Lib) {
     }, [value, onChange, internalValue]);
 
 
+    // Return the resolved value and setter as a tuple
     return [resolvedValue, setValue];
 
   };
