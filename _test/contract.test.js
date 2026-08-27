@@ -10,6 +10,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
+import * as rnw from 'react-native-web';
 
 import { Style } from './loader.js';
 
@@ -65,7 +66,6 @@ describe('L4-R1: No non-existent react-native exports', function () {
 
   it('should only import names that react-native-web exports', function () {
 
-    const rnw = require('react-native-web');
     const rnwExports = Object.keys(rnw);
     const findings = [];
     const files = collectFiles(COMPONENT_DIR);

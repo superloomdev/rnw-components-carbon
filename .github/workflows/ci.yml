@@ -110,10 +110,10 @@ jobs:
             exit 1
           fi
           echo "PASS"
-      - name: G8 - No require('react') in component/ or components.js
+      - name: G8 - No direct react import in component/ or components.js
         run: |
-          if grep -rn "require('react')" component/ components.js; then
-            echo "FAIL: require('react') found"
+          if grep -rnE "(require\(|from )['\"]react['\"]" component/ components.js; then
+            echo "FAIL: direct react import found - React must come from shared_libs"
             exit 1
           fi
           echo "PASS"
@@ -171,7 +171,7 @@ jobs:
           test ! -d component/organism && echo "PASS" || { echo "FAIL: organism/ directory exists"; exit 1; }
       - name: G17 - Canonical must not import from variant/ or freeform/
         run: |
-          if grep -rn "require(.*/\(variant\|freeform\)/" component/atom component/molecule component/composite; then
+          if grep -rnE "(require\(|from )['\"][^'\"]*/(variant|freeform)/" component/atom component/molecule component/composite; then
             echo "FAIL: canonical imports from variant/ or freeform/"
             exit 1
           fi

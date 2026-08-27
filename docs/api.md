@@ -3,7 +3,9 @@
 ## Loader
 
 ```javascript
-const Components = require('rnw-components-carbon')(shared_libs, config?)
+import componentsLoader from 'rnw-components-carbon';
+
+const Components = componentsLoader(shared_libs, config?)
 ```
 
 | Parameter | Type | Required | Description |

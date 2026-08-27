@@ -7,20 +7,17 @@
 // This file is the single source of truth for test dependencies.
 // process.env is ONLY read here.
 
-import { createRequire } from 'node:module';
-
-const require = createRequire(import.meta.url);
+import React from 'react';
+import TestRenderer from 'react-test-renderer';
+import utilsLoader from 'helper-utils';
+import debugLoader from 'helper-debug';
+import componentsLoader from 'rnw-components-carbon';
 
 
 // ========================= DEPENDENCY CONTAINER =========================== //
 
-const React = require('react');
-const TestRenderer = require('react-test-renderer');
-const UtilsFactory = require('helper-utils');
-const DebugFactory = require('helper-debug');
-
-const Utils = UtilsFactory();
-const Debug = DebugFactory({ Utils: Utils });
+const Utils = utilsLoader();
+const Debug = debugLoader({ Utils: Utils });
 
 
 // ========================= TEST STUBS ===================================== //
@@ -150,10 +147,6 @@ function createTestTheme () {
 
 const Device = createDeviceStub(375, 812);
 const Icons = createIconsStub();
-
-// Dynamic import of the ESM components package
-const componentsModule = await import('rnw-components-carbon');
-const componentsLoader = componentsModule.default;
 
 const Components = componentsLoader({
   Utils: Utils,

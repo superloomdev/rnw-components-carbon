@@ -7,7 +7,9 @@
 ## Load
 
 ```javascript
-const Components = require('rnw-components-carbon')({
+import componentsLoader from 'rnw-components-carbon';
+
+const Components = componentsLoader({
   Utils: Utils,
   Debug: Debug,
   React: React,
