@@ -60,7 +60,7 @@ function replaceRegion (content, beginMarker, endMarker, replacement) {
 
 }
 
-function readDoc (filename) {
+function getDoc (filename) {
   const p = path.join(ROOT, filename);
   if (!fs.existsSync(p)) {
     return '';
@@ -602,7 +602,7 @@ function main () {
   process.stdout.write('Generated docs/carbon-parity.md\n');
 
   // Update README.md (component table + count summary)
-  let readme = readDoc('README.md');
+  let readme = getDoc('README.md');
   if (readme) {
     readme = replaceRegion(readme,
       '<!-- BEGIN GENERATED: component-table -->',
@@ -617,7 +617,7 @@ function main () {
   }
 
   // Update ROBOTS.md (component list)
-  let robots = readDoc('ROBOTS.md');
+  let robots = getDoc('ROBOTS.md');
   if (robots) {
     robots = replaceRegion(robots,
       '<!-- BEGIN GENERATED: component-list -->',
@@ -628,7 +628,7 @@ function main () {
   }
 
   // Update docs/api.md (component sections)
-  let api = readDoc(path.join('docs', 'api.md'));
+  let api = getDoc(path.join('docs', 'api.md'));
   if (api) {
     api = replaceRegion(api,
       '<!-- BEGIN GENERATED: component-sections -->',
