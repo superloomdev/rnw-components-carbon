@@ -9,10 +9,10 @@
   "private": false,
   "license": "MIT",
   "type": "module",
-  "main": "./components.js",
   "exports": {
     ".": "./components.js",
-    "./data/*": "./data/*"
+    "./data/*": "./data/*",
+    "./package.json": "./package.json"
   },
   "engines": {
     "node": ">=24"
