@@ -289,7 +289,7 @@ jobs:
         run: npx playwright install --with-deps chromium
       - name: Build visual bundle
         working-directory: _test
-        run: npx esbuild visual/entry.js --bundle --format=esm --outfile=visual/bundle.js --platform=browser --alias:react-native=react-native-web --define:process.env.NODE_ENV=\"development\"
+        run: npx esbuild visual/entry.js --bundle --format=esm --outfile=visual/bundle.js --platform=browser --alias:react-native=react-native-web --define:process.env.NODE_ENV=\"development\" --external:node:module
       - name: Run L3 Playwright tests
         working-directory: _test
         run: npx playwright test
