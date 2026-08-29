@@ -203,6 +203,15 @@ jobs:
             exit 1
           fi
           echo "PASS: docs are up to date"
+      - name: G21 - Generated exports must be regenerated (no diff)
+        run: |
+          node .github/ci-scripts/generate-exports.js
+          if ! git diff --exit-code data/component-exports.generated.js data/component-deps.js; then
+            echo "FAIL: generated exports are out of date. Run node .github/ci-scripts/generate-exports.js and commit."
+            git diff --stat
+            exit 1
+          fi
+          echo "PASS: generated exports are up to date"
 
   contract:
     name: L4 Contract Tests
