@@ -1,5 +1,5 @@
 // Info: GENERATED FILE - do not edit by hand.
-// Produced by .github/ci-scripts/generate-exports.js from components.js.
+// Produced by .github/ci-scripts/generate-exports.js from the component tree.
 // This block is spliced into components.js between the
 // "Named Component Exports START" and "END" banners.
 

@@ -291,6 +291,7 @@ test('L3: gallery renders expected number of interactive components', async ({ p
     document.querySelectorAll('[data-component]').length
   );
 
-  // 16 components in INTERACTIVE list
-  expect(count).toBeGreaterThanOrEqual(14);
+  // The entry registers exactly the 16 interactive components by name, so an
+  // exact count also proves no named import was silently dropped.
+  expect(count).toBe(16);
 });

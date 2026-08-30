@@ -2,12 +2,26 @@
 // Exports React, ReactDOM, and the component registry builder.
 // Hint-props for interactive components are inlined here (the package no
 // longer ships a shared hint-props file; each consumer owns its own).
+//
+// This entry is a real subset consumer: it imports the sixteen interactive
+// components by name plus the three siblings they resolve at render time, so
+// the L3 bundle proves in a browser that a tree-shaken registry renders.
+// checkRegistry() asserts the sibling set is complete before the first render.
 
 import React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import UtilsFactory from 'helper-utils';
 import DebugFactory from 'helper-debug';
-import ComponentsFactory from 'rnw-components-carbon';
+import {
+  createSystem,
+  // The sixteen interactive components the gallery renders
+  Button, IconButton, Toggle, Checkbox, RadioButton,
+  Switch, Link, InlineLink, Tab, AccordionItem,
+  Slider, CopyButton, MenuItem, SelectItem,
+  ClickableTile, SelectableTile,
+  // Siblings the sixteen resolve from the registry at render time
+  Icon, Text, TextInput
+} from 'rnw-components-carbon';
 
 const noop = function () {};
 
@@ -54,10 +68,6 @@ function buildRegistry() {
     }
   };
 
-  const Components = ComponentsFactory({
-    Utils: Utils, Debug: Debug, React: React, Device: Device, Icons: Icons
-  });
-
   const theme = {
     Color: {
       APP_PRIMARY: '#0f62fe', APP_PRIMARY_HOVERED: '#0353e9',
@@ -85,8 +95,28 @@ function buildRegistry() {
     Breakpoint: { base: 0, sm: 480, md: 768, lg: 1024, xl: 1280 }
   };
 
-  const built = Components.build(theme, 'base');
-  return { C: built.Component, ALL_NAMES: Object.keys(built.Component) };
+  const system = createSystem({
+    Utils: Utils, Debug: Debug, React: React, Device: Device, Icons: Icons
+  }, {}, theme, 'base');
+
+  // Register the interactive set plus the siblings it renders
+  system.addComponents({
+    Button: Button, IconButton: IconButton, Toggle: Toggle, Checkbox: Checkbox,
+    RadioButton: RadioButton, Switch: Switch, Link: Link, InlineLink: InlineLink,
+    Tab: Tab, AccordionItem: AccordionItem, Slider: Slider, CopyButton: CopyButton,
+    MenuItem: MenuItem, SelectItem: SelectItem, ClickableTile: ClickableTile,
+    SelectableTile: SelectableTile,
+    Icon: Icon, Text: Text, TextInput: TextInput
+  });
+
+  // A missing sibling would surface as a render-time mystery, so fail at boot
+  const check = system.checkRegistry();
+
+  if (!check.complete) {
+    throw new Error('Incomplete registry: ' + JSON.stringify(check.missing));
+  }
+
+  return { C: system.Component, ALL_NAMES: Object.keys(system.Component) };
 }
 
 // Error Boundary class

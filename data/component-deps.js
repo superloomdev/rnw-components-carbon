@@ -1,10 +1,10 @@
 // Info: GENERATED FILE - do not edit by hand.
-// Produced by .github/ci-scripts/generate-exports.js from components.js.
+// Produced by .github/ci-scripts/generate-exports.js from the component tree.
 //
 // Render-time component dependencies. A component listed here reads the
 // named siblings from the shared registry when it renders, so a consumer
-// using createSystem must register those siblings too. checkRegistry()
-// reads this manifest to report what is missing.
+// must register those siblings too. checkRegistry() reads this manifest
+// to report what is missing.
 
 const COMPONENT_DEPS = Object.freeze({
   AILabel: Object.freeze(['Text']),

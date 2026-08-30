@@ -16,8 +16,12 @@ import {
   Icon,
   Button,
   Dropdown,
+  ButtonPrimaryOutlined,
+  RawBox,
   Theme as ThemeProvider
 } from 'rnw-components-carbon';
+
+import ALL from 'rnw-components-carbon/all';
 
 import {
   Utils,
@@ -67,8 +71,11 @@ describe('createSystem surface', function () {
 
     assert.strictEqual(typeof system.make, 'function');
     assert.strictEqual(typeof system.addComponents, 'function');
-    assert.strictEqual(typeof system.addProvider, 'function');
+    assert.strictEqual(typeof system.addVariants, 'function');
+    assert.strictEqual(typeof system.addFreeforms, 'function');
+    assert.strictEqual(typeof system.addProviders, 'function');
     assert.strictEqual(typeof system.checkRegistry, 'function');
+    assert.strictEqual(typeof system.useBreakpoint, 'function');
     assert.strictEqual(typeof system.Component, 'object');
     assert.strictEqual(typeof system.Style, 'object');
     assert.strictEqual(typeof system.Parts, 'object');
@@ -225,31 +232,54 @@ describe('createSystem providers', function () {
   it('should register a provider under Component.provider', function () {
 
     const system = buildSystem();
-    system.addProvider('Theme', ThemeProvider);
+    system.addProviders({ Theme: ThemeProvider });
 
     assert.strictEqual(typeof system.Component.provider.Theme, 'function');
 
   });
 
-  it('should return the registered provider component', function () {
+  it('should return the provider namespace from addProviders', function () {
 
     const system = buildSystem();
-    const provider = system.addProvider('Theme', ThemeProvider);
+    const namespace = system.addProviders({ Theme: ThemeProvider });
 
-    assert.strictEqual(provider, system.Component.provider.Theme);
+    assert.strictEqual(namespace, system.Component.provider);
 
   });
 
-  it('should throw a TypeError on bad addProvider arguments', function () {
+  it('should register every provider in the roster', function () {
+
+    // Every provider must accept the canonical injection order. A provider
+    // declaring a shorter list must still declare a prefix of it, or it
+    // silently receives the wrong object in a middle position.
+    const system = buildSystem();
+    system.addProviders(ALL.PROVIDERS);
+
+    const names = Object.keys(ALL.PROVIDERS).sort();
+
+    assert.deepStrictEqual(Object.keys(system.Component.provider).sort(), names);
+
+    // Assert each registered slot really is a component
+    for (let i = 0; i < names.length; i++) {
+      assert.strictEqual(
+        typeof system.Component.provider[names[i]],
+        'function',
+        names[i] + ' did not register as a component'
+      );
+    }
+
+  });
+
+  it('should throw a TypeError when a provider entry is not a factory', function () {
 
     const system = buildSystem();
 
     assert.throws(function () {
-      system.addProvider('Theme', 'not-a-factory');
+      system.addProviders({ Theme: 'not-a-factory' });
     }, TypeError);
 
     assert.throws(function () {
-      system.addProvider(null, ThemeProvider);
+      system.addProviders(null);
     }, TypeError);
 
   });
@@ -259,8 +289,154 @@ describe('createSystem providers', function () {
     const system = buildSystem();
 
     assert.throws(function () {
-      system.addProvider('NotAProvider', ThemeProvider);
+      system.addProviders({ NotAProvider: ThemeProvider });
     }, TypeError);
+
+  });
+
+});
+
+
+// ========================= TIER 1 - VARIANTS AND FREEFORM ================= //
+
+describe('createSystem variants', function () {
+
+  it('should register a variant under Component.variant', function () {
+
+    const system = buildSystem();
+    system.addVariants({ ButtonPrimaryOutlined: ButtonPrimaryOutlined });
+
+    assert.strictEqual(typeof system.Component.variant.ButtonPrimaryOutlined, 'function');
+
+  });
+
+  it('should return the variant namespace from addVariants', function () {
+
+    const system = buildSystem();
+    const namespace = system.addVariants({ ButtonPrimaryOutlined: ButtonPrimaryOutlined });
+
+    assert.strictEqual(namespace, system.Component.variant);
+
+  });
+
+  it('should keep variants out of the flat registry', function () {
+
+    const system = buildSystem();
+    system.addVariants({ ButtonPrimaryOutlined: ButtonPrimaryOutlined });
+
+    assert.strictEqual(system.Component.ButtonPrimaryOutlined, undefined);
+
+  });
+
+  it('should render a registered variant', function () {
+
+    const system = buildSystem();
+    system.addVariants({ ButtonPrimaryOutlined: ButtonPrimaryOutlined });
+    system.addComponents({ Text: Text });
+
+    const tree = TestRenderer.create(
+      React.createElement(system.Component.variant.ButtonPrimaryOutlined, {
+        title: 'Cancel',
+        onPress: function () {}
+      })
+    ).toJSON();
+
+    assert.ok(tree);
+    assert.strictEqual(tree.props.role, 'button');
+
+  });
+
+  it('should throw a TypeError when a variant entry is not a factory', function () {
+
+    const system = buildSystem();
+
+    assert.throws(function () {
+      system.addVariants({ ButtonPrimaryOutlined: 42 });
+    }, TypeError);
+
+  });
+
+});
+
+
+describe('createSystem freeforms', function () {
+
+  it('should register a freeform under Component.freeform', function () {
+
+    const system = buildSystem();
+    system.addFreeforms({ RawBox: RawBox });
+
+    assert.strictEqual(typeof system.Component.freeform.RawBox, 'function');
+
+  });
+
+  it('should return the freeform namespace from addFreeforms', function () {
+
+    const system = buildSystem();
+    const namespace = system.addFreeforms({ RawBox: RawBox });
+
+    assert.strictEqual(namespace, system.Component.freeform);
+
+  });
+
+  it('should render a registered freeform', function () {
+
+    const system = buildSystem();
+    system.addFreeforms({ RawBox: RawBox });
+
+    const tree = TestRenderer.create(
+      React.createElement(system.Component.freeform.RawBox, {
+        style: { padding: 4 }
+      })
+    ).toJSON();
+
+    assert.ok(tree);
+
+  });
+
+  it('should throw a TypeError when a freeform entry is not a factory', function () {
+
+    const system = buildSystem();
+
+    assert.throws(function () {
+      system.addFreeforms({ RawBox: null });
+    }, TypeError);
+
+  });
+
+});
+
+
+// ========================= TIER 1 - BREAKPOINT HOOK ======================= //
+
+describe('createSystem useBreakpoint', function () {
+
+  it('should resolve base for the stubbed 375px viewport', function () {
+
+    const system = buildSystem();
+    let captured = null;
+
+    function Probe () {
+      captured = system.useBreakpoint(testTheme);
+      return null;
+    }
+
+    const tree = TestRenderer.create(React.createElement(Probe));
+
+    assert.strictEqual(captured, 'base');
+
+    tree.unmount();
+
+  });
+
+  it('should carry every breakpoint utility set on Style', function () {
+
+    const system = buildSystem();
+
+    assert.deepStrictEqual(
+      Object.keys(system.Style.allBreakpoints).sort(),
+      ['base', 'lg', 'md', 'sm', 'xl']
+    );
 
   });
 

@@ -12,6 +12,7 @@
   "sideEffects": false,
   "exports": {
     ".": "./components.js",
+    "./all": "./all.js",
     "./data/*": "./data/*",
     "./package.json": "./package.json"
   },

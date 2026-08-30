@@ -18,9 +18,9 @@ Config is validated at load time. Bad config throws `TypeError` immediately:
 
 ```javascript
 // Throws: rnw-components-carbon: MIN_HIT_TARGET must be a positive number
-import componentsLoader from 'rnw-components-carbon';
+import { createSystem } from 'rnw-components-carbon';
 
-const Components = componentsLoader({
+const system = createSystem({
   Utils: Utils, Debug: Debug, React: React, Device: Device
 }, {
   MIN_HIT_TARGET: -10

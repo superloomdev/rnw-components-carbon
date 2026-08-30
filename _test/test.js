@@ -1,6 +1,6 @@
 // Info: Unit tests for rnw-components-carbon.
 //
-// Tests the public interface: build/rebuild lifecycle, theme contract bridge,
+// Tests the public interface: system construction, theme contract bridge,
 // atom rendering and accessibility, mechanism parts, and composite components.
 // Uses react-test-renderer over jsdom via the loader.
 
@@ -8,7 +8,7 @@ import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 
 import {
-  Components,
+  system,
   Component,
   Style,
   theme,
@@ -18,8 +18,14 @@ import {
   Device,
   createDeviceStub,
   createTestTheme,
-  componentsLoader
+  createSystem,
+  themeContract,
+  TOKENS,
+  buildFullSystem
 } from './loader.js';
+
+// Named factory import: the no-Icons case builds a one-component system
+import { Icon as IconFactory } from 'rnw-components-carbon';
 
 // Mechanism imports (ESM - resolved at module level)
 const a11yPart = (await import('../parts/a11y.js')).default;
@@ -96,11 +102,11 @@ describe('build', function () {
 });
 
 
-describe('rebuild', function () {
+describe('re-theming by building a second system', function () {
 
-  it('should return a new registry object at the requested breakpoint', function () {
+  it('should return an independent registry at the requested breakpoint', function () {
 
-    const rebuilt = Components.rebuild(theme, 'md');
+    const rebuilt = buildFullSystem(theme, 'md');
 
     assert.ok(rebuilt.Component);
     assert.ok(rebuilt.Style);
@@ -109,15 +115,24 @@ describe('rebuild', function () {
 
   });
 
+
+  it('should leave the original system untouched', function () {
+
+    buildFullSystem(theme, 'md');
+
+    assert.strictEqual(Style.breakpoint, 'base');
+
+  });
+
 });
 
 
-describe('build validation', function () {
+describe('createSystem theme validation', function () {
 
   it('should throw TypeError on malformed theme', function () {
 
     assert.throws(function () {
-      Components.build({ Color: {}, Dimension: {}, Font: {} });
+      buildFullSystem({ Color: {}, Dimension: {}, Font: {} }, 'base');
     }, TypeError);
 
   });
@@ -126,7 +141,7 @@ describe('build validation', function () {
   it('should throw TypeError on missing Color group', function () {
 
     assert.throws(function () {
-      Components.build({ Dimension: {}, Font: {} });
+      buildFullSystem({ Dimension: {}, Font: {} }, 'base');
     }, TypeError);
 
   });
@@ -138,7 +153,7 @@ describe('build validation', function () {
     badTheme.Dimension.fontSize.md = '1rem';
 
     assert.throws(function () {
-      Components.build(badTheme);
+      buildFullSystem(badTheme, 'base');
     }, TypeError);
 
   });
@@ -164,7 +179,7 @@ describe('themeContract', function () {
       'font.weight.regular': '400'
     };
 
-    const result = Components.themeContract(flat);
+    const result = themeContract(flat);
 
     assert.strictEqual(result.Color.APP_PRIMARY, '#0f62fe');
     assert.strictEqual(result.Color.TEXT_PRIMARY, '#161616');
@@ -187,7 +202,7 @@ describe('themeContract', function () {
       }
     };
 
-    const result = Components.themeContract(themerOutput);
+    const result = themeContract(themerOutput);
 
     assert.strictEqual(result.Color.APP_PRIMARY, '#0f62fe');
     assert.strictEqual(result.Dimension.fontSize.md, 16);
@@ -198,7 +213,7 @@ describe('themeContract', function () {
   it('should round font sizes to integers', function () {
 
     const flat = { 'dimension.font_size.md': 16.7 };
-    const result = Components.themeContract(flat);
+    const result = themeContract(flat);
 
     assert.strictEqual(result.Dimension.fontSize.md, 17);
 
@@ -207,7 +222,7 @@ describe('themeContract', function () {
 
   it('should handle null input gracefully', function () {
 
-    const result = Components.themeContract(null);
+    const result = themeContract(null);
 
     assert.ok(result.Color);
     assert.ok(result.Dimension);
@@ -223,25 +238,31 @@ describe('themeContract', function () {
 // 3. TOKEN CONSTANTS
 // ============================================================================
 
-describe('tokens', function () {
+describe('TOKENS', function () {
 
   it('should export frozen token sets', function () {
 
-    const tokens = Components.tokens;
+    assert.ok(Array.isArray(TOKENS.fontSize));
+    assert.ok(Array.isArray(TOKENS.fontColor));
+    assert.ok(Array.isArray(TOKENS.fontWeight));
+    assert.ok(Array.isArray(TOKENS.space));
+    assert.ok(Array.isArray(TOKENS.radius));
+    assert.ok(Object.isFrozen(TOKENS));
 
-    assert.ok(Array.isArray(tokens.fontSize));
-    assert.ok(Array.isArray(tokens.fontColor));
-    assert.ok(Array.isArray(tokens.fontWeight));
-    assert.ok(Array.isArray(tokens.space));
-    assert.ok(Array.isArray(tokens.radius));
-    assert.ok(Object.isFrozen(tokens));
+  });
+
+
+  it('should freeze every token array', function () {
+
+    assert.ok(Object.isFrozen(TOKENS.fontSize));
+    assert.ok(Object.isFrozen(TOKENS.radius));
 
   });
 
 
   it('should include md in fontSize', function () {
 
-    assert.ok(Components.tokens.fontSize.indexOf('md') !== -1);
+    assert.ok(TOKENS.fontSize.indexOf('md') !== -1);
 
   });
 
@@ -366,17 +387,17 @@ describe('Icon', function () {
 
   it('should return null when Icons not injected', function () {
 
-    const noIconsComponents = componentsLoader({
+    const noIconsSystem = createSystem({
       Utils: Utils,
-      Debug: Components._debug || { warn: function () {} },
+      Debug: { warn: function () {} },
       React: React,
       Device: createDeviceStub(375, 812)
-    });
+    }, {}, createTestTheme(), 'base');
 
-    const noIconsBuilt = noIconsComponents.build(createTestTheme());
+    noIconsSystem.addComponents({ Icon: IconFactory });
 
     const tree = TestRenderer.create(
-      React.createElement(noIconsBuilt.Component.Icon, { name: 'check' })
+      React.createElement(noIconsSystem.Component.Icon, { name: 'check' })
     ).toJSON();
 
     assert.strictEqual(tree, null);
@@ -934,7 +955,7 @@ describe('useBreakpoint', function () {
     let capturedBp = null;
 
     function TestComp () {
-      capturedBp = Components.useBreakpoint(theme);
+      capturedBp = system.useBreakpoint(theme);
       return null;
     }
 

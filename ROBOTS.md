@@ -2,23 +2,45 @@
 
 > Compact signature reference for AI agents. Read this before calling any function in this module.
 
-**Module:** `@superloomdev/rnw-components-carbon` | **Alias:** `rnw-components-carbon` | **Class:** I (standalone framework module, factory) | **Runtime:** React Native Web (web, iOS, Android), Node.js 24+ for testing
+**Module:** `@superloomdev/rnw-components-carbon` | **Alias:** `rnw-components-carbon` | **Class:** I (standalone framework module, createSystem) | **Runtime:** React Native Web (web, iOS, Android), Node.js 24+ for testing
 
 ## Load
 
-```javascript
-import componentsLoader from 'rnw-components-carbon';
+`createSystem` is the only entry point. There is no default export.
 
-const Components = componentsLoader({
+```javascript
+import { createSystem, View, Text, Button } from 'rnw-components-carbon';
+
+const system = createSystem({
   Utils: Utils,
   Debug: Debug,
   React: React,
   Device: Device,
   Icons: Icons           // optional; Icon atom returns null without it
-});
+}, {}, theme, 'base');
+
+system.addComponents({ View, Text, Button });
+
+const C = system.Component;
 ```
 
-Factory. Each call returns an independent instance with its own registry. `React` is injected (not imported) to prevent two-copy hook errors. `Device` is `js-rnw-helper-device`.
+Each call returns an independent system with its own registry. No component exists until it is registered, so a bundler drops every factory that was never imported. `React` is injected (not imported) to prevent two-copy hook errors. `Device` is `js-rnw-helper-device`.
+
+To register the whole roster, import the barrel:
+
+```javascript
+import { createSystem } from 'rnw-components-carbon';
+import ALL from 'rnw-components-carbon/all';
+
+const system = createSystem(shared_libs, {}, theme, 'base');
+
+system.addComponents(ALL.COMPONENTS);
+system.addVariants(ALL.VARIANTS);
+system.addFreeforms(ALL.FREEFORMS);
+system.addProviders(ALL.PROVIDERS);
+```
+
+Importing the barrel pulls in every component. A consumer that wants a subset imports components by name from the package root instead.
 
 ## Peer Dependencies
 
@@ -47,15 +69,44 @@ Validated at load. Bad config throws immediately.
 
 ## Signatures
 
+Module exports:
+
 ```javascript
-build(theme, breakpoint?)          -> { Component, Style }
-rebuild(theme, breakpoint?)        -> { Component, Style }
-themeContract(themer_output)       -> { Color, Dimension, Font, Breakpoint }
-useBreakpoint(theme)               -> string  // React hook
-tokens                             -> { fontSize, fontColor, fontWeight, space, radius }  // frozen
+createSystem(shared_libs, config, theme, breakpoint?) -> system
+themeContract(themer_output)  -> { Color, Dimension, Font, Breakpoint }
+TOKENS                        -> { fontSize, fontColor, fontWeight, space, radius }  // frozen
+[ComponentName]               -> component factory   // 245 named exports
+```
+
+Subpath `rnw-components-carbon/all` exports:
+
+```javascript
+COMPONENTS  -> { [name]: factory }   // 235 flat
+VARIANTS    -> { [name]: factory }   // 1
+FREEFORMS   -> { [name]: factory }   // 1
+PROVIDERS   -> { [name]: factory }   // 8
+default     -> { COMPONENTS, VARIANTS, FREEFORMS, PROVIDERS }
+```
+
+System surface:
+
+```javascript
+system.addComponents(factory_map)  -> Component          // registers at Component.[name]
+system.addVariants(factory_map)    -> Component.variant  // registers at Component.variant.[name]
+system.addFreeforms(factory_map)   -> Component.freeform // registers at Component.freeform.[name]
+system.addProviders(factory_map)   -> Component.provider // registers at Component.provider.[name]
+system.checkRegistry()             -> { complete, missing }
+system.useBreakpoint(theme)        -> string             // React hook
+system.make(factory)               -> component          // instantiate without registering
+system.Component                   -> the shared registry
+system.Style                       -> { utilities, tokens, breakpoint, allBreakpoints }
+system.Parts                       -> the 12 mechanism parts
+system.Lib | system.CONFIG | system.ERRORS | system.breakpoint
 ```
 
 `theme` is `{ Color, Dimension, Font, Breakpoint }`. `themer_output` is the result from `Lib.Themer.buildTheme()` or a flat token map.
+
+Re-theming builds a new system. A system is never mutated in place.
 
 ## Theme Contract
 
@@ -374,5 +425,7 @@ Pure Node. No container, no emulator, no network. Uses `react-test-renderer` wit
 - **`react-native` is imported directly.** Unlike `react`, RN is a single-instance peer with no hook contract
 - **Freeform components receive `Lib` but NOT `Style` or `Registry`.** They cannot read tokens or compose atoms
 - **`useBreakpoint` is a hook.** It must be called inside a React component; it uses `useState` and `useEffect`
-- **`rebuild` returns a new registry.** The previous registry is never mutated; callers must swap the reference
+- **Re-theming builds a new system.** Call `createSystem` again and re-register; callers swap the reference
+- **A provider factory takes arguments positionally** from `addProviders`, in the order `Lib, CONFIG, ERRORS, Parts, Registry, Style`. A provider may declare a shorter list, but it must be a **prefix** of that order. Gate G22 enforces this
+- **`checkRegistry` reports missing siblings.** A component that renders a sibling reads it from the registry at render time, so call this after registering and fail at boot instead of at render
 - **`themeContract` adds `Breakpoint`.** The themer does not own breakpoints; they are layout boundaries, not design tokens

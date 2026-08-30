@@ -1,11 +1,13 @@
 # API Reference
 
-## Loader
+## Entry Point
+
+`createSystem` is the only entry point. The package has no default export.
 
 ```javascript
-import componentsLoader from 'rnw-components-carbon';
+import { createSystem } from 'rnw-components-carbon';
 
-const Components = componentsLoader(shared_libs, config?)
+const system = createSystem(shared_libs, config?, theme, breakpoint?)
 ```
 
 | Parameter | Type | Required | Description |
@@ -15,30 +17,130 @@ const Components = componentsLoader(shared_libs, config?)
 | `shared_libs.React` | Object | Yes | The `react` module (injected, not imported) |
 | `shared_libs.Device` | Object | Yes | `js-rnw-helper-device` instance |
 | `shared_libs.Icons` | Object | No | Icon source with a `Glyph` component |
+| `shared_libs.Font` | Object | No | `js-client-helper-font` instance |
 | `config` | Object | No | Overrides merged over defaults |
+| `theme` | Object | Yes | Theme contract `{ Color, Dimension, Font, Breakpoint }` |
+| `breakpoint` | String | No | Active breakpoint key, default `'base'` |
+
+The system carries the validated container, the mechanism parts, the
+per-breakpoint utility styles, and an **empty** registry. No component exists
+until it is registered, so a bundler drops every factory that was never
+imported.
+
+Re-theming builds a new system. A system is never mutated in place.
+
+## Module Exports
+
+| Export | Kind | Description |
+|---|---|---|
+| `createSystem` | Function | The entry point above |
+| `themeContract` | Function | Bridges themer output to the theme contract |
+| `TOKENS` | Frozen Object | Valid token sets |
+| 245 component names | Function | One factory per component, e.g. `Button`, `Text` |
+
+Subpath `rnw-components-carbon/all` exports the registration barrel:
+
+| Export | Description |
+|---|---|
+| `COMPONENTS` | 235 flat component factories |
+| `VARIANTS` | 1 variant factory |
+| `FREEFORMS` | 1 freeform factory |
+| `PROVIDERS` | 8 provider factories |
+| `default` | `{ COMPONENTS, VARIANTS, FREEFORMS, PROVIDERS }` |
+
+Importing the barrel pulls in every component. Import components by name from
+the package root to ship a subset.
+
+## System Surface
+
+### addComponents(factory_map)
+
+Registers flat components at `Component.[name]`. Map keys become registry keys,
+so ES shorthand keeps names typo-proof: a misspelled name fails at import time,
+not at render time.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `factory_map` | Object | Registry key to component factory |
+
+Returns the shared `Component` registry. Throws `TypeError` on a non-object
+argument or a non-function entry.
+
+### addVariants(factory_map)
+
+Registers structured exceptions at `Component.variant.[name]`. A variant is a
+preset of a canonical component and takes the same injection set.
+
+Returns `Component.variant`.
+
+### addFreeforms(factory_map)
+
+Registers unstructured exceptions at `Component.freeform.[name]`. Freeform
+factories receive `Lib` only: they cannot read tokens or compose siblings, they
+take raw styles, and they do not re-theme.
+
+Returns `Component.freeform`.
+
+### addProviders(factory_map)
+
+Registers context providers at `Component.provider.[name]`. A provider factory
+returns a module whose single component key equals its registry key.
+
+Provider factories are called with the canonical injection order
+`(Lib, CONFIG, ERRORS, Parts, Registry, Style)`. A provider may declare a
+shorter parameter list, but it must be a **prefix** of that order. Gate G22
+enforces this.
+
+Returns `Component.provider`. Throws `TypeError` when a factory does not expose
+its own name.
+
+### checkRegistry()
+
+Reports which render-time dependencies are missing from the registry. A
+component that renders a sibling reads it from the shared registry at render
+time, so an unregistered sibling fails only when that branch renders. This
+surfaces the gap at boot instead.
+
+Returns `{ complete, missing }`, where `missing` maps a registered component to
+the array of its absent dependencies.
+
+### useBreakpoint(theme)
+
+React hook that resolves the active breakpoint from the injected Device helper.
+Subscribes to viewport changes and updates on resize.
+
+| Parameter | Type | Description |
+|---|---|---|
+| `theme` | Object | Theme contract with `Breakpoint` group |
+
+Returns the active breakpoint key string. The system carries every breakpoint's
+utility set in `Style.allBreakpoints`, so a caller switches presentation on the
+returned key without building a second system.
+
+### make(factory)
+
+Instantiates a factory with the full injection set without registering it.
+Returns the component.
+
+### Properties
+
+| Property | Description |
+|---|---|
+| `Component` | The shared registry, with `variant`, `freeform`, `provider` namespaces |
+| `Style` | `{ utilities, tokens, breakpoint, allBreakpoints }` |
+| `Parts` | The 12 mechanism parts |
+| `Lib` | The validated dependency container |
+| `CONFIG` | Merged configuration |
+| `ERRORS` | Frozen error catalog |
+| `breakpoint` | Active breakpoint key |
 
 ## Functions
 
-### build(theme, breakpoint?)
-
-Builds the themed component registry from a theme contract.
-
-| Parameter | Type | Default | Description |
-|---|---|---|---|
-| `theme` | Object | - | Theme contract `{ Color, Dimension, Font, Breakpoint }` |
-| `breakpoint` | String | `'base'` | Active breakpoint key |
-
-Returns `{ Component, Style }`.
-
-### rebuild(theme, breakpoint?)
-
-Rebuilds the registry with a new theme. Returns a new registry object; the previous registry is never mutated.
-
-Same signature as `build`.
-
 ### themeContract(themer_output)
 
-Bridges themer output to the component theme contract. Reshapes the flat token map into `{ Color, Dimension, Font, Breakpoint }`.
+Bridges themer output to the component theme contract. Reshapes the flat token
+map into `{ Color, Dimension, Font, Breakpoint }`. Pure function; it needs no
+system.
 
 | Parameter | Type | Description |
 |---|---|---|
@@ -46,19 +148,9 @@ Bridges themer output to the component theme contract. Reshapes the flat token m
 
 Returns `{ Color, Dimension, Font, Breakpoint }`.
 
-### useBreakpoint(theme)
+### TOKENS
 
-React hook that resolves the active breakpoint from the injected Device helper. Subscribes to viewport changes and updates on resize.
-
-| Parameter | Type | Description |
-|---|---|---|
-| `theme` | Object | Theme contract with `Breakpoint` group |
-
-Returns the active breakpoint key string.
-
-### tokens
-
-Frozen object of valid token sets:
+Frozen object of valid token sets. Every array is frozen too.
 
 ```javascript
 {

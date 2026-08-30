@@ -196,22 +196,81 @@ jobs:
           echo "PASS"
       - name: G20 - Docs must be regenerated (no diff)
         run: |
+          DOCS="README.md ROBOTS.md docs/api.md docs/platform-support.md docs/carbon-parity.md"
+          mkdir -p /tmp/g20
+          for f in $DOCS; do cp "$f" "/tmp/g20/$(basename $f)"; done
           node .github/ci-scripts/generate-docs.js
-          if ! git diff --exit-code README.md ROBOTS.md docs/api.md docs/platform-support.md docs/carbon-parity.md; then
-            echo "FAIL: docs are out of date. Run 'node .github/ci-scripts/generate-docs.js' and commit."
-            git diff --stat
+          FAIL=0
+          for f in $DOCS; do
+            if ! diff -q "/tmp/g20/$(basename $f)" "$f" >/dev/null; then
+              echo "FAIL: $f is out of date"
+              diff "/tmp/g20/$(basename $f)" "$f" | head -20
+              FAIL=1
+            fi
+          done
+          rm -rf /tmp/g20
+          if [ "$FAIL" -ne 0 ]; then
+            echo "Run node .github/ci-scripts/generate-docs.js and commit the result."
             exit 1
           fi
           echo "PASS: docs are up to date"
-      - name: G21 - Generated exports must be regenerated (no diff)
+      - name: G21 - Generated artifacts must be regenerated (no diff)
         run: |
+          ART="data/component-exports.generated.js data/component-deps.js all.js"
+          mkdir -p /tmp/g21
+          for f in $ART; do cp "$f" "/tmp/g21/$(basename $f)"; done
           node .github/ci-scripts/generate-exports.js
-          if ! git diff --exit-code data/component-exports.generated.js data/component-deps.js; then
-            echo "FAIL: generated exports are out of date. Run node .github/ci-scripts/generate-exports.js and commit."
-            git diff --stat
+          FAIL=0
+          for f in $ART; do
+            if ! diff -q "/tmp/g21/$(basename $f)" "$f" >/dev/null; then
+              echo "FAIL: $f is out of date"
+              diff "/tmp/g21/$(basename $f)" "$f" | head -20
+              FAIL=1
+            fi
+          done
+          rm -rf /tmp/g21
+          if [ "$FAIL" -ne 0 ]; then
+            echo "Run node .github/ci-scripts/generate-exports.js and commit the result."
             exit 1
           fi
-          echo "PASS: generated exports are up to date"
+          echo "PASS: generated artifacts are up to date"
+      - name: G22 - Provider factories must declare the canonical injection prefix
+        run: |
+          CANON="Lib CONFIG ERRORS Parts Registry Style"
+          FAIL=0
+          for f in component/provider/*.js; do
+            SIG=$(grep -oE "^export default function \(([^)]*)\)" "$f" | head -1 \
+                  | sed -E "s/^export default function \(//; s/\)$//; s/,//g")
+            if [ -z "$SIG" ]; then
+              echo "FAIL: $f has no recognisable default export signature"
+              FAIL=1
+              continue
+            fi
+            i=1
+            for p in $SIG; do
+              EXPECTED=$(echo $CANON | cut -d" " -f$i)
+              if [ "$p" != "$EXPECTED" ]; then
+                echo "FAIL: $f param $i is '$p', canonical order requires '$EXPECTED'"
+                FAIL=1
+              fi
+              i=$((i+1))
+            done
+          done
+          if [ "$FAIL" -ne 0 ]; then
+            echo "A provider receives arguments positionally from addProviders."
+            echo "A shorter list is allowed, but it must be a PREFIX of: $CANON"
+            exit 1
+          fi
+          echo "PASS: all provider signatures are canonical prefixes"
+      - name: G23 - components.js must expose no default export
+        run: |
+          if grep -nE "^export default" components.js; then
+            echo "FAIL: components.js declares a default export."
+            echo "createSystem is the only entry point. A default export"
+            echo "reintroduces a path that cannot be tree-shaken."
+            exit 1
+          fi
+          echo "PASS: no default export in components.js"
 
   contract:
     name: L4 Contract Tests

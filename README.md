@@ -4,7 +4,7 @@ Carbon-informed component library for the RNW pipeline. Atoms, molecules, compos
 
 ## Overview
 
-This module provides a themed component registry for React Native Web applications. It consumes a theme contract (`{ Color, Dimension, Font, Breakpoint }`) and produces a set of atoms, molecules, variants, and freeform components that all drive their visuals from tokens. Re-theming at runtime calls `rebuild` with a new theme and returns a fresh registry.
+This module provides a themed component registry for React Native Web applications. It consumes a theme contract (`{ Color, Dimension, Font, Breakpoint }`) and produces a set of atoms, molecules, variants, and freeform components that all drive their visuals from tokens. `createSystem` is the only entry point: it builds the themed infrastructure without instantiating any component, and the caller registers the components it needs. A consumer using five components ships five factories, not all 245. Re-theming at runtime builds a new system; a system is never mutated in place.
 
 ## Installation
 
@@ -17,21 +17,28 @@ Peer dependencies: `react`, `react-native`, `helper-utils`, `helper-debug`, `hel
 ## Quick Start
 
 ```javascript
-import loader from '@superloomdev/rnw-components-carbon';
+import {
+  createSystem,
+  themeContract,
+  View, Text, Button
+} from '@superloomdev/rnw-components-carbon';
 
-const Components = loader({
+// Bridge themer output to the theme contract
+const theme = themeContract(themer.buildTheme(template, layers, 'native'));
+
+// Build the system, then register only the components this screen uses
+const system = createSystem({
   Utils: Utils,
   Debug: Debug,
   React: React,
   Device: Device,
   Icons: Icons
-});
+}, {}, theme, 'base');
 
-// Bridge themer output to the theme contract
-const theme = Components.themeContract(themer.buildTheme(template, layers, 'native'));
+system.addComponents({ View, Text, Button });
 
-// Build the themed registry
-const { Component, Style } = Components.build(theme, 'base');
+const Component = system.Component;
+const Style = system.Style;
 
 // Use components
 const MyScreen = function () {

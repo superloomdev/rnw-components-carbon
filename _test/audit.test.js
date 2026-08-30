@@ -10,7 +10,7 @@
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
 
-import { Components, Style, theme } from './loader.js';
+import { Style, theme, buildFullSystem } from './loader.js';
 import { createRealFamilyTheme } from './harness/themes.js';
 
 import { createRequire } from 'node:module';
@@ -218,7 +218,7 @@ describe('L1: Proof tests', function () {
     };
 
     assert.throws(function () {
-      Components.build(badTheme, 'base');
+      buildFullSystem(badTheme, 'base');
     }, function (err) {
       return err instanceof TypeError &&
         err.message.indexOf('unit-suffixed string') !== -1;
@@ -242,7 +242,7 @@ describe('L1: Proof tests', function () {
     };
 
     assert.throws(function () {
-      Components.build(badTheme, 'base');
+      buildFullSystem(badTheme, 'base');
     }, function (err) {
       return err instanceof TypeError &&
         err.message.indexOf('finite number') !== -1;
@@ -283,8 +283,8 @@ describe('L1: Font weight resolution', function () {
   it('should not include fontWeight for Poppins per-weight-face family', function () {
 
     const poppinsTheme = createRealFamilyTheme();
-    const built = Components.build(poppinsTheme, 'base');
-    const poppinsUtils = built.Style.utilities;
+    const poppinsSystem = buildFullSystem(poppinsTheme, 'base');
+    const poppinsUtils = poppinsSystem.Style.utilities;
 
     const regular = poppinsUtils['font_weight_regular'];
     assert.ok(regular);

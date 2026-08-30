@@ -3,9 +3,10 @@
 // The whole point of createSystem is that a consumer importing a handful of
 // named components ships only those factories. That property is invisible in
 // unit tests and silently regresses the moment something in components.js
-// makes the default export reachable from a named export. This suite bundles
-// two throwaway entry points with esbuild and asserts the module counts, so a
-// regression fails CI instead of quietly shipping a 6x larger bundle.
+// makes the whole roster reachable from a named export. This suite bundles two
+// throwaway entry points with esbuild - one importing the registration barrel,
+// one importing five components by name - and asserts the module counts, so a
+// regression fails CI instead of quietly shipping a 40x larger bundle.
 //
 // esbuild is already a dev dependency here; the L3 visual suite uses it.
 
@@ -34,12 +35,12 @@ const ESBUILD_FLAGS = [
 // The five components the createSystem probe imports by name
 const PROBE_COMPONENTS = ['View', 'Text', 'Button', 'Icon', 'Dropdown'];
 
-// Factory path pulls in every component; createSystem pulls in the five
+// The barrel pulls in every component; a named subset pulls in the five
 // named imports plus component/commonStyles.js as shared infrastructure.
-const EXPECTED_FACTORY_MODULES = 247;
-const EXPECTED_SYSTEM_MODULES = PROBE_COMPONENTS.length + 1;
+const EXPECTED_BARREL_MODULES = 247;
+const EXPECTED_SUBSET_MODULES = PROBE_COMPONENTS.length + 1;
 
-// A createSystem bundle must be at most this fraction of the factory bundle
+// A subset bundle must be at most this fraction of the barrel bundle
 const MAX_SIZE_RATIO = 0.35;
 
 
@@ -116,8 +117,8 @@ function listComponentModules (bundle) {
 
 // ========================= FIXTURES ======================================= //
 
-let factoryBundle;
-let systemBundle;
+let barrelBundle;
+let subsetBundle;
 
 before(function () {
 
@@ -125,17 +126,18 @@ before(function () {
   fs.rmSync(SCRATCH, { recursive: true, force: true });
   fs.mkdirSync(SCRATCH, { recursive: true });
 
-  // Bundle the factory path, which reaches every component
-  factoryBundle = bundleEntry(
-    'probe-factory.js',
-    'import createComponents from \'rnw-components-carbon\';\n'
-    + 'globalThis.__probe = typeof createComponents;\n'
+  // Bundle the barrel path, which reaches every component
+  barrelBundle = bundleEntry(
+    'probe-barrel.js',
+    'import { createSystem } from \'rnw-components-carbon\';\n'
+    + 'import ALL from \'rnw-components-carbon/all\';\n'
+    + 'globalThis.__probe = [typeof createSystem, Object.keys(ALL.COMPONENTS).length];\n'
   );
 
-  // Bundle the createSystem path with only five named component imports
+  // Bundle a named subset of five components
   const named = ['createSystem'].concat(PROBE_COMPONENTS).join(', ');
-  systemBundle = bundleEntry(
-    'probe-system.js',
+  subsetBundle = bundleEntry(
+    'probe-subset.js',
     'import { ' + named + ' } from \'rnw-components-carbon\';\n'
     + 'globalThis.__probe = [' + named + '].length;\n'
   );
@@ -154,15 +156,15 @@ after(function () {
 
 describe('tree-shaking', function () {
 
-  it('should bundle every component through the factory path', function () {
+  it('should bundle every component through the registration barrel', function () {
 
-    assert.strictEqual(countComponentModules(factoryBundle), EXPECTED_FACTORY_MODULES);
+    assert.strictEqual(countComponentModules(barrelBundle), EXPECTED_BARREL_MODULES);
 
   });
 
-  it('should bundle only the named imports through createSystem', function () {
+  it('should bundle only the named imports for a subset consumer', function () {
 
-    assert.strictEqual(countComponentModules(systemBundle), EXPECTED_SYSTEM_MODULES);
+    assert.strictEqual(countComponentModules(subsetBundle), EXPECTED_SUBSET_MODULES);
 
   });
 
@@ -176,34 +178,44 @@ describe('tree-shaking', function () {
       'molecule/dropdown.js'
     ];
 
-    assert.deepStrictEqual(listComponentModules(systemBundle), expected);
+    assert.deepStrictEqual(listComponentModules(subsetBundle), expected);
 
   });
 
-  it('should drop an unimported component that the factory path includes', function () {
+  it('should drop an unimported component that the barrel includes', function () {
 
-    // acceptTerms is never imported by the probe and is reachable only through
-    // the default export's registration block. Present in one bundle and
-    // absent from the other proves the default export was dropped.
+    // acceptTerms is never imported by the subset probe and is reachable only
+    // through the barrel. Present in one bundle and absent from the other
+    // proves the barrel was not pulled in transitively.
     assert.ok(
-      factoryBundle.indexOf('acceptTerms') !== -1,
-      'acceptTerms missing from the factory bundle, so the probe is not measuring the factory path'
+      barrelBundle.indexOf('acceptTerms') !== -1,
+      'acceptTerms missing from the barrel bundle, so the probe is not measuring the barrel'
     );
 
     assert.ok(
-      systemBundle.indexOf('acceptTerms') === -1,
-      'acceptTerms leaked into the createSystem bundle, so the default export was not dropped'
+      subsetBundle.indexOf('acceptTerms') === -1,
+      'acceptTerms leaked into the subset bundle, so the barrel was reached transitively'
     );
 
   });
 
-  it('should keep the createSystem bundle far smaller than the factory bundle', function () {
+  it('should not reach the barrel from the package root', function () {
 
-    const ratio = systemBundle.length / factoryBundle.length;
+    // Importing named components must never pull all.js into the graph.
+    assert.ok(
+      subsetBundle.indexOf('../all.js') === -1,
+      'all.js was bundled by a named-import consumer'
+    );
+
+  });
+
+  it('should keep the subset bundle far smaller than the barrel bundle', function () {
+
+    const ratio = subsetBundle.length / barrelBundle.length;
 
     assert.ok(
       ratio <= MAX_SIZE_RATIO,
-      'createSystem bundle is ' + Math.round(ratio * 100) + '% of the factory bundle, '
+      'subset bundle is ' + Math.round(ratio * 100) + '% of the barrel bundle, '
       + 'expected at most ' + Math.round(MAX_SIZE_RATIO * 100) + '%'
     );
 

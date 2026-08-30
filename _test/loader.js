@@ -4,6 +4,10 @@
 // needed by the test suite. DOM bootstrap and react-native -> react-native-web
 // resolution are handled by the --import and --loader flags in the test script.
 //
+// createSystem is the package's only entry point. The suite needs the whole
+// roster, so buildFullSystem registers all four namespaces from the generated
+// barrel. A test that needs a subset calls createSystem directly.
+//
 // This file is the single source of truth for test dependencies.
 // process.env is ONLY read here.
 
@@ -11,7 +15,8 @@ import React from 'react';
 import TestRenderer from 'react-test-renderer';
 import utilsLoader from 'helper-utils';
 import debugLoader from 'helper-debug';
-import componentsLoader from 'rnw-components-carbon';
+import { createSystem, themeContract, TOKENS } from 'rnw-components-carbon';
+import ALL from 'rnw-components-carbon/all';
 
 
 // ========================= DEPENDENCY CONTAINER =========================== //
@@ -148,23 +153,50 @@ function createTestTheme () {
 const Device = createDeviceStub(375, 812);
 const Icons = createIconsStub();
 
-const Components = componentsLoader({
+const sharedLibs = {
   Utils: Utils,
   Debug: Debug,
   React: React,
   Device: Device,
   Icons: Icons
-});
+};
+
+
+/********************************************************************
+Build a system carrying the entire component roster. The suite walks
+the full registry, so every namespace is registered from the
+generated barrel.
+
+@param {Object} theme_contract - Theme contract to build against
+@param {String} breakpoint     - Active breakpoint key
+
+@return {Object} - System object from createSystem
+*********************************************************************/
+function buildFullSystem (theme_contract, breakpoint) {
+
+  // Create the system, then register all four registry namespaces
+  const system = createSystem(sharedLibs, {}, theme_contract, breakpoint);
+
+  system.addComponents(ALL.COMPONENTS);
+  system.addVariants(ALL.VARIANTS);
+  system.addFreeforms(ALL.FREEFORMS);
+  system.addProviders(ALL.PROVIDERS);
+
+  // Return the fully populated system
+  return system;
+
+}
+
 
 // Build the themed registry at the base breakpoint
 const testTheme = createTestTheme();
-const built = Components.build(testTheme, 'base');
+const system = buildFullSystem(testTheme, 'base');
 
 
 // ========================= EXPORTS ======================================== //
 
 export {
-  Components,
+  system,
   Utils,
   Debug,
   React,
@@ -174,9 +206,14 @@ export {
   createDeviceStub,
   createIconsStub,
   createTestTheme,
-  componentsLoader
+  createSystem,
+  themeContract,
+  TOKENS,
+  ALL,
+  sharedLibs,
+  buildFullSystem
 };
 
-export const Component = built.Component;
-export const Style = built.Style;
+export const Component = system.Component;
+export const Style = system.Style;
 export const theme = testTheme;

@@ -32,7 +32,7 @@ function Gallery() {
       })
     ),
     React.createElement('section', { id: 'all-components', 'data-testid': 'all-components' },
-      React.createElement('h2', null, 'Full Roster (' + ALL_NAMES.length + ' registered)')
+      React.createElement('h2', null, 'Registered subset (' + ALL_NAMES.length + ' components)')
     )
   );
 }

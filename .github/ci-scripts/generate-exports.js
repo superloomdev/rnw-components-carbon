@@ -1,15 +1,18 @@
-// Info: Generator for the named component exports block and the render-time
-// dependency manifest. Reads components.js as the single source of truth for
-// the registry-key to factory-file mapping, then writes two artifacts.
+// Info: Generator for the named component exports block, the registration
+// barrel, and the render-time dependency manifest. Scans the component
+// directory tree as the single source of truth: one file under a namespace
+// directory is one component, and its registry key is its basename with the
+// first letter capitalized.
 //
 // Run from the repo root: node .github/ci-scripts/generate-exports.js
 //
 // Writes:
-//   data/component-exports.generated.js  - the named export block, spliced into components.js
+//   data/component-exports.generated.js  - named export block, spliced into components.js
+//   all.js                               - registration barrel for consumers wanting everything
 //   data/component-deps.js               - render-time dependency manifest
 //
-// Both artifacts are deterministic. The G21 CI gate regenerates them and
-// fails on any diff, so a hand edit cannot drift from components.js.
+// All three artifacts are deterministic. The G21 CI gate regenerates them and
+// fails on any diff, so a hand edit cannot drift from the directory tree.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -17,86 +20,87 @@ import { fileURLToPath } from 'node:url';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, '..', '..');
-const COMPONENTS_FILE = path.join(ROOT, 'components.js');
+const COMPONENT_DIR = path.join(ROOT, 'component');
 const EXPORTS_OUT = path.join(ROOT, 'data', 'component-exports.generated.js');
 const DEPS_OUT = path.join(ROOT, 'data', 'component-deps.js');
+const BARREL_OUT = path.join(ROOT, 'all.js');
+
+// The six component namespaces, in registration order. Any other directory
+// under component/ holds shared infrastructure, not components, and is
+// deliberately excluded: component/context/ and component/commonStyles.js.
+const NAMESPACES = [
+  { dir: 'atom', group: 'flat', heading: 'Atoms' },
+  { dir: 'molecule', group: 'flat', heading: 'Molecules' },
+  { dir: 'composite', group: 'flat', heading: 'Composites' },
+  { dir: 'variant', group: 'variant', heading: 'Variants' },
+  { dir: 'freeform', group: 'freeform', heading: 'Freeform' },
+  { dir: 'provider', group: 'provider', heading: 'Providers' }
+];
 
 
 /////////////////////////// Private Functions START ////////////////////////////
 
 /********************************************************************
-Parse components.js and return the registry-key to factory-path map.
-Covers all four registration namespaces: flat, variant, freeform,
-and provider.
+Scan the component namespace directories and return every component
+keyed by registry name.
 
-@param {String} src - Full text of components.js
-
-@return {Object} - { flat, variant, freeform, provider } name maps
+@return {Array} - Sorted entries of { name, importPath, group, dir }
 *********************************************************************/
-const parseRegistrations = function (src) {
+const scanComponents = function () {
 
-  // Map every factory import identifier to its relative module path
-  const imports = {};
-  const importPattern = /^import\s+([A-Za-z0-9]+Factory)\s+from\s+'(\.\/component\/[^']+)';/gm;
-  let match = importPattern.exec(src);
+  // Collect one entry per component file across all six namespaces
+  const found = [];
 
-  while (match !== null) {
-    imports[match[1]] = match[2];
-    match = importPattern.exec(src);
+  // Walk each namespace directory in registration order
+  for (let n = 0; n < NAMESPACES.length; n++) {
+    const ns = NAMESPACES[n];
+    const dirPath = path.join(COMPONENT_DIR, ns.dir);
+
+    // A missing namespace directory is a structural error, not a skip
+    if (!fs.existsSync(dirPath)) {
+      throw new Error('Missing component namespace directory: ' + ns.dir);
+    }
+
+    // Read every JavaScript file in this namespace, sorted for stability
+    const files = fs.readdirSync(dirPath)
+      .filter(function (file) {
+        return file.endsWith('.js');
+      })
+      .sort();
+
+    // Derive the registry key from each filename
+    for (let f = 0; f < files.length; f++) {
+      const base = files[f].replace('.js', '');
+      const name = base[0].toUpperCase() + base.slice(1);
+
+      found.push({
+        name: name,
+        importPath: './component/' + ns.dir + '/' + files[f],
+        group: ns.group,
+        dir: ns.dir,
+        varName: base + 'Factory'
+      });
+
+    }
+
   }
 
-  // Collect flat registrations: Component.Name = make(nameFactory);
-  const flat = {};
-  const flatPattern = /^\s+Component\.([A-Za-z0-9]+)\s*=\s*make\(([A-Za-z0-9]+Factory)\);/gm;
-  match = flatPattern.exec(src);
+  // Fail loudly on a duplicate registry key across namespaces
+  const seen = {};
 
-  while (match !== null) {
-    flat[match[1]] = imports[match[2]];
-    match = flatPattern.exec(src);
+  // Check every entry for a name collision
+  for (let i = 0; i < found.length; i++) {
+
+    // A duplicate would silently shadow an export, so stop the run
+    if (Object.prototype.hasOwnProperty.call(seen, found[i].name)) {
+      throw new Error('Duplicate registry key across namespaces: ' + found[i].name);
+    }
+
+    seen[found[i].name] = true;
   }
 
-  // Collect variant registrations: Name: make(nameFactory)
-  const variant = {};
-  const variantPattern = /^\s{8}([A-Za-z0-9]+):\s*make\(([A-Za-z0-9]+Factory)\)/gm;
-  match = variantPattern.exec(src);
-
-  while (match !== null) {
-    variant[match[1]] = imports[match[2]];
-    match = variantPattern.exec(src);
-  }
-
-  // Collect freeform registrations: Name: nameFactory(Lib)
-  const freeform = {};
-  const freeformPattern = /^\s{8}([A-Za-z0-9]+):\s*([A-Za-z0-9]+Factory)\(Lib\)/gm;
-  match = freeformPattern.exec(src);
-
-  while (match !== null) {
-    freeform[match[1]] = imports[match[2]];
-    match = freeformPattern.exec(src);
-  }
-
-  // Collect provider registrations by pairing module vars to registry keys
-  const providerModules = {};
-  const provModPattern = /^\s+const\s+([A-Za-z0-9]+)Module\s*=\s*([A-Za-z0-9]+Factory)\(/gm;
-  match = provModPattern.exec(src);
-
-  while (match !== null) {
-    providerModules[match[1]] = imports[match[2]];
-    match = provModPattern.exec(src);
-  }
-
-  // Resolve provider registry keys to their factory paths
-  const provider = {};
-  const provKeyPattern = /^\s+([A-Za-z0-9]+):\s*([A-Za-z0-9]+)Module\.[A-Za-z0-9]+,?$/gm;
-  match = provKeyPattern.exec(src);
-
-  while (match !== null) {
-    provider[match[1]] = providerModules[match[2]];
-    match = provKeyPattern.exec(src);
-  }
-
-  // Return the four namespace maps
-  return { flat: flat, variant: variant, freeform: freeform, provider: provider };
+  // Return the complete component inventory
+  return found;
 
 };
 
@@ -105,25 +109,19 @@ const parseRegistrations = function (src) {
 Scan every component file for render-time Registry dereferences and
 build the dependency manifest keyed by registry name.
 
-@param {Object} nameToPath - Registry key to relative factory path
+@param {Array} entries - Component inventory from scanComponents
 
 @return {Object} - Registry key to sorted array of dependency keys
 *********************************************************************/
-const buildDependencyMap = function (nameToPath) {
+const buildDependencyMap = function (entries) {
 
-  // Invert the map so a file path resolves back to its registry key
+  // Collect the sibling dependencies each component reads at render time
   const deps = {};
-  const names = Object.keys(nameToPath);
 
   // Scan each component file for Registry.X references
-  for (let i = 0; i < names.length; i++) {
-    const name = names[i];
-    const filePath = path.join(ROOT, nameToPath[name]);
-
-    // Skip a registration whose file is missing rather than crashing
-    if (!fs.existsSync(filePath)) {
-      continue;
-    }
+  for (let i = 0; i < entries.length; i++) {
+    const entry = entries[i];
+    const filePath = path.join(ROOT, entry.importPath);
 
     // Read the source and collect every Registry dereference
     const lines = fs.readFileSync(filePath, 'utf8').split('\n');
@@ -152,7 +150,7 @@ const buildDependencyMap = function (nameToPath) {
 
     // Record only components that actually depend on siblings
     if (found.size > 0) {
-      deps[name] = Array.from(found).sort();
+      deps[entry.name] = Array.from(found).sort();
     }
 
   }
@@ -166,23 +164,55 @@ const buildDependencyMap = function (nameToPath) {
 /********************************************************************
 Render the named export block for one namespace as sorted ESM lines.
 
-@param {String} heading    - Section comment heading
-@param {Object} nameToPath - Registry key to relative factory path
+@param {String} heading - Section comment heading
+@param {Array}  entries - Component entries for this namespace
 
 @return {String} - Rendered export lines
 *********************************************************************/
-const renderExportBlock = function (heading, nameToPath) {
+const renderExportBlock = function (heading, entries) {
 
-  // Sort keys so the generated output is byte-stable across runs
-  const names = Object.keys(nameToPath).sort();
+  // Sort by registry key so the generated output is byte-stable
+  const sorted = entries.slice().sort(function (a, b) {
+    return a.name < b.name ? -1 : 1;
+  });
   let out = '// ~~~~~~~~~~ ' + heading + ' ~~~~~~~~~~\n';
 
   // Emit one re-export line per registry key
-  for (let i = 0; i < names.length; i++) {
-    out += 'export { default as ' + names[i] + ' } from \'' + nameToPath[names[i]] + '\';\n';
+  for (let i = 0; i < sorted.length; i++) {
+    out += 'export { default as ' + sorted[i].name + ' } from \'' + sorted[i].importPath + '\';\n';
   }
 
   // Return the rendered block
+  return out;
+
+};
+
+
+/********************************************************************
+Render one frozen registration map for the barrel module.
+
+@param {String} constName - Exported constant name
+@param {Array}  entries   - Component entries for this map
+
+@return {String} - Rendered constant declaration
+*********************************************************************/
+const renderBarrelMap = function (constName, entries) {
+
+  // Sort by registry key so the generated output is byte-stable
+  const sorted = entries.slice().sort(function (a, b) {
+    return a.name < b.name ? -1 : 1;
+  });
+  let out = 'const ' + constName + ' = Object.freeze({\n';
+
+  // Emit one registry-key to factory pair per component
+  for (let i = 0; i < sorted.length; i++) {
+    const comma = i === sorted.length - 1 ? '' : ',';
+    out += '  ' + sorted[i].name + ': ' + sorted[i].varName + comma + '\n';
+  }
+
+  out += '});\n';
+
+  // Return the rendered constant
   return out;
 
 };
@@ -193,56 +223,93 @@ const renderExportBlock = function (heading, nameToPath) {
 
 /////////////////////////// Main START /////////////////////////////////////////
 
-// Read components.js and parse every registration namespace
-const src = fs.readFileSync(COMPONENTS_FILE, 'utf8');
-const reg = parseRegistrations(src);
+// Scan the component tree and split the inventory by registration group
+const entries = scanComponents();
+const flat = entries.filter(function (e) {
+  return e.group === 'flat';
+});
+const variant = entries.filter(function (e) {
+  return e.group === 'variant';
+});
+const freeform = entries.filter(function (e) {
+  return e.group === 'freeform';
+});
+const provider = entries.filter(function (e) {
+  return e.group === 'provider';
+});
 
-// Merge all namespaces into one flat export surface and assert no collisions
-const all = {};
-const groups = [reg.flat, reg.variant, reg.freeform, reg.provider];
-
-// Fold each namespace in, failing loudly on a duplicate registry key
-for (let g = 0; g < groups.length; g++) {
-  const keys = Object.keys(groups[g]);
-
-  // Copy each key, refusing to overwrite an existing entry
-  for (let k = 0; k < keys.length; k++) {
-
-    // A duplicate key would silently shadow an export, so stop the run
-    if (Object.prototype.hasOwnProperty.call(all, keys[k])) {
-      throw new Error('Duplicate registry key across namespaces: ' + keys[k]);
-    }
-
-    all[keys[k]] = groups[g][keys[k]];
-  }
-
-}
-
-// Build the export artifact from the four namespaces in stable order
+// Build the named export artifact spliced into components.js
 let exportsOut = '// Info: GENERATED FILE - do not edit by hand.\n';
-exportsOut += '// Produced by .github/ci-scripts/generate-exports.js from components.js.\n';
+exportsOut += '// Produced by .github/ci-scripts/generate-exports.js from the component tree.\n';
 exportsOut += '// This block is spliced into components.js between the\n';
 exportsOut += '// "Named Component Exports START" and "END" banners.\n\n';
-exportsOut += renderExportBlock('Atoms, molecules, and composites', reg.flat) + '\n';
-exportsOut += renderExportBlock('Variants', reg.variant) + '\n';
-exportsOut += renderExportBlock('Freeform', reg.freeform) + '\n';
-exportsOut += renderExportBlock('Providers', reg.provider);
+exportsOut += renderExportBlock('Atoms, molecules, and composites', flat) + '\n';
+exportsOut += renderExportBlock('Variants', variant) + '\n';
+exportsOut += renderExportBlock('Freeform', freeform) + '\n';
+exportsOut += renderExportBlock('Providers', provider);
 
 // Write the export artifact
 fs.writeFileSync(EXPORTS_OUT, exportsOut, 'utf8');
 
+// Build the registration barrel for consumers that want the whole roster
+let barrelOut = '// Info: GENERATED FILE - do not edit by hand.\n';
+barrelOut += '// Produced by .github/ci-scripts/generate-exports.js from the component tree.\n';
+barrelOut += '//\n';
+barrelOut += '// Registration barrel. A consumer that wants the entire roster imports this\n';
+barrelOut += '// module and passes each map to the matching createSystem registrar. Importing\n';
+barrelOut += '// this file pulls in every component, so a consumer that wants a subset\n';
+barrelOut += '// imports named components from the package root instead.\n\n';
+barrelOut += '// Imports\n';
+
+// Emit one factory import per component, grouped by namespace
+for (let n = 0; n < NAMESPACES.length; n++) {
+  const ns = NAMESPACES[n];
+  const group = entries.filter(function (e) {
+    return e.dir === ns.dir;
+  });
+
+  barrelOut += '\n// ~~~~~~~~~~ ' + ns.heading + ' ~~~~~~~~~~\n';
+
+  // Emit the import lines for this namespace in filename order
+  for (let i = 0; i < group.length; i++) {
+    barrelOut += 'import ' + group[i].varName + ' from \'' + group[i].importPath + '\';\n';
+  }
+
+}
+
+barrelOut += '\n\n/////////////////////////// Registration Maps START ////////////////////////////\n\n';
+barrelOut += '// Flat components registered at Component.[name]\n';
+barrelOut += renderBarrelMap('COMPONENTS', flat);
+barrelOut += '\n// Structured exceptions registered at Component.variant.[name]\n';
+barrelOut += renderBarrelMap('VARIANTS', variant);
+barrelOut += '\n// Unstructured exceptions registered at Component.freeform.[name]\n';
+barrelOut += renderBarrelMap('FREEFORMS', freeform);
+barrelOut += '\n// Context providers registered at Component.provider.[name]\n';
+barrelOut += renderBarrelMap('PROVIDERS', provider);
+barrelOut += '\n/////////////////////////// Registration Maps END //////////////////////////////\n\n\n';
+barrelOut += 'export { COMPONENTS, VARIANTS, FREEFORMS, PROVIDERS };\n\n';
+barrelOut += 'export default Object.freeze({\n';
+barrelOut += '  COMPONENTS: COMPONENTS,\n';
+barrelOut += '  VARIANTS: VARIANTS,\n';
+barrelOut += '  FREEFORMS: FREEFORMS,\n';
+barrelOut += '  PROVIDERS: PROVIDERS\n';
+barrelOut += '});\n';
+
+// Write the barrel artifact
+fs.writeFileSync(BARREL_OUT, barrelOut, 'utf8');
+
 // Build the render-time dependency manifest across every namespace
-const deps = buildDependencyMap(all);
+const deps = buildDependencyMap(entries);
 const depNames = Object.keys(deps).sort();
 
 // Render the manifest as a frozen ESM default export
 let depsOut = '// Info: GENERATED FILE - do not edit by hand.\n';
-depsOut += '// Produced by .github/ci-scripts/generate-exports.js from components.js.\n';
+depsOut += '// Produced by .github/ci-scripts/generate-exports.js from the component tree.\n';
 depsOut += '//\n';
 depsOut += '// Render-time component dependencies. A component listed here reads the\n';
 depsOut += '// named siblings from the shared registry when it renders, so a consumer\n';
-depsOut += '// using createSystem must register those siblings too. checkRegistry()\n';
-depsOut += '// reads this manifest to report what is missing.\n\n';
+depsOut += '// must register those siblings too. checkRegistry() reads this manifest\n';
+depsOut += '// to report what is missing.\n\n';
 depsOut += 'const COMPONENT_DEPS = Object.freeze({\n';
 
 // Emit one frozen entry per component that has dependencies
@@ -263,11 +330,11 @@ depsOut += 'export default COMPONENT_DEPS;\n';
 fs.writeFileSync(DEPS_OUT, depsOut, 'utf8');
 
 // Report what was generated
-process.stdout.write('generate-exports: ' + Object.keys(all).length + ' named exports ('
-  + Object.keys(reg.flat).length + ' flat, '
-  + Object.keys(reg.variant).length + ' variant, '
-  + Object.keys(reg.freeform).length + ' freeform, '
-  + Object.keys(reg.provider).length + ' provider)\n');
+process.stdout.write('generate-exports: ' + entries.length + ' components ('
+  + flat.length + ' flat, '
+  + variant.length + ' variant, '
+  + freeform.length + ' freeform, '
+  + provider.length + ' provider)\n');
 process.stdout.write('generate-exports: ' + depNames.length + ' components with render-time deps\n');
 
 /////////////////////////// Main END ///////////////////////////////////////////

@@ -1,6 +1,6 @@
 # Theme Contract Schema
 
-The theme contract is the shape the component library consumes. It is produced by `Components.themeContract(themer_output)` or assembled manually.
+The theme contract is the shape the component library consumes. It is produced by `themeContract(themer_output)` or assembled manually.
 
 ## Top-Level Shape
 
