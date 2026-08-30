@@ -1,7 +1,7 @@
 {
   "name": "@superloomdev/rnw-components-carbon",
   "description": "Carbon-informed component library for the RNW pipeline. Atoms and molecules over the themer, with theme-driven responsiveness and a real accessibility contract",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "author": {
     "name": "sj00"
   },
