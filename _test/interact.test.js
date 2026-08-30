@@ -295,3 +295,61 @@ test('L3: gallery renders expected number of interactive components', async ({ p
   // exact count also proves no named import was silently dropped.
   expect(count).toBe(16);
 });
+
+// ─── Theme switching ───────────────────────────────────────────────────────
+
+test('L3: renders under the Carbon theme by default', async ({ page }) => {
+  await page.goto('/');
+  await page.waitForSelector('[data-theme-switch]');
+
+  const active = await page.getAttribute('html', 'data-theme-switch');
+
+  expect(active).toBe('carbon');
+});
+
+test('L3: renders under the contrast theme when requested', async ({ page }) => {
+  const errors = [];
+  page.on('pageerror', function (e) {
+    errors.push(e.message);
+  });
+
+  await page.goto('/?theme=contrast');
+  await page.waitForSelector('[data-theme-switch]');
+
+  const active = await page.getAttribute('html', 'data-theme-switch');
+
+  expect(active).toBe('contrast');
+  expect(errors).toEqual([]);
+});
+
+test('L3: Carbon theme carries Carbon blue and contrast does not', async ({ page }) => {
+  // The strongest browser-level agnosticism check: the theme's primary colour
+  // must reach computed style. Carbon is #0f62fe (rgb 15,98,254); the contrast
+  // theme is #7c3aed (rgb 124,58,237). If both match, the component ignored
+  // the theme.
+  await page.goto('/');
+  await page.waitForSelector('[data-testid="interactive"]');
+  const carbonColor = await page.evaluate(function () {
+    var all = document.querySelectorAll('[data-testid="interactive"] *');
+    for (var i = 0; i < all.length; i++) {
+      var bg = getComputedStyle(all[i]).backgroundColor;
+      if (bg !== 'rgba(0, 0, 0, 0)') return bg;
+    }
+    return null;
+  });
+
+  await page.goto('/?theme=contrast');
+  await page.waitForSelector('[data-testid="interactive"]');
+  const contrastColor = await page.evaluate(function () {
+    var all = document.querySelectorAll('[data-testid="interactive"] *');
+    for (var i = 0; i < all.length; i++) {
+      var bg = getComputedStyle(all[i]).backgroundColor;
+      if (bg !== 'rgba(0, 0, 0, 0)') return bg;
+    }
+    return null;
+  });
+
+  expect(carbonColor).not.toBe(contrastColor);
+  expect(carbonColor).toContain('15, 98, 254');
+  expect(contrastColor).toContain('124, 58, 237');
+});

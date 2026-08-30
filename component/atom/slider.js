@@ -96,9 +96,9 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     // Resolve track and thumb colors
     const activeColor = isDisabled
-      ? (colorMap.TEXT_DISABLED || '#a8a8a8')
-      : (colorMap.APP_PRIMARY || '#0f62fe');
-    const inactiveColor = colorMap.BACKGROUND_SECONDARY || '#e0e0e0';
+      ? (colorMap.TEXT_DISABLED)
+      : (colorMap.APP_PRIMARY);
+    const inactiveColor = colorMap.BACKGROUND_SECONDARY;
 
     // Step the value by stepVal on press of left/right track halves
     const onDecrease = function () {

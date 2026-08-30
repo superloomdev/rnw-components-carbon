@@ -4,7 +4,12 @@ Carbon-informed component library for the RNW pipeline. Atoms, molecules, compos
 
 ## Overview
 
-This module provides a themed component registry for React Native Web applications. It consumes a theme contract (`{ Color, Dimension, Font, Breakpoint }`) and produces a set of atoms, molecules, variants, and freeform components that all drive their visuals from tokens. `createSystem` is the only entry point: it builds the themed infrastructure without instantiating any component, and the caller registers the components it needs. A consumer using five components ships five factories, not all 245. Re-theming at runtime builds a new system; a system is never mutated in place.
+This module provides a themed component registry for React Native Web applications. It consumes a theme contract (`{ Color, Dimension, Font, Breakpoint }`) and produces a set of atoms, molecules, variants, and freeform components that all drive their visuals from tokens. The library ships no colour of its own: a theme supplies all 22 required `Color` tokens or
+`createSystem` refuses to build, naming every absent one. That keeps the component set free
+of any single design language - the same components render IBM Carbon or anything else,
+depending entirely on the theme handed in.
+
+`createSystem` is the only entry point: it builds the themed infrastructure without instantiating any component, and the caller registers the components it needs. A consumer using five components ships five factories, not all 245. Re-theming at runtime builds a new system; a system is never mutated in place.
 
 ## Installation
 

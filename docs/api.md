@@ -19,7 +19,7 @@ const system = createSystem(shared_libs, config?, theme, breakpoint?)
 | `shared_libs.Icons` | Object | No | Icon source with a `Glyph` component |
 | `shared_libs.Font` | Object | No | `js-client-helper-font` instance |
 | `config` | Object | No | Overrides merged over defaults |
-| `theme` | Object | Yes | Theme contract `{ Color, Dimension, Font, Breakpoint }` |
+| `theme` | Object | Yes | Theme contract `{ Color, Dimension, Font, Breakpoint }`. `Color` must carry all 22 required tokens |
 | `breakpoint` | String | No | Active breakpoint key, default `'base'` |
 
 The system carries the validated container, the mechanism parts, the
@@ -28,6 +28,21 @@ until it is registered, so a bundler drops every factory that was never
 imported.
 
 Re-theming builds a new system. A system is never mutated in place.
+
+### Required Color tokens
+
+`createSystem` throws a `TypeError` when `theme.Color` omits any of these, naming every
+absent token in one message. The component set holds no colour of its own, so an absent
+token has nothing to resolve to and would render as `undefined`.
+
+| Group | Tokens |
+|---|---|
+| Interactive | `APP_PRIMARY`, `APP_PRIMARY_HOVERED`, `APP_PRIMARY_PRESSED`, `APP_PRIMARY_DISABLED`, `APP_PRIMARY_SUBTLE` |
+| Text | `TEXT_PRIMARY`, `TEXT_SECONDARY`, `TEXT_MUTED`, `TEXT_DISABLED`, `TEXT_ON_PRIMARY` |
+| Surface | `BACKGROUND_PRIMARY`, `BACKGROUND_SECONDARY`, `SURFACE`, `BORDER` |
+| Status | `STATUS_SUCCESS`, `STATUS_SUCCESS_SUBTLE`, `STATUS_DANGER`, `STATUS_DANGER_SUBTLE`, `STATUS_WARNING`, `STATUS_WARNING_SUBTLE`, `STATUS_INFO`, `STATUS_INFO_SUBTLE` |
+
+Each value must be a non-empty string. Tokens beyond this set are allowed and ignored.
 
 ## Module Exports
 
@@ -46,7 +61,6 @@ Subpath `rnw-components-carbon/all` exports the registration barrel:
 | `VARIANTS` | 1 variant factory |
 | `FREEFORMS` | 1 freeform factory |
 | `PROVIDERS` | 8 provider factories |
-| `default` | `{ COMPONENTS, VARIANTS, FREEFORMS, PROVIDERS }` |
 
 Importing the barrel pulls in every component. Import components by name from
 the package root to ship a subset.

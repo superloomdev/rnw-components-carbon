@@ -30,14 +30,14 @@ To register the whole roster, import the barrel:
 
 ```javascript
 import { createSystem } from 'rnw-components-carbon';
-import ALL from 'rnw-components-carbon/all';
+import { COMPONENTS, VARIANTS, FREEFORMS, PROVIDERS } from 'rnw-components-carbon/all';
 
 const system = createSystem(shared_libs, {}, theme, 'base');
 
-system.addComponents(ALL.COMPONENTS);
-system.addVariants(ALL.VARIANTS);
-system.addFreeforms(ALL.FREEFORMS);
-system.addProviders(ALL.PROVIDERS);
+system.addComponents(COMPONENTS);
+system.addVariants(VARIANTS);
+system.addFreeforms(FREEFORMS);
+system.addProviders(PROVIDERS);
 ```
 
 Importing the barrel pulls in every component. A consumer that wants a subset imports components by name from the package root instead.
@@ -85,7 +85,6 @@ COMPONENTS  -> { [name]: factory }   // 235 flat
 VARIANTS    -> { [name]: factory }   // 1
 FREEFORMS   -> { [name]: factory }   // 1
 PROVIDERS   -> { [name]: factory }   // 8
-default     -> { COMPONENTS, VARIANTS, FREEFORMS, PROVIDERS }
 ```
 
 System surface:
@@ -104,7 +103,19 @@ system.Parts                       -> the 12 mechanism parts
 system.Lib | system.CONFIG | system.ERRORS | system.breakpoint
 ```
 
-`theme` is `{ Color, Dimension, Font, Breakpoint }`. `themer_output` is the result from `Lib.Themer.buildTheme()` or a flat token map.
+`theme` is `{ Color, Dimension, Font, Breakpoint }`. **`theme.Color` must carry all 22
+required tokens**; `createSystem` throws a `TypeError` naming every absent one. The library
+holds no colour of its own, so a missing token has no value to fall back to:
+
+```
+APP_PRIMARY  APP_PRIMARY_HOVERED  APP_PRIMARY_PRESSED  APP_PRIMARY_DISABLED
+APP_PRIMARY_SUBTLE  TEXT_PRIMARY  TEXT_SECONDARY  TEXT_MUTED  TEXT_DISABLED
+TEXT_ON_PRIMARY  BACKGROUND_PRIMARY  BACKGROUND_SECONDARY  SURFACE  BORDER
+STATUS_SUCCESS  STATUS_SUCCESS_SUBTLE  STATUS_DANGER  STATUS_DANGER_SUBTLE
+STATUS_WARNING  STATUS_WARNING_SUBTLE  STATUS_INFO  STATUS_INFO_SUBTLE
+```
+
+Extra tokens beyond these are allowed and ignored. `themer_output` is the result from `Lib.Themer.buildTheme()` or a flat token map.
 
 Re-theming builds a new system. A system is never mutated in place.
 

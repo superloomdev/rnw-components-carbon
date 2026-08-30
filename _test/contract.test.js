@@ -4,7 +4,7 @@
 // Each rule is proven to fire against a deliberate violation before an empty
 // result is trusted.
 
-import { describe, it } from 'node:test';
+import { describe, it, test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -372,4 +372,82 @@ describe('L4: Proof tests', function () {
 
   });
 
+});
+
+
+// ─── Color token contract ──────────────────────────────────────────────────
+
+// The 22 tokens createSystem requires. Mirrored here so the suite fails when
+// the validator's list and the component tree drift apart.
+const REQUIRED_COLOR_TOKENS = [
+  'APP_PRIMARY', 'APP_PRIMARY_HOVERED', 'APP_PRIMARY_PRESSED',
+  'APP_PRIMARY_DISABLED', 'APP_PRIMARY_SUBTLE',
+  'TEXT_PRIMARY', 'TEXT_SECONDARY', 'TEXT_MUTED', 'TEXT_DISABLED',
+  'TEXT_ON_PRIMARY',
+  'BACKGROUND_PRIMARY', 'BACKGROUND_SECONDARY', 'SURFACE', 'BORDER',
+  'STATUS_SUCCESS', 'STATUS_SUCCESS_SUBTLE',
+  'STATUS_DANGER', 'STATUS_DANGER_SUBTLE',
+  'STATUS_WARNING', 'STATUS_WARNING_SUBTLE',
+  'STATUS_INFO', 'STATUS_INFO_SUBTLE'
+];
+
+
+test('no component file carries a hardcoded colour', function () {
+  // Mirrors CI gate G24 locally so the property is provable without CI.
+  const files = collectFiles(COMPONENT_DIR);
+  const hits = [];
+
+  for (let i = 0; i < files.length; i++) {
+    const text = fs.readFileSync(files[i], 'utf8');
+
+    if (/#[0-9a-fA-F]{3,6}/.test(text)) {
+      hits.push(path.relative(COMPONENT_DIR, files[i]));
+    }
+
+  }
+
+  assert.deepEqual(hits, []);
+});
+
+test('no component file carries a colour fallback', function () {
+  const files = collectFiles(COMPONENT_DIR);
+  const hits = [];
+
+  for (let i = 0; i < files.length; i++) {
+    const text = fs.readFileSync(files[i], 'utf8');
+
+    if (/colorMap\.[A-Z_]+ \|\| /.test(text)) {
+      hits.push(path.relative(COMPONENT_DIR, files[i]));
+    }
+
+  }
+
+  assert.deepEqual(hits, []);
+});
+
+test('every colorMap token read by a component is in the required list', function () {
+  // A component reading a token the gate does not require would reintroduce
+  // the undefined-colour class this plan removed.
+  const files = collectFiles(COMPONENT_DIR);
+  const read = new Set();
+
+  for (let i = 0; i < files.length; i++) {
+    const text = fs.readFileSync(files[i], 'utf8');
+    const found = text.match(/colorMap\.[A-Z_]+/g) || [];
+
+    for (let j = 0; j < found.length; j++) {
+      read.add(found[j].replace('colorMap.', ''));
+    }
+
+  }
+
+  const missing = Array.from(read).filter(function (t) {
+    return REQUIRED_COLOR_TOKENS.indexOf(t) === -1;
+  });
+
+  assert.deepEqual(missing, []);
+});
+
+test('the required list matches the documented count', function () {
+  assert.equal(REQUIRED_COLOR_TOKENS.length, 22);
 });

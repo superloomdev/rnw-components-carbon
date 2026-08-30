@@ -104,8 +104,8 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           Style.utilities['br_sm'],
           {
             backgroundColor: isSelected
-              ? (colorMap.APP_PRIMARY || '#0f62fe')
-              : (colorMap.BACKGROUND_SECONDARY || '#f4f4f4')
+              ? (colorMap.APP_PRIMARY)
+              : (colorMap.BACKGROUND_SECONDARY)
           },
           style
         ]

@@ -59,7 +59,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     // Build skeleton box style
     const boxStyle = {
-      backgroundColor: colorMap.BACKGROUND_SECONDARY || '#e0e0e0',
+      backgroundColor: colorMap.BACKGROUND_SECONDARY,
       borderRadius: v === 'text' ? 2 : 4,
       height: resolvedHeight,
       width: resolvedWidth

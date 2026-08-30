@@ -13,7 +13,7 @@
   "exports": {
     ".": "./components.js",
     "./all": "./all.js",
-    "./data/*": "./data/*",
+    "./data/style-contract.json": "./data/style-contract.json",
     "./package.json": "./package.json"
   },
   "engines": {

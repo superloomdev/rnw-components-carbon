@@ -59,7 +59,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       st === 'active'
         ? React.createElement(ActivityIndicator, {
           size: 'small',
-          color: colorMap.APP_PRIMARY || '#0f62fe',
+          color: colorMap.APP_PRIMARY,
           style: Style.utilities['m_e_xs']
         })
         : null,

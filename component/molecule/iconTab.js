@@ -72,7 +72,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           {
             borderBottomWidth: 2,
             borderBottomColor: isActive
-              ? (colorMap.APP_PRIMARY || '#0f62fe')
+              ? (colorMap.APP_PRIMARY)
               : 'transparent'
           },
           style

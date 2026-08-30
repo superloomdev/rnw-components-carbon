@@ -51,7 +51,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
             width: 24,
             height: 24,
             borderRadius: 4,
-            backgroundColor: colorMap.BACKGROUND_SECONDARY || '#e0e0e0'
+            backgroundColor: colorMap.BACKGROUND_SECONDARY
           },
           style
         ]

@@ -59,8 +59,8 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     // Tag container style
     const tagStyle = {
       backgroundColor: isOperational
-        ? (colorMap.APP_PRIMARY || '#0f62fe')
-        : (colorMap.BACKGROUND_SECONDARY || '#e0e0e0'),
+        ? (colorMap.APP_PRIMARY)
+        : (colorMap.BACKGROUND_SECONDARY),
       borderRadius: 12,
       paddingHorizontal: 10,
       paddingVertical: 4,

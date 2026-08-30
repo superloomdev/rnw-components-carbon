@@ -65,15 +65,15 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     const colorMap = Style.tokens.Color;
 
     // Track color when on: app primary; when off: a muted surface
-    const trackOnColor = colorMap.APP_PRIMARY || '#0f62fe';
-    const trackOffColor = colorMap.BACKGROUND_SECONDARY || '#e0e0e0';
+    const trackOnColor = colorMap.APP_PRIMARY;
+    const trackOffColor = colorMap.BACKGROUND_SECONDARY;
 
     // Thumb color: white or surface
-    const thumbColor = colorMap.BACKGROUND_PRIMARY || '#ffffff';
+    const thumbColor = colorMap.BACKGROUND_PRIMARY;
 
     // Disabled colors are dimmed
-    const disabledTrackColor = colorMap.BACKGROUND_SECONDARY || '#e0e0e0';
-    const disabledThumbColor = colorMap.TEXT_DISABLED || '#a8a8a8';
+    const disabledTrackColor = colorMap.BACKGROUND_SECONDARY;
+    const disabledThumbColor = colorMap.TEXT_DISABLED;
 
     // Build aria state props through the a11y translator
     const ariaProps = Parts.A11y.state({
@@ -84,7 +84,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     // Resolve the current thumb color for both active and inactive states.
     // RNW's Switch uses activeThumbColor when value is true and thumbColor
     // when value is false; omitting activeThumbColor lets the RNW default
-    // (#009688 teal) show through.
+    // (a Material teal) show through.
     const resolvedThumbColor = disabled ? disabledThumbColor : thumbColor;
 
     return React.createElement(

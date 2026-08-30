@@ -118,7 +118,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
             Style.utilities['m_r_sm'],
             {
               backgroundColor: prevDisabled
-                ? (colorMap.BACKGROUND_SECONDARY || '#f4f4f4')
+                ? (colorMap.BACKGROUND_SECONDARY)
                 : 'transparent'
             }
           ]
@@ -151,7 +151,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
             Style.utilities['m_l_sm'],
             {
               backgroundColor: nextDisabled
-                ? (colorMap.BACKGROUND_SECONDARY || '#f4f4f4')
+                ? (colorMap.BACKGROUND_SECONDARY)
                 : 'transparent'
             }
           ]

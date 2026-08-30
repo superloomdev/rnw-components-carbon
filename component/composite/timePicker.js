@@ -152,10 +152,10 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
             Style.utilities['p_v_sm'],
             Style.utilities['background_surface'],
             isInvalid
-              ? { borderColor: colorMap.STATUS_DANGER || '#da1e28' }
+              ? { borderColor: colorMap.STATUS_DANGER }
               : null,
             isDisabled
-              ? { backgroundColor: colorMap.BACKGROUND_SECONDARY || '#f4f4f4' }
+              ? { backgroundColor: colorMap.BACKGROUND_SECONDARY }
               : null,
             style
           ]
@@ -191,7 +191,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
             style: [
               { paddingVertical: 4, paddingHorizontal: 8, borderRadius: 4 },
               h === selectedHour
-                ? { backgroundColor: colorMap.APP_PRIMARY || '#0f62fe' }
+                ? { backgroundColor: colorMap.APP_PRIMARY }
                 : null
             ]
           },
@@ -216,7 +216,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
             style: [
               { paddingVertical: 4, paddingHorizontal: 8, borderRadius: 4 },
               m === selectedMinute
-                ? { backgroundColor: colorMap.APP_PRIMARY || '#0f62fe' }
+                ? { backgroundColor: colorMap.APP_PRIMARY }
                 : null
             ]
           },
@@ -253,7 +253,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           // Hour column
           React.createElement(
             RNView,
-            { style: [Style.utilities['flex_1'], { borderRightWidth: 1, borderRightColor: colorMap.BORDER || '#e0e0e0' }] },
+            { style: [Style.utilities['flex_1'], { borderRightWidth: 1, borderRightColor: colorMap.BORDER }] },
             hourOptions
           ),
           // Minute column
@@ -273,7 +273,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
             style: [
               Style.utilities['br_md'],
               Style.utilities['p_v_xs'],
-              { backgroundColor: colorMap.APP_PRIMARY || '#0f62fe', alignItems: 'center', marginTop: 8 }
+              { backgroundColor: colorMap.APP_PRIMARY, alignItems: 'center', marginTop: 8 }
             ]
           },
           React.createElement(Registry.Text, {

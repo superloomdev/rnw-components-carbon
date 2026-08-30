@@ -50,7 +50,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       Object.assign({
         style: [
           {
-            backgroundColor: colorMap.BACKGROUND_SECONDARY || '#262626',
+            backgroundColor: colorMap.BACKGROUND_SECONDARY,
             borderRadius: 6,
             padding: 12,
             fontFamily: 'monospace'

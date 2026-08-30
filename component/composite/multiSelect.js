@@ -141,10 +141,10 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
             Style.utilities['p_v_sm'],
             Style.utilities['background_surface'],
             isInvalid
-              ? { borderColor: colorMap.STATUS_DANGER || '#da1e28' }
+              ? { borderColor: colorMap.STATUS_DANGER }
               : null,
             isDisabled
-              ? { backgroundColor: colorMap.BACKGROUND_SECONDARY || '#f4f4f4' }
+              ? { backgroundColor: colorMap.BACKGROUND_SECONDARY }
               : null,
             style
           ]

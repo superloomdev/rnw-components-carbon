@@ -31,6 +31,11 @@ export default Object.freeze({
     message: 'Icon source is not injected. Provide shared_libs.Icons with a Glyph component'
   },
 
+  THEME_MISSING_COLOR_TOKEN: {
+    type: 'rnw-components-carbon/theme-missing-color-token',
+    message: 'Theme contract is missing a required Color token'
+  },
+
   THEME_VALUE_NOT_FINITE: {
     type: 'rnw-components-carbon/theme-value-not-finite',
     message: 'Theme dimension value must be a finite number'

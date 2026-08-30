@@ -43,8 +43,8 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     // Resolve colors from tokens
     const colorMap = Style.tokens.Color;
-    const fillColor = _ProgressBar.resolveColorToken(color, colorMap, colorMap.APP_PRIMARY || '#0f62fe');
-    const trackFillColor = _ProgressBar.resolveColorToken(trackColor, colorMap, colorMap.SURFACE || '#e0e0e0');
+    const fillColor = _ProgressBar.resolveColorToken(color, colorMap, colorMap.APP_PRIMARY);
+    const trackFillColor = _ProgressBar.resolveColorToken(trackColor, colorMap, colorMap.SURFACE);
 
     // Resolve height
     const barHeight = Lib.Utils.isNumber(height) ? height : 4;

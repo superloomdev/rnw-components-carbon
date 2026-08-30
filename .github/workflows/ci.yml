@@ -262,15 +262,25 @@ jobs:
             exit 1
           fi
           echo "PASS: all provider signatures are canonical prefixes"
-      - name: G23 - components.js must expose no default export
+      - name: G23 - No default export in components.js or all.js
         run: |
-          if grep -nE "^export default" components.js; then
-            echo "FAIL: components.js declares a default export."
-            echo "createSystem is the only entry point. A default export"
-            echo "reintroduces a path that cannot be tree-shaken."
+          if grep -nE "^export default" components.js all.js; then
+            echo "FAIL: a package entry file declares a default export."
+            echo "createSystem is the only entry point and the barrel exports"
+            echo "named maps. A default export reintroduces a second surface."
             exit 1
           fi
-          echo "PASS: no default export in components.js"
+          echo "PASS: no default export in components.js or all.js"
+      - name: G24 - No hardcoded colour values in component/
+        run: |
+          if grep -rnE "#[0-9a-fA-F]{3,6}" component/; then
+            echo "FAIL: component/ contains a hardcoded colour."
+            echo "Every colour comes from the theme. createSystem validates"
+            echo "that all 22 required Color tokens are present, so a fallback"
+            echo "is dead code and a literal is a vendor lock-in."
+            exit 1
+          fi
+          echo "PASS: no hardcoded colour values in component/"
 
   contract:
     name: L4 Contract Tests

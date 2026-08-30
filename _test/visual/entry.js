@@ -54,7 +54,12 @@ const HINT_PROPS = {
   SelectableTile: { title: 'Selectable tile' }
 };
 
-function buildRegistry() {
+// Carbon is square by specification; the contrast theme is rounded and warm.
+// Both are declared here rather than imported so the bundle stays standalone.
+const THEME_RADIUS = { carbon: 0, contrast: 10 };
+const THEME_PRIMARY = { carbon: '#0f62fe', contrast: '#7c3aed' };
+
+function buildRegistry(themeName) {
   const Utils = UtilsFactory();
   const Debug = DebugFactory({ Utils: Utils });
   const Device = {
@@ -70,10 +75,11 @@ function buildRegistry() {
 
   const theme = {
     Color: {
-      APP_PRIMARY: '#0f62fe', APP_PRIMARY_HOVERED: '#0353e9',
+      APP_PRIMARY: THEME_PRIMARY[themeName || 'carbon'], APP_PRIMARY_HOVERED: '#0353e9',
       APP_PRIMARY_PRESSED: '#0043d9', APP_PRIMARY_DISABLED: '#a6c8ff',
       APP_PRIMARY_SUBTLE: '#edf5ff', TEXT_PRIMARY: '#161616',
       TEXT_SECONDARY: '#525252', TEXT_MUTED: '#8d8d8d',
+      TEXT_DISABLED: '#c6c6c6',
       TEXT_ON_PRIMARY: '#ffffff', BACKGROUND_PRIMARY: '#ffffff',
       BACKGROUND_SECONDARY: '#f4f4f4', SURFACE: '#ffffff',
       BORDER: '#e0e0e0', STATUS_SUCCESS: '#198038',
@@ -85,7 +91,10 @@ function buildRegistry() {
     Dimension: {
       fontSize: { xs: 12, sm: 14, md: 16, lg: 18, xl: 20, xxl: 24 },
       space: { xs: 4, sm: 8, md: 12, lg: 16, xl: 24, xxl: 32 },
-      radius: { sm: 4, md: 8, lg: 12, xl: 16, pill: 999 },
+      radius: (function () {
+        const r = THEME_RADIUS[themeName || 'carbon'];
+        return { none: 0, sm: r, md: r, lg: r, xl: r, pill: 999 };
+      })(),
       lineHeightRatio: 1.4
     },
     Font: {

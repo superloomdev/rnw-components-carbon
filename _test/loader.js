@@ -16,7 +16,7 @@ import TestRenderer from 'react-test-renderer';
 import utilsLoader from 'helper-utils';
 import debugLoader from 'helper-debug';
 import { createSystem, themeContract, TOKENS } from 'rnw-components-carbon';
-import ALL from 'rnw-components-carbon/all';
+import { COMPONENTS, VARIANTS, FREEFORMS, PROVIDERS } from 'rnw-components-carbon/all';
 
 
 // ========================= DEPENDENCY CONTAINER =========================== //
@@ -177,10 +177,10 @@ function buildFullSystem (theme_contract, breakpoint) {
   // Create the system, then register all four registry namespaces
   const system = createSystem(sharedLibs, {}, theme_contract, breakpoint);
 
-  system.addComponents(ALL.COMPONENTS);
-  system.addVariants(ALL.VARIANTS);
-  system.addFreeforms(ALL.FREEFORMS);
-  system.addProviders(ALL.PROVIDERS);
+  system.addComponents(COMPONENTS);
+  system.addVariants(VARIANTS);
+  system.addFreeforms(FREEFORMS);
+  system.addProviders(PROVIDERS);
 
   // Return the fully populated system
   return system;
@@ -209,7 +209,10 @@ export {
   createSystem,
   themeContract,
   TOKENS,
-  ALL,
+  COMPONENTS,
+  VARIANTS,
+  FREEFORMS,
+  PROVIDERS,
   sharedLibs,
   buildFullSystem
 };

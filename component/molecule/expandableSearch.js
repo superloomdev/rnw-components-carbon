@@ -113,7 +113,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           Style.utilities['br_md'],
           Style.utilities['border_default'],
           isDisabled
-            ? { backgroundColor: colorMap.BACKGROUND_SECONDARY || '#f4f4f4' }
+            ? { backgroundColor: colorMap.BACKGROUND_SECONDARY }
             : Style.utilities['background_surface'],
           Style.utilities['p_h_sm'],
           style

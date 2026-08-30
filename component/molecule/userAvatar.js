@@ -54,7 +54,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       width: px,
       height: px,
       borderRadius: px / 2,
-      backgroundColor: colorMap.BACKGROUND_SECONDARY || '#e0e0e0',
+      backgroundColor: colorMap.BACKGROUND_SECONDARY,
       justifyContent: 'center',
       alignItems: 'center',
       overflow: 'hidden'

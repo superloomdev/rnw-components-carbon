@@ -48,10 +48,10 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     // Determine the indicator color based on status
     const indicatorColor = currentStatus === 'complete'
-      ? (colorMap.STATUS_SUCCESS || '#198038')
+      ? (colorMap.STATUS_SUCCESS)
       : currentStatus === 'current'
-        ? (colorMap.APP_PRIMARY || '#0f62fe')
-        : (colorMap.BORDER || '#e0e0e0');
+        ? (colorMap.APP_PRIMARY)
+        : (colorMap.BORDER);
 
     // Build aria state props
     const ariaProps = Parts.A11y.state({

@@ -72,7 +72,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           Style.utilities['p_v_sm'],
           {
             backgroundColor: isActive
-              ? (colorMap.APP_PRIMARY_SUBTLE || '#edf5ff')
+              ? (colorMap.APP_PRIMARY_SUBTLE)
               : 'transparent'
           },
           style

@@ -77,7 +77,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           {
             borderWidth: 2,
             borderStyle: 'dashed',
-            borderColor: colorMap.BORDER || '#e0e0e0'
+            borderColor: colorMap.BORDER
           },
           style
         ]

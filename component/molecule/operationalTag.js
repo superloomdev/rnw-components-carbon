@@ -69,8 +69,8 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           Style.utilities['br_pill'],
           {
             borderWidth: 1,
-            borderColor: colorMap.BORDER || '#e0e0e0',
-            backgroundColor: colorMap.BACKGROUND_SECONDARY || '#f4f4f4'
+            borderColor: colorMap.BORDER,
+            backgroundColor: colorMap.BACKGROUND_SECONDARY
           },
           style
         ]

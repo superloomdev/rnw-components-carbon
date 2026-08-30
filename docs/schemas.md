@@ -1,6 +1,6 @@
 # Theme Contract Schema
 
-The theme contract is the shape the component library consumes. It is produced by `themeContract(themer_output)` or assembled manually.
+The theme contract is the shape the component library consumes. It is produced by `themeContract(themer_output)` or assembled manually. The `Color` group must carry all 22 required tokens listed in [api.md](api.md#required-color-tokens); `createSystem` throws when one is absent.
 
 ## Top-Level Shape
 

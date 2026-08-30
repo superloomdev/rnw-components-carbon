@@ -54,7 +54,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           {
             width: expanded === false ? 0 : 256,
             borderRightWidth: 1,
-            borderRightColor: colorMap.BORDER || '#e0e0e0'
+            borderRightColor: colorMap.BORDER
           },
           style
         ]

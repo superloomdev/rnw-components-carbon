@@ -81,10 +81,10 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           {
             borderWidth: 2,
             borderColor: selected
-              ? (colorMap.APP_PRIMARY || '#0f62fe')
-              : (colorMap.BORDER || '#a8a8a8'),
+              ? (colorMap.APP_PRIMARY)
+              : (colorMap.BORDER),
             backgroundColor: selected
-              ? (colorMap.BACKGROUND_SECONDARY || '#f4f4f4')
+              ? (colorMap.BACKGROUND_SECONDARY)
               : 'transparent'
           },
           style

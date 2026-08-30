@@ -71,7 +71,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       Style.utilities['align_center'],
       Style.utilities['border_default'],
       selected
-        ? { backgroundColor: (colorMap.BACKGROUND_SECONDARY || '#f4f4f4') }
+        ? { backgroundColor: (colorMap.BACKGROUND_SECONDARY) }
         : null,
       style
     ];

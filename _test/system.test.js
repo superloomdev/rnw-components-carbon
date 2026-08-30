@@ -21,7 +21,7 @@ import {
   Theme as ThemeProvider
 } from 'rnw-components-carbon';
 
-import ALL from 'rnw-components-carbon/all';
+import { COMPONENTS, VARIANTS, FREEFORMS, PROVIDERS } from 'rnw-components-carbon/all';
 
 import {
   Utils,
@@ -253,9 +253,9 @@ describe('createSystem providers', function () {
     // declaring a shorter list must still declare a prefix of it, or it
     // silently receives the wrong object in a middle position.
     const system = buildSystem();
-    system.addProviders(ALL.PROVIDERS);
+    system.addProviders(PROVIDERS);
 
-    const names = Object.keys(ALL.PROVIDERS).sort();
+    const names = Object.keys(PROVIDERS).sort();
 
     assert.deepStrictEqual(Object.keys(system.Component.provider).sort(), names);
 
@@ -606,6 +606,125 @@ describe('createSystem parity with the factory path', function () {
 
     fromSystem.unmount();
     fromFactory.unmount();
+
+  });
+
+});
+
+
+// ========================= TIER 1 - COLOR TOKEN CONTRACT ================== //
+
+describe('createSystem color token contract', function () {
+
+  // Each required token is removed on its own so a regression that drops one
+  // token from the required list is caught by exactly one failing case.
+  const REQUIRED = [
+    'APP_PRIMARY', 'APP_PRIMARY_HOVERED', 'APP_PRIMARY_PRESSED',
+    'APP_PRIMARY_DISABLED', 'APP_PRIMARY_SUBTLE',
+    'TEXT_PRIMARY', 'TEXT_SECONDARY', 'TEXT_MUTED', 'TEXT_DISABLED',
+    'TEXT_ON_PRIMARY',
+    'BACKGROUND_PRIMARY', 'BACKGROUND_SECONDARY', 'SURFACE', 'BORDER',
+    'STATUS_SUCCESS', 'STATUS_SUCCESS_SUBTLE',
+    'STATUS_DANGER', 'STATUS_DANGER_SUBTLE',
+    'STATUS_WARNING', 'STATUS_WARNING_SUBTLE',
+    'STATUS_INFO', 'STATUS_INFO_SUBTLE'
+  ];
+
+  it('should require exactly twenty-two color tokens', function () {
+
+    assert.strictEqual(REQUIRED.length, 22);
+
+  });
+
+  it('should throw for each individually absent token', function () {
+
+    for (let i = 0; i < REQUIRED.length; i++) {
+      const theme = createTestTheme();
+      delete theme.Color[REQUIRED[i]];
+
+      assert.throws(
+        function () {
+          createSystem(sharedLibs, {}, theme, 'base');
+        },
+        TypeError,
+        'no throw when ' + REQUIRED[i] + ' was absent'
+      );
+    }
+
+  });
+
+  it('should name the absent token in the message', function () {
+
+    const theme = createTestTheme();
+    delete theme.Color.BORDER;
+
+    try {
+      createSystem(sharedLibs, {}, theme, 'base');
+      assert.fail('accepted a theme with no BORDER');
+    } catch (error) {
+      assert.ok(error.message.indexOf('BORDER') !== -1);
+    }
+
+  });
+
+  it('should accept a theme carrying extra tokens beyond the required set', function () {
+
+    // The gate checks presence, never absence. A richer theme is valid.
+    const theme = createTestTheme();
+    theme.Color.BRAND_ACCENT = '#123456';
+
+    assert.ok(createSystem(sharedLibs, {}, theme, 'base').Style.utilities);
+
+  });
+
+  it('should still reject a non-object Color group', function () {
+
+    const theme = createTestTheme();
+    theme.Color = null;
+
+    assert.throws(function () {
+      createSystem(sharedLibs, {}, theme, 'base');
+    }, TypeError);
+
+  });
+
+  it('should report every absent token in one throw', function () {
+
+    const theme = createTestTheme();
+    delete theme.Color.SURFACE;
+    delete theme.Color.BORDER;
+
+    try {
+      createSystem(sharedLibs, {}, theme, 'base');
+      assert.fail('accepted a theme missing two tokens');
+    } catch (error) {
+      assert.ok(error.message.indexOf('SURFACE') !== -1);
+      assert.ok(error.message.indexOf('BORDER') !== -1);
+    }
+
+  });
+
+  it('should carry the error catalog type in the message', function () {
+
+    const theme = createTestTheme();
+    delete theme.Color.TEXT_MUTED;
+
+    try {
+      createSystem(sharedLibs, {}, theme, 'base');
+      assert.fail('accepted a theme with no TEXT_MUTED');
+    } catch (error) {
+      assert.ok(error.message.indexOf('theme-missing-color-token') !== -1);
+    }
+
+  });
+
+  it('should not mutate the theme it was given', function () {
+
+    const theme = createTestTheme();
+    const before = JSON.stringify(theme);
+    createSystem(sharedLibs, {}, theme, 'base');
+
+    assert.strictEqual(JSON.stringify(theme), before);
 
   });
 

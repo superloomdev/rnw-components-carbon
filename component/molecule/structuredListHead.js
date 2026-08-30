@@ -50,7 +50,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           Style.utilities['flex_col'],
           {
             borderBottomWidth: 1,
-            borderBottomColor: colorMap.BORDER || '#e0e0e0'
+            borderBottomColor: colorMap.BORDER
           },
           style
         ]

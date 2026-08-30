@@ -5,6 +5,23 @@
 // Boot-time validation throws TypeError; render-time validation is
 // handled inside component factories via Lib.Debug.warn + fallback.
 
+// Color tokens the component set cannot render without. The list is the union
+// of the tokens components read directly and the tokens commonStyles.js turns
+// into utility classes. A theme missing any of them produces either a crash or
+// a silently broken utility class, so absence fails at boot instead.
+const REQUIRED_COLOR_TOKENS = Object.freeze([
+  'APP_PRIMARY', 'APP_PRIMARY_HOVERED', 'APP_PRIMARY_PRESSED',
+  'APP_PRIMARY_DISABLED', 'APP_PRIMARY_SUBTLE',
+  'TEXT_PRIMARY', 'TEXT_SECONDARY', 'TEXT_MUTED', 'TEXT_DISABLED',
+  'TEXT_ON_PRIMARY',
+  'BACKGROUND_PRIMARY', 'BACKGROUND_SECONDARY', 'SURFACE', 'BORDER',
+  'STATUS_SUCCESS', 'STATUS_SUCCESS_SUBTLE',
+  'STATUS_DANGER', 'STATUS_DANGER_SUBTLE',
+  'STATUS_WARNING', 'STATUS_WARNING_SUBTLE',
+  'STATUS_INFO', 'STATUS_INFO_SUBTLE'
+]);
+
+
 export default function (Lib, ERRORS) {
 
   // Build the validators object with boot-time validation methods
@@ -97,6 +114,28 @@ export default function (Lib, ERRORS) {
       // Color group is required
       if (!Lib.Utils.isObject(theme.Color)) {
         throw new TypeError('rnw-components-carbon: theme.Color must be an object');
+      }
+
+      // Every required Color token must be a non-empty string. Collect the
+      // whole missing set before throwing so one boot reports every gap
+      // rather than one per run.
+      const missingColors = [];
+
+      for (let c = 0; c < REQUIRED_COLOR_TOKENS.length; c++) {
+        const colorKey = REQUIRED_COLOR_TOKENS[c];
+
+        if (!Lib.Utils.isString(theme.Color[colorKey]) || theme.Color[colorKey] === '') {
+          missingColors.push(colorKey);
+        }
+
+      }
+
+      // Report the complete missing set in one throw
+      if (missingColors.length > 0) {
+        throw new TypeError(
+          'rnw-components-carbon: theme.Color is missing required token(s): ' +
+          missingColors.join(', ') + '. ' + ERRORS.THEME_MISSING_COLOR_TOKEN.type
+        );
       }
 
       // Dimension group is required

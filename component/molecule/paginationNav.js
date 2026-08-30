@@ -94,7 +94,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
               alignItems: 'center',
               marginHorizontal: 2,
               backgroundColor: isActive
-                ? (colorMap.APP_PRIMARY || '#0f62fe')
+                ? (colorMap.APP_PRIMARY)
                 : 'transparent'
             }
           ]

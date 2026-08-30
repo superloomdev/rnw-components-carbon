@@ -74,8 +74,8 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           Style.utilities['br_sm'],
           {
             backgroundColor: disabled
-              ? (colorMap.APP_PRIMARY_DISABLED || '#a6c8ff')
-              : (colorMap.APP_PRIMARY || '#0f62fe')
+              ? (colorMap.APP_PRIMARY_DISABLED)
+              : (colorMap.APP_PRIMARY)
           },
           style
         ]

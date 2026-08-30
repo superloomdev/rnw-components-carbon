@@ -80,13 +80,13 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     const circleStyle = checked
       ? {
         borderColor: disabled
-          ? (colorMap.TEXT_DISABLED || '#a8a8a8')
-          : (colorMap.APP_PRIMARY || '#0f62fe')
+          ? (colorMap.TEXT_DISABLED)
+          : (colorMap.APP_PRIMARY)
       }
       : {
         borderColor: disabled
-          ? (colorMap.TEXT_DISABLED || '#a8a8a8')
-          : (colorMap.BORDER || '#a8a8a8')
+          ? (colorMap.TEXT_DISABLED)
+          : (colorMap.BORDER)
       };
 
     // Inner dot for checked state,
@@ -99,8 +99,8 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           height: 10,
           borderRadius: 5,
           backgroundColor: disabled
-            ? (colorMap.TEXT_DISABLED || '#a8a8a8')
-            : (colorMap.APP_PRIMARY || '#0f62fe')
+            ? (colorMap.TEXT_DISABLED)
+            : (colorMap.APP_PRIMARY)
         }
       });
     }

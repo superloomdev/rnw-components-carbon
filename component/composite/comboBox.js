@@ -122,7 +122,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
             placeholder: placeholder || 'Search',
             style: [
               isInvalid
-                ? { borderColor: colorMap.STATUS_DANGER || '#da1e28' }
+                ? { borderColor: colorMap.STATUS_DANGER }
                 : null,
               style
             ]

@@ -81,20 +81,20 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     if (checked === 'mixed') {
       boxStyle = {
-        backgroundColor: colorMap.APP_PRIMARY || '#0f62fe',
-        borderColor: colorMap.APP_PRIMARY || '#0f62fe'
+        backgroundColor: colorMap.APP_PRIMARY,
+        borderColor: colorMap.APP_PRIMARY
       };
     } else if (checked === true) {
       boxStyle = {
-        backgroundColor: colorMap.APP_PRIMARY || '#0f62fe',
-        borderColor: colorMap.APP_PRIMARY || '#0f62fe'
+        backgroundColor: colorMap.APP_PRIMARY,
+        borderColor: colorMap.APP_PRIMARY
       };
     } else {
       boxStyle = {
         backgroundColor: 'transparent',
         borderColor: disabled
-          ? (colorMap.TEXT_DISABLED || '#a8a8a8')
-          : (colorMap.BORDER || '#a8a8a8')
+          ? (colorMap.TEXT_DISABLED)
+          : (colorMap.BORDER)
       };
     }
 
@@ -112,7 +112,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         style: {
           width: 10,
           height: 2,
-          backgroundColor: colorMap.TEXT_ON_PRIMARY || '#ffffff'
+          backgroundColor: colorMap.TEXT_ON_PRIMARY
         }
       });
     }

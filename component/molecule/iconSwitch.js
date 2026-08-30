@@ -80,8 +80,8 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
             height: 28,
             borderRadius: 14,
             backgroundColor: isChecked
-              ? (colorMap.APP_PRIMARY || '#0f62fe')
-              : (colorMap.BACKGROUND_SECONDARY || '#f4f4f4'),
+              ? (colorMap.APP_PRIMARY)
+              : (colorMap.BACKGROUND_SECONDARY),
             padding: 2
           },
           style

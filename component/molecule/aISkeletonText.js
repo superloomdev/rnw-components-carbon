@@ -53,7 +53,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           height: 16,
           borderRadius: 2,
           marginBottom: isLast ? 0 : 8,
-          backgroundColor: colorMap.BACKGROUND_SECONDARY || '#e0e0e0'
+          backgroundColor: colorMap.BACKGROUND_SECONDARY
         }
       }));
     }

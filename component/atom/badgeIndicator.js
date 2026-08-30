@@ -51,7 +51,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         accessibilityLabel: displayCount + ' items',
         style: [
           {
-            backgroundColor: colorMap.APP_PRIMARY || '#0f62fe',
+            backgroundColor: colorMap.APP_PRIMARY,
             borderRadius: 10,
             minWidth: 20,
             height: 20,

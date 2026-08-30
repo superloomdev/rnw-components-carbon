@@ -44,7 +44,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     // Resolve base styles from tokens
     const base = [
-      Style.utilities['background_surface'] || { backgroundColor: '#fff' },
+      Style.utilities['background_surface'],
       Style.utilities['br_md'],
       Style.utilities['p_h_md'],
       Style.utilities['p_v_sm'],
@@ -64,7 +64,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       RNTextInput,
       Object.assign({
         style: [...base, style],
-        placeholderTextColor: Style.tokens.Color.TEXT_MUTED || '#999',
+        placeholderTextColor: Style.tokens.Color.TEXT_MUTED,
         editable: !isDisabled,
         accessibilityRole: 'textbox',
         accessibilityLabel: accessibilityLabel,

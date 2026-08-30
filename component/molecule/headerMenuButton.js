@@ -76,7 +76,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           Style.utilities['br_sm'],
           {
             backgroundColor: isActive
-              ? (colorMap.BACKGROUND_SECONDARY || '#f4f4f4')
+              ? (colorMap.BACKGROUND_SECONDARY)
               : 'transparent'
           },
           style

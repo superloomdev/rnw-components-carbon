@@ -48,7 +48,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         style: [
           {
             height: 1,
-            backgroundColor: colorMap.BORDER || '#e0e0e0'
+            backgroundColor: colorMap.BORDER
           },
           Style.utilities['m_v_sm'],
           style

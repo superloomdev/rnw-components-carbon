@@ -48,8 +48,8 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     const s = Lib.Utils.isNumber(size) ? size : 24;
 
     // Resolve colors from token or raw hex
-    const resolvedBg = (colorMap[color] || color || colorMap.APP_PRIMARY || '#0f62fe');
-    const resolvedIcon = (colorMap[iconColor] || iconColor || colorMap.TEXT_ON_PRIMARY || '#ffffff');
+    const resolvedBg = (colorMap[color] || color || colorMap.APP_PRIMARY);
+    const resolvedIcon = (colorMap[iconColor] || iconColor || colorMap.TEXT_ON_PRIMARY);
 
     return React.createElement(
       RNView,

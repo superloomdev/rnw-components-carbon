@@ -65,3 +65,12 @@ Breakpoints are layout boundaries, not design tokens. They live in the theme con
 | `xl` | 1280 |
 
 The `BREAKPOINT_ORDER` config key must match the keys in the theme contract's `Breakpoint` group. The `useBreakpoint` hook walks the order in descending width to find the active breakpoint.
+
+## Theme requirements
+
+The theme is not configuration, but `createSystem` rejects an incomplete one, so it belongs
+in the same boot-time checklist. `theme.Color` must carry all 22 required tokens; see
+[api.md](api.md#required-color-tokens) for the list. Every value is a non-empty string.
+
+The library ships no colour of its own. There is no default palette and no fallback: a
+theme supplies every colour, or the system refuses to build.

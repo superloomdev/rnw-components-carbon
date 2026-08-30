@@ -130,8 +130,8 @@ before(function () {
   barrelBundle = bundleEntry(
     'probe-barrel.js',
     'import { createSystem } from \'rnw-components-carbon\';\n'
-    + 'import ALL from \'rnw-components-carbon/all\';\n'
-    + 'globalThis.__probe = [typeof createSystem, Object.keys(ALL.COMPONENTS).length];\n'
+    + 'import { COMPONENTS } from \'rnw-components-carbon/all\';\n'
+    + 'globalThis.__probe = [typeof createSystem, Object.keys(COMPONENTS).length];\n'
   );
 
   // Bundle a named subset of five components

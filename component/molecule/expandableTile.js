@@ -73,7 +73,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           Style.utilities['br_md'],
           Style.utilities['border_default'],
           {
-            backgroundColor: colorMap.BACKGROUND_SURFACE || '#ffffff'
+            backgroundColor: colorMap.SURFACE
           },
           style
         ]

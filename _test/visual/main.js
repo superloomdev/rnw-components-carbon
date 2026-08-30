@@ -8,7 +8,12 @@ var SafeBoundary = lib.SafeBoundary;
 var HINT_PROPS = lib.HINT_PROPS;
 var INTERACTIVE = lib.INTERACTIVE;
 
-var result = lib.buildRegistry();
+var themeName = new URLSearchParams(window.location.search).get('theme') || 'carbon';
+var result = lib.buildRegistry(themeName);
+
+// Expose the active theme so a browser test can assert on it without
+// reaching into React internals.
+document.documentElement.setAttribute('data-theme-switch', themeName);
 var C = result.C;
 var ALL_NAMES = result.ALL_NAMES;
 

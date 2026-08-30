@@ -67,10 +67,10 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       Style.utilities['br_md'],
       Style.utilities['border_default'],
       isInvalid
-        ? { borderColor: colorMap.STATUS_DANGER || '#da1e28' }
+        ? { borderColor: colorMap.STATUS_DANGER }
         : null,
       isDisabled
-        ? { backgroundColor: colorMap.BACKGROUND_SECONDARY || '#f4f4f4' }
+        ? { backgroundColor: colorMap.BACKGROUND_SECONDARY }
         : Style.utilities['background_surface'],
       {
         minHeight: (rows || 4) * 24,
@@ -90,7 +90,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         value: resolvedValue,
         onChangeText: setValue,
         placeholder: placeholder,
-        placeholderTextColor: colorMap.TEXT_MUTED || '#999',
+        placeholderTextColor: colorMap.TEXT_MUTED,
         editable: !isDisabled,
         multiline: true,
         numberOfLines: rows || 4,

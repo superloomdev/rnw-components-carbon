@@ -112,7 +112,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
             {
               marginLeft: (nodeLevel - 1) * 20,
               backgroundColor: isSelected
-                ? (colorMap.APP_PRIMARY_SUBTLE || '#edf5ff')
+                ? (colorMap.APP_PRIMARY_SUBTLE)
                 : 'transparent'
             }
           ]

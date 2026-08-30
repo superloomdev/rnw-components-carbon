@@ -84,8 +84,8 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
             borderRadius: 10,
             borderWidth: 2,
             borderColor: isChecked
-              ? (colorMap.APP_PRIMARY || '#0f62fe')
-              : (colorMap.BORDER || '#a8a8a8')
+              ? (colorMap.APP_PRIMARY)
+              : (colorMap.BORDER)
           },
           style
         ]
@@ -96,7 +96,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
             width: 8,
             height: 8,
             borderRadius: 4,
-            backgroundColor: colorMap.APP_PRIMARY || '#0f62fe'
+            backgroundColor: colorMap.APP_PRIMARY
           }
         })
         : null

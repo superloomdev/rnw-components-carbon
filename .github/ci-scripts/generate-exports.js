@@ -287,13 +287,7 @@ barrelOut += renderBarrelMap('FREEFORMS', freeform);
 barrelOut += '\n// Context providers registered at Component.provider.[name]\n';
 barrelOut += renderBarrelMap('PROVIDERS', provider);
 barrelOut += '\n/////////////////////////// Registration Maps END //////////////////////////////\n\n\n';
-barrelOut += 'export { COMPONENTS, VARIANTS, FREEFORMS, PROVIDERS };\n\n';
-barrelOut += 'export default Object.freeze({\n';
-barrelOut += '  COMPONENTS: COMPONENTS,\n';
-barrelOut += '  VARIANTS: VARIANTS,\n';
-barrelOut += '  FREEFORMS: FREEFORMS,\n';
-barrelOut += '  PROVIDERS: PROVIDERS\n';
-barrelOut += '});\n';
+barrelOut += 'export { COMPONENTS, VARIANTS, FREEFORMS, PROVIDERS };\n';
 
 // Write the barrel artifact
 fs.writeFileSync(BARREL_OUT, barrelOut, 'utf8');

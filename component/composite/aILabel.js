@@ -42,6 +42,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     } = props;
 
     const React = Lib.React;
+    const colorMap = Style.tokens.Color;
     const [isOpen, setIsOpen] = React.useState(false);
 
     // Build aria state props
@@ -64,7 +65,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
             Style.utilities['br_sm'],
             Style.utilities['p_h_xs'],
             Style.utilities['p_v_xs'],
-            { backgroundColor: '#6F6F6F' }
+            { backgroundColor: colorMap.BACKGROUND_SECONDARY }
           ]
         }, ariaProps),
         React.createElement(Registry.Text, {

@@ -67,7 +67,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       }, ariaProps, ariaValueProps, rest),
       React.createElement(ActivityIndicator, {
         size: aiSize,
-        color: colorMap.APP_PRIMARY || '#0f62fe'
+        color: colorMap.APP_PRIMARY
       })
     );
 

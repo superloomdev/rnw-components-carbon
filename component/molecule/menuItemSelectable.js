@@ -94,10 +94,10 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
             borderWidth: 2,
             borderRadius: 2,
             borderColor: checked
-              ? (colorMap.APP_PRIMARY || '#0f62fe')
-              : (colorMap.BORDER || '#a8a8a8'),
+              ? (colorMap.APP_PRIMARY)
+              : (colorMap.BORDER),
             backgroundColor: checked
-              ? (colorMap.APP_PRIMARY || '#0f62fe')
+              ? (colorMap.APP_PRIMARY)
               : 'transparent',
             justifyContent: 'center',
             alignItems: 'center'

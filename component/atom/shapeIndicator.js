@@ -48,7 +48,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     const sh = shape || 'circle';
 
     // Resolve color from token or raw hex
-    const resolvedColor = (colorMap[color] || color || colorMap.APP_PRIMARY || '#0f62fe');
+    const resolvedColor = (colorMap[color] || color || colorMap.APP_PRIMARY);
 
     // Base style for all shapes
     const baseStyle = {
