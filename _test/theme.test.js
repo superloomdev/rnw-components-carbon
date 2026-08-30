@@ -116,7 +116,7 @@ describe('theme contract enforcement', function () {
 
 describe('theme agnosticism', function () {
 
-  it('should carry the theme colour into the font utilities', function () {
+  it('should carry the theme color into the font utilities', function () {
 
     const carbon = systemFor(createCarbonTheme());
     const contrast = systemFor(createContrastTheme());

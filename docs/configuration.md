@@ -72,5 +72,5 @@ The theme is not configuration, but `createSystem` rejects an incomplete one, so
 in the same boot-time checklist. `theme.Color` must carry all 22 required tokens; see
 [api.md](api.md#required-color-tokens) for the list. Every value is a non-empty string.
 
-The library ships no colour of its own. There is no default palette and no fallback: a
-theme supplies every colour, or the system refuses to build.
+The library ships no color of its own. There is no default palette and no fallback: a
+theme supplies every color, or the system refuses to build.

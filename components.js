@@ -7,7 +7,7 @@
 // Platform is a constant read from react-native; viewport is a live
 // subscription from the injected Lib.Device (js-rnw-helper-device).
 //
-// Provides: createSystem, themeContract, TOKENS, and 245 named component
+// Provides: createSystem, buildThemeContract, TOKENS, and 245 named component
 // factories.
 //
 // createSystem is the only entry point. It builds the shared infrastructure -
@@ -277,7 +277,7 @@ export function createSystem (shared_libs, config, theme, breakpoint) {
         });
 
         // Record only components with at least one absent dependency
-        if (absent.length > 0) {
+        if (!context.Lib.Utils.isEmptyArray(absent)) {
           missing[name] = absent;
         }
 
@@ -285,7 +285,7 @@ export function createSystem (shared_libs, config, theme, breakpoint) {
 
       // Report completeness alongside the gap detail
       return {
-        complete: Object.keys(missing).length === 0,
+        complete: context.Lib.Utils.isEmptyObject(missing),
         missing: missing
       };
 
@@ -392,7 +392,7 @@ export function createSystem (shared_libs, config, theme, breakpoint) {
 // Reshape the themer's flat emitted token map into the nested
 // { Color, Dimension, Font, Breakpoint } structure the components consume.
 // Pure function; re-exported so a caller bridges a theme without a system.
-export { default as themeContract } from './components.theme-contract.js';
+export { default as buildThemeContract } from './components.theme-contract.js';
 
 /////////////////////////// Theme Contract END /////////////////////////////////
 

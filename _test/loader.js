@@ -15,7 +15,7 @@ import React from 'react';
 import TestRenderer from 'react-test-renderer';
 import utilsLoader from 'helper-utils';
 import debugLoader from 'helper-debug';
-import { createSystem, themeContract, TOKENS } from 'rnw-components-carbon';
+import { createSystem, buildThemeContract, TOKENS } from 'rnw-components-carbon';
 import { COMPONENTS, VARIANTS, FREEFORMS, PROVIDERS } from 'rnw-components-carbon/all';
 
 
@@ -207,7 +207,7 @@ export {
   createIconsStub,
   createTestTheme,
   createSystem,
-  themeContract,
+  buildThemeContract,
   TOKENS,
   COMPONENTS,
   VARIANTS,

@@ -323,7 +323,7 @@ test('L3: renders under the contrast theme when requested', async ({ page }) => 
 });
 
 test('L3: Carbon theme carries Carbon blue and contrast does not', async ({ page }) => {
-  // The strongest browser-level agnosticism check: the theme's primary colour
+  // The strongest browser-level agnosticism check: the theme's primary color
   // must reach computed style. Carbon is #0f62fe (rgb 15,98,254); the contrast
   // theme is #7c3aed (rgb 124,58,237). If both match, the component ignored
   // the theme.

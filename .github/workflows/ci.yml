@@ -242,7 +242,7 @@ jobs:
             SIG=$(grep -oE "^export default function \(([^)]*)\)" "$f" | head -1 \
                   | sed -E "s/^export default function \(//; s/\)$//; s/,//g")
             if [ -z "$SIG" ]; then
-              echo "FAIL: $f has no recognisable default export signature"
+              echo "FAIL: $f has no recognizable default export signature"
               FAIL=1
               continue
             fi
@@ -271,16 +271,40 @@ jobs:
             exit 1
           fi
           echo "PASS: no default export in components.js or all.js"
-      - name: G24 - No hardcoded colour values in component/
+      - name: G24 - No hardcoded color values in component/
         run: |
           if grep -rnE "#[0-9a-fA-F]{3,6}" component/; then
-            echo "FAIL: component/ contains a hardcoded colour."
-            echo "Every colour comes from the theme. createSystem validates"
+            echo "FAIL: component/ contains a hardcoded color."
+            echo "Every color comes from the theme. createSystem validates"
             echo "that all 22 required Color tokens are present, so a fallback"
             echo "is dead code and a literal is a vendor lock-in."
             exit 1
           fi
-          echo "PASS: no hardcoded colour values in component/"
+          echo "PASS: no hardcoded color values in component/"
+      - name: G25 - Prose mechanics (no British spelling, em dash, or banned vocabulary)
+        run: |
+          hits=$(git grep -niE "colour|behaviour|recognis|initialis|optimis" -- . ':(exclude)*/node_modules/*' ':(exclude)_test/visual/bundle.js' ':(exclude).github/*' 2>/dev/null || true)
+          if [ -n "$hits" ]; then
+            echo "FAIL: British spelling found. Use American English (color, behavior, recognize, initialize, optimize)."
+            echo "$hits"
+            exit 1
+          fi
+          em=$(git grep -n "—" -- . ':(exclude)*/node_modules/*' ':(exclude)_test/visual/bundle.js' ':(exclude).github/*' 2>/dev/null || true)
+          if [ -n "$em" ]; then
+            echo "FAIL: em dash found. Use a comma, a period, or ' - ' instead."
+            echo "$em"
+            exit 1
+          fi
+          echo "PASS: no British spelling or em dash in tracked files"
+      - name: G26 - Peer-dep utilization (use Lib.Utils primitives, not raw length/keys checks)
+        run: |
+          hits=$(git grep -nE "\.length (===|!==|>) 0|(===|!==) ''|Object\.keys\([^)]+\)\.length" -- '*.js' ':(exclude)*/node_modules/*' ':(exclude)_test/*' ':(exclude).github/*' ':(exclude)data/*' 2>/dev/null || true)
+          if [ -n "$hits" ]; then
+            echo "FAIL: raw length or keys check found. Use Lib.Utils.isEmptyArray, isEmptyObject, or isEmptyString."
+            echo "$hits"
+            exit 1
+          fi
+          echo "PASS: no raw length or keys checks in module source"
 
   contract:
     name: L4 Contract Tests
@@ -390,12 +414,22 @@ jobs:
         run: |
           PKG_NAME=$(jq -r '.name' package.json)
           PKG_VERSION=$(jq -r '.version' package.json)
-          if npm view "$PKG_NAME@$PKG_VERSION" version 2>/dev/null >/dev/null; then
+          LOCAL_SHASUM=$(npm pack --dry-run --json 2>/dev/null | jq -r '.[0].shasum')
+          REGISTRY_SHASUM=$(npm view "$PKG_NAME@$PKG_VERSION" dist.shasum 2>/dev/null || echo "")
+          if [ -n "$REGISTRY_SHASUM" ] && [ "$LOCAL_SHASUM" = "$REGISTRY_SHASUM" ]; then
             echo "needs_publish=false" >> $GITHUB_OUTPUT
-            echo "Version $PKG_NAME@$PKG_VERSION already on registry"
+            echo "Registry already serves $PKG_NAME@$PKG_VERSION with identical content (shasum $LOCAL_SHASUM)"
+          elif [ -n "$REGISTRY_SHASUM" ] && [ "$LOCAL_SHASUM" != "$REGISTRY_SHASUM" ]; then
+            echo "needs_publish=false" >> $GITHUB_OUTPUT
+            echo "FAIL: $PKG_NAME@$PKG_VERSION exists on registry with a different shasum."
+            echo "Local:  $LOCAL_SHASUM"
+            echo "Remote: $REGISTRY_SHASUM"
+            echo "Delete the version from the registry before pushing, then push again."
+            echo "Never bump the version number to work around this."
+            exit 1
           else
             echo "needs_publish=true" >> $GITHUB_OUTPUT
-            echo "Version $PKG_NAME@$PKG_VERSION needs publishing"
+            echo "Version $PKG_NAME@$PKG_VERSION needs publishing (shasum $LOCAL_SHASUM)"
           fi
       - name: Publish to GitHub Packages
         if: steps.check.outputs.needs_publish == 'true'

@@ -27,12 +27,15 @@ Tokens named color.APP_PRIMARY -> Color.APP_PRIMARY
 Tokens named dimension.font_size.xs -> Dimension.fontSize.xs
 Tokens named font.family.primary -> Font.family.primary
 
+Raw `typeof` is used deliberately: this is a standalone pure function
+with no `Lib` injection, so the Utils type primitives are not available.
+
 @param {Object} themer_output - Result from Lib.Themer.buildTheme(), or
                                  a flat token map directly
 
 @return {Object} - { Color, Dimension, Font, Breakpoint }
 *********************************************************************/
-export default function themeContract (themer_output) {
+export default function buildThemeContract (themer_output) {
 
   // Accept either the full buildTheme result or just the tokens map
   const flat = (themer_output && themer_output.tokens) ? themer_output.tokens : themer_output;

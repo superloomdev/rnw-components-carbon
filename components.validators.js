@@ -124,14 +124,14 @@ export default function (Lib, ERRORS) {
       for (let c = 0; c < REQUIRED_COLOR_TOKENS.length; c++) {
         const colorKey = REQUIRED_COLOR_TOKENS[c];
 
-        if (!Lib.Utils.isString(theme.Color[colorKey]) || theme.Color[colorKey] === '') {
+        if (!Lib.Utils.isString(theme.Color[colorKey]) || Lib.Utils.isEmptyString(theme.Color[colorKey])) {
           missingColors.push(colorKey);
         }
 
       }
 
       // Report the complete missing set in one throw
-      if (missingColors.length > 0) {
+      if (!Lib.Utils.isEmptyArray(missingColors)) {
         throw new TypeError(
           'rnw-components-carbon: theme.Color is missing required token(s): ' +
           missingColors.join(', ') + '. ' + ERRORS.THEME_MISSING_COLOR_TOKEN.type

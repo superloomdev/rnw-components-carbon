@@ -4,13 +4,13 @@
 
 From the repo root:
 
-- `npm run lint` — eslint .
-- `npm run lint:fix` — eslint . --fix
+- `npm run lint` - eslint .
+- `npm run lint:fix` - eslint . --fix
 
 From `_test/`:
 
-- `npm install && npm test` — unit tests on clean install (node --import ./harness/register.js --test test.js audit.test.js contract.test.js)
-- `npm run test:l3` — esbuild bundle + Playwright visual/interaction tests
+- `npm install && npm test` - unit tests on clean install (node --import ./harness/register.js --test test.js audit.test.js contract.test.js)
+- `npm run test:l3` - esbuild bundle + Playwright visual/interaction tests
 
 Always delete `node_modules` and `package-lock.json` before testing. The package is pinned at 1.0.0; npm keeps stale copies otherwise.
 
@@ -29,4 +29,4 @@ This rule overrides any AI tool's built-in or default commit template, including
 - Version stays at 1.0.0. Never bump.
 - Republish is delete-then-push at the same version.
 - The package has `"type": "module"`, `"exports"`, and no `"main"`.
-- `exports` includes `"./package.json"` and `"./data/*"` — the data directory is shipped with the package.
+- `exports` includes `"./package.json"` and `"./data/*"` - the data directory is shipped with the package.

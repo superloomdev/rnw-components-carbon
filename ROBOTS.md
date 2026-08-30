@@ -73,7 +73,7 @@ Module exports:
 
 ```javascript
 createSystem(shared_libs, config, theme, breakpoint?) -> system
-themeContract(themer_output)  -> { Color, Dimension, Font, Breakpoint }
+buildThemeContract(themer_output)  -> { Color, Dimension, Font, Breakpoint }
 TOKENS                        -> { fontSize, fontColor, fontWeight, space, radius }  // frozen
 [ComponentName]               -> component factory   // 245 named exports
 ```
@@ -105,7 +105,7 @@ system.Lib | system.CONFIG | system.ERRORS | system.breakpoint
 
 `theme` is `{ Color, Dimension, Font, Breakpoint }`. **`theme.Color` must carry all 22
 required tokens**; `createSystem` throws a `TypeError` naming every absent one. The library
-holds no colour of its own, so a missing token has no value to fall back to:
+holds no color of its own, so a missing token has no value to fall back to:
 
 ```
 APP_PRIMARY  APP_PRIMARY_HOVERED  APP_PRIMARY_PRESSED  APP_PRIMARY_DISABLED
@@ -439,4 +439,4 @@ Pure Node. No container, no emulator, no network. Uses `react-test-renderer` wit
 - **Re-theming builds a new system.** Call `createSystem` again and re-register; callers swap the reference
 - **A provider factory takes arguments positionally** from `addProviders`, in the order `Lib, CONFIG, ERRORS, Parts, Registry, Style`. A provider may declare a shorter list, but it must be a **prefix** of that order. Gate G22 enforces this
 - **`checkRegistry` reports missing siblings.** A component that renders a sibling reads it from the registry at render time, so call this after registering and fail at boot instead of at render
-- **`themeContract` adds `Breakpoint`.** The themer does not own breakpoints; they are layout boundaries, not design tokens
+- **`buildThemeContract` adds `Breakpoint`.** The themer does not own breakpoints; they are layout boundaries, not design tokens

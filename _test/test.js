@@ -19,9 +19,10 @@ import {
   createDeviceStub,
   createTestTheme,
   createSystem,
-  themeContract,
+  buildThemeContract,
   TOKENS,
-  buildFullSystem
+  buildFullSystem,
+  COMPONENTS
 } from './loader.js';
 
 // Named factory import: the no-Icons case builds a one-component system
@@ -165,7 +166,7 @@ describe('createSystem theme validation', function () {
 // 2. THEME CONTRACT BRIDGE
 // ============================================================================
 
-describe('themeContract', function () {
+describe('buildThemeContract', function () {
 
   it('should reshape flat tokens to nested structure', function () {
 
@@ -179,7 +180,7 @@ describe('themeContract', function () {
       'font.weight.regular': '400'
     };
 
-    const result = themeContract(flat);
+    const result = buildThemeContract(flat);
 
     assert.strictEqual(result.Color.APP_PRIMARY, '#0f62fe');
     assert.strictEqual(result.Color.TEXT_PRIMARY, '#161616');
@@ -202,7 +203,7 @@ describe('themeContract', function () {
       }
     };
 
-    const result = themeContract(themerOutput);
+    const result = buildThemeContract(themerOutput);
 
     assert.strictEqual(result.Color.APP_PRIMARY, '#0f62fe');
     assert.strictEqual(result.Dimension.fontSize.md, 16);
@@ -213,7 +214,7 @@ describe('themeContract', function () {
   it('should round font sizes to integers', function () {
 
     const flat = { 'dimension.font_size.md': 16.7 };
-    const result = themeContract(flat);
+    const result = buildThemeContract(flat);
 
     assert.strictEqual(result.Dimension.fontSize.md, 17);
 
@@ -222,7 +223,7 @@ describe('themeContract', function () {
 
   it('should handle null input gracefully', function () {
 
-    const result = themeContract(null);
+    const result = buildThemeContract(null);
 
     assert.ok(result.Color);
     assert.ok(result.Dimension);
@@ -1002,6 +1003,45 @@ describe('RawBox', function () {
     ).toJSON();
 
     assert.ok(tree);
+
+  });
+
+});
+
+
+// Naming doctrine: every exported non-component function begins with a
+// catalog verb. PascalCase exports are React component factories and are
+// exempt. The verb list is pinned here so a new verb is a deliberate change.
+describe('naming doctrine', function () {
+
+  it('should begin every exported non-component function with a catalog verb', function () {
+
+    // The verbs the function-naming doctrine recognizes
+    const VERBS = ['is', 'has', 'get', 'build', 'create', 'generate'];
+
+    // The package's public surface, imported as names
+    const exports = Object.keys(COMPONENTS).concat(
+      ['createSystem', 'buildThemeContract', 'TOKENS']
+    );
+
+    // TOKENS is a const, not a function, so skip it
+    const functions = exports.filter(function (name) {
+      return name !== 'TOKENS';
+    });
+
+    // PascalCase names are React component factories, exempt per the doctrine
+    const nonComponent = functions.filter(function (name) {
+      return name.charAt(0) !== name.charAt(0).toUpperCase();
+    });
+
+    // Every remaining exported function must begin with a catalog verb
+    const violations = nonComponent.filter(function (name) {
+      return !VERBS.some(function (verb) {
+        return name.startsWith(verb);
+      });
+    });
+
+    assert.deepEqual(violations, [], 'Exported functions without a catalog verb: ' + violations.join(', '));
 
   });
 

@@ -17,7 +17,7 @@ const system = createSystem(shared_libs, config?, theme, breakpoint?)
 | `shared_libs.React` | Object | Yes | The `react` module (injected, not imported) |
 | `shared_libs.Device` | Object | Yes | `js-rnw-helper-device` instance |
 | `shared_libs.Icons` | Object | No | Icon source with a `Glyph` component |
-| `shared_libs.Font` | Object | No | `js-client-helper-font` instance |
+| `shared_libs.Font` | Object | No | `helper-font` instance |
 | `config` | Object | No | Overrides merged over defaults |
 | `theme` | Object | Yes | Theme contract `{ Color, Dimension, Font, Breakpoint }`. `Color` must carry all 22 required tokens |
 | `breakpoint` | String | No | Active breakpoint key, default `'base'` |
@@ -32,7 +32,7 @@ Re-theming builds a new system. A system is never mutated in place.
 ### Required Color tokens
 
 `createSystem` throws a `TypeError` when `theme.Color` omits any of these, naming every
-absent token in one message. The component set holds no colour of its own, so an absent
+absent token in one message. The component set holds no color of its own, so an absent
 token has nothing to resolve to and would render as `undefined`.
 
 | Group | Tokens |
@@ -49,7 +49,7 @@ Each value must be a non-empty string. Tokens beyond this set are allowed and ig
 | Export | Kind | Description |
 |---|---|---|
 | `createSystem` | Function | The entry point above |
-| `themeContract` | Function | Bridges themer output to the theme contract |
+| `buildThemeContract` | Function | Bridges themer output to the theme contract |
 | `TOKENS` | Frozen Object | Valid token sets |
 | 245 component names | Function | One factory per component, e.g. `Button`, `Text` |
 
@@ -150,7 +150,7 @@ Returns the component.
 
 ## Functions
 
-### themeContract(themer_output)
+### buildThemeContract(themer_output)
 
 Bridges themer output to the component theme contract. Reshapes the flat token
 map into `{ Color, Dimension, Font, Breakpoint }`. Pure function; it needs no

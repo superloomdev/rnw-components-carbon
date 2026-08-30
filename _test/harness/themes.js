@@ -110,7 +110,7 @@ export function createRealFamilyTheme () {
 
 
 // Spec-faithful IBM Carbon. Square corners (Carbon's signature), Carbon Blue 60
-// as the interactive colour, Carbon's grey ramp, and IBM Plex Sans. Only `pill`
+// as the interactive color, Carbon's grey ramp, and IBM Plex Sans. Only `pill`
 // keeps a radius: Carbon v11 tags are genuinely pill-shaped, so squaring them
 // would be less faithful, not more.
 export function createCarbonTheme () {

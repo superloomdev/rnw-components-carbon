@@ -151,7 +151,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         }, ariaStateProps, pressKeysProps, rest),
         React.createElement(Registry.Text, {
           size: 'md',
-          color: selectedArray.length > 0 ? 'text_primary' : 'text_muted'
+          color: !Lib.Utils.isEmptyArray(selectedArray) ? 'text_primary' : 'text_muted'
         }, displayLabel),
         React.createElement(Registry.Icon, {
           name: isOpen ? 'chevron_up' : 'chevron_down',

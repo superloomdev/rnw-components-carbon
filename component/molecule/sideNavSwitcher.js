@@ -46,7 +46,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
     // Handle press (cycles through options)
     const handlePress = function () {
-      if (Array.isArray(options) && options.length > 0 && Lib.Utils.isFunction(onChange)) {
+      if (Array.isArray(options) && !Lib.Utils.isEmptyArray(options) && Lib.Utils.isFunction(onChange)) {
         onChange(options[0]);
       }
     };
@@ -96,7 +96,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         React.createElement(Registry.Text, {
           size: 'md',
           color: 'text_primary'
-        }, Array.isArray(options) && options.length > 0 ? String(options[0]) : ''),
+        }, Array.isArray(options) && !Lib.Utils.isEmptyArray(options) ? String(options[0]) : ''),
         React.createElement(Registry.Icon, {
           name: 'chevron--down',
           size: 'sm',

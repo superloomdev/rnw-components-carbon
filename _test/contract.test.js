@@ -392,7 +392,7 @@ const REQUIRED_COLOR_TOKENS = [
 ];
 
 
-test('no component file carries a hardcoded colour', function () {
+test('no component file carries a hardcoded color', function () {
   // Mirrors CI gate G24 locally so the property is provable without CI.
   const files = collectFiles(COMPONENT_DIR);
   const hits = [];
@@ -409,7 +409,7 @@ test('no component file carries a hardcoded colour', function () {
   assert.deepEqual(hits, []);
 });
 
-test('no component file carries a colour fallback', function () {
+test('no component file carries a color fallback', function () {
   const files = collectFiles(COMPONENT_DIR);
   const hits = [];
 
@@ -427,7 +427,7 @@ test('no component file carries a colour fallback', function () {
 
 test('every colorMap token read by a component is in the required list', function () {
   // A component reading a token the gate does not require would reintroduce
-  // the undefined-colour class this plan removed.
+  // the undefined-color class this plan removed.
   const files = collectFiles(COMPONENT_DIR);
   const read = new Set();
 
