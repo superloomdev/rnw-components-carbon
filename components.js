@@ -405,11 +405,19 @@ export { default as buildThemeContract } from './components.theme-contract.js';
 // validation.
 export const TOKENS = Object.freeze({
   fontSize: Object.freeze(['xs', 'sm', 'md', 'lg', 'xl', 'xxl']),
-  fontColor: Object.freeze(['text_primary', 'text_secondary', 'text_muted', 'text_on_primary',
-    'app_primary', 'status_success', 'status_danger', 'status_warning', 'status_info']),
+  fontColor: Object.freeze(['text_primary', 'text_secondary', 'text_muted', 'text_disabled',
+    'text_on_primary', 'app_primary', 'status_success', 'status_danger', 'status_warning',
+    'status_info']),
   fontWeight: Object.freeze(['regular', 'medium', 'semibold', 'bold']),
   space: Object.freeze(['xs', 'sm', 'md', 'lg', 'xl', 'xxl']),
-  radius: Object.freeze(['sm', 'md', 'lg', 'xl', 'pill'])
+  radius: Object.freeze(['sm', 'md', 'lg', 'xl', 'pill']),
+  background: Object.freeze([
+    'button_primary', 'button_primary_hover', 'button_primary_active',
+    'button_secondary', 'button_secondary_hover', 'button_secondary_active',
+    'button_tertiary', 'button_tertiary_hover', 'button_tertiary_active',
+    'button_danger_primary', 'button_danger_hover', 'button_danger_active',
+    'button_danger_secondary', 'button_disabled', 'button_separator'
+  ])
 });
 
 /////////////////////////// Token Constants END ////////////////////////////////
@@ -784,9 +792,29 @@ const buildInfrastructure = function (Lib, CONFIG, ERRORS, Validators, theme, br
 
   }
 
+  // Resolve the active breakpoint's utility set, wrapping it in strict mode so
+  // a component naming an undeclared utility fails loudly instead of rendering
+  // unstyled. Lenient mode returns the plain object, so there is no Proxy cost.
+  const activeStyles = allStyles[activeBreakpoint] || allStyles['base'];
+  const utilities = CONFIG.STRICT_TOKENS
+    ? new Proxy(activeStyles, {
+      get: function (target, key) {
+
+        // Reject an unknown string key; symbol keys are React and JS internals
+        if (Lib.Utils.isString(key) && !(key in target)) {
+          throw new TypeError('rnw-components-carbon: unknown utility "' + key + '"');
+        }
+
+        // Return the resolved utility for a declared key
+        return target[key];
+
+      }
+    })
+    : activeStyles;
+
   // Build the Style slot consumed by every component factory
   const Style = {
-    utilities: allStyles[activeBreakpoint] || allStyles['base'],
+    utilities: utilities,
     tokens: theme,
     breakpoint: activeBreakpoint,
     allBreakpoints: allStyles

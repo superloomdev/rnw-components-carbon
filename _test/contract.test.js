@@ -377,7 +377,7 @@ describe('L4: Proof tests', function () {
 
 // ─── Color token contract ──────────────────────────────────────────────────
 
-// The 22 tokens createSystem requires. Mirrored here so the suite fails when
+// The 37 tokens createSystem requires. Mirrored here so the suite fails when
 // the validator's list and the component tree drift apart.
 const REQUIRED_COLOR_TOKENS = [
   'APP_PRIMARY', 'APP_PRIMARY_HOVERED', 'APP_PRIMARY_PRESSED',
@@ -388,7 +388,12 @@ const REQUIRED_COLOR_TOKENS = [
   'STATUS_SUCCESS', 'STATUS_SUCCESS_SUBTLE',
   'STATUS_DANGER', 'STATUS_DANGER_SUBTLE',
   'STATUS_WARNING', 'STATUS_WARNING_SUBTLE',
-  'STATUS_INFO', 'STATUS_INFO_SUBTLE'
+  'STATUS_INFO', 'STATUS_INFO_SUBTLE',
+  'BUTTON_PRIMARY', 'BUTTON_PRIMARY_HOVER', 'BUTTON_PRIMARY_ACTIVE',
+  'BUTTON_SECONDARY', 'BUTTON_SECONDARY_HOVER', 'BUTTON_SECONDARY_ACTIVE',
+  'BUTTON_TERTIARY', 'BUTTON_TERTIARY_HOVER', 'BUTTON_TERTIARY_ACTIVE',
+  'BUTTON_DANGER_PRIMARY', 'BUTTON_DANGER_HOVER', 'BUTTON_DANGER_ACTIVE',
+  'BUTTON_DANGER_SECONDARY', 'BUTTON_DISABLED', 'BUTTON_SEPARATOR'
 ];
 
 
@@ -449,5 +454,5 @@ test('every colorMap token read by a component is in the required list', functio
 });
 
 test('the required list matches the documented count', function () {
-  assert.equal(REQUIRED_COLOR_TOKENS.length, 22);
+  assert.equal(REQUIRED_COLOR_TOKENS.length, 37);
 });

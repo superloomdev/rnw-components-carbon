@@ -22,8 +22,10 @@ const paddingFor = function (side, value) {
   case 'v': return { paddingVertical: value };
   case 't': return { paddingTop: value };
   case 'b': return { paddingBottom: value };
-  case 's': return { paddingStart: value };   // RTL-aware
-  case 'e': return { paddingEnd: value };      // RTL-aware
+  case 's': return { paddingInlineStart: value };  // RTL-aware, RNW-supported
+  case 'e': return { paddingInlineEnd: value };     // RTL-aware, RNW-supported
+  case 'r': return { paddingRight: value };
+  case 'l': return { paddingLeft: value };
   default: return {};
   }
 
@@ -45,8 +47,10 @@ const marginFor = function (side, value) {
   case 'v': return { marginVertical: value };
   case 't': return { marginTop: value };
   case 'b': return { marginBottom: value };
-  case 's': return { marginStart: value };     // RTL-aware
-  case 'e': return { marginEnd: value };        // RTL-aware
+  case 's': return { marginInlineStart: value };  // RTL-aware, RNW-supported
+  case 'e': return { marginInlineEnd: value };     // RTL-aware, RNW-supported
+  case 'r': return { marginRight: value };
+  case 'l': return { marginLeft: value };
   default: return {};
   }
 
@@ -65,12 +69,17 @@ const BACKGROUND_COLOR_TOKENS = [
   'APP_PRIMARY', 'APP_PRIMARY_HOVERED', 'APP_PRIMARY_PRESSED', 'APP_PRIMARY_DISABLED',
   'APP_PRIMARY_SUBTLE', 'BACKGROUND_PRIMARY', 'BACKGROUND_SECONDARY', 'SURFACE',
   'STATUS_SUCCESS', 'STATUS_SUCCESS_SUBTLE', 'STATUS_DANGER', 'STATUS_DANGER_SUBTLE',
-  'STATUS_WARNING', 'STATUS_WARNING_SUBTLE', 'STATUS_INFO', 'STATUS_INFO_SUBTLE'
+  'STATUS_WARNING', 'STATUS_WARNING_SUBTLE', 'STATUS_INFO', 'STATUS_INFO_SUBTLE',
+  'BUTTON_PRIMARY', 'BUTTON_PRIMARY_HOVER', 'BUTTON_PRIMARY_ACTIVE',
+  'BUTTON_SECONDARY', 'BUTTON_SECONDARY_HOVER', 'BUTTON_SECONDARY_ACTIVE',
+  'BUTTON_TERTIARY', 'BUTTON_TERTIARY_HOVER', 'BUTTON_TERTIARY_ACTIVE',
+  'BUTTON_DANGER_PRIMARY', 'BUTTON_DANGER_HOVER', 'BUTTON_DANGER_ACTIVE',
+  'BUTTON_DANGER_SECONDARY', 'BUTTON_DISABLED', 'BUTTON_SEPARATOR'
 ];
 
 
-// Logical sides for spacing utilities
-const SIDES = ['a', 'h', 'v', 't', 'b', 's', 'e'];
+// Logical and physical sides for spacing utilities
+const SIDES = ['a', 'h', 'v', 't', 'b', 's', 'e', 'r', 'l'];
 
 
 /********************************************************************

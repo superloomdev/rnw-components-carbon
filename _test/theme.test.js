@@ -20,7 +20,7 @@ import {
   createIncompleteTheme
 } from './harness/themes.js';
 
-import { sharedLibs, React, TestRenderer } from './loader.js';
+import { sharedLibs, React, TestRenderer, TOKENS } from './loader.js';
 
 
 // ========================= HELPERS ======================================== //
@@ -202,6 +202,130 @@ describe('theme agnosticism', function () {
       JSON.stringify(contrast.Style.utilities).toLowerCase().indexOf('#0f62fe'),
       -1
     );
+
+  });
+
+});
+
+
+// ========================= TIER 1 - BUTTON TOKEN FAMILY =================== //
+
+describe('button token family', function () {
+
+  // The 15-token Carbon button family. Both REQUIRED_COLOR_TOKENS and
+  // BACKGROUND_COLOR_TOKENS must carry every entry, or the drift this plan
+  // exists to remove returns.
+  const BUTTON_TOKENS = [
+    'BUTTON_PRIMARY', 'BUTTON_PRIMARY_HOVER', 'BUTTON_PRIMARY_ACTIVE',
+    'BUTTON_SECONDARY', 'BUTTON_SECONDARY_HOVER', 'BUTTON_SECONDARY_ACTIVE',
+    'BUTTON_TERTIARY', 'BUTTON_TERTIARY_HOVER', 'BUTTON_TERTIARY_ACTIVE',
+    'BUTTON_DANGER_PRIMARY', 'BUTTON_DANGER_HOVER', 'BUTTON_DANGER_ACTIVE',
+    'BUTTON_DANGER_SECONDARY', 'BUTTON_DISABLED', 'BUTTON_SEPARATOR'
+  ];
+
+
+  it('should generate a background utility for every BUTTON_* token', function () {
+
+    const sys = systemFor(createCarbonTheme());
+    const utilities = sys.Style.utilities;
+
+    for (let i = 0; i < BUTTON_TOKENS.length; i++) {
+      const key = 'background_' + BUTTON_TOKENS[i].toLowerCase();
+      assert.ok(utilities[key],
+        'missing utility "' + key + '"');
+    }
+
+  });
+
+
+  it('should reject a theme missing a BUTTON_* token', function () {
+
+    const theme = createCarbonTheme();
+    delete theme.Color.BUTTON_PRIMARY;
+
+    assert.throws(function () {
+      createSystem(sharedLibs, {}, theme, 'base');
+    }, function (err) {
+      return err instanceof TypeError &&
+        err.message.indexOf('BUTTON_PRIMARY') !== -1;
+    });
+
+  });
+
+
+  it('should carry the button family in the public TOKENS export', function () {
+
+    assert.ok(TOKENS.background, 'TOKENS.background is missing');
+
+    for (let i = 0; i < BUTTON_TOKENS.length; i++) {
+      const lower = BUTTON_TOKENS[i].toLowerCase();
+      assert.ok(TOKENS.background.indexOf(lower) !== -1,
+        'TOKENS.background missing "' + lower + '"');
+    }
+
+  });
+
+
+  it('should include text_disabled in TOKENS.fontColor', function () {
+
+    assert.ok(TOKENS.fontColor.indexOf('text_disabled') !== -1,
+      'TOKENS.fontColor missing text_disabled');
+
+  });
+
+});
+
+
+// ========================= TIER 1 - STRICT TOKENS ======================== //
+
+describe('STRICT_TOKENS', function () {
+
+  it('should throw on an unknown utility key in strict mode', function () {
+
+    const sys = createSystem(sharedLibs, { STRICT_TOKENS: true }, createCarbonTheme(), 'base');
+
+    assert.throws(function () {
+      // eslint-disable-next-line no-unused-expressions
+      sys.Style.utilities['background_app_secondary'];
+    }, function (err) {
+      return err instanceof TypeError &&
+        err.message.indexOf('background_app_secondary') !== -1;
+    });
+
+  });
+
+
+  it('should allow a declared utility key in strict mode', function () {
+
+    const sys = createSystem(sharedLibs, { STRICT_TOKENS: true }, createCarbonTheme(), 'base');
+
+    const util = sys.Style.utilities['background_app_primary'];
+    assert.ok(util, 'declared utility returned falsy');
+
+  });
+
+
+  it('should tolerate symbol keys in strict mode', function () {
+
+    const sys = createSystem(sharedLibs, { STRICT_TOKENS: true }, createCarbonTheme(), 'base');
+
+    // Symbol keys come from React and JS internals; a naive Proxy would throw
+    // eslint-disable-next-line no-unused-expressions
+    sys.Style.utilities[Symbol.iterator];
+    // eslint-disable-next-line no-unused-expressions
+    sys.Style.utilities[Symbol.toPrimitive];
+
+    // No throw means pass
+    assert.ok(true);
+
+  });
+
+
+  it('should return undefined for an unknown key in lenient mode', function () {
+
+    const sys = createSystem(sharedLibs, {}, createCarbonTheme(), 'base');
+
+    assert.strictEqual(sys.Style.utilities['background_nonexistent'], undefined);
 
   });
 

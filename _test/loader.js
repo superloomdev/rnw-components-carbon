@@ -124,7 +124,22 @@ function createTestTheme () {
       STATUS_WARNING: '#8e6a00',
       STATUS_WARNING_SUBTLE: '#fcf4d6',
       STATUS_INFO: '#0043ce',
-      STATUS_INFO_SUBTLE: '#edf5ff'
+      STATUS_INFO_SUBTLE: '#edf5ff',
+      BUTTON_PRIMARY: '#0f62fe',
+      BUTTON_PRIMARY_HOVER: '#0353e9',
+      BUTTON_PRIMARY_ACTIVE: '#0043d9',
+      BUTTON_SECONDARY: '#393939',
+      BUTTON_SECONDARY_HOVER: '#4c4c4c',
+      BUTTON_SECONDARY_ACTIVE: '#636363',
+      BUTTON_TERTIARY: '#0f62fe',
+      BUTTON_TERTIARY_HOVER: '#0353e9',
+      BUTTON_TERTIARY_ACTIVE: '#0043d9',
+      BUTTON_DANGER_PRIMARY: '#da1e28',
+      BUTTON_DANGER_HOVER: '#b0191f',
+      BUTTON_DANGER_ACTIVE: '#8a1116',
+      BUTTON_DANGER_SECONDARY: '#da1e28',
+      BUTTON_DISABLED: '#c6c6c6',
+      BUTTON_SEPARATOR: '#e0e0e0'
     },
     Dimension: {
       fontSize: { xs: 12, sm: 14, md: 16, lg: 18, xl: 20, xxl: 24 },
@@ -174,8 +189,10 @@ generated barrel.
 *********************************************************************/
 function buildFullSystem (theme_contract, breakpoint) {
 
-  // Create the system, then register all four registry namespaces
-  const system = createSystem(sharedLibs, {}, theme_contract, breakpoint);
+  // Create the system, then register all four registry namespaces.
+  // STRICT_TOKENS is on so every test runs against the strict Proxy, which
+  // makes a dead token name fail loudly across the whole 245-component roster.
+  const system = createSystem(sharedLibs, { STRICT_TOKENS: true }, theme_contract, breakpoint);
 
   system.addComponents(COMPONENTS);
   system.addVariants(VARIANTS);
