@@ -314,6 +314,84 @@ describe('commonStyles', function () {
 
   });
 
+
+  // ---- Logical spacing utilities (Plan 0147 Part B) ----
+
+  it('should emit marginInlineEnd for m_e_* utilities', function () {
+
+    const util = Style.utilities['m_e_xs'];
+    assert.ok(util, 'm_e_xs should exist');
+    assert.ok(util.marginInlineEnd !== undefined,
+      'm_e_xs should have marginInlineEnd');
+    assert.strictEqual(util.marginEnd, undefined,
+      'm_e_xs should not have legacy marginEnd');
+
+  });
+
+
+  it('should emit marginInlineStart for m_s_* utilities', function () {
+
+    const util = Style.utilities['m_s_xs'];
+    assert.ok(util, 'm_s_xs should exist');
+    assert.ok(util.marginInlineStart !== undefined,
+      'm_s_xs should have marginInlineStart');
+    assert.strictEqual(util.marginStart, undefined,
+      'm_s_xs should not have legacy marginStart');
+
+  });
+
+
+  it('should emit paddingInlineEnd for p_e_* utilities', function () {
+
+    const util = Style.utilities['p_e_xs'];
+    assert.ok(util, 'p_e_xs should exist');
+    assert.ok(util.paddingInlineEnd !== undefined,
+      'p_e_xs should have paddingInlineEnd');
+    assert.strictEqual(util.paddingEnd, undefined,
+      'p_e_xs should not have legacy paddingEnd');
+
+  });
+
+
+  it('should emit paddingInlineStart for p_s_* utilities', function () {
+
+    const util = Style.utilities['p_s_xs'];
+    assert.ok(util, 'p_s_xs should exist');
+    assert.ok(util.paddingInlineStart !== undefined,
+      'p_s_xs should have paddingInlineStart');
+    assert.strictEqual(util.paddingStart, undefined,
+      'p_s_xs should not have legacy paddingStart');
+
+  });
+
+
+  it('should not use legacy start or end props in any generated utility', function () {
+
+    // Iterate the whole generated set and assert no key holds a legacy prop.
+    // This is the regression lock for D2.
+    const utilityKeys = Object.keys(Style.utilities);
+    const legacyProps = ['marginStart', 'marginEnd', 'paddingStart', 'paddingEnd'];
+    const violations = [];
+
+    for (let i = 0; i < utilityKeys.length; i++) {
+      const util = Style.utilities[utilityKeys[i]];
+
+      if (!util || typeof util !== 'object') {
+        continue;
+      }
+
+      for (let j = 0; j < legacyProps.length; j++) {
+        if (util[legacyProps[j]] !== undefined) {
+          violations.push(utilityKeys[i] + ' has ' + legacyProps[j]);
+        }
+      }
+    }
+
+    assert.deepEqual(violations, [],
+      'legacy start/end props found: ' + violations.join(', '));
+
+  });
+
 });
 
 
@@ -429,6 +507,150 @@ describe('Button', function () {
     ).toJSON();
 
     assert.strictEqual(tree.props['aria-disabled'], true);
+
+  });
+
+
+  // ---- Button rendering defects (Plan 0147 Part A) ----
+
+  // Helper: resolve the style function on a rendered Button
+  function resolveButtonStyles (props) {
+
+    const renderer = TestRenderer.create(
+      React.createElement(Component.Button, props)
+    );
+
+    const pressable = renderer.root.findByProps({ accessibilityRole: 'button' });
+    const styleResult = pressable.props.style;
+
+    // Pressable style can be a function; call it with a neutral state
+    const styles = typeof styleResult === 'function'
+      ? styleResult({ pressed: false, hovered: false, focused: false })
+      : styleResult;
+
+    // Flatten the array of style objects, skipping undefined entries
+    const flat = {};
+    const arr = Array.isArray(styles) ? styles : [styles];
+
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i]) {
+        const keys = Object.keys(arr[i]);
+        for (let k = 0; k < keys.length; k++) {
+          flat[keys[k]] = arr[i][keys[k]];
+        }
+      }
+    }
+
+    renderer.unmount();
+    return flat;
+
+  }
+
+
+  it('should resolve a background for primary kind', function () {
+
+    const styles = resolveButtonStyles({ kind: 'primary', onPress: function () {} });
+    assert.ok(styles.backgroundColor,
+      'primary button has no backgroundColor');
+
+  });
+
+
+  it('should resolve a background for secondary kind', function () {
+
+    const styles = resolveButtonStyles({ kind: 'secondary', onPress: function () {} });
+    assert.ok(styles.backgroundColor,
+      'secondary button has no backgroundColor');
+
+  });
+
+
+  it('should resolve a background for danger kind', function () {
+
+    const styles = resolveButtonStyles({ kind: 'danger', onPress: function () {} });
+    assert.ok(styles.backgroundColor,
+      'danger button has no backgroundColor');
+
+  });
+
+
+  it('should not resolve a background for ghost kind', function () {
+
+    const styles = resolveButtonStyles({ kind: 'ghost', onPress: function () {} });
+    assert.strictEqual(styles.backgroundColor, undefined,
+      'ghost button should have no background');
+
+  });
+
+
+  it('should apply a minimum hit target', function () {
+
+    const styles = resolveButtonStyles({ onPress: function () {} });
+    assert.strictEqual(styles.minHeight, 44,
+      'minHeight should equal CONFIG.MIN_HIT_TARGET (44)');
+
+  });
+
+
+  it('should apply horizontal and vertical padding', function () {
+
+    const styles = resolveButtonStyles({ onPress: function () {} });
+    assert.ok(styles.paddingHorizontal > 0,
+      'paddingHorizontal should be greater than zero');
+    assert.ok(styles.paddingVertical > 0,
+      'paddingVertical should be greater than zero');
+
+  });
+
+
+  it('should wrap a string child in a Text component', function () {
+
+    const renderer = TestRenderer.create(
+      React.createElement(Component.Button, { onPress: function () {} }, 'Click')
+    );
+
+    const pressable = renderer.root.findByProps({ accessibilityRole: 'button' });
+    const child = pressable.props.children;
+
+    // A string child means no wrapping; a React element means it was wrapped
+    assert.strictEqual(typeof child, 'object',
+      'string child was not wrapped in a Text component');
+
+    renderer.unmount();
+
+  });
+
+
+  it('should not wrap function children', function () {
+
+    const fnChildren = function () {
+      return React.createElement(Component.Text, null, 'Custom');
+    };
+
+    const renderer = TestRenderer.create(
+      React.createElement(Component.Button, { onPress: function () {} }, fnChildren)
+    );
+
+    const pressable = renderer.root.findByProps({ accessibilityRole: 'button' });
+    assert.strictEqual(typeof pressable.props.children, 'function',
+      'function children should be passed through untouched');
+
+    renderer.unmount();
+
+  });
+
+
+  it('should carry the on-primary text color for primary kind', function () {
+
+    const renderer = TestRenderer.create(
+      React.createElement(Component.Button, { kind: 'primary', onPress: function () {} }, 'Click')
+    );
+
+    // The wrapped child should be a Text element with the on-primary color
+    const textInstance = renderer.root.findByProps({ color: 'text_on_primary' });
+    assert.ok(textInstance, 'primary button child does not carry text_on_primary color');
+
+    renderer.unmount();
 
   });
 

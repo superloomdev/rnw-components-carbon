@@ -18,7 +18,7 @@ Build the Button atom.
 @param {Object} CONFIG   - Package configuration
 @param {Object} ERRORS   - Frozen error catalog
 @param {Object} Parts    - Mechanisms: { A11y, Units }
-@param {Object} Registry - Component registry (unused by atoms)
+@param {Object} Registry - Component registry (Text for the label)
 @param {Object} Style    - { utilities, tokens, breakpoint }
 
 @return {Function} - The Button component
@@ -27,13 +27,23 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
 
   /////////////////////////// Static Constants START ////////////////////////////
 
-  // Map kind prop to background token. Replaces the legacy ButtonPrimary
-  // (app_primary) and ButtonLink (ghost / transparent) components.
+  // Map kind to the background token. Carbon models buttons as their own token
+  // family, so a kind never borrows a general palette token. Every value here
+  // must appear in BACKGROUND_COLOR_TOKENS, or no background is applied.
   const KIND_BACKGROUND = {
-    primary: 'app_primary',
-    secondary: 'app_secondary',
-    danger: 'app_danger',
+    primary: 'button_primary',
+    secondary: 'button_secondary',
+    danger: 'button_danger_primary',
     ghost: undefined
+  };
+
+  // Map kind to the text color token. A filled kind needs an on-color label so
+  // it contrasts its fill. Every value must appear in FONT_COLOR_TOKENS.
+  const KIND_FONT = {
+    primary: 'text_on_primary',
+    secondary: 'text_on_primary',
+    danger: 'text_on_primary',
+    ghost: 'app_primary'
   };
 
   /////////////////////////// Static Constants END //////////////////////////////
@@ -73,9 +83,21 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     const styleFn = function (pressableState) {
 
       const stateSuffix = _Button.resolveStateSuffix(props, pressableState);
-      const classes = [...baseClasses];
 
-      // Resolve background with state suffix
+      // Layout: a button is a centered row with padding and an accessible
+      // minimum height. Without these a button renders as a bare text label.
+      const classes = [
+        Style.utilities['flex_row'],
+        Style.utilities['align_center'],
+        Style.utilities['justify_center'],
+        Style.utilities['p_h_md'],
+        Style.utilities['p_v_sm'],
+        { minHeight: CONFIG.MIN_HIT_TARGET },
+        ...baseClasses
+      ];
+
+      // Resolve background with state suffix, falling back to the base token
+      // through the same accessor so STRICT_TOKENS governs both lookups
       if (effectiveBackground) {
         const bgKey = 'background_' + effectiveBackground + stateSuffix;
         const bgClass = Style.utilities[bgKey];
@@ -124,7 +146,13 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         },
         style: styleFn
       }, ariaProps, rest),
-      Lib.Utils.isFunction(children) ? children : children
+      Lib.Utils.isFunction(children)
+        ? children
+        : Lib.React.createElement(
+          Registry.Text,
+          { color: KIND_FONT[kind || 'primary'] },
+          children
+        )
     );
 
   };////////////////////////// Public Functions END ////////////////////////////
