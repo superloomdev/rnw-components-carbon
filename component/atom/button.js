@@ -1,8 +1,11 @@
 // Info: Button atom [S2 interactive]. Wraps Pressable, resolves the five
 // interaction states (enabled, hovered, pressed, focused, disabled), and
-// guarantees the minimum accessible hit target. Children can be a function
-// receiving the interaction state, or static content.
-//   kind -> 'primary' | 'secondary' | 'danger' | 'ghost' (maps to background)
+// guarantees the minimum accessible hit target. Applies its own padding,
+// centering, and minHeight from CONFIG.MIN_HIT_TARGET. String children are
+// wrapped in Registry.Text with a per-kind label color; function children
+// receive the interaction state and pass through untouched.
+//   kind -> 'primary' | 'secondary' | 'danger' | 'ghost' (maps to button token family background and label color)
+//   children -> Node|Function (string wrapped in Text, function passed through)
 
 
 // Imports

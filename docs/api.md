@@ -432,10 +432,10 @@ Controlled/uncontrolled state hook. Controlled when `value` is not undefined, un
 | `onPress` | Function | - | - |
 | `disabled` | Boolean | - | - |
 | `background` | - | - | - |
-| `kind` | String | - | 'primary' | 'secondary' | 'danger' | 'ghost' (maps to background) |
+| `kind` | String | - | 'primary' | 'secondary' | 'danger' | 'ghost' (maps to button token family background and label color) |
 | `radius` | - | - | - |
 | `style` | Object|Array | - | - |
-| `children` | Node | - | - |
+| `children` | Node | - | Node|Function (string wrapped in Text, function passed through) |
 | `accessibilityLabel` | - | - | - |
 
 ### ButtonSet

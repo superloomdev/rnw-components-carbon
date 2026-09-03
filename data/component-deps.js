@@ -17,6 +17,7 @@ const COMPONENT_DEPS = Object.freeze({
   BottomToolbar: Object.freeze(['Button']),
   BottomToolbarPrimaryAction: Object.freeze(['Button']),
   BreadcrumbItem: Object.freeze(['Text']),
+  Button: Object.freeze(['Text']),
   ButtonPrimaryOutlined: Object.freeze(['Icon', 'Text']),
   Callout: Object.freeze(['Icon', 'Text', 'View']),
   Checkbox: Object.freeze(['Text']),
