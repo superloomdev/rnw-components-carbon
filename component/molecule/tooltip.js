@@ -103,7 +103,6 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
             Style.utilities['br_sm'],
             Style.utilities['p_h_sm'],
             Style.utilities['p_v_xs'],
-            Style.utilities['shadow_sm'],
             {
               position: 'absolute',
               top: pos.top,

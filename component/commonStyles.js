@@ -219,6 +219,7 @@ export default function generateCommonStyles (theme, breakpoint, Parts) {
   styles['justify_start'] = { justifyContent: 'flex-start' };
   styles['justify_end'] = { justifyContent: 'flex-end' };
   styles['justify_between'] = { justifyContent: 'space-between' };
+  styles['justify_evenly'] = { justifyContent: 'space-evenly' };
 
 
   // ~~~~~~~~~~ Display utilities ~~~~~~~~~~

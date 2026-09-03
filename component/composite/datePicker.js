@@ -318,7 +318,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         {
           accessibilityRole: 'group',
           accessibilityLabel: accessibilityLabel || 'date range picker',
-          style: [Style.utilities['flex_row'], Style.utilities['items_center'], style]
+          style: [Style.utilities['flex_row'], Style.utilities['align_center'], style]
         },
         renderTrigger(),
         React.createElement(Registry.Text, null, ' - '),

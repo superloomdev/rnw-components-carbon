@@ -89,7 +89,6 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
             Style.utilities['background_surface'],
             Style.utilities['br_sm'],
             Style.utilities['p_a_sm'],
-            Style.utilities['shadow_sm'],
             {
               position: 'absolute',
               top: pos.top,

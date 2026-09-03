@@ -83,7 +83,6 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
               Style.utilities['br_md'],
               Style.utilities['border_default'],
               Style.utilities['p_a_sm'],
-              Style.utilities['shadow_sm'],
               { position: 'absolute', top: '100%', left: 0, marginTop: 4, maxWidth: 300, zIndex: 1000 }
             ]
           },

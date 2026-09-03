@@ -73,7 +73,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         accessibilityRole: 'banner',
         style: [
           Style.utilities['flex_row'],
-          Style.utilities['items_center'],
+          Style.utilities['align_center'],
           Style.utilities['justify_between'],
           style
         ]

@@ -53,7 +53,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
         accessibilityLabel: text,
         style: [
           Style.utilities['flex_row'],
-          Style.utilities['items_center'],
+          Style.utilities['align_center'],
           style
         ]
       }, rest),

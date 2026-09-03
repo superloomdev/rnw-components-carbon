@@ -50,7 +50,6 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           Style.utilities['br_md'],
           Style.utilities['border_default'],
           Style.utilities['p_a_md'],
-          Style.utilities['shadow_sm'],
           style
         ]
       }, rest),

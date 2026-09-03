@@ -46,7 +46,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
     // Render each navigation item
     const renderItem = function (item, index) {
 
-      const itemStyles = [Style.utilities['flex_col'], Style.utilities['items_center']];
+      const itemStyles = [Style.utilities['flex_col'], Style.utilities['align_center']];
 
       if (item.active) {
         itemStyles.push(Style.utilities['background_active']);
