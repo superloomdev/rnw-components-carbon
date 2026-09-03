@@ -17,6 +17,11 @@ export default {
   MIN_HIT_TARGET: 44,
 
   // Breakpoint keys in ascending order, matching the theme contract
-  BREAKPOINT_ORDER: ['base', 'sm', 'md', 'lg', 'xl']
+  BREAKPOINT_ORDER: ['base', 'sm', 'md', 'lg', 'xl'],
+
+  // Throw on a utility lookup that names a key the theme did not produce.
+  // Off by default so a server-driven theme degrades rather than crashing;
+  // test tiers and CI turn it on, which is where a dead token must fail.
+  STRICT_TOKENS: false
 
 };
