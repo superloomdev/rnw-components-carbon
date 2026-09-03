@@ -21,7 +21,10 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "verify": "node scripts/verify.js",
+    "verify:gates": "node scripts/verify.js --gates",
+    "verify:full": "node scripts/verify.js --full"
   },
   "peerDependencies": {
     "react": ">=18",
