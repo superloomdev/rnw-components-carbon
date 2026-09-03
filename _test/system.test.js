@@ -627,12 +627,17 @@ describe('createSystem color token contract', function () {
     'STATUS_SUCCESS', 'STATUS_SUCCESS_SUBTLE',
     'STATUS_DANGER', 'STATUS_DANGER_SUBTLE',
     'STATUS_WARNING', 'STATUS_WARNING_SUBTLE',
-    'STATUS_INFO', 'STATUS_INFO_SUBTLE'
+    'STATUS_INFO', 'STATUS_INFO_SUBTLE',
+    'BUTTON_PRIMARY', 'BUTTON_PRIMARY_HOVER', 'BUTTON_PRIMARY_ACTIVE',
+    'BUTTON_SECONDARY', 'BUTTON_SECONDARY_HOVER', 'BUTTON_SECONDARY_ACTIVE',
+    'BUTTON_TERTIARY', 'BUTTON_TERTIARY_HOVER', 'BUTTON_TERTIARY_ACTIVE',
+    'BUTTON_DANGER_PRIMARY', 'BUTTON_DANGER_HOVER', 'BUTTON_DANGER_ACTIVE',
+    'BUTTON_DANGER_SECONDARY', 'BUTTON_DISABLED', 'BUTTON_SEPARATOR'
   ];
 
-  it('should require exactly twenty-two color tokens', function () {
+  it('should require exactly thirty-seven color tokens', function () {
 
-    assert.strictEqual(REQUIRED.length, 22);
+    assert.strictEqual(REQUIRED.length, 37);
 
   });
 
