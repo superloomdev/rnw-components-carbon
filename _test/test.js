@@ -6,6 +6,7 @@
 
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
 
 import {
   system,
@@ -579,6 +580,64 @@ describe('Button', function () {
     const styles = resolveButtonStyles({ kind: 'ghost', onPress: function () {} });
     assert.strictEqual(styles.backgroundColor, undefined,
       'ghost button should have no background');
+
+  });
+
+
+  // Regression lock for the dead-token defect. The per-kind tests above each
+  // name one kind, so a kind added later with a token that does not exist
+  // would pass them all by simply not being tested. This iterates every kind
+  // the component documents and asserts each one resolves, so adding a kind
+  // without adding its token fails here.
+  //
+  // KIND_BACKGROUND is factory-local and cannot be imported, so the roster is
+  // mirrored from the component's own prop contract. Keep both in step: a kind
+  // added to button.js must be added here.
+  it('should resolve a background for every filled kind and none for ghost', function () {
+
+    const FILLED_KINDS = ['primary', 'secondary', 'danger'];
+    const UNFILLED_KINDS = ['ghost'];
+
+    for (let i = 0; i < FILLED_KINDS.length; i++) {
+      const kind = FILLED_KINDS[i];
+      const styles = resolveButtonStyles({ kind: kind, onPress: function () {} });
+      assert.ok(styles.backgroundColor,
+        'kind "' + kind + '" resolved no backgroundColor, so its token is dead');
+      assert.notStrictEqual(styles.backgroundColor, 'transparent',
+        'kind "' + kind + '" resolved a transparent background');
+    }
+
+    for (let j = 0; j < UNFILLED_KINDS.length; j++) {
+      const kind = UNFILLED_KINDS[j];
+      const styles = resolveButtonStyles({ kind: kind, onPress: function () {} });
+      assert.strictEqual(styles.backgroundColor, undefined,
+        'kind "' + kind + '" should deliberately resolve no background');
+    }
+
+  });
+
+
+  // The kind roster mirrored above must match the component's documented
+  // contract. A kind added to the source header without a matching entry in
+  // FILLED_KINDS or UNFILLED_KINDS would leave the lock above blind to it.
+  it('should document exactly the button kinds the tests iterate', function () {
+
+    const source = readFileSync(
+      new URL('../component/atom/button.js', import.meta.url), 'utf8'
+    );
+
+    // The kind contract lives in the Info header: kind -> 'a' | 'b' | ...
+    const line = source.split('\n').find(function (l) {
+      return l.indexOf('//   kind ->') !== -1;
+    });
+    assert.ok(line, 'button.js has no documented kind contract to check against');
+
+    const documented = (line.match(/'[a-z]+'/g) || []).map(function (q) {
+      return q.replace(/'/g, '');
+    }).sort();
+
+    assert.deepStrictEqual(documented, ['danger', 'ghost', 'primary', 'secondary'],
+      'button kinds changed; update FILLED_KINDS and UNFILLED_KINDS to match');
 
   });
 
