@@ -11,6 +11,9 @@ _test/
 # Linter config (dev only)
 eslint.config.js
 
+# Dev tooling scripts (local verification, not part of the package)
+scripts/
+
 # CI / GitHub (includes ci-scripts/)
 .github/
 

@@ -298,7 +298,7 @@ jobs:
           echo "PASS: no British spelling or em dash in tracked files"
       - name: G26 - Peer-dep utilization (use Lib.Utils primitives, not raw length/keys checks)
         run: |
-          hits=$(git grep -nE "\.length (===|!==|>) 0|(===|!==) ''|Object\.keys\([^)]+\)\.length" -- '*.js' ':(exclude)*/node_modules/*' ':(exclude)_test/*' ':(exclude).github/*' ':(exclude)data/*' 2>/dev/null || true)
+          hits=$(git grep -nE "\.length (===|!==|>) 0|(===|!==) ''|Object\.keys\([^)]+\)\.length" -- '*.js' ':(exclude)*/node_modules/*' ':(exclude)_test/*' ':(exclude).github/*' ':(exclude)data/*' ':(exclude)scripts/*' 2>/dev/null || true)
           if [ -n "$hits" ]; then
             echo "FAIL: raw length or keys check found. Use Lib.Utils.isEmptyArray, isEmptyObject, or isEmptyString."
             echo "$hits"

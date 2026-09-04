@@ -114,11 +114,8 @@ function runCheck (name, fn) {
     process.stdout.write('\x1b[32mPASS\x1b[0m ' + name + '\n');
     // Report success to the caller
     return true;
-  } catch (err) {
+  } catch {
     process.stdout.write('\x1b[31mFAIL\x1b[0m ' + name + '\n');
-    if (err && err.stdout) {
-      process.stdout.write(String(err.stdout));
-    }
     // Report failure to the caller
     return false;
   }
@@ -130,8 +127,7 @@ function runCheck (name, fn) {
 function sh (cmd, cwd) {
   execSync(cmd, {
     cwd: cwd || REPO_ROOT,
-    stdio: ['ignore', 'pipe', 'pipe'],
-    encoding: 'utf8'
+    stdio: 'inherit'
   });
 }
 
@@ -151,18 +147,19 @@ process.stdout.write('extracted ' + gates.length + ' enforcement gates from ci.y
 // file is invisible to all of them, so a clean local run says nothing about a
 // file that has not been staged yet, while CI sees it the moment it is pushed.
 // This exact blind spot let a G26 violation in this script reach CI.
-const untracked = execSync('git ls-files --others --exclude-standard -- "*.js"', {
+const untracked = execSync('git ls-files --others --exclude-standard', {
   cwd: REPO_ROOT, encoding: 'utf8'
 }).trim();
 
 if (untracked) {
   process.stdout.write(
-    '\n\x1b[33mWARNING\x1b[0m untracked .js files are invisible to every git grep gate.\n' +
-    'Stage them before trusting this run:\n'
+    '\n\x1b[31mFAIL\x1b[0m untracked files are invisible to git grep gates.\n' +
+    'Use git add -N on each intended file before trusting verification:\n'
   );
   for (const file of untracked.split('\n')) {
     process.stdout.write('  ' + file + '\n');
   }
+  process.exit(1);
 }
 
 const failed = [];
@@ -180,6 +177,15 @@ for (const gate of gates) {
 }
 
 if (!GATES_ONLY) {
+
+  if (runCheck('clean install', function () {
+    sh('rm -rf node_modules package-lock.json _test/node_modules _test/package-lock.json && ' +
+      'npm install && (cd _test && npm install)');
+  })) {
+    passed++;
+  } else {
+    failed.push('clean install');
+  }
 
   if (runCheck('eslint', function () {
     sh('npx eslint .');
