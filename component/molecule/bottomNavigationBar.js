@@ -49,7 +49,7 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
       const itemStyles = [Style.utilities['flex_col'], Style.utilities['align_center']];
 
       if (item.active) {
-        itemStyles.push(Style.utilities['background_active']);
+        itemStyles.push(Style.utilities['border_primary']);
       }
 
       return React.createElement(

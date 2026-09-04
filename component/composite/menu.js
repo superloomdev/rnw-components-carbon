@@ -67,7 +67,6 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
             Style.utilities['br_md'],
             Style.utilities['border_default'],
             Style.utilities['p_v_xs'],
-            Style.utilities['shadow_md'],
             { minWidth: 200, zIndex: zIndex || 1000 },
             style
           ]

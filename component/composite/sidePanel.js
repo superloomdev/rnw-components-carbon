@@ -67,7 +67,6 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           accessibilityRole: 'dialog',
           style: [
             Style.utilities['background_surface'],
-            Style.utilities['shadow_lg'],
             {
               position: 'absolute',
               top: 0, bottom: 0,

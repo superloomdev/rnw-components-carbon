@@ -65,7 +65,6 @@ export default function (Lib, CONFIG, ERRORS, Parts, Registry, Style) {
           style: [
             Style.utilities['background_surface'],
             Style.utilities['br_lg'],
-            Style.utilities['shadow_lg'],
             { margin: 24, maxWidth: 600, alignSelf: 'center' },
             style
           ]

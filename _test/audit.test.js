@@ -9,6 +9,10 @@
 
 import { describe, it } from 'node:test';
 import assert from 'node:assert/strict';
+import { readFileSync } from 'node:fs';
+import { readdirSync, statSync } from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { Style, theme, buildFullSystem } from './loader.js';
 import { createRealFamilyTheme } from './harness/themes.js';
@@ -143,6 +147,66 @@ describe('L1: Static Utility Audit', function () {
 
     assert.strictEqual(errors.length, 0,
       'L1 found non-string Font.weight values:\n  ' + errors.join('\n  '));
+
+  });
+
+
+  it('should declare every literal Style.utilities key used by component source', function () {
+
+    // Recursively read component/**/*.js and extract only complete literal
+    // references: Style.utilities['key'] or Style.utilities["key"].
+    // Computed accesses like Style.utilities['br_' + radius] are not matched.
+    const utilityReference = /Style\.utilities\[(['"])([A-Za-z0-9_]+?)\1\s*\]/g;
+
+    const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+    const componentDir = path.join(repoRoot, 'component');
+
+    function collectJsFiles (dir) {
+      const out = [];
+      const entries = readdirSync(dir);
+      for (let i = 0; i < entries.length; i++) {
+        const full = path.join(dir, entries[i]);
+        const st = statSync(full);
+        if (st.isDirectory()) {
+          const sub = collectJsFiles(full);
+          for (let j = 0; j < sub.length; j++) {
+            out.push(sub[j]);
+          }
+        } else if (entries[i].endsWith('.js')) {
+          out.push(full);
+        }
+      }
+      return out;
+    }
+
+    const files = collectJsFiles(componentDir);
+    const declared = new Set(Object.keys(Style.utilities));
+    const missing = {};
+
+    for (let i = 0; i < files.length; i++) {
+      const src = readFileSync(files[i], 'utf8');
+      let match;
+      utilityReference.lastIndex = 0;
+      while ((match = utilityReference.exec(src)) !== null) {
+        const key = match[2];
+        if (!declared.has(key)) {
+          const rel = path.relative(repoRoot, files[i]);
+          if (!missing[key]) {
+            missing[key] = [];
+          }
+          missing[key].push(rel);
+        }
+      }
+    }
+
+    const missingKeys = Object.keys(missing).sort();
+    if (missingKeys.length > 0) {
+      const lines = [];
+      for (let i = 0; i < missingKeys.length; i++) {
+        lines.push('  ' + missingKeys[i] + ' used by: ' + missing[missingKeys[i]].join(', '));
+      }
+      assert.fail('L1 found undeclared literal Style.utilities keys:\n' + lines.join('\n'));
+    }
 
   });
 
