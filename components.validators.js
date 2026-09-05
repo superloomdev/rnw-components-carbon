@@ -183,6 +183,26 @@ export default function (Lib, ERRORS) {
         throw new TypeError('rnw-components-carbon: theme.Breakpoint must be an object');
       }
 
+      // TypeSet group is optional but must be an object when present
+      if (theme.TypeSet !== undefined && !Lib.Utils.isObject(theme.TypeSet)) {
+        throw new TypeError('rnw-components-carbon: theme.TypeSet must be an object');
+      }
+
+      // Shadow group is optional but must be an object when present
+      if (theme.Shadow !== undefined && !Lib.Utils.isObject(theme.Shadow)) {
+        throw new TypeError('rnw-components-carbon: theme.Shadow must be an object');
+      }
+
+      // Motion group is optional but must be an object when present
+      if (theme.Motion !== undefined && !Lib.Utils.isObject(theme.Motion)) {
+        throw new TypeError('rnw-components-carbon: theme.Motion must be an object');
+      }
+
+      // Layer group is optional but must be an object when present
+      if (theme.Layer !== undefined && !Lib.Utils.isObject(theme.Layer)) {
+        throw new TypeError('rnw-components-carbon: theme.Layer must be an object');
+      }
+
       // Value-level validation: dimension values must be finite numbers
       // Catches the web projection (rem/em strings) being fed to RNW components
       const UNIT_PATTERN = /(?:rem|em|%|vh|vw|px|pt)$/;
