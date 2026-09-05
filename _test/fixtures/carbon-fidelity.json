@@ -1,0 +1,2473 @@
+{
+  "generated": "2026-09-05",
+  "references": {
+    "web": "@carbon/react v11.115.0 (commit 7518c84ffd00f22434fe19d83119692c12fccb2f)",
+    "native": "@carbon/react-native v9.0.7 (commit 047e8695533db64c3fdb88c649a045030cefcb0e)"
+  },
+  "counts": {
+    "total": 245,
+    "flat": 235,
+    "provider": 8,
+    "variant": 1,
+    "freeform": 1,
+    "upstreamWeb": 189,
+    "upstreamNative": 121,
+    "both": 91,
+    "substrate": 21,
+    "structuredExtension": 4,
+    "upstreamWebOnly": 98,
+    "upstreamNativeOnly": 30
+  },
+  "rows": [
+    {
+      "name": "AILabel",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/aILabel.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "AILabelActions",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/aILabelActions.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "AILabelContent",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/aILabelContent.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "AISkeletonIcon",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/aISkeletonIcon.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "AISkeletonPlaceholder",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/aISkeletonPlaceholder.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "AISkeletonText",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/aISkeletonText.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "AcceptTerms",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/acceptTerms.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Accordion",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/accordion.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "AccordionItem",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/accordionItem.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ActionSheet",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/actionSheet.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ActionableNotification",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/actionableNotification.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "AspectRatio",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/aspectRatio.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "BadgeIndicator",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/badgeIndicator.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "substrate",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "BottomNavigationBar",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/bottomNavigationBar.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "BottomSafeAreaColorOverride",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/bottomSafeAreaColorOverride.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "BottomToolbar",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/bottomToolbar.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "BottomToolbarPrimaryAction",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/bottomToolbarPrimaryAction.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Breadcrumb",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/breadcrumb.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "BreadcrumbItem",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/breadcrumbItem.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Button",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/button.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ButtonSet",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/buttonSet.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Callout",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/callout.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Checkbox",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/checkbox.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "CheckboxGroup",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/checkboxGroup.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ClickableTile",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/clickableTile.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "CodeSnippet",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/codeSnippet.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Column",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/column.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ColumnHang",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/columnHang.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "substrate",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ComboBox",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/comboBox.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ComboButton",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/comboButton.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ComposedModal",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/composedModal.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ContainedList",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/containedList.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ContainedListItem",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/containedListItem.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Content",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/content.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "substrate",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ContentSwitcher",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/contentSwitcher.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ControlledPasswordInput",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/controlledPasswordInput.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Copy",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/copy.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "CopyButton",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/copyButton.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "DataTable",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/dataTable.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "DataTableCell",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/dataTableCell.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "DataTableHeader",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/dataTableHeader.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "DataTableHeaderSelected",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/dataTableHeaderSelected.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "DataTableRow",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/dataTableRow.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "DateInput",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/dateInput.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "DatePicker",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/datePicker.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "DatePickerInput",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/datePickerInput.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "DefinitionTooltip",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/definitionTooltip.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "DismissibleTag",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/dismissibleTag.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "DocumentViewer",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/documentViewer.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Dropdown",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/dropdown.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ErrorBoundaryContext",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/errorBoundaryContext.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "substrate",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ErrorState",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/errorState.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ExpandableSearch",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/expandableSearch.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ExpandableTile",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/expandableTile.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "FileUploader",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/fileUploader.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "FileUploaderButton",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/fileUploaderButton.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "FileUploaderDropContainer",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/fileUploaderDropContainer.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "FileUploaderItem",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/fileUploaderItem.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Filename",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/filename.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "FilterableMultiSelect",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/filterableMultiSelect.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "FlexGrid",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/flexGrid.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Form",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/form.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "FormContext",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/formContext.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "substrate",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "FormGroup",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/formGroup.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "FormItem",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/formItem.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "FormLabel",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/formLabel.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "GlobalTheme",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/globalTheme.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "substrate",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "GrantPermission",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/grantPermission.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Grid",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/grid.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "GridSettings",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/gridSettings.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "structured-extension",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "HStack",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/hStack.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "substrate",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Header",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/header.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "HeaderContainer",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/headerContainer.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "HeaderGlobalAction",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/headerGlobalAction.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "HeaderGlobalBar",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/headerGlobalBar.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "HeaderMenu",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/headerMenu.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "HeaderMenuButton",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/headerMenuButton.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "HeaderMenuItem",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/headerMenuItem.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "HeaderName",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/headerName.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "HeaderNavigation",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/headerNavigation.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "HeaderPanel",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/headerPanel.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "HeaderSideNavItems",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/headerSideNavItems.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Heading",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/heading.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Icon",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/icon.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "IconButton",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/iconButton.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "IconIndicator",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/iconIndicator.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "substrate",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "IconSwitch",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/iconSwitch.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "substrate",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "IconTab",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/iconTab.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "substrate",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Image",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/image.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "substrate",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "InlineLink",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/inlineLink.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "InlineLoading",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/inlineLoading.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "InlineNotification",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/inlineNotification.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "LandingView",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/landingView.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Link",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/link.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "List",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/list.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ListItem",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/listItem.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Loading",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/loading.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Menu",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/menu.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "MenuButton",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/menuButton.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "MenuItem",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/menuItem.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "MenuItemDivider",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/menuItemDivider.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "MenuItemGroup",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/menuItemGroup.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "MenuItemRadioGroup",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/menuItemRadioGroup.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "MenuItemSelectable",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/menuItemSelectable.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Modal",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/modal.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ModalBody",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/modalBody.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ModalFooter",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/modalFooter.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ModalHeader",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/modalHeader.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "MultiSelect",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/multiSelect.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "NavigationList",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/navigationList.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "NavigationListItem",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/navigationListItem.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Notification",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/notification.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "NotificationActionButton",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/notificationActionButton.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "NotificationButton",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/notificationButton.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "NumberInput",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/numberInput.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "OperationalTag",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/operationalTag.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "OrderedList",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/orderedList.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "OverflowMenu",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/overflowMenu.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "OverflowMenuItem",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/overflowMenuItem.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Pagination",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/pagination.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "PaginationNav",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/paginationNav.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "PasswordInput",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/passwordInput.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Popover",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/popover.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "PopoverContent",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/popoverContent.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "PrefixContext",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/prefixContext.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "substrate",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ProgressBar",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/progressBar.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ProgressIndicator",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/progressIndicator.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ProgressStep",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/progressStep.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "RadioButton",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/radioButton.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "RadioButtonGroup",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/radioButtonGroup.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "RadioTile",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/radioTile.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Row",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/row.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SafeAreaWrapper",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/safeAreaWrapper.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Search",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/search.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Section",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/section.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "substrate",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Select",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/select.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SelectItem",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/selectItem.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SelectItemGroup",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/selectItemGroup.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SelectableTag",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/selectableTag.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SelectableTile",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/selectableTile.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ShapeIndicator",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/shapeIndicator.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "substrate",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SideNav",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/sideNav.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SideNavDetails",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/sideNavDetails.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SideNavDivider",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/sideNavDivider.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SideNavFooter",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/sideNavFooter.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SideNavHeader",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/sideNavHeader.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SideNavIcon",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/sideNavIcon.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SideNavItem",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/sideNavItem.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SideNavItems",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/sideNavItems.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SideNavLink",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/sideNavLink.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SideNavLinkText",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/sideNavLinkText.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SideNavMenu",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/sideNavMenu.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SideNavMenuItem",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/sideNavMenuItem.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SideNavSwitcher",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/sideNavSwitcher.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SidePanel",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/sidePanel.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "structured-extension",
+      "status": "pending",
+      "notes": "upstream-web source exists but export is commented out in v11.115.0 index.ts"
+    },
+    {
+      "name": "Skeleton",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/skeleton.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "structured-extension",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SkeletonIcon",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/skeletonIcon.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SkeletonPlaceholder",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/skeletonPlaceholder.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SkeletonText",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/skeletonText.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SkipToContent",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/skipToContent.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Slider",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/slider.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Stack",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/stack.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "StaticNotification",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/staticNotification.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "StructuredListBody",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/structuredListBody.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "StructuredListCell",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/structuredListCell.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "StructuredListHead",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/structuredListHead.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "StructuredListInput",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/structuredListInput.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "StructuredListRow",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/structuredListRow.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "StructuredListWrapper",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/structuredListWrapper.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Switch",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/switch.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Switcher",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/switcher.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SwitcherDivider",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/switcherDivider.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "SwitcherItem",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/switcherItem.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Tab",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tab.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TabContent",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tabContent.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TabList",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tabList.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TabListVertical",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tabListVertical.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TabPanel",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tabPanel.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TabPanels",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tabPanels.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Table",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/table.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TableActionList",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tableActionList.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TableBatchAction",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tableBatchAction.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TableBatchActions",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tableBatchActions.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TableBody",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tableBody.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TableCell",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tableCell.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TableContainer",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tableContainer.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TableDecoratorRow",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tableDecoratorRow.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TableExpandHeader",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tableExpandHeader.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TableExpandRow",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tableExpandRow.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TableExpandedRow",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tableExpandedRow.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TableHead",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tableHead.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TableHeader",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tableHeader.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TableRow",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tableRow.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TableSelectAll",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tableSelectAll.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TableSelectRow",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tableSelectRow.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TableSlugRow",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tableSlugRow.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TableToolbar",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tableToolbar.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TableToolbarAction",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tableToolbarAction.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TableToolbarContent",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tableToolbarContent.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TableToolbarMenu",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tableToolbarMenu.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TableToolbarSearch",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tableToolbarSearch.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Tabs",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/tabs.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TabsVertical",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/tabsVertical.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Tag",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/tag.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Text",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/text.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TextArea",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/textArea.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TextInput",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/textInput.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ThemeContext",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/themeContext.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "substrate",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Tile",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tile.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TileAboveTheFoldContent",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tileAboveTheFoldContent.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TileBelowTheFoldContent",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tileBelowTheFoldContent.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TileGroup",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tileGroup.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TimePicker",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/timePicker.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TimePickerSelect",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/timePickerSelect.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ToastNotification",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/toastNotification.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Toggle",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/toggle.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Toggletip",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/toggletip.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ToggletipActions",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/toggletipActions.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ToggletipButton",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/toggletipButton.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ToggletipContent",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/toggletipContent.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ToggletipLabel",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/toggletipLabel.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Tooltip",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/tooltip.js",
+      "upstreamWeb": true,
+      "upstreamNative": true,
+      "classification": "both-with-explicit-platform-mapping",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TopNavigationBar",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/topNavigationBar.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TopNavigationBarLogin",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/topNavigationBarLogin.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TreeNode",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/treeNode.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TreeView",
+      "sourceType": "composite",
+      "sourcePath": "component/composite/treeView.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "TruncatedText",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/truncatedText.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "substrate",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "UiPanel",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/uiPanel.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "UiPanelItem",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/uiPanelItem.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "UnorderedList",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/unorderedList.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "UserAvatar",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/userAvatar.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "substrate",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "VStack",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/vStack.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "substrate",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "View",
+      "sourceType": "atom",
+      "sourcePath": "component/atom/view.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "substrate",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ViewWrapper",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/viewWrapper.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "WebHeader",
+      "sourceType": "molecule",
+      "sourcePath": "component/molecule/webHeader.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "ErrorBoundary",
+      "sourceType": "provider",
+      "sourcePath": "component/provider/errorBoundary.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "FeatureFlags",
+      "sourceType": "provider",
+      "sourcePath": "component/provider/featureFlags.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "substrate",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "FluidForm",
+      "sourceType": "provider",
+      "sourcePath": "component/provider/fluidForm.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "IdPrefix",
+      "sourceType": "provider",
+      "sourcePath": "component/provider/idPrefix.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Layer",
+      "sourceType": "provider",
+      "sourcePath": "component/provider/layer.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "LiveRegionProvider",
+      "sourceType": "provider",
+      "sourcePath": "component/provider/liveRegionProvider.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "substrate",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Overlay",
+      "sourceType": "provider",
+      "sourcePath": "component/provider/overlay.js",
+      "upstreamWeb": false,
+      "upstreamNative": true,
+      "classification": "upstream-native",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "Theme",
+      "sourceType": "provider",
+      "sourcePath": "component/provider/theme.js",
+      "upstreamWeb": true,
+      "upstreamNative": false,
+      "classification": "upstream-web",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "buttonPrimaryOutlined",
+      "sourceType": "variant",
+      "sourcePath": "component/variant/buttonPrimaryOutlined.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "structured-extension",
+      "status": "pending",
+      "notes": ""
+    },
+    {
+      "name": "rawBox",
+      "sourceType": "freeform",
+      "sourcePath": "component/freeform/rawBox.js",
+      "upstreamWeb": false,
+      "upstreamNative": false,
+      "classification": "freeform",
+      "status": "pending",
+      "notes": ""
+    }
+  ]
+}
