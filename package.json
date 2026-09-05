@@ -24,7 +24,8 @@
     "lint:fix": "eslint . --fix",
     "verify": "node scripts/verify.js",
     "verify:gates": "node scripts/verify.js --gates",
-    "verify:full": "node scripts/verify.js --full"
+    "verify:full": "node scripts/verify.js --full",
+    "verify:parity": "cd _test && node --import ./harness/register.js --test parity.test.js"
   },
   "peerDependencies": {
     "react": ">=18",
