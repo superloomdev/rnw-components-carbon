@@ -138,28 +138,78 @@ describe('parity oracle - negative controls', () => {
 
 describe('parity oracle - Superloom profile comparison', () => {
 
-  it('should record that the Carbon profile is not yet shipped (Step 4.2)', () => {
+  let profiles;
 
-    // The Carbon profile data (./theme.js) does not exist yet.
-    // Step 4.2 will create it. This test records the blocked state.
-    // After Step 4.2, this test will be replaced with actual comparisons.
+  it('should import the Carbon profile from ./theme', async () => {
 
-    let profileAvailable = false;
+    profiles = await import('rnw-components-carbon/theme');
+    assert.ok(profiles.white, 'white profile must exist');
+    assert.ok(profiles.g10, 'g10 profile must exist');
+    assert.ok(profiles.g90, 'g90 profile must exist');
+    assert.ok(profiles.g100, 'g100 profile must exist');
 
-    try {
-      // Try to import the theme profile - this will fail until Step 4.2
-      // eslint-disable-next-line no-unused-vars
-      const profile = require('rnw-components-carbon/theme');
-      if (profile) {
-        profileAvailable = true;
-      }
-    } catch (e) {
-      // Expected: module not found until Step 4.2
-    }
+  });
 
-    // This is the expected state during Step 4.1
-    assert.equal(profileAvailable, false,
-      'Carbon profile should not be available until Step 4.2 ships it');
+  it('should match white profile background values against the oracle', () => {
+
+    const w = profiles.white.tokens;
+    assert.equal(w['color.background'], oracle.themes.white.background.background);
+    assert.equal(w['color.layer_01'], oracle.themes.white.layers.layer01);
+    assert.equal(w['color.layer_02'], oracle.themes.white.layers.layer02);
+    assert.equal(w['color.layer_03'], oracle.themes.white.layers.layer03);
+
+  });
+
+  it('should match white profile text values against the oracle', () => {
+
+    const w = profiles.white.tokens;
+    assert.equal(w['color.text_primary'], oracle.themes.white.text.textPrimary);
+    assert.equal(w['color.text_secondary'], oracle.themes.white.text.textSecondary);
+    assert.equal(w['color.text_on_color'], oracle.themes.white.text.textOnColor);
+
+  });
+
+  it('should match white profile interactive values against the oracle', () => {
+
+    const w = profiles.white.tokens;
+    assert.equal(w['color.interactive'], oracle.themes.white.interactive.interactive);
+    assert.equal(w['color.focus'], oracle.themes.white.interactive.focus);
+
+  });
+
+  it('should match white profile border values against the oracle', () => {
+
+    const w = profiles.white.tokens;
+    assert.equal(w['color.border_subtle_01'], oracle.themes.white.border.borderSubtle01);
+    assert.equal(w['color.border_interactive'], oracle.themes.white.border.borderInteractive);
+
+  });
+
+  it('should match g100 profile values against the oracle', () => {
+
+    const g = profiles.g100.tokens;
+    assert.equal(g['color.background'], oracle.themes.g100.background.background);
+    assert.equal(g['color.layer_01'], oracle.themes.g100.layers.layer01);
+    assert.equal(g['color.text_primary'], oracle.themes.g100.text.textPrimary);
+    assert.equal(g['color.interactive'], oracle.themes.g100.interactive.interactive);
+
+  });
+
+  it('should match g10 profile values against the oracle', () => {
+
+    const t = profiles.g10.tokens;
+    assert.equal(t['color.background'], oracle.themes.g10.background.background);
+    assert.equal(t['color.layer_01'], oracle.themes.g10.layers.layer01);
+    assert.equal(t['color.text_primary'], oracle.themes.g10.text.textPrimary);
+
+  });
+
+  it('should match g90 profile values against the oracle', () => {
+
+    const t = profiles.g90.tokens;
+    assert.equal(t['color.background'], oracle.themes.g90.background.background);
+    assert.equal(t['color.layer_01'], oracle.themes.g90.layers.layer01);
+    assert.equal(t['color.text_primary'], oracle.themes.g90.text.textPrimary);
 
   });
 

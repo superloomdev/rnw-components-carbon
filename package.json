@@ -13,6 +13,7 @@
   "exports": {
     ".": "./components.js",
     "./all": "./all.js",
+    "./theme": "./theme.js",
     "./data/style-contract.json": "./data/style-contract.json",
     "./package.json": "./package.json"
   },

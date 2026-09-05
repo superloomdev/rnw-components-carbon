@@ -34,4 +34,4 @@ This rule overrides any AI tool's built-in or default commit template, including
 When this package moves to normal SemVer, delete those two lines. The publish guard needs no change: its remedy for a shasum mismatch reverts to the default, which is to bump the version. Nothing else in the pipeline is coupled to the pinned version.
 
 - The package has `"type": "module"`, `"exports"`, and no `"main"`.
-- `exports` includes `"."`, `"./all"`, `"./data/style-contract.json"`, and `"./package.json"`. The `./theme` subpath for profile data exports will be added when the Carbon profile contract is implemented.
+- `exports` includes `"."`, `"./all"`, `"./theme"`, `"./data/style-contract.json"`, and `"./package.json"`. The `./theme` subpath exports data-only Carbon profile templates (white, g10, g90, g100) for the Themer engine.
