@@ -1,9 +1,10 @@
 // Info: Bridge between the themer engine and the component theme contract.
 //
 // Reshapes the flat emitted token map from Lib.Themer.buildTheme() into the
-// nested { Color, Dimension, Font, Breakpoint } structure the component
-// library consumes. Also adds the Breakpoint group, which the themer does
-// not own (breakpoints are a layout concern, not a design token).
+// nested { Color, Dimension, Font, Breakpoint, TypeSet, Shadow, Motion, Layer }
+// structure the component library consumes. Also adds the Breakpoint group,
+// which the themer does not own (breakpoints are a layout concern, not a
+// design token).
 //
 // Pure function, no side effects. Called at build time.
 
@@ -20,12 +21,33 @@ const DEFAULT_BREAKPOINTS = {
 
 
 /********************************************************************
+Convert a snake_case string to camelCase.
+
+@pString {String} s - The snake_case string
+
+@return {String} - The camelCase version
+*********************************************************************/
+function toCamelCase (s) {
+
+  return s.replace(/_([a-z])/g, function (_, c) {
+    return c.toUpperCase();
+  });
+
+}
+
+
+/********************************************************************
 Reshape the themer's flat emitted token map into the nested
-{ Color, Dimension, Font, Breakpoint } structure the components expect.
+{ Color, Dimension, Font, Breakpoint, TypeSet, Shadow, Motion, Layer }
+structure the components expect.
 
 Tokens named color.APP_PRIMARY -> Color.APP_PRIMARY
 Tokens named dimension.font_size.xs -> Dimension.fontSize.xs
 Tokens named font.family.primary -> Font.family.primary
+Tokens named type.body_01 -> TypeSet.body01
+Tokens named shadow.card -> Shadow.card
+Tokens named motion.duration_fast_01 -> Motion.durationFast01
+Tokens named layer.background -> Layer.background
 
 Raw `typeof` is used deliberately: this is a standalone pure function
 with no `Lib` injection, so the Utils type primitives are not available.
@@ -33,7 +55,7 @@ with no `Lib` injection, so the Utils type primitives are not available.
 @param {Object} themer_output - Result from Lib.Themer.buildTheme(), or
                                  a flat token map directly
 
-@return {Object} - { Color, Dimension, Font, Breakpoint }
+@return {Object} - { Color, Dimension, Font, Breakpoint, TypeSet, Shadow, Motion, Layer }
 *********************************************************************/
 export default function buildThemeContract (themer_output) {
 
@@ -42,13 +64,26 @@ export default function buildThemeContract (themer_output) {
 
   // Guard against null/undefined input
   if (!flat || typeof flat !== 'object') {
-    return { Color: {}, Dimension: {}, Font: { family: {}, weight: {} }, Breakpoint: DEFAULT_BREAKPOINTS };
+    return {
+      Color: {},
+      Dimension: {},
+      Font: { family: {}, weight: {} },
+      Breakpoint: DEFAULT_BREAKPOINTS,
+      TypeSet: {},
+      Shadow: {},
+      Motion: {},
+      Layer: {}
+    };
   }
 
   // Initialize the nested token group containers
   const Color = {};
   const Dimension = {};
   const Font = { family: {}, weight: {} };
+  const TypeSet = {};
+  const Shadow = {};
+  const Motion = {};
+  const Layer = {};
 
   // Walk the flat token map and partition by prefix
   const flatKeys = Object.keys(flat);
@@ -75,9 +110,7 @@ export default function buildThemeContract (themer_output) {
 
       if (parts.length === 3) {
         // Convert snake_case sub-group to camelCase: font_size -> fontSize
-        const scaleName = parts[1].replace(/_([a-z])/g, function (_, c) {
-          return c.toUpperCase();
-        });
+        const scaleName = toCamelCase(parts[1]);
 
         if (!Dimension[scaleName]) {
           Dimension[scaleName] = {};
@@ -88,10 +121,7 @@ export default function buildThemeContract (themer_output) {
 
       } else {
         // Scalar dimension: dimension.line_height_ratio -> Dimension.lineHeightRatio
-        const camelKey = parts[1].replace(/_([a-z])/g, function (_, c) {
-          return c.toUpperCase();
-        });
-        Dimension[camelKey] = value;
+        Dimension[toCamelCase(parts[1])] = value;
 
       }
 
@@ -103,6 +133,28 @@ export default function buildThemeContract (themer_output) {
       }
       Font[parts[1]][parts[2]] = value;
 
+    // Type set tokens: type.body_01 -> TypeSet.body01
+    } else if (parts[0] === 'type') {
+
+      // Convert snake_case key to camelCase: body_01 -> body01
+      const typeKey = toCamelCase(parts[1]);
+      TypeSet[typeKey] = value;
+
+    // Shadow tokens: shadow.card -> Shadow.card
+    } else if (parts[0] === 'shadow') {
+
+      Shadow[parts[1]] = value;
+
+    // Motion tokens: motion.duration_fast_01 -> Motion.durationFast01
+    } else if (parts[0] === 'motion') {
+
+      Motion[toCamelCase(parts[1])] = value;
+
+    // Layer tokens: layer.background -> Layer.background
+    } else if (parts[0] === 'layer') {
+
+      Layer[parts[1]] = value;
+
     }
 
   }
@@ -112,7 +164,11 @@ export default function buildThemeContract (themer_output) {
     Color: Color,
     Dimension: Dimension,
     Font: Font,
-    Breakpoint: DEFAULT_BREAKPOINTS
+    Breakpoint: DEFAULT_BREAKPOINTS,
+    TypeSet: TypeSet,
+    Shadow: Shadow,
+    Motion: Motion,
+    Layer: Layer
   };
 
 }
